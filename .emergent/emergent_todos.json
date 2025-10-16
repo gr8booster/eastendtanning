@@ -1,11 +1,11 @@
 [
   {
     "content": "Install required dependencies: react-router-dom and framer-motion",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Update index.css with design tokens (colors, spacing, shadows, fonts) from design guidelines",
-    "status": "pending"
+    "status": "in_progress"
   },
   {
     "content": "Add Google Fonts (Spectral & Manrope) to index.html",
