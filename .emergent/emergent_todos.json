@@ -1,0 +1,42 @@
+[
+  {
+    "content": "Install required dependencies: react-router-dom and framer-motion",
+    "status": "pending"
+  },
+  {
+    "content": "Update index.css with design tokens (colors, spacing, shadows, fonts) from design guidelines",
+    "status": "pending"
+  },
+  {
+    "content": "Add Google Fonts (Spectral & Manrope) to index.html",
+    "status": "pending"
+  },
+  {
+    "content": "Create Header component with navigation (desktop + mobile Sheet)",
+    "status": "pending"
+  },
+  {
+    "content": "Create Footer component with business info and links",
+    "status": "pending"
+  },
+  {
+    "content": "Create ServiceCard component for Tanning/Laundry/Drinks funnels",
+    "status": "pending"
+  },
+  {
+    "content": "Create Home page with hero, 3-up Bento ServiceCards, About teaser, and location strip",
+    "status": "pending"
+  },
+  {
+    "content": "Set up React Router with routes for all pages",
+    "status": "pending"
+  },
+  {
+    "content": "Update App.js with Router and layout structure",
+    "status": "pending"
+  },
+  {
+    "content": "Test frontend build and take screenshots to verify UI matches design guidelines",
+    "status": "pending"
+  }
+]
