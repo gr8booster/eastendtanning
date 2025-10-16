@@ -1,7 +1,7 @@
 [
   {
     "content": "Install required dependencies: react-router-dom and framer-motion",
-    "status": "pending"
+    "status": "in_progress"
   },
   {
     "content": "Update index.css with design tokens (colors, spacing, shadows, fonts) from design guidelines",
