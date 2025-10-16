@@ -108,14 +108,14 @@ export default function Home() {
             <Card data-testid="location-card-eastend" className="p-6 bg-white">
               <h3 className="font-semibold text-xl mb-3">Eastend Tanning & Laundry</h3>
               <div className="space-y-3 text-sm">
-                <p className="flex items-start gap-2 text-muted-foreground">
+                <div className="flex items-start gap-2 text-muted-foreground">
                   <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0 text-secondary" />
-                  818 Coshocton Ave, Mt Vernon, OH 43050
-                </p>
-                <p className="flex items-start gap-2 text-muted-foreground">
+                  <span>818 Coshocton Ave, Mt Vernon, OH 43050</span>
+                </div>
+                <div className="flex items-start gap-2 text-muted-foreground">
                   <Phone className="w-4 h-4 mt-0.5 flex-shrink-0 text-secondary" />
-                  (740) 397-9632
-                </p>
+                  <span>(740) 397-9632</span>
+                </div>
                 <div className="flex items-start gap-2 text-muted-foreground">
                   <Clock className="w-4 h-4 mt-0.5 flex-shrink-0 text-secondary" />
                   <div>
