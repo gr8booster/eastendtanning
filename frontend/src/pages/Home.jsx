@@ -142,14 +142,14 @@ export default function Home() {
             <Card data-testid="location-card-westend" className="p-6 bg-white">
               <h3 className="font-semibold text-xl mb-3">Westend Laundry</h3>
               <div className="space-y-3 text-sm">
-                <p className="flex items-start gap-2 text-muted-foreground">
+                <div className="flex items-start gap-2 text-muted-foreground">
                   <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0 text-secondary" />
-                  116 S Norton St, Mt Vernon, OH 43050
-                </p>
-                <p className="flex items-start gap-2 text-muted-foreground">
+                  <span>116 S Norton St, Mt Vernon, OH 43050</span>
+                </div>
+                <div className="flex items-start gap-2 text-muted-foreground">
                   <Phone className="w-4 h-4 mt-0.5 flex-shrink-0 text-secondary" />
-                  (740) 393-3766
-                </p>
+                  <span>(740) 393-3766</span>
+                </div>
                 <div className="flex items-start gap-2 text-muted-foreground">
                   <Clock className="w-4 h-4 mt-0.5 flex-shrink-0 text-secondary" />
                   <div>
