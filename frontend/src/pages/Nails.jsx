@@ -1,6 +1,7 @@
 import { PricingTable } from '../components/PricingTable';
 import { FAQAccordion } from '../components/FAQAccordion';
 import { BookingCTA } from '../components/BookingCTA';
+import { BookingForm } from '../components/BookingForm';
 import { Card } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
 import { Clock, MapPin, Phone, Sparkles, Heart, Palette } from 'lucide-react';
@@ -173,6 +174,17 @@ export default function Nails() {
           <div className="max-w-3xl mx-auto">
             <FAQAccordion faqs={faqs} />
           </div>
+        </div>
+      </section>
+
+      {/* Booking Form */}
+      <section className="py-12 lg:py-20 bg-muted">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-10 max-w-[1200px]">
+          <BookingForm 
+            service="nails"
+            title="Book Your Nail Appointment"
+            description="Request your preferred time and we'll confirm availability."
+          />
         </div>
       </section>
 
