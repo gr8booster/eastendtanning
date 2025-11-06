@@ -41,6 +41,8 @@ function App() {
             <Route path="/locations" element={<Locations />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:id" element={<BlogPost />} />
             <Route 
               path="/admin" 
               element={
