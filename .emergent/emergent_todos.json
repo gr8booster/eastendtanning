@@ -13,10 +13,10 @@
   },
   {
     "content": "Create Blog Display Pages - Add /blog route and display AI-generated blog posts",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Real-Time Dashboard Updates - Implement auto-refresh every 60 seconds with loading states",
-    "status": "pending"
+    "status": "in_progress"
   }
 ]
