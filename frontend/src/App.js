@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { Toaster } from './components/ui/sonner';
@@ -11,7 +11,19 @@ import Nails from './pages/Nails';
 import Locations from './pages/Locations';
 import Contact from './pages/Contact';
 import Admin from './pages/Admin';
+import Login from './pages/Login';
 import './App.css';
+
+// Protected Route Component
+function ProtectedRoute({ children }) {
+  const token = localStorage.getItem('admin_token');
+  
+  if (!token) {
+    return <Navigate to="/login" replace />;
+  }
+  
+  return children;
+}
 
 function App() {
   return (
@@ -28,7 +40,15 @@ function App() {
             <Route path="/nails" element={<Nails />} />
             <Route path="/locations" element={<Locations />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/admin" element={<Admin />} />
+            <Route path="/login" element={<Login />} />
+            <Route 
+              path="/admin" 
+              element={
+                <ProtectedRoute>
+                  <Admin />
+                </ProtectedRoute>
+              } 
+            />
           </Routes>
         </main>
         <Footer />
