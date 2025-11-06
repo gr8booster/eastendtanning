@@ -1,11 +1,11 @@
 [
   {
     "content": "PHASE 0: UI Improvements - Enhance all service pages, better CTAs, improved imagery",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "PHASE 1: Backend Setup - Create MongoDB models for analytics, bookings, leads, campaigns",
-    "status": "pending"
+    "status": "in_progress"
   },
   {
     "content": "PHASE 1: Analytics Foundation - Track visitor data, page views, conversions with mock data",
