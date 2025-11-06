@@ -69,10 +69,17 @@ export default function Admin() {
       const leadsRes = await fetch(`${backendUrl}/api/leads?limit=10`);
       const leadsData = await leadsRes.json();
       setLeads(leadsData);
+      
+      // Update last updated timestamp
+      setLastUpdated(new Date());
     } catch (error) {
       console.error('Error fetching dashboard data:', error);
+      if (!isBackgroundRefresh) {
+        toast.error('Failed to load dashboard data');
+      }
     } finally {
       setLoading(false);
+      setRefreshing(false);
     }
   };
 
