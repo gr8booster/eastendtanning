@@ -24,10 +24,10 @@ export default function Home() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-10 max-w-[1200px] relative z-10">
           <motion.div {...fadeInUp} className="text-center mb-12">
             <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-[-0.01em] text-foreground mb-4">
-              Sun. Clean. Fizze.
+              Tanning Studio. Laundromat. Fizze Drinks. Nails.
             </h1>
             <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed mb-8">
-              Sun-kissed tans. Sparkling laundry. Fizze drinks you'll love. All in Mount Vernon, Ohio.
+              Your one-stop destination in Mount Vernon, Ohio for premium tanning, spotless laundry, refreshing drinks, and professional nail care.
             </p>
             
             {/* Hero CTAs */}
