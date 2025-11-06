@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { Toaster } from './components/ui/sonner';
+import { LeadCaptureManager } from './components/LeadCaptureManager';
 import Home from './pages/Home';
 import Tanning from './pages/Tanning';
 import Laundry from './pages/Laundry';
@@ -17,6 +18,7 @@ function App() {
     <BrowserRouter>
       <div className="App min-h-screen flex flex-col">
         <Header />
+        <LeadCaptureManager />
         <main className="flex-1">
           <Routes>
             <Route path="/" element={<Home />} />
