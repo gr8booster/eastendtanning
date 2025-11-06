@@ -9,6 +9,7 @@ import Drinks from './pages/Drinks';
 import Nails from './pages/Nails';
 import Locations from './pages/Locations';
 import Contact from './pages/Contact';
+import Admin from './pages/Admin';
 import './App.css';
 
 function App() {
