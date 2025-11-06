@@ -169,6 +169,11 @@ export default function Admin() {
                 🎯 Eastend Command Center
               </h1>
               <p className="text-white/90">AI-Powered Marketing & Orchestration Dashboard</p>
+              {lastUpdated && (
+                <p className="text-white/70 text-sm mt-2" data-testid="last-updated">
+                  Last updated: {lastUpdated.toLocaleTimeString()} {autoRefresh && '• Auto-refresh enabled'}
+                </p>
+              )}
             </div>
             <div className="flex gap-3">
               <Button 
