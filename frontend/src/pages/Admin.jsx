@@ -147,6 +147,25 @@ export default function Admin() {
               <Button 
                 variant="secondary" 
                 size="sm"
+                onClick={handleGenerateRecommendations}
+                disabled={aiGenerating}
+                className="bg-purple-600 hover:bg-purple-700 text-white border-0"
+              >
+                {aiGenerating ? (
+                  <>
+                    <RefreshCw className="w-4 h-4 mr-2 animate-spin" />
+                    AI Generating...
+                  </>
+                ) : (
+                  <>
+                    <Sparkles className="w-4 h-4 mr-2" />
+                    Generate AI Insights
+                  </>
+                )}
+              </Button>
+              <Button 
+                variant="secondary" 
+                size="sm"
                 onClick={fetchDashboardData}
                 className="bg-white/20 hover:bg-white/30 text-white border-white/30"
               >
