@@ -13,15 +13,15 @@
   },
   {
     "content": "PHASE 2: Admin Command Center - Build dashboard UI with KPIs, charts, revenue tracking",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "PHASE 2: Connect Command Center to analytics data and display live metrics",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "PHASE 3: Lead Capture - Create popup system, booking funnels, conversion tracking",
-    "status": "pending"
+    "status": "in_progress"
   },
   {
     "content": "PHASE 3: Lead Management - Admin interface to view and manage captured leads",
