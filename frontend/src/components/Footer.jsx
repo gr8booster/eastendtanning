@@ -48,6 +48,7 @@ export const Footer = () => {
               <a href="/tanning" className="block text-sm text-muted-foreground hover:text-primary transition-colors">Tanning Services</a>
               <a href="/laundry" className="block text-sm text-muted-foreground hover:text-primary transition-colors">Laundry Services</a>
               <a href="/drinks" className="block text-sm text-muted-foreground hover:text-primary transition-colors">Fizze Drinks</a>
+              <a href="/nails" className="block text-sm text-muted-foreground hover:text-primary transition-colors">Fast Nails</a>
               <a href="/locations" className="block text-sm text-muted-foreground hover:text-primary transition-colors">Find Us</a>
               <a href="/contact" className="block text-sm text-muted-foreground hover:text-primary transition-colors">Contact Us</a>
             </nav>
