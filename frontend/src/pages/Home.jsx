@@ -178,6 +178,75 @@ export default function Home() {
                 </a>
               </div>
             </Card>
+
+            {/* Fizze Drinks */}
+            <Card data-testid="location-card-fizze" className="p-6 bg-white">
+              <h3 className="font-semibold text-xl mb-3">Fizze Drinks</h3>
+              <div className="space-y-3 text-sm">
+                <div className="flex items-start gap-2 text-muted-foreground">
+                  <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0 text-secondary" />
+                  <span>818 Coshocton Ave, Mt Vernon, OH 43050</span>
+                  <span className="text-xs italic">(Inside Eastend)</span>
+                </div>
+                <div className="flex items-start gap-2 text-muted-foreground">
+                  <Phone className="w-4 h-4 mt-0.5 flex-shrink-0 text-secondary" />
+                  <span>(740) 280-9400</span>
+                </div>
+                <div className="flex items-start gap-2 text-muted-foreground">
+                  <Clock className="w-4 h-4 mt-0.5 flex-shrink-0 text-secondary" />
+                  <div>
+                    <p data-testid="hours-fizze" className="font-medium">Mon-Fri: 7:30 AM - 6:00 PM</p>
+                    <p>Sat-Sun: 8:00 AM - 4:00 PM</p>
+                  </div>
+                </div>
+              </div>
+              <div className="mt-5 flex gap-3">
+                <a data-testid="location-call-button-fizze" href="tel:+17402809400">
+                  <Button size="sm" className="bg-[hsl(var(--secondary))] text-white hover:bg-[hsl(183_55%_38%)]">
+                    Call
+                  </Button>
+                </a>
+                <a data-testid="location-directions-button-fizze" href="https://www.google.com/maps/dir/?api=1&destination=818+Coshocton+Ave,+Mt+Vernon,+OH+43050" target="_blank" rel="noopener noreferrer">
+                  <Button variant="outline" size="sm">
+                    Directions
+                  </Button>
+                </a>
+              </div>
+            </Card>
+
+            {/* Fast Nails */}
+            <Card data-testid="location-card-nails" className="p-6 bg-white">
+              <h3 className="font-semibold text-xl mb-3">Fast Nails</h3>
+              <div className="space-y-3 text-sm">
+                <div className="flex items-start gap-2 text-muted-foreground">
+                  <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0 text-secondary" />
+                  <span>818 Coshocton Ave, Mt Vernon, OH 43050</span>
+                  <span className="text-xs italic">(Inside Eastend)</span>
+                </div>
+                <div className="flex items-start gap-2 text-muted-foreground">
+                  <Phone className="w-4 h-4 mt-0.5 flex-shrink-0 text-secondary" />
+                  <span>(740) 397-9632</span>
+                </div>
+                <div className="flex items-start gap-2 text-muted-foreground">
+                  <Clock className="w-4 h-4 mt-0.5 flex-shrink-0 text-secondary" />
+                  <div>
+                    <p data-testid="hours-nails" className="font-medium">Mon-Sat: 9:00 AM - 7:00 PM</p>
+                  </div>
+                </div>
+              </div>
+              <div className="mt-5 flex gap-3">
+                <a data-testid="location-call-button-nails" href="tel:+17403979632">
+                  <Button size="sm" className="bg-[hsl(var(--secondary))] text-white hover:bg-[hsl(183_55%_38%)]">
+                    Call
+                  </Button>
+                </a>
+                <a data-testid="location-directions-button-nails" href="https://www.google.com/maps/dir/?api=1&destination=818+Coshocton+Ave,+Mt+Vernon,+OH+43050" target="_blank" rel="noopener noreferrer">
+                  <Button variant="outline" size="sm">
+                    Directions
+                  </Button>
+                </a>
+              </div>
+            </Card>
           </div>
         </div>
       </section>
