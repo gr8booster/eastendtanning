@@ -19,13 +19,28 @@ export default function Admin() {
   const [recommendations, setRecommendations] = useState([]);
   const [leads, setLeads] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
   const [aiGenerating, setAiGenerating] = useState(false);
+  const [lastUpdated, setLastUpdated] = useState(null);
+  const [autoRefresh, setAutoRefresh] = useState(true);
 
   const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
   useEffect(() => {
     fetchDashboardData();
-  }, []);
+    
+    // Set up auto-refresh every 60 seconds
+    let intervalId;
+    if (autoRefresh) {
+      intervalId = setInterval(() => {
+        fetchDashboardData(true); // Pass true for background refresh
+      }, 60000); // 60 seconds
+    }
+    
+    return () => {
+      if (intervalId) clearInterval(intervalId);
+    };
+  }, [autoRefresh]);
 
   const fetchDashboardData = async () => {
     setLoading(true);
