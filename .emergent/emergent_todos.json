@@ -1,58 +1,46 @@
 [
   {
-    "content": "Update Home page hero tagline to 'Tanning Studio. Laundromat. Fizze Drinks. Nails.'",
-    "status": "completed"
+    "content": "PHASE 0: UI Improvements - Enhance all service pages, better CTAs, improved imagery",
+    "status": "in_progress"
   },
   {
-    "content": "Modify Home page ServiceCard grid to 2x2 layout with 4 cards (add Fast Nails)",
-    "status": "completed"
-  },
-  {
-    "content": "Update Home page 'Visit Us' section with separate Fizze Drinks and Fast Nails cards",
-    "status": "completed"
-  },
-  {
-    "content": "Update Header navigation to include 'Nails' link",
-    "status": "completed"
-  },
-  {
-    "content": "Update Footer to include 'Fast Nails' in Quick Links",
-    "status": "completed"
-  },
-  {
-    "content": "Create PricingTable reusable component",
-    "status": "completed"
-  },
-  {
-    "content": "Create FAQAccordion reusable component",
-    "status": "completed"
-  },
-  {
-    "content": "Create BookingCTA reusable component",
-    "status": "completed"
-  },
-  {
-    "content": "Create complete Fast Nails page with services, pricing, FAQ, and booking CTA",
-    "status": "completed"
-  },
-  {
-    "content": "Expand Tanning page with 5 levels (Tabs), pricing, products, and FAQ",
+    "content": "PHASE 1: Backend Setup - Create MongoDB models for analytics, bookings, leads, campaigns",
     "status": "pending"
   },
   {
-    "content": "Expand Laundry page with two locations, amenities, pricing, and FAQ",
+    "content": "PHASE 1: Analytics Foundation - Track visitor data, page views, conversions with mock data",
     "status": "pending"
   },
   {
-    "content": "Expand Fizze Drinks page with full menu, pricing, and FAQ",
+    "content": "PHASE 2: Admin Command Center - Build dashboard UI with KPIs, charts, revenue tracking",
     "status": "pending"
   },
   {
-    "content": "Update Locations page to show all 4 services with hours table",
+    "content": "PHASE 2: Connect Command Center to analytics data and display live metrics",
     "status": "pending"
   },
   {
-    "content": "Test and verify all updates with screenshots",
+    "content": "PHASE 3: Lead Capture - Create popup system, booking funnels, conversion tracking",
+    "status": "pending"
+  },
+  {
+    "content": "PHASE 3: Lead Management - Admin interface to view and manage captured leads",
+    "status": "pending"
+  },
+  {
+    "content": "PHASE 4: AI Integration - Set up Emergent LLM for OpenAI GPT-4 and Claude",
+    "status": "pending"
+  },
+  {
+    "content": "PHASE 4: AI Recommendations Engine - Auto-generate marketing insights and actions",
+    "status": "pending"
+  },
+  {
+    "content": "PHASE 4: AI Content Generator - Auto-create blog posts, social media content, email campaigns",
+    "status": "pending"
+  },
+  {
+    "content": "Test entire system end-to-end with screenshots and fix any issues",
     "status": "pending"
   }
 ]
