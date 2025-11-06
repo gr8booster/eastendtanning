@@ -5,15 +5,15 @@
   },
   {
     "content": "PHASE 1: Backend Setup - Create MongoDB models for analytics, bookings, leads, campaigns",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "PHASE 1: Analytics Foundation - Track visitor data, page views, conversions with mock data",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "PHASE 2: Admin Command Center - Build dashboard UI with KPIs, charts, revenue tracking",
-    "status": "pending"
+    "status": "in_progress"
   },
   {
     "content": "PHASE 2: Connect Command Center to analytics data and display live metrics",
