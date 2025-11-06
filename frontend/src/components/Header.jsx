@@ -35,6 +35,13 @@ export const Header = () => {
             Fizze Drinks
           </a>
           <a
+            data-testid="nav-nails-link"
+            href="/nails"
+            className="text-sm font-medium hover:text-primary transition-colors duration-200 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-200 hover:after:w-full"
+          >
+            Nails
+          </a>
+          <a
             data-testid="nav-locations-link"
             href="/locations"
             className="text-sm font-medium hover:text-primary transition-colors duration-200 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-200 hover:after:w-full"
@@ -79,6 +86,7 @@ export const Header = () => {
                 <a href="/tanning" className="text-base font-medium hover:text-primary transition-colors">Tanning</a>
                 <a href="/laundry" className="text-base font-medium hover:text-primary transition-colors">Laundry</a>
                 <a href="/drinks" className="text-base font-medium hover:text-primary transition-colors">Fizze Drinks</a>
+                <a href="/nails" className="text-base font-medium hover:text-primary transition-colors">Nails</a>
                 <a href="/locations" className="text-base font-medium hover:text-primary transition-colors">Locations</a>
                 <a href="/contact" className="text-base font-medium hover:text-primary transition-colors">Contact</a>
                 <div className="mt-4 space-y-3">
