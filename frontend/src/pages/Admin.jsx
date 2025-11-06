@@ -193,11 +193,13 @@ export default function Admin() {
               <Button 
                 variant="secondary" 
                 size="sm"
-                onClick={fetchDashboardData}
+                onClick={() => fetchDashboardData(false)}
+                disabled={refreshing}
                 className="bg-white/20 hover:bg-white/30 text-white border-white/30"
+                data-testid="refresh-button"
               >
-                <RefreshCw className="w-4 h-4 mr-2" />
-                Refresh
+                <RefreshCw className={`w-4 h-4 mr-2 ${refreshing ? 'animate-spin' : ''}`} />
+                {refreshing ? 'Refreshing...' : 'Refresh'}
               </Button>
               <Button 
                 variant="secondary" 
