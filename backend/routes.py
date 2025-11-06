@@ -197,6 +197,8 @@ async def get_recommendations(status: Optional[str] = None, priority: Optional[s
     cursor = db.ai_recommendations.find(query).sort("created_at", -1).limit(limit)
     recommendations = []
     async for doc in cursor:
+        # Remove MongoDB _id field
+        doc.pop('_id', None)
         doc['created_at'] = datetime.fromisoformat(doc['created_at'])
         recommendations.append(AIRecommendation(**doc))
     return recommendations
