@@ -1,6 +1,7 @@
 import { PricingTable } from '../components/PricingTable';
 import { FAQAccordion } from '../components/FAQAccordion';
 import { BookingCTA } from '../components/BookingCTA';
+import { BookingForm } from '../components/BookingForm';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
 import { Card } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
