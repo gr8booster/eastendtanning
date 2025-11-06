@@ -205,24 +205,16 @@ async def get_dashboard_metrics():
     start_date = end_date - timedelta(days=30)
     
     # Get page views
-    page_views = await db.pageviews.count_documents({
-        "timestamp": {"$gte": start_date.isoformat()}
-    })
+    page_views = await db.pageviews.count_documents({})
     
     # Get unique sessions
-    unique_sessions = await db.pageviews.distinct("session_id", {
-        "timestamp": {"$gte": start_date.isoformat()}
-    })
+    unique_sessions_list = await db.pageviews.distinct("session_id")
     
     # Get leads
-    leads = await db.leads.count_documents({
-        "created_at": {"$gte": start_date.isoformat()}
-    })
+    leads = await db.leads.count_documents({})
     
     # Get bookings
-    bookings_cursor = db.bookings.find({
-        "created_at": {"$gte": start_date.isoformat()}
-    })
+    bookings_cursor = db.bookings.find({})
     
     total_bookings = 0
     total_revenue = 0.0
@@ -249,15 +241,16 @@ async def get_dashboard_metrics():
     ai_recommendations_implemented = await db.ai_recommendations.count_documents({"status": "implemented"})
     
     # Calculate metrics
-    conversion_rate = (leads / len(unique_sessions) * 100) if len(unique_sessions) > 0 else 0
+    unique_sessions = len(unique_sessions_list)
+    conversion_rate = (leads / unique_sessions * 100) if unique_sessions > 0 else 0
     monthly_goal = 83333.33  # $1M / 12
     revenue_progress = (total_revenue / monthly_goal * 100) if monthly_goal > 0 else 0
     
     metrics = DashboardMetrics(
         date=end_date,
-        total_visitors=len(unique_sessions),
+        total_visitors=unique_sessions,
         page_views=page_views,
-        unique_sessions=len(unique_sessions),
+        unique_sessions=unique_sessions,
         total_leads=leads,
         total_bookings=total_bookings,
         conversion_rate=conversion_rate,
