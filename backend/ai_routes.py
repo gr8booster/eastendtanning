@@ -107,14 +107,19 @@ async def generate_ai_recommendations(request: RecommendationGenerateRequest):
             ]
         
         # Store recommendations in database
+        stored_recs = []
         for rec in recommendations:
             rec['id'] = str(uuid.uuid4())
-            await db.ai_recommendations.insert_one(rec)
+            # Insert into database
+            await db.ai_recommendations.insert_one(rec.copy())
+            # Remove MongoDB _id for response (if it exists)
+            rec.pop('_id', None)
+            stored_recs.append(rec)
         
         return {
             "status": "success",
-            "count": len(recommendations),
-            "recommendations": recommendations
+            "count": len(stored_recs),
+            "recommendations": stored_recs
         }
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Recommendation generation failed: {str(e)}")
