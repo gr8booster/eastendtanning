@@ -42,8 +42,13 @@ export default function Admin() {
     };
   }, [autoRefresh]);
 
-  const fetchDashboardData = async () => {
-    setLoading(true);
+  const fetchDashboardData = async (isBackgroundRefresh = false) => {
+    if (!isBackgroundRefresh) {
+      setLoading(true);
+    } else {
+      setRefreshing(true);
+    }
+    
     try {
       // Fetch dashboard metrics
       const metricsRes = await fetch(`${backendUrl}/api/dashboard/metrics`);
