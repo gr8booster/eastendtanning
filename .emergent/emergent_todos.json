@@ -1,46 +1,22 @@
 [
   {
-    "content": "PHASE 0: UI Improvements - Enhance all service pages, better CTAs, improved imagery",
-    "status": "completed"
+    "content": "Fix Dashboard Metrics Display - Debug get_dashboard_metrics() query to show real data",
+    "status": "pending"
   },
   {
-    "content": "PHASE 1: Backend Setup - Create MongoDB models for analytics, bookings, leads, campaigns",
-    "status": "completed"
+    "content": "Test AI Generation Live - Verify GPT-4 analysis and Claude recommendations work end-to-end",
+    "status": "pending"
   },
   {
-    "content": "PHASE 1: Analytics Foundation - Track visitor data, page views, conversions with mock data",
-    "status": "completed"
+    "content": "Add Admin Authentication - Implement password protection for /admin route",
+    "status": "pending"
   },
   {
-    "content": "PHASE 2: Admin Command Center - Build dashboard UI with KPIs, charts, revenue tracking",
-    "status": "completed"
+    "content": "Create Blog Display Pages - Add /blog route and display AI-generated blog posts",
+    "status": "pending"
   },
   {
-    "content": "PHASE 2: Connect Command Center to analytics data and display live metrics",
-    "status": "completed"
-  },
-  {
-    "content": "PHASE 3: Lead Capture - Create popup system, booking funnels, conversion tracking",
-    "status": "completed"
-  },
-  {
-    "content": "PHASE 3: Lead Management - Admin interface to view and manage captured leads",
-    "status": "completed"
-  },
-  {
-    "content": "PHASE 4: AI Integration - Set up Emergent LLM for OpenAI GPT-4 and Claude",
-    "status": "completed"
-  },
-  {
-    "content": "PHASE 4: AI Recommendations Engine - Auto-generate marketing insights and actions",
-    "status": "completed"
-  },
-  {
-    "content": "PHASE 4: AI Content Generator - Auto-create blog posts, social media content, email campaigns",
-    "status": "completed"
-  },
-  {
-    "content": "Test entire system end-to-end with screenshots and fix any issues",
-    "status": "completed"
+    "content": "Real-Time Dashboard Updates - Implement auto-refresh every 60 seconds with loading states",
+    "status": "pending"
   }
 ]

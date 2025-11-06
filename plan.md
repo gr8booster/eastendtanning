@@ -8,9 +8,9 @@ Built a comprehensive AI-powered sales and marketing platform for Eastend's mult
 
 **Tagline:** "Tanning Studio. Laundromat. Fizze Drinks. Nails."
 
-**Live Preview:** https://tan-wash-drink.preview.emergentagent.com
+**Live Preview:** https://smartorchestra.preview.emergentagent.com
 
-**Admin Command Center:** https://tan-wash-drink.preview.emergentagent.com/admin
+**Admin Command Center:** https://smartorchestra.preview.emergentagent.com/admin
 
 ---
 
@@ -464,7 +464,7 @@ Built a comprehensive AI-powered sales and marketing platform for Eastend's mult
 ### For Business Owner (Admin)
 
 **Accessing the Command Center:**
-1. Go to https://tan-wash-drink.preview.emergentagent.com/admin
+1. Go to https://smartorchestra.preview.emergentagent.com/admin
 2. View real-time KPIs and revenue progress
 3. Click "Generate AI Insights" to get new marketing recommendations
 4. Review AI recommendations and click "Implement" or "Dismiss"
@@ -489,7 +489,7 @@ Built a comprehensive AI-powered sales and marketing platform for Eastend's mult
 ### For Customers
 
 **Browsing Services:**
-1. Visit https://tan-wash-drink.preview.emergentagent.com
+1. Visit https://smartorchestra.preview.emergentagent.com
 2. Click on service cards or navigation links
 3. Read detailed service information, pricing, and FAQs
 4. View hours and locations
