@@ -1,7 +1,7 @@
 [
   {
     "content": "Fix Dashboard Metrics Display - Debug get_dashboard_metrics() query to show real data",
-    "status": "pending"
+    "status": "in_progress"
   },
   {
     "content": "Test AI Generation Live - Verify GPT-4 analysis and Claude recommendations work end-to-end",
