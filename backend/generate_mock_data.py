@@ -17,7 +17,10 @@ load_dotenv(ROOT_DIR / '.env')
 # MongoDB connection
 mongo_url = os.environ['MONGO_URL']
 client = AsyncIOMotorClient(mongo_url)
-db = client[os.environ.get('DB_NAME', 'eastend_db')]
+# Use DB_NAME from environment, or default to test_database to match server.py
+db_name = os.environ.get('DB_NAME', 'test_database')
+print(f"Using database: {db_name}")
+db = client[db_name]
 
 
 async def generate_mock_data():
