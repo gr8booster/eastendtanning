@@ -12,6 +12,7 @@ from datetime import datetime, timezone
 
 # Import routes
 from routes import router as api_routes_router
+from ai_routes import ai_router
 
 
 ROOT_DIR = Path(__file__).parent
