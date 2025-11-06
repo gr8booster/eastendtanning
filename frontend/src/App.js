@@ -12,6 +12,8 @@ import Locations from './pages/Locations';
 import Contact from './pages/Contact';
 import Admin from './pages/Admin';
 import Login from './pages/Login';
+import Blog from './pages/Blog';
+import BlogPost from './pages/BlogPost';
 import './App.css';
 
 // Protected Route Component
