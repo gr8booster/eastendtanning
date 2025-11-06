@@ -216,16 +216,18 @@ Make posts:
 Return as JSON array."""
 
         try:
-            response = self.anthropic.messages.create(
-                model="claude-3-5-sonnet-20241022",
-                max_tokens=1500,
-                temperature=0.9,
-                messages=[
-                    {"role": "user", "content": prompt}
-                ]
-            )
+            # Create a new chat instance for social media generation
+            chat = LlmChat(
+                api_key=self.api_key,
+                session_id=f"social-{uuid.uuid4()}",
+                system_message="You are a creative social media content creator for local businesses."
+            ).with_model("anthropic", "claude-sonnet-4-20250514")
             
-            content = response.content[0].text
+            # Send the message
+            user_message = UserMessage(text=prompt)
+            response = await chat.send_message(user_message)
+            
+            content = response.strip()
             if content.startswith("```json"):
                 content = content[7:-3].strip()
             elif content.startswith("```"):
