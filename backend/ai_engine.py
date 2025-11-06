@@ -267,23 +267,23 @@ Make it:
 Return as JSON."""
 
         try:
-            response = self.openai.chat.completions.create(
-                model="gpt-4",
-                messages=[
-                    {"role": "system", "content": "You are a direct-response copywriter specializing in email marketing for local businesses."},
-                    {"role": "user", "content": prompt}
-                ],
-                temperature=0.7,
-                max_tokens=2000
-            )
+            # Create a new chat instance for email generation
+            chat = LlmChat(
+                api_key=self.api_key,
+                session_id=f"email-{uuid.uuid4()}",
+                system_message="You are a persuasive email copywriter for service businesses."
+            ).with_model("openai", "gpt-4o")
             
-            content = response.choices[0].message.content
+            # Send the message
+            user_message = UserMessage(text=prompt)
+            response = await chat.send_message(user_message)
+            
             try:
-                return json.loads(content)
+                return json.loads(response)
             except:
-                return {"error": "Failed to parse email content"}
+                return {"error": "Failed to parse response"}
         except Exception as e:
-            print(f"Error generating email: {e}")
+            print(f"Error generating email campaign: {e}")
             return {"error": str(e)}
 
 
