@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import Tanning from './pages/Tanning';
 import Laundry from './pages/Laundry';
 import Drinks from './pages/Drinks';
+import Nails from './pages/Nails';
 import Locations from './pages/Locations';
 import Contact from './pages/Contact';
 import './App.css';
@@ -21,6 +22,7 @@ function App() {
             <Route path="/tanning" element={<Tanning />} />
             <Route path="/laundry" element={<Laundry />} />
             <Route path="/drinks" element={<Drinks />} />
+            <Route path="/nails" element={<Nails />} />
             <Route path="/locations" element={<Locations />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
