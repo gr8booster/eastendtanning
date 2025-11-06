@@ -82,6 +82,40 @@ export default function Admin() {
     }
   };
 
+  const handleGenerateRecommendations = async () => {
+    setAiGenerating(true);
+    toast.info('🤖 AI Engine starting...', { description: 'Analyzing your business data with GPT-4 and Claude' });
+    
+    try {
+      // First, run analysis
+      await fetch(`${backendUrl}/api/ai/analyze`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ force_refresh: true })
+      });
+
+      // Then generate recommendations
+      const response = await fetch(`${backendUrl}/api/ai/recommendations/generate`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({})
+      });
+
+      const data = await response.json();
+      
+      toast.success(`✨ Generated ${data.count} new recommendations!`, {
+        description: 'Check the AI Recommendations tab'
+      });
+
+      fetchDashboardData();
+    } catch (error) {
+      console.error('Error generating recommendations:', error);
+      toast.error('Failed to generate recommendations');
+    } finally {
+      setAiGenerating(false);
+    }
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen bg-muted flex items-center justify-center">
