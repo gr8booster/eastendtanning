@@ -21,11 +21,11 @@
   },
   {
     "content": "PHASE 3: Lead Capture - Create popup system, booking funnels, conversion tracking",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "PHASE 3: Lead Management - Admin interface to view and manage captured leads",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "PHASE 4: AI Integration - Set up Emergent LLM for OpenAI GPT-4 and Claude",
