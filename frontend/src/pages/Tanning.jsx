@@ -81,7 +81,7 @@ export default function Tanning() {
     },
     {
       question: "What should I wear while tanning?",
-      answer: "Most people tan in swimwear or underwear. You can also tan nude if you prefer (our beds are private). We provide disposable undergarments if needed."
+      answer: "Most people tan in swimwear or underwear. You can also tan nude if you prefer (our beds are private). Choose what makes you most comfortable for an even tan."
     },
     {
       question: "Can I tan if I have tattoos?",
