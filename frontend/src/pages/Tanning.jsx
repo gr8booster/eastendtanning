@@ -245,8 +245,19 @@ export default function Tanning() {
         </div>
       </section>
 
-      {/* CTA */}
+      {/* Booking Form */}
       <section className="py-16 lg:py-24 bg-muted">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-10 max-w-[1200px]">
+          <BookingForm 
+            service="tanning"
+            title="Book Your Tanning Session"
+            description="Request an appointment and we'll call to confirm your preferred time slot."
+          />
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="py-16 lg:py-24 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-10 max-w-[1200px]">
           <BookingCTA 
             title="Ready for Your Perfect Glow?"
