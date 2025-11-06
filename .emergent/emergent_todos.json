@@ -1,42 +1,58 @@
 [
   {
-    "content": "Install required dependencies: react-router-dom and framer-motion",
-    "status": "completed"
+    "content": "Update Home page hero tagline to 'Tanning Studio. Laundromat. Fizze Drinks. Nails.'",
+    "status": "pending"
   },
   {
-    "content": "Update index.css with design tokens (colors, spacing, shadows, fonts) from design guidelines",
-    "status": "completed"
+    "content": "Modify Home page ServiceCard grid to 2x2 layout with 4 cards (add Fast Nails)",
+    "status": "pending"
   },
   {
-    "content": "Add Google Fonts (Spectral & Manrope) to index.html",
-    "status": "completed"
+    "content": "Update Home page 'Visit Us' section with separate Fizze Drinks and Fast Nails cards",
+    "status": "pending"
   },
   {
-    "content": "Create Header component with navigation (desktop + mobile Sheet)",
-    "status": "completed"
+    "content": "Update Header navigation to include 'Nails' link",
+    "status": "pending"
   },
   {
-    "content": "Create Footer component with business info and links",
-    "status": "completed"
+    "content": "Update Footer to include 'Fast Nails' in Quick Links",
+    "status": "pending"
   },
   {
-    "content": "Create ServiceCard component for Tanning/Laundry/Drinks funnels",
-    "status": "completed"
+    "content": "Create PricingTable reusable component",
+    "status": "pending"
   },
   {
-    "content": "Create Home page with hero, 3-up Bento ServiceCards, About teaser, and location strip",
-    "status": "completed"
+    "content": "Create FAQAccordion reusable component",
+    "status": "pending"
   },
   {
-    "content": "Set up React Router with routes for all pages",
-    "status": "completed"
+    "content": "Create BookingCTA reusable component",
+    "status": "pending"
   },
   {
-    "content": "Update App.js with Router and layout structure",
-    "status": "completed"
+    "content": "Create complete Fast Nails page with services, pricing, FAQ, and booking CTA",
+    "status": "pending"
   },
   {
-    "content": "Test frontend build and take screenshots to verify UI matches design guidelines",
-    "status": "completed"
+    "content": "Expand Tanning page with 5 levels (Tabs), pricing, products, and FAQ",
+    "status": "pending"
+  },
+  {
+    "content": "Expand Laundry page with two locations, amenities, pricing, and FAQ",
+    "status": "pending"
+  },
+  {
+    "content": "Expand Fizze Drinks page with full menu, pricing, and FAQ",
+    "status": "pending"
+  },
+  {
+    "content": "Update Locations page to show all 4 services with hours table",
+    "status": "pending"
+  },
+  {
+    "content": "Test and verify all updates with screenshots",
+    "status": "pending"
   }
 ]
