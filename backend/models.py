@@ -110,7 +110,7 @@ class AIRecommendation(BaseModel):
     priority: str = "medium"  # 'low', 'medium', 'high', 'urgent'
     title: str
     description: str
-    suggested_action: str
+    suggested_action: Union[str, List[str]]  # Can be string or list of steps
     estimated_impact: str
     ai_model: str  # 'gpt-4', 'claude'
     status: str = "pending"  # 'pending', 'in_progress', 'implemented', 'rejected'
