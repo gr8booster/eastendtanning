@@ -72,7 +72,8 @@ async def get_status_checks():
 
 # Include all routers in the main app
 app.include_router(api_router)
-app.include_router(api_routes_router)  # Include the new API routes
+app.include_router(api_routes_router)  # Include the API routes
+app.include_router(ai_router)  # Include the AI routes
 
 app.add_middleware(
     CORSMiddleware,
