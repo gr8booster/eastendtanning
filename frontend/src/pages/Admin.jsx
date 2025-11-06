@@ -19,6 +19,7 @@ export default function Admin() {
   const [recommendations, setRecommendations] = useState([]);
   const [leads, setLeads] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [aiGenerating, setAiGenerating] = useState(false);
 
   const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
