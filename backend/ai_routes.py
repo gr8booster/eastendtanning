@@ -223,6 +223,39 @@ async def generate_email_content(request: EmailCampaignRequest):
         raise HTTPException(status_code=500, detail=f"Email generation failed: {str(e)}")
 
 
+
+@ai_router.get("/content/blog")
+async def get_blog_posts(limit: int = 20):
+    """Get all blog posts"""
+    try:
+        cursor = db.blog_posts.find({}).sort("created_at", -1).limit(limit)
+        posts = []
+        async for doc in cursor:
+            doc.pop('_id', None)
+            doc['created_at'] = doc.get('created_at', datetime.now(timezone.utc).isoformat())
+            posts.append(doc)
+        return posts
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to fetch blog posts: {str(e)}")
+
+
+@ai_router.get("/content/blog/{post_id}")
+async def get_blog_post(post_id: str):
+    """Get a single blog post by ID"""
+    try:
+        post = await db.blog_posts.find_one({"id": post_id})
+        if not post:
+            raise HTTPException(status_code=404, detail="Blog post not found")
+        
+        post.pop('_id', None)
+        post['created_at'] = post.get('created_at', datetime.now(timezone.utc).isoformat())
+        return post
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to fetch blog post: {str(e)}")
+
+
 @ai_router.get("/status")
 async def get_ai_engine_status():
     """Check AI engine status and recent activity"""
