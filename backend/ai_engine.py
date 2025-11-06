@@ -3,34 +3,21 @@ AI Marketing Engine for Eastend Tanning & Laundry
 Uses OpenAI GPT-4 and Anthropic Claude for autonomous marketing decisions
 """
 import os
-from openai import OpenAI
-from anthropic import Anthropic
+from emergentintegrations.llm.chat import LlmChat, UserMessage
 from datetime import datetime, timezone
 import json
 from typing import List, Dict, Any
+import uuid
 
-# Initialize AI clients with Emergent LLM key
+# Initialize with Emergent LLM key
 EMERGENT_LLM_KEY = "sk-emergent-057Bd2801D88b71Ce3"
-
-# OpenAI client
-openai_client = OpenAI(
-    api_key=EMERGENT_LLM_KEY,
-    base_url="https://llm.emergent.sh/v1"
-)
-
-# Anthropic client
-anthropic_client = Anthropic(
-    api_key=EMERGENT_LLM_KEY,
-    base_url="https://llm.emergent.sh"
-)
 
 
 class AIMarketingEngine:
     """Autonomous AI Marketing Engine"""
     
     def __init__(self):
-        self.openai = openai_client
-        self.anthropic = anthropic_client
+        self.api_key = EMERGENT_LLM_KEY
     
     async def analyze_business_data(self, metrics: Dict[str, Any]) -> Dict[str, Any]:
         """
