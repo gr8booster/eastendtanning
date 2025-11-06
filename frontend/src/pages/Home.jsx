@@ -55,7 +55,7 @@ export default function Home() {
           </motion.div>
 
           {/* Bento Service Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 sm:gap-6">
             <ServiceCard
               title="Tanning Studio"
               description="5 tanning levels including Matrix, stand-up, and red-light therapy. Achieve your perfect glow."
@@ -78,6 +78,14 @@ export default function Home() {
               ctaText="Sip Fizze Specials"
               href="/drinks"
               imageUrl="https://images.pexels.com/photos/9090072/pexels-photo-9090072.jpeg"
+              tone="drinks"
+            />
+            <ServiceCard
+              title="Fast Nails"
+              description="Professional nail care with manicures, pedicures, gel services, and nail art. Pamper yourself."
+              ctaText="Book Nail Appointment"
+              href="/nails"
+              imageUrl="https://images.unsplash.com/photo-1571290274554-6a2eaa771e5f?q=80&w=1200&auto=format&fit=crop"
               tone="drinks"
             />
           </div>
