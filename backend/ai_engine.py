@@ -163,23 +163,23 @@ Format as JSON with keys:
 - cta: Call-to-action text"""
 
         try:
-            response = self.openai.chat.completions.create(
-                model="gpt-4",
-                messages=[
-                    {"role": "system", "content": "You are an expert content writer specializing in local service business blogs."},
-                    {"role": "user", "content": prompt}
-                ],
-                temperature=0.7,
-                max_tokens=2500
-            )
+            # Create a new chat instance for blog generation
+            chat = LlmChat(
+                api_key=self.api_key,
+                session_id=f"blog-{uuid.uuid4()}",
+                system_message="You are an expert content writer specializing in local service business blogs."
+            ).with_model("openai", "gpt-4o")
             
-            content = response.choices[0].message.content
+            # Send the message
+            user_message = UserMessage(text=prompt)
+            response = await chat.send_message(user_message)
+            
             try:
-                return json.loads(content)
+                return json.loads(response)
             except:
                 return {
                     "title": topic,
-                    "content": content,
+                    "content": response,
                     "meta_description": "",
                     "keywords": [],
                     "cta": "Book your appointment today!"
