@@ -50,22 +50,22 @@ Analyze this data and provide:
 Format as JSON with keys: opportunities, concerns, service_recommendations, revenue_strategies"""
 
         try:
-            response = self.openai.chat.completions.create(
-                model="gpt-4",
-                messages=[
-                    {"role": "system", "content": "You are a data-driven marketing strategist specializing in local service businesses."},
-                    {"role": "user", "content": prompt}
-                ],
-                temperature=0.7,
-                max_tokens=1500
-            )
+            # Create a new chat instance for this analysis
+            chat = LlmChat(
+                api_key=self.api_key,
+                session_id=f"analysis-{uuid.uuid4()}",
+                system_message="You are a data-driven marketing strategist specializing in local service businesses."
+            ).with_model("openai", "gpt-4o")
             
-            content = response.choices[0].message.content
+            # Send the message
+            user_message = UserMessage(text=prompt)
+            response = await chat.send_message(user_message)
+            
             # Try to parse JSON response
             try:
-                return json.loads(content)
+                return json.loads(response)
             except:
-                return {"analysis": content}
+                return {"analysis": response}
         except Exception as e:
             print(f"Error in GPT-4 analysis: {e}")
             return {"error": str(e)}
