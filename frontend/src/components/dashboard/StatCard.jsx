@@ -1,4 +1,4 @@
-import { Card } from './ui/card';
+import { Card } from '../ui/card';
 
 export const StatCard = ({ title, value, change, icon: Icon, trend = 'up' }) => {
   const trendColor = trend === 'up' ? 'text-green-600' : trend === 'down' ? 'text-red-600' : 'text-gray-600';
