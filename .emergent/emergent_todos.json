@@ -1,22 +1,22 @@
 [
   {
-    "content": "Add Blog link to Header navigation for accessibility",
-    "status": "completed"
+    "content": "Create Mary Well chat widget component for website",
+    "status": "in_progress"
   },
   {
-    "content": "Update index.css with refined design tokens",
-    "status": "completed"
+    "content": "Implement backend API for Mary Well conversations",
+    "status": "pending"
   },
   {
-    "content": "Enhance Header with refined styling",
-    "status": "completed"
+    "content": "Add Stripe payment integration for all tanning packages",
+    "status": "pending"
   },
   {
-    "content": "Polish Home page with refined design patterns",
-    "status": "completed"
+    "content": "Create skin type evaluation form component",
+    "status": "pending"
   },
   {
-    "content": "Test all features remain accessible after UI refinements",
-    "status": "completed"
+    "content": "Test complete onboarding flow end-to-end",
+    "status": "pending"
   }
 ]
