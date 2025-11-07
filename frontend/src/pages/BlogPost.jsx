@@ -18,7 +18,7 @@ export default function BlogPost() {
 
   const fetchPost = async () => {
     try {
-      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/content/blog/${id}`);
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/ai/content/blog/${id}`);
       if (response.ok) {
         const data = await response.json();
         setPost(data);
