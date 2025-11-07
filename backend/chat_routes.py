@@ -76,6 +76,9 @@ async def send_message(chat_message: ChatMessage):
         # Get AI response
         response = await mary_well.send_message(chat, chat_message.message)
         
+        # Auto-capture lead if customer provides contact information
+        await auto_capture_lead_from_message(session_id, chat_message.message, response)
+        
         # Store messages in database
         await db.chat_sessions.update_one(
             {"session_id": session_id},
