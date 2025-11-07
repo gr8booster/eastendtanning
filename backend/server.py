@@ -14,6 +14,8 @@ from datetime import datetime, timezone
 from routes import router as api_routes_router
 from ai_routes import ai_router
 from auth import router as auth_router
+from chat_routes import router as chat_router
+from payment_routes import router as payment_router
 
 
 ROOT_DIR = Path(__file__).parent
