@@ -8,13 +8,13 @@ Built a comprehensive AI-powered sales and marketing platform for Eastend's mult
 
 **Tagline:** "Tanning Studio. Laundromat. Fizze Drinks. Nails."
 
-**Live Preview:** https://smartorchestra.preview.emergentagent.com
+**Live Preview:** https://tanmarketing.preview.emergentagent.com
 
-**Admin Command Center:** https://smartorchestra.preview.emergentagent.com/admin
+**Admin Command Center:** https://tanmarketing.preview.emergentagent.com/admin
 
 **Admin Password:** `eastend2025`
 
-**Blog:** https://smartorchestra.preview.emergentagent.com/blog
+**Blog:** https://tanmarketing.preview.emergentagent.com/blog
 
 ---
 
@@ -347,7 +347,7 @@ Built a comprehensive AI-powered sales and marketing platform for Eastend's mult
 ### For Business Owner (Admin)
 
 **Accessing the Command Center:**
-1. Go to https://smartorchestra.preview.emergentagent.com/admin
+1. Go to https://tanmarketing.preview.emergentagent.com/admin
 2. **Login with password:** `eastend2025`
 3. View real-time KPIs (auto-updates every 60 seconds)
 4. Monitor revenue progress toward $83,333/month goal (currently 10.0%)
@@ -375,7 +375,7 @@ Built a comprehensive AI-powered sales and marketing platform for Eastend's mult
 ### For Customers
 
 **Reading Blog Content:**
-1. Visit https://smartorchestra.preview.emergentagent.com/blog
+1. Visit https://tanmarketing.preview.emergentagent.com/blog
 2. Browse AI-generated articles about beauty, wellness, and local tips
 3. Click "Read Full Article" to view complete posts
 4. Share articles via native share or copy link
