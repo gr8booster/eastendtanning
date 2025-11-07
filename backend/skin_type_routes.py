@@ -105,7 +105,8 @@ async def submit_skin_type_evaluation(evaluation: SkinTypeEvaluation):
         skin_type = 3
         max_time = 12
         warning = "medium"
-        recommendation = "Type III (Medium): You tan gradually. Start with Level 1 or 2 for 8-12 minutes."\n    elif skin_type_score <= 8:
+        recommendation = "Type III (Medium): You tan gradually. Start with Level 1 or 2 for 8-12 minutes."
+    elif skin_type_score <= 8:
         skin_type = 4
         max_time = 15
         warning = "medium"
