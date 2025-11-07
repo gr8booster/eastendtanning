@@ -110,7 +110,8 @@ async def submit_skin_type_evaluation(evaluation: SkinTypeEvaluation):
         skin_type = 4
         max_time = 15
         warning = "medium"
-        recommendation = "Type IV (Olive): You tan easily. You can start with Level 2 for 10-15 minutes."\n    elif skin_type_score <= 10:
+        recommendation = "Type IV (Olive): You tan easily. You can start with Level 2 for 10-15 minutes."
+    elif skin_type_score <= 10:
         skin_type = 5
         max_time = 18
         warning = "low"
