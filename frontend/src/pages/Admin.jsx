@@ -9,7 +9,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs'
 import { 
   Users, Eye, TrendingUp, DollarSign, 
   Target, Zap, Calendar, Award,
-  RefreshCw, Download, Settings, Sparkles, Brain, Rocket
+  RefreshCw, Download, Settings, Sparkles, Brain, Rocket, TicketPercent
 } from 'lucide-react';
 import { toast } from 'sonner';
 
@@ -18,6 +18,7 @@ export default function Admin() {
   const [campaigns, setCampaigns] = useState([]);
   const [recommendations, setRecommendations] = useState([]);
   const [leads, setLeads] = useState([]);
+  const [discounts, setDiscounts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
   const [aiGenerating, setAiGenerating] = useState(false);
@@ -28,18 +29,13 @@ export default function Admin() {
 
   useEffect(() => {
     fetchDashboardData();
-    
-    // Set up auto-refresh every 60 seconds
     let intervalId;
     if (autoRefresh) {
       intervalId = setInterval(() => {
-        fetchDashboardData(true); // Pass true for background refresh
-      }, 60000); // 60 seconds
+        fetchDashboardData(true);
+      }, 60000);
     }
-    
-    return () => {
-      if (intervalId) clearInterval(intervalId);
-    };
+    return () => { if (intervalId) clearInterval(intervalId); };
   }, [autoRefresh]);
 
   const fetchDashboardData = async (isBackgroundRefresh = false) => {
@@ -48,29 +44,27 @@ export default function Admin() {
     } else {
       setRefreshing(true);
     }
-    
     try {
-      // Fetch dashboard metrics
       const metricsRes = await fetch(`${backendUrl}/api/dashboard/metrics`);
       const metricsData = await metricsRes.json();
       setMetrics(metricsData);
 
-      // Fetch campaigns
       const campaignsRes = await fetch(`${backendUrl}/api/campaigns?status=active`);
       const campaignsData = await campaignsRes.json();
       setCampaigns(campaignsData);
 
-      // Fetch AI recommendations
       const recsRes = await fetch(`${backendUrl}/api/ai/recommendations?status=pending`);
       const recsData = await recsRes.json();
       setRecommendations(recsData);
 
-      // Fetch recent leads
       const leadsRes = await fetch(`${backendUrl}/api/leads?limit=10`);
       const leadsData = await leadsRes.json();
       setLeads(leadsData);
-      
-      // Update last updated timestamp
+
+      const discountsRes = await fetch(`${backendUrl}/api/discounts/list?status=all&limit=20`);
+      const discountsData = await discountsRes.json();
+      setDiscounts(discountsData);
+
       setLastUpdated(new Date());
     } catch (error) {
       console.error('Error fetching dashboard data:', error);
@@ -111,29 +105,22 @@ export default function Admin() {
 
   const handleGenerateRecommendations = async () => {
     setAiGenerating(true);
-    toast.info('🤖 AI Engine starting...', { description: 'Analyzing your business data with GPT-4 and Claude' });
-    
+    toast.info('AI Engine starting...', { description: 'Analyzing your business data with GPT-4 and Claude' });
     try {
-      // First, run analysis
       await fetch(`${backendUrl}/api/ai/analyze`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ force_refresh: true })
       });
-
-      // Then generate recommendations
       const response = await fetch(`${backendUrl}/api/ai/recommendations/generate`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({})
       });
-
       const data = await response.json();
-      
-      toast.success(`✨ Generated ${data.count} new recommendations!`, {
+      toast.success(`Generated ${data.count} new recommendations!`, {
         description: 'Check the AI Recommendations tab'
       });
-
       fetchDashboardData();
     } catch (error) {
       console.error('Error generating recommendations:', error);
@@ -166,7 +153,7 @@ export default function Admin() {
           <div className="flex items-center justify-between">
             <div>
               <h1 className="font-serif text-3xl sm:text-4xl font-bold mb-2">
-                🎯 Eastend Command Center
+                Eastend Command Center
               </h1>
               <p className="text-white/90">AI-Powered Marketing & Orchestration Dashboard</p>
               {lastUpdated && (
@@ -234,7 +221,7 @@ export default function Admin() {
           </div>
           <div className="w-full bg-gray-200 rounded-full h-4 overflow-hidden">
             <div 
-              className="bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--secondary))] h-4 rounded-full transition-all duration-500"
+              className="bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--secondary))] h-4 rounded-full transition-colors duration-200"
               style={{ width: `${Math.min(revenueProgress, 100)}%` }}
             ></div>
           </div>
@@ -327,7 +314,7 @@ export default function Admin() {
 
         {/* Tabs for detailed sections */}
         <Tabs defaultValue="recommendations" className="mb-8">
-          <TabsList className="grid w-full grid-cols-3 mb-6">
+          <TabsList className="grid w-full grid-cols-4 mb-6">
             <TabsTrigger value="recommendations" className="text-base">
               🤖 AI Recommendations ({recommendations.length})
             </TabsTrigger>
@@ -336,6 +323,9 @@ export default function Admin() {
             </TabsTrigger>
             <TabsTrigger value="leads" className="text-base">
               📋 Recent Leads ({leads.length})
+            </TabsTrigger>
+            <TabsTrigger value="discounts" className="text-base" data-testid="discounts-tab">
+              🎟️ Discount Codes ({discounts.length})
             </TabsTrigger>
           </TabsList>
 
@@ -412,6 +402,35 @@ export default function Admin() {
                         <td className="px-4 py-3 text-sm text-muted-foreground">
                           {new Date(lead.created_at).toLocaleDateString()}
                         </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </Card>
+          </TabsContent>
+
+          <TabsContent value="discounts">
+            <Card className="overflow-hidden">
+              <div className="overflow-x-auto">
+                <table className="w-full" data-testid="discounts-table">
+                  <thead className="bg-muted">
+                    <tr>
+                      <th className="px-4 py-3 text-left text-sm font-semibold">Code</th>
+                      <th className="px-4 py-3 text-left text-sm font-semibold">Percent</th>
+                      <th className="px-4 py-3 text-left text-sm font-semibold">Status</th>
+                      <th className="px-4 py-3 text-left text-sm font-semibold">Expires</th>
+                      <th className="px-4 py-3 text-left text-sm font-semibold">Created</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {discounts.map((d, index) => (
+                      <tr key={d.id} className={index % 2 === 0 ? 'bg-white' : 'bg-muted/30'}>
+                        <td className="px-4 py-3 text-sm font-mono">{d.code}</td>
+                        <td className="px-4 py-3 text-sm">{d.percent_off}%</td>
+                        <td className="px-4 py-3 text-sm capitalize">{d.status}</td>
+                        <td className="px-4 py-3 text-sm">{new Date(d.expires_at).toLocaleString()}</td>
+                        <td className="px-4 py-3 text-sm">{new Date(d.created_at).toLocaleString()}</td>
                       </tr>
                     ))}
                   </tbody>

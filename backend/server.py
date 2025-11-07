@@ -18,6 +18,7 @@ from chat_routes import router as chat_router
 from payment_routes import router as payment_router
 from skin_type_routes import router as skin_type_router
 from journey_routes import router as journey_router
+from discount_routes import router as discount_router
 
 
 ROOT_DIR = Path(__file__).parent
@@ -84,6 +85,7 @@ app.include_router(chat_router)  # Include Mary Well chat routes
 app.include_router(payment_router)  # Include payment routes
 app.include_router(skin_type_router)  # Include skin type evaluation routes
 app.include_router(journey_router)  # Include marketing journey routes
+app.include_router(discount_router)  # Include discount code routes
 
 app.add_middleware(
     CORSMiddleware,

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Button } from './ui/button';
 import { Card } from './ui/card';
 import { Input } from './ui/input';
-import { MessageCircle, X, Send, Loader2 } from 'lucide-react';
+import { MessageCircle, X, Send, Loader2, Tag, List as ListIcon, Clipboard } from 'lucide-react';
 import { toast } from 'sonner';
 
 export function MaryWellChat() {
@@ -11,6 +11,8 @@ export function MaryWellChat() {
   const [messages, setMessages] = useState([]);
   const [inputMessage, setInputMessage] = useState('');
   const [loading, setLoading] = useState(false);
+  const [packagesOpen, setPackagesOpen] = useState(false);
+  const [lastDiscount, setLastDiscount] = useState(null);
   const messagesEndRef = useRef(null);
   const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
@@ -32,6 +34,10 @@ export function MaryWellChat() {
       setMessages([{
         role: 'assistant',
         content: data.greeting,
+        timestamp: new Date().toISOString()
+      }, {
+        role: 'assistant',
+        content: 'Quick actions: Use the buttons below to view pricing, generate a discount code (5%/10%/15%) or browse packages.',
         timestamp: new Date().toISOString()
       }]);
     } catch (error) {
@@ -92,6 +98,62 @@ export function MaryWellChat() {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       sendMessage();
+    }
+  };
+
+  const generateDiscount = async (percent) => {
+    try {
+      const res = await fetch(`${backendUrl}/api/discounts/generate`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ percent_off: percent, session_id: sessionId })
+      });
+      if (!res.ok) throw new Error('Failed to generate code');
+      const data = await res.json();
+      setLastDiscount(data);
+      setMessages(prev => [...prev, {
+        role: 'assistant',
+        content: `Here is your ${data.percent_off}% OFF code: ${data.code}\nIt expires on ${new Date(data.expires_at).toLocaleString()}. Use it at checkout to apply your discount.`,
+        timestamp: new Date().toISOString()
+      }]);
+      toast.success(`${percent}% discount code generated`);
+    } catch (e) {
+      console.error(e);
+      toast.error('Could not generate discount code');
+    }
+  };
+
+  const showPackages = async () => {
+    try {
+      const res = await fetch(`${backendUrl}/api/chat/packages`);
+      const data = await res.json();
+      const lines = [];
+      Object.entries(data).forEach(([lvl, info]) => {
+        lines.push(`${info.name}:`);
+        Object.entries(info.packages).forEach(([type, price]) => {
+          lines.push(`• ${type.replace('_',' ')} — $${price}`);
+        });
+        lines.push('');
+      });
+      setMessages(prev => [...prev, {
+        role: 'assistant',
+        content: `Available packages:\n\n${lines.join('\n')}`,
+        timestamp: new Date().toISOString()
+      }]);
+      setPackagesOpen(true);
+    } catch (e) {
+      console.error(e);
+      toast.error('Failed to load packages');
+    }
+  };
+
+  const copyDiscount = async () => {
+    if (!lastDiscount?.code) return;
+    try {
+      await navigator.clipboard.writeText(lastDiscount.code);
+      toast.success('Code copied to clipboard');
+    } catch (e) {
+      toast.error('Failed to copy');
     }
   };
 
@@ -158,6 +220,30 @@ export function MaryWellChat() {
               </div>
             )}
             <div ref={messagesEndRef} />
+          </div>
+
+          {/* Quick Actions */}
+          <div className="px-4 pt-3 pb-2 border-t border-slate-200 bg-white">
+            <div className="flex flex-wrap gap-2">
+              <Button onClick={() => window.location.assign('/tanning')} variant="outline" size="sm" data-testid="see-pricing-button">
+                <ListIcon className="h-4 w-4 mr-1" /> See Pricing
+              </Button>
+              <Button onClick={() => showPackages()} variant="outline" size="sm" data-testid="show-packages-button">
+                <Tag className="h-4 w-4 mr-1" /> Show Packages
+              </Button>
+              <Button onClick={() => generateDiscount(15)} size="sm" className="bg-[hsl(var(--primary))] hover:bg-[hsl(42_92%_50%)]" data-testid="chat-action-15">
+                15% Off
+              </Button>
+              <Button onClick={() => generateDiscount(10)} size="sm" variant="secondary" data-testid="chat-action-10">
+                10% Off
+              </Button>
+              <Button onClick={() => generateDiscount(5)} size="sm" variant="secondary" data-testid="chat-action-5">
+                5% Off
+              </Button>
+              <Button onClick={copyDiscount} size="sm" variant="ghost" disabled={!lastDiscount} data-testid="copy-discount-button">
+                <Clipboard className="h-4 w-4 mr-1" /> Copy Code
+              </Button>
+            </div>
           </div>
 
           {/* Input */}
