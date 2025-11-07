@@ -5,11 +5,11 @@
   },
   {
     "content": "Implement backend API for Mary Well conversations",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Add Stripe payment integration for all tanning packages",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Create skin type evaluation form component",
