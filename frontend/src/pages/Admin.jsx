@@ -45,25 +45,19 @@ export default function Admin() {
       setRefreshing(true);
     }
     try {
-      const metricsRes = await fetch(`${backendUrl}/api/dashboard/metrics`);
-      const metricsData = await metricsRes.json();
+      const [metricsData, campaignsData, recsData, leadsData, discountsData] = await Promise.all([
+        fetch(`${backendUrl}/api/dashboard/metrics`).then(r => r.ok ? r.json() : Promise.reject(new Error('metrics fetch failed'))),
+        fetch(`${backendUrl}/api/campaigns?status=active`).then(r => r.ok ? r.json() : Promise.reject(new Error('campaigns fetch failed'))),
+        fetch(`${backendUrl}/api/ai/recommendations?status=pending`).then(r => r.ok ? r.json() : Promise.reject(new Error('recs fetch failed'))),
+        fetch(`${backendUrl}/api/leads?limit=10`).then(r => r.ok ? r.json() : Promise.reject(new Error('leads fetch failed'))),
+        fetch(`${backendUrl}/api/discounts/list?status=all&limit=20`).then(r => r.ok ? r.json() : Promise.reject(new Error('discounts fetch failed'))),
+      ]);
+
       setMetrics(metricsData);
-
-      const campaignsRes = await fetch(`${backendUrl}/api/campaigns?status=active`);
-      const campaignsData = await campaignsRes.json();
       setCampaigns(campaignsData);
-
-      const recsRes = await fetch(`${backendUrl}/api/ai/recommendations?status=pending`);
-      const recsData = await recsRes.json();
       setRecommendations(recsData);
-
-      const leadsRes = await fetch(`${backendUrl}/api/leads?limit=10`);
-      const leadsData = await leadsRes.json();
       setLeads(leadsData);
-
-      const discountsRes = await fetch(`${backendUrl}/api/discounts/list?status=all&limit=20`);
-      const discountsData = await discountsRes.json();
-      setDiscounts(discountsData);
+      setDiscounts(Array.isArray(discountsData) ? discountsData : []);
 
       setLastUpdated(new Date());
     } catch (error) {
