@@ -99,7 +99,7 @@ async def submit_skin_type_evaluation(evaluation: SkinTypeEvaluation):
         skin_type = 2
         max_time = 8
         warning = "high"
-        recommendation = \"Type II (Fair): You have sensitive skin. Start with Level 1 for 5-8 minutes and gradually increase.\"\n    elif skin_type_score <= 6:
+        recommendation = "Type II (Fair): You have sensitive skin. Start with Level 1 for 5-8 minutes and gradually increase."\n    elif skin_type_score <= 6:
         skin_type = 3
         max_time = 12
         warning = "medium"
