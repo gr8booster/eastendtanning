@@ -83,6 +83,7 @@ app.include_router(auth_router)  # Include the auth routes
 app.include_router(chat_router)  # Include Mary Well chat routes
 app.include_router(payment_router)  # Include payment routes
 app.include_router(skin_type_router)  # Include skin type evaluation routes
+app.include_router(journey_router)  # Include marketing journey routes
 
 app.add_middleware(
     CORSMiddleware,
