@@ -111,7 +111,7 @@ async def submit_skin_type_evaluation(evaluation: SkinTypeEvaluation):
         skin_type = 5
         max_time = 18
         warning = "low"
-        recommendation = \"Type V (Brown): You rarely burn. You can use Level 2 or 3 for 12-18 minutes.\"\n    else:
+        recommendation = "Type V (Brown): You rarely burn. You can use Level 2 or 3 for 12-18 minutes."\n    else:
         skin_type = 6
         max_time = 20
         warning = "low"
