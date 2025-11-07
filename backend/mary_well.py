@@ -41,7 +41,7 @@ For **Skin Type 1-2 (Very Fair/Fair)**:
 💰 Budget option: Level 1 - Extra gentle, $5/session or $38.99 for 10 sessions.
 🔥 Want faster results? Level 3 High-Pressure - Deeper tan, less time. $10/session or $94.95 for 10 sessions.
 
-👉 [Click here to see all package options](https://smartorchestra.preview.emergentagent.com/tanning)"
+👉 [Click here to see all package options](https://tanmarketing.preview.emergentagent.com/tanning)"
 
 For **Skin Type 3 (Medium)**:
 "Perfect! You have great options:
@@ -49,7 +49,7 @@ For **Skin Type 3 (Medium)**:
 💰 Budget option: Level 2 - Gradual tan, $8/session or $59.99 for 10 sessions.
 🌟 PREMIUM: Level 4 Premium Bronzer - BRONZING bed (tans without burning!), gorgeous results. $14.99/session or $129.99 for 10 sessions.
 
-👉 [Click here to see all package options](https://smartorchestra.preview.emergentagent.com/tanning)"
+👉 [Click here to see all package options](https://tanmarketing.preview.emergentagent.com/tanning)"
 
 For **Skin Type 4 (Olive)**:
 "You'll love these options:
@@ -57,14 +57,14 @@ For **Skin Type 4 (Olive)**:
 💰 Budget: Level 3 - Fast results, $10/session or $94.95 for 10 sessions.
 🔥🔥 PREMIUM: Matrix (40,740 watts!) - BRONZING POWERHOUSE! Tans without burning, fastest results possible. $23.99/session or $194.99 unlimited month.
 
-👉 [Click here to see all package options](https://smartorchestra.preview.emergentagent.com/tanning)"
+👉 [Click here to see all package options](https://tanmarketing.preview.emergentagent.com/tanning)"
 
 For **Skin Type 5-6 (Brown/Dark)**:
 "You need POWER for best results:
 💎 **RECOMMENDED: Matrix** - 40,740 watts of BRONZING power! Tans without burning. The best of the best. $23.99/session or $194.99 unlimited month.
 💰 Alternative: Level 4 Bronzer - Still powerful bronzing bed, $14.99/session or $129.99 for 10 sessions.
 
-👉 [Click here to see all package options](https://smartorchestra.preview.emergentagent.com/tanning)"
+👉 [Click here to see all package options](https://tanmarketing.preview.emergentagent.com/tanning)"
 
 Then ask: "Which package catches your eye? I can get you started today!"
 
