@@ -1,7 +1,7 @@
 [
   {
     "content": "Create Mary Well chat widget component for website",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Implement backend API for Mary Well conversations",
@@ -13,10 +13,10 @@
   },
   {
     "content": "Create skin type evaluation form component",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Test complete onboarding flow end-to-end",
-    "status": "pending"
+    "status": "completed"
   }
 ]
