@@ -17,6 +17,7 @@ from auth import router as auth_router
 from chat_routes import router as chat_router
 from payment_routes import router as payment_router
 from skin_type_routes import router as skin_type_router
+from journey_routes import router as journey_router
 
 
 ROOT_DIR = Path(__file__).parent
