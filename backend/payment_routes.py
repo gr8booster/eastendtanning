@@ -60,10 +60,14 @@ async def _validate_and_apply_discount(amount: float, code: Optional[str]) -> Di
     status = disc.get("status", "active")
     expires_at = disc.get("expires_at")
 
-    if status == "active" and isinstance(expires_at, datetime) and expires_at < now:
-        # Mark expired
-        await db.discount_codes.update_one({"code": code}, {"$set": {"status": "expired"}})
-        status = "expired"
+    if status == "active" and isinstance(expires_at, datetime):
+        # Ensure expires_at is timezone-aware for comparison
+        if expires_at.tzinfo is None:
+            expires_at = expires_at.replace(tzinfo=timezone.utc)
+        if expires_at < now:
+            # Mark expired
+            await db.discount_codes.update_one({"code": code}, {"$set": {"status": "expired"}})
+            status = "expired"
 
     if status != "active":
         raise HTTPException(status_code=400, detail=f"discount_code_{status}")
