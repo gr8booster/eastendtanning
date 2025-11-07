@@ -1,22 +1,26 @@
 [
   {
-    "content": "Create Mary Well chat widget component for website",
-    "status": "completed"
+    "content": "Backend: Create DiscountCode model and /api/discounts endpoints (generate, validate, list, invalidate) with 5/10/15% and 7-day expiry; store in MongoDB; use UUIDs and timezone.utc.",
+    "status": "in_progress"
   },
   {
-    "content": "Implement backend API for Mary Well conversations",
-    "status": "completed"
+    "content": "Payments: Extend POST /api/payments/checkout/session to accept optional discount_code; validate server-side; compute discounted amount; store metadata; mark code redeemed when paid (status endpoint/webhook).",
+    "status": "pending"
   },
   {
-    "content": "Add Stripe payment integration for all tanning packages",
-    "status": "completed"
+    "content": "Chat UI: Add quick-action buttons (Get 5%, 10%, 15%) in MaryWellChat to call /api/discounts/generate; show code with copy; add See Full Pricing button; show package chips from /api/chat/packages.",
+    "status": "pending"
   },
   {
-    "content": "Create skin type evaluation form component",
-    "status": "completed"
+    "content": "Prompt Upgrade: Update Mary Well system prompt to push Level 4 & Matrix, always offer budget/recommended/premium with a link to pricing and mention 5/10/15 tiers.",
+    "status": "pending"
   },
   {
-    "content": "Test complete onboarding flow end-to-end",
-    "status": "completed"
+    "content": "Admin UI: Add Discount Codes tab to /admin with table listing recent codes (code, percent, status, expires, created_at) with data-testids.",
+    "status": "pending"
+  },
+  {
+    "content": "Testing: Run automated testing agent (both frontend + backend) with screenshots on tanmarketing preview; fix issues, iterate once, and re-run if needed.",
+    "status": "pending"
   }
 ]
