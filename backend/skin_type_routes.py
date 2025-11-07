@@ -151,5 +151,25 @@ async def submit_skin_type_evaluation(evaluation: SkinTypeEvaluation):
         completed_at=result["completed_at"].isoformat()
     )
 
-@router.get(\"/check/{customer_phone}\")\nasync def check_skin_type_completion(customer_phone: str):
-    \"\"\"Check if customer has completed skin type evaluation\"\"\"\n    \n    evaluation = await db.skin_type_evaluations.find_one(\n        {\"customer_phone\": customer_phone},\n        sort=[(\"completed_at\", -1)]\n    )\n    \n    if not evaluation:\n        return {\n            \"completed\": False,\n            \"message\": \"No skin type evaluation found for this phone number\"\n        }\n    \n    evaluation.pop('_id', None)\n    evaluation['completed_at'] = evaluation['completed_at'].isoformat()\n    \n    return {\n        \"completed\": True,\n        \"evaluation\": evaluation\n    }
+@router.get("/check/{customer_phone}")
+async def check_skin_type_completion(customer_phone: str):
+    """Check if customer has completed skin type evaluation"""
+    
+    evaluation = await db.skin_type_evaluations.find_one(
+        {"customer_phone": customer_phone},
+        sort=[("completed_at", -1)]
+    )
+    
+    if not evaluation:
+        return {
+            "completed": False,
+            "message": "No skin type evaluation found for this phone number"
+        }
+    
+    evaluation.pop('_id', None)
+    evaluation['completed_at'] = evaluation['completed_at'].isoformat()
+    
+    return {
+        "completed": True,
+        "evaluation": evaluation
+    }
