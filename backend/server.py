@@ -78,6 +78,8 @@ app.include_router(api_router)
 app.include_router(api_routes_router)  # Include the API routes
 app.include_router(ai_router)  # Include the AI routes
 app.include_router(auth_router)  # Include the auth routes
+app.include_router(chat_router)  # Include Mary Well chat routes
+app.include_router(payment_router)  # Include payment routes
 
 app.add_middleware(
     CORSMiddleware,
