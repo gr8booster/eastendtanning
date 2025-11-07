@@ -122,7 +122,7 @@ async def create_checkout_session(request: Request, payment_req: PaymentRequest)
     success_url = f"{payment_req.origin_url}/payment/success?session_id={{CHECKOUT_SESSION_ID}}"
     cancel_url = f"{payment_req.origin_url}/payment/cancel"
 
-    # Prepare metadata
+    # Prepare metadata (all values must be strings for Stripe)
     metadata = {
         "customer_name": payment_req.customer_name,
         "customer_email": payment_req.customer_email,
@@ -131,15 +131,15 @@ async def create_checkout_session(request: Request, payment_req: PaymentRequest)
         "level": level,
         "package_type": package_type,
         "level_name": level_name,
-        "original_amount": amount,
-        "final_amount": final_amount,
+        "original_amount": str(amount),
+        "final_amount": str(final_amount),
     }
     if payment_req.metadata:
         metadata.update(payment_req.metadata)
     if discount_meta.get("code"):
         metadata.update({
             "discount_code": discount_meta["code"],
-            "discount_percent": discount_meta["percent_off"],
+            "discount_percent": str(discount_meta["percent_off"]),
         })
 
     # Create checkout session
