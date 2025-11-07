@@ -1,0 +1,77 @@
+{
+  "summary": "Completed comprehensive testing of Discount Codes MVP and Bed Recommendations features. Backend APIs are 100% functional. Frontend features working with one minor display issue in Admin dashboard.",
+  "backend_issues": {
+    "critical_bugs": [],
+    "fixed_bugs": [
+      {
+        "file": "/app/backend/discount_routes.py",
+        "issue": "TypeError when comparing offset-naive and offset-aware datetimes in validate_discount()",
+        "fix": "Added timezone-aware datetime handling before comparison",
+        "fix_priority": "CRITICAL"
+      },
+      {
+        "file": "/app/backend/payment_routes.py",
+        "issue": "TypeError when comparing offset-naive and offset-aware datetimes in _validate_and_apply_discount()",
+        "fix": "Added timezone-aware datetime handling before comparison",
+        "fix_priority": "CRITICAL"
+      },
+      {
+        "file": "/app/backend/payment_routes.py",
+        "issue": "ValidationError: metadata fields must be strings but were passing floats/ints",
+        "fix": "Converted original_amount, final_amount, and discount_percent to strings in metadata",
+        "fix_priority": "CRITICAL"
+      }
+    ],
+    "flaky_endpoints": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [
+      {
+        "component": "Admin Dashboard",
+        "issue": "Discounts table shows 0 codes even though API returns data. Console error: 'TypeError: Failed to execute clone on Response: Response body is already used'",
+        "affected_selectors": ["[data-testid='discounts-table']"],
+        "fix_priority": "MEDIUM",
+        "note": "Backend API /api/discounts/list works correctly and returns data. Issue is in frontend fetchDashboardData() function trying to read Response multiple times."
+      }
+    ],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "passed_tests": [
+    "POST /api/discounts/generate - generates 5%, 10%, 15% discount codes with correct format (EASTEND-{percent}-{random})",
+    "POST /api/discounts/generate - rejects invalid percent_off values (e.g., 20%)",
+    "GET /api/discounts/validate/{code} - validates active codes correctly",
+    "GET /api/discounts/validate/{code} - rejects invalid codes with reason='not_found'",
+    "GET /api/discounts/list - returns list of generated codes",
+    "POST /api/payments/checkout/session - creates session with discount code applied",
+    "GET /api/payments/transaction/{session_id} - returns transaction with discount metadata (original_amount, final_amount, discount_code, discount_percent)",
+    "GET /api/payments/checkout/status/{session_id} - returns correct discounted amount in cents",
+    "Discount calculation verified: $59.99 → $50.99 for 15% off (correct)",
+    "MaryWellChat component renders and opens on homepage",
+    "MaryWellChat quick action buttons present: See Pricing, Show Packages, 15%/10%/5% Off, Copy Code",
+    "MaryWellChat 15% discount generation works - displays code with expiry",
+    "MaryWellChat copy button enabled after code generation",
+    "MaryWellChat bed recommendations feature works - provides 3 options (Budget/Recommended/Premium) with prices and pricing link",
+    "Admin dashboard accessible with authentication token",
+    "Admin dashboard Discounts tab present and clickable"
+  ],
+  "test_report_links": ["/app/backend/backend_test.py"],
+  "success_percentage": {
+    "backend": "100%",
+    "frontend": "93%"
+  },
+  "action_item_for_main_agent": {
+    "critical": [],
+    "medium": [
+      "Fix Admin dashboard fetchDashboardData() to avoid reading Response body multiple times. The /api/discounts/list endpoint works correctly but the frontend shows 0 codes due to Response cloning error."
+    ],
+    "low": []
+  },
+  "updated_files": [
+    "/app/backend/discount_routes.py",
+    "/app/backend/payment_routes.py",
+    "/app/backend/backend_test.py"
+  ],
+  "should_call_test_agent_after_fix": false,
+  "should_main_agent_test_itself": true
+}
