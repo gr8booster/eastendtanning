@@ -1,22 +1,22 @@
 [
   {
-    "content": "Fix Dashboard Metrics Display - Debug get_dashboard_metrics() query to show real data",
-    "status": "completed"
+    "content": "Add Blog link to Header navigation for accessibility",
+    "status": "in_progress"
   },
   {
-    "content": "Test AI Generation Live - Verify GPT-4 analysis and Claude recommendations work end-to-end",
-    "status": "completed"
+    "content": "Update index.css with refined design tokens",
+    "status": "pending"
   },
   {
-    "content": "Add Admin Authentication - Implement password protection for /admin route",
-    "status": "completed"
+    "content": "Enhance Header with refined styling",
+    "status": "pending"
   },
   {
-    "content": "Create Blog Display Pages - Add /blog route and display AI-generated blog posts",
-    "status": "completed"
+    "content": "Polish Home page with refined design patterns",
+    "status": "pending"
   },
   {
-    "content": "Real-Time Dashboard Updates - Implement auto-refresh every 60 seconds with loading states",
-    "status": "completed"
+    "content": "Test all features remain accessible after UI refinements",
+    "status": "pending"
   }
 ]
