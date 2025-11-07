@@ -50,6 +50,9 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:id" element={<BlogPost />} />
+            <Route path="/skin-type-evaluation" element={<SkinTypeEvaluation />} />
+            <Route path="/payment/success" element={<PaymentSuccess />} />
+            <Route path="/payment/cancel" element={<PaymentCancel />} />
             <Route 
               path="/admin" 
               element={
