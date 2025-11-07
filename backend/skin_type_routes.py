@@ -94,11 +94,11 @@ async def submit_skin_type_evaluation(evaluation: SkinTypeEvaluation):
     if skin_type_score <= 2:
         skin_type = 1
         max_time = 5
-        warning = \"high\"
+        warning = "high"
         recommendation = \"Type I (Very Fair): You should avoid sun exposure and use extra caution with tanning. Start with Level 1 for only 3-5 minutes.\"\n    elif skin_type_score <= 4:
         skin_type = 2
         max_time = 8
-        warning = \"high\"
+        warning = "high"
         recommendation = \"Type II (Fair): You have sensitive skin. Start with Level 1 for 5-8 minutes and gradually increase.\"\n    elif skin_type_score <= 6:
         skin_type = 3
         max_time = 12
