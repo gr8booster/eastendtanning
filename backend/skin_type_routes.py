@@ -120,7 +120,8 @@ async def submit_skin_type_evaluation(evaluation: SkinTypeEvaluation):
         skin_type = 6
         max_time = 20
         warning = "low"
-        recommendation = "Type VI (Dark Brown/Black): You have natural protection. You can use Level 3 or 4 for 15-20 minutes."\n    
+        recommendation = "Type VI (Dark Brown/Black): You have natural protection. You can use Level 3 or 4 for 15-20 minutes."
+    
     # Create result\n    result_id = str(uuid.uuid4())\n    result = {\n        \"id\": result_id,\n        \"customer_name\": evaluation.customer_name,\n        \"customer_email\": evaluation.customer_email,\n        \"customer_phone\": evaluation.customer_phone,\n        \"skin_type\": skin_type,\n        \"recommendation\": recommendation,\n        \"max_session_time\": max_time,\n        \"warning_level\": warning,\n        \"evaluation_data\": evaluation.dict(),\n        \"completed_at\": datetime.now(timezone.utc),\n        \"status\": \"completed\"\n    }\n    \n    # Store in database\n    await db.skin_type_evaluations.insert_one(result)\n    \n    return SkinTypeResult(\n        id=result_id,\n        customer_name=evaluation.customer_name,\n        skin_type=skin_type,\n        recommendation=recommendation,\n        max_session_time=max_time,\n        warning_level=warning,\n        completed_at=result[\"completed_at\"].isoformat()\n    )
 
 @router.get(\"/check/{customer_phone}\")\nasync def check_skin_type_completion(customer_phone: str):
