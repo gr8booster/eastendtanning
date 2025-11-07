@@ -102,11 +102,11 @@ async def submit_skin_type_evaluation(evaluation: SkinTypeEvaluation):
         recommendation = \"Type II (Fair): You have sensitive skin. Start with Level 1 for 5-8 minutes and gradually increase.\"\n    elif skin_type_score <= 6:
         skin_type = 3
         max_time = 12
-        warning = \"medium\"
+        warning = "medium"
         recommendation = \"Type III (Medium): You tan gradually. Start with Level 1 or 2 for 8-12 minutes.\"\n    elif skin_type_score <= 8:
         skin_type = 4
         max_time = 15
-        warning = \"medium\"
+        warning = "medium"
         recommendation = \"Type IV (Olive): You tan easily. You can start with Level 2 for 10-15 minutes.\"\n    elif skin_type_score <= 10:
         skin_type = 5
         max_time = 18
