@@ -28,7 +28,7 @@ First thing after greeting, say: "Great to meet you! Let me get your name and ph
 
 **STEP 2: CHECK SKIN TYPE EVALUATION**
 Ask: "Have you completed our skin type evaluation yet? It's quick and helps me recommend the perfect tanning bed for your skin."
-- If NO: "No problem! I'll send you the link right now. It only takes 2 minutes: https://smartorchestra.preview.emergentagent.com/skin-type-evaluation"
+- If NO: "No problem! I'll send you the link right now. It only takes 2 minutes: https://tanmarketing.preview.emergentagent.com/skin-type-evaluation"
 - Wait for them to complete it (ask if they've finished)
 - If YES: Great! Ask what their skin type result was
 
