@@ -14,6 +14,10 @@ import Admin from './pages/Admin';
 import Login from './pages/Login';
 import Blog from './pages/Blog';
 import BlogPost from './pages/BlogPost';
+import SkinTypeEvaluation from './pages/SkinTypeEvaluation';
+import PaymentSuccess from './pages/PaymentSuccess';
+import PaymentCancel from './pages/PaymentCancel';
+import { MaryWellChat } from './components/MaryWellChat';
 import './App.css';
 
 // Protected Route Component
