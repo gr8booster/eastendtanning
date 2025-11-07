@@ -109,9 +109,14 @@ async def validate_discount(code: str):
 
     # Normalize status if expired
     now = datetime.now(timezone.utc)
-    if doc.get("status") == "active" and isinstance(doc.get("expires_at"), datetime) and doc["expires_at"] < now:
-        await db.discount_codes.update_one({"code": code}, {"$set": {"status": "expired"}})
-        doc["status"] = "expired"
+    expires_at = doc.get("expires_at")
+    if doc.get("status") == "active" and isinstance(expires_at, datetime):
+        # Ensure expires_at is timezone-aware for comparison
+        if expires_at.tzinfo is None:
+            expires_at = expires_at.replace(tzinfo=timezone.utc)
+        if expires_at < now:
+            await db.discount_codes.update_one({"code": code}, {"$set": {"status": "expired"}})
+            doc["status"] = "expired"
 
     if doc.get("status") != "active":
         return ValidateResponse(valid=False, reason=doc.get("status"), discount=DiscountCode(**_sanitize(doc)))
