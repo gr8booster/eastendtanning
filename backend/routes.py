@@ -99,8 +99,28 @@ async def get_leads(status: Optional[str] = None, service: Optional[str] = None,
     cursor = db.leads.find(query).sort("created_at", -1).limit(limit)
     leads = []
     async for doc in cursor:
-        doc['created_at'] = datetime.fromisoformat(doc['created_at'])
-        doc['updated_at'] = datetime.fromisoformat(doc['updated_at'])
+        created_raw = doc.get('created_at')
+        updated_raw = doc.get('updated_at')
+        if isinstance(created_raw, str):
+            try:
+                doc['created_at'] = datetime.fromisoformat(created_raw)
+            except Exception:
+                doc['created_at'] = datetime.now(timezone.utc)
+        elif isinstance(created_raw, datetime):
+            # ensure tz-aware
+            doc['created_at'] = created_raw if created_raw.tzinfo else created_raw.replace(tzinfo=timezone.utc)
+        else:
+            doc['created_at'] = datetime.now(timezone.utc)
+
+        if isinstance(updated_raw, str):
+            try:
+                doc['updated_at'] = datetime.fromisoformat(updated_raw)
+            except Exception:
+                doc['updated_at'] = doc['created_at']
+        elif isinstance(updated_raw, datetime):
+            doc['updated_at'] = updated_raw if updated_raw.tzinfo else updated_raw.replace(tzinfo=timezone.utc)
+        else:
+            doc['updated_at'] = doc['created_at']
         leads.append(Lead(**doc))
     return leads
 
@@ -141,8 +161,26 @@ async def get_bookings(service: Optional[str] = None, status: Optional[str] = No
     cursor = db.bookings.find(query).sort("created_at", -1).limit(limit)
     bookings = []
     async for doc in cursor:
-        doc['booking_date'] = datetime.fromisoformat(doc['booking_date'])
-        doc['created_at'] = datetime.fromisoformat(doc['created_at'])
+        bd_raw = doc.get('booking_date')
+        ca_raw = doc.get('created_at')
+        if isinstance(bd_raw, str):
+            try:
+                doc['booking_date'] = datetime.fromisoformat(bd_raw)
+            except Exception:
+                doc['booking_date'] = datetime.now(timezone.utc)
+        elif isinstance(bd_raw, datetime):
+            doc['booking_date'] = bd_raw if bd_raw.tzinfo else bd_raw.replace(tzinfo=timezone.utc)
+        else:
+            doc['booking_date'] = datetime.now(timezone.utc)
+        if isinstance(ca_raw, str):
+            try:
+                doc['created_at'] = datetime.fromisoformat(ca_raw)
+            except Exception:
+                doc['created_at'] = datetime.now(timezone.utc)
+        elif isinstance(ca_raw, datetime):
+            doc['created_at'] = ca_raw if ca_raw.tzinfo else ca_raw.replace(tzinfo=timezone.utc)
+        else:
+            doc['created_at'] = datetime.now(timezone.utc)
         bookings.append(Booking(**doc))
     return bookings
 
@@ -169,8 +207,26 @@ async def get_campaigns(status: Optional[str] = None, limit: int = 20):
     cursor = db.campaigns.find(query).sort("created_at", -1).limit(limit)
     campaigns = []
     async for doc in cursor:
-        doc['created_at'] = datetime.fromisoformat(doc['created_at'])
-        doc['updated_at'] = datetime.fromisoformat(doc['updated_at'])
+        cr = doc.get('created_at')
+        ur = doc.get('updated_at')
+        if isinstance(cr, str):
+            try:
+                doc['created_at'] = datetime.fromisoformat(cr)
+            except Exception:
+                doc['created_at'] = datetime.now(timezone.utc)
+        elif isinstance(cr, datetime):
+            doc['created_at'] = cr if cr.tzinfo else cr.replace(tzinfo=timezone.utc)
+        else:
+            doc['created_at'] = datetime.now(timezone.utc)
+        if isinstance(ur, str):
+            try:
+                doc['updated_at'] = datetime.fromisoformat(ur)
+            except Exception:
+                doc['updated_at'] = doc['created_at']
+        elif isinstance(ur, datetime):
+            doc['updated_at'] = ur if ur.tzinfo else ur.replace(tzinfo=timezone.utc)
+        else:
+            doc['updated_at'] = doc['created_at']
         campaigns.append(Campaign(**doc))
     return campaigns
 
