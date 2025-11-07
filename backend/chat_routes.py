@@ -23,6 +23,47 @@ db = client[os.environ.get('DB_NAME', 'test_database')]
 # Store active chat sessions in memory
 active_chats = {}
 
+async def auto_capture_lead_from_message(session_id: str, user_message: str, ai_response: str):
+    """
+    Automatically detect and capture lead information from chat messages
+    """
+    # Patterns to detect contact information
+    email_pattern = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
+    phone_pattern = r'(\+?1[-.\s]?)?\(?([0-9]{3})\)?[-.\s]?([0-9]{3})[-.\s]?([0-9]{4})'
+    name_pattern = r'(?:my name is|i\'m|i am|call me)\s+([A-Za-z\s]{2,30})'
+    
+    # Extract information
+    emails = re.findall(email_pattern, user_message, re.IGNORECASE)
+    phones = re.findall(phone_pattern, user_message)
+    names = re.findall(name_pattern, user_message, re.IGNORECASE)
+    
+    # Check if we found any contact information
+    if emails or phones or names:
+        # Determine service interest from conversation
+        service_interest = "tanning"  # default
+        if any(word in user_message.lower() for word in ["laundry", "wash", "dry clean"]):
+            service_interest = "laundry"
+        elif any(word in user_message.lower() for word in ["tan", "bronze", "uv", "sunless"]):
+            service_interest = "tanning"
+        
+        # Prepare customer data
+        customer_data = {
+            "chat_session_id": session_id,
+            "email": emails[0] if emails else "",
+            "phone": ''.join(phones[0]) if phones else "",
+            "name": names[0].strip() if names else "",
+            "service_interest": service_interest,
+            "notes": f"Auto-captured from chat. User said: '{user_message[:100]}...'"
+        }
+        
+        # Only capture if we have at least email or phone
+        if customer_data["email"] or customer_data["phone"]:
+            try:
+                lead_id = await journey_manager.capture_lead_from_chat(customer_data)
+                print(f"Auto-captured lead {lead_id} from session {session_id}")
+            except Exception as e:
+                print(f"Error auto-capturing lead: {str(e)}")
+
 class ChatMessage(BaseModel):
     session_id: str
     message: str
