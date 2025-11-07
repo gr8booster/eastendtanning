@@ -122,7 +122,34 @@ async def submit_skin_type_evaluation(evaluation: SkinTypeEvaluation):
         warning = "low"
         recommendation = "Type VI (Dark Brown/Black): You have natural protection. You can use Level 3 or 4 for 15-20 minutes."
     
-    # Create result\n    result_id = str(uuid.uuid4())\n    result = {\n        \"id\": result_id,\n        \"customer_name\": evaluation.customer_name,\n        \"customer_email\": evaluation.customer_email,\n        \"customer_phone\": evaluation.customer_phone,\n        \"skin_type\": skin_type,\n        \"recommendation\": recommendation,\n        \"max_session_time\": max_time,\n        \"warning_level\": warning,\n        \"evaluation_data\": evaluation.dict(),\n        \"completed_at\": datetime.now(timezone.utc),\n        \"status\": \"completed\"\n    }\n    \n    # Store in database\n    await db.skin_type_evaluations.insert_one(result)\n    \n    return SkinTypeResult(\n        id=result_id,\n        customer_name=evaluation.customer_name,\n        skin_type=skin_type,\n        recommendation=recommendation,\n        max_session_time=max_time,\n        warning_level=warning,\n        completed_at=result[\"completed_at\"].isoformat()\n    )
+    # Create result
+    result_id = str(uuid.uuid4())
+    result = {
+        "id": result_id,
+        "customer_name": evaluation.customer_name,
+        "customer_email": evaluation.customer_email,
+        "customer_phone": evaluation.customer_phone,
+        "skin_type": skin_type,
+        "recommendation": recommendation,
+        "max_session_time": max_time,
+        "warning_level": warning,
+        "evaluation_data": evaluation.dict(),
+        "completed_at": datetime.now(timezone.utc),
+        "status": "completed"
+    }
+    
+    # Store in database
+    await db.skin_type_evaluations.insert_one(result)
+    
+    return SkinTypeResult(
+        id=result_id,
+        customer_name=evaluation.customer_name,
+        skin_type=skin_type,
+        recommendation=recommendation,
+        max_session_time=max_time,
+        warning_level=warning,
+        completed_at=result["completed_at"].isoformat()
+    )
 
 @router.get(\"/check/{customer_phone}\")\nasync def check_skin_type_completion(customer_phone: str):
     \"\"\"Check if customer has completed skin type evaluation\"\"\"\n    \n    evaluation = await db.skin_type_evaluations.find_one(\n        {\"customer_phone\": customer_phone},\n        sort=[(\"completed_at\", -1)]\n    )\n    \n    if not evaluation:\n        return {\n            \"completed\": False,\n            \"message\": \"No skin type evaluation found for this phone number\"\n        }\n    \n    evaluation.pop('_id', None)\n    evaluation['completed_at'] = evaluation['completed_at'].isoformat()\n    \n    return {\n        \"completed\": True,\n        \"evaluation\": evaluation\n    }
