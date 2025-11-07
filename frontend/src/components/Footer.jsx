@@ -55,9 +55,10 @@ export const Footer = () => {
             <div className="mt-4 pt-4 border-t border-border">
               <a
                 href="/admin"
-                className="inline-flex items-center gap-2 text-xs text-muted-foreground/60 hover:text-primary transition-colors"
+                data-testid="footer-admin-link"
+                className="inline-flex items-center gap-2 text-sm font-medium text-foreground hover:text-primary transition-colors"
               >
-                🎯 Command Center
+                🎯 Staff Dashboard
               </a>
             </div>
             <div className="mt-4">
