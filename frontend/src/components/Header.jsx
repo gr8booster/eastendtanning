@@ -49,6 +49,13 @@ export const Header = () => {
             Locations
           </a>
           <a
+            data-testid="nav-blog-link"
+            href="/blog"
+            className="text-sm font-medium hover:text-primary transition-colors duration-200 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-200 hover:after:w-full"
+          >
+            Blog
+          </a>
+          <a
             data-testid="nav-contact-link"
             href="/contact"
             className="text-sm font-medium hover:text-primary transition-colors duration-200 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-200 hover:after:w-full"
