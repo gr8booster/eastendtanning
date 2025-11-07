@@ -9,7 +9,9 @@ import uuid
 
 from mary_well import mary_well
 from motor.motor_asyncio import AsyncIOMotorClient
+from marketing_journey import journey_manager
 import os
+import re
 
 router = APIRouter(prefix="/api/chat", tags=["chat"])
 
