@@ -66,12 +66,10 @@ export const Header = () => {
 
         {/* Desktop CTAs */}
         <div className="hidden md:flex gap-3">
-          <a data-testid="nav-call-button" href="tel:+17403979632">
-            <Button variant="default" size="default" className="inline-flex items-center gap-2 bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))] hover:bg-[hsl(42_92%_50%)] font-semibold">
-              <Phone className="w-4 h-4" />
-              Call
-            </Button>
-          </a>
+          <Button data-testid="nav-chat-button" onClick={() => window.openMaryChat && window.openMaryChat()} variant="default" size="default" className="inline-flex items-center gap-2 bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))] hover:bg-[hsl(42_92%_50%)] font-semibold">
+            <Phone className="w-4 h-4" />
+            Chat with Mary
+          </Button>
           <a data-testid="nav-directions-button" href="https://www.google.com/maps/dir/?api=1&destination=818+Coshocton+Ave,+Mt+Vernon,+OH+43050" target="_blank" rel="noopener noreferrer">
             <Button variant="outline" size="default" className="inline-flex items-center gap-2 font-semibold">
               <MapPin className="w-4 h-4" />
@@ -98,10 +96,10 @@ export const Header = () => {
                 <a href="/locations" className="text-base font-medium hover:text-primary transition-colors">Locations</a>
                 <a href="/contact" className="text-base font-medium hover:text-primary transition-colors">Contact</a>
                 <div className="mt-4 space-y-3">
-                  <a data-testid="sheet-call-button" className="inline-flex items-center justify-center gap-2 rounded-md bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))] h-11 w-full font-semibold" href="tel:+17403979632">
+                  <button data-testid="sheet-chat-button" onClick={() => window.openMaryChat && window.openMaryChat()} className="inline-flex items-center justify-center gap-2 rounded-md bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))] h-11 w-full font-semibold">
                     <Phone className="w-4 h-4" />
-                    Call Now
-                  </a>
+                    Chat with Mary
+                  </button>
                   <a data-testid="sheet-directions-button" className="inline-flex items-center justify-center gap-2 rounded-md border h-11 w-full font-semibold" href="https://www.google.com/maps/dir/?api=1&destination=818+Coshocton+Ave,+Mt+Vernon,+OH+43050" target="_blank" rel="noopener noreferrer">
                     <MapPin className="w-4 h-4" />
                     Get Directions
