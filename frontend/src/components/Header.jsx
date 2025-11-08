@@ -1,6 +1,6 @@
 import { Button } from './ui/button';
 import { Sheet, SheetTrigger, SheetContent } from './ui/sheet';
-import { Menu, MessageCircle, MapPin } from 'lucide-react';
+import { Menu, MessageCircle, MapPin, Mic } from 'lucide-react';
 
 export const Header = () => {
   return (
@@ -13,55 +13,13 @@ export const Header = () => {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-6">
-          <a
-            data-testid="nav-tanning-link"
-            href="/tanning"
-            className="text-sm font-medium hover:text-primary transition-colors duration-200 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-200 hover:after:w-full"
-          >
-            Tanning
-          </a>
-          <a
-            data-testid="nav-laundry-link"
-            href="/laundry"
-            className="text-sm font-medium hover:text-primary transition-colors duration-200 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-200 hover:after:w-full"
-          >
-            Laundry
-          </a>
-          <a
-            data-testid="nav-drinks-link"
-            href="/drinks"
-            className="text-sm font-medium hover:text-primary transition-colors duration-200 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-200 hover:after:w-full"
-          >
-            Fizze Drinks
-          </a>
-          <a
-            data-testid="nav-nails-link"
-            href="/nails"
-            className="text-sm font-medium hover:text-primary transition-colors duration-200 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-200 hover:after:w-full"
-          >
-            Nails
-          </a>
-          <a
-            data-testid="nav-locations-link"
-            href="/locations"
-            className="text-sm font-medium hover:text-primary transition-colors duration-200 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-200 hover:after:w-full"
-          >
-            Locations
-          </a>
-          <a
-            data-testid="nav-blog-link"
-            href="/blog"
-            className="text-sm font-medium hover:text-primary transition-colors duration-200 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-200 hover:after:w-full"
-          >
-            Blog
-          </a>
-          <a
-            data-testid="nav-contact-link"
-            href="/contact"
-            className="text-sm font-medium hover:text-primary transition-colors duration-200 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-200 hover:after:w-full"
-          >
-            Contact
-          </a>
+          <a data-testid="nav-tanning-link" href="/tanning" className="text-sm font-medium hover:text-primary transition-colors duration-200 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-200 hover:after:w-full">Tanning</a>
+          <a data-testid="nav-laundry-link" href="/laundry" className="text-sm font-medium hover:text-primary transition-colors duration-200 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-200 hover:after:w-full">Laundry</a>
+          <a data-testid="nav-drinks-link" href="/drinks" className="text-sm font-medium hover:text-primary transition-colors duration-200 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-200 hover:after:w-full">Fizze Drinks</a>
+          <a data-testid="nav-nails-link" href="/nails" className="text-sm font-medium hover:text-primary transition-colors duration-200 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-200 hover:after:w-full">Nails</a>
+          <a data-testid="nav-locations-link" href="/locations" className="text-sm font-medium hover:text-primary transition-colors duration-200 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-200 hover:after:w-full">Locations</a>
+          <a data-testid="nav-blog-link" href="/blog" className="text-sm font-medium hover:text-primary transition-colors duration-200 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-200 hover:after:w-full">Blog</a>
+          <a data-testid="nav-contact-link" href="/contact" className="text-sm font-medium hover:text-primary transition-colors duration-200 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-200 hover:after:w-full">Contact</a>
         </nav>
 
         {/* Desktop CTAs */}
@@ -69,6 +27,10 @@ export const Header = () => {
           <Button data-testid="nav-chat-button" onClick={() => window.openMaryChat && window.openMaryChat()} variant="default" size="default" className="inline-flex items-center gap-2 bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))] hover:bg-[hsl(42_92%_50%)] font-semibold">
             <MessageCircle className="w-4 h-4" />
             Chat with Mary
+          </Button>
+          <Button data-testid="nav-talk-button" onClick={() => window.openMaryChatAndListen && window.openMaryChatAndListen()} variant="outline" size="default" className="inline-flex items-center gap-2 font-semibold">
+            <Mic className="w-4 h-4" />
+            Talk to Mary
           </Button>
           <a data-testid="nav-directions-button" href="https://www.google.com/maps/dir/?api=1&destination=818+Coshocton+Ave,+Mt+Vernon,+OH+43050" target="_blank" rel="noopener noreferrer">
             <Button variant="outline" size="default" className="inline-flex items-center gap-2 font-semibold">
@@ -96,9 +58,13 @@ export const Header = () => {
                 <a href="/locations" className="text-base font-medium hover:text-primary transition-colors">Locations</a>
                 <a href="/contact" className="text-base font-medium hover:text-primary transition-colors">Contact</a>
                 <div className="mt-4 space-y-3">
-                  <button data-testid="sheet-chat-button" onClick={() => window.openMaryChat && window.openMaryChat()} className="inline-flex items-center justify-center gap-2 rounded-md bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))] h-11 w-full font-semibold">
+                  <button data-testid="sheet-chat-button" className="inline-flex items-center justify-center gap-2 rounded-md bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))] h-11 w-full font-semibold" onClick={() => window.openMaryChat && window.openMaryChat()}>
                     <MessageCircle className="w-4 h-4" />
                     Chat with Mary
+                  </button>
+                  <button data-testid="sheet-talk-button" className="inline-flex items-center justify-center gap-2 rounded-md border h-11 w-full font-semibold" onClick={() => window.openMaryChatAndListen && window.openMaryChatAndListen()}>
+                    <Mic className="w-4 h-4" />
+                    Talk to Mary
                   </button>
                   <a data-testid="sheet-directions-button" className="inline-flex items-center justify-center gap-2 rounded-md border h-11 w-full font-semibold" href="https://www.google.com/maps/dir/?api=1&destination=818+Coshocton+Ave,+Mt+Vernon,+OH+43050" target="_blank" rel="noopener noreferrer">
                     <MapPin className="w-4 h-4" />

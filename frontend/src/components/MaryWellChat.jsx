@@ -2,10 +2,10 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Button } from './ui/button';
 import { Card } from './ui/card';
 import { Input } from './ui/input';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from './ui/dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from './ui/dialog';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
 import { Label } from './ui/label';
-import { MessageCircle, X, Send, Loader2, Tag, List as ListIcon, Clipboard, ShoppingCart, Mic } from 'lucide-react';
+import { MessageCircle, X, Send, Loader2, Tag, List as ListIcon, Clipboard, ShoppingCart, Mic, Volume2, VolumeX } from 'lucide-react';
 import { toast } from 'sonner';
 
 export function MaryWellChat() {
@@ -23,14 +23,26 @@ export function MaryWellChat() {
   const [customer, setCustomer] = useState({ name: '', email: '', phone: '' });
   const [tanningSelection, setTanningSelection] = useState({ level: 'level2', type: 'ten_pack' });
   const [selectedLotion, setSelectedLotion] = useState(null);
+
+  const [listening, setListening] = useState(false);
+  const [autoSpeak, setAutoSpeak] = useState(true);
+  const recognitionRef = useRef(null);
+
   const messagesEndRef = useRef(null);
   const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
   useEffect(() => {
     // global open chat API
     window.openMaryChat = () => setIsOpen(true);
-    return () => { delete window.openMaryChat; };
-  }, []);
+    window.openMaryChatAndListen = () => {
+      setIsOpen(true);
+      setTimeout(() => {
+        if (!sessionId) startChatSession().then(() => startListening());
+        else startListening();
+      }, 200);
+    };
+    return () => { delete window.openMaryChat; delete window.openMaryChatAndListen; };
+  }, [sessionId]);
 
   const scrollToBottom = () => { messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' }); };
   useEffect(() => { scrollToBottom(); }, [messages]);
@@ -42,29 +54,79 @@ export function MaryWellChat() {
       setSessionId(data.session_id);
       setMessages([
         { role: 'assistant', content: data.greeting, timestamp: new Date().toISOString() },
-        { role: 'assistant', content: 'Quick actions: Use the buttons below to view pricing, generate a discount code (5%/10%/15%), browse packages, or checkout.', timestamp: new Date().toISOString() }
+        { role: 'assistant', content: 'Quick actions: view pricing, generate a discount (5%/10%/15%), browse packages, or checkout. Use Talk to Mary for voice chat.', timestamp: new Date().toISOString() }
       ]);
     } catch (error) { console.error('Error starting chat:', error); toast.error('Failed to start chat'); }
   };
 
   const handleOpen = () => { setIsOpen(true); if (!sessionId) startChatSession(); };
-  const handleTalkToMary = () => { setIsOpen(true); if (!sessionId) startChatSession(); };
 
-  const sendMessage = async () => {
-    if (!inputMessage.trim() || loading) return;
-    const userMessage = inputMessage.trim();
-    setInputMessage('');
+  const speak = (text) => {
+    try {
+      if (!autoSpeak) return;
+      const utter = new SpeechSynthesisUtterance(text);
+      utter.rate = 1.0;
+      utter.pitch = 1.0;
+      window.speechSynthesis.cancel();
+      window.speechSynthesis.speak(utter);
+    } catch (e) { /* ignore */ }
+  };
+
+  const sendMessage = async (overrideText = null) => {
+    const outgoing = overrideText ?? inputMessage;
+    if (!outgoing || !outgoing.trim() || loading) return;
+    const userMessage = outgoing.trim();
+    if (!overrideText) setInputMessage('');
     setMessages(prev => [...prev, { role: 'user', content: userMessage, timestamp: new Date().toISOString() }]);
     setLoading(true);
     try {
       const response = await fetch(`${backendUrl}/api/chat/message`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ session_id: sessionId, message: userMessage }) });
       const data = await response.json();
       setMessages(prev => [...prev, { role: 'assistant', content: data.response, timestamp: data.timestamp }]);
+      speak(data.response || '');
     } catch (error) { console.error('Error sending message:', error); toast.error('Failed to send message'); }
     finally { setLoading(false); }
   };
 
   const handleKeyPress = (e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); } };
+
+  const startListening = () => {
+    try {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (!SpeechRecognition) { toast.error('Voice not supported by this browser'); return; }
+      // stop any current
+      if (recognitionRef.current) { recognitionRef.current.stop(); recognitionRef.current = null; }
+      const recog = new SpeechRecognition();
+      recognitionRef.current = recog;
+      recog.lang = 'en-US';
+      recog.interimResults = true;
+      recog.continuous = false;
+      let finalTranscript = '';
+      setListening(true);
+      recog.onresult = (event) => {
+        let interim = '';
+        for (let i = event.resultIndex; i < event.results.length; ++i) {
+          const transcript = event.results[i][0].transcript;
+          if (event.results[i].isFinal) finalTranscript += transcript;
+          else interim += transcript;
+        }
+        // show interim in input
+        setInputMessage(finalTranscript || interim);
+      };
+      recog.onerror = () => { setListening(false); recognitionRef.current = null; };
+      recog.onend = () => {
+        setListening(false); recognitionRef.current = null;
+        const text = (finalTranscript || inputMessage || '').trim();
+        if (text) sendMessage(text);
+      };
+      recog.start();
+    } catch (e) { setListening(false); recognitionRef.current = null; }
+  };
+
+  const stopListening = () => {
+    try { recognitionRef.current && recognitionRef.current.stop(); } catch (e) { /* ignore */ }
+    setListening(false);
+  };
 
   const generateDiscount = async (percent) => {
     try {
@@ -112,19 +174,26 @@ export function MaryWellChat() {
   return (
     <>
       {!isOpen && (
-        <Button onClick={handleOpen} className="fixed bottom-6 right-6 h-16 w-16 rounded-full bg-gradient-to-r from-amber-500 to-teal-500 hover:from-amber-600 hover:to-teal-600 shadow-xl z-50" data-testid="mary-well-button" aria-label="Talk to Mary">
+        <Button onClick={handleOpen} className="fixed bottom-6 right-6 h-16 w-16 rounded-full bg-gradient-to-r from-amber-500 to-teal-500 hover:from-amber-600 hover:to-teal-600 shadow-xl z-50" data-testid="mary-well-button" aria-label="Chat with Mary">
           <MessageCircle className="h-6 w-6" />
         </Button>
       )}
 
       {isOpen && (
-        <Card className="fixed bottom-6 right-6 w-96 h-[620px] shadow-2xl z-50 flex flex-col" data-testid="mary-well-chat">
+        <Card className="fixed bottom-6 right-6 w-96 h-[660px] shadow-2xl z-50 flex flex-col" data-testid="mary-well-chat">
           <div className="bg-gradient-to-r from-amber-500 to-teal-500 text-white p-4 rounded-t-lg flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center"><MessageCircle className="h-5 w-5" /></div>
               <div><h3 className="font-bold">Mary Well</h3><p className="text-xs text-white/90">AI Assistant</p></div>
             </div>
-            <Button variant="ghost" size="sm" onClick={() => setIsOpen(false)} className="text-white hover:bg-white/20"><X className="h-5 w-5" /></Button>
+            <div className="flex items-center gap-2">
+              <Button variant="ghost" size="sm" onClick={() => setAutoSpeak(v => !v)} className="text-white hover:bg-white/20" data-testid="toggle-voice-output">
+                {autoSpeak ? <Volume2 className="h-5 w-5" /> : <VolumeX className="h-5 w-5" />}
+              </Button>
+              <Button variant="ghost" size="sm" onClick={() => setIsOpen(false)} className="text-white hover:bg-white/20">
+                <X className="h-5 w-5" />
+              </Button>
+            </div>
           </div>
 
           <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-slate-50">
@@ -150,7 +219,11 @@ export function MaryWellChat() {
               <Button onClick={copyDiscount} size="sm" variant="ghost" disabled={!lastDiscount} data-testid="copy-discount-button"><Clipboard className="h-4 w-4 mr-1" /> Copy Code</Button>
               <Button onClick={fetchLotions} size="sm" variant="outline" data-testid="browse-lotions-button"><Tag className="h-4 w-4 mr-1" /> Browse Lotions</Button>
               <Button onClick={openCheckoutTanning} size="sm" className="bg-secondary text-white" data-testid="checkout-tanning-button"><ShoppingCart className="h-4 w-4 mr-1" /> Checkout Tanning</Button>
-              <Button onClick={handleTalkToMary} size="sm" variant="outline" data-testid="talk-to-mary-button"><Mic className="h-4 w-4 mr-1" /> Talk to Mary</Button>
+              {!listening ? (
+                <Button onClick={startListening} size="sm" variant="outline" data-testid="talk-to-mary-button"><Mic className="h-4 w-4 mr-1" /> Talk to Mary</Button>
+              ) : (
+                <Button onClick={stopListening} size="sm" variant="destructive" data-testid="stop-talking-button">Stop</Button>
+              )}
             </div>
           </div>
 
@@ -158,12 +231,88 @@ export function MaryWellChat() {
           <div className="p-4 border-t border-slate-200 bg-white rounded-b-lg">
             <div className="flex gap-2">
               <Input value={inputMessage} onChange={(e) => setInputMessage(e.target.value)} onKeyPress={handleKeyPress} placeholder="Type your message..." disabled={loading} className="flex-1" data-testid="chat-input" />
-              <Button onClick={sendMessage} disabled={loading || !inputMessage.trim()} className="bg-gradient-to-r from-amber-500 to-teal-500 hover:from-amber-600 hover:to-teal-600" data-testid="send-button"><Send className="h-4 w-4" /></Button>
+              <Button onClick={() => sendMessage()} disabled={loading || !inputMessage.trim()} className="bg-gradient-to-r from-amber-500 to-teal-500 hover:from-amber-600 hover:to-teal-600" data-testid="send-button"><Send className="h-4 w-4" /></Button>
             </div>
-            <p className="text-xs text-slate-500 mt-2 text-center">Available 24/7 • Powered by AI</p>
+            <p className="text-xs text-slate-500 mt-2 text-center">Available 24/7 • Chat or use your voice</p>
           </div>
         </Card>
       )}
+
+      {/* Lotions Dialog */}
+      <Dialog open={lotionsOpen} onOpenChange={setLotionsOpen}>
+        <DialogContent className="max-w-xl">
+          <DialogHeader>
+            <DialogTitle>Available Lotions</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-3 max-h-80 overflow-auto">
+            {lotions.length === 0 && <p className="text-sm text-muted-foreground">No lotions published yet.</p>}
+            {lotions.map((l) => (
+              <div key={l.id} className="flex items-start justify-between gap-3 border rounded-lg p-3" data-testid={`lotion-${l.id}`}>
+                <div>
+                  <div className="font-semibold">{l.name} {l.brand ? <span className="text-muted-foreground text-sm">• {l.brand}</span> : null}</div>
+                  <div className="text-sm text-muted-foreground">${l.price.toFixed(2)} • {l.tattoo_guard ? 'Tattoo-Guard' : 'Skin Care'}</div>
+                  {l.features && l.features.length > 0 && (
+                    <ul className="text-xs text-muted-foreground mt-1 list-disc pl-4">
+                      {l.features.map((f, idx) => <li key={idx}>{f}</li>)}
+                    </ul>
+                  )}
+                </div>
+                <Button size="sm" onClick={() => openCheckoutLotion(l)} data-testid={`buy-lotion-${l.id}`}>Buy</Button>
+              </div>
+            ))}
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* Checkout Dialog */}
+      <Dialog open={checkoutOpen} onOpenChange={setCheckoutOpen}>
+        <DialogContent className="max-w-lg">
+          <DialogHeader>
+            <DialogTitle>{checkoutType === 'tanning' ? 'Checkout Tanning Package' : `Checkout ${selectedLotion?.name || 'Lotion'}`}</DialogTitle>
+          </DialogHeader>
+          {checkoutType === 'tanning' && (
+            <div className="grid grid-cols-1 gap-3 mb-3">
+              <div>
+                <Label className="text-sm">Tanning Level</Label>
+                <Select value={tanningSelection.level} onValueChange={(v) => setTanningSelection(s => ({ ...s, level: v }))}>
+                  <SelectTrigger data-testid="select-level"><SelectValue placeholder="Choose level" /></SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="level1">Level 1</SelectItem>
+                    <SelectItem value="level2">Level 2</SelectItem>
+                    <SelectItem value="level3">Level 3</SelectItem>
+                    <SelectItem value="level4">Level 4</SelectItem>
+                    <SelectItem value="matrix">Matrix</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div>
+                <Label className="text-sm">Package Type</Label>
+                <Select value={tanningSelection.type} onValueChange={(v) => setTanningSelection(s => ({ ...s, type: v }))}>
+                  <SelectTrigger data-testid="select-package"><SelectValue placeholder="Choose package" /></SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="single">Single</SelectItem>
+                    <SelectItem value="five_pack">5 Pack</SelectItem>
+                    <SelectItem value="ten_pack">10 Pack</SelectItem>
+                    <SelectItem value="twenty_pack">20 Pack</SelectItem>
+                    <SelectItem value="month_unlimited">Month Unlimited</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+          )}
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div className="sm:col-span-1"><Label>Name</Label><Input value={customer.name} onChange={(e)=>setCustomer({...customer, name:e.target.value})} data-testid="checkout-name" /></div>
+            <div className="sm:col-span-1"><Label>Email</Label><Input type="email" value={customer.email} onChange={(e)=>setCustomer({...customer, email:e.target.value})} data-testid="checkout-email" /></div>
+            <div className="sm:col-span-1"><Label>Phone</Label><Input value={customer.phone} onChange={(e)=>setCustomer({...customer, phone:e.target.value})} data-testid="checkout-phone" /></div>
+          </div>
+
+          <div className="flex justify-end gap-2 mt-4">
+            <Button variant="outline" onClick={()=>setCheckoutOpen(false)}>Cancel</Button>
+            <Button onClick={createCheckout} data-testid="checkout-submit">Proceed to Payment</Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </>
   );
 }

@@ -5,7 +5,7 @@ import { BookingForm } from '../components/BookingForm';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
 import { Card } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
-import { Sun, Zap, Shield, Clock, Star, Sparkles, Play } from 'lucide-react';
+import { Sun, Zap, Shield, Star, Sparkles, Play, Mic } from 'lucide-react';
 import { Button } from '../components/ui/button';
 
 export default function Tanning() {
@@ -23,13 +23,6 @@ export default function Tanning() {
     { service: '10 Session Package', description: '10% discount on any level', price: 'Starting at $90' },
     { service: 'Monthly Unlimited', description: 'Unlimited tanning on levels 1-3', price: '$59-89/month' },
     { service: 'Premium Unlimited', description: 'Unlimited tanning all levels', price: '$99/month' }
-  ];
-
-  const lotions = [
-    { service: 'Bronzer Lotion', description: 'Instant color + DHA bronzers', price: '$25-75' },
-    { service: 'Tingle Lotion', description: 'Advanced tanning acceleration', price: '$35-85' },
-    { service: 'Moisturizer', description: 'Extend your tan, hydrate skin', price: '$20-45' },
-    { service: 'Facial Tanning', description: 'Face-specific formula', price: '$30-55' }
   ];
 
   const matrixPoster = 'https://customer-assets.emergentagent.com/job_tanmarketing/artifacts/d0qgu4dp_Screenshot_20251108_055133_Google.jpg';
@@ -54,7 +47,7 @@ export default function Tanning() {
             <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-8 leading-relaxed">Achieve your perfect glow with 5 tanning levels including Matrix stand-up beds and rejuvenating red-light therapy. Professional equipment, expert guidance.</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a href="#packages" data-testid="tanning-hero-packages-btn"><Button size="lg" className="bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))] px-8 h-14 font-semibold text-lg shadow-lg hover:shadow-xl"><Star className="w-5 h-5 mr-2" />View Packages</Button></a>
-              <Button onClick={() => window.openMaryChat && window.openMaryChat()} data-testid="tanning-hero-chat-btn" variant="outline" size="lg" className="px-8 h-14 font-semibold text-lg bg-white hover:bg-gray-50">Chat with Mary</Button>
+              <Button onClick={() => window.openMaryChatAndListen && window.openMaryChatAndListen()} data-testid="tanning-hero-talk-btn" variant="outline" size="lg" className="px-8 h-14 font-semibold text-lg bg-white hover:bg-gray-50"><Mic className="w-5 h-5 mr-2" />Talk to Mary</Button>
             </div>
           </div>
         </div>
@@ -107,17 +100,14 @@ export default function Tanning() {
       {/* Packages */}
       <section id="packages" className="py-16 lg:py-24 bg-muted"><div className="container mx-auto px-4 sm:px-6 lg:px-10 max-w-[1200px]"><div className="max-w-4xl mx-auto"><h2 className="font-serif text-3xl sm:text-4xl font-bold mb-8 text-center">Tanning Packages</h2><PricingTable items={packages} note="Prices vary by tanning level. Monthly unlimited packages require autopay." /></div></div></section>
 
-      {/* Lotions */}
-      <section className="py-16 lg:py-24 bg-white"><div className="container mx-auto px-4 sm:px-6 lg:px-10 max-w-[1200px]"><div className="max-w-4xl mx-auto"><h2 className="font-serif text-3xl sm:text-4xl font-bold mb-4 text-center">Professional Tanning Lotions</h2><p className="text-center text-muted-foreground mb-8 max-w-2xl mx-auto">Maximize your results with professional indoor tanning lotions. Our staff can help you choose the right product for your skin type and goals.</p><PricingTable items={lotions} note="Lotions help you tan faster, darker, and extend the life of your tan." /></div></div></section>
-
       {/* FAQ */}
       <section className="py-16 lg:py-24 bg-white"><div className="container mx-auto px-4 sm:px-6 lg:px-10 max-w-[1200px]"><div className="max-w-3xl mx-auto"><FAQAccordion faqs={faqs} /></div></div></section>
 
       {/* Booking */}
-      <section className="py-16 lg:py-24 bg-muted"><div className="container mx-auto px-4 sm:px-6 lg:px-10 max-w-[1200px]"><BookingForm service="tanning" title="Book Your Tanning Session" description="Request an appointment and we'll call to confirm your preferred time slot." /></div></section>
+      <section className="py-16 lg:py-24 bg-muted"><div className="container mx-auto px-4 sm:px-6 lg:px-10 max-w-[1200px]"><BookingForm service="tanning" title="Book Your Tanning Session" description="Request an appointment and we'll follow up via SMS/chat to confirm." /></div></section>
 
       {/* CTA */}
-      <section className="py-16 lg:py-24 bg-white"><div className="container mx-auto px-4 sm:px-6 lg:px-10 max-w-[1200px]"><BookingCTA title="Ready for Your Perfect Glow?" subtitle="Visit us today at 818 Coshocton Ave. No appointment needed - walk-ins welcome!" primaryAction={{ text: 'Chat with Mary', onClick: () => window.openMaryChat && window.openMaryChat() }} directionsUrl="https://www.google.com/maps/dir/?api=1&destination=818+Coshocton+Ave,+Mt+Vernon,+OH+43050" /></div></section>
+      <section className="py-16 lg:py-24 bg-white"><div className="container mx-auto px-4 sm:px-6 lg:px-10 max-w-[1200px]"><BookingCTA title="Ready for Your Perfect Glow?" subtitle="Visit us today at 818 Coshocton Ave. No appointment needed - walk-ins welcome!" primaryAction={{ text: 'Talk to Mary', onClick: () => window.openMaryChatAndListen && window.openMaryChatAndListen() }} directionsUrl="https://www.google.com/maps/dir/?api=1&destination=818+Coshocton+Ave,+Mt+Vernon,+OH+43050" /></div></section>
     </div>
   );
 }
