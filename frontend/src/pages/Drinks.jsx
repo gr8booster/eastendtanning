@@ -229,10 +229,9 @@ export default function Drinks() {
             title="Thirsty? Come See Us!"
             subtitle="Visit Fizze Drinks inside Eastend for your perfect refreshment. Custom drinks made fresh!"
             primaryAction={{
-              text: "Call to Order Ahead",
-              href: "tel:+17402809400"
+              text: "Chat with Mary",
+              onClick: () => window.openMaryChat && window.openMaryChat()
             }}
-            callNumber="+17402809400"
             directionsUrl="https://www.google.com/maps/dir/?api=1&destination=818+Coshocton+Ave,+Mt+Vernon,+OH+43050"
           />
         </div>
