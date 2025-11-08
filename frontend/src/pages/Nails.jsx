@@ -225,10 +225,9 @@ export default function Nails() {
             title="Ready for Beautiful Nails?"
             subtitle="Book your appointment today or walk in anytime during our hours!"
             primaryAction={{
-              text: "Book Appointment",
-              href: "tel:+17403979632"
+              text: "Chat with Mary",
+              onClick: () => window.openMaryChat && window.openMaryChat()
             }}
-            callNumber="+17403979632"
             directionsUrl="https://www.google.com/maps/dir/?api=1&destination=818+Coshocton+Ave,+Mt+Vernon,+OH+43050"
           />
         </div>
