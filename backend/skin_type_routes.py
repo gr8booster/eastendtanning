@@ -140,6 +140,45 @@ async def submit_skin_type_evaluation(evaluation: SkinTypeEvaluation):
     
     # Store in database
     await db.skin_type_evaluations.insert_one(result)
+
+    # Link to lead by phone or email and persist skin type info on lead
+    try:
+        lead = await db.leads.find_one({
+            "$or": [
+                {"phone": evaluation.customer_phone},
+                {"email": evaluation.customer_email}
+            ]
+        })
+        if lead:
+            await db.leads.update_one(
+                {"id": lead["id"]},
+                {
+                    "$set": {
+                        "skin_type": skin_type,
+                        "skin_type_evaluation_id": result_id,
+                        "updated_at": datetime.now(timezone.utc)
+                    }
+                }
+            )
+        else:
+            # Optionally create a new lead record if none exists
+            new_lead = {
+                "id": str(uuid.uuid4()),
+                "name": evaluation.customer_name,
+                "email": evaluation.customer_email,
+                "phone": evaluation.customer_phone,
+                "source": "skin_type_form",
+                "service_interest": "tanning",
+                "status": "new",
+                "skin_type": skin_type,
+                "skin_type_evaluation_id": result_id,
+                "created_at": datetime.now(timezone.utc),
+                "updated_at": datetime.now(timezone.utc)
+            }
+            await db.leads.insert_one(new_lead)
+    except Exception as e:
+        # Do not fail the API if lead linking fails
+        print(f"skin_type lead link error: {e}")
     
     return SkinTypeResult(
         id=result_id,
