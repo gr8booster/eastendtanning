@@ -133,11 +133,9 @@ export default function Home() {
                 </div>
               </div>
               <div className="mt-5 flex gap-3">
-                <a data-testid="location-call-button-eastend" href="tel:+17403979632">
-                  <Button size="sm" className="bg-[hsl(var(--secondary))] text-white hover:bg-[hsl(183_55%_38%)]">
-                    Call
-                  </Button>
-                </a>
+                <Button data-testid="location-chat-button-eastend" onClick={() => window.openMaryChat && window.openMaryChat()} size="sm" className="bg-[hsl(var(--secondary))] text-white hover:bg-[hsl(183_55%_38%)]">
+                  Chat with Mary
+                </Button>
                 <a data-testid="location-directions-button-eastend" href="https://www.google.com/maps/dir/?api=1&destination=818+Coshocton+Ave,+Mt+Vernon,+OH+43050" target="_blank" rel="noopener noreferrer">
                   <Button variant="outline" size="sm">
                     Directions
@@ -166,11 +164,9 @@ export default function Home() {
                 </div>
               </div>
               <div className="mt-5 flex gap-3">
-                <a data-testid="location-call-button-westend" href="tel:+17403933766">
-                  <Button size="sm" className="bg-[hsl(var(--secondary))] text-white hover:bg-[hsl(183_55%_38%)]">
-                    Call
-                  </Button>
-                </a>
+                <Button data-testid="location-chat-button-westend" onClick={() => window.openMaryChat && window.openMaryChat()} size="sm" className="bg-[hsl(var(--secondary))] text-white hover:bg-[hsl(183_55%_38%)]">
+                  Chat with Mary
+                </Button>
                 <a data-testid="location-directions-button-westend" href="https://www.google.com/maps/dir/?api=1&destination=116+S+Norton+St,+Mt+Vernon,+OH+43050" target="_blank" rel="noopener noreferrer">
                   <Button variant="outline" size="sm">
                     Directions
@@ -201,11 +197,9 @@ export default function Home() {
                 </div>
               </div>
               <div className="mt-5 flex gap-3">
-                <a data-testid="location-call-button-fizze" href="tel:+17402809400">
-                  <Button size="sm" className="bg-[hsl(var(--secondary))] text-white hover:bg-[hsl(183_55%_38%)]">
-                    Call
-                  </Button>
-                </a>
+                <Button data-testid="location-chat-button-fizze" onClick={() => window.openMaryChat && window.openMaryChat()} size="sm" className="bg-[hsl(var(--secondary))] text-white hover:bg-[hsl(183_55%_38%)]">
+                  Chat with Mary
+                </Button>
                 <a data-testid="location-directions-button-fizze" href="https://www.google.com/maps/dir/?api=1&destination=818+Coshocton+Ave,+Mt+Vernon,+OH+43050" target="_blank" rel="noopener noreferrer">
                   <Button variant="outline" size="sm">
                     Directions
@@ -235,11 +229,9 @@ export default function Home() {
                 </div>
               </div>
               <div className="mt-5 flex gap-3">
-                <a data-testid="location-call-button-nails" href="tel:+17403979632">
-                  <Button size="sm" className="bg-[hsl(var(--secondary))] text-white hover:bg-[hsl(183_55%_38%)]">
-                    Call
-                  </Button>
-                </a>
+                <Button data-testid="location-chat-button-nails" onClick={() => window.openMaryChat && window.openMaryChat()} size="sm" className="bg-[hsl(var(--secondary))] text-white hover:bg-[hsl(183_55%_38%)]">
+                  Chat with Mary
+                </Button>
                 <a data-testid="location-directions-button-nails" href="https://www.google.com/maps/dir/?api=1&destination=818+Coshocton+Ave,+Mt+Vernon,+OH+43050" target="_blank" rel="noopener noreferrer">
                   <Button variant="outline" size="sm">
                     Directions
