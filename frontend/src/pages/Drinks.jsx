@@ -111,11 +111,9 @@ export default function Drinks() {
                   View Menu
                 </Button>
               </a>
-              <a href="tel:+17402809400" data-testid="drinks-hero-call-btn">
-                <Button variant="outline" size="lg" className="px-8 h-14 font-semibold text-lg bg-white hover:bg-gray-50">
-                  Call to Order
-                </Button>
-              </a>
+              <Button onClick={() => window.openMaryChat && window.openMaryChat()} data-testid="drinks-hero-chat-btn" variant="outline" size="lg" className="px-8 h-14 font-semibold text-lg bg-white hover:bg-gray-50">
+                Chat with Mary
+              </Button>
             </div>
           </div>
         </div>
