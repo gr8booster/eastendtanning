@@ -54,7 +54,7 @@ export default function Tanning() {
             <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-8 leading-relaxed">Achieve your perfect glow with 5 tanning levels including Matrix stand-up beds and rejuvenating red-light therapy. Professional equipment, expert guidance.</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a href="#packages" data-testid="tanning-hero-packages-btn"><Button size="lg" className="bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))] px-8 h-14 font-semibold text-lg shadow-lg hover:shadow-xl"><Star className="w-5 h-5 mr-2" />View Packages</Button></a>
-              <a href="tel:+17403979632" data-testid="tanning-hero-call-btn"><Button variant="outline" size="lg" className="px-8 h-14 font-semibold text-lg bg-white hover:bg-gray-50">Call (740) 397-9632</Button></a>
+              <Button onClick={() => window.openMaryChat && window.openMaryChat()} data-testid="tanning-hero-chat-btn" variant="outline" size="lg" className="px-8 h-14 font-semibold text-lg bg-white hover:bg-gray-50">Chat with Mary</Button>
             </div>
           </div>
         </div>
@@ -117,7 +117,7 @@ export default function Tanning() {
       <section className="py-16 lg:py-24 bg-muted"><div className="container mx-auto px-4 sm:px-6 lg:px-10 max-w-[1200px]"><BookingForm service="tanning" title="Book Your Tanning Session" description="Request an appointment and we'll call to confirm your preferred time slot." /></div></section>
 
       {/* CTA */}
-      <section className="py-16 lg:py-24 bg-white"><div className="container mx-auto px-4 sm:px-6 lg:px-10 max-w-[1200px]"><BookingCTA title="Ready for Your Perfect Glow?" subtitle="Visit us today at 818 Coshocton Ave. No appointment needed - walk-ins welcome!" primaryAction={{ text: 'Call to Get Started', href: 'tel:+17403979632' }} callNumber="+17403979632" directionsUrl="https://www.google.com/maps/dir/?api=1&destination=818+Coshocton+Ave,+Mt+Vernon,+OH+43050" /></div></section>
+      <section className="py-16 lg:py-24 bg-white"><div className="container mx-auto px-4 sm:px-6 lg:px-10 max-w-[1200px]"><BookingCTA title="Ready for Your Perfect Glow?" subtitle="Visit us today at 818 Coshocton Ave. No appointment needed - walk-ins welcome!" primaryAction={{ text: 'Chat with Mary', onClick: () => window.openMaryChat && window.openMaryChat() }} directionsUrl="https://www.google.com/maps/dir/?api=1&destination=818+Coshocton+Ave,+Mt+Vernon,+OH+43050" /></div></section>
     </div>
   );
 }
