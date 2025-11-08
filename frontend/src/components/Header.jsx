@@ -1,6 +1,6 @@
 import { Button } from './ui/button';
 import { Sheet, SheetTrigger, SheetContent } from './ui/sheet';
-import { Menu, Phone, MapPin } from 'lucide-react';
+import { Menu, MessageCircle, MapPin } from 'lucide-react';
 
 export const Header = () => {
   return (
@@ -67,7 +67,7 @@ export const Header = () => {
         {/* Desktop CTAs */}
         <div className="hidden md:flex gap-3">
           <Button data-testid="nav-chat-button" onClick={() => window.openMaryChat && window.openMaryChat()} variant="default" size="default" className="inline-flex items-center gap-2 bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))] hover:bg-[hsl(42_92%_50%)] font-semibold">
-            <Phone className="w-4 h-4" />
+            <MessageCircle className="w-4 h-4" />
             Chat with Mary
           </Button>
           <a data-testid="nav-directions-button" href="https://www.google.com/maps/dir/?api=1&destination=818+Coshocton+Ave,+Mt+Vernon,+OH+43050" target="_blank" rel="noopener noreferrer">
@@ -97,7 +97,7 @@ export const Header = () => {
                 <a href="/contact" className="text-base font-medium hover:text-primary transition-colors">Contact</a>
                 <div className="mt-4 space-y-3">
                   <button data-testid="sheet-chat-button" onClick={() => window.openMaryChat && window.openMaryChat()} className="inline-flex items-center justify-center gap-2 rounded-md bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))] h-11 w-full font-semibold">
-                    <Phone className="w-4 h-4" />
+                    <MessageCircle className="w-4 h-4" />
                     Chat with Mary
                   </button>
                   <a data-testid="sheet-directions-button" className="inline-flex items-center justify-center gap-2 rounded-md border h-11 w-full font-semibold" href="https://www.google.com/maps/dir/?api=1&destination=818+Coshocton+Ave,+Mt+Vernon,+OH+43050" target="_blank" rel="noopener noreferrer">
