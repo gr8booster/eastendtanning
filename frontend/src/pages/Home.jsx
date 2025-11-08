@@ -32,15 +32,15 @@ export default function Home() {
             
             {/* Hero CTAs */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <a href="tel:+17403979632" data-testid="home-hero-primary-cta-button">
-                <Button 
-                  size="lg" 
-                  className="inline-flex items-center gap-2 bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))] px-6 h-12 font-semibold shadow-md hover:bg-[hsl(42_92%_50%)] hover:shadow-lg transition-all duration-200"
-                >
-                  <Phone className="w-4 h-4" />
-                  Call Now
-                </Button>
-              </a>
+              <Button 
+                data-testid="home-hero-primary-cta-button"
+                size="lg" 
+                onClick={() => window.openMaryChat && window.openMaryChat()}
+                className="inline-flex items-center gap-2 bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))] px-6 h-12 font-semibold shadow-md hover:bg-[hsl(42_92%_50%)] hover:shadow-lg transition-all duration-200"
+              >
+                <Phone className="w-4 h-4" />
+                Chat with Mary
+              </Button>
               <a href="#locations" data-testid="home-hero-secondary-cta-button">
                 <Button 
                   variant="outline" 
