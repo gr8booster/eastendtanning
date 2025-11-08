@@ -47,14 +47,14 @@ export const LeadCapturePopup = ({ isOpen, onClose, source = 'popup' }) => {
         })
       });
 
-      toast.success('🎉 Thank you! We\'ll contact you soon!', {
+      toast.success('🎉 Thank you! We\'ll reach out shortly!', {
         description: 'Check your email for special offers.',
       });
 
       onClose();
     } catch (error) {
       console.error('Error submitting lead:', error);
-      toast.error('Oops! Something went wrong. Please try calling us directly.');
+      toast.error('Oops! Something went wrong. Please try again or chat with Mary.');
     } finally {
       setLoading(false);
     }
