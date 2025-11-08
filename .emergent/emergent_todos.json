@@ -1,26 +1,26 @@
 [
   {
-    "content": "Backend: Create DiscountCode model and /api/discounts endpoints (generate, validate, list, invalidate) with 5/10/15% and 7-day expiry; store in MongoDB; use UUIDs and timezone.utc.",
-    "status": "completed"
+    "content": "Backend: Create lotions catalog API (/api/lotions) with CRUD (create, list, update minimal) secured via JWT; model uses UUID, UTC datetimes; fields include name, brand, price, features, tattoo_guard, image_url, active.",
+    "status": "in_progress"
   },
   {
-    "content": "Payments: Extend POST /api/payments/checkout/session to accept optional discount_code; validate server-side; compute discounted amount; store metadata; mark code redeemed when paid (status endpoint/webhook).",
-    "status": "completed"
+    "content": "Backend: Extend payments to support lotion checkout (amount from DB via lotion_id); keep tanning package flow backward compatible.",
+    "status": "pending"
   },
   {
-    "content": "Chat UI: Add quick-action buttons (Get 5%, 10%, 15%) in MaryWellChat to call /api/discounts/generate; show code with copy; add See Full Pricing button; show package chips from /api/chat/packages.",
-    "status": "completed"
+    "content": "Mary Well prompt + chat flow: add lotion discovery questions and education; add Browse Lotions UI in chat; enable Checkout for lotion and tanning with discount auto-apply for tanning.",
+    "status": "pending"
   },
   {
-    "content": "Prompt Upgrade: Update Mary Well system prompt to push Level 4 & Matrix, always offer budget/recommended/premium with a link to pricing and mention 5/10/15 tiers.",
-    "status": "completed"
+    "content": "Admin UI: Add Lotions tab under /admin with form to add and table to view; uses admin token; no arbitrary prices.",
+    "status": "pending"
   },
   {
-    "content": "Admin UI: Add Discount Codes tab to /admin with table listing recent codes (code, percent, status, expires, created_at) with data-testids.",
-    "status": "completed"
+    "content": "Visuals: Update Laundry hero to provided Eastend photo; add Tanning hero video placeholder (poster=provided image), ask for final video link.",
+    "status": "pending"
   },
   {
-    "content": "Testing: Run automated testing agent (both frontend + backend) with screenshots on tanmarketing preview; fix issues, iterate once, and re-run if needed.",
-    "status": "completed"
+    "content": "Test end-to-end: lotion creation → chat browse → checkout link opens; tanning checkout with discount still works; update screenshots.",
+    "status": "pending"
   }
 ]
