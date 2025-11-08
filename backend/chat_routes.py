@@ -23,9 +23,19 @@ db = client[os.environ.get('DB_NAME', 'test_database')]
 # Store active chat sessions in memory
 active_chats = {}
 
+REASONS = ["wedding", "weddings", "vacation", "trip", "beach", "prom", "event", "photos", "photoshoot", "competition"]
+
+def extract_reason(text: str) -> Optional[str]:
+    t = text.lower()
+    for r in REASONS:
+        if r in t:
+            return r
+    return None
+
 async def auto_capture_lead_from_message(session_id: str, user_message: str, ai_response: str):
     """
     Automatically detect and capture lead information from chat messages
+    Also capture tanning reason and link lead_id to chat session
     """
     # Patterns to detect contact information
     email_pattern = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
@@ -36,33 +46,39 @@ async def auto_capture_lead_from_message(session_id: str, user_message: str, ai_
     emails = re.findall(email_pattern, user_message, re.IGNORECASE)
     phones = re.findall(phone_pattern, user_message)
     names = re.findall(name_pattern, user_message, re.IGNORECASE)
-    
-    # Check if we found any contact information
-    if emails or phones or names:
-        # Determine service interest from conversation
-        service_interest = "tanning"  # default
-        if any(word in user_message.lower() for word in ["laundry", "wash", "dry clean"]):
-            service_interest = "laundry"
-        elif any(word in user_message.lower() for word in ["tan", "bronze", "uv", "sunless"]):
-            service_interest = "tanning"
-        
-        # Prepare customer data
-        customer_data = {
-            "chat_session_id": session_id,
-            "email": emails[0] if emails else "",
-            "phone": ''.join(phones[0]) if phones else "",
-            "name": names[0].strip() if names else "",
-            "service_interest": service_interest,
-            "notes": f"Auto-captured from chat. User said: '{user_message[:100]}...'"
-        }
-        
-        # Only capture if we have at least email or phone
-        if customer_data["email"] or customer_data["phone"]:
-            try:
-                lead_id = await journey_manager.capture_lead_from_chat(customer_data)
-                print(f"Auto-captured lead {lead_id} from session {session_id}")
-            except Exception as e:
-                print(f"Error auto-capturing lead: {str(e)}")
+
+    # Determine service interest
+    service_interest = "tanning"
+    if any(word in user_message.lower() for word in ["laundry", "wash", "dry clean"]):
+        service_interest = "laundry"
+    elif any(word in user_message.lower() for word in ["tan", "bronze", "uv", "sunless"]):
+        service_interest = "tanning"
+
+    # Determine reason if present
+    reason = extract_reason(user_message)
+
+    # Prepare customer data
+    customer_data = {
+        "chat_session_id": session_id,
+        "email": emails[0] if emails else "",
+        "phone": ''.join(phones[0]) if phones else "",
+        "name": names[0].strip() if names else "",
+        "service_interest": service_interest,
+        "notes": f"Auto-captured from chat. User said: '{user_message[:100]}...'"
+    }
+
+    # Only capture if we have at least email or phone
+    if customer_data["email"] or customer_data["phone"]:
+        try:
+            lead_id = await journey_manager.capture_lead_from_chat(customer_data)
+            # Link to chat session record
+            await db.chat_sessions.update_one({"session_id": session_id}, {"$set": {"lead_id": lead_id}})
+            # Save reason if we have one
+            if reason:
+                await db.leads.update_one({"id": lead_id}, {"$set": {"tanning_reason": reason, "updated_at": datetime.now(timezone.utc)}})
+            print(f"Auto-captured lead {lead_id} from session {session_id}")
+        except Exception as e:
+            print(f"Error auto-capturing lead: {str(e)}")
 
 class ChatMessage(BaseModel):
     session_id: str
@@ -117,7 +133,7 @@ async def send_message(chat_message: ChatMessage):
         # Get AI response
         response = await mary_well.send_message(chat, chat_message.message)
         
-        # Auto-capture lead if customer provides contact information
+        # Auto-capture lead if customer provides contact information + reason
         await auto_capture_lead_from_message(session_id, chat_message.message, response)
         
         # Store messages in database
