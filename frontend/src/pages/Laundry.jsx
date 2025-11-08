@@ -86,7 +86,7 @@ export default function Laundry() {
 
       {/* FAQ */}
       <section className="py-16 lg:py-24 bg-muted"><div className="container mx-auto px-4 sm:px-6 lg:px-10 max-w-[1200px]"><div className="max-w-3xl mx-auto"><FAQAccordion faqs={faqs} /></div></div></section>
-      <section className="py-16 lg:py-24 bg-white"><div className="container mx-auto px-4 sm:px-6 lg:px-10 max-w-[1200px]"><BookingCTA title="Visit Us Today!" subtitle="Two convenient locations in Mount Vernon. Open daily with extended hours for your convenience." primaryAction={{ text: 'Get Directions', href: 'https://www.google.com/maps/dir/?api=1&destination=818+Coshocton+Ave,+Mt+Vernon,+OH+43050' }} showCall={true} showDirections={false} callNumber="+17403979632" /></div></section>
+      <section className="py-16 lg:py-24 bg-white"><div className="container mx-auto px-4 sm:px-6 lg:px-10 max-w-[1200px]"><BookingCTA title="Visit Us Today!" subtitle="Two convenient locations in Mount Vernon. Open daily with extended hours for your convenience." primaryAction={{ text: 'Get Directions', href: 'https://www.google.com/maps/dir/?api=1&destination=818+Coshocton+Ave,+Mt+Vernon,+OH+43050' }} showCall={false} showDirections={false} /></div></section>
     </div>
   );
 }
