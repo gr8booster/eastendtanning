@@ -47,9 +47,7 @@ export default function Locations() {
                 </div>
               </div>
               <div className="mt-6 flex gap-3">
-                <a href="tel:+17403979632">
-                  <Button className="bg-[hsl(var(--secondary))] text-white">Call</Button>
-                </a>
+                <Button onClick={() => window.openMaryChat && window.openMaryChat()} className="bg-[hsl(var(--secondary))] text-white" data-testid="locations-chat-eastend">Chat with Mary</Button>
                 <a href="https://www.google.com/maps/dir/?api=1&destination=818+Coshocton+Ave,+Mt+Vernon,+OH+43050" target="_blank" rel="noopener noreferrer">
                   <Button variant="outline">Directions</Button>
                 </a>
@@ -80,9 +78,7 @@ export default function Locations() {
                 </div>
               </div>
               <div className="mt-6 flex gap-3">
-                <a href="tel:+17403933766">
-                  <Button className="bg-[hsl(var(--secondary))] text-white">Call</Button>
-                </a>
+                <Button onClick={() => window.openMaryChat && window.openMaryChat()} className="bg-[hsl(var(--secondary))] text-white" data-testid="locations-chat-westend">Chat with Mary</Button>
                 <a href="https://www.google.com/maps/dir/?api=1&destination=116+S+Norton+St,+Mt+Vernon,+OH+43050" target="_blank" rel="noopener noreferrer">
                   <Button variant="outline">Directions</Button>
                 </a>
