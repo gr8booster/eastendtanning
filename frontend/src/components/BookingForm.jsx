@@ -49,7 +49,7 @@ export const BookingForm = ({ service = 'tanning', title, description }) => {
       });
 
       toast.success('🎉 Booking Request Received!', {
-        description: 'We\'ll call you shortly to confirm your appointment.',
+        description: "We'll message you shortly to confirm your appointment.",
       });
 
       // Reset form
@@ -62,7 +62,7 @@ export const BookingForm = ({ service = 'tanning', title, description }) => {
       });
     } catch (error) {
       console.error('Error submitting booking:', error);
-      toast.error('Oops! Please call us directly at (740) 397-9632');
+      toast.error('Oops! Something went wrong. Please try again or chat with Mary.');
     } finally {
       setLoading(false);
     }
@@ -134,7 +134,7 @@ export const BookingForm = ({ service = 'tanning', title, description }) => {
             required
             min={new Date().toISOString().slice(0, 16)}
           />
-          <p className="text-xs text-muted-foreground mt-1">We'll call to confirm availability</p>
+          <p className="text-xs text-muted-foreground mt-1">We'll follow up via SMS/chat to confirm availability</p>
         </div>
 
         <div>
