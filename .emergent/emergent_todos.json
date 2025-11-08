@@ -1,26 +1,22 @@
 [
   {
-    "content": "Backend: Create lotions catalog API (/api/lotions) with CRUD (create, list, update minimal) secured via JWT; model uses UUID, UTC datetimes; fields include name, brand, price, features, tattoo_guard, image_url, active.",
+    "content": "Backend: Link skin type evaluation to lead (by phone/email), store skin_type and evaluation_id on lead; persist on submit.",
     "status": "in_progress"
   },
   {
-    "content": "Backend: Extend payments to support lotion checkout (amount from DB via lotion_id); keep tanning package flow backward compatible.",
+    "content": "Backend: In chat, store lead_id on chat_session when auto-capturing leads; auto-detect and save tanning_reason from user messages (wedding, vacation, etc.).",
     "status": "pending"
   },
   {
-    "content": "Mary Well prompt + chat flow: add lotion discovery questions and education; add Browse Lotions UI in chat; enable Checkout for lotion and tanning with discount auto-apply for tanning.",
+    "content": "Frontend: Add global openMaryChat hook (window.openMaryChat + event) in MaryWellChat; replace all Call Us buttons with Talk to Mary opening chat.",
     "status": "pending"
   },
   {
-    "content": "Admin UI: Add Lotions tab under /admin with form to add and table to view; uses admin token; no arbitrary prices.",
+    "content": "Frontend: Update Tanning and Laundry hero buttons to Talk to Mary; ensure BookingCTA uses Chat with Mary instead of Call.",
     "status": "pending"
   },
   {
-    "content": "Visuals: Update Laundry hero to provided Eastend photo; add Tanning hero video placeholder (poster=provided image), ask for final video link.",
-    "status": "pending"
-  },
-  {
-    "content": "Test end-to-end: lotion creation → chat browse → checkout link opens; tanning checkout with discount still works; update screenshots.",
+    "content": "Prompt: Update Mary Well to ask and remember tanning reason, reference in future chats.",
     "status": "pending"
   }
 ]
