@@ -1,22 +1,22 @@
 [
   {
     "content": "Backend: Link skin type evaluation to lead (by phone/email), store skin_type and evaluation_id on lead; persist on submit.",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Backend: In chat, store lead_id on chat_session when auto-capturing leads; auto-detect and save tanning_reason from user messages (wedding, vacation, etc.).",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Frontend: Add global openMaryChat hook (window.openMaryChat + event) in MaryWellChat; replace all Call Us buttons with Talk to Mary opening chat.",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Frontend: Update Tanning and Laundry hero buttons to Talk to Mary; ensure BookingCTA uses Chat with Mary instead of Call.",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Prompt: Update Mary Well to ask and remember tanning reason, reference in future chats.",
-    "status": "pending"
+    "status": "completed"
   }
 ]
