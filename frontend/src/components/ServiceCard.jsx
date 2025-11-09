@@ -1,6 +1,6 @@
 import { ArrowRight } from 'lucide-react';
 
-export const ServiceCard = ({ title, description, ctaText, href, imageUrl, tone = 'tanning' }) => {
+export const ServiceCard = ({ title, description, ctaText, href, imageUrl, imageClassName, tone = 'tanning' }) => {
   const toneGradients = {
     tanning: 'from-[hsl(43_96%_96%)] to-transparent',
     laundry: 'from-[hsl(183_45%_96%)] to-transparent',
@@ -13,11 +13,11 @@ export const ServiceCard = ({ title, description, ctaText, href, imageUrl, tone 
       className="group relative overflow-hidden rounded-xl border bg-white shadow-sm transition-all duration-200 hover:shadow-md"
     >
       {/* Image */}
-      <div className="relative h-48 w-full overflow-hidden">
+      <div className="relative h-48 w-full overflow-hidden bg-gray-50">
         <img 
           src={imageUrl} 
           alt={title}
-          className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" 
+          className={imageClassName || "h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"} 
         />
         <div className={`absolute inset-0 bg-gradient-to-br ${toneGradients[tone]} opacity-60`}></div>
       </div>
