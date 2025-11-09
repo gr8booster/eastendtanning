@@ -106,7 +106,7 @@ async def generate_ai_recommendations(request: Request, rec_request: Recommendat
         if rec_request.service_filter:
             recommendations = [
                 r for r in recommendations 
-                if r.get('target_service') == request.service_filter or r.get('target_service') == 'all'
+                if r.get('target_service') == rec_request.service_filter or r.get('target_service') == 'all'
             ]
         
         # Store recommendations in database
