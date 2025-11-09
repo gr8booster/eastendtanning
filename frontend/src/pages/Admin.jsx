@@ -204,6 +204,65 @@ export default function Admin() {
               </div>
             </Card>
           </TabsContent>
+
+          <TabsContent value="voicecalls">
+            <Card className="overflow-hidden">
+              <div className="p-4 bg-muted border-b">
+                <h3 className="font-serif text-xl font-bold flex items-center gap-2">
+                  <Phone className="w-5 h-5" /> Voice Call Log
+                </h3>
+                <p className="text-sm text-muted-foreground mt-1">Recent AI voice calls with transcripts</p>
+              </div>
+              <div className="overflow-x-auto">
+                <table className="w-full" data-testid="voicecalls-table">
+                  <thead className="bg-muted">
+                    <tr>
+                      <th className="px-4 py-3 text-left text-sm font-semibold">Customer</th>
+                      <th className="px-4 py-3 text-left text-sm font-semibold">Phone</th>
+                      <th className="px-4 py-3 text-left text-sm font-semibold">Direction</th>
+                      <th className="px-4 py-3 text-left text-sm font-semibold">Status</th>
+                      <th className="px-4 py-3 text-left text-sm font-semibold">Summary</th>
+                      <th className="px-4 py-3 text-left text-sm font-semibold">Date</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {voiceCalls.length > 0 ? voiceCalls.map((call, index) => {
+                      const summary = call.summary || call.transcript || '-';
+                      const truncatedSummary = summary.length > 100 ? summary.substring(0, 100) + '...' : summary;
+                      return (
+                        <tr key={call.id} className={index % 2 === 0 ? 'bg-white' : 'bg-muted/30'}>
+                          <td className="px-4 py-3 text-sm font-medium">{call.customer_name || 'Unknown'}</td>
+                          <td className="px-4 py-3 text-sm font-mono text-xs">{call.customer_number || '-'}</td>
+                          <td className="px-4 py-3 text-sm">
+                            <Badge variant={call.direction === 'inbound' ? 'default' : 'secondary'}>
+                              {call.direction || 'unknown'}
+                            </Badge>
+                          </td>
+                          <td className="px-4 py-3 text-sm capitalize">
+                            <Badge variant={call.status === 'mocked' ? 'outline' : 'default'}>
+                              {call.status || 'unknown'}
+                            </Badge>
+                          </td>
+                          <td className="px-4 py-3 text-sm text-muted-foreground max-w-xs" title={summary}>
+                            {truncatedSummary}
+                          </td>
+                          <td className="px-4 py-3 text-sm text-muted-foreground whitespace-nowrap">
+                            {call.created_at ? new Date(call.created_at).toLocaleString() : '-'}
+                          </td>
+                        </tr>
+                      );
+                    }) : (
+                      <tr>
+                        <td colSpan="6" className="px-4 py-8 text-center text-muted-foreground">
+                          No voice calls yet. Voice calls are currently in mock mode.
+                        </td>
+                      </tr>
+                    )}
+                  </tbody>
+                </table>
+              </div>
+            </Card>
+          </TabsContent>
         </Tabs>
       </div>
     </div>
