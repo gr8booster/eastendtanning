@@ -8,15 +8,15 @@ import { Coffee, Zap, Heart, Sparkles, Clock, MapPin, Phone } from 'lucide-react
 export default function Drinks() {
   const menuCategories = [
     {
-      name: "Coffee & Espresso",
-      icon: <Coffee className="w-6 h-6" />,
+      name: "Bubble Tea",
+      icon: <Sparkles className="w-6 h-6" />,
       items: [
-        { name: "Hot Coffee", price: "$3-5" },
-        { name: "Iced Coffee", price: "$4-6" },
-        { name: "Espresso", price: "$3-4" },
-        { name: "Latte", price: "$4-6" },
-        { name: "Cappuccino", price: "$4-6" },
-        { name: "Mocha", price: "$5-7" }
+        { name: "Classic Milk Tea", price: "$5-7" },
+        { name: "Brown Sugar Boba", price: "$6-8" },
+        { name: "Thai Milk Tea", price: "$5-7" },
+        { name: "Taro Milk Tea", price: "$5-7" },
+        { name: "Fruit Tea (Mango/Strawberry/Peach)", price: "$5-7" },
+        { name: "Add Popping Boba", price: "+$1" }
       ]
     },
     {
@@ -43,6 +43,18 @@ export default function Drinks() {
       ]
     },
     {
+      name: "Coffee & Espresso",
+      icon: <Coffee className="w-6 h-6" />,
+      items: [
+        { name: "Hot Coffee", price: "$3-5" },
+        { name: "Iced Coffee", price: "$4-6" },
+        { name: "Espresso", price: "$3-4" },
+        { name: "Latte", price: "$4-6" },
+        { name: "Cappuccino", price: "$4-6" },
+        { name: "Mocha", price: "$5-7" }
+      ]
+    },
+    {
       name: "Healthy Options",
       icon: <Heart className="w-6 h-6" />,
       items: [
@@ -51,6 +63,15 @@ export default function Drinks() {
         { name: "Green Detox", price: "$6-8" },
         { name: "Immune Booster", price: "$6-8" },
         { name: "Collagen Beauty Blend", price: "$7-9" }
+      ]
+    },
+    {
+      name: "Snacks",
+      icon: <Sparkles className="w-6 h-6" />,
+      items: [
+        { name: "Warm Soft Amish Pretzel", price: "$3-5" },
+        { name: "Nachos & Cheese", price: "$4-6" },
+        { name: "Loaded Nachos", price: "$6-8" }
       ]
     }
   ];
@@ -96,13 +117,13 @@ export default function Drinks() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-10 max-w-[1200px] relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <Badge className="mb-4 bg-secondary text-white border-0" data-testid="drinks-hero-badge">
-              <Sparkles className="w-3 h-3 mr-1" /> Coffee • Dirty Sodas • Energy • Health
+              <Sparkles className="w-3 h-3 mr-1" /> Bubble Tea • Dirty Sodas • Energy • Snacks
             </Badge>
             <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6 text-foreground">
-              Fizze Drinks - Refreshment Redefined
+              Fizze Drinks • Bubble Tea & More
             </h1>
             <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-8 leading-relaxed">
-              From classic coffee to trendy dirty sodas, energy bombs, and healthy meal replacement shakes. Your perfect drink awaits!
+              Bubble tea, warm soft Amish pretzels, nachos, dirty sodas, energy bombs, and more—made fresh inside Eastend.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a href="#menu" data-testid="drinks-hero-menu-btn">
