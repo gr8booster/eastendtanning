@@ -103,7 +103,7 @@ async def generate_ai_recommendations(request: Request, rec_request: Recommendat
         recommendations = await ai_engine.generate_recommendations(analysis, metrics)
         
         # Filter by service if requested
-        if request.service_filter:
+        if rec_request.service_filter:
             recommendations = [
                 r for r in recommendations 
                 if r.get('target_service') == request.service_filter or r.get('target_service') == 'all'
