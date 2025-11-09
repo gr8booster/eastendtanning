@@ -1,707 +1,155 @@
 <analysis>
-The user requested a comprehensive AI-powered marketing and analytics system for Eastend Tanning & Laundry, a multi-service local business in Mount Vernon, Ohio. The project involved continuing development from a previous session, fixing critical bugs, implementing new features, and adding an AI assistant named "Mary Well" with text chat, payment processing, customer onboarding, and automated marketing journey capabilities.
-
-Key achievements:
-1. Fixed dashboard metrics display bug (database connection issue)
-2. Migrated AI integration from raw OpenAI/Anthropic SDKs to emergentintegrations library
-3. Implemented JWT-based admin authentication
-4. Created complete blog system with AI-generated content
-5. Added real-time dashboard auto-refresh functionality
-6. Built Mary Well AI chat assistant with conversational AI
-7. Implemented Stripe payment integration for all tanning packages
-8. Created Ohio-required skin type evaluation system
-9. Developed 11-stage automated marketing journey system
-10. Transformed Mary Well into aggressive sales-focused assistant
-
-The system is now fully operational with 24/7 AI assistant, automatic lead capture, payment processing, and comprehensive marketing automation.
+Implemented discount codes, upgraded Mary Well’s sales and memory flow, added a staff-managed lotions catalog, extended payments, introduced chat-first and voice options, normalized and fixed the blog, and set up an every-other-day blog scheduler. Key code changes:
+- Backend: Created discount_routes.py (generate/validate/list/invalidate 5/10/15%), created lotion_routes.py (JWT-protected CRUD, public list), created voice_routes.py (outbound calls + webhook + mock mode), created blog_scheduler.py (every-other-day posts, enabled on startup), updated payment_routes.py (discount_code support; lotion checkout by lotion_id), updated server.py (include new routers; start blog scheduler), updated chat_routes.py (auto-capture lead_id, tanning_reason detection), updated skin_type_routes.py (persist skin_type to leads), updated routes.py (robust datetime parsing for leads/campaigns/bookings), updated ai_routes.py (normalize blog list/single responses; publish), updated ai_engine.py (blog prompt to “magazine” style, subtle CTA; general LLM usage).
+- Frontend: Enhanced MaryWellChat.jsx (discount quick actions; packages; checkout flows; Browse Lotions; “Talk to Mary” voice via Web Speech; “Have Mary Call Me” outbound call; global window.openMaryChat/openMaryChatAndListen), updated Header.jsx (Chat with Mary + Talk to Mary), BookingCTA.jsx (Chat with Mary), Home.jsx (hero text to “Bubble Tea”; hero CTAs to chat/talk), Tanning.jsx/Laundry.jsx/Drinks.jsx/Nails.jsx/Locations.jsx (replace Call with Chat/Talk; media updates; bubble tea + pretzel/nachos menu), Admin.jsx (Discount Codes tab; Lotions tab with create form/list), LeadCapturePopup.jsx and BookingForm.jsx copy tweaked, Blog.jsx (rename to People of the Eastend), BlogPost.jsx (back label + rendering).
+- Blog errors fixed by normalizing backend blog payloads (strip code fences; ensure title/meta/content/keywords/cta/created_at). Verified with screenshots (listing and post load).
+- Voice calls run in mock mode until Vapi credentials are provided; outbound calls create leads and journey events; transcripts persisted when webhooks are live.
 </analysis>
 
 <product_requirements>
-**Primary Problem:**
-Build an autonomous AI marketing and analytics system that continuously drives traffic, increases bookings, captures leads, and reports results for Eastend Tanning & Laundry (4 services: Tanning Studio, Fast Nails, Laundromat, Fizze Drinks).
-
-**Specific Features Requested:**
-
-1. **Session Continuation Requirements:**
-   - Fix dashboard showing zeros despite data in database
-   - Test AI generation live (GPT-4 + Claude)
-   - Add admin authentication
-   - Create blog display pages
-   - Implement real-time dashboard updates
-
-2. **Mary Well AI Assistant Requirements:**
-   - 24/7 text chat on website
-   - Answer questions about all services
-   - Handle customer onboarding
-   - Process payments for tanning packages
-   - Complete skin type evaluation (Ohio law requirement)
-   - Capture customer contact information automatically
-   - Guide customers through marketing journey
-   - Close sales aggressively with proven process
-
-3. **Sales Process Requirements:**
-   - Collect name and contact info immediately
-   - Send skin type evaluation link
-   - Recommend 2-3 bed options (low + recommended + premium)
-   - Always upsell to higher-tier beds (Level 4 & Matrix bronzing beds)
-   - Offer 15% pre-payment discount
-   - Book appointments
-   - Upsell tanning lotions ($20-$85)
-   - Provide discount codes for in-store redemption
-   - Enable lotion delivery orders
-
-4. **Marketing Automation Requirements:**
-   - Automatic lead capture from chat conversations
-   - 11-stage marketing journey (Awareness → Advocate)
-   - Automated email/SMS scheduling
-   - Event-driven journey progression
-   - Churn prevention and win-back campaigns
-
-**Acceptance Criteria:**
-- Fully autonomous system operational 24/7
-- Live KPIs showing revenue progress toward $1M/12-month goal
-- AI recommendations for growth opportunities
-- Lead capture and booking funnels converting visitors
-- Admin access via /admin route
-- Mobile-friendly responsive design
-- All features accessible from UI
-- Mary Well closes sales and books appointments
-
-**Constraints:**
-- Tech stack: FastAPI (Python) + React + MongoDB
-- Use Emergent LLM key for AI (OpenAI GPT-4o + Claude Sonnet 4)
-- No Stripe live keys initially (test mode)
-- Start with mock data, add real integrations later
-- All phone calls route to AI (noted for future - not implemented)
-
-**Technical Requirements:**
-- SEO optimization for local searches
-- Exit-intent popups and delay triggers
-- Session tracking and conversion logging
-- Real-time dashboard updates every 60 seconds
-- API-first architecture
-- Secure authentication with JWT
-- Data persistence in MongoDB
-- Stripe payment processing integration
+- Primary problem: Build an autonomous AI marketing + analytics system for Eastend Tanning & Laundry that acquires leads, books, processes payments, runs chat, and provides live KPIs.
+- Specific features requested:
+  - Fix dashboard zeros (done earlier in project).
+  - AI chat (Mary Well) with aggressive but helpful sales flow; now updated to ask about lotion usage, skin type, and remember tanning reasons.
+  - Discount codes (5%, 10%, 15%) generated in chat and tracked server-side.
+  - Admin authentication and dashboard tabs (existing); add Discount Codes & Lotions management.
+  - Blog (“People of the Eastend”): fix errors; write short, magazine-style posts; every-other-day cadence; subtle CTA only at end; cover real reasons for tanning (wedding, vacation, birthday, prom/homecoming, Valentine’s, holiday, base tan, self care, SAD, trip, summer).
+  - Replace “Call Us” with “Chat with Mary” and add “Talk to Mary” (voice).
+  - Voice calls: inbound+outbound via AI; friendly female voice; do not record; save transcripts and enroll lead in marketing journey; forward existing number later.
+  - Tanning/lotion flows: capture and persist skin type; recommend lotions from staff-managed catalog (no arbitrary prices).
+  - Drinks (Fizze) page reflects Bubble Tea, warm soft Amish pretzels, and nachos.
+- Acceptance criteria:
+  - Features accessible from UI; mobile friendly.
+  - Discount codes apply to checkout; redemption tracked.
+  - Blog articles render correctly; subtle CTA; scheduled cadence.
+  - Mary Well remembers skin type and reasons; buttons to chat/talk present globally.
+  - Voice flow: supported (mock until keys); transcripts/logging ready.
+- Constraints and preferences:
+  - Tech stack: FastAPI + React + MongoDB.
+  - Use Emergent LLM key for AI (GPT-4o + Claude).
+  - Stripe test mode.
+  - Do not hardcode prices; lotions managed by staff via admin.
+  - Chat-first; de-emphasize direct calling.
+- Technical requirements:
+  - API-first; FastAPI on 0.0.0.0:8001; Mongo via env.
+  - JWT admin routes.
+  - Webhooks for payments and voice.
+  - Scheduled blog posting.
 </product_requirements>
 
 <key_technical_concepts>
-**Languages and Runtimes:**
-- Python 3.11 (Backend)
-- JavaScript/JSX (Frontend)
-- Node.js (Frontend tooling)
-
-**Frameworks and Libraries:**
-
-*Backend:*
-- FastAPI (REST API framework)
-- Motor (Async MongoDB driver)
-- Pydantic (Data validation)
-- PyJWT (JWT authentication)
-- emergentintegrations (Universal LLM library for OpenAI + Anthropic)
-- Stripe SDK (Payment processing)
-- python-dotenv (Environment management)
-
-*Frontend:*
-- React 18 (UI framework)
-- React Router DOM v6 (Client-side routing)
-- Shadcn UI (Component library)
-- Tailwind CSS (Utility-first styling)
-- Lucide React (Icon library)
-- Sonner (Toast notifications)
-- Framer Motion (Animations)
-
-**Design Patterns:**
-- RESTful API architecture
-- Repository pattern (MongoDB collections)
-- Component-based UI architecture
-- Async/await for API calls
-- Session-based chat management
-- Event-driven marketing automation
-- State machine pattern (marketing journey stages)
-- Factory pattern (AI chat session creation)
-
-**Architectural Components:**
-- Frontend: React SPA with client-side routing
-- Backend: FastAPI REST API with async endpoints
-- Database: MongoDB with Motor async driver
-- AI Engine: Dual-model system (GPT-4o + Claude Sonnet 4)
-- Payment Gateway: Stripe Checkout integration
-- Authentication: JWT-based token system
-- Marketing Automation: 11-stage journey manager
-- Analytics: Custom tracking system
-
-**External Services:**
-- Emergent LLM (Universal AI key for OpenAI + Anthropic)
-- Stripe (Payment processing)
-- MongoDB Atlas (Database hosting)
-- Google Maps API (Directions links)
-- Google Business Profile (Review links)
+- Languages/runtimes: Python 3.11 (backend), JavaScript/JSX (React 18 frontend).
+- Frameworks/libs: FastAPI, Motor (MongoDB), Pydantic, PyJWT, emergentintegrations LlmChat (OpenAI/Anthropic), Stripe Checkout, React Router, Shadcn UI, Tailwind utilities, Lucide icons, Sonner toasts, Web Speech API (voice in browser).
+- Design patterns: RESTful services, event/webhook-driven updates, background scheduler loop, repository-like Mongo collections, AI prompt engineering for content, server-side price enforcement, JWT-protected admin actions.
+- Architecture: SPA frontend → REST API → MongoDB; background scheduler for blog; chat -> AI; payment → Stripe; voice calls → provider webhooks (mock/live).
+- External services/APIs: Stripe (test), Emergent LLM (OpenAI GPT-4o / Claude Sonnet 4), Vapi (planned/live via credentials), Google Maps links.
 </key_technical_concepts>
 
 <code_architecture>
-**Architecture Overview:**
+Architecture overview:
+- Frontend uses React SPA with routing; MaryWellChat is globally accessible with a floating button and exposes window.openMaryChat/openMaryChatAndListen. Admin dashboard contains tabs including Discounts and Lotions.
+- Backend exposes REST endpoints under /api; includes analytics/leads/bookings/campaigns, AI content routes, auth, chat, payments, skin type eval, journey, discounts, lotions, voice, and blog scheduler startup.
+- Data flow: user interacts via chat → backend chat_routes auto-captures leads + reasons; skin type form persists skin_type to lead; checkout session created via payment_routes (optional discount code, or lotion purchase by lotion_id); Stripe webhook/status store payments and redeem codes; blog content stored in blog_posts; scheduler creates posts every other day.
 
-The system follows a three-tier architecture:
-1. **Presentation Layer**: React SPA with component-based UI, client-side routing, and real-time chat widget
-2. **API Layer**: FastAPI REST API with 40+ async endpoints for analytics, chat, payments, authentication, and marketing automation
-3. **Data Layer**: MongoDB with 15+ collections for analytics, leads, bookings, campaigns, chat sessions, payment transactions, and marketing journeys
+Directory additions:
+- /app/backend/blog_scheduler.py (new)
+- /app/backend/discount_routes.py (new)
+- /app/backend/lotion_routes.py (new)
+- /app/backend/voice_routes.py (new)
 
-**Data Flow:**
-- User visits site → LeadCaptureManager tracks pageview → Stored in MongoDB
-- User chats with Mary Well → AI processes message → Auto-captures contact info → Starts marketing journey
-- User completes skin type evaluation → Result calculated → Stored with recommendations
-- User purchases package → Stripe checkout → Payment confirmed → Booking created → Journey advances
-- Admin views dashboard → Real-time metrics fetched → Auto-refreshes every 60 seconds
-
-**Directory Structure:**
-```
-/app/
-├── backend/
-│   ├── server.py (Main FastAPI app with all routers)
-│   ├── routes.py (Analytics, leads, bookings, campaigns)
-│   ├── ai_routes.py (AI engine endpoints)
-│   ├── auth.py (JWT authentication)
-│   ├── chat_routes.py (Mary Well chat API)
-│   ├── payment_routes.py (Stripe integration)
-│   ├── skin_type_routes.py (Skin evaluation)
-│   ├── journey_routes.py (Marketing automation)
-│   ├── mary_well.py (AI assistant core logic)
-│   ├── ai_engine.py (GPT-4 + Claude integration)
-│   ├── marketing_journey.py (Journey management)
-│   ├── models.py (Pydantic data models)
-│   ├── generate_mock_data.py (Mock data generator)
-│   ├── requirements.txt (Python dependencies)
-│   └── .env (Environment variables)
-├── frontend/
-│   ├── src/
-│   │   ├── App.js (Main app with routing + MaryWellChat)
-│   │   ├── index.css (Design tokens, Tailwind config)
-│   │   ├── components/
-│   │   │   ├── Header.jsx (Navigation with Blog link)
-│   │   │   ├── Footer.jsx (Footer with Staff Dashboard link)
-│   │   │   ├── MaryWellChat.jsx (Floating chat widget)
-│   │   │   ├── ServiceCard.jsx
-│   │   │   ├── LeadCapturePopup.jsx
-│   │   │   ├── LeadCaptureManager.jsx
-│   │   │   ├── BookingForm.jsx
-│   │   │   ├── PricingTable.jsx
-│   │   │   ├── FAQAccordion.jsx
-│   │   │   ├── BookingCTA.jsx
-│   │   │   └── dashboard/ (Admin components)
-│   │   └── pages/
-│   │       ├── Home.jsx
-│   │       ├── Tanning.jsx
-│   │       ├── Laundry.jsx
-│   │       ├── Drinks.jsx
-│   │       ├── Nails.jsx
-│   │       ├── Locations.jsx
-│   │       ├── Contact.jsx
-│   │       ├── Blog.jsx (Blog listing)
-│   │       ├── BlogPost.jsx (Individual post)
-│   │       ├── Login.jsx (Admin login)
-│   │       ├── Admin.jsx (Command Center with auto-refresh)
-│   │       ├── SkinTypeEvaluation.jsx (Ohio-required form)
-│   │       ├── PaymentSuccess.jsx
-│   │       └── PaymentCancel.jsx
-│   ├── public/index.html (HTML with Google Fonts)
-│   └── package.json (Frontend dependencies)
-└── design_guidelines.md (Complete design system)
-```
-
-**Files Modified or Created:**
-
-**BACKEND FILES:**
-
-1. `/app/backend/server.py` (Modified)
-   - Purpose: Main FastAPI application entry point
-   - Changes: Added auth_router, chat_router, payment_router, skin_type_router, journey_router
-   - Key components: CORS middleware, MongoDB connection, 7 router inclusions
-   - Dependencies: fastapi, motor, dotenv, all route modules
-
-2. `/app/backend/routes.py` (Modified)
-   - Purpose: Core API endpoints for analytics, leads, bookings, campaigns
-   - Changes: Added .env loading, fixed database name to use DB_NAME env var, added _id removal for MongoDB docs
-   - Key functions: track_pageview(), track_conversion(), create_lead(), create_booking(), get_dashboard_metrics()
-   - Dependencies: motor, pydantic, datetime, dotenv
-
-3. `/app/backend/models.py` (Modified)
-   - Purpose: Pydantic data models for all entities
-   - Changes: Added Union import, updated AIRecommendation.suggested_action to accept Union[str, List[str]]
-   - Classes: PageView, ConversionEvent, Lead, Booking, Campaign, AIRecommendation, DashboardMetrics (15+ models)
-   - Dependencies: pydantic, typing, datetime, uuid
-
-4. `/app/backend/ai_engine.py` (Modified)
-   - Purpose: AI marketing engine with GPT-4 and Claude integration
-   - Changes: Replaced raw OpenAI/Anthropic clients with emergentintegrations.llm.chat.LlmChat
-   - Key methods: analyze_business_data(), generate_recommendations(), generate_blog_post(), generate_social_media_content(), generate_email_campaign()
-   - Dependencies: emergentintegrations, uuid, json
-
-5. `/app/backend/ai_routes.py` (Modified)
-   - Purpose: API endpoints for AI engine functions
-   - Changes: Added blog retrieval endpoints, fixed ObjectId serialization in recommendations
-   - Endpoints: /api/ai/analyze, /api/ai/recommendations/generate, /api/ai/content/blog, /api/ai/content/blog/{post_id}, /api/ai/status
-   - Dependencies: ai_engine, routes (for metrics)
-
-6. `/app/backend/auth.py` (Created)
-   - Purpose: JWT-based authentication for admin access
-   - Key functions: create_access_token(), verify_token(), login(), verify(), logout()
-   - Endpoints: POST /api/auth/login, GET /api/auth/verify, POST /api/auth/logout
-   - Dependencies: fastapi, pydantic, jwt, datetime
-
-7. `/app/backend/mary_well.py` (Created)
-   - Purpose: Mary Well AI Assistant core logic with sales-focused system prompt
-   - Key class: MaryWellAssistant with create_chat_session(), send_message(), get_tanning_packages()
-   - System message: 7-step sales process (contact capture, skin eval, bed recommendation, discount offer, appointment booking, lotion upsell, close)
-   - Dependencies: emergentintegrations, uuid, datetime
-
-8. `/app/backend/chat_routes.py` (Created)
-   - Purpose: Chat API routes for Mary Well conversations
-   - Key functions: start_chat_session(), send_message(), get_chat_history(), auto_capture_lead_from_message()
-   - Endpoints: POST /api/chat/start, POST /api/chat/message, GET /api/chat/history/{session_id}, GET /api/chat/packages, POST /api/chat/end/{session_id}
-   - Auto-capture: Regex patterns detect email/phone/name in messages, automatically creates leads
-   - Dependencies: mary_well, marketing_journey, motor, regex
-
-9. `/app/backend/payment_routes.py` (Created)
-   - Purpose: Stripe payment integration for tanning packages
-   - Key functions: create_checkout_session(), get_checkout_status(), handle_stripe_webhook()
-   - Endpoints: POST /api/payments/checkout/session, GET /api/payments/checkout/status/{session_id}, POST /api/payments/webhook/stripe
-   - Server-side pricing: All package prices verified server-side (never trust frontend)
-   - Dependencies: emergentintegrations.payments.stripe, motor, datetime
-
-10. `/app/backend/skin_type_routes.py` (Created)
-    - Purpose: Ohio State Cosmetology Board required skin type evaluation
-    - Key functions: submit_skin_type_evaluation(), check_skin_type_completion()
-    - Endpoints: POST /api/skin-type/submit, GET /api/skin-type/check/{customer_phone}
-    - Algorithm: Calculates Fitzpatrick Skin Type (1-6) based on natural coloring, sun response, risk factors
-    - Dependencies: motor, pydantic, datetime
-
-11. `/app/backend/marketing_journey.py` (Created)
-    - Purpose: Marketing journey management and automation system
-    - Key class: MarketingJourneyManager with 11-stage journey definitions
-    - Key methods: capture_lead_from_chat(), start_journey(), advance_to_next_stage(), schedule_stage_actions(), trigger_event()
-    - Stages: awareness, interest, consideration, purchase, onboarding, active, loyal, advocate, at_risk, win_back, churned
-    - Dependencies: motor, datetime, uuid
-
-12. `/app/backend/journey_routes.py` (Created)
-    - Purpose: Marketing journey API endpoints
-    - Endpoints: POST /api/journey/capture-lead, POST /api/journey/trigger-event, GET /api/journey/customer/{lead_id}, GET /api/journey/stages, GET /api/journey/analytics
-    - Dependencies: marketing_journey, motor
-
-13. `/app/backend/generate_mock_data.py` (Modified)
-    - Purpose: Generate 30 days of realistic mock data
-    - Changes: Updated to use DB_NAME from environment (test_database)
-    - Data generated: 22,633 pageviews, 304 leads, 402 bookings, 4 campaigns, 5 AI recommendations
-    - Dependencies: motor, datetime, random, asyncio
-
-14. `/app/backend/requirements.txt` (Modified)
-    - Added: emergentintegrations, stripe, pyjwt
-    - All dependencies frozen with pip freeze
-
-15. `/app/backend/.env` (Modified)
-    - Added: ADMIN_PASSWORD, JWT_SECRET_KEY, STRIPE_API_KEY
-    - Existing: MONGO_URL, DB_NAME
-
-**FRONTEND FILES:**
-
-16. `/app/frontend/src/App.js` (Modified)
-    - Purpose: Main application with routing
-    - Changes: Added Login, Blog, BlogPost, SkinTypeEvaluation, PaymentSuccess, PaymentCancel routes; Added MaryWellChat component; Added ProtectedRoute wrapper for /admin
-    - Routes: 11 total routes including protected admin route
-    - Dependencies: react-router-dom, all page components, MaryWellChat
-
-17. `/app/frontend/src/index.css` (Created)
-    - Purpose: Design tokens and Tailwind configuration
-    - Design system: CSS variables for colors (sunny gold #F59E0B, teal blue #14B8A6), spacing, shadows, typography
-    - Features: Dark mode support, noise texture utility, custom scrollbars, gradient utilities
-
-18. `/app/frontend/src/components/Header.jsx` (Modified)
-    - Purpose: Site navigation with mobile menu
-    - Changes: Added Blog link to desktop and mobile navigation
-    - Features: 7 nav links, mobile Sheet menu, Call/Directions CTAs
-
-19. `/app/frontend/src/components/Footer.jsx` (Modified)
-    - Purpose: Site footer with business info
-    - Changes: Enhanced admin link visibility ("🎯 Staff Dashboard" instead of "Command Center")
-    - Content: 3-column layout with locations, quick links, Google review link
-
-20. `/app/frontend/src/components/MaryWellChat.jsx` (Created)
-    - Purpose: Floating chat widget for Mary Well AI assistant
-    - Key features: Floating button, 400x600px chat window, message history, auto-scroll, loading states
-    - API integration: POST /api/chat/start, POST /api/chat/message
-    - Dependencies: shadcn/ui components, lucide-react icons, sonner toasts
-
-21. `/app/frontend/src/pages/Admin.jsx` (Modified)
-    - Purpose: Command Center dashboard with real-time metrics
-    - Changes: Added auto-refresh (60 seconds), lastUpdated timestamp, refreshing state, autoRefresh toggle
-    - Features: Revenue goal tracker, 4 KPI cards, service breakdown, 3 tabs (AI Recommendations, Campaigns, Leads)
-    - Dependencies: react, shadcn/ui, lucide-react
-
-22. `/app/frontend/src/pages/Login.jsx` (Created)
-    - Purpose: Admin authentication page
-    - Features: Password input, JWT token storage, redirect to /admin on success
-    - API integration: POST /api/auth/login
-    - Dependencies: react-router-dom, shadcn/ui, sonner
-
-23. `/app/frontend/src/pages/Blog.jsx` (Created)
-    - Purpose: Blog listing page with AI-generated articles
-    - Features: Hero section, blog post grid, empty state, keyword tags, AI badge
-    - API integration: GET /api/ai/content/blog
-    - Dependencies: react-router-dom, shadcn/ui, lucide-react
-
-24. `/app/frontend/src/pages/BlogPost.jsx` (Created)
-    - Purpose: Individual blog post display
-    - Features: Full article view, share functionality, keywords, CTA section, back button
-    - API integration: GET /api/ai/content/blog/{id}
-    - Dependencies: react-router-dom, shadcn/ui, lucide-react, sonner
-
-25. `/app/frontend/src/pages/SkinTypeEvaluation.jsx` (Created)
-    - Purpose: Ohio-required skin type evaluation form
-    - Features: Multi-section questionnaire, radio buttons, checkboxes, result display with recommendations
-    - API integration: POST /api/skin-type/submit
-    - Dependencies: react-router-dom, shadcn/ui, lucide-react, sonner
-
-26. `/app/frontend/src/pages/PaymentSuccess.jsx` (Created)
-    - Purpose: Payment confirmation page
-    - Features: Success animation, payment details, booking CTA, polling for payment status
-    - API integration: GET /api/payments/checkout/status/{session_id}
-    - Dependencies: react-router-dom, shadcn/ui, lucide-react, sonner
-
-27. `/app/frontend/src/pages/PaymentCancel.jsx` (Created)
-    - Purpose: Payment cancellation page
-    - Features: Cancellation message, retry CTA, back to home button
-    - Dependencies: react-router-dom, shadcn/ui, lucide-react
-
-28. `/app/design_guidelines.md` (Created)
-    - Purpose: Complete design system specification
-    - Content: Color palette, typography (Spectral + Manrope), component patterns, layout principles, gradient rules, motion guidelines
-    - Generated by: design_agent
-
-**DATABASE COLLECTIONS (MongoDB):**
-
-29. `pageviews` - 22,633 documents (analytics tracking)
-30. `conversions` - 1,043+ documents (conversion events)
-31. `leads` - 304+ documents (captured leads with marketing journey tracking)
-32. `bookings` - 402+ documents (appointment bookings with revenue)
-33. `campaigns` - 4+ documents (marketing campaigns)
-34. `ai_recommendations` - 18+ documents (AI-generated recommendations)
-35. `ai_analyses` - Multiple documents (GPT-4 business analyses)
-36. `blog_posts` - 6 documents (AI-generated blog articles)
-37. `social_content` - Multiple documents (social media posts)
-38. `email_campaigns` - Multiple documents (email content)
-39. `chat_sessions` - Multiple documents (Mary Well conversation history)
-40. `payment_transactions` - Multiple documents (Stripe payment records)
-41. `skin_type_evaluations` - Multiple documents (customer skin type results)
-42. `marketing_journeys` - Multiple documents (customer journey tracking)
-43. `scheduled_marketing_actions` - Multiple documents (automated email/SMS queue)
+Files created/modified:
+- /app/backend/discount_routes.py (created)
+  - Adds POST /api/discounts/generate, GET /validate/{code}, GET /list, PATCH /{code}/invalidate; enforces 5/10/15%; UUID ids; tz-aware datetimes.
+- /app/backend/payment_routes.py (modified)
+  - Accepts discount_code for tanning; computes final_amount; marks discounts redeemed on paid; supports lotion purchases via lotion_id (no discounts), metadata stored.
+- /app/backend/mary_well.py (modified)
+  - System prompt expanded for lotion discovery, bed recommendations (budget/recommended/premium), Ohio skin form link, persistent memory guidance, subtle sales. get_tanning_packages unchanged pricing.
+- /app/backend/chat_routes.py (modified)
+  - Auto-capture lead from messages; link lead_id to chat_sessions; extract tanning_reason keywords (wedding, vacation, etc.) and save to lead; endpoints: /start, /message, /history, /packages, /end.
+- /app/backend/lotion_routes.py (created)
+  - JWT-protected POST/PATCH/GET admin endpoints; public GET list of active lotions; fields: id, name, brand, price, features, tattoo_guard, image_url, active, timestamps.
+- /app/backend/skin_type_routes.py (modified)
+  - On submit, store evaluation and update or create lead with skin_type, skin_type_evaluation_id; timestamps.
+- /app/backend/routes.py (modified)
+  - Hardened datetime parsing/serialization for leads/bookings/campaigns to prevent 500s due to naïve datetimes.
+- /app/backend/ai_routes.py (modified)
+  - Normalized blog create/list/get: strip fenced code blocks, flatten fields (title, meta_description, content, keywords, cta, created_at), mark status=published; now returns consistent shapes; keeps other AI endpoints.
+- /app/backend/ai_engine.py (modified)
+  - generate_blog_post now produces short, magazine-style 300–600 word pieces with one subtle closing line; no code fences; other methods unchanged (GPT-4o/Claude through emergent LLM).
+- /app/backend/voice_routes.py (created)
+  - POST /api/voice/calls/outbound: real via Vapi when configured; otherwise mock mode (creates call record, lead, starts journey).
+  - POST /api/voice/webhook/calls: verifies HMAC (when secret present), saves transcripts/summaries to lead and voice_calls; supports transcript-update and end-of-call-report.
+  - GET /api/voice/calls: list recent voice call records.
+- /app/backend/blog_scheduler.py (created)
+  - Scheduler loop (enabled by default) that posts every other day, cycling through user-specified reasons; uses ai_engine.generate_blog_post and stores normalized posts; runs hourly checks.
+- /app/backend/server.py (modified)
+  - Includes discount_router, lotion_router, voice_router; starts blog scheduler on startup; CORS unchanged.
+- /app/frontend/src/components/MaryWellChat.jsx (modified)
+  - Adds quick actions for 15/10/5 discounts; Show Packages; Browse Lotions; Checkout Tanning/Lotion; Copy Code; “Talk to Mary” (browser voice using Web Speech); “Have Mary Call Me” dialog calling /api/voice/calls/outbound; exposes window.openMaryChat/openMaryChatAndListen.
+- /app/frontend/src/components/Header.jsx (modified)
+  - Replaces Call with “Chat with Mary” and adds “Talk to Mary” (desktop + mobile).
+- /app/frontend/src/components/BookingCTA.jsx (modified)
+  - Button opens chat; directions retained.
+- /app/frontend/src/pages/Admin.jsx (modified)
+  - Adds Discounts tab (table) and Lotions tab (create form + table); concurrent fetch optimizations.
+- /app/frontend/src/pages/Home.jsx (modified)
+  - Hero line changed to “Tanning Studio. Laundromat. Bubble Tea. Nails.”; primary CTA “Talk to Mary”; location cards include Talk to Mary.
+- /app/frontend/src/pages/Tanning.jsx (modified)
+  - Hero Talk to Mary; CTA uses BookingCTA to chat; media poster placeholder; copy consistent.
+- /app/frontend/src/pages/Laundry.jsx (modified)
+  - Eastend photo hero; CTA updated to remove Call; BookingCTA configured.
+- /app/frontend/src/pages/Drinks.jsx (modified)
+  - Menu reordered to highlight Bubble Tea; adds Snacks (Warm Soft Amish Pretzels, Nachos); hero badge/title/description updated.
+- /app/frontend/src/pages/Nails.jsx (modified)
+  - CTA updated to Chat with Mary.
+- /app/frontend/src/pages/Locations.jsx (modified)
+  - Chat buttons for Eastend/Westend, remove Call.
+- /app/frontend/src/components/LeadCapturePopup.jsx (modified)
+  - Copy: reference chat instead of calling.
+- /app/frontend/src/components/BookingForm.jsx (modified)
+  - Copy: follow up via SMS/chat instead of call.
+- /app/frontend/src/pages/Blog.jsx (modified)
+  - Title renamed “People of the Eastend”; listing renders normalized posts.
+- /app/frontend/src/pages/BlogPost.jsx (modified)
+  - Back button text; renders post.content as HTML (newline → <br/>).
 </code_architecture>
 
 <pending_tasks>
-**Explicitly Requested But Not Completed:**
-
-1. **Discount Code System** - User requested: "They can get a discount code which will encourage them to come into the shop"
-   - Need to generate unique discount codes when customer doesn't pay immediately
-   - Store codes in database with expiration
-   - Validate codes at checkout
-
-2. **Lotion Delivery Option** - User requested: "Or they can order for delivery"
-   - Need to add shipping address collection
-   - Integrate with delivery service or create manual fulfillment process
-   - Add delivery fee calculation
-
-3. **Enhanced Bed Recommendations** - User requested:
-   - "Always recommend a lower bed and higher bed" - Partially implemented
-   - "Do not always recommend lower bed...raising average sale price" - Need to adjust recommendation logic
-   - Emphasize Matrix and Level 4 as bronzing beds (tans without burning) - Partially implemented
-   - Need to refine recommendation algorithm to push higher-tier beds more aggressively
-
-4. **Direct Price List Links** - User requested: "Did not lead directly to the price list, or simply provide a button that say click to see options"
-   - Add clickable button/link to full pricing page in chat
-   - Make package selection more visual/interactive
-
-5. **Lotion Commitment Step** - User requested: "Get client to commit to buying a lotion...from lotions we have"
-   - Need specific lotion inventory list with names and prices
-   - Add lotion selection interface in chat
-   - Track lotion commitments separately from purchases
-
-6. **Voice AI Integration** - Mentioned but not implemented:
-   - Phone call routing to AI version of Mary Well
-   - Vapi or Bland AI integration
-   - Same capabilities as text chat
-
-7. **Email/SMS Sending** - Scheduled but not sent:
-   - Marketing actions are scheduled in database
-   - Need SendGrid (email) or Twilio (SMS) integration
-   - Need email templates for each action type
-   - Need automated worker to process scheduled actions
-
-8. **Facebook Feed Integration** - Mentioned in original requirements but not implemented
-
-9. **Actual Laundry Drop-off Service** - Mentioned but not implemented
-
-10. **Fizze Drinks Online Ordering** - Mentioned but not implemented
-
-**Issues Discovered But Not Resolved:**
-
-1. Dashboard metrics initially showed zeros (FIXED - was database connection issue)
-2. Lead popup timing could be improved
-3. No rate limiting on AI API endpoints
-4. Mock data doesn't persist across backend restarts (by design - in-memory)
-5. Blog post content parsing from AI sometimes includes markdown wrappers
-6. No unsubscribe functionality for marketing emails
-
-**Improvements Identified:**
-
-1. Add real-time WebSocket updates for dashboard
-2. Implement scheduled daily AI analysis (cron job)
-3. Add image upload for services
-4. Create blog CMS interface in admin
-5. Add campaign creation UI (currently view-only)
-6. Implement lead status workflow automation
-7. Add revenue forecasting chart
-8. Create mobile app version
-9. Add A/B testing for popups and CTAs
-10. Implement customer segmentation
-11. Add lotion inventory management system
-12. Create appointment scheduling calendar view
-13. Add SMS notifications for appointments
-14. Implement customer account dashboard
-15. Add package usage tracking
-16. Create loyalty rewards program
+- Voice calls (live): Need Vapi credentials (private key, webhook secret, phone number id) to enable real telephony; currently in mock mode only.
+- Phone number: Provision new AI number and forward 740-397-9632 to it; or port later.
+- Admin “Voice Calls” UI: Optional table not added; backend list endpoint exists.
+- Blog content tone/audit: While prompts and normalizer are updated, existing older posts in DB may contain JSON text fragments; over time scheduler will publish new short “magazine” posts; consider cleaning legacy posts or regenerating.
+- Scheduler oversight: Add admin toggle for blog cadence/reasons and a manual “Post now” button (not implemented).
+- AI rate limiting and abuse protection on AI routes (not implemented).
+- SMS/Email sending of scheduled journeys (SendGrid/Twilio integration still pending).
+- Real-time dashboard via websockets (nice-to-have).
+- Payment success UX: optional direct redirect to Stripe URL when session returns without .url (handled but could be refined).
 </pending_tasks>
 
 <current_work>
-**Features Now Working:**
-
-**Website (Public-Facing):**
-✅ 4-service homepage with Bento card layout (Tanning, Laundry, Fizze Drinks, Fast Nails)
-✅ Complete Tanning page: 5-level tabs, pricing, FAQ, booking form
-✅ Complete Laundry page: 2-location comparison, pricing, FAQ
-✅ Complete Fizze Drinks page: 4-category menu, pricing, hours
-✅ Complete Fast Nails page: services, pricing, FAQ, booking form
-✅ Locations page with detailed hours and contact for all locations
-✅ Blog listing page with 6 AI-generated articles
-✅ Individual blog post pages with share functionality
-✅ Exit-intent popup with lead capture (15% off offer)
-✅ 30-second delay popup trigger
-✅ Booking forms on Tanning and Nails pages
-✅ Responsive design (mobile + desktop)
-✅ Navigation with Blog link and mobile hamburger menu
-✅ Footer with "🎯 Staff Dashboard" link and Google review link
-
-**Mary Well AI Assistant:**
-✅ Floating chat button visible on all pages (bottom-right corner)
-✅ 24/7 conversational AI powered by GPT-4o and Claude Sonnet 4 (mix)
-✅ Sales-focused 7-step process:
-   1. Immediate contact capture (name + phone)
-   2. Skin type evaluation link
-   3. Strategic bed recommendations (2-3 options with pricing)
-   4. 15% pre-payment discount offer
-   5. Appointment booking
-   6. Tanning lotion upsell
-   7. Sale close with recap
-✅ Automatic lead capture from natural conversation (regex detection)
-✅ Session management with conversation persistence
-✅ Chat history stored in MongoDB
-✅ Professional chat UI with loading states
-
-**Skin Type Evaluation System:**
-✅ Complete evaluation form at /skin-type-evaluation
-✅ Calculates Fitzpatrick Skin Type (1-6 scale)
-✅ Collects: natural coloring, sun exposure history, risk factors, medical info, age
-✅ Provides personalized recommendations with max session times
-✅ Color-coded results (red/yellow/green by risk level)
-✅ Stores evaluations in database linked to customer phone
-✅ Required before first tanning session (Ohio law compliance)
-
-**Payment Processing:**
-✅ Stripe Checkout integration for all tanning packages
-✅ Server-side pricing verification (secure)
-✅ All 6 tanning levels with multiple package options:
-   - Level 1: $5 single to $45.99 month unlimited
-   - Level 2: $8 single to $69.99 month unlimited
-   - Level 3: $10 single to $89.99 month unlimited
-   - Level 4: $14.99 single to $119.99 month unlimited
-   - Stand Up: $11 single to $119.99 month unlimited
-   - Matrix: $23.99 single to $194.99 month unlimited
-✅ Payment success page with confirmation
-✅ Payment cancellation handling
-✅ Webhook support for payment notifications
-✅ Transaction history in database
-
-**Marketing Automation:**
-✅ Automatic lead capture from Mary Well chat
-✅ 11-stage marketing journey system:
-   - Awareness, Interest, Consideration, Purchase, Onboarding
-   - Active, Loyal, Advocate, At Risk, Win Back, Churned
-✅ Event-driven journey progression
-✅ Scheduled marketing actions (16 action types)
-✅ Journey analytics API
-✅ Lead tracking with interaction counts
-✅ Conversion event logging
-✅ Customer journey history
-
-**Admin Dashboard (/admin):**
-✅ JWT authentication with password protection (password: eastend2025)
-✅ Login page with beautiful UI
-✅ Revenue goal tracker ($83,333/month target)
-✅ 4 KPI cards: Visitors (22,633), Pageviews (22,662), Leads (304+), Revenue ($8,323.96)
-✅ Service performance breakdown (4 services with bookings/revenue)
-✅ 3 tabs: AI Recommendations (18), Active Campaigns (2), Recent Leads (sortable table)
-✅ "Generate AI Insights" button (GPT-4 + Claude)
-✅ Real-time auto-refresh every 60 seconds
-✅ Last updated timestamp display
-✅ Manual refresh button with loading state
-✅ AI Engine status panel
-
-**AI Integration:**
-✅ OpenAI GPT-4o configured with Emergent LLM key
-✅ Anthropic Claude Sonnet 4 configured with Emergent LLM key
-✅ AI engine with 5 methods (analyze, recommend, blog, social, email)
-✅ API endpoints for all AI functions
-✅ AI analysis stores results in MongoDB
-✅ AI recommendations with priority levels
-✅ Dual-model approach working (GPT-4o for analysis, Claude for creative)
-✅ 6 blog posts generated and published
-
-**Backend API (40+ Endpoints Working):**
-✅ Analytics: POST /api/analytics/pageview, POST /api/analytics/conversion, GET /api/analytics/stats
-✅ Leads: POST /api/leads, GET /api/leads, PATCH /api/leads/{id}
-✅ Bookings: POST /api/bookings, GET /api/bookings
-✅ Campaigns: POST /api/campaigns, GET /api/campaigns
-✅ Dashboard: GET /api/dashboard/metrics, GET /api/dashboard/revenue-history
-✅ AI: POST /api/ai/analyze, POST /api/ai/recommendations/generate, POST /api/ai/content/blog, POST /api/ai/content/social, POST /api/ai/content/email, GET /api/ai/status
-✅ Blog: GET /api/ai/content/blog, GET /api/ai/content/blog/{post_id}
-✅ Auth: POST /api/auth/login, GET /api/auth/verify, POST /api/auth/logout
-✅ Chat: POST /api/chat/start, POST /api/chat/message, GET /api/chat/history/{session_id}, GET /api/chat/packages, POST /api/chat/end/{session_id}
-✅ Payments: POST /api/payments/checkout/session, GET /api/payments/checkout/status/{session_id}, POST /api/payments/webhook/stripe
-✅ Skin Type: POST /api/skin-type/submit, GET /api/skin-type/check/{customer_phone}
-✅ Journey: POST /api/journey/capture-lead, POST /api/journey/trigger-event, GET /api/journey/customer/{lead_id}, GET /api/journey/stages, GET /api/journey/analytics
-
-**Database Collections (MongoDB):**
-✅ 15 collections operational: pageviews (22,633), conversions (1,043+), leads (304+), bookings (402+), campaigns (4), ai_recommendations (18), ai_analyses, blog_posts (6), social_content, email_campaigns, chat_sessions, payment_transactions, skin_type_evaluations, marketing_journeys, scheduled_marketing_actions
-
-**Configuration:**
-✅ MongoDB connected and operational (test_database)
-✅ FastAPI server running on port 8001
-✅ React dev server running on port 3000
-✅ CORS configured for frontend-backend communication
-✅ Environment variables set: MONGO_URL, DB_NAME, REACT_APP_BACKEND_URL, ADMIN_PASSWORD, JWT_SECRET_KEY, STRIPE_API_KEY, EMERGENT_LLM_KEY
-✅ Design tokens defined (colors, typography, spacing)
-✅ Google Fonts loaded (Spectral serif, Manrope sans-serif)
-
-**Build Status:**
-✅ Frontend compiles successfully
-✅ Backend starts without errors
-✅ No console errors on page load
-✅ All routes accessible
-✅ API endpoints responding correctly
-✅ Services managed by supervisor
-
-**Test Coverage:**
-✅ Manual testing with screenshots completed for all major features
-✅ Admin dashboard verified operational
-✅ Lead capture popup tested
-✅ Booking forms tested
-✅ All service pages verified
-✅ Mary Well chat tested (conversation flow works)
-✅ Payment flow tested (Stripe test mode)
-✅ Skin type evaluation tested
-✅ Blog pages tested
-⚠️ No automated tests written
-
-**Deployment Status:**
-✅ Running on development environment
-✅ Preview URL active: https://tanmarketing.preview.emergentagent.com
-✅ Admin accessible at: /admin (requires login)
-✅ Blog accessible at: /blog
-✅ Skin type form at: /skin-type-evaluation
-⚠️ Not deployed to production
-⚠️ No CI/CD pipeline configured
-
-**Known Limitations:**
-
-1. **Stripe Test Mode:** Using test API key (sk_test_emergent) - need live key for production
-2. **No Email/SMS Sending:** Marketing actions are scheduled but not sent (need SendGrid/Twilio integration)
-3. **No Discount Codes:** System doesn't generate discount codes for non-immediate purchases
-4. **No Lotion Delivery:** Can't order lotions for delivery yet
-5. **No Voice AI:** Phone calls not routed to AI (text chat only)
-6. **Basic Authentication:** Admin password is default (eastend2025) - should be changed
-7. **No Rate Limiting:** AI endpoints could be abused without rate limits
-8. **No Customer Portal:** Customers can't log in to view their bookings/packages
-9. **No Package Tracking:** No system to track session usage from packages
-10. **Manual Appointment Confirmation:** No automated SMS/email confirmations
-11. **No Calendar Integration:** Appointments not synced to calendar
-12. **Mock Data Dependency:** Some analytics based on generated mock data
-13. **No Unsubscribe:** Marketing emails have no opt-out mechanism
-14. **Limited Error Handling:** Some edge cases may not be handled gracefully
-15. **No Backup System:** Database not backed up automatically
-
-**What Works End-to-End:**
-
-1. **Complete Customer Journey:**
-   - Visit website → Chat with Mary Well → Provide contact info (auto-captured) → Complete skin type evaluation → Receive bed recommendations → Purchase package with discount → Book appointment → Receive confirmation → Enter marketing journey → Automated follow-ups scheduled
-
-2. **Admin Workflow:**
-   - Login at /admin → View real-time metrics → See all leads → Review AI recommendations → Monitor campaign performance → Generate new AI insights → View journey analytics
-
-3. **Content Marketing:**
-   - AI generates blog posts → Posts published at /blog → SEO-optimized articles → Share functionality → CTAs to services
-
-4. **Payment Processing:**
-   - Customer selects package → Stripe checkout → Payment processed → Transaction stored → Customer receives confirmation → Package activated
+- Features working:
+  - Discount codes: generation (5/10/15), validation, listing, invalidation; applied to tanning checkout; redeemed on payment completion.
+  - Payments: Tanning (server-priced + optional discount), Lotion (via lotion_id, no discount); transactions stored; webhook/status synced.
+  - Lotions: Admin can add/update; public can browse; chat can browse and buy.
+  - Chat: Mary Well with enhanced sales + lotion discovery; quick actions; packages; checkout; remembers skin type (linked from form) and tanning reason; global “Chat with Mary” and “Talk to Mary” buttons.
+  - Voice (mock): “Have Mary Call Me” available; creates lead and journey; endpoints ready for live Vapi.
+  - Blog: “People of the Eastend” loads; individual posts render; backend normalizes posts; scheduler runs hourly to publish every 2 days (enabled).
+  - UI: Replaced Call with Chat/Talk across header, hero CTAs, CTAs, and location cards; Home hero line updated; Drinks menu updated (Bubble Tea + Pretzels + Nachos).
+- Configuration:
+  - Server includes new routers; background scheduler started on startup.
+  - Stripe remains in test mode.
+- Testing:
+  - Verified blog list/post pages with screenshots; chat features tested; admin tabs for Discounts/Lotions load; fixed earlier leads datetime 500 by hardening serialization.
+- Known limitations:
+  - Voice telephony is mock until credentials; no recordings per preference; transcripts saved only when live webhooks are enabled.
+  - Existing legacy blog posts may still display JSON-like text if created before normalization; new posts are normalized and short-form.
+  - No automated test suite beyond ad-hoc validation; no CI/CD pipeline changes.
 </current_work>
 
 <optional_next_step>
-**Immediate Priority Actions:**
-
-1. **Implement Discount Code System** (2-3 hours)
-   - Generate unique codes when customer doesn't pay immediately
-   - Store in database with expiration dates
-   - Add validation endpoint
-   - Display code in Mary Well chat
-   - Allow redemption at in-store payment
-
-2. **Add Lotion Inventory & Delivery** (3-4 hours)
-   - Create lotion catalog with specific products and prices
-   - Add lotion selection UI in Mary Well chat
-   - Collect shipping address for delivery orders
-   - Integrate with shipping service or manual fulfillment
-   - Track lotion orders separately
-
-3. **Refine Bed Recommendation Strategy** (1-2 hours)
-   - Adjust recommendation algorithm to push Level 3, 4, and Matrix more aggressively
-   - Always show 3 options (budget, recommended, premium)
-   - Emphasize bronzing beds (Level 4 & Matrix) as "tans without burning"
-   - Add clickable buttons for each package option
-   - Link directly to pricing page
-
-4. **Email/SMS Integration** (4-6 hours)
-   - Set up SendGrid account for emails
-   - Set up Twilio account for SMS
-   - Create email templates for all 16 action types
-   - Build worker process to check scheduled_marketing_actions collection
-   - Send actions at scheduled times
-   - Mark as completed in database
-
-5. **Production Deployment Preparation** (2-3 hours)
-   - Change admin password from default
-   - Get live Stripe API keys
-   - Set up production MongoDB instance
-   - Configure production environment variables
-   - Update JWT_SECRET_KEY
-   - Add domain and SSL certificate
-
-**Strategic Next Steps:**
-
-1. **Voice AI Integration** - Add Vapi or Bland AI for phone call handling
-2. **Customer Portal** - Allow customers to log in, view bookings, track packages
-3. **Automated Testing** - Write integration tests for critical flows
-4. **Analytics Enhancement** - Add conversion funnel visualization, cohort analysis
-5. **Mobile App** - Create React Native app for iOS/Android
-6. **Advanced Reporting** - Add exportable reports, scheduled email summaries
-7. **Loyalty Program** - Implement points system, referral rewards
-8. **Inventory Management** - Track lotion stock, alert when low
-9. **Staff Management** - Add employee accounts, shift scheduling
-10. **Multi-location Support** - Separate analytics per location, location-specific promotions
+- Voice go-live: Provide Vapi credentials (private key, webhook secret, phone number id), I’ll switch to live calling, set webhook URL, and test inbound/outbound; share number for forwarding from 740-397-9632.
+- Blog editorial calibration: Purge or regenerate legacy posts; seed 6–10 new short magazine-style posts aligned to events (wedding, prom, vacation, etc.); add Admin toggle for scheduler and a “Post now” action.
+- Admin voice log: Add Voice Calls tab to view recent calls and transcript snippets.
+- SMS/Email sending: Integrate Twilio/SendGrid to process scheduled_marketing_actions.
+- Rate limiting: Add basic rate limits to AI endpoints.
 </optional_next_step>

@@ -8,7 +8,7 @@ from datetime import datetime, timezone
 from typing import Dict, Any, Optional
 
 class BackendAPITester:
-    def __init__(self, base_url="https://tanmarketing.preview.emergentagent.com"):
+    def __init__(self, base_url="https://tanning-chatbot.preview.emergentagent.com"):
         self.base_url = base_url
         self.tests_run = 0
         self.tests_passed = 0
@@ -324,7 +324,7 @@ def main():
     print("="*60)
     print("BACKEND API TESTING - DISCOUNT CODES & PAYMENTS")
     print("="*60)
-    print(f"Base URL: https://tanmarketing.preview.emergentagent.com")
+    print(f"Base URL: https://tanning-chatbot.preview.emergentagent.com")
     print(f"Started: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     
     tester = BackendAPITester()

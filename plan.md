@@ -2,7 +2,7 @@
 
 ## Context sync
 - Scope delivered: (1) Discount Codes MVP with 5%, 10%, 15% tiers, (2) Bed Recommendations upgrade in chat (budget/recommended/premium, stronger upsell to Level 4 & Matrix), pricing link and package chips.
-- Preview URL for validation/screenshots: https://tanmarketing.preview.emergentagent.com
+- Preview URL for validation/screenshots: https://tanning-chatbot.preview.emergentagent.com
 - Testing: Automated testing agent (frontend + backend) executed with screenshots; manual click-through to follow.
 - Tech: FastAPI + React + MongoDB; Stripe test mode; Emergent LLM key configured.
 
