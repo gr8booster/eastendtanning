@@ -136,11 +136,11 @@ async def generate_blog_content(request: Request, blog_request: BlogPostRequest)
     Uses GPT-4 for content creation
     """
     try:
-        blog_post = await ai_engine.generate_blog_post(request.topic, request.service)
+        blog_post = await ai_engine.generate_blog_post(blog_request.topic, blog_request.service)
 
         # Normalize response (flatten fields)
         if isinstance(blog_post, dict):
-            title = blog_post.get("title") or request.topic
+            title = blog_post.get("title") or blog_request.topic
             meta_description = blog_post.get("meta_description") or ""
             content = blog_post.get("content") or ""
             # Strip code fences if present
@@ -156,7 +156,7 @@ async def generate_blog_content(request: Request, blog_request: BlogPostRequest)
             keywords = blog_post.get("keywords") or []
             cta = blog_post.get("cta") or "Book your appointment today!"
         else:
-            title = request.topic
+            title = blog_request.topic
             meta_description = ""
             content = str(blog_post)
             keywords = []
