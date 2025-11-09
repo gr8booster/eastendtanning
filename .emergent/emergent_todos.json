@@ -1,22 +1,18 @@
 [
   {
-    "content": "Backend: Link skin type evaluation to lead (by phone/email), store skin_type and evaluation_id on lead; persist on submit.",
-    "status": "completed"
+    "content": "Voice AI: Implement FastAPI /api/voice endpoints (webhook + outbound) with HMAC verify; save transcripts to leads; trigger marketing journey.",
+    "status": "in_progress"
   },
   {
-    "content": "Backend: In chat, store lead_id on chat_session when auto-capturing leads; auto-detect and save tanning_reason from user messages (wedding, vacation, etc.).",
-    "status": "completed"
+    "content": "Frontend: Add \"Have Mary Call Me\" in chat (dialog to collect phone, calls outbound endpoint).",
+    "status": "pending"
   },
   {
-    "content": "Frontend: Add global openMaryChat hook (window.openMaryChat + event) in MaryWellChat; replace all Call Us buttons with Talk to Mary opening chat.",
-    "status": "completed"
+    "content": "Wire server to include voice_router and restart; smoke test JSON handlers.",
+    "status": "pending"
   },
   {
-    "content": "Frontend: Update Tanning and Laundry hero buttons to Talk to Mary; ensure BookingCTA uses Chat with Mary instead of Call.",
-    "status": "completed"
-  },
-  {
-    "content": "Prompt: Update Mary Well to ask and remember tanning reason, reference in future chats.",
-    "status": "completed"
+    "content": "Request credentials: VAPI_PRIVATE_KEY, VAPI_WEBHOOK_SECRET, VAPI_PHONE_NUMBER_ID (and/or permission to provision), optional VAPI_ASSISTANT_ID.",
+    "status": "pending"
   }
 ]
