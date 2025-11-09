@@ -298,6 +298,225 @@ class BackendAPITester:
             
             if amount_total:
                 print(f"   📋 Amount Total (dollars): ${amount_total / 100}")
+
+    def test_voice_calls_api(self):
+        """Test Voice Calls API endpoints (Phase 5)"""
+        print("\n" + "="*60)
+        print("TESTING VOICE CALLS API (PHASE 5)")
+        print("="*60)
+        
+        # Test getting voice calls list
+        success, response = self.run_test(
+            "Get voice calls list",
+            "GET",
+            "api/voice/calls?limit=50",
+            200
+        )
+        
+        if success:
+            calls = response.get('calls', [])
+            print(f"   ✅ Retrieved {len(calls)} voice calls")
+            if calls:
+                sample_call = calls[0]
+                print(f"   📋 Sample call: {sample_call.get('customer_name')} - {sample_call.get('status')}")
+        
+        # Test creating outbound call (mock mode)
+        call_data = {
+            "customer": {
+                "name": "Test Customer",
+                "phone": "+15551234567",
+                "email": "test@example.com"
+            }
+        }
+        
+        success, response = self.run_test(
+            "Create outbound voice call (mock)",
+            "POST",
+            "api/voice/calls/outbound",
+            200,
+            data=call_data
+        )
+        
+        if success:
+            status = response.get('status')
+            call_id = response.get('call_id')
+            print(f"   ✅ Call created with status: {status}")
+            if call_id:
+                print(f"   📋 Call ID: {call_id}")
+
+    def test_admin_dashboard_apis(self):
+        """Test Admin Dashboard API endpoints"""
+        print("\n" + "="*60)
+        print("TESTING ADMIN DASHBOARD APIS")
+        print("="*60)
+        
+        # Test dashboard metrics
+        success, response = self.run_test(
+            "Get dashboard metrics",
+            "GET",
+            "api/dashboard/metrics",
+            200
+        )
+        
+        if success:
+            total_revenue = response.get('total_revenue', 0)
+            total_leads = response.get('total_leads', 0)
+            print(f"   ✅ Metrics retrieved - Revenue: ${total_revenue}, Leads: {total_leads}")
+        
+        # Test campaigns
+        success, response = self.run_test(
+            "Get active campaigns",
+            "GET",
+            "api/campaigns?status=active",
+            200
+        )
+        
+        if success:
+            campaigns = response if isinstance(response, list) else []
+            print(f"   ✅ Retrieved {len(campaigns)} active campaigns")
+        
+        # Test AI recommendations
+        success, response = self.run_test(
+            "Get AI recommendations",
+            "GET",
+            "api/ai/recommendations?status=pending",
+            200
+        )
+        
+        if success:
+            recommendations = response if isinstance(response, list) else []
+            print(f"   ✅ Retrieved {len(recommendations)} AI recommendations")
+        
+        # Test leads
+        success, response = self.run_test(
+            "Get recent leads",
+            "GET",
+            "api/leads?limit=10",
+            200
+        )
+        
+        if success:
+            leads = response if isinstance(response, list) else []
+            print(f"   ✅ Retrieved {len(leads)} recent leads")
+
+    def test_lotions_api(self):
+        """Test Lotions API endpoints"""
+        print("\n" + "="*60)
+        print("TESTING LOTIONS API")
+        print("="*60)
+        
+        # Test getting lotions list (public)
+        success, response = self.run_test(
+            "Get public lotions list",
+            "GET",
+            "api/lotions",
+            200
+        )
+        
+        if success:
+            lotions = response if isinstance(response, list) else []
+            print(f"   ✅ Retrieved {len(lotions)} public lotions")
+            if lotions:
+                sample = lotions[0]
+                print(f"   📋 Sample lotion: {sample.get('name')} - ${sample.get('price')}")
+
+    def test_blog_api(self):
+        """Test Blog API endpoints"""
+        print("\n" + "="*60)
+        print("TESTING BLOG API")
+        print("="*60)
+        
+        # Test getting blog posts
+        success, response = self.run_test(
+            "Get blog posts",
+            "GET",
+            "api/ai/content/blog",
+            200
+        )
+        
+        if success:
+            posts = response if isinstance(response, list) else []
+            print(f"   ✅ Retrieved {len(posts)} blog posts")
+            if posts:
+                sample = posts[0]
+                print(f"   📋 Sample post: {sample.get('title')}")
+
+    def test_rate_limiting(self):
+        """Test Rate Limiting on AI endpoints (Phase 7)"""
+        print("\n" + "="*60)
+        print("TESTING RATE LIMITING (PHASE 7)")
+        print("="*60)
+        
+        # Test rate limiting on AI analyze endpoint (max 5 requests per 300 seconds)
+        print("   🔄 Testing rate limit on /api/ai/analyze (max 5 per 5 minutes)")
+        
+        # Make 6 requests rapidly to trigger rate limit
+        for i in range(6):
+            success, response = self.run_test(
+                f"AI analyze request #{i+1}",
+                "POST",
+                "api/ai/analyze",
+                200 if i < 5 else 429,  # Expect 429 on 6th request
+                data={"force_refresh": False}
+            )
+            
+            if i == 5 and not success:
+                print(f"   ✅ Rate limit triggered correctly on request #{i+1}")
+                break
+            elif i == 5 and success:
+                print(f"   ⚠️  WARNING: Rate limit not triggered on request #{i+1}")
+
+    def test_mary_well_chat(self):
+        """Test Mary Well Chat API endpoints"""
+        print("\n" + "="*60)
+        print("TESTING MARY WELL CHAT API")
+        print("="*60)
+        
+        # Test starting chat session
+        success, response = self.run_test(
+            "Start chat session",
+            "POST",
+            "api/chat/start",
+            200
+        )
+        
+        session_id = None
+        if success:
+            session_id = response.get('session_id')
+            greeting = response.get('greeting')
+            print(f"   ✅ Chat session started: {session_id}")
+            print(f"   📋 Greeting: {greeting[:50]}..." if greeting else "")
+        
+        # Test sending message
+        if session_id:
+            message_data = {
+                "session_id": session_id,
+                "message": "Hello Mary, I need help with tanning packages"
+            }
+            
+            success, response = self.run_test(
+                "Send chat message",
+                "POST",
+                "api/chat/message",
+                200,
+                data=message_data
+            )
+            
+            if success:
+                ai_response = response.get('response')
+                print(f"   ✅ AI response received: {ai_response[:50]}..." if ai_response else "")
+        
+        # Test packages endpoint
+        success, response = self.run_test(
+            "Get chat packages",
+            "GET",
+            "api/chat/packages",
+            200
+        )
+        
+        if success:
+            packages = response
+            print(f"   ✅ Packages retrieved: {len(packages)} levels" if isinstance(packages, dict) else "")
     
     def print_summary(self):
         """Print test summary"""
