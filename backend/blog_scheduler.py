@@ -1,6 +1,5 @@
 import asyncio
 from datetime import datetime, timezone, timedelta
-import random
 import uuid
 from typing import List, Dict, Any
 
@@ -26,8 +25,8 @@ async def ensure_default_config(db):
     if not cfg:
         cfg = {
             "id": "people_of_eastend",
-            "enabled": False,  # off by default until user enables
-            "cadence_days": 2,
+            "enabled": True,  # enabled by default per user request
+            "cadence_days": 2,  # every other day
             "reasons": DEFAULT_REASONS,
             "last_post_at": None,
             "next_reason_index": 0
@@ -35,13 +34,12 @@ async def ensure_default_config(db):
         await db.blog_config.insert_one(cfg)
     return cfg
 
-async def pick_next_reason(cfg: Dict[str, Any]) -> str:
+async def pick_next_reason(cfg: Dict[str, Any]):
     reasons: List[str] = cfg.get("reasons") or DEFAULT_REASONS
     idx = int(cfg.get("next_reason_index", 0)) % len(reasons)
     return reasons[idx], idx
 
 async def scheduler_loop(db):
-    # Make sure config exists
     await ensure_default_config(db)
     while True:
         try:
@@ -53,7 +51,6 @@ async def scheduler_loop(db):
                 if not last:
                     due = True
                 else:
-                    # parse iso dt if str
                     if isinstance(last, str):
                         try:
                             last = datetime.fromisoformat(last)
@@ -71,7 +68,7 @@ async def scheduler_loop(db):
                             title = post.get("title") or topic
                             meta_description = post.get("meta_description") or ""
                             content = post.get("content") or ""
-                            if isinstance(content, str) and content.strip().startswith("```"):
+                            if isinstance(content, str) and content.strip().startswith("```)":
                                 raw = content.strip()
                                 if raw.startswith("```json"):
                                     raw = raw[7:].strip()
@@ -108,8 +105,7 @@ async def scheduler_loop(db):
                         )
                     except Exception as e:
                         print(f"blog scheduler error: {e}")
-            # sleep 1 hour between checks
-            await asyncio.sleep(3600)
+            await asyncio.sleep(3600)  # check hourly
         except Exception as e:
             print(f"blog scheduler loop error: {e}")
             await asyncio.sleep(3600)

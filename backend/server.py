@@ -9,6 +9,7 @@ from pydantic import BaseModel, Field, ConfigDict
 from typing import List
 import uuid
 from datetime import datetime, timezone
+import asyncio
 
 # Import routes
 from routes import router as api_routes_router
@@ -21,6 +22,7 @@ from journey_routes import router as journey_router
 from discount_routes import router as discount_router
 from lotion_routes import router as lotion_router
 from voice_routes import router as voice_router
+import blog_scheduler
 
 
 ROOT_DIR = Path(__file__).parent
@@ -105,6 +107,14 @@ logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
 )
 logger = logging.getLogger(__name__)
+
+@app.on_event("startup")
+async def start_scheduler():
+    try:
+        asyncio.create_task(blog_scheduler.scheduler_loop(db))
+        logger.info("Blog scheduler started")
+    except Exception as e:
+        logger.error(f"Failed to start blog scheduler: {e}")
 
 @app.on_event("shutdown")
 async def shutdown_db_client():

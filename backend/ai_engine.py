@@ -137,43 +137,40 @@ Return ONLY valid JSON array of recommendations. No markdown, no extra text."""
     
     async def generate_blog_post(self, topic: str, service: str = "all") -> Dict[str, str]:
         """
-        Generate SEO-optimized blog post
-        Uses GPT-4 for content creation
+        Generate short, magazine-style blog post (People of the Eastend)
+        Style: newspaper/magazine micro-feature (300–600 words), human, local, not salesy. One subtle sign-off line only.
         """
-        prompt = f"""Write a comprehensive, SEO-optimized blog post for Eastend Tanning & Laundry's website.
+        prompt = f"""Write a SHORT, magazine-style article for Eastend's blog "People of the Eastend".
+
+GUIDELINES (strict):
+- Length: 300–600 words. Keep it tight, vivid, human.
+- Tone: like a local newspaper or lifestyle magazine. Real, not salesy. Avoid marketing language.
+- Hook: first 1–2 sentences should captivate.
+- Body: practical tips or a brief vignette related to why people tan in Mount Vernon (e.g., wedding, vacation, birthday, prom, homecoming, Valentine's Day, holiday parties, getting ready for summer, base tan, self care, seasonal affective disorder, trip).
+- Structure: use a clear H2 title and short paragraphs. Optional one small list.
+- CTA: ONE subtle sign-off line at the very end only (e.g., "If you're nearby, Eastend is open when you are."). Do not mention discounts, sales, or pushy language.
+- No markdown code fences. Return clean JSON only (no ``` fences).
+
+Return JSON with keys exactly:
+- title
+- meta_description (max 150 chars)
+- content (HTML-ready string or plain text; no code fences)
+- keywords (5–7 terms)
+- cta (single subtle closing line)
 
 Topic: {topic}
-Target Service: {service}
-Target Audience: Mount Vernon, Ohio residents looking for {service} services
-
-Requirements:
-- 800-1200 words
-- SEO-optimized with keywords for "Mount Vernon Ohio {service}"
-- Include H2 and H3 headings
-- Engaging, conversational tone
-- Include call-to-action to book/visit
-- Local references to Mount Vernon
-- Helpful, educational content that builds trust
-
-Format as JSON with keys:
-- title: SEO-friendly title
-- meta_description: 150-160 character meta description
-- content: Full blog post in markdown format
-- keywords: Array of 5-7 SEO keywords
-- cta: Call-to-action text"""
+Service context: {service}
+Location: Mount Vernon, Ohio
+"""
 
         try:
-            # Create a new chat instance for blog generation
             chat = LlmChat(
                 api_key=self.api_key,
                 session_id=f"blog-{uuid.uuid4()}",
-                system_message="You are an expert content writer specializing in local service business blogs."
+                system_message="You are a seasoned lifestyle editor writing short, captivating newspaper features for a local audience."
             ).with_model("openai", "gpt-4o")
-            
-            # Send the message
             user_message = UserMessage(text=prompt)
             response = await chat.send_message(user_message)
-            
             try:
                 return json.loads(response)
             except:
@@ -182,7 +179,7 @@ Format as JSON with keys:
                     "content": response,
                     "meta_description": "",
                     "keywords": [],
-                    "cta": "Book your appointment today!"
+                    "cta": "If you're nearby, Eastend is open when you are."
                 }
         except Exception as e:
             print(f"Error generating blog post: {e}")
@@ -216,23 +213,18 @@ Make posts:
 Return as JSON array."""
 
         try:
-            # Create a new chat instance for social media generation
             chat = LlmChat(
                 api_key=self.api_key,
                 session_id=f"social-{uuid.uuid4()}",
                 system_message="You are a creative social media content creator for local businesses."
             ).with_model("anthropic", "claude-sonnet-4-20250514")
-            
-            # Send the message
             user_message = UserMessage(text=prompt)
             response = await chat.send_message(user_message)
-            
             content = response.strip()
             if content.startswith("```json"):
                 content = content[7:-3].strip()
             elif content.startswith("```"):
                 content = content[3:-3].strip()
-            
             return json.loads(content)
         except Exception as e:
             print(f"Error generating social content: {e}")
@@ -267,17 +259,13 @@ Make it:
 Return as JSON."""
 
         try:
-            # Create a new chat instance for email generation
             chat = LlmChat(
                 api_key=self.api_key,
                 session_id=f"email-{uuid.uuid4()}",
                 system_message="You are a persuasive email copywriter for service businesses."
             ).with_model("openai", "gpt-4o")
-            
-            # Send the message
             user_message = UserMessage(text=prompt)
             response = await chat.send_message(user_message)
-            
             try:
                 return json.loads(response)
             except:
