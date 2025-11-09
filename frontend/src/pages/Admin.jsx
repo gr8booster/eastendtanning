@@ -153,12 +153,13 @@ export default function Admin() {
 
         {/* Tabs */}
         <Tabs defaultValue="recommendations" className="mb-8">
-          <TabsList className="grid w-full grid-cols-5 mb-6">
+          <TabsList className="grid w-full grid-cols-6 mb-6">
             <TabsTrigger value="recommendations" className="text-base">🤖 AI Recommendations ({recommendations.length})</TabsTrigger>
             <TabsTrigger value="campaigns" className="text-base">📢 Active Campaigns ({campaigns.length})</TabsTrigger>
             <TabsTrigger value="leads" className="text-base">📋 Recent Leads ({leads.length})</TabsTrigger>
             <TabsTrigger value="discounts" className="text-base" data-testid="discounts-tab">🎟️ Discount Codes ({discounts.length})</TabsTrigger>
             <TabsTrigger value="lotions" className="text-base" data-testid="lotions-tab">🧴 Lotions ({lotions.length})</TabsTrigger>
+            <TabsTrigger value="voicecalls" className="text-base" data-testid="voicecalls-tab"><Phone className="w-4 h-4 inline-block mr-1" />Voice Calls ({voiceCalls.length})</TabsTrigger>
           </TabsList>
 
           <TabsContent value="recommendations">
