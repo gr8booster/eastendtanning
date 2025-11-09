@@ -59,6 +59,7 @@ export default function Tanning() {
           <Card className="p-0 overflow-hidden">
             <video 
               controls 
+              poster="https://customer-assets.emergentagent.com/job_tanning-chatbot/artifacts/zne70emi_Screenshot_20230527-083315_Gallery.jpg"
               className="w-full h-auto"
               data-testid="tanning-video"
             >
