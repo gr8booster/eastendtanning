@@ -46,7 +46,7 @@ export default function Laundry() {
               </div>
             </div>
             <div className="relative">
-              <img src={laundryPhoto} alt="Eastend Laundry" className="w-full rounded-xl border shadow" loading="lazy" />
+              <img src={laundryPhoto} alt="Eastend Laundry" className="w-full h-[400px] rounded-xl border shadow object-cover object-right" loading="lazy" />
             </div>
           </div>
         </div>
