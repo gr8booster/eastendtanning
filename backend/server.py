@@ -20,6 +20,7 @@ from skin_type_routes import router as skin_type_router
 from journey_routes import router as journey_router
 from discount_routes import router as discount_router
 from lotion_routes import router as lotion_router
+from voice_routes import router as voice_router
 
 
 ROOT_DIR = Path(__file__).parent
@@ -88,6 +89,7 @@ app.include_router(skin_type_router)  # Include skin type evaluation routes
 app.include_router(journey_router)  # Include marketing journey routes
 app.include_router(discount_router)  # Include discount code routes
 app.include_router(lotion_router)  # Include lotions routes
+app.include_router(voice_router)  # Include voice routes
 
 app.add_middleware(
     CORSMiddleware,
