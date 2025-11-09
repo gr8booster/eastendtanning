@@ -1,7 +1,7 @@
 [
   {
     "content": "Phase 5: Add Voice Calls tab to Admin.jsx with table displaying recent calls",
-    "status": "pending"
+    "status": "in_progress"
   },
   {
     "content": "Phase 6: Call integration_playbook_expert_v2 for SendGrid integration",
