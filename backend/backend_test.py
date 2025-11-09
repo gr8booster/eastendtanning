@@ -1,6 +1,6 @@
 """
-Backend API Testing for Discount Codes and Payment Integration
-Tests all discount and payment endpoints
+Backend API Testing for Eastend Tanning & Laundry - Phase 5-7 Features
+Tests Voice Calls, Marketing Worker, Rate Limiting, and all existing features
 """
 import requests
 import sys
