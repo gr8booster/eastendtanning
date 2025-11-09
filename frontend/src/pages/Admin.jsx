@@ -23,6 +23,7 @@ export default function Admin() {
   const [leads, setLeads] = useState([]);
   const [discounts, setDiscounts] = useState([]);
   const [lotions, setLotions] = useState([]);
+  const [voiceCalls, setVoiceCalls] = useState([]);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
   const [aiGenerating, setAiGenerating] = useState(false);
