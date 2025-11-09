@@ -23,6 +23,7 @@ from discount_routes import router as discount_router
 from lotion_routes import router as lotion_router
 from voice_routes import router as voice_router
 import blog_scheduler
+import marketing_worker
 
 
 ROOT_DIR = Path(__file__).parent
