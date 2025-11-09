@@ -45,7 +45,7 @@ export default function Blog() {
             <span>AI-Powered Insights</span>
           </div>
           <h1 className="text-5xl md:text-6xl font-bold font-serif bg-gradient-to-r from-amber-600 to-teal-600 bg-clip-text text-transparent">
-            Eastend Blog
+            People of the Eastend
           </h1>
           <p className="text-xl text-slate-600 max-w-2xl mx-auto">
             Beauty tips, wellness advice, and local insights from Mount Vernon's premier multi-service destination
