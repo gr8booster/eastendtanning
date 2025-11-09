@@ -40,7 +40,8 @@ class EmailCampaignRequest(BaseModel):
 
 
 @ai_router.post("/analyze")
-async def run_business_analysis(request: AnalysisRequest):
+@rate_limit(max_requests=5, window_seconds=300)
+async def run_business_analysis(request: Request, analysis_request: AnalysisRequest):
     """
     Run AI analysis on current business metrics
     This triggers GPT-4 to analyze data and identify opportunities
@@ -76,7 +77,8 @@ async def run_business_analysis(request: AnalysisRequest):
 
 
 @ai_router.post("/recommendations/generate")
-async def generate_ai_recommendations(request: RecommendationGenerateRequest):
+@rate_limit(max_requests=10, window_seconds=300)
+async def generate_ai_recommendations(request: Request, rec_request: RecommendationGenerateRequest):
     """
     Generate new AI marketing recommendations
     This triggers Claude to create actionable recommendations
@@ -127,7 +129,8 @@ async def generate_ai_recommendations(request: RecommendationGenerateRequest):
 
 
 @ai_router.post("/content/blog")
-async def generate_blog_content(request: BlogPostRequest):
+@rate_limit(max_requests=10, window_seconds=300)
+async def generate_blog_content(request: Request, blog_request: BlogPostRequest):
     """
     Generate SEO-optimized blog post
     Uses GPT-4 for content creation
