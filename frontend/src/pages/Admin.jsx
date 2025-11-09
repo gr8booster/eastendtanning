@@ -47,15 +47,16 @@ export default function Admin() {
   const fetchDashboardData = async (isBackgroundRefresh = false) => {
     if (!isBackgroundRefresh) setLoading(true); else setRefreshing(true);
     try {
-      const [metricsData, campaignsData, recsData, leadsData, discountsData, lotionsData] = await Promise.all([
+      const [metricsData, campaignsData, recsData, leadsData, discountsData, lotionsData, voiceCallsData] = await Promise.all([
         fetch(`${backendUrl}/api/dashboard/metrics`).then(r => r.ok ? r.json() : Promise.reject('metrics')),
         fetch(`${backendUrl}/api/campaigns?status=active`).then(r => r.ok ? r.json() : Promise.reject('campaigns')),
         fetch(`${backendUrl}/api/ai/recommendations?status=pending`).then(r => r.ok ? r.json() : Promise.reject('recs')),
         fetch(`${backendUrl}/api/leads?limit=10`).then(r => r.ok ? r.json() : Promise.reject('leads')),
         fetch(`${backendUrl}/api/discounts/list?status=all&limit=20`).then(r => r.ok ? r.json() : Promise.reject('discounts')),
-        fetch(`${backendUrl}/api/lotions/admin/list`, { headers: { 'Content-Type': 'application/json', ...adminHeaders() }}).then(r => r.ok ? r.json() : [])
+        fetch(`${backendUrl}/api/lotions/admin/list`, { headers: { 'Content-Type': 'application/json', ...adminHeaders() }}).then(r => r.ok ? r.json() : []),
+        fetch(`${backendUrl}/api/voice/calls?limit=50`).then(r => r.ok ? r.json() : {calls: []})
       ]);
-      setMetrics(metricsData); setCampaigns(campaignsData); setRecommendations(recsData); setLeads(leadsData); setDiscounts(discountsData); setLotions(Array.isArray(lotionsData) ? lotionsData : []);
+      setMetrics(metricsData); setCampaigns(campaignsData); setRecommendations(recsData); setLeads(leadsData); setDiscounts(discountsData); setLotions(Array.isArray(lotionsData) ? lotionsData : []); setVoiceCalls(voiceCallsData?.calls || []);
       setLastUpdated(new Date());
     } catch (error) {
       console.error('Error fetching dashboard data:', error);
