@@ -33,8 +33,8 @@ export default function Home() {
 
           {/* Bento Service Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 sm:gap-6">
-            <ServiceCard title="Tanning Studio" description="5 tanning levels including Matrix, stand-up, and red-light therapy. Achieve your perfect glow." ctaText="Explore Tanning" href="/tanning" imageUrl="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=1200&auto=format&fit=crop" tone="tanning" />
-            <ServiceCard title="Laundromat" description="Two convenient locations with modern washers and dryers. Clean, safe, and always open." ctaText="Find Washers" href="/laundry" imageUrl="https://images.unsplash.com/photo-1583810266903-fb9cc6e84376?crop=entropy&cs=srgb&fm=jpg&q=85" tone="laundry" />
+            <ServiceCard title="Tanning Studio" description="5 tanning levels including Matrix, stand-up, and red-light therapy. Achieve your perfect glow." ctaText="Explore Tanning" href="/tanning" imageUrl="https://images.unsplash.com/photo-1655720359248-eeace8c709c5?q=80&w=1200&auto=format&fit=crop" tone="tanning" />
+            <ServiceCard title="Laundromat" description="Two convenient locations with modern washers and dryers. Clean, safe, and always open." ctaText="Find Washers" href="/laundry" imageUrl="https://images.unsplash.com/photo-1635274605638-d44babc08a4f?q=80&w=1200&auto=format&fit=crop" tone="laundry" />
             <ServiceCard title="Fizze Drinks" description="Bubble tea, dirty sodas, energy bombs, and more. Refreshing flavors to brighten your day." ctaText="Sip Fizze Specials" href="/drinks" imageUrl="https://images.pexels.com/photos/9090072/pexels-photo-9090072.jpeg" tone="drinks" />
             <ServiceCard title="Fast Nails" description="Professional nail care with manicures, pedicures, gel services, and nail art. Pamper yourself." ctaText="Book Nail Appointment" href="/nails" imageUrl="https://images.unsplash.com/photo-1571290274554-6a2eaa771e5f?q=80&w=1200&auto=format&fit=crop" tone="drinks" />
           </div>
