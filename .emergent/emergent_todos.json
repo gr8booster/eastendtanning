@@ -1,18 +1,66 @@
 [
   {
-    "content": "Voice AI: Implement FastAPI /api/voice endpoints (webhook + outbound) with HMAC verify; save transcripts to leads; trigger marketing journey.",
-    "status": "in_progress"
-  },
-  {
-    "content": "Frontend: Add \"Have Mary Call Me\" in chat (dialog to collect phone, calls outbound endpoint).",
+    "content": "Phase 5: Add Voice Calls tab to Admin.jsx with table displaying recent calls",
     "status": "pending"
   },
   {
-    "content": "Wire server to include voice_router and restart; smoke test JSON handlers.",
+    "content": "Phase 6: Call integration_playbook_expert_v2 for SendGrid integration",
     "status": "pending"
   },
   {
-    "content": "Request credentials: VAPI_PRIVATE_KEY, VAPI_WEBHOOK_SECRET, VAPI_PHONE_NUMBER_ID (and/or permission to provision), optional VAPI_ASSISTANT_ID.",
+    "content": "Phase 6: Call integration_playbook_expert_v2 for Twilio integration",
+    "status": "pending"
+  },
+  {
+    "content": "Phase 6: Create marketing_worker.py to process scheduled_marketing_actions",
+    "status": "pending"
+  },
+  {
+    "content": "Phase 6: Install SendGrid and Twilio SDKs in requirements.txt",
+    "status": "pending"
+  },
+  {
+    "content": "Phase 6: Add email templates for marketing journey stages",
+    "status": "pending"
+  },
+  {
+    "content": "Phase 6: Add SMS templates for marketing journey stages",
+    "status": "pending"
+  },
+  {
+    "content": "Phase 6: Update server.py to start marketing_worker on startup",
+    "status": "pending"
+  },
+  {
+    "content": "Phase 7: Audit and improve error handling across all frontend API calls",
+    "status": "pending"
+  },
+  {
+    "content": "Phase 7: Add loading states to all async buttons",
+    "status": "pending"
+  },
+  {
+    "content": "Phase 7: Verify mobile responsiveness (360px width) across all pages",
+    "status": "pending"
+  },
+  {
+    "content": "Phase 7: Audit design guideline compliance (colors, spacing, gradients)",
+    "status": "pending"
+  },
+  {
+    "content": "Phase 7: Add rate limiting to AI endpoints",
+    "status": "pending"
+  },
+  {
+    "content": "Phase 7: Run comprehensive testing via testing_agent_v3",
+    "status": "pending"
+  },
+  {
+    "content": "Phase 7: Fix all high-priority bugs from testing",
+    "status": "pending"
+  },
+  {
+    "content": "Phase 7: Take screenshots of all major pages and flows",
     "status": "pending"
   }
 ]
