@@ -116,6 +116,12 @@ async def start_scheduler():
         logger.info("Blog scheduler started")
     except Exception as e:
         logger.error(f"Failed to start blog scheduler: {e}")
+    
+    try:
+        asyncio.create_task(marketing_worker.worker_loop())
+        logger.info("Marketing worker started")
+    except Exception as e:
+        logger.error(f"Failed to start marketing worker: {e}")
 
 @app.on_event("shutdown")
 async def shutdown_db_client():
