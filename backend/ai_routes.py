@@ -133,24 +133,47 @@ async def generate_blog_content(request: BlogPostRequest):
     """
     try:
         blog_post = await ai_engine.generate_blog_post(request.topic, request.service)
-        
-        # Store blog post
+
+        # Normalize response (flatten fields)
+        if isinstance(blog_post, dict):
+            title = blog_post.get("title") or request.topic
+            meta_description = blog_post.get("meta_description") or ""
+            content = blog_post.get("content") or ""
+            # Strip code fences if present
+            if isinstance(content, str) and content.strip().startswith("```"):
+                # remove leading and trailing fenced blocks
+                content = content.strip()
+                if content.startswith("```json"):
+                    content = content[7:].strip()
+                if content.startswith("```"):
+                    content = content[3:].strip()
+                if content.endswith("```"):
+                    content = content[:-3].strip()
+            keywords = blog_post.get("keywords") or []
+            cta = blog_post.get("cta") or "Book your appointment today!"
+        else:
+            title = request.topic
+            meta_description = ""
+            content = str(blog_post)
+            keywords = []
+            cta = "Book your appointment today!"
+
         blog_doc = {
             "id": str(uuid.uuid4()),
             "created_at": datetime.now(timezone.utc).isoformat(),
             "topic": request.topic,
             "service": request.service,
-            "content": blog_post,
-            "status": "draft",
+            "title": title,
+            "meta_description": meta_description,
+            "content": content,
+            "keywords": keywords,
+            "cta": cta,
+            "status": "published",
             "ai_model": "gpt-4"
         }
         await db.blog_posts.insert_one(blog_doc)
-        
-        return {
-            "status": "success",
-            "blog_post": blog_post,
-            "blog_id": blog_doc["id"]
-        }
+
+        return {"status": "success", "blog_post": blog_doc, "blog_id": blog_doc["id"]}
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Blog generation failed: {str(e)}")
 
@@ -226,12 +249,33 @@ async def generate_email_content(request: EmailCampaignRequest):
 
 @ai_router.get("/content/blog")
 async def get_blog_posts(limit: int = 20):
-    """Get all blog posts"""
+    """Get all blog posts (normalized)"""
     try:
         cursor = db.blog_posts.find({}).sort("created_at", -1).limit(limit)
         posts = []
         async for doc in cursor:
             doc.pop('_id', None)
+            # If legacy shape (content is object), flatten
+            if isinstance(doc.get('content'), dict):
+                content_obj = doc['content']
+                doc['title'] = doc.get('title') or content_obj.get('title') or doc.get('topic')
+                doc['meta_description'] = doc.get('meta_description') or content_obj.get('meta_description') or ""
+                raw_content = content_obj.get('content') or ""
+                # Strip code fences
+                if isinstance(raw_content, str) and raw_content.strip().startswith('```'):
+                    raw = raw_content.strip()
+                    if raw.startswith('```json'):
+                        raw = raw[7:].strip()
+                    if raw.startswith('```'):
+                        raw = raw[3:].strip()
+                    if raw.endswith('```'):
+                        raw = raw[:-3].strip()
+                    doc['content'] = raw
+                else:
+                    doc['content'] = raw_content
+                doc['keywords'] = doc.get('keywords') or content_obj.get('keywords') or []
+                doc['cta'] = doc.get('cta') or content_obj.get('cta') or "Book your appointment today!"
+            # Ensure created_at is present
             doc['created_at'] = doc.get('created_at', datetime.now(timezone.utc).isoformat())
             posts.append(doc)
         return posts
@@ -241,13 +285,31 @@ async def get_blog_posts(limit: int = 20):
 
 @ai_router.get("/content/blog/{post_id}")
 async def get_blog_post(post_id: str):
-    """Get a single blog post by ID"""
+    """Get a single blog post by ID (normalized)"""
     try:
         post = await db.blog_posts.find_one({"id": post_id})
         if not post:
             raise HTTPException(status_code=404, detail="Blog post not found")
-        
         post.pop('_id', None)
+        # Normalize legacy shape
+        if isinstance(post.get('content'), dict):
+            content_obj = post['content']
+            post['title'] = post.get('title') or content_obj.get('title') or post.get('topic')
+            post['meta_description'] = post.get('meta_description') or content_obj.get('meta_description') or ""
+            raw_content = content_obj.get('content') or ""
+            if isinstance(raw_content, str) and raw_content.strip().startswith('```'):
+                raw = raw_content.strip()
+                if raw.startswith('```json'):
+                    raw = raw[7:].strip()
+                if raw.startswith('```'):
+                    raw = raw[3:].strip()
+                if raw.endswith('```'):
+                    raw = raw[:-3].strip()
+                post['content'] = raw
+            else:
+                post['content'] = raw_content
+            post['keywords'] = post.get('keywords') or content_obj.get('keywords') or []
+            post['cta'] = post.get('cta') or content_obj.get('cta') or "Book your appointment today!"
         post['created_at'] = post.get('created_at', datetime.now(timezone.utc).isoformat())
         return post
     except HTTPException:
