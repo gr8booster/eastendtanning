@@ -59,7 +59,6 @@ export default function Tanning() {
           <Card className="p-0 overflow-hidden">
             <video 
               controls 
-              poster={matrixPoster}
               className="w-full h-auto"
               data-testid="tanning-video"
             >
