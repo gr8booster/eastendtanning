@@ -56,7 +56,8 @@ export default function Locations() {
 
             {/* Westend */}
             <Card className="p-6">
-              <h2 className="font-serif text-2xl font-bold mb-4">Westend Laundry</h2>
+              <h2 className="font-serif text-2xl font-bold mb-2">Westend Laundry</h2>
+              <Badge variant="secondary" className="mb-4">Coin Laundry Only</Badge>
               <div className="space-y-4">
                 <div className="flex items-start gap-3">
                   <MapPin className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />
