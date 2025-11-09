@@ -12,7 +12,7 @@ import { Label } from '../components/ui/label';
 import { 
   Users, Eye, TrendingUp, DollarSign, 
   Target, Zap, Calendar, Award,
-  RefreshCw, Download, Sparkles, TicketPercent, FlaskConical
+  RefreshCw, Download, Sparkles, TicketPercent, FlaskConical, Phone
 } from 'lucide-react';
 import { toast } from 'sonner';
 
