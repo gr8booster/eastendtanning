@@ -68,7 +68,7 @@ async def scheduler_loop(db):
                             title = post.get("title") or topic
                             meta_description = post.get("meta_description") or ""
                             content = post.get("content") or ""
-                            if isinstance(content, str) and content.strip().startswith("```)":
+                            if isinstance(content, str) and content.strip().startswith("```"):
                                 raw = content.strip()
                                 if raw.startswith("```json"):
                                     raw = raw[7:].strip()
