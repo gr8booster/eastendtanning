@@ -5,7 +5,7 @@ import { Input } from './ui/input';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from './ui/dialog';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
 import { Label } from './ui/label';
-import { MessageCircle, X, Send, Loader2, Tag, List as ListIcon, Clipboard, ShoppingCart, Mic, Volume2, VolumeX } from 'lucide-react';
+import { MessageCircle, X, Send, Loader2, Tag, List as ListIcon, Clipboard, ShoppingCart, Mic, Volume2, VolumeX, PhoneCall } from 'lucide-react';
 import { toast } from 'sonner';
 
 export function MaryWellChat() {
@@ -26,6 +26,7 @@ export function MaryWellChat() {
 
   const [listening, setListening] = useState(false);
   const [autoSpeak, setAutoSpeak] = useState(true);
+  const [callDialogOpen, setCallDialogOpen] = useState(false);
   const recognitionRef = useRef(null);
 
   const messagesEndRef = useRef(null);
@@ -54,7 +55,7 @@ export function MaryWellChat() {
       setSessionId(data.session_id);
       setMessages([
         { role: 'assistant', content: data.greeting, timestamp: new Date().toISOString() },
-        { role: 'assistant', content: 'Quick actions: view pricing, generate a discount (5%/10%/15%), browse packages, or checkout. Use Talk to Mary for voice chat.', timestamp: new Date().toISOString() }
+        { role: 'assistant', content: 'Quick actions: view pricing, generate a discount (5%/10%/15%), browse packages, checkout, or have Mary call your phone.', timestamp: new Date().toISOString() }
       ]);
     } catch (error) { console.error('Error starting chat:', error); toast.error('Failed to start chat'); }
   };
@@ -94,7 +95,6 @@ export function MaryWellChat() {
     try {
       const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
       if (!SpeechRecognition) { toast.error('Voice not supported by this browser'); return; }
-      // stop any current
       if (recognitionRef.current) { recognitionRef.current.stop(); recognitionRef.current = null; }
       const recog = new SpeechRecognition();
       recognitionRef.current = recog;
@@ -110,7 +110,6 @@ export function MaryWellChat() {
           if (event.results[i].isFinal) finalTranscript += transcript;
           else interim += transcript;
         }
-        // show interim in input
         setInputMessage(finalTranscript || interim);
       };
       recog.onerror = () => { setListening(false); recognitionRef.current = null; };
@@ -123,10 +122,7 @@ export function MaryWellChat() {
     } catch (e) { setListening(false); recognitionRef.current = null; }
   };
 
-  const stopListening = () => {
-    try { recognitionRef.current && recognitionRef.current.stop(); } catch (e) { /* ignore */ }
-    setListening(false);
-  };
+  const stopListening = () => { try { recognitionRef.current && recognitionRef.current.stop(); } catch (e) { /* ignore */ } setListening(false); };
 
   const generateDiscount = async (percent) => {
     try {
@@ -171,6 +167,23 @@ export function MaryWellChat() {
     } catch (e) { console.error(e); toast.error('Checkout failed'); }
   };
 
+  const submitCallMe = async () => {
+    try {
+      if (!customer.name || !customer.phone) { toast.error('Please add your name and phone'); return; }
+      const res = await fetch(`${backendUrl}/api/voice/calls/outbound`, {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ customer: { name: customer.name, phone: customer.phone, email: customer.email || undefined } })
+      });
+      const data = await res.json();
+      if (res.ok && data.status === 'success') {
+        toast.success('Mary is calling you now');
+        setCallDialogOpen(false);
+      } else {
+        toast.error(data?.detail || 'Unable to start call (provider not configured yet)');
+      }
+    } catch (e) { console.error(e); toast.error('Call failed'); }
+  };
+
   return (
     <>
       {!isOpen && (
@@ -180,7 +193,7 @@ export function MaryWellChat() {
       )}
 
       {isOpen && (
-        <Card className="fixed bottom-6 right-6 w-96 h-[660px] shadow-2xl z-50 flex flex-col" data-testid="mary-well-chat">
+        <Card className="fixed bottom-6 right-6 w-96 h-[700px] shadow-2xl z-50 flex flex-col" data-testid="mary-well-chat">
           <div className="bg-gradient-to-r from-amber-500 to-teal-500 text-white p-4 rounded-t-lg flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center"><MessageCircle className="h-5 w-5" /></div>
@@ -224,6 +237,7 @@ export function MaryWellChat() {
               ) : (
                 <Button onClick={stopListening} size="sm" variant="destructive" data-testid="stop-talking-button">Stop</Button>
               )}
+              <Button onClick={() => setCallDialogOpen(true)} size="sm" variant="outline" data-testid="have-mary-call-button"><PhoneCall className="h-4 w-4 mr-1" /> Have Mary Call Me</Button>
             </div>
           </div>
 
@@ -237,6 +251,22 @@ export function MaryWellChat() {
           </div>
         </Card>
       )}
+
+      {/* Have Mary Call Me Dialog */}
+      <Dialog open={callDialogOpen} onOpenChange={setCallDialogOpen}>
+        <DialogContent className="max-w-lg">
+          <DialogHeader><DialogTitle>Have Mary Call Me</DialogTitle></DialogHeader>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div className="sm:col-span-1"><Label>Name</Label><Input value={customer.name} onChange={(e)=>setCustomer({...customer, name:e.target.value})} data-testid="call-name" /></div>
+            <div className="sm:col-span-1"><Label>Phone</Label><Input value={customer.phone} onChange={(e)=>setCustomer({...customer, phone:e.target.value})} data-testid="call-phone" /></div>
+            <div className="sm:col-span-1"><Label>Email (optional)</Label><Input type="email" value={customer.email} onChange={(e)=>setCustomer({...customer, email:e.target.value})} data-testid="call-email" /></div>
+          </div>
+          <div className="flex justify-end gap-2 mt-4">
+            <Button variant="outline" onClick={()=>setCallDialogOpen(false)}>Cancel</Button>
+            <Button onClick={submitCallMe} data-testid="call-submit">Call Me Now</Button>
+          </div>
+        </DialogContent>
+      </Dialog>
 
       {/* Lotions Dialog */}
       <Dialog open={lotionsOpen} onOpenChange={setLotionsOpen}>
