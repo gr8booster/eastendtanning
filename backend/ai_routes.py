@@ -2,7 +2,7 @@
 AI Engine API endpoints
 Provides manual and automated AI marketing functions
 """
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Request
 from pydantic import BaseModel
 from typing import Optional, List, Dict, Any
 from datetime import datetime, timezone
@@ -10,6 +10,7 @@ import uuid
 
 from ai_engine import ai_engine
 from routes import db
+from rate_limiter import rate_limit
 
 ai_router = APIRouter(prefix="/api/ai")
 
