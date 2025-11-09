@@ -5,15 +5,15 @@
   },
   {
     "content": "Phase 6: Call integration_playbook_expert_v2 for SendGrid integration",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Phase 6: Call integration_playbook_expert_v2 for Twilio integration",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Phase 6: Create marketing_worker.py to process scheduled_marketing_actions",
-    "status": "pending"
+    "status": "in_progress"
   },
   {
     "content": "Phase 6: Install SendGrid and Twilio SDKs in requirements.txt",
