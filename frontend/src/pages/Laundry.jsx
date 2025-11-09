@@ -26,7 +26,7 @@ export default function Laundry() {
     { question: "What are your busiest times?", answer: "Weekends and weekday evenings (5-8pm) tend to be busiest. For a quieter experience, try weekday mornings or early afternoons." }
   ];
 
-  const eastendPhoto = "https://customer-assets.emergentagent.com/job_tanmarketing/artifacts/a3rejhx0_Screenshot_20251108_054802_Google.jpg";
+  const laundryPhoto = "https://customer-assets.emergentagent.com/job_tanning-chatbot/artifacts/cf28a69r_fe31aa0358f16aeb18b51820eb4a7322.jpeg";
 
   return (
     <div className="min-h-screen">
@@ -39,14 +39,14 @@ export default function Laundry() {
                 <Droplets className="w-3 h-3 mr-1" /> 2 Convenient Locations
               </Badge>
               <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6 text-foreground">Mount Vernon's Premier Laundromats</h1>
-              <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mb-6 leading-relaxed">Modern washers and dryers, spotless facilities, open daily 6am-10pm. Eastend and Westend locations for your convenience.</p>
+              <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mb-6 leading-relaxed">Modern washers and dryers, spotless facilities, open daily 6am-10pm. Eastend (tanning & laundry) and Westend (coin laundry only) locations.</p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                 <a href="#locations" data-testid="laundry-hero-locations-btn"><Button size="lg" className="bg-secondary text-white px-8 h-14 font-semibold text-lg shadow-lg hover:shadow-xl">Find a Location</Button></a>
                 <a href="#pricing" data-testid="laundry-hero-pricing-btn"><Button variant="outline" size="lg" className="px-8 h-14 font-semibold text-lg bg-white hover:bg-gray-50">View Pricing</Button></a>
               </div>
             </div>
             <div className="relative">
-              <img src={eastendPhoto} alt="Eastend Laundry" className="w-full rounded-xl border shadow" loading="lazy" />
+              <img src={laundryPhoto} alt="Eastend Laundry" className="w-full rounded-xl border shadow" loading="lazy" />
             </div>
           </div>
         </div>
@@ -70,7 +70,7 @@ export default function Laundry() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-10 max-w-[1200px]">
           <div className="max-w-4xl mx-auto">
             <h2 className="font-serif text-3xl sm:text-4xl font-bold mb-4 text-center">Equipment & Pricing</h2>
-            <p className="text-center text-muted-foreground mb-8 max-w-2xl mx-auto">Coin-operated and card-accepted machines. Change machines available on-site.</p>
+            <p className="text-center text-muted-foreground mb-8 max-w-2xl mx-auto">Eastend: Coin-operated and card-accepted. Westend: Coin-operated only. Change machines available on-site.</p>
             <PricingTable items={equipment} note="Prices may vary slightly by location. Wash-and-fold service requires 24-hour notice." />
           </div>
         </div>
