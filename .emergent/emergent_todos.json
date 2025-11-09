@@ -13,27 +13,27 @@
   },
   {
     "content": "Phase 6: Create marketing_worker.py to process scheduled_marketing_actions",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Phase 6: Install SendGrid and Twilio SDKs in requirements.txt",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Phase 6: Add email templates for marketing journey stages",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Phase 6: Add SMS templates for marketing journey stages",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Phase 6: Update server.py to start marketing_worker on startup",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Phase 7: Audit and improve error handling across all frontend API calls",
-    "status": "pending"
+    "status": "in_progress"
   },
   {
     "content": "Phase 7: Add loading states to all async buttons",
