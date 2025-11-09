@@ -165,8 +165,8 @@ async def generate_blog_content(request: Request, blog_request: BlogPostRequest)
         blog_doc = {
             "id": str(uuid.uuid4()),
             "created_at": datetime.now(timezone.utc).isoformat(),
-            "topic": request.topic,
-            "service": request.service,
+            "topic": blog_request.topic,
+            "service": blog_request.service,
             "title": title,
             "meta_description": meta_description,
             "content": content,
