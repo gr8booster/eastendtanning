@@ -1,13 +1,13 @@
 """
 Voice AI (Phone) Integration Routes using Vapi
-- Outbound call trigger
+- Outbound call trigger (supports mock mode when provider keys are absent)
 - Webhook receiver for inbound/status/end-of-call events
 - HMAC verification for webhook security
 - Persists transcripts to leads and advances marketing journey
 """
-from fastapi import APIRouter, HTTPException, Request
+from fastapi import APIRouter, HTTPException, Request, Query
 from pydantic import BaseModel, Field
-from typing import Optional, Dict, Any
+from typing import Optional, Dict, Any, List
 from datetime import datetime, timezone
 from motor.motor_asyncio import AsyncIOMotorClient
 from marketing_journey import journey_manager
@@ -73,20 +73,72 @@ def _normalize_phone(phone: str) -> str:
     return "+" + digits if not digits.startswith("+") else digits
 
 
+def _mock_mode() -> bool:
+    return not (VAPI_PRIVATE_KEY and VAPI_PHONE_NUMBER_ID)
+
+
 @router.post("/calls/outbound")
 async def create_outbound_call(payload: OutboundCallRequest):
-    """Initiate an outbound phone call via Vapi
-    Requires env: VAPI_PRIVATE_KEY, VAPI_PHONE_NUMBER_ID
+    """Initiate an outbound phone call via Vapi.
+    If provider is not configured, runs in mock mode and immediately logs a successful mock call,
+    creates/updates a lead, and triggers the marketing journey.
     """
+    customer_number = _normalize_phone(payload.customer.phone)
+
+    # If not configured, return mock success and create records
+    if _mock_mode():
+        call_id = str(uuid.uuid4())
+        # Upsert lead
+        lead = await db.leads.find_one({"phone": customer_number})
+        if not lead:
+            lead_id = str(uuid.uuid4())
+            await db.leads.insert_one({
+                "id": lead_id,
+                "name": payload.customer.name or "Voice Request",
+                "email": payload.customer.email,
+                "phone": customer_number,
+                "source": "voice_call_request",
+                "service_interest": "tanning",
+                "status": "new",
+                "created_at": datetime.now(timezone.utc),
+                "updated_at": datetime.now(timezone.utc)
+            })
+            try:
+                await journey_manager.capture_lead_from_chat({
+                    "name": payload.customer.name or "Voice Request",
+                    "email": payload.customer.email,
+                    "phone": customer_number,
+                    "service_interest": "tanning",
+                    "notes": "Lead captured via voice call request (mock mode)"
+                })
+            except Exception as e:
+                print(f"journey start error: {e}")
+        else:
+            lead_id = lead["id"]
+            await db.leads.update_one(
+                {"id": lead_id},
+                {"$set": {"updated_at": datetime.now(timezone.utc)}}
+            )
+
+        await db.voice_calls.insert_one({
+            "id": call_id,
+            "direction": "outbound",
+            "customer_number": customer_number,
+            "customer_name": payload.customer.name,
+            "status": "mocked",
+            "summary": "Preview call created (provider not configured).",
+            "created_at": datetime.now(timezone.utc),
+            "updated_at": datetime.now(timezone.utc)
+        })
+        return {"status": "success", "call_id": call_id, "mode": "mock"}
+
+    # Real provider flow
     if not VAPI_PRIVATE_KEY or not VAPI_PHONE_NUMBER_ID:
         raise HTTPException(status_code=400, detail="Voice provider not configured. Please set VAPI_PRIVATE_KEY and VAPI_PHONE_NUMBER_ID.")
-
-    customer_number = _normalize_phone(payload.customer.phone)
 
     # Compose assistant config: female, friendly voice; no recording; transcripts enabled
     vapi_body = {
         "assistant": {
-            # First message and system prompt tuned for Mary
             "firstMessage": "Hi! This is Mary from Eastend. How can I help you today?",
             "model": {
                 "provider": "openai",
@@ -255,3 +307,18 @@ async def vapi_webhook(request: Request):
 
     # Fallback
     return {"status": "ignored", "type": msg_type}
+
+
+@router.get("/calls")
+async def list_voice_calls(limit: int = Query(default=50, ge=1, le=200)) -> Dict[str, Any]:
+    items: List[Dict[str, Any]] = []
+    cursor = db.voice_calls.find({}).sort("created_at", -1).limit(limit)
+    async for doc in cursor:
+        d = dict(doc)
+        d.pop("_id", None)
+        # serialize datetimes
+        for k in ["created_at", "updated_at"]:
+            if k in d and hasattr(d[k], "isoformat"):
+                d[k] = d[k].isoformat()
+        items.append(d)
+    return {"calls": items}
