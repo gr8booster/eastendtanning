@@ -541,7 +541,7 @@ class BackendAPITester:
 
 def main():
     print("="*60)
-    print("BACKEND API TESTING - DISCOUNT CODES & PAYMENTS")
+    print("BACKEND API TESTING - EASTEND COMPLETE SYSTEM")
     print("="*60)
     print(f"Base URL: https://tanning-chatbot.preview.emergentagent.com")
     print(f"Started: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
@@ -555,6 +555,14 @@ def main():
     session_id = tester.test_payment_with_discount()
     tester.test_transaction_details(session_id)
     tester.test_checkout_status(session_id)
+    
+    # Phase 5-7 tests
+    tester.test_voice_calls_api()
+    tester.test_admin_dashboard_apis()
+    tester.test_lotions_api()
+    tester.test_blog_api()
+    tester.test_mary_well_chat()
+    tester.test_rate_limiting()
     
     # Print summary
     all_passed = tester.print_summary()
