@@ -57,15 +57,15 @@ export default function Tanning() {
       <section className="py-12 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-10 max-w-[1200px]">
           <Card className="p-0 overflow-hidden">
-            <div className="relative">
-              <img src={matrixPoster} alt="Matrix tanning bed" className="w-full h-[380px] object-cover" loading="lazy" />
-              <div className="absolute inset-0 bg-black/30 flex items-center justify-center text-white">
-                <div className="text-center">
-                  <Play className="w-10 h-10 mx-auto mb-2" />
-                  <p className="text-sm">Tanning video coming soon. Share your video link to embed here.</p>
-                </div>
-              </div>
-            </div>
+            <video 
+              controls 
+              poster={matrixPoster}
+              className="w-full h-auto"
+              data-testid="tanning-video"
+            >
+              <source src="https://customer-assets.emergentagent.com/job_tanning-chatbot/artifacts/e30rw6wp_Movie%2090_1_1.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
           </Card>
         </div>
       </section>
