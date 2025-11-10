@@ -267,6 +267,73 @@ export default function Admin() {
     }
   };
 
+  const handleCreateUser = () => {
+    setEditingUser(null);
+    setUserForm({ email: '', name: '', role: 'admin', password: '', active: true });
+    setShowUserModal(true);
+  };
+
+  const handleEditUser = (user) => {
+    setEditingUser(user);
+    setUserForm({ email: user.email, name: user.name, role: user.role, password: '', active: user.active });
+    setShowUserModal(true);
+  };
+
+  const handleSaveUser = async () => {
+    try {
+      if (!userForm.email || !userForm.name || (editingUser ? false : !userForm.password)) {
+        toast.error('Please fill all required fields');
+        return;
+      }
+
+      const url = editingUser 
+        ? `${backendUrl}/api/users/${editingUser.id}`
+        : `${backendUrl}/api/users/`;
+      
+      const method = editingUser ? 'PATCH' : 'POST';
+      const body = editingUser
+        ? { name: userForm.name, role: userForm.role, active: userForm.active, ...(userForm.password && { password: userForm.password }) }
+        : userForm;
+
+      const res = await fetch(url, {
+        method,
+        headers: { 'Content-Type': 'application/json', ...adminHeaders() },
+        body: JSON.stringify(body)
+      });
+
+      if (!res.ok) {
+        const error = await res.json();
+        throw new Error(error.detail || 'Save failed');
+      }
+
+      toast.success(editingUser ? 'User updated' : 'User created');
+      setShowUserModal(false);
+      fetchDashboardData(true);
+    } catch (e) {
+      console.error(e);
+      toast.error(e.message || 'Failed to save user');
+    }
+  };
+
+  const handleDeleteUser = async (userId) => {
+    if (!window.confirm('Are you sure you want to delete this user?')) return;
+
+    try {
+      const res = await fetch(`${backendUrl}/api/users/${userId}`, {
+        method: 'DELETE',
+        headers: adminHeaders()
+      });
+
+      if (!res.ok) throw new Error('Delete failed');
+
+      toast.success('User deleted');
+      fetchDashboardData(true);
+    } catch (e) {
+      console.error(e);
+      toast.error('Failed to delete user');
+    }
+  };
+
   const filteredFizzeDrinks = fizzeDrinks.filter(drink => {
     const matchesSearch = drink.name.toLowerCase().includes(fizzeSearch.toLowerCase());
     const matchesFilter = fizzeFilter === 'all' || 
