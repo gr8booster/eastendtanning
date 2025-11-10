@@ -23,14 +23,14 @@ class OrderItem(BaseModel):
     drink_name: str
     quantity: int
     price: float
-    customizations: Optional[Dict[str, str]] = {}  # ice level, sugar level, toppings
+    customizations: Optional[Dict[str, str]] = {}
 
 class OrderCreate(BaseModel):
     customer_name: str
     customer_email: EmailStr
     customer_phone: str
     items: List[OrderItem]
-    delivery_method: str  # "pickup", "doordash", "grubhub", "ubereats"
+    delivery_method: str
     delivery_address: Optional[str] = None
     special_instructions: Optional[str] = None
     tip_amount: Optional[float] = 0.0
@@ -49,18 +49,17 @@ class OrderResponse(BaseModel):
     total: float
     delivery_method: str
     delivery_address: Optional[str]
-    status: str  # "pending", "confirmed", "preparing", "ready", "out_for_delivery", "completed", "cancelled"
+    status: str
     estimated_ready_time: datetime
     created_at: datetime
-    payment_status: str  # "pending", "paid", "refunded"
+    payment_status: str
 
 def calculate_order_total(items: List[OrderItem], delivery_method: str, tip_amount: float = 0.0):
     """Calculate order total with tax and delivery fee"""
     subtotal = sum(item.price * item.quantity for item in items)
-    tax_rate = 0.0825  # 8.25% Ohio sales tax
+    tax_rate = 0.0825
     tax = round(subtotal * tax_rate, 2)
     
-    # Delivery fees by platform
     delivery_fees = {
         "pickup": 0.0,
         "doordash": 2.99,
@@ -79,18 +78,42 @@ def calculate_order_total(items: List[OrderItem], delivery_method: str, tip_amou
         "total": round(total, 2)
     }
 
-@router.post("/", response_model=OrderResponse)
+async def check_delivery_enabled() -> bool:
+    """Check if delivery is currently enabled"""
+    settings = await db.settings.find_one({"key": "delivery_enabled"})
+    if settings:
+        return settings.get("value", True)
+    return True
+
+@router.post("/create", response_model=OrderResponse)
 async def create_order(order: OrderCreate):
     """Create new Fizze drinks order"""
+    
+    # Check if delivery is enabled
+    if order.delivery_method != "pickup":
+        delivery_enabled = await check_delivery_enabled()
+        if not delivery_enabled:
+            raise HTTPException(
+                status_code=400, 
+                detail="Delivery is temporarily unavailable. Please select pickup only."
+            )
+    
+    # Validate required fields for delivery
+    if order.delivery_method != "pickup" and not order.delivery_address:
+        raise HTTPException(
+            status_code=400,
+            detail="Delivery address is required for delivery orders"
+        )
+    
     # Generate order number
     order_number = f"FZ{datetime.now().strftime('%y%m%d')}{str(uuid.uuid4())[:4].upper()}"
     
     # Calculate totals
     totals = calculate_order_total(order.items, order.delivery_method, order.tip_amount or 0.0)
     
-    # Estimate ready time (15-20 minutes for pickup, add delivery time)
-    estimated_minutes = 20 if order.delivery_method == "pickup" else 45
+    # Estimate ready time
     from datetime import timedelta
+    estimated_minutes = 20 if order.delivery_method == "pickup" else 45
     estimated_ready_time = datetime.now(timezone.utc) + timedelta(minutes=estimated_minutes)
     
     # Create order document
@@ -119,7 +142,7 @@ async def create_order(order: OrderCreate):
     
     return OrderResponse(**order_doc)
 
-@router.get("/", response_model=List[OrderResponse])
+@router.get("/list", response_model=List[OrderResponse])
 async def list_orders(
     status: Optional[str] = None,
     delivery_method: Optional[str] = None,
@@ -140,9 +163,27 @@ async def list_orders(
     
     return orders
 
+@router.get("/settings", response_model=Dict)
+async def get_order_settings():
+    """Get order settings (delivery enabled, etc.)"""
+    settings = await db.settings.find_one({"key": "delivery_enabled"})
+    if settings:
+        return {"delivery_enabled": settings.get("value", True)}
+    return {"delivery_enabled": True}
+
+@router.post("/settings/delivery-toggle")
+async def toggle_delivery(enabled: bool, current_user: dict = Depends(verify_token)):
+    """Toggle delivery on/off (Admin only)"""
+    await db.settings.update_one(
+        {"key": "delivery_enabled"},
+        {"$set": {"value": enabled, "updated_at": datetime.now(timezone.utc)}},
+        upsert=True
+    )
+    return {"status": "success", "delivery_enabled": enabled}
+
 @router.get("/{order_id}", response_model=OrderResponse)
 async def get_order(order_id: str):
-    """Get order by ID (public - for customer tracking)"""
+    """Get order by ID"""
     doc = await db.fizze_orders.find_one({"id": order_id})
     if not doc:
         raise HTTPException(status_code=404, detail="Order not found")
@@ -152,7 +193,7 @@ async def get_order(order_id: str):
 
 @router.get("/track/{order_number}", response_model=OrderResponse)
 async def track_order(order_number: str):
-    """Track order by order number (public)"""
+    """Track order by order number"""
     doc = await db.fizze_orders.find_one({"order_number": order_number.upper()})
     if not doc:
         raise HTTPException(status_code=404, detail="Order not found")
@@ -169,7 +210,7 @@ async def update_order_status(
     """Update order status (Admin only)"""
     valid_statuses = ["pending", "confirmed", "preparing", "ready", "out_for_delivery", "completed", "cancelled"]
     if status not in valid_statuses:
-        raise HTTPException(status_code=400, detail=f"Invalid status. Must be one of: {valid_statuses}")
+        raise HTTPException(status_code=400, detail=f"Invalid status")
     
     result = await db.fizze_orders.update_one(
         {"id": order_id},
@@ -180,47 +221,3 @@ async def update_order_status(
         raise HTTPException(status_code=404, detail="Order not found")
     
     return {"status": "success", "order_id": order_id, "new_status": status}
-
-@router.post("/doordash/webhook")
-async def doordash_webhook(payload: Dict):
-    """DoorDash webhook for order updates"""
-    # DoorDash will send order status updates here
-    # Format: {"order_id": "...", "status": "...", "timestamp": "..."}
-    order_id = payload.get("order_id")
-    status = payload.get("status")
-    
-    if order_id and status:
-        await db.fizze_orders.update_one(
-            {"id": order_id},
-            {"$set": {"status": status, "updated_at": datetime.now(timezone.utc)}}
-        )
-    
-    return {"status": "received"}
-
-@router.post("/grubhub/webhook")
-async def grubhub_webhook(payload: Dict):
-    """GrubHub webhook for order updates"""
-    order_id = payload.get("order_id")
-    status = payload.get("status")
-    
-    if order_id and status:
-        await db.fizze_orders.update_one(
-            {"id": order_id},
-            {"$set": {"status": status, "updated_at": datetime.now(timezone.utc)}}
-        )
-    
-    return {"status": "received"}
-
-@router.post("/ubereats/webhook")
-async def ubereats_webhook(payload: Dict):
-    """Uber Eats webhook for order updates"""
-    order_id = payload.get("order_id")
-    status = payload.get("status")
-    
-    if order_id and status:
-        await db.fizze_orders.update_one(
-            {"id": order_id},
-            {"$set": {"status": status, "updated_at": datetime.now(timezone.utc)}}
-        )
-    
-    return {"status": "received"}
