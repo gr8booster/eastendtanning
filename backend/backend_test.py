@@ -812,7 +812,7 @@ class BackendAPITester:
 
 def main():
     print("="*60)
-    print("BACKEND API TESTING - EASTEND PHASE 1 IMPLEMENTATION")
+    print("BACKEND API TESTING - EASTEND FINAL COMPREHENSIVE TESTING")
     print("="*60)
     print(f"Base URL: https://tan-laundry.preview.emergentagent.com")
     print(f"Started: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
