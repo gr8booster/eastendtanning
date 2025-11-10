@@ -434,6 +434,26 @@ export default function Admin() {
                 </Button>
               </div>
 
+              {/* Delivery Toggle */}
+              <Card className="p-4 mb-4 bg-blue-50 border-blue-200">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h4 className="font-bold">Online Ordering Settings</h4>
+                    <p className="text-sm text-muted-foreground">
+                      {deliveryEnabled ? 'Customers can order for pickup or delivery' : 'Pickup only - delivery is disabled'}
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <span className="text-sm font-medium">{deliveryEnabled ? 'Delivery Enabled' : 'Pickup Only'}</span>
+                    <Switch 
+                      checked={deliveryEnabled}
+                      onCheckedChange={handleToggleDelivery}
+                      data-testid="delivery-toggle"
+                    />
+                  </div>
+                </div>
+              </Card>
+
               {/* Search and Filter */}
               <div className="flex gap-3 mb-4">
                 <div className="flex-1 relative">
