@@ -800,8 +800,169 @@ export default function Admin() {
               </div>
             </Card>
           </TabsContent>
+
+          {/* Users Tab (Owner Only) */}
+          <TabsContent value="users">
+            <Card className="p-6">
+              <div className="flex items-center justify-between mb-6">
+                <div>
+                  <h3 className="font-serif text-2xl font-bold flex items-center gap-2">
+                    <Users className="w-6 h-6" /> User Management
+                  </h3>
+                  <p className="text-sm text-muted-foreground mt-1">Manage staff users and their roles (Owner only)</p>
+                </div>
+                <Button onClick={handleCreateUser} data-testid="create-user-button">
+                  <Plus className="w-4 h-4 mr-2" />
+                  Create New User
+                </Button>
+              </div>
+
+              <div className="overflow-x-auto">
+                <table className="w-full" data-testid="users-table">
+                  <thead className="bg-muted">
+                    <tr>
+                      <th className="px-4 py-3 text-left text-sm font-semibold">Name</th>
+                      <th className="px-4 py-3 text-left text-sm font-semibold">Email</th>
+                      <th className="px-4 py-3 text-left text-sm font-semibold">Role</th>
+                      <th className="px-4 py-3 text-left text-sm font-semibold">Status</th>
+                      <th className="px-4 py-3 text-left text-sm font-semibold">Created</th>
+                      <th className="px-4 py-3 text-left text-sm font-semibold">Last Login</th>
+                      <th className="px-4 py-3 text-left text-sm font-semibold">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {users.length > 0 ? users.map((user, index) => (
+                      <tr key={user.id} className={index % 2 === 0 ? 'bg-white' : 'bg-muted/30'}>
+                        <td className="px-4 py-3 text-sm font-medium">{user.name}</td>
+                        <td className="px-4 py-3 text-sm">{user.email}</td>
+                        <td className="px-4 py-3 text-sm">
+                          <Badge variant={user.role === 'owner' ? 'default' : 'secondary'}>
+                            {user.role}
+                          </Badge>
+                        </td>
+                        <td className="px-4 py-3 text-sm">
+                          <Badge variant={user.active ? 'default' : 'destructive'}>
+                            {user.active ? 'Active' : 'Inactive'}
+                          </Badge>
+                        </td>
+                        <td className="px-4 py-3 text-sm text-muted-foreground">
+                          {new Date(user.created_at).toLocaleDateString()}
+                        </td>
+                        <td className="px-4 py-3 text-sm text-muted-foreground">
+                          {user.last_login ? new Date(user.last_login).toLocaleDateString() : 'Never'}
+                        </td>
+                        <td className="px-4 py-3 text-sm">
+                          <div className="flex gap-2">
+                            <Button 
+                              variant="outline" 
+                              size="sm"
+                              onClick={() => handleEditUser(user)}
+                              data-testid={`user-edit-${user.id}`}
+                            >
+                              <Edit className="w-4 h-4" />
+                            </Button>
+                            {user.role !== 'owner' && (
+                              <Button 
+                                variant="ghost" 
+                                size="sm"
+                                onClick={() => handleDeleteUser(user.id)}
+                                data-testid={`user-delete-${user.id}`}
+                              >
+                                <Trash2 className="w-4 h-4 text-destructive" />
+                              </Button>
+                            )}
+                          </div>
+                        </td>
+                      </tr>
+                    )) : (
+                      <tr>
+                        <td colSpan="7" className="px-4 py-8 text-center text-muted-foreground">
+                          No users found. Create your first staff user to get started!
+                        </td>
+                      </tr>
+                    )}
+                  </tbody>
+                </table>
+              </div>
+            </Card>
+          </TabsContent>
         </Tabs>
       </div>
+
+      {/* User Modal */}
+      <Dialog open={showUserModal} onOpenChange={setShowUserModal}>
+        <DialogContent className="sm:max-w-md" data-testid="user-modal">
+          <DialogHeader>
+            <DialogTitle>{editingUser ? 'Edit User' : 'Create New User'}</DialogTitle>
+          </DialogHeader>
+
+          <div className="grid gap-4 py-4">
+            <div>
+              <Label>Email</Label>
+              <Input 
+                type="email"
+                value={userForm.email}
+                onChange={(e) => setUserForm({...userForm, email: e.target.value})}
+                placeholder="user@eastend.com"
+                disabled={editingUser !== null}
+                data-testid="user-modal-email"
+              />
+            </div>
+
+            <div>
+              <Label>Name</Label>
+              <Input 
+                value={userForm.name}
+                onChange={(e) => setUserForm({...userForm, name: e.target.value})}
+                placeholder="John Doe"
+                data-testid="user-modal-name"
+              />
+            </div>
+
+            <div>
+              <Label>Role</Label>
+              <Select value={userForm.role} onValueChange={(val) => setUserForm({...userForm, role: val})}>
+                <SelectTrigger data-testid="user-modal-role">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="owner">Owner</SelectItem>
+                  <SelectItem value="admin">Admin</SelectItem>
+                  <SelectItem value="marketing_associate">Marketing Associate</SelectItem>
+                  <SelectItem value="sales_associate">Sales Associate</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div>
+              <Label>Password {editingUser && '(leave blank to keep current)'}</Label>
+              <Input 
+                type="password"
+                value={userForm.password}
+                onChange={(e) => setUserForm({...userForm, password: e.target.value})}
+                placeholder={editingUser ? 'Leave blank to keep current' : 'Enter password'}
+                data-testid="user-modal-password"
+              />
+            </div>
+
+            <div className="flex items-center gap-2">
+              <Switch 
+                checked={userForm.active}
+                onCheckedChange={(val) => setUserForm({...userForm, active: val})}
+                data-testid="user-modal-active"
+              />
+              <Label>Active</Label>
+            </div>
+          </div>
+
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setShowUserModal(false)}>Cancel</Button>
+            <Button onClick={handleSaveUser} data-testid="user-modal-save">
+              {editingUser ? 'Update User' : 'Create User'}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
 
       {/* Fizze Modal */}
       <Dialog open={showFizzeModal} onOpenChange={setShowFizzeModal}>
