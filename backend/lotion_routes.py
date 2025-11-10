@@ -12,6 +12,7 @@ import uuid
 import os
 
 from auth import verify_token
+from roles import Permission, require_permission
 
 router = APIRouter(prefix="/api/lotions", tags=["lotions"])
 
