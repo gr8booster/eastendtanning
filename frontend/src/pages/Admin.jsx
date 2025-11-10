@@ -83,6 +83,7 @@ export default function Admin() {
       setLotions(Array.isArray(lotionsData) ? lotionsData : []); 
       setVoiceCalls(voiceCallsData?.calls || []);
       setFizzeDrinks(Array.isArray(fizzeDrinksData) ? fizzeDrinksData : []);
+      setDeliveryEnabled(orderSettings?.delivery_enabled ?? true);
       setLastUpdated(new Date());
     } catch (error) {
       console.error('Error fetching dashboard data:', error);
