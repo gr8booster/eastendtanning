@@ -5,6 +5,7 @@ import { Button } from '../components/ui/button';
 import { Card } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
 import { Check, Sparkles, Gift, Crown, Zap } from 'lucide-react';
+import { SEOHead, createServiceSchema } from '../components/SEOHead';
 
 const matrixPoster = "https://images.unsplash.com/photo-1540555700478-4be289fbecef?q=80&w=1200&auto=format&fit=crop";
 
@@ -28,146 +29,115 @@ export default function Tanning() {
     { icon: <Check className="w-5 h-5" />, text: "Professional skin type evaluation (free)" },
     { icon: <Gift className="w-5 h-5" />, text: "Premium lotions catalog with expert recommendations" },
     { icon: <Crown className="w-5 h-5" />, text: "Unlimited tanning - best value for consistent results" },
+    { icon: <Zap className="w-5 h-5" />, text: "Consistent tanning delivers real, lasting results" }
   ];
 
   return (
-    <div className="min-h-screen">
-      {/* Hero - Conversion Focused */}
-      <section className="relative bg-gradient-to-br from-[#F59E0B]/10 via-white to-[#14B8A6]/10 py-20">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-10 max-w-[1200px]">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <Badge className="mb-4 bg-gradient-to-r from-[#F59E0B] to-[#14B8A6] text-white">
-                <Zap className="w-3 h-3 mr-1" />
-                Achieve Your Perfect Glow
-              </Badge>
-              <h1 className="font-serif text-5xl md:text-6xl font-bold mb-6 leading-tight">
-                Tanning Studio
-              </h1>
-              <p className="text-xl text-muted-foreground mb-6">
-                5 tanning levels including Matrix, stand-up, and red-light therapy. From budget-friendly to premium VIP experience.
-              </p>
-              
-              <div className="space-y-3 mb-8">
-                {benefits.map((benefit, idx) => (
-                  <div key={idx} className="flex items-center gap-3 text-muted-foreground">
-                    <div className="text-[#14B8A6]">{benefit.icon}</div>
-                    <span>{benefit.text}</span>
-                  </div>
-                ))}
-              </div>
+    <div className="min-h-screen bg-muted">
+      <SEOHead
+        title="Monthly Unlimited Tanning Packages - Best Value for Real Results"
+        description="Get your perfect tan with Monthly Unlimited and VIP tanning packages at Eastend. Professional UV beds, premium lotions, expert staff. Consistent tanning delivers results - single sessions don't work!"
+        keywords="monthly unlimited tanning, VIP tanning package, UV tanning beds, tanning salon Mount Vernon, spray tan, indoor tanning, tanning lotions"
+        ogImage="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=1200"
+        schemaMarkup={createServiceSchema('Monthly Unlimited Tanning', 'Unlimited UV tanning on all levels with professional beds and expert guidance', 59.99)}
+      />
 
-              <div className="flex gap-3">
-                <Button
-                  onClick={openChat}
-                  size="lg"
-                  className="bg-gradient-to-r from-[#F59E0B] to-[#14B8A6] text-white px-8"
-                >
-                  Talk to Mary - Get Recommendation
-                </Button>
-              </div>
+      {/* Hero Section */}
+      <div className="relative bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--secondary))] text-white py-20">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl">
+            <Badge className="mb-4 bg-white/20 text-white border-white/30">Popular Choice</Badge>
+            <h1 className="font-serif text-5xl md:text-6xl font-bold mb-6">Get Your Perfect Tan</h1>
+            <p className="text-xl mb-4 text-white/90">
+              Real tanning results require consistency. Buying one or five sessions isn't practical - get unlimited access!
+            </p>
+            <div className="space-y-3">
+              {benefits.map((benefit, idx) => (
+                <div key={idx} className="flex items-center gap-3">
+                  <div className="text-white/90">{benefit.icon}</div>
+                  <span className="text-white/90">{benefit.text}</span>
+                </div>
+              ))}
             </div>
-
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-[#F59E0B]/20 to-[#14B8A6]/20 rounded-2xl blur-3xl"></div>
-              <img
-                src="https://customer-assets.emergentagent.com/job_tanning-chatbot/artifacts/zne70emi_Screenshot_20230527-083315_Gallery.jpg"
-                alt="Tanning Results"
-                className="relative rounded-2xl shadow-2xl w-full"
-              />
+            <div className="flex gap-4 mt-8">
+              <Button size="lg" className="bg-white text-[hsl(var(--primary))] hover:bg-white/90" onClick={openChat}>
+                Chat with Mary - Get Skin Type Evaluation
+              </Button>
             </div>
           </div>
         </div>
-      </section>
+        <div className="absolute inset-0 overflow-hidden opacity-10">
+          <img src={matrixPoster} alt="" className="w-full h-full object-cover" />
+        </div>
+      </div>
 
-      {/* Video */}
-      <section className="py-12 bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-10 max-w-[1200px]">
-          <Card className="p-0 overflow-hidden">
+      {/* Video Showcase */}
+      <div className="container mx-auto px-4 py-16">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-8">
+            <h2 className="font-serif text-3xl font-bold mb-4">Our Premium Tanning Beds</h2>
+            <p className="text-muted-foreground">State-of-the-art equipment for the best tanning experience</p>
+          </div>
+          <Card className="overflow-hidden">
             <video
               controls
-              poster="https://customer-assets.emergentagent.com/job_tanning-chatbot/artifacts/zne70emi_Screenshot_20230527-083315_Gallery.jpg"
-              className="w-full h-auto"
-              data-testid="tanning-video"
+              poster={matrixPoster}
+              className="w-full aspect-video bg-black"
             >
-              <source src="https://customer-assets.emergentagent.com/job_tanning-chatbot/artifacts/e30rw6wp_Movie%2090_1_1.mp4" type="video/mp4" />
+              <source src="/videos/tanning-beds.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
           </Card>
         </div>
-      </section>
+      </div>
 
-      {/* Pricing - Focused on Monthly/VIP */}
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-10 max-w-[1200px]">
-          <div className="text-center mb-12">
-            <Badge variant="secondary" className="mb-4">Best Value for Results</Badge>
-            <h2 className="font-serif text-4xl font-bold mb-4">Monthly Unlimited Packages</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Buying one or five sessions isn't practical for real results. Get unlimited access and see the difference!
-            </p>
-          </div>
-
-          <PricingTable items={packages} highlightMonthly={true} note="Prices vary by tanning level. Monthly unlimited packages require autopay." />
-
-          <div className="mt-8 text-center">
-            <p className="text-sm text-muted-foreground mb-4">
-              Want to see single-session pricing? <button onClick={openChat} className="text-[#14B8A6] underline font-medium">Chat with Mary</button>
-            </p>
-          </div>
+      {/* Pricing Section */}
+      <div className="container mx-auto px-4 py-16">
+        <div className="text-center mb-12">
+          <h2 className="font-serif text-4xl font-bold mb-4">Tanning Packages</h2>
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            Monthly Unlimited packages deliver the best value and results. Consistent tanning is key!
+          </p>
         </div>
-      </section>
+        <PricingTable items={packages} highlightMonthly={true} />
+      </div>
 
       {/* Lotions Catalog */}
-      <section className="py-16">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-10 max-w-[1200px]">
+      <div className="bg-gradient-to-b from-muted to-white py-16">
+        <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <Badge variant="secondary" className="mb-4">
-              <Sparkles className="w-3 h-3 mr-1" />
-              Premium Lotions
-            </Badge>
-            <h2 className="font-serif text-4xl font-bold mb-4">Maximize Your Results</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Professional tanning lotions designed for optimal results. Pay online, pick up at Eastend.
+            <h2 className="font-serif text-4xl font-bold mb-4">Premium Tanning Lotions</h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Enhance your tan with professional-grade lotions. Buy online, pickup at Eastend.
             </p>
           </div>
-
           <LotionsCatalog />
         </div>
-      </section>
+      </div>
 
-      {/* Skin Type Evaluation CTA */}
-      <section className="py-16 bg-gradient-to-br from-[#F59E0B]/5 to-[#14B8A6]/5">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="font-serif text-3xl font-bold mb-4">Not Sure Which Package is Right?</h2>
-          <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-            Take our free skin type evaluation and get personalized recommendations from Mary Well.
-          </p>
-          <div className="flex gap-3 justify-center">
-            <Button
-              onClick={() => window.location.href = '/skin-type-evaluation'}
-              variant="outline"
-              size="lg"
-            >
-              Take Skin Type Quiz
-            </Button>
-            <Button
-              onClick={openChat}
-              size="lg"
-              className="bg-gradient-to-r from-[#F59E0B] to-[#14B8A6]"
-            >
-              Chat with Mary Now
+      {/* Skin Type CTA */}
+      <div className="container mx-auto px-4 py-16">
+        <Card className="p-8 md:p-12 bg-gradient-to-br from-[hsl(var(--primary))]/10 to-[hsl(var(--secondary))]/10 border-2 border-[hsl(var(--primary))]">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="font-serif text-3xl font-bold mb-4">Not Sure What's Right for You?</h2>
+            <p className="text-lg text-muted-foreground mb-6">
+              Chat with Mary Well, our AI tanning expert, for a free skin type evaluation and personalized package recommendation.
+            </p>
+            <Button size="lg" onClick={openChat} className="bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--secondary))]">
+              Get Your Free Skin Type Evaluation
             </Button>
           </div>
-        </div>
-      </section>
+        </Card>
+      </div>
 
       {/* Final CTA */}
-      <section className="py-12">
+      <div className="bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--secondary))] text-white py-16">
         <div className="container mx-auto px-4 text-center">
-          <BookingCTA showCall={false} showDirections={false} />
+          <h2 className="font-serif text-4xl font-bold mb-6">Ready to Get Your Glow?</h2>
+          <p className="text-xl mb-8 text-white/90">Start your tanning journey today with a Monthly Unlimited package</p>
+          <BookingCTA />
         </div>
-      </section>
+      </div>
     </div>
   );
 }
