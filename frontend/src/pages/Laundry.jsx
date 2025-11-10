@@ -75,7 +75,14 @@ export default function Laundry() {
                 <MapPin className="w-5 h-5 text-[hsl(42_92%_55%)] flex-shrink-0 mt-1" />
                 <div>
                   <p className="font-semibold">Address</p>
-                  <p className="text-muted-foreground">123 Eastend Ave, Mount Vernon, OH</p>
+                  <p className="text-muted-foreground">818 Coshocton Ave, Mt Vernon, OH</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <Phone className="w-5 h-5 text-[hsl(42_92%_55%)] flex-shrink-0 mt-1" />
+                <div>
+                  <p className="font-semibold">Phone</p>
+                  <p className="text-muted-foreground">(740) 397-9633</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
@@ -142,7 +149,14 @@ export default function Laundry() {
                 <MapPin className="w-5 h-5 text-[hsl(42_92%_55%)] flex-shrink-0 mt-1" />
                 <div>
                   <p className="font-semibold">Address</p>
-                  <p className="text-muted-foreground">456 Westend Blvd, Mount Vernon, OH</p>
+                  <p className="text-muted-foreground">116 S Norton St, Mt Vernon, OH</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <Phone className="w-5 h-5 text-[hsl(42_92%_55%)] flex-shrink-0 mt-1" />
+                <div>
+                  <p className="font-semibold">Phone</p>
+                  <p className="text-muted-foreground">(740) 397-9633</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
