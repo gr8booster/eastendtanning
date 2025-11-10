@@ -717,33 +717,40 @@ class BackendAPITester:
 
 def main():
     print("="*60)
-    print("BACKEND API TESTING - EASTEND COMPLETE SYSTEM")
+    print("BACKEND API TESTING - EASTEND PHASE 1 IMPLEMENTATION")
     print("="*60)
     print(f"Base URL: https://tan-laundry.preview.emergentagent.com")
     print(f"Started: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    print("\nFOCUS: Phase 1 discount system, Fizze Admin, existing features")
     
     tester = BackendAPITester()
     
-    # Run all tests
-    tester.test_discount_generation()
+    # Phase 1 Core Tests
+    tester.test_discount_generation()  # Updated with Phase 1 expiry logic
     tester.test_discount_validation()
     tester.test_discount_list()
-    session_id = tester.test_payment_with_discount()
-    tester.test_transaction_details(session_id)
-    tester.test_checkout_status(session_id)
     
-    # Phase 5-7 tests
-    tester.test_voice_calls_api()
+    # Phase 1 New Features
+    session_id, discount_id = tester.test_phase1_auto_apply_system()
+    first_time_session = tester.test_phase1_first_time_discount()
+    tester.test_phase1_fizze_admin_crud()
+    
+    # Existing Features (verify still working)
+    payment_session_id = tester.test_payment_with_discount()
+    tester.test_transaction_details(payment_session_id)
+    tester.test_checkout_status(payment_session_id)
+    
+    # Core existing APIs
     tester.test_admin_dashboard_apis()
     tester.test_lotions_api()
-    tester.test_blog_api()
     tester.test_mary_well_chat()
-    tester.test_rate_limiting()
+    tester.test_voice_calls_api()
     
     # Print summary
     all_passed = tester.print_summary()
     
     print(f"\nCompleted: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    print("\nNOTE: Phase 2-4 features (role-based access, social media, SEO) are NOT YET IMPLEMENTED")
     
     return 0 if all_passed else 1
 
