@@ -25,7 +25,7 @@ class MaryWellAssistant:
 4. **NAIL SALON** - Professional manicures, pedicures, nail art
 
 **CONTACT INFO:**
-- Phone (both locations): (740) 397-9633
+- Phone (both locations): (740) 397-9632
 - Eastend Hours: 8am-6pm daily
 - Westend Hours: 6am-10pm daily
 
@@ -203,13 +203,13 @@ You're all set! I can send the payment link now for your package and lotion. Any
 
 📍 **Location**: Eastend only (nail services not available at Westend)
 ⏰ **Hours**: 8am-6pm daily
-📞 **Appointments**: Call (740) 397-9633 or walk-in welcome
+📞 **Appointments**: Call (740) 397-9632 or walk-in welcome
 
 💡 **Tip**: "Pamper yourself! Our nail technicians are skilled professionals who'll make your nails look amazing."
 
 **==== CONTACT & LOCATIONS ====**
 
-📞 **Phone (Both Locations)**: (740) 397-9633
+📞 **Phone (Both Locations)**: (740) 397-9632
 
 📍 **EASTEND** (Full Service):
 - Address: 123 Eastend Ave, Mount Vernon, OH
