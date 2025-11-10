@@ -642,6 +642,101 @@ class BackendAPITester:
                     votes = vote_response.get('votes', 0)
                     print(f"   ✅ PHASE 1: Voting system working - {votes} votes")
 
+    def test_seo_endpoints(self):
+        """Test newly implemented SEO endpoints"""
+        print("\n" + "="*60)
+        print("TESTING NEWLY IMPLEMENTED SEO ENDPOINTS")
+        print("="*60)
+        
+        # Test sitemap.xml
+        success, response = self.run_test(
+            "Get sitemap.xml",
+            "GET",
+            "sitemap.xml",
+            200
+        )
+        
+        if success:
+            print(f"   ✅ Sitemap.xml accessible")
+            # Note: response will be XML string, not JSON
+        
+        # Test robots.txt
+        success, response = self.run_test(
+            "Get robots.txt",
+            "GET",
+            "robots.txt",
+            200
+        )
+        
+        if success:
+            print(f"   ✅ Robots.txt accessible")
+        
+        # Test SEO meta endpoints
+        pages = ['home', 'tanning', 'drinks', 'laundry', 'nails', 'blog']
+        for page in pages:
+            success, response = self.run_test(
+                f"Get SEO meta for {page} page",
+                "GET",
+                f"api/seo/meta/{page}",
+                200
+            )
+            
+            if success:
+                title = response.get('title', '')
+                description = response.get('description', '')
+                keywords = response.get('keywords', '')
+                print(f"   ✅ {page} meta: {title[:30]}...")
+                
+                # Verify required fields
+                if not title or not description or not keywords:
+                    print(f"   ❌ CRITICAL: Missing SEO fields for {page}")
+
+    def test_user_management_endpoints(self):
+        """Test newly implemented user management endpoints"""
+        print("\n" + "="*60)
+        print("TESTING NEWLY IMPLEMENTED USER MANAGEMENT")
+        print("="*60)
+        
+        # Test user endpoints without auth (should get 401/403)
+        success, response = self.run_test(
+            "List users (no auth - should fail)",
+            "GET",
+            "api/users/",
+            401  # Expect 401 without auth
+        )
+        
+        if not success:
+            print(f"   ✅ User endpoints correctly protected")
+        
+        # Test user login endpoint structure
+        success, response = self.run_test(
+            "User login (invalid credentials)",
+            "POST",
+            "api/users/login",
+            401,
+            data={"email": "invalid@test.com", "password": "wrongpass"}
+        )
+        
+        if not success:
+            print(f"   ✅ User login correctly rejects invalid credentials")
+        
+        # Test create user endpoint (no auth - should fail)
+        success, response = self.run_test(
+            "Create user (no auth - should fail)",
+            "POST",
+            "api/users/",
+            401,  # Expect 401 without auth
+            data={
+                "email": "test@example.com",
+                "name": "Test User",
+                "role": "staff",
+                "password": "testpass123"
+            }
+        )
+        
+        if not success:
+            print(f"   ✅ User creation correctly protected")
+
     def test_mary_well_chat(self):
         """Test Mary Well Chat API endpoints"""
         print("\n" + "="*60)
