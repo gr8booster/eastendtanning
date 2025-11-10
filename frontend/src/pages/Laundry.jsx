@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { ServiceCard } from '../components/ServiceCard';
-import { MapPin, Clock, DollarSign, Sparkles, CreditCard, Coins, User, Shield } from 'lucide-react';
+import { MapPin, Clock, DollarSign, Sparkles, CreditCard, Coins, User, Shield, Phone } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
