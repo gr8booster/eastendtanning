@@ -9,6 +9,14 @@ import { Check, Sparkles, Gift, Crown, Zap } from 'lucide-react';
 const matrixPoster = "https://images.unsplash.com/photo-1540555700478-4be289fbecef?q=80&w=1200&auto=format&fit=crop";
 
 export default function Tanning() {
+  const packages = [
+    { service: 'Single Session', description: 'Pay as you go, any level', price: '$10-35' },
+    { service: '5 Session Package', description: '5% discount on any level', price: 'Starting at $47' },
+    { service: '10 Session Package', description: '10% discount on any level', price: 'Starting at $90' },
+    { service: 'Monthly Unlimited', description: 'Unlimited tanning on levels 1-3', price: '$59-89/month' },
+    { service: 'Premium Unlimited', description: 'Unlimited tanning all levels', price: '$99/month' }
+  ];
+
   const openChat = () => {
     if (window.openMaryChat) {
       window.openMaryChat();
