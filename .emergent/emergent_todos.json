@@ -1,6 +1,30 @@
 [
   {
-    "content": "Verify phone number on all pages",
+    "content": "Fix Admin.jsx handleToggleDelivery scope error",
     "status": "completed"
+  },
+  {
+    "content": "Test Admin dashboard - verify Fizze tab and delivery toggle works",
+    "status": "in_progress"
+  },
+  {
+    "content": "Add Orders tab to Admin dashboard for fizze_orders management",
+    "status": "pending"
+  },
+  {
+    "content": "Create User Management UI tab (Owner only) with CRUD operations",
+    "status": "pending"
+  },
+  {
+    "content": "Implement role-based tab visibility using permissions.js",
+    "status": "pending"
+  },
+  {
+    "content": "Apply permission decorators to remaining backend routes",
+    "status": "pending"
+  },
+  {
+    "content": "Run comprehensive testing of all features",
+    "status": "pending"
   }
 ]
