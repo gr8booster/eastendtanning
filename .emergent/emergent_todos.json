@@ -1,58 +1,30 @@
 [
   {
-    "content": "Phase 9: Create Fizze drinks backend (fizze_routes.py, models)",
-    "status": "completed"
-  },
-  {
-    "content": "Phase 9: Create purchase receipt backend (receipt_routes.py)",
-    "status": "completed"
-  },
-  {
-    "content": "Phase 9: Update payment routes for activation receipts",
-    "status": "completed"
-  },
-  {
-    "content": "Phase 9: Update Mary Well prompt (Monthly/VIP focus)",
+    "content": "Phase 1.1: Update discount expiry logic - Modify discount_routes.py to calculate expiry: 15%=1day, 10%=3days, 5%=7days",
     "status": "pending"
   },
   {
-    "content": "Phase 9: Create FirstTimeDiscountPopup component",
-    "status": "completed"
-  },
-  {
-    "content": "Phase 9: Create LotionsCatalog component",
-    "status": "completed"
-  },
-  {
-    "content": "Phase 9: Create PurchaseReceipt page",
-    "status": "completed"
-  },
-  {
-    "content": "Phase 9: Add Fizze Menu tab to Admin dashboard",
-    "status": "in_progress"
-  },
-  {
-    "content": "Phase 9: Update Drinks page with dynamic Fizze menu + voting",
+    "content": "Phase 1.2: Hide discount codes in UI - Remove code display from FirstTimeDiscountPopup and MaryWellChat, show confirmation messages only",
     "status": "pending"
   },
   {
-    "content": "Phase 9: Restructure Tanning page as conversion funnel",
+    "content": "Phase 1.3: Implement auto-apply discount system - Update discount schema with lead_id/session_id, create /api/discounts/active endpoint",
     "status": "pending"
   },
   {
-    "content": "Phase 9: Update server.py with new routers",
-    "status": "completed"
-  },
-  {
-    "content": "Phase 9: Seed initial Fizze drinks data",
-    "status": "completed"
-  },
-  {
-    "content": "Phase 9: Wire FirstTimeDiscountPopup and Receipt route in App.js",
+    "content": "Phase 1.4: Add Fizze Admin tab - Create 7th tab in Admin.jsx with full CRUD interface for drinks management",
     "status": "pending"
   },
   {
-    "content": "Phase 9: Test all new features end-to-end",
+    "content": "Phase 1.5: Update checkout flow - Auto-apply discounts without manual code entry, display discount in summary",
+    "status": "pending"
+  },
+  {
+    "content": "Phase 1.6: Update mary_well.py - Remove code display from discount generation, pass percentage for expiry calculation",
+    "status": "pending"
+  },
+  {
+    "content": "Phase 1.7: Test and verify all Phase 1 fixes with screenshots",
     "status": "pending"
   }
 ]
