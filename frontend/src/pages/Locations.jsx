@@ -40,7 +40,7 @@ export default function Locations() {
                 </div>
                 <div className="flex items-start gap-3">
                   <Phone className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />
-                  <p className="text-muted-foreground">(740) 397-9632</p>
+                  <p className="text-muted-foreground">(740) 397-9633</p>
                 </div>
                 <div className="flex items-start gap-3">
                   <Clock className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />
@@ -76,7 +76,7 @@ export default function Locations() {
                 </div>
                 <div className="flex items-start gap-3">
                   <Phone className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />
-                  <p className="text-muted-foreground">(740) 393-3766</p>
+                  <p className="text-muted-foreground">(740) 397-9633</p>
                 </div>
                 <div className="flex items-start gap-3">
                   <Clock className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />
