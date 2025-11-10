@@ -212,6 +212,9 @@ export default function Admin() {
       fetchDashboardData(true);
     } catch (e) {
       console.error(e);
+      toast.error('Failed to update availability');
+    }
+  };
 
   const handleToggleDelivery = async () => {
     try {
@@ -228,10 +231,6 @@ export default function Admin() {
     } catch (e) {
       console.error(e);
       toast.error('Failed to toggle delivery');
-    }
-  };
-
-      toast.error('Failed to update availability');
     }
   };
 
