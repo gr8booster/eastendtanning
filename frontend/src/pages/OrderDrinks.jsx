@@ -382,18 +382,28 @@ export default function OrderDrinks() {
 
               <Card className="p-6">
                 <h3 className="font-bold text-lg mb-4">Delivery Method</h3>
+                {!deliveryEnabled && (
+                  <div className="mb-4 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
+                    <p className="text-sm font-semibold text-yellow-800">⚠️ Delivery is temporarily unavailable. Pickup only at this time.</p>
+                  </div>
+                )}
                 <Select
                   value={orderForm.delivery_method}
                   onValueChange={(val) => setOrderForm({...orderForm, delivery_method: val})}
+                  disabled={!deliveryEnabled && orderForm.delivery_method !== 'pickup'}
                 >
                   <SelectTrigger data-testid="delivery-method">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="pickup"><Package className="w-4 h-4 inline mr-2" />Pickup (15-20 min) - FREE</SelectItem>
-                    <SelectItem value="doordash">DoorDash Delivery - $2.99</SelectItem>
-                    <SelectItem value="grubhub">GrubHub Delivery - $3.49</SelectItem>
-                    <SelectItem value="ubereats">Uber Eats Delivery - $2.49</SelectItem>
+                    {deliveryEnabled && (
+                      <>
+                        <SelectItem value="doordash">DoorDash Delivery - $2.99</SelectItem>
+                        <SelectItem value="grubhub">GrubHub Delivery - $3.49</SelectItem>
+                        <SelectItem value="ubereats">Uber Eats Delivery - $2.49</SelectItem>
+                      </>
+                    )}
                   </SelectContent>
                 </Select>
 
