@@ -1,46 +1,30 @@
 [
   {
     "content": "Add SEO to Tanning.jsx",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Add SEO to Drinks.jsx",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Add SEO to Laundry.jsx with updated location info",
+    "status": "completed"
+  },
+  {
+    "content": "Add SEO to Nails/Locations/Blog pages",
+    "status": "in_progress"
+  },
+  {
+    "content": "Update Mary Well system prompt",
     "status": "pending"
   },
   {
-    "content": "Add SEO to Nails.jsx",
+    "content": "Build and verify frontend",
     "status": "pending"
   },
   {
-    "content": "Add SEO to Locations.jsx with updated phone and hours",
-    "status": "pending"
-  },
-  {
-    "content": "Add SEO to Blog.jsx",
-    "status": "pending"
-  },
-  {
-    "content": "Update Mary Well system prompt with all services",
-    "status": "pending"
-  },
-  {
-    "content": "Add User Management UI tab",
-    "status": "pending"
-  },
-  {
-    "content": "Apply role-based tab visibility in Admin",
-    "status": "pending"
-  },
-  {
-    "content": "Verify frontend builds successfully",
-    "status": "pending"
-  },
-  {
-    "content": "Final screenshots of all updated pages",
+    "content": "Take final screenshots",
     "status": "pending"
   }
 ]
