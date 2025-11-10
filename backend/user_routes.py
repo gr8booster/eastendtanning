@@ -192,9 +192,15 @@ async def delete_user(user_id: str, current_user: dict = Depends(verify_token)):
     
     return {"status": "deleted", "user_id": user_id}
 
+class LoginRequest(BaseModel):
+    email: EmailStr
+    password: str
+
 @router.post("/login")
-async def user_login(email: EmailStr, password: str):
+async def user_login(request: LoginRequest):
     """User login with email/password"""
+    email = request.email
+    password = request.password
     user_doc = await db.users.find_one({"email": email})
     
     if not user_doc:
