@@ -1,7 +1,7 @@
 [
   {
     "content": "Phase 1.1: Update discount expiry logic - Modify discount_routes.py to calculate expiry: 15%=1day, 10%=3days, 5%=7days",
-    "status": "pending"
+    "status": "in_progress"
   },
   {
     "content": "Phase 1.2: Hide discount codes in UI - Remove code display from FirstTimeDiscountPopup and MaryWellChat, show confirmation messages only",
