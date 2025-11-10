@@ -9,7 +9,7 @@
   },
   {
     "content": "Phase 9: Update payment routes for activation receipts",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Phase 9: Update Mary Well prompt (Monthly/VIP focus)",
@@ -29,7 +29,7 @@
   },
   {
     "content": "Phase 9: Add Fizze Menu tab to Admin dashboard",
-    "status": "pending"
+    "status": "in_progress"
   },
   {
     "content": "Phase 9: Update Drinks page with dynamic Fizze menu + voting",
@@ -41,10 +41,14 @@
   },
   {
     "content": "Phase 9: Update server.py with new routers",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Phase 9: Seed initial Fizze drinks data",
+    "status": "completed"
+  },
+  {
+    "content": "Phase 9: Wire FirstTimeDiscountPopup and Receipt route in App.js",
     "status": "pending"
   },
   {
