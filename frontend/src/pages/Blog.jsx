@@ -37,6 +37,11 @@ export default function Blog() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-amber-50 via-white to-teal-50">
+      <SEOHead 
+        title="Beauty & Wellness Blog - People of the Eastend"
+        description="Beauty tips, wellness advice, and local insights from Mount Vernon's premier multi-service destination"
+        keywords="beauty tips, wellness advice, Mount Vernon, hair salon, nail salon, spa services"
+      />
       {/* Hero Section */}
       <section className="relative py-20 px-4 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-amber-400/10 to-teal-400/10" />
