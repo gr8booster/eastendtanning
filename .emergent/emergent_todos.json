@@ -1,34 +1,26 @@
 [
   {
-    "content": "Phase 1.4: Add Fizze Admin tab with full CRUD interface",
+    "content": "Phase 1: Discount system + Fizze Admin - 95% COMPLETE (only minor accessibility warnings)",
     "status": "completed"
   },
   {
-    "content": "Phase 1.5: Update Mary Well to hide codes and auto-apply discounts",
+    "content": "Phase 2: Role-Based Access Control (Owner/Admin/Marketing/Sales) - Create roles.py, update auth.py, permission system",
     "status": "in_progress"
   },
   {
-    "content": "Phase 1.6: Test Phase 1 changes with screenshots",
+    "content": "Phase 3: Social Media Integrations - Call integration playbooks, implement FB/IG/TikTok routes",
     "status": "pending"
   },
   {
-    "content": "Phase 2: Role-Based Access Control (Owner/Admin/Marketing/Sales) - Full implementation",
+    "content": "Phase 4: SEO Optimization - Meta tags, structured data, sitemap, robots.txt, analytics",
     "status": "pending"
   },
   {
-    "content": "Phase 3: Social Media Integrations (Facebook/Instagram/TikTok) - Full implementation",
+    "content": "Phase 5: Final comprehensive testing + fix remaining bugs",
     "status": "pending"
   },
   {
-    "content": "Phase 4: SEO Optimization - Meta tags, structured data, sitemap, analytics",
-    "status": "pending"
-  },
-  {
-    "content": "Phase 5: Comprehensive Testing - Call testing agent and fix all bugs iteratively",
-    "status": "pending"
-  },
-  {
-    "content": "Phase 6: Production Documentation - README, RUNBOOK, health checks",
+    "content": "Phase 6: Production Documentation - README, RUNBOOK, env vars documentation",
     "status": "pending"
   }
 ]
