@@ -329,7 +329,7 @@ export default function Admin() {
 
         {/* Tabs */}
         <Tabs defaultValue="recommendations" className="mb-8">
-          <TabsList className="grid w-full grid-cols-7 mb-6">
+          <TabsList className="grid w-full grid-cols-8 mb-6">
             <TabsTrigger value="recommendations" className="text-sm">🤖 AI Recs ({recommendations.length})</TabsTrigger>
             <TabsTrigger value="campaigns" className="text-sm">📢 Campaigns ({campaigns.length})</TabsTrigger>
             <TabsTrigger value="leads" className="text-sm">📋 Leads ({leads.length})</TabsTrigger>
@@ -337,6 +337,7 @@ export default function Admin() {
             <TabsTrigger value="lotions" className="text-sm" data-testid="lotions-tab">🧴 Lotions ({lotions.length})</TabsTrigger>
             <TabsTrigger value="voicecalls" className="text-sm" data-testid="voicecalls-tab"><Phone className="w-4 h-4 inline-block mr-1" />Calls ({voiceCalls.length})</TabsTrigger>
             <TabsTrigger value="fizze" className="text-sm" data-testid="fizze-tab"><Coffee className="w-4 h-4 inline-block mr-1" />Fizze ({fizzeDrinks.length})</TabsTrigger>
+            <TabsTrigger value="orders" className="text-sm" data-testid="orders-tab">📦 Orders ({orders.length})</TabsTrigger>
           </TabsList>
 
           <TabsContent value="recommendations">
