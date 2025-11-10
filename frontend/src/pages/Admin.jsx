@@ -76,7 +76,7 @@ export default function Admin() {
   const fetchDashboardData = async (isBackgroundRefresh = false) => {
     if (!isBackgroundRefresh) setLoading(true); else setRefreshing(true);
     try {
-      const [metricsData, campaignsData, recsData, leadsData, discountsData, lotionsData, voiceCallsData, fizzeDrinksData, orderSettings, ordersData] = await Promise.all([
+      const [metricsData, campaignsData, recsData, leadsData, discountsData, lotionsData, voiceCallsData, fizzeDrinksData, orderSettings, ordersData, usersData] = await Promise.all([
         fetch(`${backendUrl}/api/dashboard/metrics`).then(r => r.ok ? r.json() : Promise.reject('metrics')),
         fetch(`${backendUrl}/api/campaigns?status=active`).then(r => r.ok ? r.json() : Promise.reject('campaigns')),
         fetch(`${backendUrl}/api/ai/recommendations?status=pending`).then(r => r.ok ? r.json() : Promise.reject('recs')),
