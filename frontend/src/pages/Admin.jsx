@@ -20,6 +20,7 @@ import {
   Coffee, Edit, Trash2, Plus, Search
 } from 'lucide-react';
 import { toast } from 'sonner';
+import { ROLES, hasPermission, PERMISSIONS } from '../utils/permissions';
 
 export default function Admin() {
   const [metrics, setMetrics] = useState(null);
