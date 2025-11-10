@@ -820,12 +820,16 @@ def main():
     
     tester = BackendAPITester()
     
-    # Phase 1 Core Tests
+    # NEWLY IMPLEMENTED FEATURES (Phase 4-6)
+    tester.test_seo_endpoints()  # NEW: SEO components
+    tester.test_user_management_endpoints()  # NEW: User management
+    
+    # Phase 1 Core Tests (Regression)
     tester.test_discount_generation()  # Updated with Phase 1 expiry logic
     tester.test_discount_validation()
     tester.test_discount_list()
     
-    # Phase 1 New Features
+    # Phase 1 Features (Regression)
     session_id, discount_id = tester.test_phase1_auto_apply_system()
     first_time_session = tester.test_phase1_first_time_discount()
     tester.test_phase1_fizze_admin_crud()
