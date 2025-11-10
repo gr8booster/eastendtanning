@@ -1,50 +1,94 @@
 [
   {
-    "content": "Phase 1.1: Update discount expiry logic - Modify discount_routes.py to calculate expiry: 15%=1day, 10%=3days, 5%=7days",
-    "status": "completed"
-  },
-  {
-    "content": "Phase 1.2: Hide discount codes in UI - Remove code display from FirstTimeDiscountPopup and MaryWellChat, show confirmation messages only",
-    "status": "completed"
-  },
-  {
-    "content": "Phase 1.3: Implement auto-apply discount system - Update discount schema with lead_id/session_id, create /api/discounts/active endpoint",
-    "status": "completed"
-  },
-  {
-    "content": "Phase 1.4: Add Fizze Admin tab - Create 7th tab in Admin.jsx with full CRUD interface for drinks management",
+    "content": "Phase 1.4: Add Fizze Admin tab with full CRUD interface",
     "status": "in_progress"
   },
   {
-    "content": "Phase 1.5: Update checkout flow - Auto-apply discounts without manual code entry, display discount in summary",
+    "content": "Phase 1.5: Update Mary Well to hide codes and auto-apply discounts",
     "status": "pending"
   },
   {
-    "content": "Phase 1.6: Update mary_well.py - Remove code display from discount generation, pass percentage for expiry calculation",
+    "content": "Phase 1.6: Test Phase 1 changes with curl and screenshots",
     "status": "pending"
   },
   {
-    "content": "Phase 1.7: Test and verify all Phase 1 fixes with screenshots",
+    "content": "Phase 2.1: Create roles.py with permission system",
     "status": "pending"
   },
   {
-    "content": "Phase 2: Role-Based Access Control - Create roles.py, update auth.py, implement permission system",
+    "content": "Phase 2.2: Update auth.py to include role in JWT",
     "status": "pending"
   },
   {
-    "content": "Phase 3: Social Media Integrations - Get integration playbooks for Facebook, Instagram, TikTok",
+    "content": "Phase 2.3: Apply permission decorators to all API routes",
     "status": "pending"
   },
   {
-    "content": "Phase 4: SEO Optimization - Add meta tags, structured data, sitemap, analytics",
+    "content": "Phase 2.4: Create frontend permission guards and update Admin.jsx",
     "status": "pending"
   },
   {
-    "content": "Phase 5: Comprehensive Testing - Call testing agent, review report, fix all bugs",
+    "content": "Phase 2.5: Create user management UI (Owner only)",
     "status": "pending"
   },
   {
-    "content": "Phase 6: Production Prep - Document environment vars, create runbook, verify supervisor config",
+    "content": "Phase 2.6: Test role-based access with screenshots",
+    "status": "pending"
+  },
+  {
+    "content": "Phase 3.1: Call integration playbooks for Facebook, Instagram, TikTok",
+    "status": "pending"
+  },
+  {
+    "content": "Phase 3.2: Implement social media backend routes with webhooks",
+    "status": "pending"
+  },
+  {
+    "content": "Phase 3.3: Create unified social media admin dashboard",
+    "status": "pending"
+  },
+  {
+    "content": "Phase 3.4: Test social media integrations",
+    "status": "pending"
+  },
+  {
+    "content": "Phase 4.1: Create SEO utils and components (meta tags, structured data)",
+    "status": "pending"
+  },
+  {
+    "content": "Phase 4.2: Add SEO to all pages, create sitemap and robots.txt",
+    "status": "pending"
+  },
+  {
+    "content": "Phase 4.3: Install analytics and optimize performance",
+    "status": "pending"
+  },
+  {
+    "content": "Phase 4.4: Test SEO with Lighthouse audit",
+    "status": "pending"
+  },
+  {
+    "content": "Phase 5.1: Call comprehensive testing agent",
+    "status": "pending"
+  },
+  {
+    "content": "Phase 5.2: Review test report and fix high-priority bugs",
+    "status": "pending"
+  },
+  {
+    "content": "Phase 5.3: Fix medium and low-priority bugs, achieve 100% pass rate",
+    "status": "pending"
+  },
+  {
+    "content": "Phase 6.1: Create production documentation (README, RUNBOOK, checklist)",
+    "status": "pending"
+  },
+  {
+    "content": "Phase 6.2: Verify supervisor config and health checks",
+    "status": "pending"
+  },
+  {
+    "content": "Phase 6.3: Final screenshots and launch verification",
     "status": "pending"
   }
 ]
