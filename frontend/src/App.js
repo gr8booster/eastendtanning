@@ -91,6 +91,7 @@ function App() {
         <Toaster />
       </div>
     </BrowserRouter>
+    </HelmetProvider>
   );
 }
 
