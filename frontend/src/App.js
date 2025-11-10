@@ -36,15 +36,32 @@ function ProtectedRoute({ children }) {
   return children;
 }
 
+// Analytics tracker component
+function AnalyticsTracker() {
+  const location = useLocation();
+  
+  useEffect(() => {
+    initGA();
+  }, []);
+  
+  useEffect(() => {
+    trackPageView(location.pathname + location.search);
+  }, [location]);
+  
+  return null;
+}
+
 function App() {
   return (
-    <BrowserRouter>
-      <div className="App min-h-screen flex flex-col">
-        <Header />
-        <LeadCaptureManager />
-        <MaryWellChat />
-        <FirstTimeDiscountPopup />
-        <main className="flex-1">
+    <HelmetProvider>
+      <BrowserRouter>
+        <AnalyticsTracker />
+        <div className="App min-h-screen flex flex-col">
+          <Header />
+          <LeadCaptureManager />
+          <MaryWellChat />
+          <FirstTimeDiscountPopup />
+          <main className="flex-1">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/tanning" element={<Tanning />} />
