@@ -816,7 +816,7 @@ def main():
     print("="*60)
     print(f"Base URL: https://tan-laundry.preview.emergentagent.com")
     print(f"Started: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-    print("\nFOCUS: Phase 1 discount system, Fizze Admin, existing features")
+    print("\nFOCUS: SEO endpoints, user management, regression testing of all features")
     
     tester = BackendAPITester()
     
