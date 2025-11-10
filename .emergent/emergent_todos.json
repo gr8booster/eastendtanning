@@ -1,15 +1,15 @@
 [
   {
     "content": "Phase 9: Create Fizze drinks backend (fizze_routes.py, models)",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Phase 9: Create purchase receipt backend (receipt_routes.py)",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Phase 9: Update payment routes for activation receipts",
-    "status": "pending"
+    "status": "in_progress"
   },
   {
     "content": "Phase 9: Update Mary Well prompt (Monthly/VIP focus)",
@@ -17,15 +17,15 @@
   },
   {
     "content": "Phase 9: Create FirstTimeDiscountPopup component",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Phase 9: Create LotionsCatalog component",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Phase 9: Create PurchaseReceipt page",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Phase 9: Add Fizze Menu tab to Admin dashboard",
