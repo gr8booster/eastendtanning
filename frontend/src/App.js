@@ -1,4 +1,5 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { Toaster } from './components/ui/sonner';
@@ -20,6 +21,8 @@ import PaymentCancel from './pages/PaymentCancel';
 import Receipt from './pages/Receipt';
 import { MaryWellChat } from './components/MaryWellChat';
 import { FirstTimeDiscountPopup } from './components/FirstTimeDiscountPopup';
+import { useEffect } from 'react';
+import { initGA, trackPageView } from './utils/analytics';
 import './App.css';
 
 // Protected Route Component
