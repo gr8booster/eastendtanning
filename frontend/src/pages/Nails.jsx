@@ -74,6 +74,12 @@ export default function Nails() {
 
   return (
     <div className="min-h-screen">
+      <SEOHead
+        title="Nail Salon Services - Manicures, Pedicures & Nail Art"
+        description="Professional nail services at Eastend including expert manicures, pedicures, gel nails, and custom nail art. Relax and pamper yourself with our skilled technicians."
+        keywords="nail salon Mount Vernon, manicure, pedicure, gel nails, nail art, acrylic nails, nail care"
+        schemaMarkup={createServiceSchema('Nail Salon Services', 'Professional manicures, pedicures, and nail art services', 25)}
+      />
       {/* Hero */}
       <section className="py-16 sm:py-20 bg-[linear-gradient(135deg,hsl(172_45%_94%),hsl(43_96%_96%))]">
         <div className="container mx-auto px-4 sm:px-6 lg:px-10 max-w-[1200px]">
