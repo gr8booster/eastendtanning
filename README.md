@@ -129,12 +129,12 @@ yarn start
 
 ## 🌐 Application URLs
 
-- **Frontend**: https://tan-laundry.preview.emergentagent.com
-- **Backend API**: https://tan-laundry.preview.emergentagent.com/api
-- **Admin Dashboard**: https://tan-laundry.preview.emergentagent.com/admin
-- **API Documentation**: https://tan-laundry.preview.emergentagent.com/docs
-- **Sitemap**: https://tan-laundry.preview.emergentagent.com/sitemap.xml
-- **Robots.txt**: https://tan-laundry.preview.emergentagent.com/robots.txt
+- **Frontend**: https://laundry-marketing.preview.emergentagent.com
+- **Backend API**: https://laundry-marketing.preview.emergentagent.com/api
+- **Admin Dashboard**: https://laundry-marketing.preview.emergentagent.com/admin
+- **API Documentation**: https://laundry-marketing.preview.emergentagent.com/docs
+- **Sitemap**: https://laundry-marketing.preview.emergentagent.com/sitemap.xml
+- **Robots.txt**: https://laundry-marketing.preview.emergentagent.com/robots.txt
 
 ## 🔐 Default Credentials
 
@@ -350,7 +350,7 @@ echo $MONGO_URL
 
 ```bash
 # Check service health
-curl https://tan-laundry.preview.emergentagent.com/health
+curl https://laundry-marketing.preview.emergentagent.com/health
 
 # View real-time logs
 supervisorctl tail -f backend stderr

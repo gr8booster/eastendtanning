@@ -9,7 +9,7 @@ export function SEOHead({
   canonical,
   schemaMarkup
 }) {
-  const baseUrl = 'https://tan-laundry.preview.emergentagent.com';
+  const baseUrl = 'https://laundry-marketing.preview.emergentagent.com';
   const defaultTitle = 'Eastend Tanning & Laundry - Premier Tanning Salon & Laundromat';
   const defaultDescription = 'Experience luxury tanning and convenient laundry services at Eastend. Monthly unlimited tanning packages, professional lotions, coin & card laundry, and fresh Fizze bubble tea drinks.';
   const defaultImage = `${baseUrl}/images/eastend-hero.jpg`;
@@ -65,9 +65,9 @@ export const createLocalBusinessSchema = () => {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "Eastend Tanning & Laundry",
-    "image": "https://tan-laundry.preview.emergentagent.com/images/eastend-logo.jpg",
-    "@id": "https://tan-laundry.preview.emergentagent.com",
-    "url": "https://tan-laundry.preview.emergentagent.com",
+    "image": "https://laundry-marketing.preview.emergentagent.com/images/eastend-logo.jpg",
+    "@id": "https://laundry-marketing.preview.emergentagent.com",
+    "url": "https://laundry-marketing.preview.emergentagent.com",
     "telephone": "+1-555-EASTEND",
     "priceRange": "$$",
     "address": {
@@ -138,7 +138,7 @@ export const createProductSchema = (product) => {
     },
     "offers": {
       "@type": "Offer",
-      "url": `https://tan-laundry.preview.emergentagent.com/drinks`,
+      "url": `https://laundry-marketing.preview.emergentagent.com/drinks`,
       "priceCurrency": "USD",
       "price": product.price,
       "availability": product.available ? "https://schema.org/InStock" : "https://schema.org/OutOfStock"

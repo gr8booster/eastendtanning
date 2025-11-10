@@ -15,7 +15,7 @@ export default function Home() {
         title="Eastend Tanning & Laundry - Premier Tanning Salon & Laundromat"
         description="Experience luxury tanning and convenient laundry services at Eastend. Monthly unlimited tanning packages, professional lotions, coin & card laundry, and fresh Fizze bubble tea drinks."
         keywords="tanning salon, laundromat, bubble tea, Fizze drinks, spray tan, UV tanning, coin laundry, laundry service, Mount Vernon Ohio"
-        ogImage="https://tan-laundry.preview.emergentagent.com/images/eastend-hero.jpg"
+        ogImage="https://laundry-marketing.preview.emergentagent.com/images/eastend-hero.jpg"
         schemaMarkup={createLocalBusinessSchema()}
       />
       {/* Hero Section */}
