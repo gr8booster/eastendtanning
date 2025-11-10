@@ -82,6 +82,10 @@ export function FirstTimeDiscountPopup() {
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogContent className="sm:max-w-md" data-testid="first-time-discount-popup">
+        <DialogTitle className="sr-only">Welcome Discount</DialogTitle>
+        <DialogDescription className="sr-only">
+          Exclusive 15% off discount for first-time visitors, automatically applied to your order.
+        </DialogDescription>
         <div className="relative">
           <Button
             variant="ghost"
