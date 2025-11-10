@@ -212,6 +212,25 @@ export default function Admin() {
       fetchDashboardData(true);
     } catch (e) {
       console.error(e);
+
+  const handleToggleDelivery = async () => {
+    try {
+      const newState = !deliveryEnabled;
+      const res = await fetch(`${backendUrl}/api/orders/settings/delivery-toggle?enabled=${newState}`, {
+        method: 'POST',
+        headers: adminHeaders()
+      });
+
+      if (!res.ok) throw new Error('Toggle failed');
+
+      setDeliveryEnabled(newState);
+      toast.success(newState ? 'Delivery enabled' : 'Delivery disabled (pickup only)');
+    } catch (e) {
+      console.error(e);
+      toast.error('Failed to toggle delivery');
+    }
+  };
+
       toast.error('Failed to update availability');
     }
   };
