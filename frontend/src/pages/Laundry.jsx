@@ -82,7 +82,7 @@ export default function Laundry() {
                 <Phone className="w-5 h-5 text-[hsl(42_92%_55%)] flex-shrink-0 mt-1" />
                 <div>
                   <p className="font-semibold">Phone</p>
-                  <p className="text-muted-foreground">(740) 397-9633</p>
+                  <p className="text-muted-foreground">(740) 397-9632</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
@@ -156,7 +156,7 @@ export default function Laundry() {
                 <Phone className="w-5 h-5 text-[hsl(42_92%_55%)] flex-shrink-0 mt-1" />
                 <div>
                   <p className="font-semibold">Phone</p>
-                  <p className="text-muted-foreground">(740) 397-9633</p>
+                  <p className="text-muted-foreground">(740) 397-9632</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
@@ -201,7 +201,7 @@ export default function Laundry() {
         <div className="container mx-auto px-4 text-center">
           <h2 className="font-serif text-4xl font-bold mb-6">Questions About Our Services?</h2>
           <p className="text-xl mb-8 text-white/90 max-w-2xl mx-auto">
-            Call us at (740) 397-9633 or chat with Mary Well for instant answers
+            Call us at (740) 397-9632 or chat with Mary Well for instant answers
           </p>
           <div className="flex gap-4 justify-center">
             <Button
@@ -209,7 +209,7 @@ export default function Laundry() {
               className="bg-white text-[hsl(42_92%_55%)] hover:bg-white/90"
               onClick={() => window.open('tel:7403979633')}
             >
-              Call (740) 397-9633
+              Call (740) 397-9632
             </Button>
             <Button
               size="lg"
