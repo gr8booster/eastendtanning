@@ -1,19 +1,11 @@
 [
   {
-    "content": "Create production README and deployment guide",
+    "content": "Fix critical bugs from testing: user login endpoint, SEO Open Graph tags",
     "status": "completed"
-  },
-  {
-    "content": "Restart services and verify everything compiles",
-    "status": "completed"
-  },
-  {
-    "content": "Run final comprehensive testing",
-    "status": "in_progress"
   },
   {
     "content": "Take final screenshots for launch verification",
-    "status": "pending"
+    "status": "in_progress"
   },
   {
     "content": "Update plan.md with final status",
