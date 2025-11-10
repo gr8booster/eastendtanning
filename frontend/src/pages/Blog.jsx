@@ -5,6 +5,7 @@ import { Badge } from '../components/ui/badge';
 import { Button } from '../components/ui/button';
 import { Skeleton } from '../components/ui/skeleton';
 import { Calendar, Tag, ArrowRight, Sparkles } from 'lucide-react';
+import { SEOHead } from '../components/SEOHead';
 
 export default function Blog() {
   const [posts, setPosts] = useState([]);
