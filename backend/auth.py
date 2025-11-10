@@ -54,12 +54,12 @@ def verify_token(authorization: Optional[str] = Header(None)):
 
 @router.post("/login", response_model=TokenResponse)
 async def login(request: LoginRequest):
-    """Admin login endpoint"""
+    """Admin login endpoint - grants Owner role with full access"""
     if request.password != ADMIN_PASSWORD:
         raise HTTPException(status_code=401, detail="Invalid password")
     
-    # Create access token
-    access_token, expires_at = create_access_token({"sub": "admin", "role": "admin"})
+    # Create access token with Owner role (full permissions)
+    access_token, expires_at = create_access_token({"sub": "admin", "role": "owner", "email": "admin@eastend.com", "name": "Admin Owner"})
     
     return TokenResponse(
         token=access_token,
