@@ -1,18 +1,18 @@
 [
   {
-    "content": "Add SEO to Nails/Locations/Blog pages",
+    "content": "Update Mary Well system prompt with all services",
     "status": "completed"
   },
   {
-    "content": "Update Mary Well system prompt with all services (tanning, laundry, fizze, nails)",
+    "content": "Build and verify frontend compiles",
     "status": "in_progress"
   },
   {
-    "content": "Build and verify frontend compiles",
+    "content": "Take final screenshots of all pages",
     "status": "pending"
   },
   {
-    "content": "Take final screenshots",
+    "content": "Final verification - Frontend 100% complete",
     "status": "pending"
   }
 ]
