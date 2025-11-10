@@ -46,6 +46,10 @@ export default function Admin() {
   const [fizzeSearch, setFizzeSearch] = useState('');
   const [fizzeFilter, setFizzeFilter] = useState('all');
   const [deliveryEnabled, setDeliveryEnabled] = useState(true);
+  
+  // Orders state
+  const [orders, setOrders] = useState([]);
+  const [ordersFilter, setOrdersFilter] = useState('all');
 
   const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
