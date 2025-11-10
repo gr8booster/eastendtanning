@@ -2,7 +2,7 @@
 
 ## Context Sync
 - **Current Status**: All Phase 1-8 features completed and tested (92.6% success rate)
-- **Preview URL**: https://tanning-chatbot.preview.emergentagent.com
+- **Preview URL**: https://tan-laundry.preview.emergentagent.com
 - **Tech Stack**: FastAPI + React + MongoDB; Stripe test mode; Emergent LLM (GPT-4o + Claude); SendGrid + Twilio ready
 - **New Objective**: Prepare for production go-live with streamlined tanning funnel, Fizze menu management, enhanced lotions catalog, and social media integrations
 
