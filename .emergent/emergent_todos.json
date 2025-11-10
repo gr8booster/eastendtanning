@@ -5,11 +5,11 @@
   },
   {
     "content": "Test Admin dashboard - verify Fizze tab and delivery toggle works",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Add Orders tab to Admin dashboard for fizze_orders management",
-    "status": "pending"
+    "status": "in_progress"
   },
   {
     "content": "Create User Management UI tab (Owner only) with CRUD operations",
