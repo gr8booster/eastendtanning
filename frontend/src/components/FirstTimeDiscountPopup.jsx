@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { X, Gift, Clock } from 'lucide-react';
 import { Button } from './ui/button';
-import { Dialog, DialogContent } from './ui/dialog';
+import { Dialog, DialogContent, DialogTitle, DialogDescription } from './ui/dialog';
 import { Badge } from './ui/badge';
 import { useNavigate } from 'react-router-dom';
 
