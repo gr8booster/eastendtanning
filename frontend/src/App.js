@@ -17,7 +17,9 @@ import BlogPost from './pages/BlogPost';
 import SkinTypeEvaluation from './pages/SkinTypeEvaluation';
 import PaymentSuccess from './pages/PaymentSuccess';
 import PaymentCancel from './pages/PaymentCancel';
+import Receipt from './pages/Receipt';
 import { MaryWellChat } from './components/MaryWellChat';
+import { FirstTimeDiscountPopup } from './components/FirstTimeDiscountPopup';
 import './App.css';
 
 // Protected Route Component
@@ -38,6 +40,7 @@ function App() {
         <Header />
         <LeadCaptureManager />
         <MaryWellChat />
+        <FirstTimeDiscountPopup />
         <main className="flex-1">
           <Routes>
             <Route path="/" element={<Home />} />
@@ -53,6 +56,7 @@ function App() {
             <Route path="/skin-type-evaluation" element={<SkinTypeEvaluation />} />
             <Route path="/payment/success" element={<PaymentSuccess />} />
             <Route path="/payment/cancel" element={<PaymentCancel />} />
+            <Route path="/receipt/:sessionId" element={<Receipt />} />
             <Route 
               path="/admin" 
               element={
