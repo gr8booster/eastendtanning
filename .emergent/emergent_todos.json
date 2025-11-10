@@ -1,15 +1,11 @@
 [
   {
-    "content": "Update Mary Well system prompt with all services",
+    "content": "Build and verify frontend compiles",
     "status": "completed"
   },
   {
-    "content": "Build and verify frontend compiles",
-    "status": "in_progress"
-  },
-  {
     "content": "Take final screenshots of all pages",
-    "status": "pending"
+    "status": "in_progress"
   },
   {
     "content": "Final verification - Frontend 100% complete",
