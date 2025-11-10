@@ -1,14 +1,10 @@
 [
   {
-    "content": "Build and verify frontend compiles",
+    "content": "Take final screenshots of all pages",
     "status": "completed"
   },
   {
-    "content": "Take final screenshots of all pages",
-    "status": "in_progress"
-  },
-  {
     "content": "Final verification - Frontend 100% complete",
-    "status": "pending"
+    "status": "completed"
   }
 ]
