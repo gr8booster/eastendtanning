@@ -1,6 +1,18 @@
 [
   {
-    "content": "Take screenshots of all fixes",
-    "status": "completed"
+    "content": "Find all phone number occurrences (740) 397-9633",
+    "status": "in_progress"
+  },
+  {
+    "content": "Replace with correct number (740) 397-9632 in all files",
+    "status": "pending"
+  },
+  {
+    "content": "Build and restart services",
+    "status": "pending"
+  },
+  {
+    "content": "Verify phone number on all pages",
+    "status": "pending"
   }
 ]
