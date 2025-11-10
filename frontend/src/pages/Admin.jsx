@@ -50,6 +50,14 @@ export default function Admin() {
   // Orders state
   const [orders, setOrders] = useState([]);
   const [ordersFilter, setOrdersFilter] = useState('all');
+  
+  // Users state
+  const [users, setUsers] = useState([]);
+  const [showUserModal, setShowUserModal] = useState(false);
+  const [editingUser, setEditingUser] = useState(null);
+  const [userForm, setUserForm] = useState({
+    email: '', name: '', role: 'admin', password: '', active: true
+  });
 
   const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
