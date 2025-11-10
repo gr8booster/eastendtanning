@@ -1,22 +1,26 @@
 [
   {
     "content": "SEO Phase 4: Create SEO components, meta tags, structured data for all pages",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "SEO Phase 4: Generate sitemap.xml and robots.txt routes",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "SEO Phase 4: Add Google Analytics integration",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "User Management: Create backend user_routes.py with full CRUD",
-    "status": "pending"
+    "status": "in_progress"
   },
   {
     "content": "User Management: Add User Management tab to Admin dashboard",
+    "status": "pending"
+  },
+  {
+    "content": "Add SEO to all page components (Home, Tanning, Drinks, etc.)",
     "status": "pending"
   },
   {
@@ -24,7 +28,7 @@
     "status": "pending"
   },
   {
-    "content": "Bug Fixes: Add DialogTitle to FirstTimeDiscountPopup",
+    "content": "Bug Fixes: Add DialogTitle to FirstTimeDiscountPopup, fix video URL",
     "status": "pending"
   },
   {
