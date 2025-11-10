@@ -24,6 +24,8 @@ from lotion_routes import router as lotion_router
 from voice_routes import router as voice_router
 import blog_scheduler
 import marketing_worker
+from fizze_routes import fizze_router
+from receipt_routes import receipt_router
 
 
 ROOT_DIR = Path(__file__).parent
@@ -93,6 +95,8 @@ app.include_router(journey_router)  # Include marketing journey routes
 app.include_router(discount_router)  # Include discount code routes
 app.include_router(lotion_router)  # Include lotions routes
 app.include_router(voice_router)  # Include voice routes
+app.include_router(fizze_router)  # Include fizze routes
+app.include_router(receipt_router)  # Include receipt routes
 
 app.add_middleware(
     CORSMiddleware,
