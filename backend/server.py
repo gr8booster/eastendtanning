@@ -28,6 +28,7 @@ from fizze_routes import fizze_router
 from receipt_routes import receipt_router
 from seo_routes import router as seo_router
 from user_routes import router as user_router
+from online_ordering_routes import router as ordering_router
 
 
 ROOT_DIR = Path(__file__).parent
