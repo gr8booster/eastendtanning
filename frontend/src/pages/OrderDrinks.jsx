@@ -122,7 +122,7 @@ export default function OrderDrinks() {
         tip_amount: parseFloat(orderForm.tip_amount) || 0
       };
 
-      const res = await fetch(`${backendUrl}/api/orders`, {
+      const res = await fetch(`${backendUrl}/api/orders/create`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(orderData)
