@@ -59,6 +59,9 @@ export default function Admin() {
   const [userForm, setUserForm] = useState({
     email: '', name: '', role: 'admin', password: '', active: true
   });
+  
+  // Current user role (default to owner for now, should fetch from /api/users/me)
+  const [currentUserRole, setCurrentUserRole] = useState(ROLES.OWNER);
 
   const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
