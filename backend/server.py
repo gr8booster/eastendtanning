@@ -26,6 +26,7 @@ import blog_scheduler
 import marketing_worker
 from fizze_routes import fizze_router
 from receipt_routes import receipt_router
+from seo_routes import router as seo_router
 
 
 ROOT_DIR = Path(__file__).parent
