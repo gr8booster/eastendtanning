@@ -21,10 +21,10 @@
   },
   {
     "content": "Apply permission decorators to remaining backend routes",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Run comprehensive testing of all features",
-    "status": "pending"
+    "status": "in_progress"
   }
 ]
