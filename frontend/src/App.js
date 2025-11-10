@@ -19,6 +19,7 @@ import SkinTypeEvaluation from './pages/SkinTypeEvaluation';
 import PaymentSuccess from './pages/PaymentSuccess';
 import PaymentCancel from './pages/PaymentCancel';
 import Receipt from './pages/Receipt';
+import OrderDrinks from './pages/OrderDrinks';
 import { MaryWellChat } from './components/MaryWellChat';
 import { FirstTimeDiscountPopup } from './components/FirstTimeDiscountPopup';
 import { useEffect } from 'react';
