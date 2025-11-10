@@ -94,9 +94,9 @@ async def get_leads(
     status: Optional[str] = None, 
     service: Optional[str] = None, 
     limit: int = 50,
-    current_user: dict = Depends(require_permission(Permission.LEADS_READ))
+    current_user: dict = Depends(verify_token)
 ):
-    """Get leads with optional filters"""
+    """Get leads with optional filters (requires authentication)"""
     query = {}
     if status:
         query['status'] = status
@@ -137,9 +137,9 @@ async def update_lead(
     lead_id: str, 
     status: Optional[str] = None, 
     notes: Optional[str] = None,
-    current_user: dict = Depends(require_permission(Permission.LEADS_WRITE))
+    current_user: dict = Depends(verify_token)
 ):
-    """Update lead status or notes"""
+    """Update lead status or notes (requires authentication)"""
     update_data = {"updated_at": datetime.now(timezone.utc).isoformat()}
     if status is not None:
         update_data["status"] = status
@@ -172,9 +172,9 @@ async def get_bookings(
     status: Optional[str] = None, 
     service: Optional[str] = None, 
     limit: int = 50,
-    current_user: dict = Depends(require_permission(Permission.BOOKINGS_READ))
+    current_user: dict = Depends(verify_token)
 ):
-    """Get bookings with optional filters"""
+    """Get bookings with optional filters (requires authentication)"""
     query = {}
     if service:
         query['service'] = service
@@ -212,9 +212,9 @@ async def get_bookings(
 @router.post("/campaigns", response_model=Campaign)
 async def create_campaign(
     campaign_input: CampaignCreate,
-    current_user: dict = Depends(require_permission(Permission.CAMPAIGNS_WRITE))
+    current_user: dict = Depends(verify_token)
 ):
-    """Create a new marketing campaign"""
+    """Create a new marketing campaign (requires authentication)"""
     campaign = Campaign(**campaign_input.model_dump())
     campaign_dict = campaign.model_dump()
     campaign_dict['created_at'] = campaign.created_at.isoformat()
@@ -227,9 +227,9 @@ async def create_campaign(
 async def get_campaigns(
     status: Optional[str] = None, 
     limit: int = 50,
-    current_user: dict = Depends(require_permission(Permission.CAMPAIGNS_READ))
+    current_user: dict = Depends(verify_token)
 ):
-    """Get campaigns with optional filters"""
+    """Get campaigns with optional filters (requires authentication)"""
     query = {}
     if status:
         query['status'] = status
