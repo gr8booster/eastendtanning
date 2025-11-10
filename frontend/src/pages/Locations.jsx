@@ -7,6 +7,12 @@ import { SEOHead, createLocalBusinessSchema } from '../components/SEOHead';
 export default function Locations() {
   return (
     <div className="min-h-screen">
+      <SEOHead
+        title="Locations - Eastend & Westend - Hours, Directions & Contact"
+        description="Visit Eastend Tanning & Laundry at two convenient Mount Vernon locations. Eastend: 8am-6pm, full service. Westend: 6am-10pm, self-service coin laundry. Call (740) 397-9633."
+        keywords="Eastend location, Westend location, Mount Vernon laundry, tanning salon near me, hours, directions"
+        schemaMarkup={createLocalBusinessSchema()}
+      />
       {/* Hero */}
       <section className="py-16 sm:py-20 bg-[linear-gradient(135deg,hsl(43_96%_96%),hsl(183_45%_96%))]">
         <div className="container mx-auto px-4 sm:px-6 lg:px-10 max-w-[1200px] text-center">
