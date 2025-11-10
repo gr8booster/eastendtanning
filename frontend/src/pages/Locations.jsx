@@ -2,6 +2,7 @@ import { Card } from '../components/ui/card';
 import { Button } from '../components/ui/button';
 import { Badge } from '../components/ui/badge';
 import { MapPin, Phone, Clock } from 'lucide-react';
+import { SEOHead, createLocalBusinessSchema } from '../components/SEOHead';
 
 export default function Locations() {
   return (
