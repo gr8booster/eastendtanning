@@ -30,8 +30,7 @@ class FizzeDrink(BaseModel):
 
 # Admin routes (JWT protected)
 @fizze_router.post("/admin/drinks")
-@require_admin
-async def create_drink(drink: FizzeDrink):
+async def create_drink(drink: FizzeDrink, payload: dict = Depends(verify_token)):
     drink_data = drink.dict(exclude={'id', 'created_at', 'updated_at'})
     drink_data['id'] = str(uuid.uuid4())
     drink_data['created_at'] = datetime.now(timezone.utc)
@@ -42,16 +41,14 @@ async def create_drink(drink: FizzeDrink):
     return {"success": True, "drink_id": drink_data['id']}
 
 @fizze_router.get("/admin/drinks")
-@require_admin
-async def list_all_drinks():
+async def list_all_drinks(payload: dict = Depends(verify_token)):
     drinks = await db.fizze_drinks.find().sort("display_order", 1).to_list(length=500)
     for drink in drinks:
         drink.pop('_id', None)
     return drinks
 
 @fizze_router.patch("/admin/drinks/{drink_id}")
-@require_admin
-async def update_drink(drink_id: str, updates: dict):
+async def update_drink(drink_id: str, updates: dict, payload: dict = Depends(verify_token)):
     updates['updated_at'] = datetime.now(timezone.utc)
     result = await db.fizze_drinks.update_one(
         {"id": drink_id},
@@ -62,8 +59,7 @@ async def update_drink(drink_id: str, updates: dict):
     return {"success": True}
 
 @fizze_router.delete("/admin/drinks/{drink_id}")
-@require_admin
-async def delete_drink(drink_id: str):
+async def delete_drink(drink_id: str, payload: dict = Depends(verify_token)):
     result = await db.fizze_drinks.delete_one({"id": drink_id})
     if result.deleted_count == 0:
         raise HTTPException(status_code=404, detail="Drink not found")
