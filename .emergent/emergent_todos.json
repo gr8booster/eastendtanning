@@ -1,22 +1,14 @@
 [
   {
-    "content": "Fix online ordering delivery failure - update API endpoint",
-    "status": "completed"
-  },
-  {
-    "content": "Add food items (pretzels, nachos) to Fizze menu",
-    "status": "completed"
-  },
-  {
-    "content": "Enable voting for unavailable items automatically",
-    "status": "completed"
-  },
-  {
     "content": "Add delivery toggle button in Admin dashboard",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Update OrderDrinks to respect delivery settings",
+    "status": "in_progress"
+  },
+  {
+    "content": "Build frontend and restart services",
     "status": "pending"
   },
   {
@@ -24,7 +16,7 @@
     "status": "pending"
   },
   {
-    "content": "Take screenshots of fixes",
+    "content": "Take screenshots of all fixes",
     "status": "pending"
   }
 ]
