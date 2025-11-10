@@ -106,10 +106,23 @@ def _sanitize(doc: Dict[str, Any]) -> Dict[str, Any]:
 
 
 @router.post("/generate", response_model=GenerateResponse)
-async def generate_discount(req: GenerateRequest):
+async def generate_discount(req: GenerateRequest, current_user: dict = Depends(verify_token)):
     """Generate a discount code with auto-calculated expiry based on percentage"""
     if req.percent_off not in ALLOWED_DISCOUNTS:
         raise HTTPException(status_code=400, detail="percent_off must be one of 5, 10, 15")
+    
+    # Check role-based permission for discount generation
+    user_role_str = current_user.get("role", "sales_associate")
+    try:
+        user_role = Role(user_role_str)
+    except ValueError:
+        user_role = Role.SALES
+    
+    if not can_generate_discount(user_role, req.percent_off):
+        raise HTTPException(
+            status_code=403,
+            detail=f"Your role ({user_role.value}) cannot generate {req.percent_off}% discounts. Sales associates can only generate 5% discounts."
+        )
 
     # Calculate expiry days based on percentage if not provided
     days = req.expires_in_days if req.expires_in_days and req.expires_in_days > 0 else _calculate_expiry_days(req.percent_off)
