@@ -108,7 +108,7 @@ export default function Tanning() {
             </p>
           </div>
 
-          <PricingTable highlightMonthly={true} />
+          <PricingTable items={packages} highlightMonthly={true} note="Prices vary by tanning level. Monthly unlimited packages require autopay." />
 
           <div className="mt-8 text-center">
             <p className="text-sm text-muted-foreground mb-4">
