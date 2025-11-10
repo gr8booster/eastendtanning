@@ -372,7 +372,7 @@ export default function OrderDrinks() {
                       type="tel"
                       value={orderForm.customer_phone}
                       onChange={(e) => setOrderForm({...orderForm, customer_phone: e.target.value})}
-                      placeholder="740-397-9633"
+                      placeholder="740-397-9632"
                       required
                       data-testid="customer-phone"
                     />
@@ -500,7 +500,7 @@ export default function OrderDrinks() {
                     <p className="text-sm">123 Eastend Ave, Mount Vernon, OH</p>
                     <p className="text-sm flex items-center gap-2 mt-2">
                       <Phone className="w-4 h-4" />
-                      (740) 397-9633
+                      (740) 397-9632
                     </p>
                     <p className="text-sm flex items-center gap-2 mt-1">
                       <Clock className="w-4 h-4" />
