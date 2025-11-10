@@ -1,14 +1,34 @@
 [
   {
-    "content": "Fix critical bugs from testing: user login endpoint, SEO Open Graph tags",
-    "status": "completed"
-  },
-  {
-    "content": "Take final screenshots for launch verification",
+    "content": "Update location information for Eastend and Westend laundry",
     "status": "in_progress"
   },
   {
-    "content": "Update plan.md with final status",
+    "content": "Add SEO to all 6 remaining pages (Tanning, Drinks, Laundry, Nails, Locations, Blog)",
+    "status": "pending"
+  },
+  {
+    "content": "Create Fizze online ordering system with delivery app integration",
+    "status": "pending"
+  },
+  {
+    "content": "Add User Management UI tab (Owner only)",
+    "status": "pending"
+  },
+  {
+    "content": "Apply role-based tab visibility in Admin",
+    "status": "pending"
+  },
+  {
+    "content": "Update Mary Well to handle all services (tanning, laundry, fizze, nails)",
+    "status": "pending"
+  },
+  {
+    "content": "Fix video URL on Tanning page",
+    "status": "pending"
+  },
+  {
+    "content": "Test all changes with screenshots",
     "status": "pending"
   }
 ]
