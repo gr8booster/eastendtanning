@@ -1,18 +1,34 @@
 [
   {
-    "content": "Update location information for Eastend and Westend laundry",
+    "content": "Add SEO to Tanning.jsx",
     "status": "in_progress"
   },
   {
-    "content": "Add SEO to all 6 remaining pages (Tanning, Drinks, Laundry, Nails, Locations, Blog)",
+    "content": "Add SEO to Drinks.jsx",
     "status": "pending"
   },
   {
-    "content": "Create Fizze online ordering system with delivery app integration",
+    "content": "Add SEO to Laundry.jsx with updated location info",
     "status": "pending"
   },
   {
-    "content": "Add User Management UI tab (Owner only)",
+    "content": "Add SEO to Nails.jsx",
+    "status": "pending"
+  },
+  {
+    "content": "Add SEO to Locations.jsx with updated phone and hours",
+    "status": "pending"
+  },
+  {
+    "content": "Add SEO to Blog.jsx",
+    "status": "pending"
+  },
+  {
+    "content": "Update Mary Well system prompt with all services",
+    "status": "pending"
+  },
+  {
+    "content": "Add User Management UI tab",
     "status": "pending"
   },
   {
@@ -20,15 +36,11 @@
     "status": "pending"
   },
   {
-    "content": "Update Mary Well to handle all services (tanning, laundry, fizze, nails)",
+    "content": "Verify frontend builds successfully",
     "status": "pending"
   },
   {
-    "content": "Fix video URL on Tanning page",
-    "status": "pending"
-  },
-  {
-    "content": "Test all changes with screenshots",
+    "content": "Final screenshots of all updated pages",
     "status": "pending"
   }
 ]
