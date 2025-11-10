@@ -1,15 +1,11 @@
 [
   {
-    "content": "Add delivery toggle button in Admin dashboard",
+    "content": "Update OrderDrinks to respect delivery settings",
     "status": "completed"
   },
   {
-    "content": "Update OrderDrinks to respect delivery settings",
-    "status": "in_progress"
-  },
-  {
     "content": "Build frontend and restart services",
-    "status": "pending"
+    "status": "in_progress"
   },
   {
     "content": "Test online ordering works",
