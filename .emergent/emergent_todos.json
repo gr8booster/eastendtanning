@@ -13,11 +13,11 @@
   },
   {
     "content": "Create User Management UI tab (Owner only) with CRUD operations",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Implement role-based tab visibility using permissions.js",
-    "status": "pending"
+    "status": "in_progress"
   },
   {
     "content": "Apply permission decorators to remaining backend routes",
