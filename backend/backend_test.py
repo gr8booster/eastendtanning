@@ -74,18 +74,21 @@ class BackendAPITester:
             return False, {}
     
     def test_discount_generation(self):
-        """Test discount code generation for 5%, 10%, 15%"""
+        """Test discount code generation with Phase 1 expiry logic"""
         print("\n" + "="*60)
-        print("TESTING DISCOUNT CODE GENERATION")
+        print("TESTING PHASE 1 DISCOUNT GENERATION & EXPIRY LOGIC")
         print("="*60)
+        
+        # Test Phase 1 expiry logic: 15%=1 day, 10%=3 days, 5%=7 days
+        expected_days = {15: 1, 10: 3, 5: 7}
         
         for percent in [5, 10, 15]:
             success, response = self.run_test(
-                f"Generate {percent}% discount code",
+                f"Generate {percent}% discount code (auto-expiry)",
                 "POST",
                 "api/discounts/generate",
                 200,
-                data={"percent_off": percent, "expires_in_days": 7}
+                data={"percent_off": percent}  # No expires_in_days - should auto-calculate
             )
             
             if success:
@@ -94,21 +97,30 @@ class BackendAPITester:
                     print(f"   📋 Code: {response['code']}")
                     print(f"   📋 Percent: {response['percent_off']}%")
                     print(f"   📋 Expires: {response['expires_at']}")
+                    print(f"   📋 Hours until expiry: {response.get('expires_in_hours', 'N/A')}")
                     self.generated_codes.append(response)
                     
                     # Verify percent_off matches
                     if response['percent_off'] != percent:
-                        print(f"   ⚠️  WARNING: percent_off mismatch - expected {percent}, got {response['percent_off']}")
+                        print(f"   ❌ CRITICAL: percent_off mismatch - expected {percent}, got {response['percent_off']}")
+                    
+                    # Verify Phase 1 expiry logic
+                    expected_hours = expected_days[percent] * 24
+                    actual_hours = response.get('expires_in_hours')
+                    if actual_hours and abs(actual_hours - expected_hours) <= 1:  # Allow 1 hour tolerance
+                        print(f"   ✅ PHASE 1: Correct expiry logic - {percent}% = {expected_days[percent]} day(s)")
+                    else:
+                        print(f"   ❌ PHASE 1 FAIL: Wrong expiry - expected {expected_hours}h, got {actual_hours}h")
                     
                     # Verify expires_at is in the future
                     try:
                         expires_at = datetime.fromisoformat(response['expires_at'].replace('Z', '+00:00'))
                         if expires_at <= datetime.now(timezone.utc):
-                            print(f"   ⚠️  WARNING: expires_at is not in the future")
+                            print(f"   ❌ CRITICAL: expires_at is not in the future")
                     except Exception as e:
-                        print(f"   ⚠️  WARNING: Could not parse expires_at: {e}")
+                        print(f"   ❌ CRITICAL: Could not parse expires_at: {e}")
                 else:
-                    print(f"   ⚠️  WARNING: Response missing required fields")
+                    print(f"   ❌ CRITICAL: Response missing required fields")
         
         # Test invalid percent_off
         success, response = self.run_test(
@@ -116,7 +128,7 @@ class BackendAPITester:
             "POST",
             "api/discounts/generate",
             400,
-            data={"percent_off": 20, "expires_in_days": 7}
+            data={"percent_off": 20}
         )
     
     def test_discount_validation(self):
