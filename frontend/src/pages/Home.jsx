@@ -11,6 +11,12 @@ export default function Home() {
 
   return (
     <div className="min-h-screen">
+      <SEOHead
+        title="Eastend Tanning & Laundry - Premier Tanning Salon & Laundromat"
+        description="Experience luxury tanning and convenient laundry services at Eastend. Monthly unlimited tanning packages, professional lotions, coin & card laundry, and fresh Fizze bubble tea drinks."
+        keywords="tanning salon, laundromat, bubble tea, Fizze drinks, spray tan, UV tanning, coin laundry, laundry service, Mount Vernon Ohio"
+        schemaMarkup={createLocalBusinessSchema()}
+      />
       {/* Hero Section */}
       <section data-testid="home-hero" className="relative py-12 sm:py-16 lg:py-20 bg-[linear-gradient(135deg,hsl(43_96%_96%),hsl(183_45%_96%))] overflow-hidden">
         <div className="noise"></div>
