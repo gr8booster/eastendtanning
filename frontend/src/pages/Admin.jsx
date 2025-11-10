@@ -89,6 +89,7 @@ export default function Admin() {
       setVoiceCalls(voiceCallsData?.calls || []);
       setFizzeDrinks(Array.isArray(fizzeDrinksData) ? fizzeDrinksData : []);
       setDeliveryEnabled(orderSettings?.delivery_enabled ?? true);
+      setOrders(Array.isArray(ordersData) ? ordersData : []);
       setLastUpdated(new Date());
     } catch (error) {
       console.error('Error fetching dashboard data:', error);
