@@ -1,18 +1,10 @@
 [
   {
-    "content": "Update OrderDrinks to respect delivery settings",
+    "content": "Build frontend and restart services",
     "status": "completed"
   },
   {
-    "content": "Build frontend and restart services",
-    "status": "in_progress"
-  },
-  {
-    "content": "Test online ordering works",
-    "status": "pending"
-  },
-  {
     "content": "Take screenshots of all fixes",
-    "status": "pending"
+    "status": "in_progress"
   }
 ]
