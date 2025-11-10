@@ -1,92 +1,213 @@
-import { PricingTable } from '../components/PricingTable';
-import { FAQAccordion } from '../components/FAQAccordion';
-import { BookingCTA } from '../components/BookingCTA';
+import { motion } from 'framer-motion';
+import { ServiceCard } from '../components/ServiceCard';
+import { MapPin, Clock, DollarSign, Sparkles, CreditCard, Coins, User, Shield } from 'lucide-react';
+import { Button } from '../components/ui/button';
 import { Card } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
-import { Button } from '../components/ui/button';
-import { Sparkles, Clock, Shield, Wifi, CreditCard, Droplets, MapPin, Phone } from 'lucide-react';
+import { SEOHead, createServiceSchema } from '../components/SEOHead';
+
+const laundryImage = 'https://customer-assets.emergentagent.com/job_tanning-chatbot/artifacts/laundromat-new.jpg';
 
 export default function Laundry() {
-  const equipment = [
-    { service: "Standard Washer", description: "20-25 lb capacity, 30-35 min cycle", price: "$3.00-4.00" },
-    { service: "Large Washer", description: "30-35 lb capacity, perfect for comforters", price: "$5.00-6.00" },
-    { service: "Extra Large Washer", description: "50+ lb capacity, industrial size", price: "$7.00-8.00" },
-    { service: "Standard Dryer", description: "30-40 min cycle, high efficiency", price: "$0.25/8 min" },
-    { service: "Wash & Fold Service", description: "Drop off, we wash, dry, fold (by lb)", price: "$1.50-2.00/lb" }
-  ];
-
-  const faqs = [
-    { question: "What forms of payment do you accept?", answer: "Both locations accept cash, credit/debit cards, and quarters. We have change machines on-site for your convenience." },
-    { question: "Do I need to bring my own detergent?", answer: "Yes, please bring your own laundry detergent, fabric softener, and dryer sheets. We also have vending machines with laundry supplies available for purchase." },
-    { question: "How long does a typical wash and dry cycle take?", answer: "Washers run for 30-35 minutes depending on the cycle. Dryers typically take 30-40 minutes on medium-high heat. Total time is usually 60-75 minutes." },
-    { question: "Can I drop off my laundry and pick it up later?", answer: "Yes! We offer wash-and-fold service at both locations. Drop off your laundry, and we'll wash, dry, and fold it for you." },
-    { question: "Are your facilities attended?", answer: "Our laundromats are self-service. Staff may not always be on-site, but we have security cameras and regular maintenance checks to ensure a safe, clean environment." },
-    { question: "Do you have WiFi?", answer: "Yes! Free WiFi is available at both locations so you can work, browse, or stream while you wait." },
-    { question: "What size washers do I need for a king comforter?", answer: "We recommend our Large (30-35 lb) or Extra Large (50+ lb) washers for king-size comforters, heavy blankets, or sleeping bags." },
-    { question: "What are your busiest times?", answer: "Weekends and weekday evenings (5-8pm) tend to be busiest. For a quieter experience, try weekday mornings or early afternoons." }
-  ];
-
-  const laundryPhoto = "https://customer-assets.emergentagent.com/job_tanning-chatbot/artifacts/cf28a69r_fe31aa0358f16aeb18b51820eb4a7322.jpeg";
-
   return (
-    <div className="min-h-screen">
-      {/* Hero with Eastend photo */}
-      <section className="relative py-10 sm:py-16 bg-gradient-to-br from-[hsl(183_45%_96%)] via-[hsl(183_55%_90%)] to-[hsl(183_55%_85%)] overflow-hidden">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-10 max-w-[1200px] relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-            <div className="text-center lg:text-left">
-              <Badge className="mb-4 bg-secondary text-white border-0" data-testid="laundry-hero-badge">
-                <Droplets className="w-3 h-3 mr-1" /> 2 Convenient Locations
+    <div className="min-h-screen bg-muted">
+      <SEOHead
+        title="Laundromat Services - Drop-Off, Self-Service & Coin Laundry"
+        description="Convenient laundry services at Eastend (drop-off service, attendant, cash/card) and Westend (self-service coin laundry). Modern equipment, competitive pricing. Open 6am-10pm."
+        keywords="laundromat Mount Vernon, coin laundry, self-service laundry, laundry drop-off service, wash and fold, commercial washers"
+        ogImage={laundryImage}
+        schemaMarkup={createServiceSchema('Laundry Drop-Off Service', 'Professional laundry drop-off service at $1.75 per pound with free drying', 1.75)}
+      />
+
+      {/* Hero */}
+      <div className="relative h-[500px] overflow-hidden">
+        <img
+          src={laundryImage}
+          alt="Modern Laundromat"
+          className="w-full h-full object-cover object-right"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/30 flex items-center">
+          <div className="container mx-auto px-4">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="max-w-2xl"
+            >
+              <h1 className="font-serif text-5xl md:text-6xl font-bold text-white mb-6">
+                Clean, Modern Laundry Facilities
+              </h1>
+              <p className="text-xl text-white/90 mb-8">
+                Two convenient locations with modern equipment and flexible service options
+              </p>
+            </motion.div>
+          </div>
+        </div>
+      </div>
+
+      {/* Two Locations */}
+      <div className="container mx-auto px-4 py-16">
+        <div className="text-center mb-12">
+          <h2 className="font-serif text-4xl font-bold mb-4">Two Locations to Serve You</h2>
+          <p className="text-xl text-muted-foreground">Choose the service that fits your needs</p>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+          {/* Eastend */}
+          <Card className="p-8 hover:shadow-xl transition-shadow">
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="font-serif text-3xl font-bold">Eastend Location</h3>
+              <Badge className="bg-gradient-to-r from-[hsl(42_92%_55%)] to-[hsl(183_55%_43%)] text-white">
+                <User className="w-4 h-4 mr-1" />
+                Attendant on Duty
               </Badge>
-              <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6 text-foreground">Mount Vernon's Premier Laundromats</h1>
-              <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mb-6 leading-relaxed">Modern washers and dryers, spotless facilities, open daily 6am-10pm. Eastend (tanning & laundry) and Westend (coin laundry only) locations.</p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <a href="#locations" data-testid="laundry-hero-locations-btn"><Button size="lg" className="bg-secondary text-white px-8 h-14 font-semibold text-lg shadow-lg hover:shadow-xl">Find a Location</Button></a>
-                <a href="#pricing" data-testid="laundry-hero-pricing-btn"><Button variant="outline" size="lg" className="px-8 h-14 font-semibold text-lg bg-white hover:bg-gray-50">View Pricing</Button></a>
+            </div>
+
+            <div className="space-y-4 mb-6">
+              <div className="flex items-start gap-3">
+                <Clock className="w-5 h-5 text-[hsl(42_92%_55%)] flex-shrink-0 mt-1" />
+                <div>
+                  <p className="font-semibold">Hours</p>
+                  <p className="text-muted-foreground">8:00 AM - 6:00 PM Daily</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <MapPin className="w-5 h-5 text-[hsl(42_92%_55%)] flex-shrink-0 mt-1" />
+                <div>
+                  <p className="font-semibold">Address</p>
+                  <p className="text-muted-foreground">123 Eastend Ave, Mount Vernon, OH</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <CreditCard className="w-5 h-5 text-[hsl(42_92%_55%)] flex-shrink-0 mt-1" />
+                <div>
+                  <p className="font-semibold">Payment Methods</p>
+                  <p className="text-muted-foreground">Cash & Credit Cards (No Coins)</p>
+                </div>
               </div>
             </div>
-            <div className="relative">
-              <img src={laundryPhoto} alt="Eastend Laundry" className="w-full h-[400px] rounded-xl border shadow object-cover object-right" loading="lazy" />
+
+            <div className="bg-gradient-to-br from-[hsl(42_92%_55%)]/10 to-[hsl(183_55%_43%)]/10 rounded-lg p-6 border-2 border-[hsl(42_92%_55%)]">
+              <h4 className="font-bold text-xl mb-4 flex items-center gap-2">
+                <Sparkles className="w-5 h-5 text-[hsl(42_92%_55%)]" />
+                Drop-Off Service Available
+              </h4>
+              <div className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <span className="font-semibold"><DollarSign className="w-4 h-4 inline" />Laundry Drop-Off:</span>
+                  <span className="text-2xl font-bold text-[hsl(42_92%_55%)]">$1.75/lb</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="font-semibold">Free Drying:</span>
+                  <span className="font-bold">45 minutes daily</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="font-semibold">Additional Drying:</span>
+                  <span className="font-bold">$0.25 for 7 minutes</span>
+                </div>
+              </div>
             </div>
+
+            <div className="mt-6 space-y-2">
+              <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                <Shield className="w-4 h-4" />
+                <span>Professional attendant on duty for assistance</span>
+              </div>
+              <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                <Sparkles className="w-4 h-4" />
+                <span>Modern, high-efficiency washers and dryers</span>
+              </div>
+            </div>
+          </Card>
+
+          {/* Westend */}
+          <Card className="p-8 hover:shadow-xl transition-shadow">
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="font-serif text-3xl font-bold">Westend Location</h3>
+              <Badge variant="secondary">
+                <Coins className="w-4 h-4 mr-1" />
+                Self-Service
+              </Badge>
+            </div>
+
+            <div className="space-y-4 mb-6">
+              <div className="flex items-start gap-3">
+                <Clock className="w-5 h-5 text-[hsl(42_92%_55%)] flex-shrink-0 mt-1" />
+                <div>
+                  <p className="font-semibold">Hours</p>
+                  <p className="text-muted-foreground">6:00 AM - 10:00 PM Daily</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <MapPin className="w-5 h-5 text-[hsl(42_92%_55%)] flex-shrink-0 mt-1" />
+                <div>
+                  <p className="font-semibold">Address</p>
+                  <p className="text-muted-foreground">456 Westend Blvd, Mount Vernon, OH</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <Coins className="w-5 h-5 text-[hsl(42_92%_55%)] flex-shrink-0 mt-1" />
+                <div>
+                  <p className="font-semibold">Payment Methods</p>
+                  <p className="text-muted-foreground">Coin-Operated Only</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-blue-50 rounded-lg p-6 border-2 border-blue-200">
+              <h4 className="font-bold text-xl mb-4 flex items-center gap-2">
+                <Coins className="w-5 h-5 text-blue-600" />
+                Self-Service Coin Laundry
+              </h4>
+              <div className="space-y-3">
+                <div className="flex items-center gap-2 text-sm">
+                  <Sparkles className="w-4 h-4 text-blue-600" />
+                  <span>Coin changer machines available for convenience</span>
+                </div>
+                <div className="flex items-center gap-2 text-sm">
+                  <Shield className="w-4 h-4 text-blue-600" />
+                  <span>24/7 security monitoring</span>
+                </div>
+                <div className="flex items-center gap-2 text-sm">
+                  <Clock className="w-4 h-4 text-blue-600" />
+                  <span>Extended hours: Open from 6 AM to 10 PM</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-6 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+              <p className="text-sm font-semibold text-yellow-800">⚠️ Note: Westend is coin-operated self-service only. For drop-off service and attendant assistance, visit Eastend location.</p>
+            </div>
+          </Card>
+        </div>
+      </div>
+
+      {/* Contact */}
+      <div className="bg-gradient-to-r from-[hsl(42_92%_55%)] to-[hsl(183_55%_43%)] text-white py-16">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="font-serif text-4xl font-bold mb-6">Questions About Our Services?</h2>
+          <p className="text-xl mb-8 text-white/90 max-w-2xl mx-auto">
+            Call us at (740) 397-9633 or chat with Mary Well for instant answers
+          </p>
+          <div className="flex gap-4 justify-center">
+            <Button
+              size="lg"
+              className="bg-white text-[hsl(42_92%_55%)] hover:bg-white/90"
+              onClick={() => window.open('tel:7403979633')}
+            >
+              Call (740) 397-9633
+            </Button>
+            <Button
+              size="lg"
+              variant="outline"
+              className="border-white text-white hover:bg-white/10"
+              onClick={() => window.openMaryChat?.()}
+            >
+              Chat with Mary
+            </Button>
           </div>
         </div>
-      </section>
-
-      {/* Features */}
-      <section className="py-16 lg:py-24 bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-10 max-w-[1200px]">
-          <h2 className="font-serif text-3xl sm:text-4xl font-bold mb-12 text-center">Why Choose Our Laundromats?</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <Card className="p-6 text-center hover:shadow-lg transition-shadow"><div className="mx-auto w-14 h-14 rounded-full bg-secondary/10 flex items-center justify-center mb-4"><Sparkles className="w-7 h-7 text-secondary" /></div><h3 className="font-semibold text-lg mb-2">Always Clean</h3><p className="text-sm text-muted-foreground">Sanitized daily, well-maintained machines, comfortable waiting areas</p></Card>
-            <Card className="p-6 text-center hover:shadow-lg transition-shadow"><div className="mx-auto w-14 h-14 rounded-full bg-secondary/10 flex items-center justify-center mb-4"><Clock className="w-7 h-7 text-secondary" /></div><h3 className="font-semibold text-lg mb-2">Open Late</h3><p className="text-sm text-muted-foreground">Daily 6am-10pm at both locations for your convenience</p></Card>
-            <Card className="p-6 text-center hover:shadow-lg transition-shadow"><div className="mx-auto w-14 h-14 rounded-full bg-secondary/10 flex items-center justify-center mb-4"><Shield className="w-7 h-7 text-secondary" /></div><h3 className="font-semibold text-lg mb-2">Safe & Secure</h3><p className="text-sm text-muted-foreground">Well-lit, monitored facilities in convenient locations</p></Card>
-            <Card className="p-6 text-center hover:shadow-lg transition-shadow"><div className="mx-auto w-14 h-14 rounded-full bg-secondary/10 flex items-center justify-center mb-4"><Wifi className="w-7 h-7 text-secondary" /></div><h3 className="font-semibold text-lg mb-2">Free WiFi</h3><p className="text-sm text-muted-foreground">Stay connected while you wash - work or browse online</p></Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Pricing */}
-      <section id="pricing" className="py-16 lg:py-24 bg-muted">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-10 max-w-[1200px]">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="font-serif text-3xl sm:text-4xl font-bold mb-4 text-center">Equipment & Pricing</h2>
-            <p className="text-center text-muted-foreground mb-8 max-w-2xl mx-auto">Eastend: Coin-operated and card-accepted. Westend: Coin-operated only. Change machines available on-site.</p>
-            <PricingTable items={equipment} note="Prices may vary slightly by location. Wash-and-fold service requires 24-hour notice." />
-          </div>
-        </div>
-      </section>
-
-      {/* Locations Comparison */}
-      <section id="locations" className="py-16 lg:py-24 bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-10 max-w-[1200px]">
-          <h2 className="font-serif text-3xl sm:text-4xl font-bold mb-12 text-center">Our Two Locations</h2>
-          {/* ... existing cards unchanged ... */}
-        </div>
-      </section>
-
-      {/* FAQ */}
-      <section className="py-16 lg:py-24 bg-muted"><div className="container mx-auto px-4 sm:px-6 lg:px-10 max-w-[1200px]"><div className="max-w-3xl mx-auto"><FAQAccordion faqs={faqs} /></div></div></section>
-      <section className="py-16 lg:py-24 bg-white"><div className="container mx-auto px-4 sm:px-6 lg:px-10 max-w-[1200px]"><BookingCTA title="Visit Us Today!" subtitle="Two convenient locations in Mount Vernon. Open daily with extended hours for your convenience." primaryAction={{ text: 'Get Directions', href: 'https://www.google.com/maps/dir/?api=1&destination=818+Coshocton+Ave,+Mt+Vernon,+OH+43050' }} showCall={false} showDirections={false} /></div></section>
+      </div>
     </div>
   );
 }
