@@ -347,6 +347,25 @@ export default function Admin() {
     return matchesSearch && matchesFilter;
   });
 
+  // Check if user can see a specific tab
+  const canSeeTab = (tabName) => {
+    const tabPermissions = {
+      'recommendations': PERMISSIONS.ANALYTICS_VIEW,
+      'campaigns': PERMISSIONS.CAMPAIGNS_READ,
+      'leads': PERMISSIONS.LEADS_READ,
+      'discounts': PERMISSIONS.ANALYTICS_VIEW,
+      'lotions': PERMISSIONS.LOTIONS_MANAGE,
+      'voicecalls': PERMISSIONS.VOICE_READ,
+      'fizze': PERMISSIONS.FIZZE_MANAGE,
+      'orders': PERMISSIONS.FIZZE_MANAGE,
+      'users': PERMISSIONS.USERS_MANAGE
+    };
+    
+    const permission = tabPermissions[tabName];
+    if (!permission) return true;
+    return hasPermission(currentUserRole, permission);
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen bg-muted flex items-center justify-center">
