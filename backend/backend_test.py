@@ -479,6 +479,169 @@ class BackendAPITester:
             elif i == 5 and success:
                 print(f"   ⚠️  WARNING: Rate limit not triggered on request #{i+1}")
 
+    def test_phase1_auto_apply_system(self):
+        """Test Phase 1 auto-apply discount system"""
+        print("\n" + "="*60)
+        print("TESTING PHASE 1 AUTO-APPLY DISCOUNT SYSTEM")
+        print("="*60)
+        
+        # Generate auto-applied discount
+        session_id = f"test_session_{datetime.now().timestamp()}"
+        success, response = self.run_test(
+            "Generate auto-applied discount",
+            "POST",
+            "api/discounts/generate",
+            200,
+            data={
+                "percent_off": 15,
+                "session_id": session_id,
+                "auto_apply": True
+            }
+        )
+        
+        discount_id = None
+        if success:
+            discount_id = response.get('id')
+            code_shown = response.get('code')
+            message = response.get('message')
+            
+            print(f"   📋 Discount ID: {discount_id}")
+            print(f"   📋 Code shown to user: {code_shown}")
+            print(f"   📋 Message: {message}")
+            
+            # Verify code is hidden for auto-apply
+            if code_shown is None:
+                print(f"   ✅ PHASE 1: Code correctly hidden for auto-apply")
+            else:
+                print(f"   ❌ PHASE 1 FAIL: Code should be hidden but got: {code_shown}")
+        
+        # Test /api/discounts/active endpoint
+        success, response = self.run_test(
+            f"Check active discount for session: {session_id}",
+            "GET",
+            f"api/discounts/active?session_id={session_id}",
+            200
+        )
+        
+        if success:
+            has_discount = response.get('has_discount')
+            percent_off = response.get('percent_off')
+            expires_in_hours = response.get('expires_in_hours')
+            
+            print(f"   📋 Has discount: {has_discount}")
+            print(f"   📋 Percent off: {percent_off}%")
+            print(f"   📋 Expires in hours: {expires_in_hours}")
+            
+            if has_discount and percent_off == 15:
+                print(f"   ✅ PHASE 1: Auto-apply system working correctly")
+            else:
+                print(f"   ❌ PHASE 1 FAIL: Auto-apply system not working")
+        
+        return session_id, discount_id
+
+    def test_phase1_first_time_discount(self):
+        """Test Phase 1 first-time discount popup system"""
+        print("\n" + "="*60)
+        print("TESTING PHASE 1 FIRST-TIME DISCOUNT POPUP")
+        print("="*60)
+        
+        # Generate first-time discount
+        session_id = f"first_time_{datetime.now().timestamp()}"
+        success, response = self.run_test(
+            "Generate first-time discount (15%, 1-day, auto-applied)",
+            "POST",
+            f"api/discounts/first-time?session_id={session_id}",
+            200
+        )
+        
+        if success:
+            discount_id = response.get('id')
+            percent_off = response.get('percent_off')
+            expires_in_hours = response.get('expires_in_hours')
+            message = response.get('message')
+            
+            print(f"   📋 Discount ID: {discount_id}")
+            print(f"   📋 Percent off: {percent_off}%")
+            print(f"   📋 Expires in hours: {expires_in_hours}")
+            print(f"   📋 Message: {message}")
+            
+            # Verify first-time discount specs
+            if percent_off == 15:
+                print(f"   ✅ PHASE 1: Correct 15% first-time discount")
+            else:
+                print(f"   ❌ PHASE 1 FAIL: Expected 15%, got {percent_off}%")
+            
+            if expires_in_hours == 24:
+                print(f"   ✅ PHASE 1: Correct 24-hour expiry")
+            else:
+                print(f"   ❌ PHASE 1 FAIL: Expected 24h, got {expires_in_hours}h")
+        
+        return session_id
+
+    def test_phase1_fizze_admin_crud(self):
+        """Test Phase 1 Fizze Admin CRUD operations"""
+        print("\n" + "="*60)
+        print("TESTING PHASE 1 FIZZE ADMIN CRUD OPERATIONS")
+        print("="*60)
+        
+        # Note: These endpoints require admin authentication
+        # For testing purposes, we'll test without auth and expect 401/403
+        
+        # Test getting all drinks (admin endpoint)
+        success, response = self.run_test(
+            "Get all Fizze drinks (admin)",
+            "GET",
+            "api/fizze/admin/drinks",
+            401  # Expect 401 without auth
+        )
+        
+        if not success and response == {}:
+            print(f"   ✅ PHASE 1: Admin endpoint correctly protected")
+        
+        # Test public menu endpoint (should work)
+        success, response = self.run_test(
+            "Get public Fizze menu",
+            "GET",
+            "api/fizze/menu",
+            200
+        )
+        
+        if success:
+            menu_categories = len(response) if isinstance(response, dict) else 0
+            print(f"   ✅ PHASE 1: Public menu accessible - {menu_categories} categories")
+            
+            # Check if menu has expected structure
+            if isinstance(response, dict):
+                for category, drinks in response.items():
+                    print(f"   📋 Category '{category}': {len(drinks)} drinks")
+        
+        # Test coming soon endpoint
+        success, response = self.run_test(
+            "Get coming soon Fizze drinks",
+            "GET",
+            "api/fizze/coming-soon",
+            200
+        )
+        
+        if success:
+            coming_soon_count = len(response) if isinstance(response, list) else 0
+            print(f"   ✅ PHASE 1: Coming soon endpoint working - {coming_soon_count} drinks")
+        
+        # Test voting (should work with rate limiting)
+        if success and isinstance(response, list) and len(response) > 0:
+            drink_id = response[0].get('id')
+            if drink_id:
+                vote_success, vote_response = self.run_test(
+                    f"Vote for coming soon drink: {drink_id}",
+                    "POST",
+                    f"api/fizze/vote/{drink_id}",
+                    200
+                )
+                
+                if vote_success:
+                    votes = vote_response.get('votes', 0)
+                    print(f"   ✅ PHASE 1: Voting system working - {votes} votes")
+
     def test_mary_well_chat(self):
         """Test Mary Well Chat API endpoints"""
         print("\n" + "="*60)
