@@ -17,11 +17,11 @@
   },
   {
     "content": "Implement role-based tab visibility using permissions.js",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Apply permission decorators to remaining backend routes",
-    "status": "pending"
+    "status": "in_progress"
   },
   {
     "content": "Run comprehensive testing of all features",
