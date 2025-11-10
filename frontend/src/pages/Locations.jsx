@@ -9,7 +9,7 @@ export default function Locations() {
     <div className="min-h-screen">
       <SEOHead
         title="Locations - Eastend & Westend - Hours, Directions & Contact"
-        description="Visit Eastend Tanning & Laundry at two convenient Mount Vernon locations. Eastend: 8am-6pm, full service. Westend: 6am-10pm, self-service coin laundry. Call (740) 397-9633."
+        description="Visit Eastend Tanning & Laundry at two convenient Mount Vernon locations. Eastend: 8am-6pm, full service. Westend: 6am-10pm, self-service coin laundry. Call (740) 397-9632."
         keywords="Eastend location, Westend location, Mount Vernon laundry, tanning salon near me, hours, directions"
         schemaMarkup={createLocalBusinessSchema()}
       />
@@ -40,7 +40,7 @@ export default function Locations() {
                 </div>
                 <div className="flex items-start gap-3">
                   <Phone className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />
-                  <p className="text-muted-foreground">(740) 397-9633</p>
+                  <p className="text-muted-foreground">(740) 397-9632</p>
                 </div>
                 <div className="flex items-start gap-3">
                   <Clock className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />
@@ -76,7 +76,7 @@ export default function Locations() {
                 </div>
                 <div className="flex items-start gap-3">
                   <Phone className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />
-                  <p className="text-muted-foreground">(740) 397-9633</p>
+                  <p className="text-muted-foreground">(740) 397-9632</p>
                 </div>
                 <div className="flex items-start gap-3">
                   <Clock className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />
