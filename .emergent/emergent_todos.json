@@ -1,66 +1,54 @@
 [
   {
-    "content": "Phase 5: Add Voice Calls tab to Admin.jsx with table displaying recent calls",
-    "status": "completed"
+    "content": "Phase 9: Create Fizze drinks backend (fizze_routes.py, models)",
+    "status": "pending"
   },
   {
-    "content": "Phase 6: Call integration_playbook_expert_v2 for SendGrid integration",
-    "status": "completed"
+    "content": "Phase 9: Create purchase receipt backend (receipt_routes.py)",
+    "status": "pending"
   },
   {
-    "content": "Phase 6: Call integration_playbook_expert_v2 for Twilio integration",
-    "status": "completed"
+    "content": "Phase 9: Update payment routes for activation receipts",
+    "status": "pending"
   },
   {
-    "content": "Phase 6: Create marketing_worker.py to process scheduled_marketing_actions",
-    "status": "completed"
+    "content": "Phase 9: Update Mary Well prompt (Monthly/VIP focus)",
+    "status": "pending"
   },
   {
-    "content": "Phase 6: Install SendGrid and Twilio SDKs in requirements.txt",
-    "status": "completed"
+    "content": "Phase 9: Create FirstTimeDiscountPopup component",
+    "status": "pending"
   },
   {
-    "content": "Phase 6: Add email templates for marketing journey stages",
-    "status": "completed"
+    "content": "Phase 9: Create LotionsCatalog component",
+    "status": "pending"
   },
   {
-    "content": "Phase 6: Add SMS templates for marketing journey stages",
-    "status": "completed"
+    "content": "Phase 9: Create PurchaseReceipt page",
+    "status": "pending"
   },
   {
-    "content": "Phase 6: Update server.py to start marketing_worker on startup",
-    "status": "completed"
+    "content": "Phase 9: Add Fizze Menu tab to Admin dashboard",
+    "status": "pending"
   },
   {
-    "content": "Phase 7: Audit and improve error handling across all frontend API calls",
-    "status": "completed"
+    "content": "Phase 9: Update Drinks page with dynamic Fizze menu + voting",
+    "status": "pending"
   },
   {
-    "content": "Phase 7: Add loading states to all async buttons",
-    "status": "completed"
+    "content": "Phase 9: Restructure Tanning page as conversion funnel",
+    "status": "pending"
   },
   {
-    "content": "Phase 7: Verify mobile responsiveness (360px width) across all pages",
-    "status": "completed"
+    "content": "Phase 9: Update server.py with new routers",
+    "status": "pending"
   },
   {
-    "content": "Phase 7: Audit design guideline compliance (colors, spacing, gradients)",
-    "status": "completed"
+    "content": "Phase 9: Seed initial Fizze drinks data",
+    "status": "pending"
   },
   {
-    "content": "Phase 7: Add rate limiting to AI endpoints",
-    "status": "completed"
-  },
-  {
-    "content": "Phase 7: Run comprehensive testing via testing_agent_v3",
-    "status": "completed"
-  },
-  {
-    "content": "Phase 7: Fix all high-priority bugs from testing",
-    "status": "completed"
-  },
-  {
-    "content": "Phase 7: Take screenshots of all major pages and flows",
-    "status": "completed"
+    "content": "Phase 9: Test all new features end-to-end",
+    "status": "pending"
   }
 ]
