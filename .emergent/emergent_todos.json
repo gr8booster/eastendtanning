@@ -1,26 +1,14 @@
 [
   {
-    "content": "Add SEO to Tanning.jsx",
-    "status": "completed"
-  },
-  {
-    "content": "Add SEO to Drinks.jsx",
-    "status": "completed"
-  },
-  {
-    "content": "Add SEO to Laundry.jsx with updated location info",
-    "status": "completed"
-  },
-  {
     "content": "Add SEO to Nails/Locations/Blog pages",
+    "status": "completed"
+  },
+  {
+    "content": "Update Mary Well system prompt with all services (tanning, laundry, fizze, nails)",
     "status": "in_progress"
   },
   {
-    "content": "Update Mary Well system prompt",
-    "status": "pending"
-  },
-  {
-    "content": "Build and verify frontend",
+    "content": "Build and verify frontend compiles",
     "status": "pending"
   },
   {
