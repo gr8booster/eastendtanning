@@ -576,6 +576,152 @@ export default function Admin() {
               </div>
             </Card>
           </TabsContent>
+
+          {/* Orders Tab */}
+          <TabsContent value="orders">
+            <Card className="p-6">
+              <div className="flex items-center justify-between mb-6">
+                <div>
+                  <h3 className="font-serif text-2xl font-bold">📦 Online Orders</h3>
+                  <p className="text-sm text-muted-foreground mt-1">Manage Fizze drink orders and update status</p>
+                </div>
+                <Select value={ordersFilter} onValueChange={setOrdersFilter}>
+                  <SelectTrigger className="w-48" data-testid="orders-filter">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">All Orders</SelectItem>
+                    <SelectItem value="pending">Pending</SelectItem>
+                    <SelectItem value="confirmed">Confirmed</SelectItem>
+                    <SelectItem value="preparing">Preparing</SelectItem>
+                    <SelectItem value="ready">Ready</SelectItem>
+                    <SelectItem value="completed">Completed</SelectItem>
+                    <SelectItem value="cancelled">Cancelled</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div className="overflow-x-auto">
+                <table className="w-full" data-testid="orders-table">
+                  <thead className="bg-muted">
+                    <tr>
+                      <th className="px-4 py-3 text-left text-sm font-semibold">Order #</th>
+                      <th className="px-4 py-3 text-left text-sm font-semibold">Customer</th>
+                      <th className="px-4 py-3 text-left text-sm font-semibold">Items</th>
+                      <th className="px-4 py-3 text-left text-sm font-semibold">Total</th>
+                      <th className="px-4 py-3 text-left text-sm font-semibold">Delivery</th>
+                      <th className="px-4 py-3 text-left text-sm font-semibold">Status</th>
+                      <th className="px-4 py-3 text-left text-sm font-semibold">Date</th>
+                      <th className="px-4 py-3 text-left text-sm font-semibold">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {orders.filter(order => ordersFilter === 'all' || order.status === ordersFilter).length > 0 ? 
+                      orders.filter(order => ordersFilter === 'all' || order.status === ordersFilter).map((order, index) => (
+                      <tr key={order.id} className={index % 2 === 0 ? 'bg-white' : 'bg-muted/30'}>
+                        <td className="px-4 py-3 text-sm font-medium">{order.order_number}</td>
+                        <td className="px-4 py-3 text-sm">
+                          <div>{order.customer_name}</div>
+                          <div className="text-xs text-muted-foreground">{order.customer_phone}</div>
+                        </td>
+                        <td className="px-4 py-3 text-sm">
+                          <div className="max-w-xs">
+                            {order.items.map((item, i) => (
+                              <div key={i} className="text-xs">
+                                {item.quantity}x {item.drink_name}
+                              </div>
+                            ))}
+                          </div>
+                        </td>
+                        <td className="px-4 py-3 text-sm font-semibold">${order.total.toFixed(2)}</td>
+                        <td className="px-4 py-3 text-sm">
+                          <Badge variant={order.delivery_method === 'pickup' ? 'outline' : 'default'}>
+                            {order.delivery_method}
+                          </Badge>
+                        </td>
+                        <td className="px-4 py-3 text-sm">
+                          <Badge 
+                            variant={
+                              order.status === 'completed' ? 'default' : 
+                              order.status === 'cancelled' ? 'destructive' : 
+                              order.status === 'ready' ? 'default' : 
+                              'secondary'
+                            }
+                            data-testid={`order-status-${order.id}`}
+                          >
+                            {order.status}
+                          </Badge>
+                        </td>
+                        <td className="px-4 py-3 text-sm text-muted-foreground">
+                          {new Date(order.created_at).toLocaleDateString()}
+                        </td>
+                        <td className="px-4 py-3 text-sm">
+                          <div className="flex gap-1">
+                            {order.status === 'pending' && (
+                              <Button 
+                                variant="outline" 
+                                size="sm"
+                                onClick={() => handleOrderStatusUpdate(order.id, 'confirmed')}
+                                data-testid={`order-confirm-${order.id}`}
+                              >
+                                Confirm
+                              </Button>
+                            )}
+                            {order.status === 'confirmed' && (
+                              <Button 
+                                variant="outline" 
+                                size="sm"
+                                onClick={() => handleOrderStatusUpdate(order.id, 'preparing')}
+                                data-testid={`order-prepare-${order.id}`}
+                              >
+                                Prepare
+                              </Button>
+                            )}
+                            {order.status === 'preparing' && (
+                              <Button 
+                                variant="outline" 
+                                size="sm"
+                                onClick={() => handleOrderStatusUpdate(order.id, 'ready')}
+                                data-testid={`order-ready-${order.id}`}
+                              >
+                                Ready
+                              </Button>
+                            )}
+                            {order.status === 'ready' && (
+                              <Button 
+                                variant="outline" 
+                                size="sm"
+                                onClick={() => handleOrderStatusUpdate(order.id, 'completed')}
+                                data-testid={`order-complete-${order.id}`}
+                              >
+                                Complete
+                              </Button>
+                            )}
+                            {!['completed', 'cancelled'].includes(order.status) && (
+                              <Button 
+                                variant="ghost" 
+                                size="sm"
+                                onClick={() => handleOrderStatusUpdate(order.id, 'cancelled')}
+                                data-testid={`order-cancel-${order.id}`}
+                              >
+                                <Trash2 className="w-4 h-4 text-destructive" />
+                              </Button>
+                            )}
+                          </div>
+                        </td>
+                      </tr>
+                    )) : (
+                      <tr>
+                        <td colSpan="8" className="px-4 py-8 text-center text-muted-foreground">
+                          No orders found.
+                        </td>
+                      </tr>
+                    )}
+                  </tbody>
+                </table>
+              </div>
+            </Card>
+          </TabsContent>
         </Tabs>
       </div>
 
