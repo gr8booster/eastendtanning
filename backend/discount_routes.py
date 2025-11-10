@@ -143,3 +143,28 @@ async def invalidate_discount(code: str):
     if result.modified_count == 0:
         raise HTTPException(status_code=404, detail="code_not_found")
     return {"status": "success"}
+
+
+@router.post("/first-time")
+async def generate_first_time_discount():
+    """Generate a first-time visitor discount code (15% off, 7-day expiry)"""
+    code = _make_code(15)
+    
+    discount_data = {
+        "id": str(uuid.uuid4()),
+        "code": code,
+        "percent_off": 15,
+        "status": "active",
+        "expires_at": datetime.now(timezone.utc) + timedelta(days=7),
+        "created_at": datetime.now(timezone.utc),
+        "created_by": "first_time_system",
+        "notes": "First-time visitor discount"
+    }
+    
+    await db.discount_codes.insert_one(discount_data)
+    
+    return {
+        "code": code,
+        "percent_off": 15,
+        "expires_at": discount_data["expires_at"].isoformat()
+    }
