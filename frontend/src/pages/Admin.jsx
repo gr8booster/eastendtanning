@@ -410,6 +410,9 @@ export default function Admin() {
               <Button variant="secondary" size="sm" className="bg-white/20 hover:bg-white/30 text-white border-white/30">
                 <Download className="w-4 h-4 mr-2" />Export
               </Button>
+              <Button variant="secondary" size="sm" onClick={handleLogout} className="bg-red-600 hover:bg-red-700 text-white border-0" data-testid="logout-button">
+                <LogOut className="w-4 h-4 mr-2" />Logout
+              </Button>
             </div>
           </div>
         </div>
