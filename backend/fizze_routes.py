@@ -2,12 +2,13 @@
 Fizze Drinks Menu Management API
 CRUD operations for drinks menu with availability toggle and voting
 """
-from fastapi import APIRouter, HTTPException, Request
+from fastapi import APIRouter, HTTPException, Request, Depends
 from pydantic import BaseModel
 from typing import List, Optional
 from datetime import datetime, timezone
 import uuid
-from routes import db, require_admin
+from routes import db
+from auth import verify_token
 from rate_limiter import rate_limit
 
 fizze_router = APIRouter(prefix="/api/fizze")
