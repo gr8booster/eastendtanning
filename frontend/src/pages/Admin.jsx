@@ -338,6 +338,12 @@ export default function Admin() {
     }
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem('admin_token');
+    toast.success('Logged out successfully');
+    window.location.href = '/admin';
+  };
+
   const filteredFizzeDrinks = fizzeDrinks.filter(drink => {
     const matchesSearch = drink.name.toLowerCase().includes(fizzeSearch.toLowerCase());
     const matchesFilter = fizzeFilter === 'all' || 
