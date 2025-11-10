@@ -84,8 +84,14 @@ async def get_menu():
 
 @fizze_router.get("/coming-soon")
 async def get_coming_soon():
-    """Get drinks marked as coming soon with vote counts"""
-    drinks = await db.fizze_drinks.find({"coming_soon": True}).sort("votes", -1).to_list(length=100)
+    """Get drinks marked as coming soon OR unavailable (for voting)"""
+    # Include both coming_soon=True AND available=False items
+    drinks = await db.fizze_drinks.find({
+        "$or": [
+            {"coming_soon": True},
+            {"available": False}
+        ]
+    }).sort("votes", -1).to_list(length=100)
     for drink in drinks:
         drink.pop('_id', None)
     return drinks
