@@ -9,11 +9,11 @@
   },
   {
     "content": "Add Orders tab to Admin dashboard for fizze_orders management",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Create User Management UI tab (Owner only) with CRUD operations",
-    "status": "pending"
+    "status": "in_progress"
   },
   {
     "content": "Implement role-based tab visibility using permissions.js",
