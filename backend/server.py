@@ -100,6 +100,7 @@ app.include_router(voice_router)  # Include voice routes
 app.include_router(fizze_router)  # Include fizze routes
 app.include_router(receipt_router)  # Include receipt routes
 app.include_router(seo_router)  # Include SEO routes
+app.include_router(user_router)  # Include user management routes
 
 app.add_middleware(
     CORSMiddleware,
