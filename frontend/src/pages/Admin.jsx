@@ -99,6 +99,7 @@ export default function Admin() {
       setFizzeDrinks(Array.isArray(fizzeDrinksData) ? fizzeDrinksData : []);
       setDeliveryEnabled(orderSettings?.delivery_enabled ?? true);
       setOrders(Array.isArray(ordersData) ? ordersData : []);
+      setUsers(Array.isArray(usersData) ? usersData : []);
       setLastUpdated(new Date());
     } catch (error) {
       console.error('Error fetching dashboard data:', error);
