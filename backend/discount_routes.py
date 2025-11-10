@@ -4,7 +4,7 @@ Discount Codes API
 - Auto-apply system with lead_id/session_id tracking
 - Dynamic expiry: 15%=1day, 10%=3days, 5%=7days
 """
-from fastapi import APIRouter, HTTPException, Query
+from fastapi import APIRouter, HTTPException, Query, Depends
 from pydantic import BaseModel, Field
 from typing import Optional, List, Dict, Any
 from datetime import datetime, timedelta, timezone
@@ -13,6 +13,8 @@ import os
 import uuid
 import random
 import string
+from roles import Role, can_generate_discount
+from auth import verify_token
 
 router = APIRouter(prefix="/api/discounts", tags=["discounts"])
 
