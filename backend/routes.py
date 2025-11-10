@@ -90,7 +90,12 @@ async def create_lead(lead_input: LeadCreate):
 
 
 @router.get("/leads", response_model=List[Lead])
-async def get_leads(status: Optional[str] = None, service: Optional[str] = None, limit: int = 50):
+async def get_leads(
+    status: Optional[str] = None, 
+    service: Optional[str] = None, 
+    limit: int = 50,
+    current_user: dict = Depends(require_permission(Permission.LEADS_READ))
+):
     """Get leads with optional filters"""
     query = {}
     if status:
@@ -128,8 +133,13 @@ async def get_leads(status: Optional[str] = None, service: Optional[str] = None,
 
 
 @router.patch("/leads/{lead_id}")
-async def update_lead_status(lead_id: str, status: str):
-    """Update lead status"""
+async def update_lead(
+    lead_id: str, 
+    status: Optional[str] = None, 
+    notes: Optional[str] = None,
+    current_user: dict = Depends(require_permission(Permission.LEADS_WRITE))
+):
+    """Update lead status or notes"""
     result = await db.leads.update_one(
         {"id": lead_id},
         {"$set": {"status": status, "updated_at": datetime.now(timezone.utc).isoformat()}}
@@ -152,7 +162,12 @@ async def create_booking(booking_input: BookingCreate):
 
 
 @router.get("/bookings", response_model=List[Booking])
-async def get_bookings(service: Optional[str] = None, status: Optional[str] = None, limit: int = 50):
+async def get_bookings(
+    status: Optional[str] = None, 
+    service: Optional[str] = None, 
+    limit: int = 50,
+    current_user: dict = Depends(require_permission(Permission.BOOKINGS_READ))
+):
     """Get bookings with optional filters"""
     query = {}
     if service:
@@ -189,7 +204,10 @@ async def get_bookings(service: Optional[str] = None, status: Optional[str] = No
 
 # Campaign Endpoints
 @router.post("/campaigns", response_model=Campaign)
-async def create_campaign(campaign_input: CampaignCreate):
+async def create_campaign(
+    campaign_input: CampaignCreate,
+    current_user: dict = Depends(require_permission(Permission.CAMPAIGNS_WRITE))
+):
     """Create a new marketing campaign"""
     campaign = Campaign(**campaign_input.model_dump())
     campaign_dict = campaign.model_dump()
@@ -200,8 +218,12 @@ async def create_campaign(campaign_input: CampaignCreate):
 
 
 @router.get("/campaigns", response_model=List[Campaign])
-async def get_campaigns(status: Optional[str] = None, limit: int = 20):
-    """Get campaigns"""
+async def get_campaigns(
+    status: Optional[str] = None, 
+    limit: int = 50,
+    current_user: dict = Depends(require_permission(Permission.CAMPAIGNS_READ))
+):
+    """Get campaigns with optional filters"""
     query = {}
     if status:
         query['status'] = status
