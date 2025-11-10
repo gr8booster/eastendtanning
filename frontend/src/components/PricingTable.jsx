@@ -1,6 +1,14 @@
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from './ui/table';
 
-export const PricingTable = ({ items, caption, note }) => {
+export const PricingTable = ({ items = [], caption, note, highlightMonthly = false }) => {
+  if (!items || items.length === 0) {
+    return (
+      <div className="rounded-lg border bg-card overflow-hidden p-8 text-center">
+        <p className="text-muted-foreground">No pricing available at this time.</p>
+      </div>
+    );
+  }
+
   return (
     <div className="rounded-lg border bg-card overflow-hidden">
       <Table>
