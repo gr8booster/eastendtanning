@@ -86,7 +86,8 @@ export default function Admin() {
         fetch(`${backendUrl}/api/voice/calls?limit=50`).then(r => r.ok ? r.json() : {calls: []}),
         fetch(`${backendUrl}/api/fizze/admin/drinks`, { headers: { 'Content-Type': 'application/json', ...adminHeaders() }}).then(r => r.ok ? r.json() : []),
         fetch(`${backendUrl}/api/orders/settings`).then(r => r.ok ? r.json() : {delivery_enabled: true}),
-        fetch(`${backendUrl}/api/orders/list?limit=100`, { headers: { 'Content-Type': 'application/json', ...adminHeaders() }}).then(r => r.ok ? r.json() : [])
+        fetch(`${backendUrl}/api/orders/list?limit=100`, { headers: { 'Content-Type': 'application/json', ...adminHeaders() }}).then(r => r.ok ? r.json() : []),
+        fetch(`${backendUrl}/api/users/`, { headers: { 'Content-Type': 'application/json', ...adminHeaders() }}).then(r => r.ok ? r.json() : [])
       ]);
       setMetrics(metricsData); 
       setCampaigns(campaignsData); 
