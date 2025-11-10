@@ -5,7 +5,7 @@
   },
   {
     "content": "Phase 1.2: Hide discount codes in UI - Remove code display from FirstTimeDiscountPopup and MaryWellChat, show confirmation messages only",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Phase 1.3: Implement auto-apply discount system - Update discount schema with lead_id/session_id, create /api/discounts/active endpoint",
@@ -13,7 +13,7 @@
   },
   {
     "content": "Phase 1.4: Add Fizze Admin tab - Create 7th tab in Admin.jsx with full CRUD interface for drinks management",
-    "status": "pending"
+    "status": "in_progress"
   },
   {
     "content": "Phase 1.5: Update checkout flow - Auto-apply discounts without manual code entry, display discount in summary",
@@ -25,6 +25,26 @@
   },
   {
     "content": "Phase 1.7: Test and verify all Phase 1 fixes with screenshots",
+    "status": "pending"
+  },
+  {
+    "content": "Phase 2: Role-Based Access Control - Create roles.py, update auth.py, implement permission system",
+    "status": "pending"
+  },
+  {
+    "content": "Phase 3: Social Media Integrations - Get integration playbooks for Facebook, Instagram, TikTok",
+    "status": "pending"
+  },
+  {
+    "content": "Phase 4: SEO Optimization - Add meta tags, structured data, sitemap, analytics",
+    "status": "pending"
+  },
+  {
+    "content": "Phase 5: Comprehensive Testing - Call testing agent, review report, fix all bugs",
+    "status": "pending"
+  },
+  {
+    "content": "Phase 6: Production Prep - Document environment vars, create runbook, verify supervisor config",
     "status": "pending"
   }
 ]
