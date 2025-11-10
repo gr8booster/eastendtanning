@@ -429,16 +429,16 @@ export default function Admin() {
 
         {/* Tabs */}
         <Tabs defaultValue="recommendations" className="mb-8">
-          <TabsList className="grid w-full grid-cols-9 mb-6">
-            <TabsTrigger value="recommendations" className="text-sm">🤖 AI Recs ({recommendations.length})</TabsTrigger>
-            <TabsTrigger value="campaigns" className="text-sm">📢 Campaigns ({campaigns.length})</TabsTrigger>
-            <TabsTrigger value="leads" className="text-sm">📋 Leads ({leads.length})</TabsTrigger>
-            <TabsTrigger value="discounts" className="text-sm" data-testid="discounts-tab">🎟️ Discounts ({discounts.length})</TabsTrigger>
-            <TabsTrigger value="lotions" className="text-sm" data-testid="lotions-tab">🧴 Lotions ({lotions.length})</TabsTrigger>
-            <TabsTrigger value="voicecalls" className="text-sm" data-testid="voicecalls-tab"><Phone className="w-4 h-4 inline-block mr-1" />Calls ({voiceCalls.length})</TabsTrigger>
-            <TabsTrigger value="fizze" className="text-sm" data-testid="fizze-tab"><Coffee className="w-4 h-4 inline-block mr-1" />Fizze ({fizzeDrinks.length})</TabsTrigger>
-            <TabsTrigger value="orders" className="text-sm" data-testid="orders-tab">📦 Orders ({orders.length})</TabsTrigger>
-            <TabsTrigger value="users" className="text-sm" data-testid="users-tab"><Users className="w-4 h-4 inline-block mr-1" />Users ({users.length})</TabsTrigger>
+          <TabsList className={`grid w-full mb-6`} style={{gridTemplateColumns: `repeat(${[canSeeTab('recommendations'), canSeeTab('campaigns'), canSeeTab('leads'), canSeeTab('discounts'), canSeeTab('lotions'), canSeeTab('voicecalls'), canSeeTab('fizze'), canSeeTab('orders'), canSeeTab('users')].filter(Boolean).length}, minmax(0, 1fr))`}}>
+            {canSeeTab('recommendations') && <TabsTrigger value="recommendations" className="text-sm">🤖 AI Recs ({recommendations.length})</TabsTrigger>}
+            {canSeeTab('campaigns') && <TabsTrigger value="campaigns" className="text-sm">📢 Campaigns ({campaigns.length})</TabsTrigger>}
+            {canSeeTab('leads') && <TabsTrigger value="leads" className="text-sm">📋 Leads ({leads.length})</TabsTrigger>}
+            {canSeeTab('discounts') && <TabsTrigger value="discounts" className="text-sm" data-testid="discounts-tab">🎟️ Discounts ({discounts.length})</TabsTrigger>}
+            {canSeeTab('lotions') && <TabsTrigger value="lotions" className="text-sm" data-testid="lotions-tab">🧴 Lotions ({lotions.length})</TabsTrigger>}
+            {canSeeTab('voicecalls') && <TabsTrigger value="voicecalls" className="text-sm" data-testid="voicecalls-tab"><Phone className="w-4 h-4 inline-block mr-1" />Calls ({voiceCalls.length})</TabsTrigger>}
+            {canSeeTab('fizze') && <TabsTrigger value="fizze" className="text-sm" data-testid="fizze-tab"><Coffee className="w-4 h-4 inline-block mr-1" />Fizze ({fizzeDrinks.length})</TabsTrigger>}
+            {canSeeTab('orders') && <TabsTrigger value="orders" className="text-sm" data-testid="orders-tab">📦 Orders ({orders.length})</TabsTrigger>}
+            {canSeeTab('users') && <TabsTrigger value="users" className="text-sm" data-testid="users-tab"><Users className="w-4 h-4 inline-block mr-1" />Users ({users.length})</TabsTrigger>}
           </TabsList>
 
           <TabsContent value="recommendations">
