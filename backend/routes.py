@@ -140,9 +140,15 @@ async def update_lead(
     current_user: dict = Depends(require_permission(Permission.LEADS_WRITE))
 ):
     """Update lead status or notes"""
+    update_data = {"updated_at": datetime.now(timezone.utc).isoformat()}
+    if status is not None:
+        update_data["status"] = status
+    if notes is not None:
+        update_data["notes"] = notes
+    
     result = await db.leads.update_one(
         {"id": lead_id},
-        {"$set": {"status": status, "updated_at": datetime.now(timezone.utc).isoformat()}}
+        {"$set": update_data}
     )
     if result.modified_count == 0:
         raise HTTPException(status_code=404, detail="Lead not found")
