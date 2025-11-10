@@ -1,34 +1,42 @@
 import { useState, useEffect } from 'react';
-import { X, Copy, Check, Gift } from 'lucide-react';
+import { X, Gift, Clock } from 'lucide-react';
 import { Button } from './ui/button';
 import { Dialog, DialogContent } from './ui/dialog';
 import { Badge } from './ui/badge';
+import { useNavigate } from 'react-router-dom';
 
 const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
 export function FirstTimeDiscountPopup() {
   const [isOpen, setIsOpen] = useState(false);
-  const [discountCode, setDiscountCode] = useState('');
-  const [copied, setCopied] = useState(false);
-  const [expiresAt, setExpiresAt] = useState('');
+  const [discountData, setDiscountData] = useState(null);
+  const [hoursRemaining, setHoursRemaining] = useState(24);
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Check if popup was already shown
     const popupShown = localStorage.getItem('firstTimeDiscountShown');
     
     if (!popupShown) {
+      // Generate session ID if not exists
+      let sessionId = localStorage.getItem('sessionId');
+      if (!sessionId) {
+        sessionId = `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+        localStorage.setItem('sessionId', sessionId);
+      }
+      
       // Show popup after 5 seconds
       const timer = setTimeout(async () => {
         try {
-          const response = await fetch(`${backendUrl}/api/discounts/first-time`, {
+          const response = await fetch(`${backendUrl}/api/discounts/first-time?session_id=${sessionId}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' }
           });
           
           if (response.ok) {
             const data = await response.json();
-            setDiscountCode(data.code);
-            setExpiresAt(data.expires_at);
+            setDiscountData(data);
+            setHoursRemaining(data.expires_in_hours || 24);
             setIsOpen(true);
           }
         } catch (error) {
@@ -40,20 +48,36 @@ export function FirstTimeDiscountPopup() {
     }
   }, []);
 
+  // Update countdown every minute
+  useEffect(() => {
+    if (!isOpen || !discountData) return;
+    
+    const interval = setInterval(() => {
+      const expiresAt = new Date(discountData.expires_at);
+      const now = new Date();
+      const diff = expiresAt - now;
+      const hours = Math.max(0, Math.floor(diff / (1000 * 60 * 60)));
+      setHoursRemaining(hours);
+      
+      if (hours === 0) {
+        clearInterval(interval);
+      }
+    }, 60000); // Update every minute
+    
+    return () => clearInterval(interval);
+  }, [isOpen, discountData]);
+
   const handleClose = () => {
     setIsOpen(false);
     localStorage.setItem('firstTimeDiscountShown', 'true');
   };
 
-  const handleCopy = () => {
-    navigator.clipboard.writeText(discountCode);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+  const handleBookNow = () => {
+    handleClose();
+    navigate('/tanning');
   };
 
-  if (!isOpen) return null;
-
-  const expiryDate = expiresAt ? new Date(expiresAt).toLocaleDateString() : '';
+  if (!isOpen || !discountData) return null;
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
@@ -79,33 +103,45 @@ export function FirstTimeDiscountPopup() {
 
             <div>
               <h2 className="font-serif text-2xl font-bold mb-2">Welcome to Eastend!</h2>
-              <p className="text-muted-foreground">Get 15% off your first tanning package</p>
+              <p className="text-muted-foreground">Your exclusive first-time offer</p>
             </div>
 
-            <div className="w-full bg-gradient-to-br from-[#F59E0B]/10 to-[#14B8A6]/10 border-2 border-dashed border-[#F59E0B]/50 rounded-lg p-6 space-y-3">
-              <Badge variant="secondary" className="mb-2">Your Exclusive Code</Badge>
-              <div className="font-mono text-3xl font-bold tracking-wider text-[#F59E0B]">
-                {discountCode}
+            <div className="w-full bg-gradient-to-br from-[#F59E0B]/10 to-[#14B8A6]/10 border-2 border-[#F59E0B] rounded-lg p-6 space-y-3">
+              <div className="flex items-center justify-center gap-2 mb-3">
+                <div className="text-5xl font-bold bg-gradient-to-r from-[#F59E0B] to-[#14B8A6] bg-clip-text text-transparent">
+                  15% OFF
+                </div>
               </div>
-              <p className="text-sm text-muted-foreground">Expires: {expiryDate}</p>
+              
+              <Badge variant="secondary" className="bg-[#F59E0B]/20 text-[#F59E0B]">
+                ✅ Automatically Applied!
+              </Badge>
+              
+              <p className="text-sm font-medium text-muted-foreground">
+                {discountData.message}
+              </p>
+              
+              <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground mt-2">
+                <Clock className="w-4 h-4" />
+                <span>Expires in {hoursRemaining} hours</span>
+              </div>
             </div>
 
             <div className="flex gap-2 w-full">
               <Button
-                onClick={handleCopy}
-                className="flex-1"
-                variant="outline"
-                data-testid="copy-code-button"
+                onClick={handleBookNow}
+                className="flex-1 bg-gradient-to-r from-[#F59E0B] to-[#14B8A6] hover:opacity-90"
+                data-testid="book-now-button"
               >
-                {copied ? <Check className="w-4 h-4 mr-2" /> : <Copy className="w-4 h-4 mr-2" />}
-                {copied ? 'Copied!' : 'Copy Code'}
+                Book Tanning Now
               </Button>
               <Button
                 onClick={() => {
                   handleClose();
                   window.openMaryChat?.();
                 }}
-                className="flex-1 bg-gradient-to-r from-[#F59E0B] to-[#14B8A6]"
+                variant="outline"
+                className="flex-1"
                 data-testid="chat-now-button"
               >
                 Chat with Mary
@@ -115,7 +151,7 @@ export function FirstTimeDiscountPopup() {
             <p className="text-xs text-muted-foreground">
               Valid for Monthly Unlimited and VIP tanning packages only.
               <br />
-              One use per customer.
+              One use per customer. Discount applied at checkout.
             </p>
           </div>
         </div>
