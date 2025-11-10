@@ -78,6 +78,7 @@ function App() {
             <Route path="/payment/success" element={<PaymentSuccess />} />
             <Route path="/payment/cancel" element={<PaymentCancel />} />
             <Route path="/receipt/:sessionId" element={<Receipt />} />
+            <Route path="/order-drinks" element={<OrderDrinks />} />
             <Route 
               path="/admin" 
               element={
