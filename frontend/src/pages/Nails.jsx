@@ -5,6 +5,7 @@ import { BookingForm } from '../components/BookingForm';
 import { Card } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
 import { Clock, MapPin, Phone, Sparkles, Heart, Palette } from 'lucide-react';
+import { SEOHead, createServiceSchema } from '../components/SEOHead';
 
 export default function Nails() {
   const services = [
