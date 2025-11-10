@@ -29,10 +29,28 @@ export default function OrderDrinks() {
     tip_amount: 0
   });
   const [orderConfirmation, setOrderConfirmation] = useState(null);
+  const [deliveryEnabled, setDeliveryEnabled] = useState(true);
 
   useEffect(() => {
     fetchDrinks();
+    fetchDeliverySettings();
   }, []);
+
+  const fetchDeliverySettings = async () => {
+    try {
+      const res = await fetch(`${backendUrl}/api/orders/settings`);
+      if (res.ok) {
+        const data = await res.json();
+        setDeliveryEnabled(data.delivery_enabled);
+        // If delivery is disabled and user selected delivery, reset to pickup
+        if (!data.delivery_enabled && orderForm.delivery_method !== 'pickup') {
+          setOrderForm({...orderForm, delivery_method: 'pickup'});
+        }
+      }
+    } catch (error) {
+      console.error('Failed to fetch delivery settings:', error);
+    }
+  };
 
   const fetchDrinks = async () => {
     try {
