@@ -1,6 +1,7 @@
 """
-Backend API Testing for Eastend Tanning & Laundry - Phase 5-7 Features
-Tests Voice Calls, Marketing Worker, Rate Limiting, and all existing features
+Backend API Testing for Eastend Tanning & Laundry - Phase 1 Implementation Testing
+Tests Phase 1 discount system updates, Fizze Admin CRUD, and existing features
+Focus: Discount expiry logic, auto-apply system, first-time popup, Fizze management
 """
 import requests
 import sys
