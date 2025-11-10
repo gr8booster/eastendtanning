@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Depends
 from motor.motor_asyncio import AsyncIOMotorClient
 from typing import List, Optional
 from datetime import datetime, timedelta, timezone
@@ -14,6 +14,8 @@ from models import (
     AIRecommendation,
     DashboardMetrics
 )
+from auth import verify_token
+from roles import Permission, require_permission, require_any_permission
 
 # Load environment variables
 ROOT_DIR = Path(__file__).parent
