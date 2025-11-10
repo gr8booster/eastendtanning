@@ -240,6 +240,23 @@ export default function Admin() {
     }
   };
 
+  const handleOrderStatusUpdate = async (orderId, newStatus) => {
+    try {
+      const res = await fetch(`${backendUrl}/api/orders/${orderId}/status?status=${newStatus}`, {
+        method: 'PATCH',
+        headers: adminHeaders()
+      });
+
+      if (!res.ok) throw new Error('Status update failed');
+
+      toast.success(`Order status updated to ${newStatus}`);
+      fetchDashboardData(true);
+    } catch (e) {
+      console.error(e);
+      toast.error('Failed to update order status');
+    }
+  };
+
   const filteredFizzeDrinks = fizzeDrinks.filter(drink => {
     const matchesSearch = drink.name.toLowerCase().includes(fizzeSearch.toLowerCase());
     const matchesFilter = fizzeFilter === 'all' || 
