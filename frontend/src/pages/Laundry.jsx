@@ -97,12 +97,29 @@ export default function Laundry() {
             <div className="bg-gradient-to-br from-[hsl(42_92%_55%)]/10 to-[hsl(183_55%_43%)]/10 rounded-lg p-6 border-2 border-[hsl(42_92%_55%)]">
               <h4 className="font-bold text-xl mb-4 flex items-center gap-2">
                 <Sparkles className="w-5 h-5 text-[hsl(42_92%_55%)]" />
-                Drop-Off Service Available
+                Drop-Off Service & Self-Service
               </h4>
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
                   <span className="font-semibold"><DollarSign className="w-4 h-4 inline" />Laundry Drop-Off:</span>
                   <span className="text-2xl font-bold text-[hsl(42_92%_55%)]">$1.75/lb</span>
+                </div>
+                <div className="border-t pt-3">
+                  <p className="font-semibold mb-2">Washer Sizes & Pricing:</p>
+                  <div className="space-y-1 text-sm">
+                    <div className="flex items-center justify-between">
+                      <span>20 lb washers</span>
+                      <span className="font-bold">$4.00</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span>40 lb washers</span>
+                      <span className="font-bold">$5.50</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span>60 lb washers</span>
+                      <span className="font-bold">$7.50</span>
+                    </div>
+                  </div>
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="font-semibold">Free Drying:</span>
