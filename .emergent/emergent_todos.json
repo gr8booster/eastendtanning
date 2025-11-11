@@ -1,30 +1,22 @@
 [
   {
-    "content": "Fix Admin.jsx handleToggleDelivery scope error",
-    "status": "completed"
+    "content": "Update Mary Well AI - Add VIP tanning info (3-month commitment, auto-payment)",
+    "status": "in_progress"
   },
   {
-    "content": "Test Admin dashboard - verify Fizze tab and delivery toggle works",
-    "status": "completed"
+    "content": "Update Tanning page - Emphasize Monthly/VIP value, add VIP pricing to table",
+    "status": "pending"
   },
   {
-    "content": "Add Orders tab to Admin dashboard for fizze_orders management",
-    "status": "completed"
+    "content": "Update Laundry page - Add washer sizes, pricing, and laundry machines image",
+    "status": "pending"
   },
   {
-    "content": "Create User Management UI tab (Owner only) with CRUD operations",
-    "status": "completed"
+    "content": "Update Fast Nails booking system - Staff-controlled schedule, prevent double bookings, notifications",
+    "status": "pending"
   },
   {
-    "content": "Implement role-based tab visibility using permissions.js",
-    "status": "completed"
-  },
-  {
-    "content": "Apply permission decorators to remaining backend routes",
-    "status": "completed"
-  },
-  {
-    "content": "Run comprehensive testing of all features",
-    "status": "completed"
+    "content": "Test all updates with screenshots",
+    "status": "pending"
   }
 ]
