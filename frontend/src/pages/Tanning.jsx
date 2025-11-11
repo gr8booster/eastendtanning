@@ -150,21 +150,23 @@ export default function Tanning() {
         </div>
       </div>
 
-      {/* Pricing Section */}
-      <div className="container mx-auto px-4 py-16">
-        <div className="text-center mb-12">
-          <h2 className="font-serif text-4xl font-bold mb-4">💎 Monthly & VIP Tanning Packages</h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-4">
-            <strong>Monthly Unlimited and VIP packages deliver the BEST VALUE and results.</strong> Consistent tanning is the only way to get a real tan!
-          </p>
-          <div className="bg-amber-50 border-2 border-amber-200 rounded-lg p-6 max-w-3xl mx-auto">
-            <p className="text-lg font-semibold text-amber-900 mb-2">⭐ What is VIP?</p>
-            <p className="text-amber-800">
-              VIP is our <strong>BEST VALUE</strong> option! You commit to 3 months minimum with automatic monthly payments. This gives you the <strong>lowest possible price</strong> - save $10-$25/month compared to regular unlimited. Tan as often as you want without limits!
+      {/* Pricing - Show Them the Deal */}
+      <div className="bg-white py-16">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="font-serif text-4xl font-bold mb-4">Tanning Packages & Pricing</h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Monthly unlimited gives you the consistency needed for real results. Choose VIP for the lowest price or regular monthly with no commitment.
             </p>
           </div>
+          <PricingTable items={packages} highlightMonthly={true} note="💡 Questions about VIP or which package is right for you? Ask Mary for personalized advice." />
+          
+          <div className="text-center mt-8">
+            <Button variant="outline" size="lg" onClick={openChat}>
+              Ask Mary: "What's the difference between VIP and Monthly?"
+            </Button>
+          </div>
         </div>
-        <PricingTable items={packages} highlightMonthly={true} note="💡 VIP pricing requires 3-month commitment with automatic monthly payments. All prices shown are per month for unlimited tanning." />
       </div>
 
       {/* Lotions Catalog */}
