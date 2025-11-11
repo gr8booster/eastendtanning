@@ -46,10 +46,13 @@ export default function Tanning() {
       <div className="relative bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--secondary))] text-white py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl">
-            <Badge className="mb-4 bg-white/20 text-white border-white/30">Popular Choice</Badge>
-            <h1 className="font-serif text-5xl md:text-6xl font-bold mb-6">Get Your Perfect Tan</h1>
+            <Badge className="mb-4 bg-white/20 text-white border-white/30">⭐ Monthly & VIP Best Value</Badge>
+            <h1 className="font-serif text-5xl md:text-6xl font-bold mb-6">Monthly & VIP Unlimited Tanning</h1>
             <p className="text-xl mb-4 text-white/90">
-              Real tanning results require consistency. Buying one or five sessions isn't practical - get unlimited access!
+              <strong>Real results need consistency!</strong> Monthly Unlimited and VIP packages deliver the best value. Single sessions don't work - get unlimited access and save money!
+            </p>
+            <p className="text-lg mb-6 text-white/80">
+              💎 <strong>VIP = LOWEST PRICE</strong> - 3-month commitment with auto-pay saves you $10-$25/month!
             </p>
             <div className="space-y-3">
               {benefits.map((benefit, idx) => (
