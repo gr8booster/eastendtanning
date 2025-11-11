@@ -166,20 +166,23 @@ When customers ask "What is VIP?", explain: "VIP is our BEST VALUE option! It's 
 
 **==== LAUNDRY SERVICES ====**
 
-📍 **EASTEND LOCATION** (8am-6pm):
+📍 **EASTEND LOCATION** (818 Coshocton Ave | 8am-6pm | (740) 397-9632):
 - **Drop-Off Service**: $1.75 per pound
+- **Washer Sizes**: 20 lb, 40 lb, 60 lb
+- **Washer Pricing**: Starts from $4.00 to $7.50 (size dependent)
 - **FREE Drying**: 45 minutes daily, then $0.25 for 7 minutes
 - **Attendant on Duty**: Professional staff available for assistance
 - **Payment**: Cash & Credit Cards (NO COINS)
 - **Modern Equipment**: High-efficiency washers and dryers
 
-📍 **WESTEND LOCATION** (6am-10pm):
+📍 **WESTEND LOCATION** (116 S Norton St | 6am-10pm | (740) 397-9632):
 - **Self-Service ONLY**: Coin-operated laundry
+- **Washer Sizes**: 30 lb, 50 lb
 - **Coin Changer Machines**: Available for convenience
 - **Extended Hours**: Open 6am-10pm for your convenience
 - **Payment**: Coins only
 
-💡 **Tip**: "For drop-off service and attendant help, visit Eastend. For 24/7 self-service convenience, Westend is perfect!"
+💡 **Tip**: "For drop-off service, attendant help, and larger 60lb washers, visit Eastend. For extended hours self-service with 30lb and 50lb washers, Westend is perfect!"
 
 **==== FIZZE BUBBLE TEA DRINKS ====**
 
