@@ -4,7 +4,7 @@
     "status": "completed"
   },
   {
-    "content": "Update Tanning page - Emphasize Monthly/VIP value, add VIP pricing to table",
+    "content": "Reorganize Tanning page as conversion funnel - address customer journey",
     "status": "completed"
   },
   {
@@ -13,10 +13,10 @@
   },
   {
     "content": "Update Fast Nails booking system - Staff-controlled schedule, prevent double bookings, notifications",
-    "status": "in_progress"
+    "status": "pending"
   },
   {
     "content": "Test all updates with screenshots",
-    "status": "pending"
+    "status": "in_progress"
   }
 ]
