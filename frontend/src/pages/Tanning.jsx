@@ -11,11 +11,10 @@ const matrixPoster = "https://images.unsplash.com/photo-1540555700478-4be289fbec
 
 export default function Tanning() {
   const packages = [
-    { service: '⭐ VIP Monthly Unlimited', description: 'BEST VALUE! 3-month commitment, auto-pay. Unlimited tanning at the lowest price!', price: '$39.99-$169.99/mo' },
-    { service: 'Monthly Unlimited', description: 'Unlimited tanning, no commitment. Great value for consistent results.', price: '$45.99-$194.99/mo' },
-    { service: '10 Session Package', description: '10% discount on any level. Good for occasional tanners.', price: '$38.99-$194.99' },
-    { service: '5 Session Package', description: '5% discount on any level', price: 'Starting at $38' },
-    { service: 'Single Session', description: 'Pay as you go (not recommended for results)', price: '$5-$23.99' }
+    { service: 'VIP Monthly Unlimited', description: 'Best value - lowest price with 3-month commitment', price: '$39.99-$169.99/mo' },
+    { service: 'Monthly Unlimited', description: 'No commitment - cancel anytime', price: '$45.99-$194.99/mo' },
+    { service: '10 Session Package', description: 'Save 10% - good for occasional tanners', price: '$38.99-$194.99' },
+    { service: 'Single Session', description: 'Pay as you go', price: '$5-$23.99' }
   ];
 
   const openChat = () => {
@@ -24,12 +23,20 @@ export default function Tanning() {
     }
   };
 
-  const benefits = [
-    { icon: <Sparkles className="w-5 h-5" />, text: "5 tanning levels from budget to premium Matrix bed" },
-    { icon: <Check className="w-5 h-5" />, text: "Professional skin type evaluation (free)" },
-    { icon: <Gift className="w-5 h-5" />, text: "Premium lotions catalog with expert recommendations" },
-    { icon: <Crown className="w-5 h-5" />, text: "Unlimited tanning - best value for consistent results" },
-    { icon: <Zap className="w-5 h-5" />, text: "Consistent tanning delivers real, lasting results" }
+  const whyChooseUs = [
+    { title: "More Beds, Better Choice", desc: "5 levels vs gyms' 1-2 basic beds. From beginner-friendly to our exclusive 40,740-watt Matrix." },
+    { title: "Unlimited = Real Results", desc: "Gyms limit your tanning. We don't. Monthly unlimited means you can tan as often as needed for actual results." },
+    { title: "Lower Prices Than Competition", desc: "VIP starts at $39.99/month vs $60+ at other salons. Same quality, better value." },
+    { title: "Expert Staff & Lotions", desc: "Free skin evaluations, professional lotion recommendations. Not just equipment - actual tanning expertise." }
+  ];
+
+  const bedLevels = [
+    { level: "Level 1", watts: "3,840W", price: "$5 single / $39.99 VIP unlimited", bestFor: "Beginners, fair skin, maintaining base tan" },
+    { level: "Level 2", watts: "5,000W", price: "$8 single / $59.99 VIP unlimited", bestFor: "Most popular! Medium skin, faster results" },
+    { level: "Level 3", watts: "10,750W", price: "$10 single / $79.99 VIP unlimited", bestFor: "High-pressure tanning, experienced tanners" },
+    { level: "Level 4", watts: "13,995W", price: "$14.99 single / $99.99 VIP unlimited", bestFor: "Premium results, less frequent sessions" },
+    { level: "Stand Up", watts: "8,640W", price: "$11 single / $99.99 VIP unlimited", bestFor: "No pressure points, full-body coverage" },
+    { level: "Matrix", watts: "40,740W", price: "$23.99 single / $169.99 VIP unlimited", bestFor: "ULTIMATE power - fastest, deepest tan possible" }
   ];
 
   return (
