@@ -191,6 +191,19 @@ export default function Laundry() {
                 Self-Service Coin Laundry
               </h4>
               <div className="space-y-3">
+                <div>
+                  <p className="font-semibold mb-2 text-sm">Washer Sizes Available:</p>
+                  <div className="space-y-1 text-sm pl-6">
+                    <div className="flex items-center gap-2">
+                      <span className="w-2 h-2 bg-blue-600 rounded-full"></span>
+                      <span>30 lb washers</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="w-2 h-2 bg-blue-600 rounded-full"></span>
+                      <span>50 lb washers</span>
+                    </div>
+                  </div>
+                </div>
                 <div className="flex items-center gap-2 text-sm">
                   <Sparkles className="w-4 h-4 text-blue-600" />
                   <span>Coin changer machines available for convenience</span>
