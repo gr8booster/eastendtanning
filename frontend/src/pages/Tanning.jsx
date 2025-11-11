@@ -69,12 +69,73 @@ export default function Tanning() {
         </div>
       </div>
 
-      {/* Video Showcase */}
+      {/* Why Choose Us Over Gyms & Other Salons */}
+      <div className="bg-white py-16">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="font-serif text-4xl font-bold mb-4">Why Eastend Over Your Gym or Other Salons?</h2>
+            <p className="text-xl text-muted-foreground">We're the tanning specialists - not a side offering</p>
+          </div>
+          <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+            {whyChooseUs.map((reason, idx) => (
+              <Card key={idx} className="p-6 hover:shadow-lg transition-shadow">
+                <h3 className="font-bold text-xl mb-3 flex items-center gap-2">
+                  <Check className="w-5 h-5 text-[hsl(var(--primary))]" />
+                  {reason.title}
+                </h3>
+                <p className="text-muted-foreground">{reason.desc}</p>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Lead Capture - Which Bed Should I Choose? */}
+      <div className="bg-gradient-to-br from-[hsl(var(--primary))]/10 to-[hsl(var(--secondary))]/10 py-16">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="font-serif text-4xl font-bold mb-4">Not Sure Which Bed is Right for You?</h2>
+            <p className="text-xl text-muted-foreground mb-8">
+              Get a free skin type evaluation and personalized recommendation from Mary, our AI tanning expert. She'll match you to the perfect bed based on your skin type, goals, and budget.
+            </p>
+            <Button size="lg" onClick={openChat} className="bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--secondary))] text-lg px-8">
+              Get Free Consultation - Ask Mary Anything
+            </Button>
+          </div>
+        </div>
+      </div>
+
+      {/* Our Tanning Beds - Detailed Breakdown */}
       <div className="container mx-auto px-4 py-16">
-        <div className="max-w-4xl mx-auto">
+        <div className="text-center mb-12">
+          <h2 className="font-serif text-4xl font-bold mb-4">Our 5 Tanning Levels (+ Matrix)</h2>
+          <p className="text-xl text-muted-foreground">From beginner-friendly to ultimate power - we have the right bed for every skin type</p>
+        </div>
+        
+        <div className="space-y-4 max-w-5xl mx-auto mb-12">
+          {bedLevels.map((bed, idx) => (
+            <Card key={idx} className="p-6 hover:shadow-lg transition-shadow">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div className="flex-1">
+                  <div className="flex items-center gap-3 mb-2">
+                    <Badge className="bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--secondary))] text-white">
+                      {bed.level}
+                    </Badge>
+                    <span className="font-bold text-lg">{bed.watts}</span>
+                  </div>
+                  <p className="text-muted-foreground mb-2">Best for: {bed.bestFor}</p>
+                  <p className="font-semibold text-[hsl(var(--primary))]">{bed.price}</p>
+                </div>
+                <Button variant="outline" onClick={openChat}>Ask Mary About This Bed</Button>
+              </div>
+            </Card>
+          ))}
+        </div>
+
+        {/* Video Showcase */}
+        <div className="max-w-4xl mx-auto mt-16">
           <div className="text-center mb-8">
-            <h2 className="font-serif text-3xl font-bold mb-4">Our Premium Tanning Beds</h2>
-            <p className="text-muted-foreground">State-of-the-art equipment for the best tanning experience</p>
+            <h3 className="font-serif text-3xl font-bold mb-4">See Our Beds in Action</h3>
           </div>
           <Card className="overflow-hidden">
             <video
