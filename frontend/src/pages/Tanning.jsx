@@ -11,11 +11,11 @@ const matrixPoster = "https://images.unsplash.com/photo-1540555700478-4be289fbec
 
 export default function Tanning() {
   const packages = [
-    { service: 'Single Session', description: 'Pay as you go, any level', price: '$10-35' },
-    { service: '5 Session Package', description: '5% discount on any level', price: 'Starting at $47' },
-    { service: '10 Session Package', description: '10% discount on any level', price: 'Starting at $90' },
-    { service: 'Monthly Unlimited', description: 'Unlimited tanning on levels 1-3', price: '$59-89/month' },
-    { service: 'Premium Unlimited', description: 'Unlimited tanning all levels', price: '$99/month' }
+    { service: '⭐ VIP Monthly Unlimited', description: 'BEST VALUE! 3-month commitment, auto-pay. Unlimited tanning at the lowest price!', price: '$39.99-$169.99/mo' },
+    { service: 'Monthly Unlimited', description: 'Unlimited tanning, no commitment. Great value for consistent results.', price: '$45.99-$194.99/mo' },
+    { service: '10 Session Package', description: '10% discount on any level. Good for occasional tanners.', price: '$38.99-$194.99' },
+    { service: '5 Session Package', description: '5% discount on any level', price: 'Starting at $38' },
+    { service: 'Single Session', description: 'Pay as you go (not recommended for results)', price: '$5-$23.99' }
   ];
 
   const openChat = () => {
