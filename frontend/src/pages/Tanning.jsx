@@ -169,40 +169,37 @@ export default function Tanning() {
         </div>
       </div>
 
-      {/* Lotions Catalog */}
+      {/* Lotions - They Want Lotions! */}
       <div className="bg-gradient-to-b from-muted to-white py-16">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="font-serif text-4xl font-bold mb-4">Premium Tanning Lotions</h2>
+            <h2 className="font-serif text-4xl font-bold mb-4">Get Better Results with Premium Lotions</h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Enhance your tan with professional-grade lotions. Buy online, pickup at Eastend.
+              Professional-grade lotions accelerate tanning, moisturize, and help your tan last longer. Buy online, pick up in-store, or ask Mary for recommendations.
             </p>
           </div>
           <LotionsCatalog />
         </div>
       </div>
 
-      {/* Skin Type CTA */}
-      <div className="container mx-auto px-4 py-16">
-        <Card className="p-8 md:p-12 bg-gradient-to-br from-[hsl(var(--primary))]/10 to-[hsl(var(--secondary))]/10 border-2 border-[hsl(var(--primary))]">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="font-serif text-3xl font-bold mb-4">Not Sure What's Right for You?</h2>
-            <p className="text-lg text-muted-foreground mb-6">
-              Chat with Mary Well, our AI tanning expert, for a free skin type evaluation and personalized package recommendation.
-            </p>
-            <Button size="lg" onClick={openChat} className="bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--secondary))]">
-              Get Your Free Skin Type Evaluation
-            </Button>
-          </div>
-        </Card>
-      </div>
-
-      {/* Final CTA */}
+      {/* Final CTA - Convert Them */}
       <div className="bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--secondary))] text-white py-16">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="font-serif text-4xl font-bold mb-6">Ready to Get Your Glow?</h2>
-          <p className="text-xl mb-8 text-white/90">Start your tanning journey today with a Monthly Unlimited package</p>
-          <BookingCTA />
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="font-serif text-4xl font-bold mb-6">Ready to Get Started?</h2>
+            <p className="text-xl mb-8 text-white/90">
+              Stop by today or chat with Mary to find your perfect package. No pressure, just expert guidance.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button size="lg" className="bg-white text-[hsl(var(--primary))] hover:bg-white/90" onClick={openChat}>
+                Chat with Mary Now
+              </Button>
+              <BookingCTA />
+            </div>
+            <p className="text-sm text-white/70 mt-6">
+              📍 Eastend Tanning: 818 Coshocton Ave, Mt Vernon | 📞 (740) 397-9632 | ⏰ 8am-6pm daily
+            </p>
+          </div>
         </div>
       </div>
     </div>
