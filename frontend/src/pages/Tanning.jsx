@@ -97,12 +97,18 @@ export default function Tanning() {
       {/* Pricing Section */}
       <div className="container mx-auto px-4 py-16">
         <div className="text-center mb-12">
-          <h2 className="font-serif text-4xl font-bold mb-4">Tanning Packages</h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Monthly Unlimited packages deliver the best value and results. Consistent tanning is key!
+          <h2 className="font-serif text-4xl font-bold mb-4">💎 Monthly & VIP Tanning Packages</h2>
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-4">
+            <strong>Monthly Unlimited and VIP packages deliver the BEST VALUE and results.</strong> Consistent tanning is the only way to get a real tan!
           </p>
+          <div className="bg-amber-50 border-2 border-amber-200 rounded-lg p-6 max-w-3xl mx-auto">
+            <p className="text-lg font-semibold text-amber-900 mb-2">⭐ What is VIP?</p>
+            <p className="text-amber-800">
+              VIP is our <strong>BEST VALUE</strong> option! You commit to 3 months minimum with automatic monthly payments. This gives you the <strong>lowest possible price</strong> - save $10-$25/month compared to regular unlimited. Tan as often as you want without limits!
+            </p>
+          </div>
         </div>
-        <PricingTable items={packages} highlightMonthly={true} />
+        <PricingTable items={packages} highlightMonthly={true} note="💡 VIP pricing requires 3-month commitment with automatic monthly payments. All prices shown are per month for unlimited tanning." />
       </div>
 
       {/* Lotions Catalog */}
