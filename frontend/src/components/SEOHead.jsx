@@ -59,49 +59,110 @@ export function SEOHead({
   );
 }
 
-// Business Schema Generator
+// Business Schema Generator - Optimized for Mt Vernon, Knox County Local SEO
 export const createLocalBusinessSchema = () => {
   return {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
+    "@type": ["TanningSalon", "Laundromat", "LocalBusiness"],
     "name": "Eastend Tanning & Laundry",
-    "image": "https://laundry-marketing.preview.emergentagent.com/images/eastend-logo.jpg",
+    "alternateName": "Eastend Tanning",
+    "description": "Premier tanning salon and laundromat in Mt Vernon, Ohio offering unlimited tanning packages, red light therapy, coin & card laundry with free drying daily, serving Knox County.",
+    "image": [
+      "https://laundry-marketing.preview.emergentagent.com/images/eastend-logo.jpg",
+      "https://customer-assets.emergentagent.com/job_cece3dc5-08ac-44b8-9e32-3608ea17c8d0/artifacts/ylcc1ll3_Screenshot_20251108_054848_Google.jpg"
+    ],
     "@id": "https://laundry-marketing.preview.emergentagent.com",
     "url": "https://laundry-marketing.preview.emergentagent.com",
-    "telephone": "+1-555-EASTEND",
-    "priceRange": "$$",
+    "telephone": "+17403979632",
+    "priceRange": "$-$$",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "123 Eastend Ave",
-      "addressLocality": "Your City",
-      "addressRegion": "ST",
-      "postalCode": "12345",
+      "streetAddress": "818 Coshocton Ave",
+      "addressLocality": "Mt Vernon",
+      "addressRegion": "OH",
+      "postalCode": "43050",
       "addressCountry": "US"
     },
     "geo": {
       "@type": "GeoCoordinates",
-      "latitude": 40.7128,
-      "longitude": -74.0060
+      "latitude": 40.3934,
+      "longitude": -82.4857
     },
-    "openingHoursSpecification": [
+    "areaServed": [
       {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-        "opens": "08:00",
-        "closes": "21:00"
+        "@type": "City",
+        "name": "Mt Vernon",
+        "containedInPlace": {
+          "@type": "AdministrativeArea",
+          "name": "Knox County",
+          "containedInPlace": {
+            "@type": "State",
+            "name": "Ohio"
+          }
+        }
+      }
+    ],
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+      "opens": "08:00",
+      "closes": "21:00"
+    },
+    "hasMap": "https://www.google.com/maps/place/818+Coshocton+Ave,+Mt+Vernon,+OH+43050",
+    "paymentAccepted": ["Cash", "Credit Card", "Debit Card"],
+    "currenciesAccepted": "USD",
+    "amenityFeature": [
+      {
+        "@type": "LocationFeatureSpecification",
+        "name": "Free Parking",
+        "value": true
       },
       {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Saturday", "Sunday"],
-        "opens": "09:00",
-        "closes": "20:00"
+        "@type": "LocationFeatureSpecification",
+        "name": "Wheelchair Accessible",
+        "value": true
+      },
+      {
+        "@type": "LocationFeatureSpecification",
+        "name": "Free WiFi",
+        "value": true
+      }
+    ],
+    "makesOffer": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Unlimited Tanning",
+          "description": "Monthly unlimited tanning with VIP packages starting at $39.99"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Laundry Service",
+          "description": "Self-service coin laundry with free drying every day, drop-off service available at $1.75/lb"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Red Light Therapy",
+          "description": "Premium red light therapy for skin rejuvenation and wellness"
+        }
       }
     ],
     "sameAs": [
       "https://www.facebook.com/eastendtanning",
-      "https://www.instagram.com/eastendtanning",
-      "https://www.tiktok.com/@eastendtanning"
-    ]
+      "https://www.instagram.com/eastendtanning"
+    ],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "reviewCount": "127"
+    }
   };
 };
 
