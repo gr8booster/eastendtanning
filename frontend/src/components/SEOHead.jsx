@@ -10,10 +10,10 @@ export function SEOHead({
   schemaMarkup
 }) {
   const baseUrl = 'https://laundry-marketing.preview.emergentagent.com';
-  const defaultTitle = 'Eastend Tanning & Laundry - Premier Tanning Salon & Laundromat';
-  const defaultDescription = 'Experience luxury tanning and convenient laundry services at Eastend. Monthly unlimited tanning packages, professional lotions, coin & card laundry, and fresh Fizze bubble tea drinks.';
+  const defaultTitle = 'Eastend Tanning & Laundry | Mt Vernon, OH | Tanning Salon & Laundromat Knox County';
+  const defaultDescription = 'Eastend Tanning & Laundry at 818 Coshocton Ave, Mt Vernon, OH offers unlimited tanning packages, red light therapy, and coin laundry with free drying every day. Serving Knox County, Ohio. Call (740) 397-9632.';
   const defaultImage = `${baseUrl}/images/eastend-hero.jpg`;
-  const defaultKeywords = 'tanning salon, laundromat, bubble tea, Fizze drinks, spray tan, UV tanning, coin laundry, laundry service';
+  const defaultKeywords = 'tanning salon Mt Vernon, laundromat Knox County, red light therapy Mt Vernon, coin laundry Mt Vernon OH, tanning near me, laundry with free drying Mt Vernon, UV tanning Knox County Ohio';
 
   const fullTitle = title ? `${title} | Eastend` : defaultTitle;
   const fullDescription = description || defaultDescription;
