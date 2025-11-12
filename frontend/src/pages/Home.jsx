@@ -100,11 +100,90 @@ export default function Home() {
       <section data-testid="reviews-section" className="py-12 lg:py-20 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-10 max-w-[1200px] text-center">
           <h2 className="font-serif text-3xl sm:text-4xl font-bold mb-6 text-foreground">What Our Customers Say</h2>
-          <p className="text-base sm:text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">We love serving the Mount Vernon community! See what our customers have to say and leave us a review.</p>
+          <p className="text-base sm:text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">We love serving the Mount Vernon community! See what our customers have to say and leave us a review on Google!</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <a data-testid="google-reviews-link" href="https://www.google.com/maps/place/Eastend+Tanning+and+Laundry/@40.3930,-82.4850,17z" target="_blank" rel="noopener noreferrer">
-              <Button variant="outline" size="lg" className="inline-flex items-center gap-2 px-6 h-12 font-semibold hover:bg-muted transition-colors duration-200"><Star className="w-5 h-5 fill-yellow-400 text-yellow-400" />Read Google Reviews</Button>
+              <Button variant="outline" size="lg" className="inline-flex items-center gap-2 px-6 h-12 font-semibold hover:bg-muted transition-colors duration-200"><Star className="w-5 h-5 fill-yellow-400 text-yellow-400" />Read & Leave Google Reviews</Button>
             </a>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section - Optimized for Voice & AI Search */}
+      <section className="py-12 lg:py-20 bg-gradient-to-b from-muted to-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-10 max-w-[900px]">
+          <h2 className="font-serif text-3xl sm:text-4xl font-bold mb-8 text-center text-foreground">Frequently Asked Questions</h2>
+          
+          <div className="space-y-6">
+            <Card className="p-6" itemScope itemType="https://schema.org/Question">
+              <h3 className="font-semibold text-lg mb-2" itemProp="name">Where is Eastend Tanning & Laundry located?</h3>
+              <div itemScope itemType="https://schema.org/Answer" itemProp="acceptedAnswer">
+                <p className="text-muted-foreground" itemProp="text">
+                  We're located at <strong>818 Coshocton Ave, Mt Vernon, OH 43050</strong>. We serve Mt Vernon and all of Knox County, Ohio. Our facility offers tanning, laundry, Fizze drinks, and nail services all under one roof.
+                </p>
+              </div>
+            </Card>
+
+            <Card className="p-6" itemScope itemType="https://schema.org/Question">
+              <h3 className="font-semibold text-lg mb-2" itemProp="name">What time does the laundromat close?</h3>
+              <div itemScope itemType="https://schema.org/Answer" itemProp="acceptedAnswer">
+                <p className="text-muted-foreground" itemProp="text">
+                  <strong>Eastend (818 Coshocton Ave)</strong>: Open Mon-Sun 8:00 AM - 9:00 PM with drop-off service and attended washers. <strong>Westend (116 S Norton St)</strong>: Self-service coin laundry open daily 6:00 AM - 10:00 PM.
+                </p>
+              </div>
+            </Card>
+
+            <Card className="p-6" itemScope itemType="https://schema.org/Question">
+              <h3 className="font-semibold text-lg mb-2" itemProp="name">Do you offer free drying?</h3>
+              <div itemScope itemType="https://schema.org/Answer" itemProp="acceptedAnswer">
+                <p className="text-muted-foreground" itemProp="text">
+                  Yes! At our Eastend location, we offer <strong>45 minutes of free drying every single day</strong>. After that, additional drying is just $0.25 for 7 minutes. This is one of the best values in Knox County!
+                </p>
+              </div>
+            </Card>
+
+            <Card className="p-6" itemScope itemType="https://schema.org/Question">
+              <h3 className="font-semibold text-lg mb-2" itemProp="name">How long are tanning sessions?</h3>
+              <div itemScope itemType="https://schema.org/Answer" itemProp="acceptedAnswer">
+                <p className="text-muted-foreground" itemProp="text">
+                  Tanning session lengths vary by bed level: Level 1-2 beds typically 12-15 minutes, Level 3-4 beds 8-12 minutes, and our Matrix bed 6-10 minutes. Our staff will help you determine the right time for your skin type. Monthly unlimited packages let you tan as often as needed!
+                </p>
+              </div>
+            </Card>
+
+            <Card className="p-6" itemScope itemType="https://schema.org/Question">
+              <h3 className="font-semibold text-lg mb-2" itemProp="name">Do you take credit cards or cash?</h3>
+              <div itemScope itemType="https://schema.org/Answer" itemProp="acceptedAnswer">
+                <p className="text-muted-foreground" itemProp="text">
+                  <strong>Eastend location</strong> accepts both cash and credit/debit cards for all services (no coins needed). <strong>Westend location</strong> is coin-operated only, but we have coin changer machines on-site for your convenience.
+                </p>
+              </div>
+            </Card>
+
+            <Card className="p-6" itemScope itemType="https://schema.org/Question">
+              <h3 className="font-semibold text-lg mb-2" itemProp="name">What tanning packages do you offer in Mt Vernon?</h3>
+              <div itemScope itemType="https://schema.org/Answer" itemProp="acceptedAnswer">
+                <p className="text-muted-foreground" itemProp="text">
+                  We offer VIP unlimited tanning starting at $39.99/month (3-month commitment), Monthly unlimited with no commitment ($45.99-$194.99/month), 10-session packages, and single sessions. We have 5 tanning levels plus our exclusive 40,740-watt Matrix bed!
+                </p>
+              </div>
+            </Card>
+
+            <Card className="p-6" itemScope itemType="https://schema.org/Question">
+              <h3 className="font-semibold text-lg mb-2" itemProp="name">Do you have parking and wheelchair access?</h3>
+              <div itemScope itemType="https://schema.org/Answer" itemProp="acceptedAnswer">
+                <p className="text-muted-foreground" itemProp="text">
+                  Yes! Both locations offer free parking and are wheelchair accessible. We're committed to serving all members of the Mt Vernon and Knox County community.
+                </p>
+              </div>
+            </Card>
+          </div>
+
+          <div className="mt-8 text-center">
+            <p className="text-muted-foreground mb-4">Have more questions? Talk to Mary, our AI assistant!</p>
+            <Button onClick={() => window.openMaryChatAndListen && window.openMaryChatAndListen()} size="lg" className="bg-[hsl(var(--primary))] hover:bg-[hsl(42_92%_50%)]">
+              Ask Mary Anything
+            </Button>
           </div>
         </div>
       </section>
