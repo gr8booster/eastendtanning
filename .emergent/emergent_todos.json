@@ -5,18 +5,18 @@
   },
   {
     "content": "Restart backend to apply Mary Well changes",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Verify all pages compile and load correctly",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Take final screenshots of all major pages",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Create final launch readiness report",
-    "status": "pending"
+    "status": "in_progress"
   }
 ]
