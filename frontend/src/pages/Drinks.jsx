@@ -102,8 +102,8 @@ export default function Drinks() {
       {/* Hero */}
       <div className="bg-gradient-to-r from-[hsl(42_92%_55%)] to-[hsl(183_55%_43%)] text-white py-16">
         <div className="container mx-auto px-4 text-center">
-          <img src={fizzeLogoUrl} alt="Fizze" className="h-20 mx-auto mb-6" />
-          <h1 className="font-serif text-6xl font-black mb-4 tracking-tight">Fizze Bubble Tea</h1>
+          <img src={fizzeLogoUrl} alt="Fizze Drinks" className="h-20 mx-auto mb-6" />
+          <h1 className="font-serif text-6xl font-black mb-4 tracking-tight">FIZZE DRINKS</h1>
           <p className="text-xl mb-8 text-white/90">Fresh, handcrafted bubble tea with premium ingredients</p>
           <Button
             size="lg"
