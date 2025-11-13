@@ -13,8 +13,8 @@ export default function Home() {
     <div className="min-h-screen">
       <SEOHead
         title="Eastend Tanning & Laundry | Mt Vernon, OH | Tanning Salon & Laundromat Knox County"
-        description="Eastend Tanning & Laundry at 818 Coshocton Ave, Mt Vernon, OH offers unlimited tanning packages, red light therapy, and coin laundry with free drying every day. Serving Knox County, Ohio. Call (740) 397-9632."
-        keywords="tanning salon Mt Vernon, laundromat Knox County, red light therapy Mt Vernon, coin laundry Mt Vernon OH, tanning near me, laundry with free drying Mt Vernon, UV tanning Knox County Ohio"
+        description="Eastend Tanning & Laundry at 818 Coshocton Ave, Mt Vernon, OH offers unlimited tanning packages, red light therapy, and laundry with free drying every day. Serving Knox County, Ohio. Call (740) 397-9632."
+        keywords="tanning salon Mt Vernon, laundromat Knox County, red light therapy Mt Vernon, laundry Mt Vernon OH, tanning near me, laundry with free drying Mt Vernon, UV tanning Knox County Ohio"
         ogImage="https://laundromat-hub.preview.emergentagent.com/images/eastend-hero.jpg"
         schemaMarkup={createLocalBusinessSchema()}
       />
@@ -24,7 +24,7 @@ export default function Home() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-10 max-w-[1200px] relative z-10">
           <motion.div {...fadeInUp} className="text-center mb-12">
             <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-[-0.01em] text-foreground mb-4">Mt Vernon's Premier Tanning Salon & Laundromat</h1>
-            <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed mb-8">Eastend Tanning & Laundry offers premium tanning beds, red light therapy, and coin laundry with free drying every day at 818 Coshocton Ave, serving Mt Vernon and Knox County, Ohio.</p>
+            <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed mb-8">Eastend Tanning & Laundry offers premium tanning beds, red light therapy, and laundry with free drying every day at 818 Coshocton Ave, serving Mt Vernon and Knox County, Ohio.</p>
             {/* Hero CTAs */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Button data-testid="home-hero-primary-cta-button" size="lg" onClick={() => window.openMaryChatAndListen && window.openMaryChatAndListen()} className="inline-flex items-center gap-2 bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))] px-6 h-12 font-semibold shadow-md hover:bg-[hsl(42_92%_50%)] hover:shadow-lg transition-all duration-200">
@@ -71,7 +71,7 @@ export default function Home() {
               <h3 className="font-semibold text-xl mb-3">Eastend Tanning & Laundry</h3>
               <div className="space-y-3 text-sm">
                 <div className="flex items-start gap-2 text-muted-foreground"><MapPin className="w-4 h-4 mt-0.5 flex-shrink-0 text-secondary" /><span>818 Coshocton Ave, Mt Vernon, OH 43050</span></div>
-                <div className="flex items-start gap-2 text-muted-foreground"><Clock className="w-4 h-4 mt-0.5 flex-shrink-0 text-secondary" /><div><p data-testid="hours-eastend" className="font-medium">Mon-Fri: 8:00 AM - 7:30 PM</p><p>Sun: 8:00 AM - 10:00 PM</p></div></div>
+                <div className="flex items-start gap-2 text-muted-foreground"><Clock className="w-4 h-4 mt-0.5 flex-shrink-0 text-secondary" /><div><p data-testid="hours-eastend" className="font-medium">Mon-Sun: 8:00 AM - 7:30 PM</p></div></div>
               </div>
               <div className="mt-5 flex gap-3">
                 <Button data-testid="location-talk-mary-eastend" onClick={() => window.openMaryChatAndListen && window.openMaryChatAndListen()} size="sm" className="bg-[hsl(var(--secondary))] text-white hover:bg-[hsl(183_55%_38%)]">Talk to Mary</Button>
@@ -128,7 +128,7 @@ export default function Home() {
               <h3 className="font-semibold text-lg mb-2" itemProp="name">What time does the laundromat close?</h3>
               <div itemScope itemType="https://schema.org/Answer" itemProp="acceptedAnswer">
                 <p className="text-muted-foreground" itemProp="text">
-                  <strong>Eastend (818 Coshocton Ave)</strong>: Open Mon-Sun 8:00 AM - 9:00 PM with drop-off service and attended washers. <strong>Westend (116 S Norton St)</strong>: Self-service coin laundry open daily 6:00 AM - 10:00 PM.
+                  <strong>Eastend (818 Coshocton Ave)</strong>: Open Mon-Sun 8:00 AM - 7:30 PM with drop-off service and attended washers. <strong>Westend (116 S Norton St)</strong>: Self-service coin laundry open daily 6:00 AM - 10:00 PM.
                 </p>
               </div>
             </Card>

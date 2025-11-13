@@ -11,9 +11,9 @@ export function SEOHead({
 }) {
   const baseUrl = 'https://laundromat-hub.preview.emergentagent.com';
   const defaultTitle = 'Eastend Tanning & Laundry | Mt Vernon, OH | Tanning Salon & Laundromat Knox County';
-  const defaultDescription = 'Eastend Tanning & Laundry at 818 Coshocton Ave, Mt Vernon, OH offers unlimited tanning packages, red light therapy, and coin laundry with free drying every day. Serving Knox County, Ohio. Call (740) 397-9632.';
+  const defaultDescription = 'Eastend Tanning & Laundry at 818 Coshocton Ave, Mt Vernon, OH offers unlimited tanning packages, red light therapy, and laundry with free drying every day. Serving Knox County, Ohio. Call (740) 397-9632.';
   const defaultImage = `${baseUrl}/images/eastend-hero.jpg`;
-  const defaultKeywords = 'tanning salon Mt Vernon, laundromat Knox County, red light therapy Mt Vernon, coin laundry Mt Vernon OH, tanning near me, laundry with free drying Mt Vernon, UV tanning Knox County Ohio';
+  const defaultKeywords = 'tanning salon Mt Vernon, laundromat Knox County, red light therapy Mt Vernon, laundry Mt Vernon OH, tanning near me, laundry with free drying Mt Vernon, UV tanning Knox County Ohio';
 
   const fullTitle = title ? `${title} | Eastend` : defaultTitle;
   const fullDescription = description || defaultDescription;
@@ -66,7 +66,7 @@ export const createLocalBusinessSchema = () => {
     "@type": ["TanningSalon", "Laundromat", "LocalBusiness"],
     "name": "Eastend Tanning & Laundry",
     "alternateName": "Eastend Tanning",
-    "description": "Premier tanning salon and laundromat in Mt Vernon, Ohio offering unlimited tanning packages, red light therapy, coin & card laundry with free drying daily, serving Knox County.",
+    "description": "Premier tanning salon and laundromat in Mt Vernon, Ohio offering unlimited tanning packages, red light therapy, laundry with free drying daily, serving Knox County.",
     "image": [
       "https://laundromat-hub.preview.emergentagent.com/images/eastend-logo.jpg",
       "https://customer-assets.emergentagent.com/job_cece3dc5-08ac-44b8-9e32-3608ea17c8d0/artifacts/ylcc1ll3_Screenshot_20251108_054848_Google.jpg"
@@ -106,7 +106,7 @@ export const createLocalBusinessSchema = () => {
       "@type": "OpeningHoursSpecification",
       "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
       "opens": "08:00",
-      "closes": "21:00"
+      "closes": "19:30"
     },
     "hasMap": "https://www.google.com/maps/place/818+Coshocton+Ave,+Mt+Vernon,+OH+43050",
     "paymentAccepted": ["Cash", "Credit Card", "Debit Card"],
@@ -142,7 +142,7 @@ export const createLocalBusinessSchema = () => {
         "itemOffered": {
           "@type": "Service",
           "name": "Laundry Service",
-          "description": "Self-service coin laundry with free drying every day, drop-off service available at $1.75/lb"
+          "description": "Self-service laundry with free drying every day, drop-off service available at $1.75/lb"
         }
       },
       {
