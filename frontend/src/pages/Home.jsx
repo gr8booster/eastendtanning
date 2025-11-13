@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { ServiceCard } from '../components/ServiceCard';
-import { MapPin, Clock, Star, Mic } from 'lucide-react';
+import { MapPin, Clock, Star, Mic, Phone } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
