@@ -9,15 +9,19 @@
   },
   {
     "content": "Create Recipes tab in Admin dashboard (10th tab, printable, staff-only)",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Update Admin category dropdown to include Dirty Sodas and Shakes",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Fix homepage hero - remove 'coin' from laundry description",
-    "status": "pending"
+    "status": "completed"
+  },
+  {
+    "content": "Restart frontend to apply changes",
+    "status": "in_progress"
   },
   {
     "content": "Test all fixes with screenshots",
