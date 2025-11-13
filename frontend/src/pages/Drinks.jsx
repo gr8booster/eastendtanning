@@ -92,9 +92,9 @@ export default function Drinks() {
   return (
     <div className="min-h-screen bg-muted">
       <SEOHead
-        title="Fizze Bubble Tea Menu - Fresh Boba, Milk Teas & Fruit Teas"
-        description="Explore 34+ Fizze bubble tea drinks! Milk teas, fruit teas, blended ice, hot boba, and customizable toppings. Order online for pickup or delivery. Vote for coming soon flavors!"
-        keywords="Fizze drinks, bubble tea menu, boba tea, milk tea, fruit tea, blended ice drinks, bubble tea toppings"
+        title="Fizze Drinks Menu - Fresh Bubble Tea, Boba, Milk Teas & Fruit Teas"
+        description="Explore 52+ Fizze Drinks bubble tea menu! Milk teas, fruit teas, dirty sodas, meal replacement shakes, and more. Order online for pickup or delivery. Vote for coming soon flavors!"
+        keywords="Fizze drinks, bubble tea menu, boba tea, milk tea, fruit tea, dirty sodas, meal replacement shakes, blended ice drinks"
         ogImage={fizzeLogoUrl}
         schemaMarkup={Object.values(menu).flat()[0] ? createProductSchema(Object.values(menu).flat()[0]) : null}
       />
