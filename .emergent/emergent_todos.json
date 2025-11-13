@@ -1,26 +1,14 @@
 [
   {
-    "content": "Fix Eastend hours to 7:30 PM throughout site (Home, Mary Well AI, SEOHead schema)",
+    "content": "Hide Fizze recipes from customers - show only flavor profiles",
     "status": "completed"
   },
   {
-    "content": "Add 18 new Fizze drinks (9 Dirty Sodas + 9 Shakes) to database",
+    "content": "Make 'Fizze Bubble Tea' branding bolder on public page",
     "status": "completed"
   },
   {
-    "content": "Create Recipes tab in Admin dashboard (10th tab, printable, staff-only)",
-    "status": "completed"
-  },
-  {
-    "content": "Update Admin category dropdown to include Dirty Sodas and Shakes",
-    "status": "completed"
-  },
-  {
-    "content": "Fix homepage hero - remove 'coin' from laundry description",
-    "status": "completed"
-  },
-  {
-    "content": "Test all fixes with screenshots",
+    "content": "Verify both fixes with screenshots",
     "status": "completed"
   }
 ]
