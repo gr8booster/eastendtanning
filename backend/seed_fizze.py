@@ -57,10 +57,32 @@ FIZZE_DRINKS = [
     {"name": "Coconut Jelly", "category": "Toppings", "flavor_profile": "Chewy coconut jelly cubes", "recipe": "Add to any drink", "price": 0.75, "available": True, "display_order": 30},
     {"name": "Coffee Jelly", "category": "Toppings", "flavor_profile": "Coffee flavored jelly cubes", "recipe": "Add to any drink", "price": 0.75, "available": True, "display_order": 31},
     
+    # Dirty Sodas
+    {"name": "Butter Me Up", "category": "Dirty Sodas", "flavor_profile": "Root beer with buttery cream", "recipe": "24 oz root beer + 2 tbsp butterscotch syrup + 2 tbsp cream + ice", "price": 5.49, "available": True, "display_order": 35},
+    {"name": "Bake Me Crazy", "category": "Dirty Sodas", "flavor_profile": "Sprite with orange cream swirl", "recipe": "24 oz Sprite + 2 tbsp orange syrup + 2 tbsp cream + ice", "price": 5.49, "available": True, "display_order": 36},
+    {"name": "Build Your Own", "category": "Dirty Sodas", "flavor_profile": "Custom soda creation", "recipe": "24 oz soda base + customer choice of 2 syrups + cream + ice", "price": 5.99, "available": True, "display_order": 37},
+    {"name": "Crumb and Get It", "category": "Dirty Sodas", "flavor_profile": "Dr Pepper with vanilla cream", "recipe": "24 oz Dr Pepper + 2 tbsp vanilla syrup + 2 tbsp cream + ice", "price": 5.49, "available": True, "display_order": 38},
+    {"name": "Midnight Dew", "category": "Dirty Sodas", "flavor_profile": "Mountain Dew with grape twist", "recipe": "24 oz Mountain Dew + 2 tbsp grape syrup + 1 tbsp lime juice + ice", "price": 5.49, "available": True, "display_order": 39},
+    {"name": "Lime Light", "category": "Dirty Sodas", "flavor_profile": "Coca-Cola or Pepsi with lime cream", "recipe": "24 oz Coke or Pepsi + 2 tbsp lime syrup + 2 tbsp cream + ice", "price": 5.49, "available": True, "display_order": 40},
+    {"name": "Summer Crush", "category": "Dirty Sodas", "flavor_profile": "Mountain Dew with peach and coconut", "recipe": "24 oz Mountain Dew + 2 tbsp peach syrup + 1 tbsp coconut cream + ice", "price": 5.49, "available": True, "display_order": 41},
+    {"name": "Electric Storm", "category": "Dirty Sodas", "flavor_profile": "Sprite with blue raspberry", "recipe": "24 oz Sprite + 2 tbsp blue raspberry syrup + 1 tbsp cream + ice", "price": 5.49, "available": True, "display_order": 42},
+    {"name": "Soda Water Main Squeeze", "category": "Dirty Sodas", "flavor_profile": "Soda water with lemon cream", "recipe": "24 oz soda water + 2 tbsp lemon syrup + 2 tbsp cream + ice", "price": 5.49, "available": True, "display_order": 43},
+    
+    # Meal Replacement Shakes
+    {"name": "Banana Caramel", "category": "Shakes", "flavor_profile": "Creamy banana with caramel swirl", "recipe": "1 scoop vanilla protein + 1 banana + 2 tbsp caramel syrup + 1 cup milk + ice blend", "price": 7.99, "available": True, "display_order": 44},
+    {"name": "Oreo Cheesecake", "category": "Shakes", "flavor_profile": "Rich cookies and cream cheesecake", "recipe": "1 scoop vanilla protein + 4 Oreos + 2 tbsp cream cheese + 1 cup milk + ice blend", "price": 7.99, "available": True, "display_order": 45},
+    {"name": "Caramel Peanut Butter", "category": "Shakes", "flavor_profile": "Sweet caramel with nutty peanut butter", "recipe": "1 scoop vanilla protein + 2 tbsp peanut butter + 2 tbsp caramel syrup + 1 cup milk + ice blend", "price": 7.99, "available": True, "display_order": 46},
+    {"name": "Buckeye", "category": "Shakes", "flavor_profile": "Ohio's famous chocolate peanut butter combo", "recipe": "1 scoop chocolate protein + 2 tbsp peanut butter + 1 tbsp chocolate syrup + 1 cup milk + ice blend", "price": 7.99, "available": True, "display_order": 47},
+    {"name": "Strawberry Cheesecake", "category": "Shakes", "flavor_profile": "Fresh strawberry with creamy cheesecake", "recipe": "1 scoop vanilla protein + ½ cup strawberries + 2 tbsp cream cheese + 1 cup milk + ice blend", "price": 7.99, "available": True, "display_order": 48},
+    {"name": "Death by Chocolate", "category": "Shakes", "flavor_profile": "Triple chocolate indulgence", "recipe": "1 scoop chocolate protein + 2 tbsp cocoa powder + 2 tbsp chocolate syrup + 1 cup milk + ice blend", "price": 7.99, "available": True, "display_order": 49},
+    {"name": "White Chocolate Reese Cup", "category": "Shakes", "flavor_profile": "White chocolate with peanut butter", "recipe": "1 scoop vanilla protein + 2 tbsp peanut butter + 2 tbsp white chocolate syrup + 1 cup milk + ice blend", "price": 7.99, "available": True, "display_order": 50},
+    {"name": "Sea Salt Peanut Butter Delight", "category": "Shakes", "flavor_profile": "Salted peanut butter perfection", "recipe": "1 scoop vanilla protein + 2 tbsp peanut butter + 1 tsp sea salt + 1 tbsp honey + 1 cup milk + ice blend", "price": 7.99, "available": True, "display_order": 51},
+    {"name": "Lemon Sugar Cookie", "category": "Shakes", "flavor_profile": "Zesty lemon with sugar cookie taste", "recipe": "1 scoop vanilla protein + 2 tbsp lemon syrup + 1 tbsp vanilla extract + 2 crushed sugar cookies + 1 cup milk + ice blend", "price": 7.99, "available": True, "display_order": 52},
+    
     # Coming Soon (for voting)
-    {"name": "Matcha Madness", "category": "Milk Teas", "flavor_profile": "Premium matcha latte with milk foam", "recipe": "TBD", "price": 7.49, "available": False, "coming_soon": True, "votes": 0, "display_order": 32},
-    {"name": "Lavender Dream", "category": "Fruit Teas", "flavor_profile": "Floral lavender green tea", "recipe": "TBD", "price": 6.99, "available": False, "coming_soon": True, "votes": 0, "display_order": 33},
-    {"name": "Ube Purple Magic", "category": "Blended Ice", "flavor_profile": "Filipino purple yam slush", "recipe": "TBD", "price": 7.49, "available": False, "coming_soon": True, "votes": 0, "display_order": 34},
+    {"name": "Matcha Madness", "category": "Milk Teas", "flavor_profile": "Premium matcha latte with milk foam", "recipe": "TBD", "price": 7.49, "available": False, "coming_soon": True, "votes": 0, "display_order": 53},
+    {"name": "Lavender Dream", "category": "Fruit Teas", "flavor_profile": "Floral lavender green tea", "recipe": "TBD", "price": 6.99, "available": False, "coming_soon": True, "votes": 0, "display_order": 54},
+    {"name": "Ube Purple Magic", "category": "Blended Ice", "flavor_profile": "Filipino purple yam slush", "recipe": "TBD", "price": 7.49, "available": False, "coming_soon": True, "votes": 0, "display_order": 55},
 ]
 
 async def seed_drinks():
