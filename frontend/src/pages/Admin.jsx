@@ -60,6 +60,10 @@ export default function Admin() {
     email: '', name: '', role: 'admin', password: '', active: true
   });
   
+  // Recipes state
+  const [recipesSearch, setRecipesSearch] = useState('');
+  const [recipesCategoryFilter, setRecipesCategoryFilter] = useState('all');
+  
   // Current user role (default to owner for now, should fetch from /api/users/me)
   const [currentUserRole, setCurrentUserRole] = useState(ROLES.OWNER);
 
@@ -364,13 +368,24 @@ export default function Admin() {
       'voicecalls': PERMISSIONS.VOICE_READ,
       'fizze': PERMISSIONS.FIZZE_MANAGE,
       'orders': PERMISSIONS.FIZZE_MANAGE,
-      'users': PERMISSIONS.USERS_MANAGE
+      'users': PERMISSIONS.USERS_MANAGE,
+      'recipes': PERMISSIONS.FIZZE_MANAGE
     };
     
     const permission = tabPermissions[tabName];
     if (!permission) return true;
     return hasPermission(currentUserRole, permission);
   };
+
+  const handlePrintRecipes = () => {
+    window.print();
+  };
+
+  const filteredRecipesDrinks = fizzeDrinks.filter(drink => {
+    const matchesSearch = drink.name.toLowerCase().includes(recipesSearch.toLowerCase());
+    const matchesCategory = recipesCategoryFilter === 'all' || drink.category === recipesCategoryFilter;
+    return matchesSearch && matchesCategory && drink.available;
+  });
 
   if (loading) {
     return (
@@ -438,7 +453,7 @@ export default function Admin() {
 
         {/* Tabs */}
         <Tabs defaultValue="recommendations" className="mb-8">
-          <TabsList className={`grid w-full mb-6`} style={{gridTemplateColumns: `repeat(${[canSeeTab('recommendations'), canSeeTab('campaigns'), canSeeTab('leads'), canSeeTab('discounts'), canSeeTab('lotions'), canSeeTab('voicecalls'), canSeeTab('fizze'), canSeeTab('orders'), canSeeTab('users')].filter(Boolean).length}, minmax(0, 1fr))`}}>
+          <TabsList className={`grid w-full mb-6`} style={{gridTemplateColumns: `repeat(${[canSeeTab('recommendations'), canSeeTab('campaigns'), canSeeTab('leads'), canSeeTab('discounts'), canSeeTab('lotions'), canSeeTab('voicecalls'), canSeeTab('fizze'), canSeeTab('orders'), canSeeTab('users'), canSeeTab('recipes')].filter(Boolean).length}, minmax(0, 1fr))`}}>
             {canSeeTab('recommendations') && <TabsTrigger value="recommendations" className="text-sm">🤖 AI Recs ({recommendations.length})</TabsTrigger>}
             {canSeeTab('campaigns') && <TabsTrigger value="campaigns" className="text-sm">📢 Campaigns ({campaigns.length})</TabsTrigger>}
             {canSeeTab('leads') && <TabsTrigger value="leads" className="text-sm">📋 Leads ({leads.length})</TabsTrigger>}
@@ -448,6 +463,7 @@ export default function Admin() {
             {canSeeTab('fizze') && <TabsTrigger value="fizze" className="text-sm" data-testid="fizze-tab"><Coffee className="w-4 h-4 inline-block mr-1" />Fizze ({fizzeDrinks.length})</TabsTrigger>}
             {canSeeTab('orders') && <TabsTrigger value="orders" className="text-sm" data-testid="orders-tab">📦 Orders ({orders.length})</TabsTrigger>}
             {canSeeTab('users') && <TabsTrigger value="users" className="text-sm" data-testid="users-tab"><Users className="w-4 h-4 inline-block mr-1" />Users ({users.length})</TabsTrigger>}
+            {canSeeTab('recipes') && <TabsTrigger value="recipes" className="text-sm" data-testid="recipes-tab">📖 Recipes ({fizzeDrinks.filter(d => d.available).length})</TabsTrigger>}
           </TabsList>
 
           <TabsContent value="recommendations">
@@ -833,6 +849,93 @@ export default function Admin() {
             </Card>
           </TabsContent>
 
+          {/* Recipes Tab (Staff Only - Printable) */}
+          <TabsContent value="recipes">
+            <Card className="p-6">
+              <div className="flex items-center justify-between mb-6 print:mb-4">
+                <div>
+                  <h3 className="font-serif text-2xl font-bold flex items-center gap-2">
+                    📖 Fizze Drink Recipes
+                  </h3>
+                  <p className="text-sm text-muted-foreground mt-1">Complete recipe guide for staff - Kitchen Reference</p>
+                </div>
+                <Button onClick={handlePrintRecipes} className="print:hidden" data-testid="print-recipes-button">
+                  <Download className="w-4 h-4 mr-2" />
+                  Print Recipes
+                </Button>
+              </div>
+
+              {/* Search and Filter - Hidden in print */}
+              <div className="flex gap-3 mb-4 print:hidden">
+                <div className="flex-1 relative">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                  <Input 
+                    placeholder="Search recipes..." 
+                    value={recipesSearch}
+                    onChange={(e) => setRecipesSearch(e.target.value)}
+                    className="pl-10"
+                    data-testid="recipes-search"
+                  />
+                </div>
+                <Select value={recipesCategoryFilter} onValueChange={setRecipesCategoryFilter}>
+                  <SelectTrigger className="w-48" data-testid="recipes-category-filter">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">All Categories</SelectItem>
+                    <SelectItem value="Milk Teas">Milk Teas</SelectItem>
+                    <SelectItem value="Fruit Teas">Fruit Teas</SelectItem>
+                    <SelectItem value="Blended Ice">Blended Ice</SelectItem>
+                    <SelectItem value="Hot Boba">Hot Boba</SelectItem>
+                    <SelectItem value="House Specials">House Specials</SelectItem>
+                    <SelectItem value="Dirty Sodas">Dirty Sodas</SelectItem>
+                    <SelectItem value="Shakes">Shakes</SelectItem>
+                    <SelectItem value="Toppings">Toppings</SelectItem>
+                    <SelectItem value="Food">Food</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Recipes Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 print:gap-2" data-testid="recipes-grid">
+                {filteredRecipesDrinks.length > 0 ? filteredRecipesDrinks.map((drink) => (
+                  <Card key={drink.id} className="p-4 print:p-2 print:break-inside-avoid">
+                    <div className="flex items-start justify-between mb-2">
+                      <div className="flex-1">
+                        <h4 className="font-semibold text-lg print:text-base">{drink.name}</h4>
+                        <Badge variant="outline" className="mt-1 text-xs">{drink.category}</Badge>
+                      </div>
+                      <div className="text-right">
+                        <p className="font-bold text-lg print:text-base text-primary">${drink.price?.toFixed(2) || 'N/A'}</p>
+                      </div>
+                    </div>
+                    
+                    {drink.flavor_profile && (
+                      <p className="text-sm text-muted-foreground italic mb-2 print:text-xs">{drink.flavor_profile}</p>
+                    )}
+                    
+                    <div className="bg-muted p-3 rounded-md print:p-2">
+                      <p className="font-semibold text-sm mb-1 print:text-xs">Recipe:</p>
+                      <p className="text-sm print:text-xs whitespace-pre-line">{drink.recipe}</p>
+                    </div>
+                  </Card>
+                )) : (
+                  <div className="col-span-2 text-center py-8 text-muted-foreground">
+                    No recipes found. Try adjusting your search or filter.
+                  </div>
+                )}
+              </div>
+
+              {/* Print-only header */}
+              <style>{`
+                @media print {
+                  @page { margin: 1cm; }
+                  body { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+                }
+              `}</style>
+            </Card>
+          </TabsContent>
+
           {/* Users Tab (Owner Only) */}
           <TabsContent value="users">
             <Card className="p-6">
@@ -1029,6 +1132,9 @@ export default function Admin() {
                   <SelectItem value="Hot Boba">Hot Boba</SelectItem>
                   <SelectItem value="House Specials">House Specials</SelectItem>
                   <SelectItem value="Toppings">Toppings</SelectItem>
+                  <SelectItem value="Dirty Sodas">Dirty Sodas</SelectItem>
+                  <SelectItem value="Shakes">Shakes</SelectItem>
+                  <SelectItem value="Food">Food</SelectItem>
                 </SelectContent>
               </Select>
             </div>
