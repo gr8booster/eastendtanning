@@ -1,34 +1,26 @@
 [
   {
-    "content": "Add comprehensive LocalBusiness schema with Mt Vernon, Knox County targeting",
-    "status": "completed"
+    "content": "Fix homepage hero - remove 'coin' from description",
+    "status": "in_progress"
   },
   {
-    "content": "Update all page meta titles/descriptions with local keywords",
-    "status": "completed"
-  },
-  {
-    "content": "Add FAQ section to homepage for voice/AI search",
-    "status": "completed"
-  },
-  {
-    "content": "Ensure NAP consistency across all pages",
-    "status": "completed"
-  },
-  {
-    "content": "Add Google Maps embed and CTA buttons (Call Now, Directions, Review)",
-    "status": "completed"
-  },
-  {
-    "content": "Optimize images with local alt text and compress files",
+    "content": "Fix FAQ hours - correct Eastend closing time to 6:00 PM",
     "status": "pending"
   },
   {
-    "content": "Verify sitemap.xml and robots.txt are properly configured",
+    "content": "Fix Westend phone number display",
     "status": "pending"
   },
   {
-    "content": "Run final validation and generate optimization report",
+    "content": "Update Tanning page 'Why Choose Us' section wording",
+    "status": "pending"
+  },
+  {
+    "content": "Hide Fizze drink recipes from public - show only brief descriptions to customers",
+    "status": "pending"
+  },
+  {
+    "content": "Test all fixes with screenshots",
     "status": "pending"
   }
 ]
