@@ -6,7 +6,7 @@
 
 All 6 phases have been successfully completed, comprehensively tested, and verified with screenshots. The application is a complete autonomous AI marketing system with SEO optimization, **full role-based access control**, **user management**, **online ordering system**, and all core features working flawlessly.
 
-**Preview URL**: https://laundry-marketing.preview.emergentagent.com  
+**Preview URL**: https://laundromat-hub.preview.emergentagent.com  
 **Tech Stack**: FastAPI + React + MongoDB | Stripe (test mode) | Emergent LLM (GPT-4o + Claude Sonnet 4)  
 **Final Test Results**: Backend 100% functional, Frontend 100% functional, ZERO critical bugs  
 **Documentation**: Complete README.md, DEPLOYMENT.md, comprehensive Facebook integration playbook
@@ -467,7 +467,7 @@ Disallow: /admin
 Disallow: /api/
 Disallow: /receipt/
 
-Sitemap: https://laundry-marketing.preview.emergentagent.com/sitemap.xml
+Sitemap: https://laundromat-hub.preview.emergentagent.com/sitemap.xml
 ```
 
 **Test Result**: ✅ Sitemap.xml and robots.txt endpoints tested and working (HTTP 200)

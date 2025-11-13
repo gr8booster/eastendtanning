@@ -8,7 +8,7 @@ from typing import List
 
 router = APIRouter(tags=["seo"])
 
-BASE_URL = "https://laundry-marketing.preview.emergentagent.com"
+BASE_URL = "https://laundromat-hub.preview.emergentagent.com"
 
 # Define all public pages with priority and change frequency
 PUBLIC_PAGES = [
