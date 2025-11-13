@@ -35,7 +35,7 @@ export const Footer = () => {
                 </p>
                 <p className="text-muted-foreground flex items-start gap-2 mt-1">
                   <Phone className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                  (740) 393-3766
+                  (740) 397-9632
                 </p>
               </div>
             </div>
