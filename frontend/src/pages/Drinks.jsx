@@ -103,7 +103,7 @@ export default function Drinks() {
       <div className="bg-gradient-to-r from-[hsl(42_92%_55%)] to-[hsl(183_55%_43%)] text-white py-16">
         <div className="container mx-auto px-4 text-center">
           <img src={fizzeLogoUrl} alt="Fizze" className="h-20 mx-auto mb-6" />
-          <h1 className="font-serif text-5xl font-bold mb-4">Fizze Bubble Tea</h1>
+          <h1 className="font-serif text-6xl font-black mb-4 tracking-tight">Fizze Bubble Tea</h1>
           <p className="text-xl mb-8 text-white/90">Fresh, handcrafted bubble tea with premium ingredients</p>
           <Button
             size="lg"
@@ -140,8 +140,7 @@ export default function Drinks() {
                   {drinks.map((drink) => (
                     <Card key={drink.id} className="p-6 hover:shadow-lg transition-shadow">
                       <h3 className="font-bold text-xl mb-2">{drink.name}</h3>
-                      <p className="text-sm text-muted-foreground mb-3">{drink.flavor_profile}</p>
-                      <p className="text-sm mb-4">{drink.recipe}</p>
+                      <p className="text-sm text-muted-foreground mb-4">{drink.flavor_profile}</p>
                       {drink.price && (
                         <div className="flex items-center justify-between">
                           <span className="text-2xl font-bold text-[hsl(42_92%_55%)]">${drink.price.toFixed(2)}</span>
@@ -179,8 +178,7 @@ export default function Drinks() {
                 <Card key={drink.id} className="p-6">
                   <Badge className="mb-4 bg-purple-100 text-purple-700">Coming Soon</Badge>
                   <h3 className="font-bold text-xl mb-2">{drink.name}</h3>
-                  <p className="text-sm text-muted-foreground mb-3">{drink.flavor_profile}</p>
-                  <p className="text-sm mb-4">{drink.recipe}</p>
+                  <p className="text-sm text-muted-foreground mb-4">{drink.flavor_profile}</p>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <ThumbsUp className="w-5 h-5 text-muted-foreground" />
