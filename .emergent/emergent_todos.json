@@ -1,22 +1,30 @@
 [
   {
-    "content": "Update Mary Well AI - monthly specials guidance (in-house only, check Facebook)",
-    "status": "completed"
-  },
-  {
-    "content": "Restart backend to apply Mary Well changes",
-    "status": "completed"
-  },
-  {
-    "content": "Verify all pages compile and load correctly",
-    "status": "completed"
-  },
-  {
-    "content": "Take final screenshots of all major pages",
-    "status": "completed"
-  },
-  {
-    "content": "Create final launch readiness report",
+    "content": "Audit all demo/test setups - identify what needs removal/replacement",
     "status": "in_progress"
+  },
+  {
+    "content": "Replace Stripe test keys with live keys",
+    "status": "pending"
+  },
+  {
+    "content": "Replace Google Analytics placeholder ID",
+    "status": "pending"
+  },
+  {
+    "content": "Remove/update demo data from database",
+    "status": "pending"
+  },
+  {
+    "content": "Update Voice API from mock mode to production",
+    "status": "pending"
+  },
+  {
+    "content": "Verify no hardcoded test values in code",
+    "status": "pending"
+  },
+  {
+    "content": "Final production readiness check",
+    "status": "pending"
   }
 ]
