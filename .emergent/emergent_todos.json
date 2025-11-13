@@ -1,6 +1,38 @@
 [
   {
-    "content": "Fizze Drinks SEO optimization complete - all 10 tasks finished",
-    "status": "completed"
+    "content": "Update Mary Well AI - monthly specials guidance (in-house only, check Facebook)",
+    "status": "pending"
+  },
+  {
+    "content": "Final UI optimization - Homepage polish",
+    "status": "pending"
+  },
+  {
+    "content": "Final UI optimization - Tanning page polish",
+    "status": "pending"
+  },
+  {
+    "content": "Final UI optimization - Laundry page polish",
+    "status": "pending"
+  },
+  {
+    "content": "Final UI optimization - Locations page polish",
+    "status": "pending"
+  },
+  {
+    "content": "Final UI optimization - Nails page polish",
+    "status": "pending"
+  },
+  {
+    "content": "Verify all pages compile and load correctly",
+    "status": "pending"
+  },
+  {
+    "content": "Take final screenshots of all pages",
+    "status": "pending"
+  },
+  {
+    "content": "Create final launch readiness report",
+    "status": "pending"
   }
 ]
