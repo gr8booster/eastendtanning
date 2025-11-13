@@ -20,11 +20,7 @@
     "status": "completed"
   },
   {
-    "content": "Restart frontend to apply changes",
-    "status": "in_progress"
-  },
-  {
     "content": "Test all fixes with screenshots",
-    "status": "pending"
+    "status": "completed"
   }
 ]
