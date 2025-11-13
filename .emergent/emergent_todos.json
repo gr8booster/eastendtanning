@@ -1,34 +1,18 @@
 [
   {
     "content": "Update Mary Well AI - monthly specials guidance (in-house only, check Facebook)",
-    "status": "pending"
+    "status": "completed"
   },
   {
-    "content": "Final UI optimization - Homepage polish",
-    "status": "pending"
-  },
-  {
-    "content": "Final UI optimization - Tanning page polish",
-    "status": "pending"
-  },
-  {
-    "content": "Final UI optimization - Laundry page polish",
-    "status": "pending"
-  },
-  {
-    "content": "Final UI optimization - Locations page polish",
-    "status": "pending"
-  },
-  {
-    "content": "Final UI optimization - Nails page polish",
-    "status": "pending"
+    "content": "Restart backend to apply Mary Well changes",
+    "status": "in_progress"
   },
   {
     "content": "Verify all pages compile and load correctly",
     "status": "pending"
   },
   {
-    "content": "Take final screenshots of all pages",
+    "content": "Take final screenshots of all major pages",
     "status": "pending"
   },
   {
