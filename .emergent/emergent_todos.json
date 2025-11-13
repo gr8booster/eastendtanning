@@ -1,22 +1,22 @@
 [
   {
-    "content": "Fix homepage hero - remove 'coin' from description",
+    "content": "Fix Eastend hours to 7:30 PM throughout site (Home, Mary Well AI, SEOHead schema)",
+    "status": "completed"
+  },
+  {
+    "content": "Add 18 new Fizze drinks (9 Dirty Sodas + 9 Shakes) to database",
+    "status": "completed"
+  },
+  {
+    "content": "Create Recipes tab in Admin dashboard (10th tab, printable, staff-only)",
     "status": "in_progress"
   },
   {
-    "content": "Fix FAQ hours - correct Eastend closing time to 6:00 PM",
+    "content": "Update Admin category dropdown to include Dirty Sodas and Shakes",
     "status": "pending"
   },
   {
-    "content": "Fix Westend phone number display",
-    "status": "pending"
-  },
-  {
-    "content": "Update Tanning page 'Why Choose Us' section wording",
-    "status": "pending"
-  },
-  {
-    "content": "Hide Fizze drink recipes from public - show only brief descriptions to customers",
+    "content": "Fix homepage hero - remove 'coin' from laundry description",
     "status": "pending"
   },
   {
