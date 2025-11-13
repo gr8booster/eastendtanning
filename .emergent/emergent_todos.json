@@ -1,14 +1,42 @@
 [
   {
-    "content": "Hide Fizze recipes from customers - show only flavor profiles",
-    "status": "completed"
+    "content": "Rewrite Fizze Drinks page header and intro with local SEO keywords",
+    "status": "pending"
   },
   {
-    "content": "Make 'Fizze Bubble Tea' branding bolder on public page",
-    "status": "completed"
+    "content": "Add 150-200 word descriptions for each drink category (4 categories)",
+    "status": "pending"
   },
   {
-    "content": "Verify both fixes with screenshots",
-    "status": "completed"
+    "content": "Add 'About Fizze' section connecting to Eastend experience",
+    "status": "pending"
+  },
+  {
+    "content": "Add local CTA with address and phone",
+    "status": "pending"
+  },
+  {
+    "content": "Add 5-question FAQ section optimized for AI/voice search",
+    "status": "pending"
+  },
+  {
+    "content": "Implement Product schema markup for drink categories",
+    "status": "pending"
+  },
+  {
+    "content": "Update meta tags with local keywords",
+    "status": "pending"
+  },
+  {
+    "content": "Add descriptive alt tags for images",
+    "status": "pending"
+  },
+  {
+    "content": "Add Google Maps and Reviews integration",
+    "status": "pending"
+  },
+  {
+    "content": "Verify page performance and mobile-friendliness",
+    "status": "pending"
   }
 ]
