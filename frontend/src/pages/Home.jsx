@@ -85,6 +85,7 @@ export default function Home() {
               <Badge variant="secondary" className="mb-3">Coin Laundry Only</Badge>
               <div className="space-y-3 text-sm">
                 <div className="flex items-start gap-2 text-muted-foreground"><MapPin className="w-4 h-4 mt-0.5 flex-shrink-0 text-secondary" /><span>116 S Norton St, Mt Vernon, OH 43050</span></div>
+                <div className="flex items-start gap-2 text-muted-foreground"><Phone className="w-4 h-4 mt-0.5 flex-shrink-0 text-secondary" /><a href="tel:+17403979632" className="hover:underline">(740) 397-9632</a></div>
                 <div className="flex items-start gap-2 text-muted-foreground"><Clock className="w-4 h-4 mt-0.5 flex-shrink-0 text-secondary" /><div><p data-testid="hours-westend" className="font-medium">Open Daily: 6:00 AM - 10:00 PM</p></div></div>
               </div>
               <div className="mt-5 flex gap-3">
