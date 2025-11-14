@@ -25,11 +25,11 @@
   },
   {
     "content": "Restart backend to register coupon routes",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Test complete flow: Add items → Generate coupon → View coupon → Verify taxes and discounts",
-    "status": "pending"
+    "status": "in_progress"
   },
   {
     "content": "Take screenshots of new coupon system",
