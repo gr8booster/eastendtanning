@@ -126,10 +126,10 @@ export default function Coupon() {
   const isExpired = timeRemaining && timeRemaining.days === 0 && timeRemaining.hours === 0 && timeRemaining.minutes === 0;
 
   return (
-    <div className=\"min-h-screen bg-muted py-12 px-4\">
+    <div className="min-h-screen bg-muted py-12 px-4">
       <SEOHead
         title={`Reservation Coupon ${coupon.coupon_code} - Fizze Drinks`}
-        description=\"Your Fizze Drinks reservation coupon. Bring this to Eastend Tanning & Laundry to claim your order with discount!\"
+        description="Your Fizze Drinks reservation coupon. Bring this to Eastend Tanning & Laundry to claim your order with discount!"
       />
 
       {/* Print Styles */}
