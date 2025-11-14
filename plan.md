@@ -6,7 +6,7 @@
 
 All 6 phases plus pre-launch updates AND comprehensive SEO optimization have been successfully completed, tested, and verified with screenshots. The application is a complete autonomous AI marketing system with **advanced local SEO for Mt Vernon & Knox County**, full role-based access control, user management, online ordering system, **52 Fizze drinks**, printable recipes tab, and all core features working flawlessly.
 
-**Preview URL**: https://laundromat-hub.preview.emergentagent.com  
+**Preview URL**: https://knoxcounty-fizze.preview.emergentagent.com  
 **Tech Stack**: FastAPI + React + MongoDB | Stripe (test mode) | Emergent LLM (GPT-4o + Claude Sonnet 4)  
 **Final Test Results**: Backend 100% functional, Frontend 100% functional, ZERO critical bugs  
 **SEO Optimization Score**: 95/100 🏆  
@@ -594,7 +594,7 @@ Disallow: /admin
 Disallow: /api/
 Disallow: /receipt/
 
-Sitemap: https://laundromat-hub.preview.emergentagent.com/sitemap.xml
+Sitemap: https://knoxcounty-fizze.preview.emergentagent.com/sitemap.xml
 ```
 
 **Test Result**: ✅ Sitemap.xml and robots.txt endpoints tested and working (HTTP 200)

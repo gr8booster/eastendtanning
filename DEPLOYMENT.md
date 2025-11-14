@@ -18,9 +18,9 @@ frontend                         RUNNING   pid 30, uptime 1:30:00
 
 ### Access Application
 
-- **Live URL**: https://laundromat-hub.preview.emergentagent.com
-- **Admin**: https://laundromat-hub.preview.emergentagent.com/admin
-- **API Docs**: https://laundromat-hub.preview.emergentagent.com/docs
+- **Live URL**: https://knoxcounty-fizze.preview.emergentagent.com
+- **Admin**: https://knoxcounty-fizze.preview.emergentagent.com/admin
+- **API Docs**: https://knoxcounty-fizze.preview.emergentagent.com/docs
 
 ## Service Management
 
@@ -158,7 +158,7 @@ REACT_APP_GA_TRACKING_ID=G-XXXXXXXXXX (add your GA4 ID)
 
 ```bash
 # Check backend health
-curl https://laundromat-hub.preview.emergentagent.com/health
+curl https://knoxcounty-fizze.preview.emergentagent.com/health
 
 # Should return: {"status": "healthy"}
 ```
@@ -314,7 +314,7 @@ cp /app/frontend/.env /app/frontend/.env.backup.$(date +%Y%m%d)
 
 ### Set Up Monitoring
 
-1. **Uptime Robot**: Monitor https://laundromat-hub.preview.emergentagent.com
+1. **Uptime Robot**: Monitor https://knoxcounty-fizze.preview.emergentagent.com
 2. **New Relic / DataDog**: Application performance monitoring
 3. **Sentry**: Error tracking and reporting
 
@@ -324,7 +324,7 @@ cp /app/frontend/.env /app/frontend/.env.backup.$(date +%Y%m%d)
 # Create monitoring script
 cat > /app/health_check.sh << 'EOF'
 #!/bin/bash
-RESPONSE=$(curl -s https://laundromat-hub.preview.emergentagent.com/health)
+RESPONSE=$(curl -s https://knoxcounty-fizze.preview.emergentagent.com/health)
 if [[ $RESPONSE == *"healthy"* ]]; then
     echo "✅ System healthy"
 else

@@ -9,7 +9,7 @@ from datetime import datetime, timezone
 from typing import Dict, Any, Optional
 
 class BackendAPITester:
-    def __init__(self, base_url="https://laundromat-hub.preview.emergentagent.com"):
+    def __init__(self, base_url="https://knoxcounty-fizze.preview.emergentagent.com"):
         self.base_url = base_url
         self.tests_run = 0
         self.tests_passed = 0
@@ -814,7 +814,7 @@ def main():
     print("="*60)
     print("BACKEND API TESTING - EASTEND FINAL COMPREHENSIVE TESTING")
     print("="*60)
-    print(f"Base URL: https://laundromat-hub.preview.emergentagent.com")
+    print(f"Base URL: https://knoxcounty-fizze.preview.emergentagent.com")
     print(f"Started: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print("\nFOCUS: SEO endpoints, user management, regression testing of all features")
     

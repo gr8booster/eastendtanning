@@ -129,12 +129,12 @@ yarn start
 
 ## 🌐 Application URLs
 
-- **Frontend**: https://laundromat-hub.preview.emergentagent.com
-- **Backend API**: https://laundromat-hub.preview.emergentagent.com/api
-- **Admin Dashboard**: https://laundromat-hub.preview.emergentagent.com/admin
-- **API Documentation**: https://laundromat-hub.preview.emergentagent.com/docs
-- **Sitemap**: https://laundromat-hub.preview.emergentagent.com/sitemap.xml
-- **Robots.txt**: https://laundromat-hub.preview.emergentagent.com/robots.txt
+- **Frontend**: https://knoxcounty-fizze.preview.emergentagent.com
+- **Backend API**: https://knoxcounty-fizze.preview.emergentagent.com/api
+- **Admin Dashboard**: https://knoxcounty-fizze.preview.emergentagent.com/admin
+- **API Documentation**: https://knoxcounty-fizze.preview.emergentagent.com/docs
+- **Sitemap**: https://knoxcounty-fizze.preview.emergentagent.com/sitemap.xml
+- **Robots.txt**: https://knoxcounty-fizze.preview.emergentagent.com/robots.txt
 
 ## 🔐 Default Credentials
 
@@ -350,7 +350,7 @@ echo $MONGO_URL
 
 ```bash
 # Check service health
-curl https://laundromat-hub.preview.emergentagent.com/health
+curl https://knoxcounty-fizze.preview.emergentagent.com/health
 
 # View real-time logs
 supervisorctl tail -f backend stderr
