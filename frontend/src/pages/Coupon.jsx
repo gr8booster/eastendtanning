@@ -101,10 +101,10 @@ export default function Coupon() {
 
   if (loading) {
     return (
-      <div className=\"min-h-screen flex items-center justify-center\">
-        <div className=\"text-center\">
-          <div className=\"animate-spin rounded-full h-12 w-12 border-b-2 border-[hsl(42_92%_55%)] mx-auto mb-4\" />
-          <p className=\"text-muted-foreground\">Loading your coupon...</p>
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[hsl(42_92%_55%)] mx-auto mb-4" />
+          <p className="text-muted-foreground">Loading your coupon...</p>
         </div>
       </div>
     );
@@ -112,11 +112,11 @@ export default function Coupon() {
 
   if (error || !coupon) {
     return (
-      <div className=\"min-h-screen flex items-center justify-center\">
-        <Card className=\"p-8 max-w-md text-center\">
-          <AlertCircle className=\"w-16 h-16 mx-auto mb-4 text-destructive\" />
-          <h2 className=\"text-2xl font-bold mb-2\">Coupon Not Found</h2>
-          <p className=\"text-muted-foreground mb-4\">{error || 'This coupon does not exist or has been removed.'}</p>
+      <div className="min-h-screen flex items-center justify-center">
+        <Card className="p-8 max-w-md text-center">
+          <AlertCircle className="w-16 h-16 mx-auto mb-4 text-destructive" />
+          <h2 className="text-2xl font-bold mb-2">Coupon Not Found</h2>
+          <p className="text-muted-foreground mb-4">{error || 'This coupon does not exist or has been removed.'}</p>
           <Button onClick={() => navigate('/order-drinks')}>Return to Menu</Button>
         </Card>
       </div>
