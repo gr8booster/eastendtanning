@@ -17,11 +17,11 @@
   },
   {
     "content": "Add /coupon/:id route to App.js",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Add PayPal SDK script to index.html with hostedButtonId support",
-    "status": "pending"
+    "status": "in_progress"
   },
   {
     "content": "Test complete flow: Add items → Generate coupon → View coupon → Verify taxes and discounts",
