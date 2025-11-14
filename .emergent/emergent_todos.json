@@ -9,11 +9,11 @@
   },
   {
     "content": "Update OrderDrinks.jsx to remove Stripe checkout and add Generate Coupon button",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Create Coupon.jsx page component (printable coupon with PayPal button, discount tiers, expiry countdown)",
-    "status": "pending"
+    "status": "in_progress"
   },
   {
     "content": "Add /coupon/:id route to App.js",
