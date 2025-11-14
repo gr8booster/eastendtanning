@@ -28,6 +28,17 @@ export default function Coupon() {
   useEffect(() => {
     if (!coupon) return;
 
+    // Load PayPal Hosted Button
+    if (window.paypal && window.paypal.HostedButtons) {
+      window.paypal.HostedButtons({
+        hostedButtonId: "4VYZ3ABTC3C6G"
+      }).render("#paypal-container-4VYZ3ABTC3C6G");
+    }
+  }, [coupon]);
+
+  useEffect(() => {
+    if (!coupon) return;
+
     const updateCountdown = () => {
       const now = new Date();
       const created = new Date(coupon.created_at);
