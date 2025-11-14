@@ -1,7 +1,7 @@
 [
   {
     "content": "Create backend coupon_routes.py with POST /api/coupons/generate endpoint (tax calculation, discount tiers, expiry logic)",
-    "status": "pending"
+    "status": "in_progress"
   },
   {
     "content": "Register coupon routes in server.py",
