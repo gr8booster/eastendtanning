@@ -29,10 +29,10 @@
   },
   {
     "content": "Test complete flow: Add items → Generate coupon → View coupon → Verify taxes and discounts",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Take screenshots of new coupon system",
-    "status": "pending"
+    "status": "completed"
   }
 ]
