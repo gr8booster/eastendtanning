@@ -13,11 +13,11 @@
   },
   {
     "content": "Create Coupon.jsx page component (printable coupon with PayPal button, discount tiers, expiry countdown)",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Add /coupon/:id route to App.js",
-    "status": "pending"
+    "status": "in_progress"
   },
   {
     "content": "Add PayPal SDK script to index.html with hostedButtonId support",
