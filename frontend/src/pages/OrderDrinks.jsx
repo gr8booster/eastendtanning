@@ -35,7 +35,9 @@ export default function OrderDrinks() {
     try {
       const res = await fetch(`${backendUrl}/api/fizze/menu`);
       const data = await res.json();
-      setDrinks(data);
+      // API returns drinks grouped by category, flatten to array
+      const allDrinks = Object.values(data).flat();
+      setDrinks(allDrinks);
     } catch (error) {
       console.error('Failed to fetch drinks:', error);
       toast.error('Failed to load menu');
