@@ -1,11 +1,11 @@
 [
   {
     "content": "Create backend coupon_routes.py with POST /api/coupons/generate endpoint (tax calculation, discount tiers, expiry logic)",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Register coupon routes in server.py",
-    "status": "pending"
+    "status": "in_progress"
   },
   {
     "content": "Update OrderDrinks.jsx to remove Stripe checkout and add Generate Coupon button",
