@@ -144,29 +144,29 @@ export default function Coupon() {
         .print-only { display: none; }
       `}</style>
 
-      <div className=\"max-w-4xl mx-auto\">
+      <div className="max-w-4xl mx-auto">
         {/* Action Buttons - No Print */}
-        <div className=\"no-print flex justify-between items-center mb-6\">
-          <Button variant=\"outline\" onClick={() => navigate('/order-drinks')}>
+        <div className="no-print flex justify-between items-center mb-6">
+          <Button variant="outline" onClick={() => navigate('/order-drinks')}>
             ← Back to Menu
           </Button>
-          <Button onClick={handlePrint} className=\"bg-gradient-to-r from-[hsl(42_92%_55%)] to-[hsl(183_55%_43%)]\">
-            <Printer className=\"w-4 h-4 mr-2\" />
+          <Button onClick={handlePrint} className="bg-gradient-to-r from-[hsl(42_92%_55%)] to-[hsl(183_55%_43%)]">
+            <Printer className="w-4 h-4 mr-2" />
             Print Coupon
           </Button>
         </div>
 
         {/* Success Message - No Print */}
         {!coupon.redeemed && !isExpired && (
-          <Card className=\"no-print p-6 mb-6 bg-green-50 border-green-200\">
-            <div className=\"flex items-start gap-4\">
-              <CheckCircle className=\"w-6 h-6 text-green-600 flex-shrink-0 mt-1\" />
+          <Card className="no-print p-6 mb-6 bg-green-50 border-green-200">
+            <div className="flex items-start gap-4">
+              <CheckCircle className="w-6 h-6 text-green-600 flex-shrink-0 mt-1" />
               <div>
-                <h3 className=\"font-bold text-lg text-green-900 mb-1\">🎉 Reservation Successful!</h3>
-                <p className=\"text-green-800 text-sm\">
+                <h3 className="font-bold text-lg text-green-900 mb-1">🎉 Reservation Successful!</h3>
+                <p className="text-green-800 text-sm">
                   Your coupon has been generated. Print it or show this page on your phone at Eastend Tanning & Laundry within 7 days.
                   {activeDiscount && (
-                    <span className=\"font-semibold\">
+                    <span className="font-semibold">
                       {' '}Pay within the next {activeDiscount.hours_remaining} hours to save {activeDiscount.label}!
                     </span>
                   )}
@@ -178,12 +178,12 @@ export default function Coupon() {
 
         {/* Expired Warning - No Print */}
         {isExpired && (
-          <Card className=\"no-print p-6 mb-6 bg-red-50 border-red-200\">
-            <div className=\"flex items-start gap-4\">
-              <AlertCircle className=\"w-6 h-6 text-red-600 flex-shrink-0 mt-1\" />
+          <Card className="no-print p-6 mb-6 bg-red-50 border-red-200">
+            <div className="flex items-start gap-4">
+              <AlertCircle className="w-6 h-6 text-red-600 flex-shrink-0 mt-1" />
               <div>
-                <h3 className=\"font-bold text-lg text-red-900 mb-1\">⚠️ Coupon Expired</h3>
-                <p className=\"text-red-800 text-sm\">
+                <h3 className="font-bold text-lg text-red-900 mb-1">⚠️ Coupon Expired</h3>
+                <p className="text-red-800 text-sm">
                   This coupon expired and is no longer valid. Please create a new reservation to order Fizze drinks.
                 </p>
               </div>
@@ -192,22 +192,22 @@ export default function Coupon() {
         )}
 
         {/* Main Coupon Card */}
-        <Card className=\"break-inside-avoid overflow-hidden border-4 border-[hsl(42_92%_55%)] shadow-xl\">
+        <Card className="break-inside-avoid overflow-hidden border-4 border-[hsl(42_92%_55%)] shadow-xl">
           {/* Header */}
-          <div className=\"bg-gradient-to-r from-[hsl(42_92%_55%)] to-[hsl(183_55%_43%)] text-white p-6 text-center\">
-            <Ticket className=\"w-12 h-12 mx-auto mb-3\" />
-            <h1 className=\"text-3xl font-bold mb-2\">Fizze Drinks Reservation</h1>
-            <p className=\"text-white/90\">Eastend Tanning & Laundry</p>
+          <div className="bg-gradient-to-r from-[hsl(42_92%_55%)] to-[hsl(183_55%_43%)] text-white p-6 text-center">
+            <Ticket className="w-12 h-12 mx-auto mb-3" />
+            <h1 className="text-3xl font-bold mb-2">Fizze Drinks Reservation</h1>
+            <p className="text-white/90">Eastend Tanning & Laundry</p>
           </div>
 
           {/* Coupon Code */}
-          <div className=\"bg-amber-50 border-y-2 border-dashed border-amber-300 p-4 text-center\">
-            <p className=\"text-sm text-muted-foreground mb-1\">COUPON CODE</p>
-            <p className=\"text-3xl font-bold tracking-wider font-mono\" data-testid=\"coupon-code\">{coupon.coupon_code}</p>
+          <div className="bg-amber-50 border-y-2 border-dashed border-amber-300 p-4 text-center">
+            <p className="text-sm text-muted-foreground mb-1">COUPON CODE</p>
+            <p className="text-3xl font-bold tracking-wider font-mono" data-testid="coupon-code">{coupon.coupon_code}</p>
           </div>
 
           {/* Main Content */}
-          <div className=\"p-6 space-y-6\">
+          <div className="p-6 space-y-6">
             {/* Active Discount Banner */}
             {activeDiscount && !isExpired && (
               <div className=\"bg-green-50 border-2 border-green-300 rounded-lg p-4 text-center\">
