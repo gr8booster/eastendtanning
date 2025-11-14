@@ -29,6 +29,7 @@ from receipt_routes import receipt_router
 from seo_routes import router as seo_router
 from user_routes import router as user_router
 from online_ordering_routes import router as ordering_router
+from coupon_routes import router as coupon_router
 
 
 ROOT_DIR = Path(__file__).parent
