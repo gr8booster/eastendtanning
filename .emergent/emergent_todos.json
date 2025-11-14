@@ -21,6 +21,10 @@
   },
   {
     "content": "Add PayPal SDK script to index.html with hostedButtonId support",
+    "status": "completed"
+  },
+  {
+    "content": "Restart backend to register coupon routes",
     "status": "in_progress"
   },
   {
