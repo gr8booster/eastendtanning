@@ -353,7 +353,7 @@ export default function Coupon() {
                   </p>
                   <p className="flex items-center gap-2">
                     <Phone className="w-4 h-4" />
-                    <a href=\"tel:+17403979632" className="hover:underline">(740) 397-9632</a>
+                    <a href="tel:+17403979632" className="hover:underline">(740) 397-9632</a>
                   </p>
                   <p className="flex items-center gap-2">
                     <Clock className="w-4 h-4" />
