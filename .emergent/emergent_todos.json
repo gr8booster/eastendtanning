@@ -1,30 +1,34 @@
 [
   {
-    "content": "Audit all demo/test setups - identify what needs removal/replacement",
-    "status": "in_progress"
-  },
-  {
-    "content": "Replace Stripe test keys with live keys",
+    "content": "Create backend coupon_routes.py with POST /api/coupons/generate endpoint (tax calculation, discount tiers, expiry logic)",
     "status": "pending"
   },
   {
-    "content": "Replace Google Analytics placeholder ID",
+    "content": "Register coupon routes in server.py",
     "status": "pending"
   },
   {
-    "content": "Remove/update demo data from database",
+    "content": "Update OrderDrinks.jsx to remove Stripe checkout and add Generate Coupon button",
     "status": "pending"
   },
   {
-    "content": "Update Voice API from mock mode to production",
+    "content": "Create Coupon.jsx page component (printable coupon with PayPal button, discount tiers, expiry countdown)",
     "status": "pending"
   },
   {
-    "content": "Verify no hardcoded test values in code",
+    "content": "Add /coupon/:id route to App.js",
     "status": "pending"
   },
   {
-    "content": "Final production readiness check",
+    "content": "Add PayPal SDK script to index.html with hostedButtonId support",
+    "status": "pending"
+  },
+  {
+    "content": "Test complete flow: Add items → Generate coupon → View coupon → Verify taxes and discounts",
+    "status": "pending"
+  },
+  {
+    "content": "Take screenshots of new coupon system",
     "status": "pending"
   }
 ]
