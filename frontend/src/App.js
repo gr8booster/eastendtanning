@@ -80,6 +80,7 @@ function App() {
             <Route path="/payment/cancel" element={<PaymentCancel />} />
             <Route path="/receipt/:sessionId" element={<Receipt />} />
             <Route path="/order-drinks" element={<OrderDrinks />} />
+            <Route path="/coupon/:couponId" element={<Coupon />} />
             <Route 
               path="/admin" 
               element={
