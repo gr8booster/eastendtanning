@@ -20,6 +20,7 @@ import PaymentSuccess from './pages/PaymentSuccess';
 import PaymentCancel from './pages/PaymentCancel';
 import Receipt from './pages/Receipt';
 import OrderDrinks from './pages/OrderDrinks';
+import Coupon from './pages/Coupon';
 import { MaryWellChat } from './components/MaryWellChat';
 import { FirstTimeDiscountPopup } from './components/FirstTimeDiscountPopup';
 import { useEffect } from 'react';
