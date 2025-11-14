@@ -371,7 +371,7 @@ export default function Coupon() {
                   Prefer to pay online? Use PayPal to complete your payment now and secure your discount!
                 </p>
                 {/* PayPal Button Container */}
-                <div id=\"paypal-container-4VYZ3ABTC3C6G" className="flex justify-center"></div>
+                <div id="paypal-container-4VYZ3ABTC3C6G" className="flex justify-center"></div>
                 <p className="text-xs text-muted-foreground text-center mt-3">
                   After payment, show this coupon when picking up your order
                 </p>
