@@ -297,7 +297,7 @@ export default function Coupon() {
                 )}
                 <div className="flex justify-between font-bold text-lg pt-2 border-t">
                   <span>Total Before Discount:</span>
-                  <span data-testid=\"total-before-discount">${coupon.total_before_discount.toFixed(2)}</span>
+                  <span data-testid="total-before-discount">${coupon.total_before_discount.toFixed(2)}</span>
                 </div>
                 {activeDiscount && (
                   <>
