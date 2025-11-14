@@ -307,7 +307,7 @@ export default function Coupon() {
                     </div>
                     <div className="flex justify-between font-bold text-2xl text-green-700 pt-2 border-t-2 border-green-300">
                       <span>Pay Today:</span>
-                      <span data-testid=\"final-price">${activeDiscount.final_price.toFixed(2)}</span>
+                      <span data-testid="final-price">${activeDiscount.final_price.toFixed(2)}</span>
                     </div>
                   </>
                 )}
