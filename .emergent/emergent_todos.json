@@ -5,11 +5,11 @@
   },
   {
     "content": "Register coupon routes in server.py",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Update OrderDrinks.jsx to remove Stripe checkout and add Generate Coupon button",
-    "status": "pending"
+    "status": "in_progress"
   },
   {
     "content": "Create Coupon.jsx page component (printable coupon with PayPal button, discount tiers, expiry countdown)",
