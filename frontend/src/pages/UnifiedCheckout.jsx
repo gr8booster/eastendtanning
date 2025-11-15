@@ -60,6 +60,20 @@ export default function UnifiedCheckout() {
     fetchLotions();
   }, [location]);
 
+  useEffect(() => {
+    // Check for lotion URL parameter from Mary's chat
+    const params = new URLSearchParams(location.search);
+    const lotionId = params.get('lotion');
+    
+    if (lotionId && lotions.length > 0) {
+      const lotion = lotions.find(l => l.id === lotionId);
+      if (lotion) {
+        addLotionToCart(lotion);
+        toast.success(`${lotion.name} added to cart!`);
+      }
+    }
+  }, [lotions, location.search]);
+
   const fetchLotions = async () => {
     try {
       const response = await fetch(`${backendUrl}/api/lotions`);
