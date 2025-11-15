@@ -5,10 +5,10 @@
   },
   {
     "content": "Test PayPal button renders correctly",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Verify PayPal payment flow end-to-end",
-    "status": "pending"
+    "status": "completed"
   }
 ]
