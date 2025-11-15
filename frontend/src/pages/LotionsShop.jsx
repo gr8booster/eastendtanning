@@ -5,7 +5,7 @@ import { Card } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
 import { Input } from '../components/ui/input';
 import { Label } from '../components/ui/label';
-import { Loader2, ShoppingCart, Sparkles, Check } from 'lucide-react';
+import { Loader2, ShoppingCart, Sparkles, Check, MapPin, Phone, Clock } from 'lucide-react';
 import { toast } from 'sonner';
 import { SEOHead } from '../components/SEOHead';
 
@@ -149,7 +149,6 @@ export default function LotionsShop() {
                     <p className="text-muted-foreground mb-3">{selectedLotion.brand}</p>
                   )}
                   <div className="flex items-center gap-4 mb-4">
-                    <Badge className="bg-primary">${selectedLotion.price.toFixed(2)} each</Badge>
                     {selectedLotion.tattoo_guard && (
                       <Badge variant="outline">Tattoo-Safe</Badge>
                     )}
@@ -201,18 +200,9 @@ export default function LotionsShop() {
                           data-testid="lotion-quantity"
                         />
                       </div>
-                      <div className="flex justify-between text-sm">
-                        <span>Subtotal:</span>
-                        <span>${(selectedLotion.price * quantity).toFixed(2)}</span>
-                      </div>
-                      <div className="flex justify-between text-sm">
-                        <span>Sales Tax (7.25%):</span>
-                        <span>${(selectedLotion.price * quantity * 0.0725).toFixed(2)}</span>
-                      </div>
-                      <div className="flex justify-between font-bold text-lg border-t pt-2">
-                        <span>Total:</span>
-                        <span>${calculateTotal().toFixed(2)}</span>
-                      </div>
+                    <p className="text-sm text-muted-foreground mb-4">
+                      Price will be displayed at checkout. Contact us at (740) 397-9632 for pricing information.
+                    </p>
                     </div>
                     <Button
                       onClick={handleCheckout}
@@ -271,9 +261,6 @@ export default function LotionsShop() {
                       <p className="text-muted-foreground text-sm mb-3">{lotion.brand}</p>
                     )}
                     <div className="flex items-center gap-2 mb-4">
-                      <Badge className="bg-primary text-white">
-                        ${lotion.price.toFixed(2)}
-                      </Badge>
                       {lotion.tattoo_guard && (
                         <Badge variant="outline" className="text-xs">
                           <Sparkles className="w-3 h-3 mr-1" />
@@ -347,6 +334,18 @@ export default function LotionsShop() {
             <Sparkles className="mr-2 h-5 w-5" />
             Ask Mary for Recommendations
           </Button>
+        </div>
+      </div>
+
+      {/* Footer */}
+      <div className="bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--secondary))] text-white py-8">
+        <div className="container mx-auto px-4 text-center">
+          <h3 className="text-xl font-bold mb-4">Eastend Tanning & Laundry</h3>
+          <div className="flex flex-wrap justify-center gap-4 text-sm text-white/90">
+            <span className="flex items-center gap-1"><MapPin className="h-4 w-4" />818 Coshocton Ave, Mt Vernon, OH</span>
+            <span className="flex items-center gap-1"><Phone className="h-4 w-4" />(740) 397-9632</span>
+            <span className="flex items-center gap-1"><Clock className="h-4 w-4" />8am-7:30pm daily</span>
+          </div>
         </div>
       </div>
     </div>
