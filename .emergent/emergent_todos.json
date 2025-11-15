@@ -1,23 +1,23 @@
 [
   {
     "content": "Fix Mary Well chat message sending issue - ensure session_id is properly initialized before sending messages",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Verify checkout button is visible in Mary chat quick actions",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Make 'Find perfect bed + free consultation' banner clickable with special consultation flow",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Create Mary's consultation flow: welcome, ask occasion, skin consultation, bed recommendation, lotion recommendation, encourage 15% off checkout",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Test Mary chat functionality with screenshots",
-    "status": "pending"
+    "status": "in_progress"
   },
   {
     "content": "Test clickable banner consultation flow",
