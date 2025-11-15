@@ -35,12 +35,27 @@ export default function Coupon() {
     
     setActiveDiscount(currentTier);
 
-    // Load PayPal Hosted Button (official React implementation)
-    if (window.paypal) {
-      window.paypal.HostedButtons({
-        hostedButtonId: "4VYZ3ABTC3C6G",
-      }).render("#paypal-button-container");
-    }
+    // Load PayPal Hosted Button with error handling
+    const loadPayPalButton = () => {
+      if (window.paypal && window.paypal.HostedButtons) {
+        try {
+          window.paypal.HostedButtons({
+            hostedButtonId: "4VYZ3ABTC3C6G",
+          }).render("#paypal-button-container")
+            .catch((err) => {
+              console.error("PayPal button render error:", err);
+            });
+        } catch (error) {
+          console.error("PayPal button initialization error:", error);
+        }
+      } else {
+        // PayPal SDK not loaded yet, retry
+        setTimeout(loadPayPalButton, 500);
+      }
+    };
+    
+    // Start loading after a small delay
+    setTimeout(loadPayPalButton, 1000);
   }, [coupon]);
 
   const fetchCoupon = async () => {
