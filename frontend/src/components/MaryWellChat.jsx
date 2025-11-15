@@ -285,55 +285,7 @@ export function MaryWellChat() {
         </DialogContent>
       </Dialog>
 
-      {/* Checkout Dialog */}
-      <Dialog open={checkoutOpen} onOpenChange={setCheckoutOpen}>
-        <DialogContent className="max-w-lg">
-          <DialogHeader>
-            <DialogTitle>{checkoutType === 'tanning' ? 'Checkout Tanning Package' : `Checkout ${selectedLotion?.name || 'Lotion'}`}</DialogTitle>
-          </DialogHeader>
-          {checkoutType === 'tanning' && (
-            <div className="grid grid-cols-1 gap-3 mb-3">
-              <div>
-                <Label className="text-sm">Tanning Level</Label>
-                <Select value={tanningSelection.level} onValueChange={(v) => setTanningSelection(s => ({ ...s, level: v }))}>
-                  <SelectTrigger data-testid="select-level"><SelectValue placeholder="Choose level" /></SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="level1">Level 1</SelectItem>
-                    <SelectItem value="level2">Level 2</SelectItem>
-                    <SelectItem value="level3">Level 3</SelectItem>
-                    <SelectItem value="level4">Level 4</SelectItem>
-                    <SelectItem value="matrix">Matrix</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-              <div>
-                <Label className="text-sm">Package Type</Label>
-                <Select value={tanningSelection.type} onValueChange={(v) => setTanningSelection(s => ({ ...s, type: v }))}>
-                  <SelectTrigger data-testid="select-package"><SelectValue placeholder="Choose package" /></SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="single">Single</SelectItem>
-                    <SelectItem value="five_pack">5 Pack</SelectItem>
-                    <SelectItem value="ten_pack">10 Pack</SelectItem>
-                    <SelectItem value="twenty_pack">20 Pack</SelectItem>
-                    <SelectItem value="month_unlimited">Month Unlimited</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-            </div>
-          )}
-
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-            <div className="sm:col-span-1"><Label>Name</Label><Input value={customer.name} onChange={(e)=>setCustomer({...customer, name:e.target.value})} data-testid="checkout-name" /></div>
-            <div className="sm:col-span-1"><Label>Email</Label><Input type="email" value={customer.email} onChange={(e)=>setCustomer({...customer, email:e.target.value})} data-testid="checkout-email" /></div>
-            <div className="sm:col-span-1"><Label>Phone</Label><Input value={customer.phone} onChange={(e)=>setCustomer({...customer, phone:e.target.value})} data-testid="checkout-phone" /></div>
-          </div>
-
-          <div className="flex justify-end gap-2 mt-4">
-            <Button variant="outline" onClick={()=>setCheckoutOpen(false)}>Cancel</Button>
-            <Button onClick={createCheckout} data-testid="checkout-submit">Proceed to Payment</Button>
-          </div>
-        </DialogContent>
-      </Dialog>
+      {/* Checkout removed - customers should call or visit in person */}
     </>
   );
 }
