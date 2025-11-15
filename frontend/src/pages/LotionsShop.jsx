@@ -47,7 +47,7 @@ export default function LotionsShop() {
     return subtotal + salesTax;
   };
 
-  const handleCheckout = async () => {
+  const handleCheckout = () => {
     if (!selectedLotion) {
       toast.error('Please select a lotion');
       return;
@@ -58,40 +58,32 @@ export default function LotionsShop() {
       return;
     }
 
-    try {
-      const subtotal = selectedLotion.price * quantity;
-      const salesTax = subtotal * 0.0725;
-      const total = subtotal + salesTax;
-
-      const orderData = {
+    // Prepare lotion item for unified cart
+    const lotionItem = {
+      item_id: `lot-${selectedLotion.id}-${Date.now()}`,
+      item_type: 'lotion',
+      details: {
         lotion_id: selectedLotion.id,
         lotion_name: selectedLotion.name,
-        lotion_brand: selectedLotion.brand || '',
-        quantity: quantity,
-        price_per_unit: selectedLotion.price,
-        subtotal: parseFloat(subtotal.toFixed(2)),
-        sales_tax: parseFloat(salesTax.toFixed(2)),
-        total: parseFloat(total.toFixed(2)),
-        customer_name: customer.name,
-        customer_email: customer.email,
-        customer_phone: customer.phone
-      };
+        lotion_brand: selectedLotion.brand || ''
+      },
+      price: selectedLotion.price,
+      quantity: quantity
+    };
 
-      const response = await fetch(`${backendUrl}/api/lotions/orders/create`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(orderData)
-      });
-
-      if (!response.ok) throw new Error('Failed to create order');
-
-      const order = await response.json();
-      toast.success('Order created successfully!');
-      navigate(`/lotion-receipt/${order.order_id}`);
-    } catch (error) {
-      console.error('Error creating order:', error);
-      toast.error('Failed to create order. Please try again.');
-    }
+    // Navigate to unified checkout with pre-filled data
+    navigate('/checkout', {
+      state: {
+        customerInfo: {
+          name: customer.name,
+          email: customer.email,
+          phone: customer.phone
+        },
+        recommendedItems: [lotionItem]
+      }
+    });
+    
+    toast.success('Added to cart! Complete your purchase at checkout.');
   };
 
   const features = [
