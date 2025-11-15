@@ -67,7 +67,13 @@ export default function Tanning() {
               Forget single sessions that fade in days. Monthly unlimited tanning delivers the consistent exposure you need for a real, lasting tan.
             </p>
             <div className="flex gap-4">
-              <Button size="lg" className="bg-white text-[hsl(var(--primary))] hover:bg-white/90" onClick={openChat}>
+              <Button 
+                size="lg" 
+                className="bg-white text-[hsl(var(--primary))] hover:bg-white/90 hover:scale-105 transition-transform" 
+                onClick={openConsultation}
+                data-testid="hero-consultation-button"
+              >
+                <Sparkles className="mr-2 h-5 w-5" />
                 Find Your Perfect Bed (Free Consultation)
               </Button>
             </div>
