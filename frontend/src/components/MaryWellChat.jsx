@@ -315,7 +315,11 @@ export function MaryWellChat() {
                     </ul>
                   )}
                 </div>
-                <Button size="sm" onClick={() => toast.info(`To purchase ${l.name}, please call (740) 397-9632 or visit us at 818 Coshocton Ave!`)} data-testid={`buy-lotion-${l.id}`}>Buy</Button>
+                <Button size="sm" onClick={() => {
+                  setLotionsOpen(false);
+                  setIsOpen(false);
+                  window.location.href = `/checkout?lotion=${l.id}`;
+                }} data-testid={`buy-lotion-${l.id}`}>Buy</Button>
               </div>
             ))}
           </div>
