@@ -34,6 +34,13 @@ export default function Coupon() {
     else if (hoursElapsed <= 168) currentTier = coupon.discount_tiers[2]; // 5%
     
     setActiveDiscount(currentTier);
+
+    // Load PayPal Hosted Button (official React implementation)
+    if (window.paypal) {
+      window.paypal.HostedButtons({
+        hostedButtonId: "4VYZ3ABTC3C6G",
+      }).render("#paypal-button-container");
+    }
   }, [coupon]);
 
   const fetchCoupon = async () => {
