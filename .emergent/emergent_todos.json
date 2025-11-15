@@ -1,14 +1,18 @@
 [
   {
-    "content": "Debug PayPal SDK 400 error and fix hosted button integration",
-    "status": "completed"
+    "content": "Create backend PayPal Orders API endpoint with dynamic amount",
+    "status": "in_progress"
   },
   {
-    "content": "Test PayPal button renders correctly",
-    "status": "completed"
+    "content": "Update frontend to use PayPal Orders SDK instead of Hosted Buttons",
+    "status": "pending"
   },
   {
-    "content": "Verify PayPal payment flow end-to-end",
-    "status": "completed"
+    "content": "Fix Mary Well chat checkout buttons",
+    "status": "pending"
+  },
+  {
+    "content": "Test complete PayPal payment flow end-to-end",
+    "status": "pending"
   }
 ]
