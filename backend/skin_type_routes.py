@@ -15,7 +15,7 @@ router = APIRouter(prefix="/api/skin-type", tags=["skin_type"])
 # MongoDB connection
 mongo_url = os.environ.get('MONGO_URL')
 client = AsyncIOMotorClient(mongo_url)
-db = client[os.environ.get('DB_NAME', 'test_database')]
+db = client[os.environ.get('DB_NAME', 'eastend_db')]
 
 class SkinTypeEvaluation(BaseModel):
     customer_name: str
