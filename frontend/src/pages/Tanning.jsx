@@ -106,14 +106,15 @@ export default function Tanning() {
       </div>
 
       {/* Lead Capture - Which Bed Should I Choose? */}
-      <div className="bg-gradient-to-br from-[hsl(var(--primary))]/10 to-[hsl(var(--secondary))]/10 py-16">
+      <div className="bg-gradient-to-br from-[hsl(var(--primary))]/10 to-[hsl(var(--secondary))]/10 py-16 cursor-pointer hover:shadow-lg transition-shadow" onClick={openConsultation} data-testid="consultation-section">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="font-serif text-4xl font-bold mb-4">Not Sure Which Bed is Right for You?</h2>
             <p className="text-xl text-muted-foreground mb-8">
               Get a free skin type evaluation and personalized recommendation from Mary, our AI tanning expert. She'll match you to the perfect bed based on your skin type, goals, and budget.
             </p>
-            <Button size="lg" onClick={openChat} className="bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--secondary))] text-lg px-8">
+            <Button size="lg" onClick={(e) => { e.stopPropagation(); openConsultation(); }} className="bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--secondary))] text-lg px-8 hover:scale-105 transition-transform">
+              <Sparkles className="mr-2 h-5 w-5" />
               Get Free Consultation - Ask Mary Anything
             </Button>
           </div>
