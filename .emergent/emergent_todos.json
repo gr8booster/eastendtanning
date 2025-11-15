@@ -1,14 +1,34 @@
 [
   {
-    "content": "Move PayPal credentials from hardcoded to environment variables",
-    "status": "completed"
+    "content": "Research 818 Food Truck Stop location details",
+    "status": "in_progress"
   },
   {
-    "content": "Fix malformed .gitignore entries",
-    "status": "completed"
+    "content": "Create backend API for food truck bookings with date validation",
+    "status": "pending"
   },
   {
-    "content": "Re-run deployment health check",
-    "status": "completed"
+    "content": "Create FoodTruckStop frontend page with hero and booking form",
+    "status": "pending"
+  },
+  {
+    "content": "Implement PayPal $70 payment integration",
+    "status": "pending"
+  },
+  {
+    "content": "Add file upload for truck photos and menu",
+    "status": "pending"
+  },
+  {
+    "content": "Display upcoming bookings (7-day calendar)",
+    "status": "pending"
+  },
+  {
+    "content": "Add SEO optimization and structured data",
+    "status": "pending"
+  },
+  {
+    "content": "Test booking flow end-to-end",
+    "status": "pending"
   }
 ]
