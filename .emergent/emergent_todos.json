@@ -1,18 +1,14 @@
 [
   {
-    "content": "Make PayPal button visible and functional on coupon page",
-    "status": "completed"
+    "content": "Debug PayPal SDK 400 error and fix hosted button integration",
+    "status": "in_progress"
   },
   {
-    "content": "Remove Stripe sandbox payment from Tanning page",
-    "status": "completed"
+    "content": "Test PayPal button renders correctly",
+    "status": "pending"
   },
   {
-    "content": "Shorten coupon from 4 pages to half page",
-    "status": "completed"
-  },
-  {
-    "content": "Test complete payment flow after fixes",
-    "status": "completed"
+    "content": "Verify PayPal payment flow end-to-end",
+    "status": "pending"
   }
 ]
