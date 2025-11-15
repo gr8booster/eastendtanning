@@ -1,18 +1,18 @@
 [
   {
     "content": "Create backend PayPal Orders API endpoint with dynamic amount",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Update frontend to use PayPal Orders SDK instead of Hosted Buttons",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Fix Mary Well chat checkout buttons",
-    "status": "pending"
+    "status": "completed"
   },
   {
-    "content": "Test complete PayPal payment flow end-to-end",
-    "status": "pending"
+    "content": "Restart services and test complete PayPal payment flow end-to-end",
+    "status": "in_progress"
   }
 ]
