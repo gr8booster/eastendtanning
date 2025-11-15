@@ -106,6 +106,7 @@ app.include_router(seo_router)  # Include SEO routes
 app.include_router(user_router)  # Include user management routes
 app.include_router(ordering_router)  # Include Fizze online ordering routes
 app.include_router(coupon_router)  # Include coupon/reservation routes
+app.include_router(paypal_router)  # Include PayPal Orders API routes
 
 app.add_middleware(
     CORSMiddleware,
