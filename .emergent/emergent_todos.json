@@ -1,14 +1,14 @@
 [
   {
     "content": "Move PayPal credentials from hardcoded to environment variables",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Fix malformed .gitignore entries",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Re-run deployment health check",
-    "status": "pending"
+    "status": "in_progress"
   }
 ]
