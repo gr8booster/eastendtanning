@@ -1,26 +1,38 @@
 [
   {
-    "content": "Fix Mary Well chat message sending issue - ensure session_id is properly initialized before sending messages",
-    "status": "completed"
+    "content": "Make 'Not Sure Which Bed' section clickable to trigger consultation",
+    "status": "in_progress"
   },
   {
-    "content": "Verify checkout button is visible in Mary chat quick actions",
-    "status": "completed"
+    "content": "Update Mary to pre-populate cart with recommended package after customer agrees",
+    "status": "pending"
   },
   {
-    "content": "Make 'Find perfect bed + free consultation' banner clickable with special consultation flow",
-    "status": "completed"
+    "content": "Add online lotion catalogue page with purchase functionality",
+    "status": "pending"
   },
   {
-    "content": "Create Mary's consultation flow: welcome, ask occasion, skin consultation, bed recommendation, lotion recommendation, encourage 15% off checkout",
-    "status": "completed"
+    "content": "Create lotion checkout flow similar to tanning packages",
+    "status": "pending"
   },
   {
-    "content": "Test Mary chat functionality with screenshots",
-    "status": "completed"
+    "content": "Update Mary to collect customer information (name, phone, email) during consultation",
+    "status": "pending"
   },
   {
-    "content": "Test clickable banner consultation flow",
-    "status": "completed"
+    "content": "Create customer profile storage system in database",
+    "status": "pending"
+  },
+  {
+    "content": "Implement conversation history and memory for personalized experience",
+    "status": "pending"
+  },
+  {
+    "content": "Add skin evaluation form/questionnaire that Mary guides customers through",
+    "status": "pending"
+  },
+  {
+    "content": "Test all new features end-to-end",
+    "status": "pending"
   }
 ]
