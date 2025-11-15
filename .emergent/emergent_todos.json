@@ -1,26 +1,26 @@
 [
   {
     "content": "Test mobile experience on key pages",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Optimize touch targets for mobile (44px minimum)",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Ensure readable font sizes on mobile",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Verify mobile navigation works smoothly",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Test checkout flow on mobile",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Final mobile verification screenshots",
-    "status": "pending"
+    "status": "completed"
   }
 ]
