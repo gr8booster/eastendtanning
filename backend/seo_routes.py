@@ -5,10 +5,11 @@ from fastapi import APIRouter, Response
 from fastapi.responses import PlainTextResponse
 from datetime import datetime
 from typing import List
+import os
 
 router = APIRouter(tags=["seo"])
 
-BASE_URL = "https://paypal-upgrade.preview.emergentagent.com"
+BASE_URL = os.environ.get('APP_URL', 'https://paypal-upgrade.preview.emergentagent.com')
 
 # Define all public pages with priority and change frequency
 PUBLIC_PAGES = [
