@@ -151,7 +151,7 @@ export function MaryWellChat() {
   const fetchLotions = async () => { try { const res = await fetch(`${backendUrl}/api/lotions`); const data = await res.json(); setLotions(Array.isArray(data) ? data : []); setLotionsOpen(true); } catch (e) { console.error(e); toast.error('Failed to load lotions'); } };
 
   const openCheckoutTanning = () => { 
-    toast.info('To purchase tanning packages, please call us at (740) 397-9632 or visit us at 818 Coshocton Ave, Mt Vernon!');
+    window.location.href = '/tanning-checkout';
   };
   
   const openCheckoutLotion = (l) => { 
