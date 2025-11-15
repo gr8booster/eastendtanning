@@ -1,18 +1,22 @@
 [
   {
-    "content": "Create backend PayPal Orders API endpoint with dynamic amount",
-    "status": "completed"
+    "content": "Create TanningCheckout.jsx page with package/level selection",
+    "status": "in_progress"
   },
   {
-    "content": "Update frontend to use PayPal Orders SDK instead of Hosted Buttons",
-    "status": "completed"
+    "content": "Add tanning order backend endpoint",
+    "status": "pending"
   },
   {
-    "content": "Fix Mary Well chat checkout buttons",
-    "status": "completed"
+    "content": "Integrate PayPal for tanning payments",
+    "status": "pending"
   },
   {
-    "content": "Restart services and test complete PayPal payment flow end-to-end",
-    "status": "completed"
+    "content": "Add route and navigation to tanning checkout",
+    "status": "pending"
+  },
+  {
+    "content": "Test complete tanning purchase flow",
+    "status": "pending"
   }
 ]
