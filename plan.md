@@ -6,7 +6,7 @@
 
 All 6 phases plus pre-launch updates, comprehensive SEO optimization, AND complete payment system with **Dynamic PayPal Orders API for BOTH Fizze drinks AND tanning packages** have been successfully completed, tested, and verified. The application now features professional online checkout for both product lines with working PayPal dynamic payment buttons, accurate tax calculations, and seamless payment processing. Mary Well AI chat fully operational with tanning checkout integration.
 
-**Preview URL**: https://knoxcounty-fizze.preview.emergentagent.com  
+**Preview URL**: https://paypal-upgrade.preview.emergentagent.com  
 **Production URL**: https://eastendtanninglaundry-[id].app.emergentagent.com (ready to deploy)  
 **Tech Stack**: FastAPI + React + MongoDB | **Dynamic PayPal Orders API** | Emergent LLM (GPT-4o + Claude Sonnet 4)  
 **Final Test Results**: Backend 100% functional, Frontend 100% functional, PayPal 100% functional (Fizze + Tanning), Mary Well 100% functional, ZERO critical bugs  
@@ -696,7 +696,7 @@ The Eastend Tanning & Laundry system is **100% production-ready** with complete 
 9. 🔧 Add optional enhancements (GA, custom domain, etc.)
 
 **Production URL**: `https://eastendtanninglaundry-[id].app.emergentagent.com`  
-**Preview URL**: https://knoxcounty-fizze.preview.emergentagent.com
+**Preview URL**: https://paypal-upgrade.preview.emergentagent.com
 
 **The system is 100% READY FOR PRODUCTION DEPLOYMENT!** 🎉
 

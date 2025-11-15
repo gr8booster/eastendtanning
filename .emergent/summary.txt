@@ -506,7 +506,7 @@ Analytics: 2 endpoints
 9. ⚠️ Role-based tab visibility not implemented
 
 **System URLs:**
-- Live: https://knoxcounty-fizze.preview.emergentagent.com
+- Live: https://paypal-upgrade.preview.emergentagent.com
 - Admin: /admin (password: eastend2025) - HAS ERROR
 - Order Drinks: /order-drinks - WORKING
 - API Docs: /docs - WORKING
