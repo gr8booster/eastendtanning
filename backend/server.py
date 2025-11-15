@@ -31,6 +31,7 @@ from user_routes import router as user_router
 from online_ordering_routes import router as ordering_router
 from coupon_routes import router as coupon_router
 from paypal_routes import router as paypal_router
+from tanning_routes import router as tanning_router
 
 
 ROOT_DIR = Path(__file__).parent
@@ -107,6 +108,7 @@ app.include_router(user_router)  # Include user management routes
 app.include_router(ordering_router)  # Include Fizze online ordering routes
 app.include_router(coupon_router)  # Include coupon/reservation routes
 app.include_router(paypal_router)  # Include PayPal Orders API routes
+app.include_router(tanning_router)  # Include tanning package ordering routes
 
 app.add_middleware(
     CORSMiddleware,
