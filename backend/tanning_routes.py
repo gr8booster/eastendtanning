@@ -13,7 +13,7 @@ router = APIRouter()
 
 # MongoDB connection
 MONGO_URL = os.environ.get('MONGO_URL')
-DB_NAME = os.environ.get('DB_NAME', 'test_database')
+DB_NAME = os.environ.get('DB_NAME', 'eastend_db')
 client = AsyncIOMotorClient(MONGO_URL)
 db = client[DB_NAME]
 tanning_orders_collection = db['tanning_orders']
