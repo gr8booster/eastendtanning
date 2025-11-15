@@ -14,7 +14,7 @@ router = APIRouter(prefix="/api/cart", tags=["cart"])
 # MongoDB connection
 mongo_url = os.environ.get('MONGO_URL')
 client = AsyncIOMotorClient(mongo_url)
-db = client[os.environ.get('DB_NAME', 'test_database')]
+db = client[os.environ.get('DB_NAME', 'eastend_db')]
 
 class TanningItem(BaseModel):
     type: str = "tanning"  # tanning
