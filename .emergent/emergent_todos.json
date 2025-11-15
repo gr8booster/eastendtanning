@@ -1,38 +1,42 @@
 [
   {
     "content": "Make 'Not Sure Which Bed' section clickable to trigger consultation",
+    "status": "completed"
+  },
+  {
+    "content": "Create unified cart system for tanning + lotions",
     "status": "in_progress"
   },
   {
-    "content": "Update Mary to pre-populate cart with recommended package after customer agrees",
+    "content": "Update Mary to collect name & phone upfront in consultation",
     "status": "pending"
   },
   {
-    "content": "Add online lotion catalogue page with purchase functionality",
+    "content": "Create customer profile storage with persistent memory",
     "status": "pending"
   },
   {
-    "content": "Create lotion checkout flow similar to tanning packages",
+    "content": "Update consultation flow to pre-populate cart with recommendations",
     "status": "pending"
   },
   {
-    "content": "Update Mary to collect customer information (name, phone, email) during consultation",
+    "content": "Create backend APIs for unified cart and customer profiles",
     "status": "pending"
   },
   {
-    "content": "Create customer profile storage system in database",
+    "content": "Seed lotion data in database",
     "status": "pending"
   },
   {
-    "content": "Implement conversation history and memory for personalized experience",
+    "content": "Create UnifiedCheckout page for tanning + lotions",
     "status": "pending"
   },
   {
-    "content": "Add skin evaluation form/questionnaire that Mary guides customers through",
+    "content": "Create UnifiedReceipt page with PayPal",
     "status": "pending"
   },
   {
-    "content": "Test all new features end-to-end",
+    "content": "Update routes and test end-to-end",
     "status": "pending"
   }
 ]
