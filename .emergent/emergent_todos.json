@@ -1,22 +1,26 @@
 [
   {
-    "content": "Create TanningCheckout.jsx page with package/level selection",
-    "status": "completed"
+    "content": "Fix Mary Well chat message sending issue - ensure session_id is properly initialized before sending messages",
+    "status": "in_progress"
   },
   {
-    "content": "Add tanning order backend endpoint",
-    "status": "completed"
+    "content": "Verify checkout button is visible in Mary chat quick actions",
+    "status": "pending"
   },
   {
-    "content": "Integrate PayPal for tanning payments",
-    "status": "completed"
+    "content": "Make 'Find perfect bed + free consultation' banner clickable with special consultation flow",
+    "status": "pending"
   },
   {
-    "content": "Add route and navigation to tanning checkout",
-    "status": "completed"
+    "content": "Create Mary's consultation flow: welcome, ask occasion, skin consultation, bed recommendation, lotion recommendation, encourage 15% off checkout",
+    "status": "pending"
   },
   {
-    "content": "Restart services and test complete tanning purchase flow",
-    "status": "completed"
+    "content": "Test Mary chat functionality with screenshots",
+    "status": "pending"
+  },
+  {
+    "content": "Test clickable banner consultation flow",
+    "status": "pending"
   }
 ]
