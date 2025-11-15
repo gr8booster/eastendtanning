@@ -11,6 +11,8 @@ import { SEOHead, createServiceSchema } from '../components/SEOHead';
 const matrixPoster = "https://images.unsplash.com/photo-1540555700478-4be289fbecef?q=80&w=1200&auto=format&fit=crop";
 
 export default function Tanning() {
+  const navigate = useNavigate();
+  
   const packages = [
     { service: 'VIP Monthly Unlimited', description: 'Best value - lowest price with 3-month commitment', price: '$39.99-$169.99/mo' },
     { service: 'Monthly Unlimited', description: 'No commitment - cancel anytime', price: '$45.99-$194.99/mo' },
