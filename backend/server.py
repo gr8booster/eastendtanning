@@ -47,7 +47,7 @@ client = AsyncIOMotorClient(mongo_url)
 db = client[os.environ.get('DB_NAME', 'eastend_db')]
 
 # Create the main app without a prefix
-app = FastAPI(title="Eastend Command Center API")
+app = FastAPI(title="Eastend Tanning Laundry API")
 
 # Create a router with the /api prefix
 api_router = APIRouter(prefix="/api")
