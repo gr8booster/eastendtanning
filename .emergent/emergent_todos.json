@@ -1,22 +1,22 @@
 [
   {
     "content": "Create TanningCheckout.jsx page with package/level selection",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Add tanning order backend endpoint",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Integrate PayPal for tanning payments",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Add route and navigation to tanning checkout",
-    "status": "pending"
+    "status": "completed"
   },
   {
-    "content": "Test complete tanning purchase flow",
-    "status": "pending"
+    "content": "Restart services and test complete tanning purchase flow",
+    "status": "in_progress"
   }
 ]
