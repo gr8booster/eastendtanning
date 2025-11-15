@@ -1,18 +1,18 @@
 [
   {
-    "content": "Enhance FoodTruckStop UI with better design",
-    "status": "completed"
+    "content": "Investigate Food Truck route issue (/foodtruck not loading in production)",
+    "status": "in_progress"
   },
   {
-    "content": "Add admin tab for food truck booking management",
-    "status": "completed"
+    "content": "Verify React Router configuration for /foodtruck route",
+    "status": "pending"
   },
   {
-    "content": "Take screenshots of food truck page",
-    "status": "completed"
+    "content": "Test food truck page functionality end-to-end",
+    "status": "pending"
   },
   {
-    "content": "Test admin food truck management",
-    "status": "completed"
+    "content": "Fix any remaining issues before final handoff",
+    "status": "pending"
   }
 ]
