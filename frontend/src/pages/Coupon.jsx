@@ -34,18 +34,6 @@ export default function Coupon() {
     else if (hoursElapsed <= 168) currentTier = coupon.discount_tiers[2]; // 5%
     
     setActiveDiscount(currentTier);
-
-    // Load PayPal button
-    if (window.paypal && window.paypal.HostedButtons) {
-      // Clear existing button first
-      const container = document.getElementById('paypal-button-container');
-      if (container) {
-        container.innerHTML = '';
-        window.paypal.HostedButtons({
-          hostedButtonId: "4VYZ3ABTC3C6G"
-        }).render("#paypal-button-container");
-      }
-    }
   }, [coupon]);
 
   const fetchCoupon = async () => {
