@@ -32,6 +32,8 @@ from online_ordering_routes import router as ordering_router
 from coupon_routes import router as coupon_router
 from paypal_routes import router as paypal_router
 from tanning_routes import router as tanning_router
+from customer_routes import router as customer_router
+from cart_routes import router as cart_router
 
 
 ROOT_DIR = Path(__file__).parent
