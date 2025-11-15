@@ -34,7 +34,20 @@ export function MaryWellChat() {
 
   useEffect(() => {
     // global open chat API
-    window.openMaryChat = () => setIsOpen(true);
+    window.openMaryChat = async () => {
+      setIsOpen(true);
+      if (!sessionId) await startChatSession();
+    };
+    window.openMaryChatWithConsultation = async () => {
+      setIsOpen(true);
+      if (!sessionId) await startChatSession();
+      // Send consultation trigger after a brief delay
+      setTimeout(async () => {
+        if (sessionId) {
+          await sendMessage('I want a free tanning consultation to find my perfect bed');
+        }
+      }, 500);
+    };
     window.openMaryChatAndListen = () => {
       setIsOpen(true);
       setTimeout(() => {
@@ -42,7 +55,11 @@ export function MaryWellChat() {
         else startListening();
       }, 200);
     };
-    return () => { delete window.openMaryChat; delete window.openMaryChatAndListen; };
+    return () => { 
+      delete window.openMaryChat; 
+      delete window.openMaryChatWithConsultation;
+      delete window.openMaryChatAndListen; 
+    };
   }, [sessionId]);
 
   const scrollToBottom = () => { messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' }); };
@@ -60,7 +77,12 @@ export function MaryWellChat() {
     } catch (error) { console.error('Error starting chat:', error); toast.error('Failed to start chat'); }
   };
 
-  const handleOpen = () => { setIsOpen(true); if (!sessionId) startChatSession(); };
+  const handleOpen = async () => { 
+    setIsOpen(true); 
+    if (!sessionId) {
+      await startChatSession();
+    }
+  };
 
   const speak = (text) => {
     try {
@@ -76,16 +98,31 @@ export function MaryWellChat() {
   const sendMessage = async (overrideText = null) => {
     const outgoing = overrideText ?? inputMessage;
     if (!outgoing || !outgoing.trim() || loading) return;
+    
+    // Ensure session is started before sending
+    if (!sessionId) {
+      toast.error('Chat session not ready. Please wait a moment.');
+      return;
+    }
+    
     const userMessage = outgoing.trim();
     if (!overrideText) setInputMessage('');
     setMessages(prev => [...prev, { role: 'user', content: userMessage, timestamp: new Date().toISOString() }]);
     setLoading(true);
     try {
       const response = await fetch(`${backendUrl}/api/chat/message`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ session_id: sessionId, message: userMessage }) });
+      if (!response.ok) {
+        throw new Error(`Server error: ${response.status}`);
+      }
       const data = await response.json();
       setMessages(prev => [...prev, { role: 'assistant', content: data.response, timestamp: data.timestamp }]);
       speak(data.response || '');
-    } catch (error) { console.error('Error sending message:', error); toast.error('Failed to send message'); }
+    } catch (error) { 
+      console.error('Error sending message:', error); 
+      toast.error('Failed to send message. Please try again.'); 
+      // Remove the user message that failed
+      setMessages(prev => prev.slice(0, -1));
+    }
     finally { setLoading(false); }
   };
 
