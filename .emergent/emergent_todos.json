@@ -1,18 +1,18 @@
 [
   {
     "content": "Make PayPal button visible and functional on coupon page",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Remove Stripe sandbox payment from Tanning page",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Shorten coupon from 4 pages to half page",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Test complete payment flow after fixes",
-    "status": "pending"
+    "status": "in_progress"
   }
 ]
