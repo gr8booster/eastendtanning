@@ -11,9 +11,9 @@ import base64
 
 router = APIRouter()
 
-# PayPal credentials
-PAYPAL_CLIENT_ID = "AfDT4xEbDBYJbkqevhCTf0-hgchxACo55xgXMjgoMyElbFG0SaE52w1B066P_Jbn0YGNY6RSlUY31qob"
-PAYPAL_CLIENT_SECRET = "EIO1UXJukMaUPm4oulAZYwrMGsKrubjTOpL9mV-Rxq-BzP8N5m_WkFKnD5xOGx2xsV34OBzqzTQaqM5a"
+# PayPal credentials from environment
+PAYPAL_CLIENT_ID = os.environ.get('PAYPAL_CLIENT_ID')
+PAYPAL_CLIENT_SECRET = os.environ.get('PAYPAL_CLIENT_SECRET')
 PAYPAL_API_BASE = "https://api-m.paypal.com"  # Production
 
 class CreatePayPalOrderRequest(BaseModel):
