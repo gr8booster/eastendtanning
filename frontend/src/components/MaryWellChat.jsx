@@ -150,21 +150,12 @@ export function MaryWellChat() {
 
   const fetchLotions = async () => { try { const res = await fetch(`${backendUrl}/api/lotions`); const data = await res.json(); setLotions(Array.isArray(data) ? data : []); setLotionsOpen(true); } catch (e) { console.error(e); toast.error('Failed to load lotions'); } };
 
-  const openCheckoutTanning = () => { setCheckoutType('tanning'); setCheckoutOpen(true); };
-  const openCheckoutLotion = (l) => { setSelectedLotion(l); setCheckoutType('lotion'); setCheckoutOpen(true); };
-
-  const createCheckout = async () => {
-    try {
-      if (!customer.name || !customer.email || !customer.phone) { toast.error('Please fill your name, email, and phone'); return; }
-      let payload = { customer_name: customer.name, customer_email: customer.email, customer_phone: customer.phone, origin_url: window.location.origin };
-      if (checkoutType === 'tanning') { payload.package_id = `${tanningSelection.level}_${tanningSelection.type}`; if (lastDiscount?.code) payload.discount_code = lastDiscount.code; }
-      else if (checkoutType === 'lotion') { if (!selectedLotion) { toast.error('Select a lotion'); return; } payload.lotion_id = selectedLotion.id; payload.quantity = 1; }
-      const res = await fetch(`${backendUrl}/api/payments/checkout/session`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
-      const data = await res.json();
-      if (res.ok && data?.url) { window.open(data.url, '_blank'); toast.success('Opening secure checkout'); setCheckoutOpen(false); }
-      else if (res.ok && data?.session_id) { toast.success('Checkout session created. Redirecting to Stripe...'); if (data.url) window.open(data.url, '_blank'); }
-      else { toast.error(data?.detail || 'Failed to create checkout'); }
-    } catch (e) { console.error(e); toast.error('Checkout failed'); }
+  const openCheckoutTanning = () => { 
+    toast.info('To purchase tanning packages, please call us at (740) 397-9632 or visit us at 818 Coshocton Ave, Mt Vernon!');
+  };
+  
+  const openCheckoutLotion = (l) => { 
+    toast.info('To purchase lotions, please call us at (740) 397-9632 or visit us at 818 Coshocton Ave, Mt Vernon!');
   };
 
   const submitCallMe = async () => {
