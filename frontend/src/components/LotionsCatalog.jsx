@@ -30,24 +30,7 @@ export function LotionsCatalog() {
   };
 
   const handlePurchase = async (lotion) => {
-    try {
-      const response = await fetch(`${backendUrl}/api/checkout/lotion/${lotion.id}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' }
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        if (data.url) {
-          window.location.href = data.url;
-        }
-      } else {
-        toast.error('Failed to create checkout session');
-      }
-    } catch (error) {
-      console.error('Purchase error:', error);
-      toast.error('Something went wrong. Please try again.');
-    }
+    toast.info(`To purchase ${lotion.name}, please call us at (740) 397-9632 or visit us at 818 Coshocton Ave, Mt Vernon! Our staff will help you choose the perfect lotion.`);
   };
 
   if (loading) {
