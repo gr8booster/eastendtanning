@@ -1,11 +1,11 @@
 [
   {
     "content": "Debug PayPal SDK 400 error and fix hosted button integration",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Test PayPal button renders correctly",
-    "status": "pending"
+    "status": "in_progress"
   },
   {
     "content": "Verify PayPal payment flow end-to-end",
