@@ -172,7 +172,28 @@ export default function Coupon() {
             {/* PayPal Payment */}
             <div className="no-print border-t pt-4">
               <h3 className="font-bold mb-2 text-center">💳 Pay Online with PayPal</h3>
-              <div id="paypal-button-container" className="flex justify-center min-h-[50px]"></div>
+              <div className="bg-blue-50 rounded-lg p-4 space-y-3">
+                <p className="text-sm text-center font-semibold">Send payment to our PayPal:</p>
+                <p className="text-center text-lg font-bold text-blue-600">eastendservicesllc@gmail.com</p>
+                <div className="flex flex-col gap-2">
+                  <a 
+                    href="https://www.paypal.com/paypalme/eastendservicesllc" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="w-full"
+                  >
+                    <Button className="w-full bg-[#0070ba] hover:bg-[#005ea6] text-white">
+                      Pay with PayPal
+                    </Button>
+                  </a>
+                  <p className="text-xs text-muted-foreground text-center">
+                    Amount to send: <span className="font-bold">${activeDiscount ? activeDiscount.final_price.toFixed(2) : coupon.total_before_discount.toFixed(2)}</span>
+                  </p>
+                  <p className="text-xs text-muted-foreground text-center">
+                    Include coupon code <span className="font-mono font-bold">{coupon.coupon_code}</span> in payment note
+                  </p>
+                </div>
+              </div>
               <p className="text-xs text-muted-foreground text-center mt-2">Or pay at the counter when you pick up</p>
             </div>
 
