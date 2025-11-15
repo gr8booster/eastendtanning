@@ -26,6 +26,12 @@ export default function Tanning() {
     }
   };
 
+  const openConsultation = () => {
+    if (window.openMaryChatWithConsultation) {
+      window.openMaryChatWithConsultation();
+    }
+  };
+
   const whyChooseUs = [
     { title: "More Beds, Better Choice", desc: "5 levels vs gyms' 1-2 basic beds. From beginner-friendly to our exclusive 40,740-watt Matrix." },
     { title: "Unlimited = Real Results", desc: "Gyms limit your tanning. We don't. Monthly unlimited means you can tan as often as needed for actual results." },
