@@ -71,14 +71,9 @@ export function LotionsCatalog() {
           )}
 
           <div className="p-5 space-y-3">
-            <div className="flex items-start justify-between">
-              <div>
-                <h3 className="font-semibold text-lg">{lotion.name}</h3>
-                {lotion.brand && <p className="text-sm text-muted-foreground">{lotion.brand}</p>}
-              </div>
-              <Badge variant="secondary" className="text-lg font-bold">
-                ${lotion.price?.toFixed(2)}
-              </Badge>
+            <div>
+              <h3 className="font-semibold text-lg">{lotion.name}</h3>
+              {lotion.brand && <p className="text-sm text-muted-foreground">{lotion.brand}</p>}
             </div>
 
             {lotion.features && lotion.features.length > 0 && (
@@ -109,7 +104,7 @@ export function LotionsCatalog() {
             </Button>
 
             <p className="text-xs text-center text-muted-foreground">
-              Pay online, pickup at 102 Martinsburg Rd
+              Pay online, pickup at 818 Coshocton Ave, Mt Vernon, OH
             </p>
           </div>
         </Card>
