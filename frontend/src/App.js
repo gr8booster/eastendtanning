@@ -23,6 +23,9 @@ import OrderDrinks from './pages/OrderDrinks';
 import Coupon from './pages/Coupon';
 import TanningCheckout from './pages/TanningCheckout';
 import TanningReceipt from './pages/TanningReceipt';
+import UnifiedCheckout from './pages/UnifiedCheckout';
+import UnifiedReceipt from './pages/UnifiedReceipt';
+import LotionsShop from './pages/LotionsShop';
 import { MaryWellChat } from './components/MaryWellChat';
 import { FirstTimeDiscountPopup } from './components/FirstTimeDiscountPopup';
 import { useEffect } from 'react';
@@ -85,6 +88,9 @@ function App() {
             <Route path="/coupon/:couponId" element={<Coupon />} />
             <Route path="/tanning-checkout" element={<TanningCheckout />} />
             <Route path="/tanning-receipt/:orderId" element={<TanningReceipt />} />
+            <Route path="/checkout" element={<UnifiedCheckout />} />
+            <Route path="/receipt/:orderId" element={<UnifiedReceipt />} />
+            <Route path="/lotions" element={<LotionsShop />} />
             <Route 
               path="/admin" 
               element={
