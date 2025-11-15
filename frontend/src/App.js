@@ -26,6 +26,8 @@ import TanningReceipt from './pages/TanningReceipt';
 import UnifiedCheckout from './pages/UnifiedCheckout';
 import UnifiedReceipt from './pages/UnifiedReceipt';
 import LotionsShop from './pages/LotionsShop';
+import FoodTruckStop from './pages/FoodTruckStop';
+import FoodTruckPayment from './pages/FoodTruckPayment';
 import { MaryWellChat } from './components/MaryWellChat';
 import { FirstTimeDiscountPopup } from './components/FirstTimeDiscountPopup';
 import { useEffect } from 'react';
@@ -91,6 +93,8 @@ function App() {
             <Route path="/checkout" element={<UnifiedCheckout />} />
             <Route path="/receipt/:orderId" element={<UnifiedReceipt />} />
             <Route path="/lotions" element={<LotionsShop />} />
+            <Route path="/foodtruck" element={<FoodTruckStop />} />
+            <Route path="/foodtruck-payment/:bookingId" element={<FoodTruckPayment />} />
             <Route 
               path="/admin" 
               element={
