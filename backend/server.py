@@ -114,6 +114,7 @@ app.include_router(paypal_router)  # Include PayPal Orders API routes
 app.include_router(tanning_router)  # Include tanning package ordering routes
 app.include_router(customer_router)  # Include customer profile routes
 app.include_router(cart_router)  # Include unified cart routes
+app.include_router(lotion_router)  # Include lotion catalog routes
 
 app.add_middleware(
     CORSMiddleware,
