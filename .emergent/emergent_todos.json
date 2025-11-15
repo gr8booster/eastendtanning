@@ -1,26 +1,14 @@
 [
   {
-    "content": "Test mobile experience on key pages",
-    "status": "completed"
+    "content": "Move PayPal credentials from hardcoded to environment variables",
+    "status": "in_progress"
   },
   {
-    "content": "Optimize touch targets for mobile (44px minimum)",
-    "status": "completed"
+    "content": "Fix malformed .gitignore entries",
+    "status": "pending"
   },
   {
-    "content": "Ensure readable font sizes on mobile",
-    "status": "completed"
-  },
-  {
-    "content": "Verify mobile navigation works smoothly",
-    "status": "completed"
-  },
-  {
-    "content": "Test checkout flow on mobile",
-    "status": "completed"
-  },
-  {
-    "content": "Final mobile verification screenshots",
-    "status": "completed"
+    "content": "Re-run deployment health check",
+    "status": "pending"
   }
 ]
