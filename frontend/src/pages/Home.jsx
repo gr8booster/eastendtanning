@@ -15,7 +15,7 @@ export default function Home() {
         title="Eastend Tanning & Laundry | Mt Vernon, OH | Tanning Salon & Laundromat Knox County"
         description="Eastend Tanning & Laundry at 818 Coshocton Ave, Mt Vernon, OH offers unlimited tanning packages, red light therapy, and laundry with free drying every day. Serving Knox County, Ohio. Call (740) 397-9632."
         keywords="tanning salon Mt Vernon, laundromat Knox County, red light therapy Mt Vernon, laundry Mt Vernon OH, tanning near me, laundry with free drying Mt Vernon, UV tanning Knox County Ohio"
-        ogImage="https://paypal-upgrade.preview.emergentagent.com/images/eastend-hero.jpg"
+        ogImage="https://tanshop-unified.preview.emergentagent.com/images/eastend-hero.jpg"
         schemaMarkup={createLocalBusinessSchema()}
       />
       {/* Hero Section */}

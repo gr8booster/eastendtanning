@@ -9,7 +9,7 @@ export function SEOHead({
   canonical,
   schemaMarkup
 }) {
-  const baseUrl = 'https://paypal-upgrade.preview.emergentagent.com';
+  const baseUrl = 'https://tanshop-unified.preview.emergentagent.com';
   const defaultTitle = 'Eastend Tanning & Laundry | Mt Vernon, OH | Tanning Salon & Laundromat Knox County';
   const defaultDescription = 'Eastend Tanning & Laundry at 818 Coshocton Ave, Mt Vernon, OH offers unlimited tanning packages, red light therapy, and laundry with free drying every day. Serving Knox County, Ohio. Call (740) 397-9632.';
   const defaultImage = `${baseUrl}/images/eastend-hero.jpg`;
@@ -68,11 +68,11 @@ export const createLocalBusinessSchema = () => {
     "alternateName": "Eastend Tanning",
     "description": "Premier tanning salon and laundromat in Mt Vernon, Ohio offering unlimited tanning packages, red light therapy, laundry with free drying daily, serving Knox County.",
     "image": [
-      "https://paypal-upgrade.preview.emergentagent.com/images/eastend-logo.jpg",
+      "https://tanshop-unified.preview.emergentagent.com/images/eastend-logo.jpg",
       "https://customer-assets.emergentagent.com/job_cece3dc5-08ac-44b8-9e32-3608ea17c8d0/artifacts/ylcc1ll3_Screenshot_20251108_054848_Google.jpg"
     ],
-    "@id": "https://paypal-upgrade.preview.emergentagent.com",
-    "url": "https://paypal-upgrade.preview.emergentagent.com",
+    "@id": "https://tanshop-unified.preview.emergentagent.com",
+    "url": "https://tanshop-unified.preview.emergentagent.com",
     "telephone": "+17403979632",
     "priceRange": "$-$$",
     "address": {
@@ -199,7 +199,7 @@ export const createProductSchema = (product) => {
     },
     "offers": {
       "@type": "Offer",
-      "url": `https://paypal-upgrade.preview.emergentagent.com/drinks`,
+      "url": `https://tanshop-unified.preview.emergentagent.com/drinks`,
       "priceCurrency": "USD",
       "price": product.price,
       "availability": product.available ? "https://schema.org/InStock" : "https://schema.org/OutOfStock"

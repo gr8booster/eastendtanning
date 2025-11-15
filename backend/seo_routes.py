@@ -9,7 +9,7 @@ import os
 
 router = APIRouter(tags=["seo"])
 
-BASE_URL = os.environ.get('APP_URL', 'https://paypal-upgrade.preview.emergentagent.com')
+BASE_URL = os.environ.get('APP_URL', 'https://tanshop-unified.preview.emergentagent.com')
 
 # Define all public pages with priority and change frequency
 PUBLIC_PAGES = [
