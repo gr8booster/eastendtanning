@@ -35,6 +35,7 @@ from tanning_routes import router as tanning_router
 from customer_routes import router as customer_router
 from cart_routes import router as cart_router
 from lotion_routes import router as lotion_router
+from foodtruck_routes import router as foodtruck_router
 
 
 ROOT_DIR = Path(__file__).parent
@@ -115,6 +116,7 @@ app.include_router(tanning_router)  # Include tanning package ordering routes
 app.include_router(customer_router)  # Include customer profile routes
 app.include_router(cart_router)  # Include unified cart routes
 app.include_router(lotion_router)  # Include lotion catalog routes
+app.include_router(foodtruck_router)  # Include food truck booking routes
 
 app.add_middleware(
     CORSMiddleware,
