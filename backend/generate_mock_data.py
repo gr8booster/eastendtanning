@@ -17,8 +17,8 @@ load_dotenv(ROOT_DIR / '.env')
 # MongoDB connection
 mongo_url = os.environ['MONGO_URL']
 client = AsyncIOMotorClient(mongo_url)
-# Use DB_NAME from environment, or default to test_database to match server.py
-db_name = os.environ.get('DB_NAME', 'test_database')
+# Use DB_NAME from environment, or default to eastend_db to match server.py
+db_name = os.environ.get('DB_NAME', 'eastend_db')
 print(f"Using database: {db_name}")
 db = client[db_name]
 
