@@ -10,7 +10,7 @@ from typing import List, Dict, Any
 import uuid
 
 # Initialize with Emergent LLM key
-EMERGENT_LLM_KEY = "sk-emergent-057Bd2801D88b71Ce3"
+EMERGENT_LLM_KEY = os.environ.get('EMERGENT_LLM_KEY', 'sk-emergent-057Bd2801D88b71Ce3')
 
 
 class AIMarketingEngine:
