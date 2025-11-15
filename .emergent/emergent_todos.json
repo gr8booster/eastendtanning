@@ -1,15 +1,15 @@
 [
   {
     "content": "Investigate Food Truck route issue (/foodtruck not loading in production)",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Verify React Router configuration for /foodtruck route",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Test food truck page functionality end-to-end",
-    "status": "pending"
+    "status": "in_progress"
   },
   {
     "content": "Fix any remaining issues before final handoff",
