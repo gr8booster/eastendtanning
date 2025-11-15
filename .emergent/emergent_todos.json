@@ -9,7 +9,7 @@
   },
   {
     "content": "Correct pickup address to 818 Coshocton Ave Mt Vernon",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Add 'Browse Lotions' button in Mary's chat",
@@ -17,6 +17,6 @@
   },
   {
     "content": "Test complete lotion purchase flow",
-    "status": "pending"
+    "status": "completed"
   }
 ]
