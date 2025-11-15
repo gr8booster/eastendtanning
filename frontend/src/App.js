@@ -21,6 +21,8 @@ import PaymentCancel from './pages/PaymentCancel';
 import Receipt from './pages/Receipt';
 import OrderDrinks from './pages/OrderDrinks';
 import Coupon from './pages/Coupon';
+import TanningCheckout from './pages/TanningCheckout';
+import TanningReceipt from './pages/TanningReceipt';
 import { MaryWellChat } from './components/MaryWellChat';
 import { FirstTimeDiscountPopup } from './components/FirstTimeDiscountPopup';
 import { useEffect } from 'react';
@@ -81,6 +83,8 @@ function App() {
             <Route path="/receipt/:sessionId" element={<Receipt />} />
             <Route path="/order-drinks" element={<OrderDrinks />} />
             <Route path="/coupon/:couponId" element={<Coupon />} />
+            <Route path="/tanning-checkout" element={<TanningCheckout />} />
+            <Route path="/tanning-receipt/:orderId" element={<TanningReceipt />} />
             <Route 
               path="/admin" 
               element={
