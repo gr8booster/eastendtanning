@@ -1,18 +1,18 @@
 [
   {
     "content": "Enhance FoodTruckStop UI with better design",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Add admin tab for food truck booking management",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Take screenshots of food truck page",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Test admin food truck management",
-    "status": "pending"
+    "status": "completed"
   }
 ]
