@@ -35,19 +35,70 @@ export default function Coupon() {
     
     setActiveDiscount(currentTier);
 
-    // Load PayPal Hosted Button with error handling
+    // Load PayPal Orders SDK button with dynamic amount
     const loadPayPalButton = () => {
-      if (window.paypal && window.paypal.HostedButtons) {
-        try {
-          window.paypal.HostedButtons({
-            hostedButtonId: "4VYZ3ABTC3C6G",
-          }).render("#paypal-button-container")
-            .catch((err) => {
-              console.error("PayPal button render error:", err);
-            });
-        } catch (error) {
-          console.error("PayPal button initialization error:", error);
-        }
+      if (window.paypal && window.paypal.Buttons) {
+        const paymentAmount = currentTier ? currentTier.final_price : coupon.total_before_discount;
+        
+        window.paypal.Buttons({
+          // Create order on backend
+          createOrder: async () => {
+            try {
+              const response = await fetch(`${backendUrl}/api/paypal/create-order`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  coupon_id: coupon.id,
+                  amount: paymentAmount,
+                  coupon_code: coupon.coupon_code
+                })
+              });
+              
+              const data = await response.json();
+              if (response.ok) {
+                return data.order_id;
+              } else {
+                throw new Error(data.detail || 'Failed to create order');
+              }
+            } catch (error) {
+              console.error('Create order error:', error);
+              toast.error('Payment initialization failed. Please try again.');
+              throw error;
+            }
+          },
+          
+          // Capture order after approval
+          onApprove: async (data) => {
+            try {
+              const response = await fetch(`${backendUrl}/api/paypal/capture-order/${data.orderID}`, {
+                method: 'POST'
+              });
+              
+              const captureData = await response.json();
+              if (response.ok) {
+                toast.success('Payment successful! Thank you for your order.');
+                // Could redirect or update UI here
+              } else {
+                throw new Error(captureData.detail || 'Payment capture failed');
+              }
+            } catch (error) {
+              console.error('Capture order error:', error);
+              toast.error('Payment processing failed. Please contact us.');
+            }
+          },
+          
+          // Handle errors
+          onError: (err) => {
+            console.error('PayPal button error:', err);
+            toast.error('Payment error. Please try again or pay at store.');
+          },
+          
+          // Cancel handler
+          onCancel: () => {
+            toast.info('Payment cancelled. You can pay at the store.');
+          }
+        }).render("#paypal-button-container");
+        
       } else {
         // PayPal SDK not loaded yet, retry
         setTimeout(loadPayPalButton, 500);
@@ -56,7 +107,7 @@ export default function Coupon() {
     
     // Start loading after a small delay
     setTimeout(loadPayPalButton, 1000);
-  }, [coupon]);
+  }, [coupon, activeDiscount]);
 
   const fetchCoupon = async () => {
     try {
