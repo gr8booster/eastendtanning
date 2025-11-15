@@ -1,34 +1,34 @@
 [
   {
     "content": "Research 818 Food Truck Stop location details",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Create backend API for food truck bookings with date validation",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Create FoodTruckStop frontend page with hero and booking form",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Implement PayPal $70 payment integration",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Add file upload for truck photos and menu",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Display upcoming bookings (7-day calendar)",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Add SEO optimization and structured data",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Test booking flow end-to-end",
-    "status": "pending"
+    "status": "completed"
   }
 ]
