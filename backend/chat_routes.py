@@ -136,6 +136,31 @@ async def send_message(chat_message: ChatMessage):
         # Auto-capture lead if customer provides contact information + reason
         await auto_capture_lead_from_message(session_id, chat_message.message, response)
         
+        # Check if customer provided name/phone in message (during consultation)
+        # Pattern: name and phone number
+        name_match = re.search(r'(?:my name is|i\'m|i am|call me|name:)\s*([A-Za-z\s]{2,40})', chat_message.message, re.IGNORECASE)
+        phone_match = re.search(r'(\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4})', chat_message.message)
+        
+        # If both name and phone detected, create customer profile
+        if name_match and phone_match:
+            name = name_match.group(1).strip()
+            phone = ''.join(filter(str.isdigit, phone_match.group(1)))
+            
+            # Create or retrieve customer profile
+            try:
+                profile_response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/customers/create`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: json.dumps({"name": name, "phone": phone, "session_id": session_id})
+                })
+                # Link customer to session
+                await db.chat_sessions.update_one(
+                    {"session_id": session_id},
+                    {"$set": {"customer_name": name, "customer_phone": phone}}
+                )
+            except:
+                pass  # Silent fail if customer creation fails
+        
         # Store messages in database
         await db.chat_sessions.update_one(
             {"session_id": session_id},
