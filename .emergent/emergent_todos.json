@@ -1,42 +1,22 @@
 [
   {
-    "content": "Make 'Not Sure Which Bed' section clickable to trigger consultation",
-    "status": "completed"
+    "content": "Hide lotion prices on LotionsShop page - only show at checkout",
+    "status": "in_progress"
   },
   {
-    "content": "Create unified cart system for tanning + lotions",
-    "status": "completed"
+    "content": "Fix lotion purchase button functionality",
+    "status": "pending"
   },
   {
-    "content": "Update Mary to collect name & phone upfront in consultation",
-    "status": "completed"
+    "content": "Correct pickup address to 818 Coshocton Ave Mt Vernon",
+    "status": "pending"
   },
   {
-    "content": "Create customer profile storage with persistent memory",
-    "status": "completed"
+    "content": "Add 'Browse Lotions' button in Mary's chat",
+    "status": "pending"
   },
   {
-    "content": "Update consultation flow to pre-populate cart with recommendations",
-    "status": "completed"
-  },
-  {
-    "content": "Create backend APIs for unified cart and customer profiles",
-    "status": "completed"
-  },
-  {
-    "content": "Seed lotion data in database",
-    "status": "completed"
-  },
-  {
-    "content": "Create UnifiedCheckout page for tanning + lotions",
-    "status": "completed"
-  },
-  {
-    "content": "Create UnifiedReceipt page with PayPal",
-    "status": "completed"
-  },
-  {
-    "content": "Update routes and test end-to-end",
-    "status": "completed"
+    "content": "Test complete lotion purchase flow",
+    "status": "pending"
   }
 ]
