@@ -146,20 +146,42 @@ async def send_message(chat_message: ChatMessage):
             name = name_match.group(1).strip()
             phone = ''.join(filter(str.isdigit, phone_match.group(1)))
             
-            # Create or retrieve customer profile
+            # Create or retrieve customer profile directly in database
             try:
-                profile_response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/customers/create`, {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: json.dumps({"name": name, "phone": phone, "session_id": session_id})
-                })
+                # Check if customer exists
+                existing = await db.customer_profiles.find_one({"phone": phone})
+                
+                if not existing:
+                    # Create new customer profile
+                    import uuid
+                    customer_id = str(uuid.uuid4())
+                    profile = {
+                        "customer_id": customer_id,
+                        "name": name,
+                        "phone": phone,
+                        "email": None,
+                        "skin_type": None,
+                        "tanning_reason": None,
+                        "recommended_bed_level": None,
+                        "recommended_package": None,
+                        "consultation_history": [],
+                        "purchase_history": [],
+                        "preferences": {},
+                        "created_at": datetime.now(timezone.utc),
+                        "last_consultation": None,
+                        "total_consultations": 0,
+                        "last_session_id": session_id
+                    }
+                    await db.customer_profiles.insert_one(profile)
+                
                 # Link customer to session
                 await db.chat_sessions.update_one(
                     {"session_id": session_id},
                     {"$set": {"customer_name": name, "customer_phone": phone}}
                 )
-            except:
-                pass  # Silent fail if customer creation fails
+            except Exception as e:
+                # Silent fail if customer creation fails
+                print(f"Error creating customer profile: {e}")
         
         # Store messages in database
         await db.chat_sessions.update_one(
