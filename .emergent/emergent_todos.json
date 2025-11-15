@@ -1,19 +1,19 @@
 [
   {
     "content": "Hide lotion prices on LotionsShop page - only show at checkout",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Fix lotion purchase button functionality",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Correct pickup address to 818 Coshocton Ave Mt Vernon",
-    "status": "pending"
+    "status": "in_progress"
   },
   {
     "content": "Add 'Browse Lotions' button in Mary's chat",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Test complete lotion purchase flow",
