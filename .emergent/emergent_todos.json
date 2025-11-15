@@ -1,38 +1,18 @@
 [
   {
-    "content": "Create backend coupon_routes.py with POST /api/coupons/generate endpoint (tax calculation, discount tiers, expiry logic)",
-    "status": "completed"
+    "content": "Make PayPal button visible and functional on coupon page",
+    "status": "in_progress"
   },
   {
-    "content": "Register coupon routes in server.py",
-    "status": "completed"
+    "content": "Remove Stripe sandbox payment from Tanning page",
+    "status": "pending"
   },
   {
-    "content": "Update OrderDrinks.jsx to remove Stripe checkout and add Generate Coupon button",
-    "status": "completed"
+    "content": "Shorten coupon from 4 pages to half page",
+    "status": "pending"
   },
   {
-    "content": "Create Coupon.jsx page component (printable coupon with PayPal button, discount tiers, expiry countdown)",
-    "status": "completed"
-  },
-  {
-    "content": "Add /coupon/:id route to App.js",
-    "status": "completed"
-  },
-  {
-    "content": "Add PayPal SDK script to index.html with hostedButtonId support",
-    "status": "completed"
-  },
-  {
-    "content": "Restart backend to register coupon routes",
-    "status": "completed"
-  },
-  {
-    "content": "Test complete flow: Add items → Generate coupon → View coupon → Verify taxes and discounts",
-    "status": "completed"
-  },
-  {
-    "content": "Take screenshots of new coupon system",
-    "status": "completed"
+    "content": "Test complete payment flow after fixes",
+    "status": "pending"
   }
 ]
