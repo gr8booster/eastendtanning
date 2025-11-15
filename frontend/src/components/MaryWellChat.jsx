@@ -222,7 +222,6 @@ export function MaryWellChat() {
               <Button onClick={() => generateDiscount(5)} size="sm" variant="secondary" data-testid="chat-action-5">5% Off</Button>
               <Button onClick={copyDiscount} size="sm" variant="ghost" disabled={!lastDiscount} data-testid="copy-discount-button"><Clipboard className="h-4 w-4 mr-1" /> Copy Code</Button>
               <Button onClick={fetchLotions} size="sm" variant="outline" data-testid="browse-lotions-button"><Tag className="h-4 w-4 mr-1" /> Browse Lotions</Button>
-              <Button onClick={openCheckoutTanning} size="sm" className="bg-secondary text-white" data-testid="checkout-tanning-button"><ShoppingCart className="h-4 w-4 mr-1" /> Checkout Tanning</Button>
               {!listening ? (
                 <Button onClick={startListening} size="sm" variant="outline" data-testid="talk-to-mary-button"><Mic className="h-4 w-4 mr-1" /> Talk to Mary</Button>
               ) : (
