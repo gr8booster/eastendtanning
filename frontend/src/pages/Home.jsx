@@ -111,6 +111,47 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Food Truck CTA Section */}
+      <section data-testid="foodtruck-cta-section" className="py-12 lg:py-20 bg-gradient-to-br from-[hsl(24_100%_96%)] to-[hsl(24_100%_98%)] border-y">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-10 max-w-[1200px]">
+          <div className="text-center max-w-3xl mx-auto">
+            <motion.div {...fadeInUp}>
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[hsl(24_100%_50%)] text-white mb-6">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/>
+                  <path d="M15 18H9"/>
+                  <path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/>
+                  <circle cx="17" cy="18" r="2"/>
+                  <circle cx="7" cy="18" r="2"/>
+                </svg>
+              </div>
+              <h2 className="font-serif text-3xl sm:text-4xl font-bold mb-4 text-foreground">Own a Food Truck?</h2>
+              <p className="text-base sm:text-lg text-muted-foreground mb-6 leading-relaxed">Reserve your spot at 818 Food Truck Stop - the prime location opposite Kroger in Mt Vernon! Just $70/day with electricity and water included.</p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a href="/foodtruck" data-testid="foodtruck-cta-primary">
+                  <Button size="lg" className="inline-flex items-center gap-2 bg-[hsl(24_100%_50%)] text-white hover:bg-[hsl(24_100%_45%)] px-8 h-14 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/>
+                      <path d="M15 18H9"/>
+                      <path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/>
+                      <circle cx="17" cy="18" r="2"/>
+                      <circle cx="7" cy="18" r="2"/>
+                    </svg>
+                    Book Your Spot Now
+                  </Button>
+                </a>
+                <a href="/foodtruck" data-testid="foodtruck-cta-secondary" className="text-[hsl(24_100%_40%)] font-semibold hover:underline inline-flex items-center gap-2">
+                  Learn More
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+                  </svg>
+                </a>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* FAQ Section - Optimized for Voice & AI Search */}
       <section className="py-12 lg:py-20 bg-gradient-to-b from-muted to-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-10 max-w-[900px]">
