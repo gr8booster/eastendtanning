@@ -1,18 +1,14 @@
 [
   {
-    "content": "Investigate Fizze drinks menu not showing",
-    "status": "completed"
+    "content": "Check if recipes are showing in admin dashboard",
+    "status": "in_progress"
   },
   {
-    "content": "Check backend API for drinks data",
-    "status": "completed"
+    "content": "Verify recipe tab functionality",
+    "status": "pending"
   },
   {
-    "content": "Fix frontend display issues",
-    "status": "completed"
-  },
-  {
-    "content": "Test Fizze drinks page functionality",
-    "status": "completed"
+    "content": "Check if database changes will sync to production",
+    "status": "pending"
   }
 ]
