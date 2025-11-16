@@ -66,10 +66,6 @@ export const Header = () => {
                 <a href="/locations" className="text-base font-medium hover:text-primary transition-colors">Locations</a>
                 <a href="/contact" className="text-base font-medium hover:text-primary transition-colors">Contact</a>
                 <div className="mt-4 space-y-3">
-                  <a data-testid="sheet-book-spot-button" className="inline-flex items-center justify-center gap-2 rounded-md bg-[hsl(24_100%_50%)] text-white h-11 w-full font-semibold shadow-md" href="/foodtruck">
-                    <Truck className="w-4 h-4" />
-                    Book Your Spot
-                  </a>
                   <button data-testid="sheet-chat-button" className="inline-flex items-center justify-center gap-2 rounded-md bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))] h-11 w-full font-semibold" onClick={() => window.openMaryChat && window.openMaryChat()}>
                     <MessageCircle className="w-4 h-4" />
                     Chat with Mary
@@ -81,6 +77,10 @@ export const Header = () => {
                   <a data-testid="sheet-directions-button" className="inline-flex items-center justify-center gap-2 rounded-md border h-11 w-full font-semibold" href="https://www.google.com/maps/dir/?api=1&destination=818+Coshocton+Ave,+Mt+Vernon,+OH+43050" target="_blank" rel="noopener noreferrer">
                     <MapPin className="w-4 h-4" />
                     Get Directions
+                  </a>
+                  <a data-testid="sheet-book-spot-button" className="inline-flex items-center justify-center gap-2 rounded-md bg-[hsl(24_100%_50%)] text-white h-11 w-full font-semibold shadow-md" href="/foodtruck">
+                    <Truck className="w-4 h-4" />
+                    Book Your Spot
                   </a>
                 </div>
               </nav>
