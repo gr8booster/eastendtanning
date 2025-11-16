@@ -25,12 +25,6 @@ export const Header = () => {
 
         {/* Desktop CTAs */}
         <div className="hidden md:flex gap-3">
-          <a data-testid="nav-book-spot-button" href="/foodtruck">
-            <Button variant="default" size="default" className="inline-flex items-center gap-2 bg-[hsl(24_100%_50%)] text-white hover:bg-[hsl(24_100%_45%)] font-semibold shadow-md hover:shadow-lg transition-all duration-200">
-              <Truck className="w-4 h-4" />
-              Book Your Spot
-            </Button>
-          </a>
           <Button data-testid="nav-chat-button" onClick={() => window.openMaryChat && window.openMaryChat()} variant="default" size="default" className="inline-flex items-center gap-2 bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))] hover:bg-[hsl(42_92%_50%)] font-semibold">
             <MessageCircle className="w-4 h-4" />
             Chat with Mary
@@ -43,6 +37,12 @@ export const Header = () => {
             <Button variant="outline" size="default" className="inline-flex items-center gap-2 font-semibold">
               <MapPin className="w-4 h-4" />
               Directions
+            </Button>
+          </a>
+          <a data-testid="nav-book-spot-button" href="/foodtruck">
+            <Button variant="default" size="default" className="inline-flex items-center gap-2 bg-[hsl(24_100%_50%)] text-white hover:bg-[hsl(24_100%_45%)] font-semibold shadow-md hover:shadow-lg transition-all duration-200">
+              <Truck className="w-4 h-4" />
+              Book Your Spot
             </Button>
           </a>
         </div>
