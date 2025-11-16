@@ -1,14 +1,18 @@
 [
   {
-    "content": "Add Food Truck Stop fast link on homepage",
-    "status": "completed"
+    "content": "Move 'Book Your Spot' button to last position in header",
+    "status": "in_progress"
   },
   {
-    "content": "Add 'Book Your Spot' tab to main navigation",
-    "status": "completed"
+    "content": "Add food truck fast link at bottom of homepage",
+    "status": "pending"
   },
   {
-    "content": "Test new navigation and links",
-    "status": "completed"
+    "content": "Create appropriate logo for 818 Food Truck Stop",
+    "status": "pending"
+  },
+  {
+    "content": "Test all changes",
+    "status": "pending"
   }
 ]
