@@ -1,6 +1,6 @@
 import { Button } from './ui/button';
 import { Sheet, SheetTrigger, SheetContent } from './ui/sheet';
-import { Menu, MessageCircle, MapPin, Mic } from 'lucide-react';
+import { Menu, MessageCircle, MapPin, Mic, Truck } from 'lucide-react';
 
 export const Header = () => {
   return (
