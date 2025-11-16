@@ -1,18 +1,18 @@
 [
   {
     "content": "Investigate Fizze drinks menu not showing",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Check backend API for drinks data",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Fix frontend display issues",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Test Fizze drinks page functionality",
-    "status": "pending"
+    "status": "in_progress"
   }
 ]
