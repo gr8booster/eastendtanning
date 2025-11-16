@@ -4,7 +4,8 @@ export const ServiceCard = ({ title, description, ctaText, href, imageUrl, image
   const toneGradients = {
     tanning: 'from-[hsl(43_96%_96%)] to-transparent',
     laundry: 'from-[hsl(183_45%_96%)] to-transparent',
-    drinks: 'from-[hsl(172_45%_94%)] to-transparent'
+    drinks: 'from-[hsl(172_45%_94%)] to-transparent',
+    foodtruck: 'from-[hsl(24_100%_96%)] to-transparent'
   };
 
   return (
