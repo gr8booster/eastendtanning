@@ -44,9 +44,9 @@ export default function Home() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             <ServiceCard title="Tanning Studio" description="5 tanning levels including Matrix, stand-up, and red-light therapy. Achieve your perfect glow." ctaText="Explore Tanning" href="/tanning" imageUrl="https://customer-assets.emergentagent.com/job_tanning-chatbot/artifacts/zne70emi_Screenshot_20230527-083315_Gallery.jpg" tone="tanning" />
             <ServiceCard title="Laundromat" description="Two convenient locations with modern washers and dryers. Clean, safe, and always open." ctaText="Find Washers" href="/laundry" imageUrl="https://customer-assets.emergentagent.com/job_tanning-chatbot/artifacts/iq5hip31_Screenshot_20251108_054922_Google.jpg" tone="laundry" />
-            <ServiceCard title="818 Food Truck Stop" description="Prime location opposite Kroger. $70/day with electricity and water included. Book your spot today!" ctaText="Book Your Spot" href="/foodtruck" imageUrl="https://images.unsplash.com/photo-1565123409695-7b5ef43a1735?q=80&w=1200&auto=format&fit=crop" tone="foodtruck" />
             <ServiceCard title="Fizze Drinks" description="Bubble tea, dirty sodas, energy bombs, and more. Refreshing flavors to brighten your day." ctaText="Sip Fizze Specials" href="/drinks" imageUrl="https://images.pexels.com/photos/9090072/pexels-photo-9090072.jpeg" tone="drinks" />
             <ServiceCard title="Fast Nails" description="Professional nail care with manicures, pedicures, gel services, and nail art. Pamper yourself." ctaText="Book Nail Appointment" href="/nails" imageUrl="https://images.unsplash.com/photo-1571290274554-6a2eaa771e5f?q=80&w=1200&auto=format&fit=crop" tone="drinks" />
+            <ServiceCard title="818 Food Truck Stop" description="Prime location opposite Kroger. $70/day with electricity and water included. Book your spot today!" ctaText="Book Your Spot" href="/foodtruck" imageUrl="https://images.unsplash.com/photo-1598514982901-ae62764ae75e?q=80&w=1200&auto=format&fit=crop" tone="foodtruck" />
           </div>
         </div>
       </section>
