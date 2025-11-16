@@ -9,6 +9,7 @@ import { Badge } from '../components/ui/badge';
 import { Calendar, MapPin, Phone, Zap, Droplet, DollarSign, Truck, CalendarDays, CheckCircle, AlertCircle } from 'lucide-react';
 import { toast } from 'sonner';
 import { SEOHead } from '../components/SEOHead';
+import { FoodTruckLogo } from '../components/FoodTruckLogo';
 
 export default function FoodTruckStop() {
   const navigate = useNavigate();
