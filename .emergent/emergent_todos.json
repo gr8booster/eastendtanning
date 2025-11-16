@@ -1,14 +1,18 @@
 [
   {
-    "content": "Move Food Truck Stop card to last position (after Nails)",
-    "status": "completed"
+    "content": "Investigate Fizze drinks menu not showing",
+    "status": "in_progress"
   },
   {
-    "content": "Add thumbnail image to Food Truck Stop service card",
-    "status": "completed"
+    "content": "Check backend API for drinks data",
+    "status": "pending"
   },
   {
-    "content": "Test final layout",
-    "status": "completed"
+    "content": "Fix frontend display issues",
+    "status": "pending"
+  },
+  {
+    "content": "Test Fizze drinks page functionality",
+    "status": "pending"
   }
 ]
