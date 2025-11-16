@@ -1,14 +1,14 @@
 [
   {
     "content": "Move Food Truck Stop card to last position (after Nails)",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Add thumbnail image to Food Truck Stop service card",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Test final layout",
-    "status": "pending"
+    "status": "in_progress"
   }
 ]
