@@ -1,26 +1,26 @@
 [
   {
-    "content": "Create Deal of the Month backend API routes",
-    "status": "completed"
-  },
-  {
-    "content": "Create AI Mary Updates backend routes",
-    "status": "completed"
-  },
-  {
-    "content": "Implement role-based access control (3 levels)",
-    "status": "completed"
-  },
-  {
-    "content": "Update auth system with roles",
-    "status": "completed"
-  },
-  {
-    "content": "Register new routes in server.py",
-    "status": "completed"
-  },
-  {
-    "content": "Create frontend components (Deal admin, Mary admin, Tanning banner)",
+    "content": "Create Deal of the Month admin component",
     "status": "in_progress"
+  },
+  {
+    "content": "Create AI Mary Updates admin component",
+    "status": "pending"
+  },
+  {
+    "content": "Create Tanning page deal banner",
+    "status": "pending"
+  },
+  {
+    "content": "Update Admin.jsx to include new tabs",
+    "status": "pending"
+  },
+  {
+    "content": "Create file upload components",
+    "status": "pending"
+  },
+  {
+    "content": "Test all features end-to-end",
+    "status": "pending"
   }
 ]
