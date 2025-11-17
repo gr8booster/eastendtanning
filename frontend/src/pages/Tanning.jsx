@@ -178,7 +178,7 @@ export default function Tanning() {
               poster={matrixPoster}
               className="w-full aspect-video bg-black"
             >
-              <source src="/videos/tanning-beds.mp4" type="video/mp4" />
+              <source src="/tanning-hero-video.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
           </Card>
