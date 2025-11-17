@@ -33,7 +33,7 @@ export const MaryTraining = () => {
 
   const fetchUpdates = async () => {
     try {
-      const token = localStorage.getItem('adminToken');
+      const token = localStorage.getItem('admin_token');
       const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/mary/training/updates/all`, {
         headers: {
           'Authorization': `Bearer ${token}`
@@ -52,7 +52,7 @@ export const MaryTraining = () => {
 
   const fetchSummary = async () => {
     try {
-      const token = localStorage.getItem('adminToken');
+      const token = localStorage.getItem('admin_token');
       const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/mary/training/summary`, {
         headers: {
           'Authorization': `Bearer ${token}`
@@ -69,7 +69,7 @@ export const MaryTraining = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const token = localStorage.getItem('adminToken');
+    const token = localStorage.getItem('admin_token');
     const userEmail = localStorage.getItem('adminEmail') || 'admin@eastend.com';
 
     try {
@@ -110,7 +110,7 @@ export const MaryTraining = () => {
   };
 
   const uploadAttachments = async (updateId) => {
-    const token = localStorage.getItem('adminToken');
+    const token = localStorage.getItem('admin_token');
     
     for (const file of selectedFiles) {
       const formData = new FormData();
@@ -133,7 +133,7 @@ export const MaryTraining = () => {
   const handleAddNote = async (updateId) => {
     if (!noteText.trim()) return;
 
-    const token = localStorage.getItem('adminToken');
+    const token = localStorage.getItem('admin_token');
     const userEmail = localStorage.getItem('adminEmail') || 'admin@eastend.com';
 
     try {
@@ -162,7 +162,7 @@ export const MaryTraining = () => {
   };
 
   const handleStatusChange = async (updateId, newStatus) => {
-    const token = localStorage.getItem('adminToken');
+    const token = localStorage.getItem('admin_token');
 
     try {
       const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/mary/training/updates/${updateId}/status?status=${newStatus}`, {
