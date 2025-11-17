@@ -1,14 +1,18 @@
 [
   {
-    "content": "Fix token key mismatch in DealsManager (adminToken → admin_token)",
+    "content": "Install canvas-confetti package for fireworks effect",
     "status": "completed"
   },
   {
-    "content": "Fix token key mismatch in MaryTraining (adminToken → admin_token)",
+    "content": "Create DealPopup component with confetti and fireworks animations",
     "status": "completed"
   },
   {
-    "content": "Frontend restarted with fixes applied",
+    "content": "Replace DealBanner with DealPopup on Tanning page",
+    "status": "completed"
+  },
+  {
+    "content": "Frontend restarted - Deal popup ready to test",
     "status": "completed"
   }
 ]
