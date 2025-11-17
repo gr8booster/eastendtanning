@@ -1,26 +1,30 @@
 [
   {
     "content": "Add alt text to all images across site",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Add lazy loading to images",
-    "status": "pending"
-  },
-  {
-    "content": "Add strong CTAs to all pages",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Create MenuItem schema for 52 Fizze drinks",
-    "status": "pending"
-  },
-  {
-    "content": "Optimize heading structure (H1/H2/H3)",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Add social links to Header navigation",
+    "status": "completed"
+  },
+  {
+    "content": "Update Home page CTAs to be stronger",
+    "status": "completed"
+  },
+  {
+    "content": "Verify all H1 tags are unique and descriptive",
+    "status": "in_progress"
+  },
+  {
+    "content": "Test SEO improvements on production",
     "status": "pending"
   }
 ]
