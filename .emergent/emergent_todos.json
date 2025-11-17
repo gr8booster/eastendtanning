@@ -1,10 +1,34 @@
 [
   {
-    "content": "Add comprehensive noscript fallback content",
-    "status": "completed"
+    "content": "Create Deal of the Month backend API routes",
+    "status": "in_progress"
   },
   {
-    "content": "Verify noscript content displays correctly",
-    "status": "completed"
+    "content": "Create AI Mary Updates backend routes",
+    "status": "pending"
+  },
+  {
+    "content": "Implement role-based access control (3 levels)",
+    "status": "pending"
+  },
+  {
+    "content": "Create Deal of the Month admin component",
+    "status": "pending"
+  },
+  {
+    "content": "Create AI Mary Updates admin tab",
+    "status": "pending"
+  },
+  {
+    "content": "Add Deal banner to Tanning page",
+    "status": "pending"
+  },
+  {
+    "content": "Update auth system with roles",
+    "status": "pending"
+  },
+  {
+    "content": "Test all new features",
+    "status": "pending"
   }
 ]
