@@ -1,10 +1,42 @@
 [
   {
-    "content": "Fix drinks menu not showing on production/custom domain",
+    "content": "Add comprehensive meta tags (title, description, OpenGraph, Twitter) to all pages",
     "status": "in_progress"
   },
   {
-    "content": "Set up voice calls for Mary",
+    "content": "Add JSON-LD structured data (LocalBusiness, Product, MenuItem)",
+    "status": "pending"
+  },
+  {
+    "content": "Create static navigation with social media links",
+    "status": "pending"
+  },
+  {
+    "content": "Add strong CTAs to all pages",
+    "status": "pending"
+  },
+  {
+    "content": "Create static footer with NAP + social links",
+    "status": "pending"
+  },
+  {
+    "content": "Create sitemap.xml and robots.txt",
+    "status": "pending"
+  },
+  {
+    "content": "Add alt text to all images",
+    "status": "pending"
+  },
+  {
+    "content": "Optimize images and performance",
+    "status": "pending"
+  },
+  {
+    "content": "Improve heading structure for SEO",
+    "status": "pending"
+  },
+  {
+    "content": "Add prerendering solution for better crawlability",
     "status": "pending"
   }
 ]
