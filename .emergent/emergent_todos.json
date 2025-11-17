@@ -1,30 +1,14 @@
 [
   {
-    "content": "Admin components integration completed",
+    "content": "Fix JWT exception handling in auth.py (ExpiredSignatureError, DecodeError)",
     "status": "completed"
   },
   {
-    "content": "Fix all backend syntax errors (auth.py quotes)",
+    "content": "Backend restarted successfully - ready for deal creation",
     "status": "completed"
   },
   {
-    "content": "Fix import errors (relative imports)",
-    "status": "completed"
-  },
-  {
-    "content": "Backend APIs verified working (deals endpoint returns correctly)",
-    "status": "completed"
-  },
-  {
-    "content": "Frontend compiles without errors",
-    "status": "completed"
-  },
-  {
-    "content": "DealBanner integrated on Tanning page (no console errors)",
-    "status": "completed"
-  },
-  {
-    "content": "Services running successfully (backend + frontend)",
+    "content": "Video added to Tanning page hero section",
     "status": "completed"
   }
 ]
