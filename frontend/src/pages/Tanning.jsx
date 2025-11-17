@@ -73,7 +73,7 @@ export default function Tanning() {
           className="absolute inset-0 w-full h-full object-cover opacity-30"
           data-testid="hero-video"
         >
-          <source src="https://customer-assets.emergentagent.com/job_eastend-dash/artifacts/83rhorc1_2023-06-27-205802406_1.mp4" type="video/mp4" />
+          <source src="https://customer-assets.emergentagent.com/job_eastend-dash/artifacts/kwt74izc_2023-06-27-205802406_1_1.mp4" type="video/mp4" />
         </video>
         
         {/* Overlay gradient for text readability */}
