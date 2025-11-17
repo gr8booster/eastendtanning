@@ -1,10 +1,10 @@
 [
   {
-    "content": "Verify all H1 tags are unique and descriptive",
+    "content": "Add comprehensive noscript fallback content",
     "status": "completed"
   },
   {
-    "content": "Test SEO improvements on production",
+    "content": "Verify noscript content displays correctly",
     "status": "completed"
   }
 ]
