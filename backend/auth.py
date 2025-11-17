@@ -107,7 +107,7 @@ ROLE_PERMISSIONS = {
 }
 
 def check_permission(user: dict, resource: str, action: str) -> bool:
-    \"\"\"
+    """
     Check if user has permission for resource and action
     
     Args:
@@ -117,7 +117,7 @@ def check_permission(user: dict, resource: str, action: str) -> bool:
     
     Returns:
         bool: True if user has permission, False otherwise
-    \"\"\"
+    """
     role = user.get('role', 'staff')
     
     # Owner has full access
