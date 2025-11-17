@@ -1,26 +1,38 @@
 [
   {
-    "content": "Create Deal of the Month admin component",
+    "content": "Create Deal of the Month admin component (DealsManager.jsx)",
+    "status": "completed"
+  },
+  {
+    "content": "Create AI Mary Updates admin component (MaryTraining.jsx)",
+    "status": "completed"
+  },
+  {
+    "content": "Create Tanning page deal banner (DealBanner.jsx)",
+    "status": "completed"
+  },
+  {
+    "content": "Update Admin.jsx to include new tabs for Deals and Mary Training",
+    "status": "completed"
+  },
+  {
+    "content": "Fix backend syntax errors in auth.py",
+    "status": "completed"
+  },
+  {
+    "content": "Test Admin Dashboard - verify new tabs are visible and functional",
     "status": "in_progress"
   },
   {
-    "content": "Create AI Mary Updates admin component",
+    "content": "Test Deal of Month Manager - create/edit/delete deals",
     "status": "pending"
   },
   {
-    "content": "Create Tanning page deal banner",
+    "content": "Test Mary Training Manager - create/edit training updates",
     "status": "pending"
   },
   {
-    "content": "Update Admin.jsx to include new tabs",
-    "status": "pending"
-  },
-  {
-    "content": "Create file upload components",
-    "status": "pending"
-  },
-  {
-    "content": "Test all features end-to-end",
+    "content": "Test Deal Banner on Tanning page",
     "status": "pending"
   }
 ]
