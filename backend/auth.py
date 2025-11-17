@@ -132,10 +132,10 @@ def check_permission(user: dict, resource: str, action: str) -> bool:
     return False
 
 async def get_current_user(authorization: Optional[str] = Header(None)) -> dict:
-    \"\"\"
+    """
     Get current authenticated user from token
     Returns user dict with role information
-    \"\"\"
+    """
     if not authorization:
         raise HTTPException(status_code=401, detail=\"Not authenticated\")
     
