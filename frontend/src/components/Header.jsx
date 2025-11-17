@@ -63,6 +63,40 @@ export const Header = () => {
                 <a href="/nails" className="text-base font-medium hover:text-primary transition-colors">Nails</a>
                 <a href="/foodtruck" className="text-base font-medium hover:text-primary transition-colors">Food Truck Stop</a>
                 <a href="/blog" className="text-base font-medium hover:text-primary transition-colors">People of the Eastend</a>
+                
+                {/* Social Media Links */}
+                <div className="pt-4 mt-4 border-t border-border">
+                  <p className="text-sm font-semibold mb-3 text-muted-foreground">Follow Us</p>
+                  <div className="flex gap-3">
+                    <a 
+                      href="https://www.instagram.com/eastendtanning/" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      aria-label="Instagram"
+                      className="text-base font-medium hover:text-primary transition-colors"
+                    >
+                      Instagram
+                    </a>
+                    <a 
+                      href="https://www.tiktok.com/@peopleofeastend" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      aria-label="TikTok"
+                      className="text-base font-medium hover:text-primary transition-colors"
+                    >
+                      TikTok
+                    </a>
+                    <a 
+                      href="https://www.facebook.com/EastendTanningLaundry" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      aria-label="Facebook"
+                      className="text-base font-medium hover:text-primary transition-colors"
+                    >
+                      Facebook
+                    </a>
+                  </div>
+                </div>
                 <a href="/locations" className="text-base font-medium hover:text-primary transition-colors">Locations</a>
                 <a href="/contact" className="text-base font-medium hover:text-primary transition-colors">Contact</a>
                 <div className="mt-4 space-y-3">
