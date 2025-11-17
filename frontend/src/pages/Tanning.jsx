@@ -59,8 +59,8 @@ export default function Tanning() {
         schemaMarkup={createServiceSchema('Monthly Unlimited Tanning', 'Unlimited UV tanning on all levels with professional beds and expert guidance', 59.99)}
       />
 
-      {/* Deal of the Month Banner */}
-      <DealBanner />
+      {/* Deal of the Month Popup */}
+      <DealPopup />
 
       {/* Hero - Why are they here? They want results! */}
       <div className="relative bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--secondary))] text-white py-20 overflow-hidden">
