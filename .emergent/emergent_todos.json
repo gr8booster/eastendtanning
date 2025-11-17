@@ -1,14 +1,14 @@
 [
   {
-    "content": "Fix JWT exception handling in auth.py (ExpiredSignatureError, DecodeError)",
+    "content": "Fix token key mismatch in DealsManager (adminToken → admin_token)",
     "status": "completed"
   },
   {
-    "content": "Backend restarted successfully - ready for deal creation",
+    "content": "Fix token key mismatch in MaryTraining (adminToken → admin_token)",
     "status": "completed"
   },
   {
-    "content": "Video added to Tanning page hero section",
+    "content": "Frontend restarted with fixes applied",
     "status": "completed"
   }
 ]
