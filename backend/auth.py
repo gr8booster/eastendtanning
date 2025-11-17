@@ -6,6 +6,7 @@ from fastapi import APIRouter, HTTPException, Depends, Header
 from pydantic import BaseModel
 from datetime import datetime, timedelta, timezone
 import jwt
+from jwt.exceptions import ExpiredSignatureError, DecodeError
 import os
 from typing import Optional
 
