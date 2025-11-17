@@ -51,10 +51,10 @@ export default function Tanning() {
   return (
     <div className="min-h-screen bg-muted">
       <SEOHead
-        title="Monthly Unlimited Tanning Packages - Best Value for Real Results"
-        description="Get your perfect tan with Monthly Unlimited and VIP tanning packages at Eastend. Professional UV beds, premium lotions, expert staff. Consistent tanning delivers results - single sessions don't work!"
-        keywords="monthly unlimited tanning, VIP tanning package, UV tanning beds, tanning salon Mount Vernon, spray tan, indoor tanning, tanning lotions"
-        ogImage="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=1200"
+        title="Book Tanning Sessions & Red Light Therapy – Eastend Tanning, Mt Vernon"
+        description="Book tanning sessions at Eastend Tanning in Mt Vernon. Monthly unlimited packages, VIP tanning, red light therapy, 6 bed levels. Professional UV beds, premium lotions. Call (740) 397-9632 or book online."
+        keywords="book tanning Mt Vernon, red light therapy Mt Vernon, monthly unlimited tanning, VIP tanning package, UV tanning beds, tanning salon Mt Vernon OH, indoor tanning, Matrix bed"
+        ogImage="https://eastend.website/images/tanning-hero.jpg"
         schemaMarkup={createServiceSchema('Monthly Unlimited Tanning', 'Unlimited UV tanning on all levels with professional beds and expert guidance', 59.99)}
       />
 
