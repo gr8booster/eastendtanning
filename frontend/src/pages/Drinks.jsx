@@ -228,9 +228,9 @@ export default function Drinks() {
   return (
     <div className="min-h-screen bg-muted">
       <SEOHead
-        title="Fizze Drinks | Bubble Tea & Smoothies in Mt Vernon, Ohio"
-        description="Cool off with Fizze Drinks—bubble teas, smoothies, dirty sodas, and fruit fizzes made fresh daily at Eastend Tanning & Laundry, Mt Vernon, Knox County, OH. Order online for pickup or delivery!"
-        keywords="Fizze Drinks Mt Vernon, bubble tea Mt Vernon Ohio, smoothies Knox County, Fizze specialty drinks, custom bubble tea Mount Vernon Ohio, fruit fizz drinks Knox County, Eastend Fizze Bar, dirty sodas Mt Vernon"
+        title="Fizze Drinks Menu & Online Ordering – Eastend Tanning, Mt Vernon"
+        description="Order Fizze drinks online! Bubble tea, milk teas, fruit teas, smoothies, dirty sodas & more. 52 drinks on menu at Eastend Tanning, 818 Coshocton Ave, Mt Vernon, OH. Fresh daily. Order for pickup!"
+        keywords="Fizze drinks menu Mt Vernon, order bubble tea online Mt Vernon, milk tea Knox County, fruit tea Mt Vernon, smoothies Mt Vernon OH, dirty sodas, Fizze online ordering, 818 Coshocton Ave"
         ogImage={fizzeLogoUrl}
         schemaMarkup={createFizzeDrinksSchema()}
       />
