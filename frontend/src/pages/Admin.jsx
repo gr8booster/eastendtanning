@@ -21,6 +21,8 @@ import {
 } from 'lucide-react';
 import { toast } from 'sonner';
 import { ROLES, hasPermission, PERMISSIONS } from '../utils/permissions';
+import { DealsManager } from '../components/admin/DealsManager';
+import { MaryTraining } from '../components/admin/MaryTraining';
 
 export default function Admin() {
   const [metrics, setMetrics] = useState(null);
@@ -369,7 +371,9 @@ export default function Admin() {
       'fizze': PERMISSIONS.FIZZE_MANAGE,
       'orders': PERMISSIONS.FIZZE_MANAGE,
       'users': PERMISSIONS.USERS_MANAGE,
-      'recipes': PERMISSIONS.FIZZE_MANAGE
+      'recipes': PERMISSIONS.FIZZE_MANAGE,
+      'deals': PERMISSIONS.ANALYTICS_VIEW,
+      'marytraining': PERMISSIONS.ANALYTICS_VIEW
     };
     
     const permission = tabPermissions[tabName];
@@ -453,7 +457,7 @@ export default function Admin() {
 
         {/* Tabs */}
         <Tabs defaultValue="recommendations" className="mb-8">
-          <TabsList className={`grid w-full mb-6`} style={{gridTemplateColumns: `repeat(${[canSeeTab('recommendations'), canSeeTab('campaigns'), canSeeTab('leads'), canSeeTab('discounts'), canSeeTab('lotions'), canSeeTab('voicecalls'), canSeeTab('fizze'), canSeeTab('orders'), canSeeTab('users'), canSeeTab('recipes')].filter(Boolean).length}, minmax(0, 1fr))`}}>
+          <TabsList className={`grid w-full mb-6`} style={{gridTemplateColumns: `repeat(${[canSeeTab('recommendations'), canSeeTab('campaigns'), canSeeTab('leads'), canSeeTab('discounts'), canSeeTab('lotions'), canSeeTab('voicecalls'), canSeeTab('fizze'), canSeeTab('orders'), canSeeTab('deals'), canSeeTab('marytraining'), canSeeTab('users'), canSeeTab('recipes')].filter(Boolean).length}, minmax(0, 1fr))`}}>
             {canSeeTab('recommendations') && <TabsTrigger value="recommendations" className="text-sm">🤖 AI Recs ({recommendations.length})</TabsTrigger>}
             {canSeeTab('campaigns') && <TabsTrigger value="campaigns" className="text-sm">📢 Campaigns ({campaigns.length})</TabsTrigger>}
             {canSeeTab('leads') && <TabsTrigger value="leads" className="text-sm">📋 Leads ({leads.length})</TabsTrigger>}
@@ -462,6 +466,8 @@ export default function Admin() {
             {canSeeTab('voicecalls') && <TabsTrigger value="voicecalls" className="text-sm" data-testid="voicecalls-tab"><Phone className="w-4 h-4 inline-block mr-1" />Calls ({voiceCalls.length})</TabsTrigger>}
             {canSeeTab('fizze') && <TabsTrigger value="fizze" className="text-sm" data-testid="fizze-tab"><Coffee className="w-4 h-4 inline-block mr-1" />Fizze ({fizzeDrinks.length})</TabsTrigger>}
             {canSeeTab('orders') && <TabsTrigger value="orders" className="text-sm" data-testid="orders-tab">📦 Orders ({orders.length})</TabsTrigger>}
+            {canSeeTab('deals') && <TabsTrigger value="deals" className="text-sm" data-testid="deals-tab">🎯 Deal of Month</TabsTrigger>}
+            {canSeeTab('marytraining') && <TabsTrigger value="marytraining" className="text-sm" data-testid="marytraining-tab">🤖 Mary Training</TabsTrigger>}
             {canSeeTab('users') && <TabsTrigger value="users" className="text-sm" data-testid="users-tab"><Users className="w-4 h-4 inline-block mr-1" />Users ({users.length})</TabsTrigger>}
             {canSeeTab('recipes') && <TabsTrigger value="recipes" className="text-sm" data-testid="recipes-tab">📖 Recipes ({fizzeDrinks.filter(d => d.available).length})</TabsTrigger>}
           </TabsList>
@@ -847,6 +853,16 @@ export default function Admin() {
                 </table>
               </div>
             </Card>
+          </TabsContent>
+
+          {/* Deals Tab */}
+          <TabsContent value="deals">
+            <DealsManager />
+          </TabsContent>
+
+          {/* Mary Training Tab */}
+          <TabsContent value="marytraining">
+            <MaryTraining />
           </TabsContent>
 
           {/* Recipes Tab (Staff Only - Printable) */}
