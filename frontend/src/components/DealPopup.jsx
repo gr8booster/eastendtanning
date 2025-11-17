@@ -1,0 +1,240 @@
+import { useState, useEffect } from 'react';
+import { Button } from './ui/button';
+import { Dialog, DialogContent } from './ui/dialog';
+import { X, Tag, Calendar, Sparkles, Gift } from 'lucide-react';
+import confetti from 'canvas-confetti';
+
+export const DealPopup = () => {
+  const [deal, setDeal] = useState(null);
+  const [showPopup, setShowPopup] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchCurrentDeal();
+  }, []);
+
+  useEffect(() => {
+    if (deal && showPopup) {
+      // Delay to allow modal to open first
+      setTimeout(() => {
+        triggerConfetti();
+        triggerFireworks();
+      }, 300);
+    }
+  }, [deal, showPopup]);
+
+  const fetchCurrentDeal = async () => {
+    try {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/deals/current`);
+      const data = await response.json();
+      if (data.success && data.deal) {
+        setDeal(data.deal);
+        
+        // Check if user has dismissed this deal before
+        const dismissedDeals = JSON.parse(localStorage.getItem('dismissedDeals') || '[]');
+        if (!dismissedDeals.includes(data.deal.deal_id)) {
+          setShowPopup(true);
+        }
+      }
+    } catch (error) {
+      console.error('Failed to load deal');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const triggerConfetti = () => {
+    const duration = 3000;
+    const animationEnd = Date.now() + duration;
+    const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 9999 };
+
+    function randomInRange(min, max) {
+      return Math.random() * (max - min) + min;
+    }
+
+    const interval = setInterval(function() {
+      const timeLeft = animationEnd - Date.now();
+
+      if (timeLeft <= 0) {
+        return clearInterval(interval);
+      }
+
+      const particleCount = 50 * (timeLeft / duration);
+
+      // Confetti from left
+      confetti({
+        ...defaults,
+        particleCount,
+        origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
+        colors: ['#f59e0b', '#ef4444', '#ec4899', '#8b5cf6', '#3b82f6']
+      });
+      
+      // Confetti from right
+      confetti({
+        ...defaults,
+        particleCount,
+        origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
+        colors: ['#f59e0b', '#ef4444', '#ec4899', '#8b5cf6', '#3b82f6']
+      });
+    }, 250);
+  };
+
+  const triggerFireworks = () => {
+    const duration = 2000;
+    const animationEnd = Date.now() + duration;
+
+    const interval = setInterval(function() {
+      const timeLeft = animationEnd - Date.now();
+
+      if (timeLeft <= 0) {
+        return clearInterval(interval);
+      }
+
+      confetti({
+        particleCount: 100,
+        startVelocity: 70,
+        spread: 360,
+        origin: {
+          x: Math.random(),
+          y: Math.random() - 0.2
+        },
+        colors: ['#FFD700', '#FFA500', '#FF6347', '#FF1493', '#8A2BE2'],
+        shapes: ['star'],
+        gravity: 0.5,
+        scalar: 1.2,
+        zIndex: 9999
+      });
+    }, 600);
+  };
+
+  const handleDismiss = () => {
+    if (deal) {
+      const dismissedDeals = JSON.parse(localStorage.getItem('dismissedDeals') || '[]');
+      dismissedDeals.push(deal.deal_id);
+      localStorage.setItem('dismissedDeals', JSON.stringify(dismissedDeals));
+    }
+    setShowPopup(false);
+  };
+
+  if (loading || !deal) {
+    return null;
+  }
+
+  const savings = deal.original_price ? ((deal.original_price - deal.deal_price) / deal.original_price * 100).toFixed(0) : null;
+  const endDate = new Date(deal.end_date);
+  const daysLeft = Math.ceil((endDate - new Date()) / (1000 * 60 * 60 * 24));
+
+  return (
+    <Dialog open={showPopup} onOpenChange={setShowPopup}>
+      <DialogContent className="max-w-4xl p-0 overflow-hidden bg-gradient-to-br from-orange-500 via-red-500 to-pink-500 border-4 border-yellow-400 shadow-2xl" data-testid="deal-popup">
+        {/* Close button */}
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={handleDismiss}
+          className="absolute top-4 right-4 z-50 text-white hover:bg-white/20 rounded-full w-10 h-10"
+          data-testid="close-deal-popup"
+        >
+          <X className="w-6 h-6" />
+        </Button>
+
+        <div className="relative">
+          {/* Animated header banner */}
+          <div className="bg-yellow-400 text-center py-3 relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-r from-yellow-300 via-yellow-400 to-yellow-300 animate-pulse"></div>
+            <div className="relative z-10 flex items-center justify-center gap-2">
+              <Gift className="w-6 h-6 text-red-600 animate-bounce" />
+              <span className="text-2xl font-black text-red-600 tracking-wider">🎉 DEAL OF THE MONTH 🎉</span>
+              <Sparkles className="w-6 h-6 text-red-600 animate-pulse" />
+            </div>
+          </div>
+
+          <div className="p-8 text-white">
+            <div className="flex flex-col md:flex-row gap-6">
+              {/* Media */}
+              {deal.media_type && deal.media_data && (
+                <div className="w-full md:w-2/5">
+                  {deal.media_type === 'image' ? (
+                    <img 
+                      src={`data:${deal.media_content_type};base64,${deal.media_data}`}
+                      alt={deal.title}
+                      className="w-full h-64 object-cover rounded-xl shadow-2xl border-4 border-white"
+                    />
+                  ) : (
+                    <video 
+                      src={`data:${deal.media_content_type};base64,${deal.media_data}`}
+                      className="w-full h-64 object-cover rounded-xl shadow-2xl border-4 border-white"
+                      controls
+                      muted
+                      autoPlay
+                      loop
+                    />
+                  )}
+                </div>
+              )}
+
+              {/* Content */}
+              <div className="flex-1 text-center md:text-left">
+                <div className="inline-flex items-center gap-2 mb-3 bg-white/20 backdrop-blur-sm rounded-full px-4 py-2">
+                  <Tag className="w-5 h-5" />
+                  <span className="text-sm font-bold uppercase tracking-wide">In-Store Only</span>
+                </div>
+                
+                <h2 className="text-4xl md:text-5xl font-black mb-4 drop-shadow-lg">{deal.title}</h2>
+                <p className="text-xl md:text-2xl mb-6 leading-relaxed">{deal.description}</p>
+
+                <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 mb-6">
+                  {/* Pricing */}
+                  <div className="bg-white text-red-600 rounded-2xl px-8 py-4 shadow-xl border-4 border-yellow-300 transform hover:scale-105 transition-transform">
+                    {deal.original_price && (
+                      <div className="text-lg line-through opacity-75">${deal.original_price.toFixed(2)}</div>
+                    )}
+                    <div className="text-5xl font-black">${deal.deal_price.toFixed(2)}</div>
+                    {savings && (
+                      <div className="text-xl font-bold mt-1 bg-red-600 text-white px-3 py-1 rounded-full">
+                        Save {savings}%!
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Time Left */}
+                  {daysLeft > 0 && (
+                    <div className="bg-yellow-400 text-red-600 rounded-2xl px-8 py-4 text-center shadow-xl border-4 border-white transform hover:scale-105 transition-transform">
+                      <Calendar className="w-8 h-8 mx-auto mb-2" />
+                      <div className="text-4xl font-black">{daysLeft}</div>
+                      <div className="text-sm font-bold uppercase">Days Left</div>
+                    </div>
+                  )}
+                </div>
+
+                <div className="text-sm opacity-90 mb-6 bg-white/10 backdrop-blur-sm rounded-lg px-4 py-2 inline-block">
+                  Valid: {new Date(deal.start_date).toLocaleDateString()} - {new Date(deal.end_date).toLocaleDateString()}
+                </div>
+
+                {/* CTA */}
+                <div className="text-center md:text-left">
+                  <a href="tel:+17404071084">
+                    <Button 
+                      size="lg" 
+                      className="bg-white text-red-600 hover:bg-yellow-400 hover:text-red-700 font-black text-2xl px-12 py-8 h-auto shadow-2xl border-4 border-yellow-300 transform hover:scale-110 transition-all rounded-2xl"
+                      data-testid="call-to-book-button"
+                    >
+                      📞 Call to Book Now!
+                    </Button>
+                  </a>
+                  <p className="text-xl mt-3 font-bold">(740) 407-1084</p>
+                  <p className="text-sm mt-2 opacity-90">Mention this deal when you call!</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom banner */}
+          <div className="bg-yellow-400 text-center py-2">
+            <span className="text-lg font-bold text-red-600">⚡ Limited Time Offer - Don't Miss Out! ⚡</span>
+          </div>
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
+};
