@@ -6,7 +6,7 @@ import uuid
 import base64
 import os
 from motor.motor_asyncio import AsyncIOMotorClient
-from .auth import get_current_user, check_permission
+from auth import get_current_user, check_permission
 
 router = APIRouter(prefix='/api/deals', tags=['deals'])
 
