@@ -36,6 +36,8 @@ from customer_routes import router as customer_router
 from cart_routes import router as cart_router
 from lotion_routes import router as lotion_router
 from foodtruck_routes import router as foodtruck_router
+from deal_routes import router as deal_router
+from mary_training_routes import router as mary_training_router
 
 
 ROOT_DIR = Path(__file__).parent
