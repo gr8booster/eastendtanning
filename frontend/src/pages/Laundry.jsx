@@ -12,9 +12,9 @@ export default function Laundry() {
   return (
     <div className="min-h-screen bg-muted">
       <SEOHead
-        title="Laundromat Services - Drop-Off, Self-Service & Coin Laundry"
-        description="Convenient laundry services at Eastend (drop-off service, attendant, cash/card) and Westend (self-service coin laundry). Modern equipment, competitive pricing. Open 6am-10pm."
-        keywords="laundromat Mount Vernon, coin laundry, self-service laundry, laundry drop-off service, wash and fold, commercial washers"
+        title="Laundry Services & Drop-Off – Eastend Tanning & Laundry, Mt Vernon"
+        description="Laundry services in Mt Vernon: Drop-off wash & fold at Eastend (818 Coshocton Ave), self-service coin laundry at Westend. Modern equipment, free drying daily. Open 6am-10pm. Call (740) 397-9632."
+        keywords="laundry Mt Vernon, laundromat Mt Vernon OH, drop-off laundry service, wash and fold Mt Vernon, coin laundry Knox County, self-service laundry, 818 Coshocton Ave"
         ogImage={laundryImage}
         schemaMarkup={createServiceSchema('Laundry Drop-Off Service', 'Professional laundry drop-off service at $1.75 per pound with free drying', 1.75)}
       />
