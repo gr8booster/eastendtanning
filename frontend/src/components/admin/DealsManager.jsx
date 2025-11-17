@@ -50,7 +50,7 @@ export const DealsManager = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const token = localStorage.getItem('adminToken');
+    const token = localStorage.getItem('admin_token');
     const userEmail = localStorage.getItem('adminEmail') || 'admin@eastend.com';
 
     try {
@@ -99,7 +99,7 @@ export const DealsManager = () => {
   };
 
   const uploadMedia = async (dealId) => {
-    const token = localStorage.getItem('adminToken');
+    const token = localStorage.getItem('admin_token');
     const formData = new FormData();
     formData.append('file', selectedFile);
 
@@ -124,7 +124,7 @@ export const DealsManager = () => {
   const handleDelete = async (dealId) => {
     if (!window.confirm('Are you sure you want to delete this deal?')) return;
 
-    const token = localStorage.getItem('adminToken');
+    const token = localStorage.getItem('admin_token');
     try {
       const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/deals/${dealId}`, {
         method: 'DELETE',
