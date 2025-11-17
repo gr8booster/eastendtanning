@@ -119,6 +119,8 @@ app.include_router(customer_router)  # Include customer profile routes
 app.include_router(cart_router)  # Include unified cart routes
 app.include_router(lotion_router)  # Include lotion catalog routes
 app.include_router(foodtruck_router)  # Include food truck booking routes
+app.include_router(deal_router)  # Include Deal of the Month routes
+app.include_router(mary_training_router)  # Include Mary AI training routes
 
 app.add_middleware(
     CORSMiddleware,
