@@ -137,16 +137,16 @@ async def get_current_user(authorization: Optional[str] = Header(None)) -> dict:
     Returns user dict with role information
     """
     if not authorization:
-        raise HTTPException(status_code=401, detail=\"Not authenticated\")
+        raise HTTPException(status_code=401, detail="Not authenticated")
     
     try:
-        token = authorization.replace(\"Bearer \", \"\")
+        token = authorization.replace("Bearer ", "")
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
         return payload
     except jwt.ExpiredSignatureError:
-        raise HTTPException(status_code=401, detail=\"Token expired\")
+        raise HTTPException(status_code=401, detail="Token expired")
     except jwt.JWTError:
-        raise HTTPException(status_code=401, detail=\"Invalid token\")
+        raise HTTPException(status_code=401, detail="Invalid token")
 
 
 def get_role_display_name(role: str) -> str:
