@@ -150,7 +150,7 @@ async def get_current_user(authorization: Optional[str] = Header(None)) -> dict:
 
 
 def get_role_display_name(role: str) -> str:
-    \"\"\"Get friendly display name for role\"\"\"
+    """Get friendly display name for role"""
     role_names = {
         'owner': 'Owner/Admin (Level 1)',
         'manager': 'Manager Admin (Level 2)',
