@@ -144,9 +144,11 @@ async def get_current_user(authorization: Optional[str] = Header(None)) -> dict:
         token = authorization.replace("Bearer ", "")
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
         return payload
-    except jwt.ExpiredSignatureError:
+    except ExpiredSignatureError:
         raise HTTPException(status_code=401, detail="Token expired")
-    except jwt.JWTError:
+    except DecodeError:
+        raise HTTPException(status_code=401, detail="Invalid token")
+    except Exception as e:
         raise HTTPException(status_code=401, detail="Invalid token")
 
 
