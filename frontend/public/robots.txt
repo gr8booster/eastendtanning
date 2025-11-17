@@ -1,0 +1,30 @@
+# robots.txt for Eastend Tanning & Laundry
+# https://eastend.website
+
+User-agent: *
+Allow: /
+
+# High Priority Pages
+Allow: /tanning
+Allow: /drinks
+Allow: /laundry
+Allow: /nails
+Allow: /foodtruck
+Allow: /lotions
+Allow: /contact
+
+# Admin Pages - Block from Crawling
+Disallow: /admin
+Disallow: /admin/*
+
+# Receipt/Payment Pages - Block from Indexing
+Disallow: /coupon/*
+Disallow: /tanning-receipt/*
+Disallow: /receipt/*
+Disallow: /foodtruck-payment/*
+
+# API Endpoints
+Disallow: /api/
+
+# Sitemap
+Sitemap: https://eastend.website/sitemap.xml
