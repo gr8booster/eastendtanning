@@ -1,34 +1,26 @@
 [
   {
-    "content": "Add comprehensive meta tags (title, description, OpenGraph, Twitter) to all pages",
-    "status": "completed"
+    "content": "Add alt text to all images across site",
+    "status": "in_progress"
   },
   {
-    "content": "Create sitemap.xml and robots.txt",
-    "status": "completed"
-  },
-  {
-    "content": "Create static footer with NAP + social links",
-    "status": "completed"
-  },
-  {
-    "content": "Add JSON-LD structured data (LocalBusiness, Product, MenuItem)",
-    "status": "completed"
-  },
-  {
-    "content": "Update base URLs to eastend.website",
-    "status": "completed"
-  },
-  {
-    "content": "Add social media links (Facebook, Instagram, TikTok)",
-    "status": "completed"
-  },
-  {
-    "content": "Fix drinks menu not showing on production",
+    "content": "Add lazy loading to images",
     "status": "pending"
   },
   {
-    "content": "Set up voice calls for Mary (Vapi integration)",
+    "content": "Add strong CTAs to all pages",
+    "status": "pending"
+  },
+  {
+    "content": "Create MenuItem schema for 52 Fizze drinks",
+    "status": "pending"
+  },
+  {
+    "content": "Optimize heading structure (H1/H2/H3)",
+    "status": "pending"
+  },
+  {
+    "content": "Add social links to Header navigation",
     "status": "pending"
   }
 ]
