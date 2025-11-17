@@ -233,7 +233,7 @@ export default function Drinks() {
         description="Order Fizze drinks online! Bubble tea, milk teas, fruit teas, smoothies, dirty sodas & more. 52 drinks on menu at Eastend Tanning, 818 Coshocton Ave, Mt Vernon, OH. Fresh daily. Order for pickup!"
         keywords="Fizze drinks menu Mt Vernon, order bubble tea online Mt Vernon, milk tea Knox County, fruit tea Mt Vernon, smoothies Mt Vernon OH, dirty sodas, Fizze online ordering, 818 Coshocton Ave"
         ogImage={fizzeLogoUrl}
-        schemaMarkup={createFizzeDrinksSchema()}
+        schemaMarkup={menu && Object.keys(menu).length > 0 ? [generateFoodEstablishmentSchema(), generateDrinksMenuSchema(menu)] : generateFoodEstablishmentSchema()}
       />
 
       {/* Hero Section */}
