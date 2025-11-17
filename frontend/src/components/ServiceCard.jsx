@@ -1,12 +1,15 @@
 import { ArrowRight } from 'lucide-react';
 
-export const ServiceCard = ({ title, description, ctaText, href, imageUrl, imageClassName, tone = 'tanning' }) => {
+export const ServiceCard = ({ title, description, ctaText, href, imageUrl, imageClassName, tone = 'tanning', altText }) => {
   const toneGradients = {
     tanning: 'from-[hsl(43_96%_96%)] to-transparent',
     laundry: 'from-[hsl(183_45%_96%)] to-transparent',
     drinks: 'from-[hsl(172_45%_94%)] to-transparent',
     foodtruck: 'from-[hsl(24_100%_96%)] to-transparent'
   };
+  
+  // Generate descriptive alt text if not provided
+  const imageAlt = altText || `${title} - ${description.substring(0, 60)} at Eastend Tanning & Laundry, Mt Vernon, OH`;
 
   return (
     <div 
@@ -17,7 +20,8 @@ export const ServiceCard = ({ title, description, ctaText, href, imageUrl, image
       <div className="relative h-48 w-full overflow-hidden bg-gray-50">
         <img 
           src={imageUrl} 
-          alt={title}
+          alt={imageAlt}
+          loading="lazy"
           className={imageClassName || "h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"} 
         />
         <div className={`absolute inset-0 bg-gradient-to-br ${toneGradients[tone]} opacity-60`}></div>
