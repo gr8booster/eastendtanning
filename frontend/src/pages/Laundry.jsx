@@ -5,18 +5,30 @@ import { Button } from '../components/ui/button';
 import { Card } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
 import { SEOHead, createServiceSchema } from '../components/SEOHead';
+import { EnhancedSEO } from '../components/EnhancedSEO';
+import { allFAQSchemas } from '../utils/faqSchemas';
+import { laundryServiceSchema, generateBreadcrumb } from '../utils/structuredData';
 
 const laundryImage = 'https://customer-assets.emergentagent.com/job_cece3dc5-08ac-44b8-9e32-3608ea17c8d0/artifacts/ylcc1ll3_Screenshot_20251108_054848_Google.jpg';
 
 export default function Laundry() {
+  const breadcrumbs = generateBreadcrumb([
+    { name: 'Home', path: '/' },
+    { name: 'Laundry', path: '/laundry' }
+  ]);
+
   return (
     <div className="min-h-screen bg-muted">
-      <SEOHead
-        title="Laundry Services & Drop-Off – Eastend Tanning & Laundry, Mt Vernon"
-        description="Laundry services in Mt Vernon: Drop-off wash & fold at Eastend (818 Coshocton Ave), self-service coin laundry at Westend. Modern equipment, free drying daily. Open 6am-10pm. Call (740) 397-9632."
-        keywords="laundry Mt Vernon, laundromat Mt Vernon OH, drop-off laundry service, wash and fold Mt Vernon, coin laundry Knox County, self-service laundry, 818 Coshocton Ave"
+      {/* Enhanced SEO with 7 FAQs and Laundromat Schema */}
+      <EnhancedSEO
+        title="Laundry Services - Wash Dry Fold & Self-Service | Eastend Mt Vernon OH"
+        description="Full-service wash, dry, and fold laundry at Eastend Mt Vernon. Self-service washers and dryers in multiple sizes. Clean facility with WiFi, seating. Drop-off service available. Large-capacity machines for comforters. 818 Coshocton Ave. Open daily 8am-7:30pm. Call (740) 397-9632."
+        keywords="laundry services Mt Vernon, wash and fold Mt Vernon OH, laundromat Knox County, self-service laundry, drop-off laundry, coin laundry Mt Vernon, large capacity washers, comforter washing, 818 Coshocton Ave, wash dry fold service"
+        canonicalUrl="https://eastend.website/laundry"
+        faqSchema={allFAQSchemas.laundry}
+        structuredData={[laundryServiceSchema, createServiceSchema('Wash Dry Fold Service', 'Professional full-service laundry - drop off dirty, pick up clean and folded', 1.75)]}
+        breadcrumbs={breadcrumbs}
         ogImage={laundryImage}
-        schemaMarkup={createServiceSchema('Laundry Drop-Off Service', 'Professional laundry drop-off service at $1.75 per pound with free drying', 1.75)}
       />
 
       {/* Hero */}
