@@ -5,18 +5,29 @@ import { Button } from '../components/ui/button';
 import { Card } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
 import { SEOHead, createLocalBusinessSchema } from '../components/SEOHead';
+import { EnhancedSEO } from '../components/EnhancedSEO';
+import { allFAQSchemas } from '../utils/faqSchemas';
+import { organizationSchema, websiteSchema, generateBreadcrumb } from '../utils/structuredData';
 
 export default function Home() {
   const fadeInUp = { initial: { opacity: 0, y: 20 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.5, ease: 'easeOut' } };
 
+  const breadcrumbs = generateBreadcrumb([
+    { name: 'Home', path: '/' }
+  ]);
+
   return (
     <div className="min-h-screen">
-      <SEOHead
+      {/* Enhanced SEO with FAQs and Structured Data */}
+      <EnhancedSEO
         title="Eastend Tanning & Laundry – Tanning, Laundry & Fizze Drinks in Mt Vernon, OH"
-        description="Eastend Tanning & Laundry at 818 Coshocton Ave, Mt Vernon, OH offers unlimited tanning packages, red light therapy, laundry with free drying, Fizze drinks menu & online ordering. Call (740) 397-9632."
-        keywords="tanning salon Mt Vernon, laundromat Knox County, red light therapy Mt Vernon, Fizze drinks Mt Vernon, bubble tea Mt Vernon, laundry Mt Vernon OH, tanning near me, 818 Coshocton Ave"
+        description="Eastend Tanning & Laundry at 818 Coshocton Ave, Mt Vernon, OH offers unlimited tanning packages starting at $39.99, red light therapy, full-service laundry, and 52+ Fizze bubble tea flavors. Open daily 8am-7:30pm. Call (740) 397-9632."
+        keywords="tanning salon Mt Vernon, laundromat Knox County, red light therapy Mt Vernon, Fizze drinks Mt Vernon, bubble tea Mt Vernon, laundry Mt Vernon OH, tanning near me, 818 Coshocton Ave, unlimited tanning, wash and fold"
+        canonicalUrl="https://eastend.website/"
+        faqSchema={allFAQSchemas.home}
+        structuredData={[organizationSchema, websiteSchema, createLocalBusinessSchema()]}
+        breadcrumbs={breadcrumbs}
         ogImage="https://eastend.website/images/eastend-hero.jpg"
-        schemaMarkup={createLocalBusinessSchema()}
       />
       {/* Hero Section */}
       <section data-testid="home-hero" className="relative py-12 sm:py-16 lg:py-20 bg-[linear-gradient(135deg,hsl(43_96%_96%),hsl(183_45%_96%))] overflow-hidden">
