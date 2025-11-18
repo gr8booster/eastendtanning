@@ -213,17 +213,16 @@ export const DealPopup = () => {
 
                 {/* CTA */}
                 <div className="text-center md:text-left">
-                  <a href="tel:+17404071084">
-                    <Button 
-                      size="lg" 
-                      className="bg-white text-red-600 hover:bg-yellow-400 hover:text-red-700 font-black text-2xl px-12 py-8 h-auto shadow-2xl border-4 border-yellow-300 transform hover:scale-110 transition-all rounded-2xl"
-                      data-testid="call-to-book-button"
-                    >
-                      📞 Call to Book Now!
-                    </Button>
-                  </a>
-                  <p className="text-xl mt-3 font-bold">(740) 407-1084</p>
-                  <p className="text-sm mt-2 opacity-90">Mention this deal when you call!</p>
+                  <div className="bg-white text-red-600 rounded-2xl px-8 py-6 shadow-2xl border-4 border-yellow-300 inline-block">
+                    <div className="text-3xl font-black mb-2">🏪 IN-HOUSE ONLY</div>
+                    <div className="text-lg font-bold">This deal is available in house only</div>
+                  </div>
+                  <div className="mt-4">
+                    <a href="tel:+17403979632" className="text-xl font-bold underline hover:text-yellow-300 transition-colors">
+                      📞 (740) 397-9632
+                    </a>
+                    <p className="text-sm mt-1 opacity-90">Visit us to redeem!</p>
+                  </div>
                 </div>
               </div>
             </div>
