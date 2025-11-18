@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-route
 import { HelmetProvider } from 'react-helmet-async';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
+import { SocialMediaBar } from './components/SocialMediaBar';
 import { Toaster } from './components/ui/sonner';
 import { LeadCaptureManager } from './components/LeadCaptureManager';
 import Home from './pages/Home';
