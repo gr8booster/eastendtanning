@@ -126,26 +126,46 @@ export const DealPopup = () => {
 
   return (
     <Dialog open={showPopup} onOpenChange={setShowPopup}>
-      <DialogContent className="max-w-4xl p-0 overflow-hidden bg-gradient-to-br from-orange-500 via-red-500 to-pink-500 border-4 border-yellow-400 shadow-2xl" data-testid="deal-popup">
+      <DialogContent className="max-w-4xl p-0 overflow-hidden bg-white shadow-2xl" style={{
+        background: 'repeating-linear-gradient(90deg, transparent, transparent 10px, rgba(0,0,0,0.05) 10px, rgba(0,0,0,0.05) 11px)',
+        borderRadius: '20px',
+        border: '6px dashed #fbbf24'
+      }} data-testid="deal-popup">
         {/* Close button */}
         <Button
           variant="ghost"
           size="icon"
           onClick={handleDismiss}
-          className="absolute top-4 right-4 z-50 text-white hover:bg-white/20 rounded-full w-10 h-10"
+          className="absolute top-4 right-4 z-50 text-gray-700 hover:bg-gray-200 rounded-full w-10 h-10"
           data-testid="close-deal-popup"
         >
           <X className="w-6 h-6" />
         </Button>
 
-        <div className="relative">
-          {/* Animated header banner */}
-          <div className="bg-yellow-400 text-center py-3 relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-r from-yellow-300 via-yellow-400 to-yellow-300 animate-pulse"></div>
-            <div className="relative z-10 flex items-center justify-center gap-2">
-              <Gift className="w-6 h-6 text-red-600 animate-bounce" />
-              <span className="text-2xl font-black text-red-600 tracking-wider">🎉 DEAL OF THE MONTH 🎉</span>
-              <Sparkles className="w-6 h-6 text-red-600 animate-pulse" />
+        <div className="relative bg-gradient-to-br from-yellow-50 via-orange-50 to-red-50">
+          {/* Perforated edge effect - top */}
+          <div className="absolute top-0 left-0 right-0 h-4 bg-white" style={{
+            background: 'radial-gradient(circle at 10px 0, transparent 8px, white 8px)',
+            backgroundSize: '20px 20px'
+          }}></div>
+          
+          {/* Perforated edge effect - bottom */}
+          <div className="absolute bottom-0 left-0 right-0 h-4 bg-white" style={{
+            background: 'radial-gradient(circle at 10px 20px, transparent 8px, white 8px)',
+            backgroundSize: '20px 20px'
+          }}></div>
+
+          {/* Ticket header banner */}
+          <div className="relative overflow-hidden pt-6 pb-4">
+            <div className="text-center">
+              <div className="inline-block bg-gradient-to-r from-red-600 via-orange-600 to-yellow-600 text-white px-8 py-4 rounded-xl shadow-lg transform -rotate-2">
+                <div className="flex items-center justify-center gap-3">
+                  <Gift className="w-8 h-8 animate-bounce" />
+                  <span className="text-4xl font-black tracking-wider">🎉 WINNING DEAL 🎉</span>
+                  <Sparkles className="w-8 h-8 animate-pulse" />
+                </div>
+              </div>
+              <div className="mt-3 text-red-600 font-bold text-xl">DEAL OF THE MONTH</div>
             </div>
           </div>
 
