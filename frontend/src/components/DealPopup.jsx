@@ -267,9 +267,13 @@ export const DealPopup = () => {
             </div>
           </div>
 
-          {/* Bottom banner */}
-          <div className="bg-yellow-400 text-center py-2">
-            <span className="text-lg font-bold text-red-600">⚡ Limited Time Offer - Don't Miss Out! ⚡</span>
+          {/* Bottom tear-off section */}
+          <div className="border-t-4 border-dashed border-gray-300 bg-white py-4">
+            <div className="text-center">
+              <div className="text-sm text-gray-500 mb-2">✂️ CLIP & REDEEM ✂️</div>
+              <div className="text-lg font-bold text-red-600">⚡ Limited Time Offer - Don't Miss Out! ⚡</div>
+              <div className="text-xs text-gray-600 mt-1">Present this offer at 818 Coshocton Ave, Mt Vernon, OH 43050</div>
+            </div>
           </div>
         </div>
       </DialogContent>
