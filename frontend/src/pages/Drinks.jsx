@@ -5,6 +5,9 @@ import { Button } from '../components/ui/button';
 import { Card } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
 import { SEOHead } from '../components/SEOHead';
+import { EnhancedSEO } from '../components/EnhancedSEO';
+import { allFAQSchemas } from '../utils/faqSchemas';
+import { fizzeDrinksSchema, generateBreadcrumb } from '../utils/structuredData';
 import { generateDrinksMenuSchema, generateFoodEstablishmentSchema } from '../utils/drinkSchemas';
 import { toast } from 'sonner';
 import { useNavigate } from 'react-router-dom';
@@ -226,14 +229,23 @@ export default function Drinks() {
     );
   }
 
+  const breadcrumbs = generateBreadcrumb([
+    { name: 'Home', path: '/' },
+    { name: 'Fizze Drinks', path: '/drinks' }
+  ]);
+
   return (
     <div className="min-h-screen bg-muted">
-      <SEOHead
-        title="Fizze Drinks Menu & Online Ordering – Eastend Tanning, Mt Vernon"
-        description="Order Fizze drinks online! Bubble tea, milk teas, fruit teas, smoothies, dirty sodas & more. 52 drinks on menu at Eastend Tanning, 818 Coshocton Ave, Mt Vernon, OH. Fresh daily. Order for pickup!"
-        keywords="Fizze drinks menu Mt Vernon, order bubble tea online Mt Vernon, milk tea Knox County, fruit tea Mt Vernon, smoothies Mt Vernon OH, dirty sodas, Fizze online ordering, 818 Coshocton Ave"
+      {/* Enhanced SEO with 7 FAQs and FoodEstablishment Schema */}
+      <EnhancedSEO
+        title="Fizze Bubble Tea Menu - 52+ Flavors | Order Online Mt Vernon OH"
+        description="Order Fizze bubble tea online for pickup or delivery! 52+ flavors including milk teas, fruit teas, blended ice drinks, dirty sodas, and smoothies. Fresh daily at Eastend Tanning, 818 Coshocton Ave, Mt Vernon, OH. Customize sweetness & toppings. Call (740) 397-9632."
+        keywords="Fizze drinks Mt Vernon, bubble tea online ordering, milk tea Knox County, boba tea Mt Vernon, fruit tea Ohio, dirty sodas Mt Vernon, smoothies Mt Vernon OH, blended ice drinks, 52 flavors, 818 Coshocton Ave, tapioca pearls, popping boba"
+        canonicalUrl="https://eastend.website/drinks"
+        faqSchema={allFAQSchemas.drinks}
+        structuredData={[fizzeDrinksSchema, ...(menu && Object.keys(menu).length > 0 ? [generateFoodEstablishmentSchema(), generateDrinksMenuSchema(menu)] : [generateFoodEstablishmentSchema()])]}
+        breadcrumbs={breadcrumbs}
         ogImage={fizzeLogoUrl}
-        schemaMarkup={menu && Object.keys(menu).length > 0 ? [generateFoodEstablishmentSchema(), generateDrinksMenuSchema(menu)] : generateFoodEstablishmentSchema()}
       />
 
       {/* Hero Section */}
