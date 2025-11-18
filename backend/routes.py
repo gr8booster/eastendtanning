@@ -307,8 +307,19 @@ async def get_dashboard_metrics():
     # Get leads
     leads = await db.leads.count_documents({})
     
-    # Get bookings
-    bookings_cursor = db.bookings.find({})
+    # Get bookings - Optimized with MongoDB aggregation
+    # Calculate totals server-side instead of fetching all documents
+    pipeline = [
+        {
+            "$group": {
+                "_id": "$service",
+                "count": {"$sum": 1},
+                "revenue": {"$sum": "$revenue"}
+            }
+        }
+    ]
+    
+    bookings_aggregation = db.bookings.aggregate(pipeline)
     
     total_bookings = 0
     total_revenue = 0.0
@@ -316,16 +327,22 @@ async def get_dashboard_metrics():
     nails_bookings = 0
     revenue_by_service = {"tanning": 0.0, "nails": 0.0, "laundry": 0.0, "drinks": 0.0}
     
-    async for booking in bookings_cursor:
-        total_bookings += 1
-        total_revenue += booking.get('revenue', 0.0)
-        service = booking.get('service', '')
+    async for result in bookings_aggregation:
+        service = result.get('_id', '')
+        count = result.get('count', 0)
+        revenue = result.get('revenue', 0.0)
+        
+        total_bookings += count
+        total_revenue += revenue
+        
         if service == 'tanning':
-            tanning_bookings += 1
-            revenue_by_service['tanning'] += booking.get('revenue', 0.0)
+            tanning_bookings = count
+            revenue_by_service['tanning'] = revenue
         elif service == 'nails':
-            nails_bookings += 1
-            revenue_by_service['nails'] += booking.get('revenue', 0.0)
+            nails_bookings = count
+            revenue_by_service['nails'] = revenue
+        elif service in revenue_by_service:
+            revenue_by_service[service] = revenue
     
     # Get active campaigns
     active_campaigns = await db.campaigns.count_documents({"status": "active"})
