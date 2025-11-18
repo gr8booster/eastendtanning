@@ -205,40 +205,49 @@ export const DealPopup = () => {
 
               {/* Content */}
               <div className="flex-1 text-center md:text-left">
-                <div className="inline-flex items-center gap-2 mb-3 bg-white/20 backdrop-blur-sm rounded-full px-4 py-2">
-                  <Tag className="w-5 h-5" />
-                  <span className="text-sm font-bold uppercase tracking-wide">In-Store Only</span>
+                <div className="inline-flex items-center gap-2 mb-3 bg-red-100 border-2 border-red-300 rounded-full px-4 py-2">
+                  <Tag className="w-5 h-5 text-red-600" />
+                  <span className="text-sm font-bold uppercase tracking-wide text-red-600">In-Store Only</span>
                 </div>
                 
-                <h2 className="text-4xl md:text-5xl font-black mb-4 drop-shadow-lg">{deal.title}</h2>
-                <p className="text-xl md:text-2xl mb-6 leading-relaxed">{deal.description}</p>
+                <h2 className="text-4xl md:text-5xl font-black mb-4 text-gray-800">{deal.title}</h2>
+                <p className="text-xl md:text-2xl mb-6 leading-relaxed text-gray-700">{deal.description}</p>
 
                 <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 mb-6">
-                  {/* Pricing */}
-                  <div className="bg-white text-red-600 rounded-2xl px-8 py-4 shadow-xl border-4 border-yellow-300 transform hover:scale-105 transition-transform">
-                    {deal.original_price && (
-                      <div className="text-lg line-through opacity-75">${deal.original_price.toFixed(2)}</div>
-                    )}
-                    <div className="text-5xl font-black">${deal.deal_price.toFixed(2)}</div>
-                    {savings && (
-                      <div className="text-xl font-bold mt-1 bg-red-600 text-white px-3 py-1 rounded-full">
-                        Save {savings}%!
+                  {/* Pricing - Scratch-off style */}
+                  <div className="relative">
+                    <div className="bg-gradient-to-br from-yellow-400 via-orange-400 to-red-500 text-white rounded-2xl px-8 py-6 shadow-2xl border-4 border-yellow-600 transform hover:scale-105 transition-transform">
+                      <div className="text-center">
+                        <div className="text-sm font-bold uppercase mb-1">🏆 YOU WIN 🏆</div>
+                        {deal.original_price && (
+                          <div className="text-lg line-through opacity-75">${deal.original_price.toFixed(2)}</div>
+                        )}
+                        <div className="text-6xl font-black my-2">${deal.deal_price.toFixed(2)}</div>
+                        {savings && (
+                          <div className="text-2xl font-bold bg-white text-red-600 px-4 py-2 rounded-full inline-block">
+                            SAVE {savings}%!
+                          </div>
+                        )}
                       </div>
-                    )}
+                    </div>
+                    {/* Sparkle decorations */}
+                    <div className="absolute -top-2 -right-2 text-4xl animate-pulse">✨</div>
+                    <div className="absolute -bottom-2 -left-2 text-4xl animate-bounce">⭐</div>
                   </div>
 
-                  {/* Time Left */}
+                  {/* Time Left - Countdown timer style */}
                   {daysLeft > 0 && (
-                    <div className="bg-yellow-400 text-red-600 rounded-2xl px-8 py-4 text-center shadow-xl border-4 border-white transform hover:scale-105 transition-transform">
-                      <Calendar className="w-8 h-8 mx-auto mb-2" />
-                      <div className="text-4xl font-black">{daysLeft}</div>
-                      <div className="text-sm font-bold uppercase">Days Left</div>
+                    <div className="bg-white border-4 border-red-500 rounded-2xl px-8 py-4 text-center shadow-xl transform hover:scale-105 transition-transform">
+                      <Calendar className="w-8 h-8 mx-auto mb-2 text-red-600" />
+                      <div className="text-5xl font-black text-red-600">{daysLeft}</div>
+                      <div className="text-sm font-bold uppercase text-gray-700">Days Left</div>
+                      <div className="text-xs text-gray-500 mt-1">⏰ Hurry!</div>
                     </div>
                   )}
                 </div>
 
-                <div className="text-sm opacity-90 mb-6 bg-white/10 backdrop-blur-sm rounded-lg px-4 py-2 inline-block">
-                  Valid: {new Date(deal.start_date).toLocaleDateString()} - {new Date(deal.end_date).toLocaleDateString()}
+                <div className="text-sm mb-6 bg-gray-100 border-2 border-dashed border-gray-400 rounded-lg px-4 py-2 inline-block">
+                  <span className="font-bold text-gray-700">Valid:</span> {new Date(deal.start_date).toLocaleDateString()} - {new Date(deal.end_date).toLocaleDateString()}
                 </div>
 
                 {/* CTA */}
