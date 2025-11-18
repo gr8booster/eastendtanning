@@ -68,6 +68,7 @@ function App() {
         <AnalyticsTracker />
         <div className="App min-h-screen flex flex-col">
           <Header />
+          <SocialMediaBar />
           <LeadCaptureManager />
           <MaryWellChat />
           <FirstTimeDiscountPopup />
