@@ -52,14 +52,23 @@ export default function Tanning() {
     { level: "Matrix", watts: "40,740W", price: "$23.99 single / $169.99 VIP unlimited", bestFor: "ULTIMATE power - fastest, deepest tan possible" }
   ];
 
+  const breadcrumbs = generateBreadcrumb([
+    { name: 'Home', path: '/' },
+    { name: 'Tanning', path: '/tanning' }
+  ]);
+
   return (
     <div className="min-h-screen bg-muted">
-      <SEOHead
-        title="Book Tanning Sessions & Red Light Therapy – Eastend Tanning, Mt Vernon"
-        description="Book tanning sessions at Eastend Tanning in Mt Vernon. Monthly unlimited packages, VIP tanning, red light therapy, 6 bed levels. Professional UV beds, premium lotions. Call (740) 397-9632 or book online."
-        keywords="book tanning Mt Vernon, red light therapy Mt Vernon, monthly unlimited tanning, VIP tanning package, UV tanning beds, tanning salon Mt Vernon OH, indoor tanning, Matrix bed"
+      {/* Enhanced SEO with 8 FAQs and TanningSalon Schema */}
+      <EnhancedSEO
+        title="Tanning Beds & Monthly Unlimited Packages – Eastend Tanning, Mt Vernon OH"
+        description="6 tanning bed levels including Matrix (40,740W), stand-up beds, and red light therapy at Eastend Tanning Mt Vernon. VIP Unlimited starts at $39.99/month. True unlimited tanning - no restrictions. Expert staff, premium lotions. 818 Coshocton Ave. Call (740) 397-9632."
+        keywords="tanning beds Mt Vernon, Matrix tanning bed, monthly unlimited tanning, VIP tanning, red light therapy, stand up tanning bed, tanning salon Knox County, UV tanning, indoor tanning Mt Vernon OH, 818 Coshocton Ave"
+        canonicalUrl="https://eastend.website/tanning"
+        faqSchema={allFAQSchemas.tanning}
+        structuredData={[tanningSalonSchema, createServiceSchema('Monthly Unlimited Tanning', 'Unlimited UV tanning on all 6 levels including Matrix, stand-up, and red light therapy with professional equipment and expert guidance', 39.99)]}
+        breadcrumbs={breadcrumbs}
         ogImage="https://eastend.website/images/tanning-hero.jpg"
-        schemaMarkup={createServiceSchema('Monthly Unlimited Tanning', 'Unlimited UV tanning on all levels with professional beds and expert guidance', 59.99)}
       />
 
       {/* Deal of the Month Popup */}
