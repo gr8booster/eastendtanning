@@ -1,18 +1,30 @@
 [
   {
     "content": "Audit current SEO implementation and create enhancement plan",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Create FAQ JSON-LD schema for all pages (5+ Q&A per page)",
-    "status": "pending"
+    "status": "completed"
   },
   {
-    "content": "Enhance noscript content with full page snapshots",
-    "status": "pending"
+    "content": "Create structured data utilities (LocalBusiness, Service, FAQPage)",
+    "status": "completed"
   },
   {
-    "content": "Add comprehensive structured data (LocalBusiness, Service, FAQPage)",
+    "content": "Create EnhancedSEO component with FAQ integration",
+    "status": "completed"
+  },
+  {
+    "content": "Update Home page with enhanced SEO and FAQs",
+    "status": "completed"
+  },
+  {
+    "content": "Update Tanning, Drinks, Laundry, Contact pages with enhanced SEO",
+    "status": "in_progress"
+  },
+  {
+    "content": "Enhance noscript content with AI-readable context",
     "status": "pending"
   },
   {
@@ -20,23 +32,19 @@
     "status": "pending"
   },
   {
-    "content": "Optimize all images (WebP, alt text, lazy loading)",
+    "content": "Optimize images (WebP conversion, lazy loading)",
     "status": "pending"
   },
   {
-    "content": "Implement semantic HTML structure audit",
+    "content": "Add semantic HTML structure to all pages",
     "status": "pending"
   },
   {
-    "content": "Add AI-readable context blocks to all pages",
+    "content": "Performance optimization and compression",
     "status": "pending"
   },
   {
-    "content": "Performance optimization (caching, compression)",
-    "status": "pending"
-  },
-  {
-    "content": "Run Lighthouse SEO audit and fix issues",
+    "content": "Run Lighthouse SEO audit",
     "status": "pending"
   }
 ]
