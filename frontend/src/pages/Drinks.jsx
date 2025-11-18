@@ -92,7 +92,7 @@ const createFizzeDrinksSchema = () => {
     "alternateName": "Fizze Drinks Mt Vernon",
     "description": "Fresh bubble tea, smoothies, and specialty drinks handcrafted daily in Mt Vernon, Ohio. Serving Knox County with premium Fizze beverages.",
     "image": [fizzeLogoUrl],
-    "url": "https://eastend-dash.preview.emergentagent.com/drinks",
+    "url": "https://tanandwash.preview.emergentagent.com/drinks",
     "telephone": "+17403979632",
     "priceRange": "$",
     "servesCuisine": ["Bubble Tea", "Smoothies", "Beverages"],
@@ -157,7 +157,7 @@ const createFizzeDrinksSchema = () => {
     "parentOrganization": {
       "@type": "Organization",
       "name": "Eastend Tanning & Laundry",
-      "url": "https://eastend-dash.preview.emergentagent.com"
+      "url": "https://tanandwash.preview.emergentagent.com"
     }
   };
 };

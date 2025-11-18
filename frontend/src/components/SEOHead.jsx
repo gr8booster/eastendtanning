@@ -68,7 +68,7 @@ export const createLocalBusinessSchema = () => {
     "alternateName": "Eastend Tanning",
     "description": "Premier tanning salon and laundromat in Mt Vernon, Ohio offering unlimited tanning packages, red light therapy, laundry with free drying daily, serving Knox County.",
     "image": [
-      "https://eastend-dash.preview.emergentagent.com/images/eastend-logo.jpg",
+      "https://tanandwash.preview.emergentagent.com/images/eastend-logo.jpg",
       "https://customer-assets.emergentagent.com/job_cece3dc5-08ac-44b8-9e32-3608ea17c8d0/artifacts/ylcc1ll3_Screenshot_20251108_054848_Google.jpg"
     ],
     "@id": "https://eastend.website",
