@@ -1,22 +1,14 @@
 [
   {
-    "content": "Update all pages with EnhancedSEO (Home, Tanning, Drinks, Laundry, Contact)",
+    "content": "Install Google Analytics tracking code (G-RHK1106VTX) in index.html",
     "status": "completed"
   },
   {
-    "content": "Create static HTML export for Fizze menu (52 drinks)",
+    "content": "Verify GA script loads and gtag() function works",
     "status": "completed"
   },
   {
-    "content": "Verify frontend compiles without errors",
-    "status": "completed"
-  },
-  {
-    "content": "Restart frontend service",
-    "status": "completed"
-  },
-  {
-    "content": "Create deployment summary and SEO report",
+    "content": "Restart frontend service and confirm site loads correctly",
     "status": "completed"
   }
 ]
