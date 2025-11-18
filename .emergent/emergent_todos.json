@@ -1,50 +1,22 @@
 [
   {
-    "content": "Audit current SEO implementation and create enhancement plan",
+    "content": "Update all pages with EnhancedSEO (Home, Tanning, Drinks, Laundry, Contact)",
     "status": "completed"
-  },
-  {
-    "content": "Create FAQ JSON-LD schema for all pages (5+ Q&A per page)",
-    "status": "completed"
-  },
-  {
-    "content": "Create structured data utilities (LocalBusiness, Service, FAQPage)",
-    "status": "completed"
-  },
-  {
-    "content": "Create EnhancedSEO component with FAQ integration",
-    "status": "completed"
-  },
-  {
-    "content": "Update Home page with enhanced SEO and FAQs",
-    "status": "completed"
-  },
-  {
-    "content": "Update Tanning, Drinks, Laundry, Contact pages with enhanced SEO",
-    "status": "in_progress"
-  },
-  {
-    "content": "Enhance noscript content with AI-readable context",
-    "status": "pending"
   },
   {
     "content": "Create static HTML export for Fizze menu (52 drinks)",
+    "status": "completed"
+  },
+  {
+    "content": "Verify frontend compiles without errors",
+    "status": "in_progress"
+  },
+  {
+    "content": "Restart frontend service",
     "status": "pending"
   },
   {
-    "content": "Optimize images (WebP conversion, lazy loading)",
-    "status": "pending"
-  },
-  {
-    "content": "Add semantic HTML structure to all pages",
-    "status": "pending"
-  },
-  {
-    "content": "Performance optimization and compression",
-    "status": "pending"
-  },
-  {
-    "content": "Run Lighthouse SEO audit",
+    "content": "Create deployment summary and SEO report",
     "status": "pending"
   }
 ]
