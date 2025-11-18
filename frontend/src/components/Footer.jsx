@@ -15,7 +15,7 @@ export const Footer = () => {
             </p>
             <p className="text-sm text-muted-foreground mb-2">
               <Phone className="w-4 h-4 inline mr-1" />
-              <a href="tel:+17404071084" className="hover:text-primary">(740) 407-1084</a>
+              <a href="tel:+17403979632" className="hover:text-primary">(740) 397-9632</a>
             </p>
             <p className="text-sm text-muted-foreground mb-4">
               <Clock className="w-4 h-4 inline mr-1" />
