@@ -169,7 +169,17 @@ export const DealPopup = () => {
             </div>
           </div>
 
-          <div className="p-8 text-white">
+          <div className="p-8 relative">
+            {/* Ticket number/barcode decoration */}
+            <div className="absolute top-4 right-8 text-right opacity-50">
+              <div className="text-xs font-mono text-gray-500">TICKET #{deal.deal_id.substring(0, 8).toUpperCase()}</div>
+              <div className="flex gap-1 mt-1">
+                {[...Array(12)].map((_, i) => (
+                  <div key={i} className="w-1 bg-gray-400" style={{height: `${Math.random() * 20 + 10}px`}}></div>
+                ))}
+              </div>
+            </div>
+
             <div className="flex flex-col md:flex-row gap-6">
               {/* Media */}
               {deal.media_type && deal.media_data && (
@@ -178,12 +188,12 @@ export const DealPopup = () => {
                     <img 
                       src={`data:${deal.media_content_type};base64,${deal.media_data}`}
                       alt={deal.title}
-                      className="w-full h-64 object-cover rounded-xl shadow-2xl border-4 border-white"
+                      className="w-full h-64 object-cover rounded-xl shadow-xl border-4 border-yellow-400"
                     />
                   ) : (
                     <video 
                       src={`data:${deal.media_content_type};base64,${deal.media_data}`}
-                      className="w-full h-64 object-cover rounded-xl shadow-2xl border-4 border-white"
+                      className="w-full h-64 object-cover rounded-xl shadow-xl border-4 border-yellow-400"
                       controls
                       muted
                       autoPlay
