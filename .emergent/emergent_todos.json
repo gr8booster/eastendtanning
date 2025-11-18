@@ -9,14 +9,14 @@
   },
   {
     "content": "Verify frontend compiles without errors",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Restart frontend service",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Create deployment summary and SEO report",
-    "status": "pending"
+    "status": "completed"
   }
 ]
