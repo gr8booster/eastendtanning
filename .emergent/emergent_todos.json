@@ -1,18 +1,42 @@
 [
   {
-    "content": "Install canvas-confetti package for fireworks effect",
-    "status": "completed"
+    "content": "Audit current SEO implementation and create enhancement plan",
+    "status": "in_progress"
   },
   {
-    "content": "Create DealPopup component with confetti and fireworks animations",
-    "status": "completed"
+    "content": "Create FAQ JSON-LD schema for all pages (5+ Q&A per page)",
+    "status": "pending"
   },
   {
-    "content": "Replace DealBanner with DealPopup on Tanning page",
-    "status": "completed"
+    "content": "Enhance noscript content with full page snapshots",
+    "status": "pending"
   },
   {
-    "content": "Frontend restarted - Deal popup ready to test",
-    "status": "completed"
+    "content": "Add comprehensive structured data (LocalBusiness, Service, FAQPage)",
+    "status": "pending"
+  },
+  {
+    "content": "Create static HTML export for Fizze menu (52 drinks)",
+    "status": "pending"
+  },
+  {
+    "content": "Optimize all images (WebP, alt text, lazy loading)",
+    "status": "pending"
+  },
+  {
+    "content": "Implement semantic HTML structure audit",
+    "status": "pending"
+  },
+  {
+    "content": "Add AI-readable context blocks to all pages",
+    "status": "pending"
+  },
+  {
+    "content": "Performance optimization (caching, compression)",
+    "status": "pending"
+  },
+  {
+    "content": "Run Lighthouse SEO audit and fix issues",
+    "status": "pending"
   }
 ]
