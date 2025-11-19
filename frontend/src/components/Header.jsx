@@ -19,7 +19,7 @@ export const Header = () => {
           <a data-testid="nav-nails-link" href="/nails" className="text-sm font-medium hover:text-primary transition-colors duration-200 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-200 hover:after:w-full">Nails</a>
           <a data-testid="nav-foodtruck-link" href="/foodtruck" className="text-sm font-medium hover:text-primary transition-colors duration-200 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-200 hover:after:w-full">Food Truck Stop</a>
           <a data-testid="nav-locations-link" href="/locations" className="text-sm font-medium hover:text-primary transition-colors duration-200 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-200 hover:after:w-full">Locations</a>
-          <a data-testid="nav-blog-link" href="/blog" className="text-sm font-medium hover:text-primary transition-colors duration-200 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-200 hover:after:w-full">People of the Eastend</a>
+          <a data-testid="nav-blog-link" href="/blog" className="text-sm font-medium hover:text-primary transition-colors duration-200 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-200 hover:after:w-full">People of Eastend Blog</a>
           <a data-testid="nav-contact-link" href="/contact" className="text-sm font-medium hover:text-primary transition-colors duration-200 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-200 hover:after:w-full">Contact</a>
         </nav>
 
@@ -62,7 +62,7 @@ export const Header = () => {
                 <a href="/drinks" className="text-base font-medium hover:text-primary transition-colors">Fizze Drinks</a>
                 <a href="/nails" className="text-base font-medium hover:text-primary transition-colors">Nails</a>
                 <a href="/foodtruck" className="text-base font-medium hover:text-primary transition-colors">Food Truck Stop</a>
-                <a href="/blog" className="text-base font-medium hover:text-primary transition-colors">People of the Eastend</a>
+                <a href="/blog" className="text-base font-medium hover:text-primary transition-colors">People of Eastend Blog</a>
                 
                 {/* Social Media Links */}
                 <div className="pt-4 mt-4 border-t border-border">
