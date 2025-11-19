@@ -4,11 +4,11 @@
     "status": "completed"
   },
   {
-    "content": "Verify GA script loads and gtag() function works",
+    "content": "Install Google Analytics tracking code in fizze-menu.html static page",
     "status": "completed"
   },
   {
-    "content": "Restart frontend service and confirm site loads correctly",
+    "content": "Verify GA script loads on both pages",
     "status": "completed"
   }
 ]
