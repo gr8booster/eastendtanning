@@ -7,7 +7,8 @@ import { Badge } from '../components/ui/badge';
 import { SEOHead } from '../components/SEOHead';
 import { EnhancedSEO } from '../components/EnhancedSEO';
 import { allFAQSchemas } from '../utils/faqSchemas';
-import { fizzeDrinksSchema, generateBreadcrumb } from '../utils/structuredData';
+import { generateBreadcrumb } from '../utils/structuredData';
+import { fizzeDrinksSchema } from '../utils/businessSchemas';
 import { generateDrinksMenuSchema, generateFoodEstablishmentSchema } from '../utils/drinkSchemas';
 import { toast } from 'sonner';
 import { useNavigate } from 'react-router-dom';
@@ -243,7 +244,7 @@ export default function Drinks() {
         keywords="Fizze drinks Mt Vernon, bubble tea online ordering, milk tea Knox County, boba tea Mt Vernon, fruit tea Ohio, dirty sodas Mt Vernon, smoothies Mt Vernon OH, blended ice drinks, 52 flavors, 818 Coshocton Ave, tapioca pearls, popping boba"
         canonicalUrl="https://eastend.website/drinks"
         faqSchema={allFAQSchemas.drinks}
-        structuredData={[fizzeDrinksSchema, ...(menu && Object.keys(menu).length > 0 ? [generateFoodEstablishmentSchema(), generateDrinksMenuSchema(menu)] : [generateFoodEstablishmentSchema()])]}
+        structuredData={[fizzeDrinksSchema, ...(menu && Object.keys(menu).length > 0 ? [generateDrinksMenuSchema(menu)] : [])]}
         breadcrumbs={breadcrumbs}
         ogImage={fizzeLogoUrl}
       />
