@@ -55,7 +55,7 @@ export const organizationSchema = {
   "sameAs": [
     "https://www.facebook.com/EastendTanningLaundry",
     "https://www.instagram.com/eastendmtvernon",
-    "https://www.tiktok.com/@eastendmtvernon"
+    "https://www.tiktok.com/@peopleofeastend?_r=1&_t=ZT-91WGHnazFkr"
   ],
   "aggregateRating": {
     "@type": "AggregateRating",
