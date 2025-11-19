@@ -112,3 +112,14 @@
     border-bottom-color: inherit;
   }
 }
+
+/* Hide Emergent branding badge */
+[class*="emergent"],
+[id*="emergent"],
+a[href*="emergent.sh"],
+div:has(> a[href*="emergent.sh"]) {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
