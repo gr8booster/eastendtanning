@@ -252,7 +252,7 @@ export default function Tanning() {
               <BookingCTA />
             </div>
             <p className="text-sm text-white/70 mt-6">
-              📍 Eastend Tanning: 818 Coshocton Ave, Mt Vernon | 📞 (740) 397-9632 | ⏰ 8am-6pm daily
+              📍 Eastend Tanning: 818 Coshocton Ave, Mt Vernon | 📞 (740) 397-9632 | ⏰ 8am-7:30pm daily
             </p>
           </div>
         </div>
