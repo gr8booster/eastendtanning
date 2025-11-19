@@ -9,10 +9,10 @@
   },
   {
     "content": "Update blog post breadcrumbs to say 'Blog'",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Verify all references are clear",
-    "status": "pending"
+    "status": "in_progress"
   }
 ]
