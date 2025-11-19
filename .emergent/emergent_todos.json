@@ -21,10 +21,10 @@
   },
   {
     "content": "Check frontend compiles without errors",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Restart services and verify all schemas load",
-    "status": "pending"
+    "status": "completed"
   }
 ]
