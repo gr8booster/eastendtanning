@@ -9,6 +9,9 @@ import { Badge } from '../components/ui/badge';
 import { Calendar, MapPin, Phone, Zap, Droplet, DollarSign, Truck, CalendarDays, CheckCircle, AlertCircle } from 'lucide-react';
 import { toast } from 'sonner';
 import { SEOHead } from '../components/SEOHead';
+import { EnhancedSEO } from '../components/EnhancedSEO';
+import { generateBreadcrumb } from '../utils/structuredData';
+import { foodTruckStopSchema } from '../utils/businessSchemas';
 import { FoodTruckLogo } from '../components/FoodTruckLogo';
 
 export default function FoodTruckStop() {
