@@ -250,20 +250,18 @@ export default function Drinks() {
       />
 
       {/* Hero Section with Background Image */}
-      <div className="relative bg-gradient-to-r from-[hsl(42_92%_55%)] to-[hsl(183_55%_43%)] text-white py-16 overflow-hidden">
+      <div className="relative min-h-[500px] overflow-hidden">
         {/* Background Image */}
-        <div 
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage: 'url(/fizze-hero-bg.jpg)',
-            opacity: 0.6
-          }}
+        <img
+          src="/fizze-hero-bg.jpg"
+          alt="Fizze Bubble Tea Drinks"
+          className="absolute inset-0 w-full h-full object-cover"
         />
-        {/* Gradient Overlay for readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[hsl(42_92%_55%)]/60 to-[hsl(183_55%_43%)]/60" />
+        {/* Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[hsl(42_92%_55%)]/80 to-[hsl(183_55%_43%)]/80" />
         
         {/* Content */}
-        <div className="container mx-auto px-4 text-center relative z-10">
+        <div className="container mx-auto px-4 text-center relative z-10 py-16">
           <img src={fizzeLogoUrl} alt="Fizze Drinks bubble tea Mt Vernon Ohio" className="h-20 mx-auto mb-6" loading="eager" />
           <h1 className="font-serif text-6xl font-black mb-4 tracking-tight drop-shadow-lg" itemProp="name">FIZZE DRINKS</h1>
           <p className="text-2xl mb-3 text-white font-semibold drop-shadow-md">Mt Vernon's Premier Bubble Tea & Specialty Drinks</p>
