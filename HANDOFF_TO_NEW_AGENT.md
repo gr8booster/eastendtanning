@@ -6,7 +6,7 @@
 "Name the project Eastend Tanning laundry before working. This is a direct instruction. Follow it."
 
 **Project Name MUST BE:** `eastend-tanning-laundry`
-**Preview URL MUST BE:** `https://tanandwash.preview.emergentagent.com`
+**Preview URL MUST BE:** `https://fizzedrinks.preview.emergentagent.com`
 
 ---
 
@@ -15,7 +15,7 @@
 ### 1. Verify Project Name
 **BEFORE DOING ANYTHING ELSE**, confirm:
 - [ ] Project name is: `eastend-tanning-laundry`
-- [ ] Preview URL is: `https://tanandwash.preview.emergentagent.com`
+- [ ] Preview URL is: `https://fizzedrinks.preview.emergentagent.com`
 
 If not, STOP and ask user to recreate the task with correct name.
 
@@ -225,7 +225,7 @@ curl http://localhost:8001/docs | grep -i paypal
 
 ### 1. Project Name
 ✅ MUST be: `eastend-tanning-laundry`
-✅ Preview URL MUST show: `https://tanandwash.preview.emergentagent.com`
+✅ Preview URL MUST show: `https://fizzedrinks.preview.emergentagent.com`
 
 ### 2. Fizze Drinks Menu
 ✅ MUST show 52 drinks across 8 categories
@@ -343,7 +343,7 @@ After completing setup, report with this structure:
 
 Project Details:
 - Name: eastend-tanning-laundry
-- Preview URL: https://tanandwash.preview.emergentagent.com
+- Preview URL: https://fizzedrinks.preview.emergentagent.com
 - Database: eastend_db (populated)
 
 Verification Results:
