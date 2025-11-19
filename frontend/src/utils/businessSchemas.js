@@ -496,11 +496,198 @@ export const eastendOrganizationSchema = {
   ]
 };
 
+// 7. WESTEND LAUNDRY - Coin Laundromat (Second Location)
+export const westendLaundrySchema = {
+  "@context": "https://schema.org",
+  "@type": "Laundromat",
+  "@id": "https://eastend.website/locations#westend",
+  "name": "Westend Laundry",
+  "alternateName": "Westend Coin Laundromat",
+  "description": "Self-service coin laundromat in Mt Vernon, OH with modern washers and dryers in multiple sizes. Clean, safe, 24/7 access facility. Large-capacity machines perfect for comforters and bulky items. Conveniently located on South Norton Street.",
+  "url": "https://eastend.website/locations",
+  "telephone": "+17405071084",
+  "email": "westend@eastend.website",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "116 South Norton Street",
+    "addressLocality": "Mt Vernon",
+    "addressRegion": "OH",
+    "postalCode": "43050",
+    "addressCountry": "US"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "40.3928",
+    "longitude": "-82.4912"
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+      "opens": "00:00",
+      "closes": "23:59"
+    }
+  ],
+  "priceRange": "$",
+  "paymentAccepted": ["Coins", "Cash"],
+  "currenciesAccepted": "USD",
+  "amenityFeature": [
+    {
+      "@type": "LocationFeatureSpecification",
+      "name": "24/7 Access",
+      "value": true
+    },
+    {
+      "@type": "LocationFeatureSpecification",
+      "name": "Self-Service",
+      "value": true
+    },
+    {
+      "@type": "LocationFeatureSpecification",
+      "name": "Large Capacity Machines",
+      "value": true
+    }
+  ],
+  "makesOffer": [
+    {
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "Service",
+        "name": "Coin-Operated Washers",
+        "description": "Self-service washers in multiple sizes including large-capacity for bulky items"
+      }
+    },
+    {
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "Service",
+        "name": "Coin-Operated Dryers",
+        "description": "High-efficiency coin-operated dryers in various sizes"
+      }
+    }
+  ],
+  "areaServed": {
+    "@type": "City",
+    "name": "Mt Vernon",
+    "containedInPlace": {
+      "@type": "State",
+      "name": "Ohio"
+    }
+  },
+  "sameAs": [
+    "https://www.facebook.com/EastendTanningLaundry",
+    "https://www.instagram.com/eastendtanning/",
+    "https://www.tiktok.com/@peopleofeastend"
+  ],
+  "parentOrganization": {
+    "@id": "https://eastend.website/#organization"
+  }
+};
+
+// 8. 818 FOOD TRUCK STOP - Food Truck Rental Space
+export const foodTruckStopSchema = {
+  "@context": "https://schema.org",
+  "@type": "ParkingFacility",
+  "@id": "https://eastend.website/foodtruck#business",
+  "name": "818 Food Truck Stop",
+  "alternateName": "818 Coshocton Food Truck Spot",
+  "description": "Prime food truck rental location in Mt Vernon, OH opposite Kroger on busy Coshocton Ave. $70/day includes electricity hookup and water access. High-traffic location perfect for food vendors. Daily and weekly rentals available. Book your spot online.",
+  "url": "https://eastend.website/foodtruck",
+  "telephone": "+17403979632",
+  "email": "foodtruck@eastend.website",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "818 Coshocton Ave",
+    "addressLocality": "Mt Vernon",
+    "addressRegion": "OH",
+    "postalCode": "43050",
+    "addressCountry": "US"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "40.3934",
+    "longitude": "-82.4858"
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+      "opens": "06:00",
+      "closes": "22:00"
+    }
+  ],
+  "priceRange": "$70/day",
+  "paymentAccepted": ["PayPal", "Credit Card", "Cash"],
+  "currenciesAccepted": "USD",
+  "amenityFeature": [
+    {
+      "@type": "LocationFeatureSpecification",
+      "name": "Electricity Hookup",
+      "value": true
+    },
+    {
+      "@type": "LocationFeatureSpecification",
+      "name": "Water Access",
+      "value": true
+    },
+    {
+      "@type": "LocationFeatureSpecification",
+      "name": "High Traffic Location",
+      "value": true
+    },
+    {
+      "@type": "LocationFeatureSpecification",
+      "name": "Opposite Kroger",
+      "value": true
+    }
+  ],
+  "makesOffer": [
+    {
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "Service",
+        "name": "Daily Food Truck Spot Rental",
+        "description": "Prime food truck location with electricity and water included"
+      },
+      "price": "70.00",
+      "priceCurrency": "USD",
+      "priceSpecification": {
+        "@type": "UnitPriceSpecification",
+        "price": "70.00",
+        "priceCurrency": "USD",
+        "referenceQuantity": {
+          "@type": "QuantitativeValue",
+          "value": "1",
+          "unitText": "DAY"
+        }
+      }
+    }
+  ],
+  "areaServed": {
+    "@type": "City",
+    "name": "Mt Vernon",
+    "containedInPlace": {
+      "@type": "State",
+      "name": "Ohio"
+    }
+  },
+  "sameAs": [
+    "https://www.facebook.com/EastendTanningLaundry",
+    "https://www.instagram.com/eastendtanning/",
+    "https://www.tiktok.com/@peopleofeastend"
+  ],
+  "parentOrganization": {
+    "@id": "https://eastend.website/#organization"
+  }
+};
+
 export default {
   eastendTanningSchema,
   eastendLaundrySchema,
   fizzeDrinksSchema,
   fastNailsSchema,
   peopleOfEastendSchema,
-  eastendOrganizationSchema
+  eastendOrganizationSchema,
+  westendLaundrySchema,
+  foodTruckStopSchema
 };
