@@ -13,14 +13,14 @@
   },
   {
     "content": "Compile frontend and verify no errors",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Restart services",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Take screenshots to verify fixes",
-    "status": "pending"
+    "status": "completed"
   }
 ]
