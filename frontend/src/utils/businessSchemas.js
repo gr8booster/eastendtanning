@@ -526,8 +526,8 @@ export const westendLaundrySchema = {
     {
       "@type": "OpeningHoursSpecification",
       "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-      "opens": "00:00",
-      "closes": "23:59"
+      "opens": "06:00",
+      "closes": "22:00"
     }
   ],
   "priceRange": "$",
