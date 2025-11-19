@@ -249,13 +249,25 @@ export default function Drinks() {
         ogImage={fizzeLogoUrl}
       />
 
-      {/* Hero Section */}
-      <div className="bg-gradient-to-r from-[hsl(42_92%_55%)] to-[hsl(183_55%_43%)] text-white py-16">
-        <div className="container mx-auto px-4 text-center">
+      {/* Hero Section with Background Image */}
+      <div className="relative bg-gradient-to-r from-[hsl(42_92%_55%)] to-[hsl(183_55%_43%)] text-white py-16 overflow-hidden">
+        {/* Background Image */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: 'url(/fizze-hero-bg.jpg)',
+            opacity: 0.3
+          }}
+        />
+        {/* Gradient Overlay for readability */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[hsl(42_92%_55%)]/80 to-[hsl(183_55%_43%)]/80" />
+        
+        {/* Content */}
+        <div className="container mx-auto px-4 text-center relative z-10">
           <img src={fizzeLogoUrl} alt="Fizze Drinks bubble tea Mt Vernon Ohio" className="h-20 mx-auto mb-6" loading="eager" />
-          <h1 className="font-serif text-6xl font-black mb-4 tracking-tight" itemProp="name">FIZZE DRINKS</h1>
-          <p className="text-2xl mb-3 text-white font-semibold">Mt Vernon's Premier Bubble Tea & Specialty Drinks</p>
-          <p className="text-lg mb-8 text-white/90 max-w-3xl mx-auto">
+          <h1 className="font-serif text-6xl font-black mb-4 tracking-tight drop-shadow-lg" itemProp="name">FIZZE DRINKS</h1>
+          <p className="text-2xl mb-3 text-white font-semibold drop-shadow-md">Mt Vernon's Premier Bubble Tea & Specialty Drinks</p>
+          <p className="text-lg mb-8 text-white/95 max-w-3xl mx-auto drop-shadow-md">
             Discover Fizze Drinks at Eastend Tanning & Laundry in Mt Vernon, Ohio. Our refreshing bubble teas, smoothies, dirty sodas, and fruit fizz drinks are handcrafted fresh daily. Stop by for a local favorite in Knox County!
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
