@@ -1,26 +1,10 @@
 [
   {
-    "content": "Fix Header logo - change to 'Eastend Tanning & Laundry'",
+    "content": "Update Mary's knowledge - Level 4 and Stand-up are RED LIGHT THERAPY beds",
     "status": "completed"
   },
   {
-    "content": "Fix Tanning page hours - correct from 8am-6pm to 8am-7:30pm",
-    "status": "completed"
-  },
-  {
-    "content": "Fix Laundry page hours - correct from 8am-6pm to 8am-7:30pm",
-    "status": "completed"
-  },
-  {
-    "content": "Compile frontend and verify no errors",
-    "status": "completed"
-  },
-  {
-    "content": "Restart services",
-    "status": "completed"
-  },
-  {
-    "content": "Take screenshots to verify fixes",
-    "status": "completed"
+    "content": "Restart backend service to apply Mary's updated knowledge",
+    "status": "in_progress"
   }
 ]
