@@ -1,42 +1,26 @@
 [
   {
-    "content": "Fix TikTok link in all files (businessSchemas.js - 8 schemas)",
+    "content": "Fix Header logo - change to 'Eastend Tanning & Laundry'",
     "status": "completed"
   },
   {
-    "content": "Fix TikTok link in Footer.jsx",
+    "content": "Fix Tanning page hours - correct from 8am-6pm to 8am-7:30pm",
     "status": "completed"
   },
   {
-    "content": "Fix TikTok link in SEOHead.jsx",
+    "content": "Fix Laundry page hours - correct from 8am-6pm to 8am-7:30pm",
     "status": "completed"
   },
   {
-    "content": "Fix TikTok link in SocialMediaBar.jsx",
-    "status": "completed"
+    "content": "Compile frontend and verify no errors",
+    "status": "in_progress"
   },
   {
-    "content": "Fix TikTok link in Header.jsx",
-    "status": "completed"
+    "content": "Restart services",
+    "status": "pending"
   },
   {
-    "content": "Fix TikTok link in structuredData.js",
-    "status": "completed"
-  },
-  {
-    "content": "Fix Fizze Drinks hours (8am-6pm instead of 8am-7:30pm)",
-    "status": "completed"
-  },
-  {
-    "content": "Fix Westend Laundry hours (6am-10pm instead of 24/7)",
-    "status": "completed"
-  },
-  {
-    "content": "Verify frontend compiles without errors",
-    "status": "completed"
-  },
-  {
-    "content": "Restart services and test all pages",
-    "status": "completed"
+    "content": "Take screenshots to verify fixes",
+    "status": "pending"
   }
 ]
