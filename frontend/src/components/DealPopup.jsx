@@ -159,18 +159,18 @@ export const DealPopup = () => {
           {/* Ticket header banner */}
           <div className="relative overflow-hidden pt-6 pb-4">
             <div className="text-center">
-              <div className="inline-block bg-gradient-to-r from-red-600 via-orange-600 to-yellow-600 text-white px-8 py-4 rounded-xl shadow-lg transform -rotate-2">
-                <div className="flex items-center justify-center gap-3">
-                  <Gift className="w-8 h-8 animate-bounce" />
-                  <span className="text-4xl font-black tracking-wider">🎉 WINNING DEAL 🎉</span>
-                  <Sparkles className="w-8 h-8 animate-pulse" />
+              <div className="inline-block bg-gradient-to-r from-red-600 via-orange-600 to-yellow-600 text-white px-4 sm:px-8 py-2 sm:py-4 rounded-xl shadow-lg transform -rotate-2">
+                <div className="flex items-center justify-center gap-2 sm:gap-3">
+                  <Gift className="w-5 h-5 sm:w-8 sm:h-8 animate-bounce" />
+                  <span className="text-xl sm:text-3xl md:text-4xl font-black tracking-wider">🎉 WINNING DEAL 🎉</span>
+                  <Sparkles className="w-5 h-5 sm:w-8 sm:h-8 animate-pulse" />
                 </div>
               </div>
-              <div className="mt-3 text-red-600 font-bold text-xl">DEAL OF THE MONTH</div>
+              <div className="mt-3 text-red-600 font-bold text-base sm:text-xl">DEAL OF THE MONTH</div>
             </div>
           </div>
 
-          <div className="p-8 relative">
+          <div className="p-4 sm:p-8 relative">
             {/* Ticket number/barcode decoration */}
             <div className="absolute top-4 right-8 text-right opacity-50">
               <div className="text-xs font-mono text-gray-500">TICKET #{deal.deal_id.substring(0, 8).toUpperCase()}</div>
