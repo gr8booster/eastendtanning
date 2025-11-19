@@ -8,15 +8,11 @@
     "status": "completed"
   },
   {
-    "content": "Restart frontend and compile",
+    "content": "Update Fizze hero background image to new bubble tea photo",
     "status": "completed"
   },
   {
-    "content": "Test mobile view with screenshots",
-    "status": "completed"
-  },
-  {
-    "content": "Verify changes work correctly",
-    "status": "completed"
+    "content": "Verify frontend compilation and services running",
+    "status": "in_progress"
   }
 ]
