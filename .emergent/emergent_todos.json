@@ -1,22 +1,18 @@
 [
   {
-    "content": "Explore existing blog infrastructure in codebase",
-    "status": "completed"
+    "content": "Update navigation to say 'People of Eastend Blog'",
+    "status": "in_progress"
   },
   {
-    "content": "Add 'People of Eastend' blog link to main navigation",
-    "status": "completed"
+    "content": "Update blog listing page title to include 'Blog'",
+    "status": "pending"
   },
   {
-    "content": "Create blog listing page with SEO optimization",
-    "status": "completed"
+    "content": "Update blog post breadcrumbs to say 'Blog'",
+    "status": "pending"
   },
   {
-    "content": "Add BlogPosting schema markup to blog post detail page",
-    "status": "completed"
-  },
-  {
-    "content": "Verify blog is crawlable and SEO-friendly",
-    "status": "completed"
+    "content": "Verify all references are clear",
+    "status": "pending"
   }
 ]
