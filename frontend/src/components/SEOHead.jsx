@@ -88,3 +88,24 @@ export const createServiceSchema = (name, description, price) => {
     }
   };
 };
+
+export const createProductSchema = (name, description, price, image) => {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": name,
+    "description": description,
+    "image": image || "https://eastend.website/images/product-default.jpg",
+    "offers": {
+      "@type": "Offer",
+      "price": price,
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock",
+      "seller": {
+        "@type": "LocalBusiness",
+        "name": "Eastend Tanning & Laundry",
+        "telephone": "+17403979632"
+      }
+    }
+  };
+};
