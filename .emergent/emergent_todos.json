@@ -1,22 +1,18 @@
 [
   {
-    "content": "Download Eastend logo image to /app/frontend/public/",
-    "status": "completed"
+    "content": "Fix deal popup mobile responsiveness - make closeable on phones",
+    "status": "in_progress"
   },
   {
-    "content": "Add favicon links to index.html pointing to logo",
-    "status": "completed"
+    "content": "Remove early payment discounts from Fizze Drinks",
+    "status": "pending"
   },
   {
-    "content": "Add CSS to hide 'Made with Emergent' badge",
-    "status": "completed"
+    "content": "Test mobile view with screenshots",
+    "status": "pending"
   },
   {
-    "content": "Restart frontend service",
-    "status": "completed"
-  },
-  {
-    "content": "Verify favicon displays correctly and badge is hidden",
-    "status": "completed"
+    "content": "Verify changes work correctly",
+    "status": "pending"
   }
 ]
