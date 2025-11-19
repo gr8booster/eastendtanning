@@ -6,6 +6,9 @@ import { Card } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
 import { Clock, MapPin, Phone, Sparkles, Heart, Palette } from 'lucide-react';
 import { SEOHead, createServiceSchema } from '../components/SEOHead';
+import { EnhancedSEO } from '../components/EnhancedSEO';
+import { generateBreadcrumb } from '../utils/structuredData';
+import { fastNailsSchema } from '../utils/businessSchemas';
 
 export default function Nails() {
   const services = [
