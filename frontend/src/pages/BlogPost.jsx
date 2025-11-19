@@ -78,8 +78,53 @@ export default function BlogPost() {
     return null;
   }
 
+  // Create BlogPosting schema
+  const blogPostingSchema = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": post.title,
+    "description": post.meta_description,
+    "datePublished": post.created_at,
+    "dateModified": post.created_at,
+    "author": {
+      "@type": "Organization",
+      "name": "Eastend Tanning & Laundry",
+      "url": "https://eastend.website"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Eastend Tanning & Laundry",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://eastend.website/eastend-logo.jpg"
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://eastend.website/blog/${post.id}`
+    },
+    "keywords": post.keywords ? post.keywords.join(', ') : '',
+    "articleBody": post.content,
+    "url": `https://eastend.website/blog/${post.id}`
+  };
+
+  const breadcrumbs = generateBreadcrumb([
+    { name: 'Home', path: '/' },
+    { name: 'People of the Eastend', path: '/blog' },
+    { name: post.title, path: `/blog/${post.id}` }
+  ]);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-amber-50 via-white to-teal-50 py-12 px-4">
+      <EnhancedSEO
+        title={`${post.title} | People of Eastend Blog`}
+        description={post.meta_description}
+        keywords={post.keywords ? post.keywords.join(', ') : 'People of Eastend, Mount Vernon blog, tanning stories'}
+        canonicalUrl={`https://eastend.website/blog/${post.id}`}
+        structuredData={[blogPostingSchema]}
+        breadcrumbs={breadcrumbs}
+        ogImage="https://eastend.website/eastend-logo.jpg"
+      />
       <article className="max-w-4xl mx-auto" data-testid="blog-post-article">
         {/* Back Button */}
         <Link to="/blog">
