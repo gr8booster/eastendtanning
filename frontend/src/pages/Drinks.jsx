@@ -256,11 +256,11 @@ export default function Drinks() {
           className="absolute inset-0 bg-cover bg-center"
           style={{
             backgroundImage: 'url(/fizze-hero-bg.jpg)',
-            opacity: 0.3
+            opacity: 0.6
           }}
         />
         {/* Gradient Overlay for readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[hsl(42_92%_55%)]/80 to-[hsl(183_55%_43%)]/80" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[hsl(42_92%_55%)]/60 to-[hsl(183_55%_43%)]/60" />
         
         {/* Content */}
         <div className="container mx-auto px-4 text-center relative z-10">
