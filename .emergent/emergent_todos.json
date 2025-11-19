@@ -1,30 +1,42 @@
 [
   {
-    "content": "Create Westend Laundry schema (116 South Norton Street)",
+    "content": "Fix TikTok link in all files (businessSchemas.js - 8 schemas)",
     "status": "completed"
   },
   {
-    "content": "Create 818 Food Truck Stop schema",
+    "content": "Fix TikTok link in Footer.jsx",
     "status": "completed"
   },
   {
-    "content": "Update Locations page with Westend Laundry schema",
+    "content": "Fix TikTok link in SEOHead.jsx",
     "status": "completed"
   },
   {
-    "content": "Update FoodTruckStop page with food truck schema",
+    "content": "Fix TikTok link in SocialMediaBar.jsx",
     "status": "completed"
   },
   {
-    "content": "Update organization schema to include new departments",
+    "content": "Fix TikTok link in Header.jsx",
     "status": "completed"
   },
   {
-    "content": "Check frontend compiles without errors",
+    "content": "Fix TikTok link in structuredData.js",
     "status": "completed"
   },
   {
-    "content": "Restart services and verify all schemas load",
+    "content": "Fix Fizze Drinks hours (8am-6pm instead of 8am-7:30pm)",
     "status": "completed"
+  },
+  {
+    "content": "Fix Westend Laundry hours (6am-10pm instead of 24/7)",
+    "status": "completed"
+  },
+  {
+    "content": "Verify frontend compiles without errors",
+    "status": "in_progress"
+  },
+  {
+    "content": "Restart services and test all pages",
+    "status": "pending"
   }
 ]
