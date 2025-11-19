@@ -38,12 +38,21 @@ export default function Blog() {
     });
   };
 
+  const breadcrumbs = generateBreadcrumb([
+    { name: 'Home', path: '/' },
+    { name: 'Blog', path: '/blog' }
+  ]);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-amber-50 via-white to-teal-50">
-      <SEOHead 
-        title="Beauty & Wellness Blog - People of the Eastend"
-        description="Beauty tips, wellness advice, and local insights from Mount Vernon's premier multi-service destination"
-        keywords="beauty tips, wellness advice, Mount Vernon, hair salon, nail salon, spa services"
+      <EnhancedSEO 
+        title="People of Eastend Blog - Beauty, Wellness & Community Stories | Mt Vernon OH"
+        description="Discover beauty tips, tanning advice, wellness guides, and local community stories from Eastend Tanning & Laundry in Mt Vernon, OH. Expert insights on tanning, nail care, bubble tea recipes, and Knox County lifestyle."
+        keywords="People of Eastend blog, beauty tips Mt Vernon, tanning tips Knox County, wellness blog Ohio, nail care advice, bubble tea recipes, Mt Vernon community, Knox County lifestyle, Eastend blog"
+        canonicalUrl="https://eastend.website/blog"
+        structuredData={[peopleOfEastendSchema]}
+        breadcrumbs={breadcrumbs}
+        ogImage="https://eastend.website/images/blog-hero.jpg"
       />
       {/* Hero Section */}
       <section className="relative py-20 px-4 overflow-hidden">
