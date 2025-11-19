@@ -110,7 +110,7 @@ export default function BlogPost() {
 
   const breadcrumbs = generateBreadcrumb([
     { name: 'Home', path: '/' },
-    { name: 'People of the Eastend', path: '/blog' },
+    { name: 'People of Eastend Blog', path: '/blog' },
     { name: post.title, path: `/blog/${post.id}` }
   ]);
 
@@ -130,7 +130,7 @@ export default function BlogPost() {
         <Link to="/blog">
           <Button variant="ghost" className="mb-8 hover:bg-teal-50" data-testid="back-to-blog">
             <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to People of the Eastend
+            Back to People of Eastend Blog
           </Button>
         </Link>
 
