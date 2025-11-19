@@ -1,11 +1,11 @@
 [
   {
     "content": "Update navigation to say 'People of Eastend Blog'",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Update blog listing page title to include 'Blog'",
-    "status": "pending"
+    "status": "in_progress"
   },
   {
     "content": "Update blog post breadcrumbs to say 'Blog'",
