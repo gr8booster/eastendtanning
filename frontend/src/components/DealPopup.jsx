@@ -217,15 +217,15 @@ export const DealPopup = () => {
                 <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 mb-6">
                   {/* Pricing - Scratch-off style */}
                   <div className="relative">
-                    <div className="bg-gradient-to-br from-yellow-400 via-orange-400 to-red-500 text-white rounded-2xl px-8 py-6 shadow-2xl border-4 border-yellow-600 transform hover:scale-105 transition-transform">
+                    <div className="bg-gradient-to-br from-yellow-400 via-orange-400 to-red-500 text-white rounded-2xl px-4 sm:px-8 py-4 sm:py-6 shadow-2xl border-4 border-yellow-600 transform hover:scale-105 transition-transform">
                       <div className="text-center">
-                        <div className="text-sm font-bold uppercase mb-1">🏆 YOU WIN 🏆</div>
+                        <div className="text-xs sm:text-sm font-bold uppercase mb-1">🏆 YOU WIN 🏆</div>
                         {deal.original_price && (
-                          <div className="text-lg line-through opacity-75">${deal.original_price.toFixed(2)}</div>
+                          <div className="text-base sm:text-lg line-through opacity-75">${deal.original_price.toFixed(2)}</div>
                         )}
-                        <div className="text-6xl font-black my-2">${deal.deal_price.toFixed(2)}</div>
+                        <div className="text-4xl sm:text-5xl md:text-6xl font-black my-2">${deal.deal_price.toFixed(2)}</div>
                         {savings && (
-                          <div className="text-2xl font-bold bg-white text-red-600 px-4 py-2 rounded-full inline-block">
+                          <div className="text-lg sm:text-xl md:text-2xl font-bold bg-white text-red-600 px-3 sm:px-4 py-1 sm:py-2 rounded-full inline-block">
                             SAVE {savings}%!
                           </div>
                         )}
