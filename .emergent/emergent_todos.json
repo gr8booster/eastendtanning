@@ -8,11 +8,15 @@
     "status": "completed"
   },
   {
+    "content": "Add CSS to hide 'Made with Emergent' badge",
+    "status": "completed"
+  },
+  {
     "content": "Restart frontend service",
     "status": "completed"
   },
   {
-    "content": "Verify favicon displays correctly",
-    "status": "in_progress"
+    "content": "Verify favicon displays correctly and badge is hidden",
+    "status": "completed"
   }
 ]
