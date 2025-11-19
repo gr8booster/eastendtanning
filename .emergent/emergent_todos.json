@@ -1,11 +1,15 @@
 [
   {
     "content": "Fix deal popup mobile responsiveness - make closeable on phones",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Remove early payment discounts from Fizze Drinks",
-    "status": "pending"
+    "status": "completed"
+  },
+  {
+    "content": "Restart frontend and compile",
+    "status": "in_progress"
   },
   {
     "content": "Test mobile view with screenshots",
