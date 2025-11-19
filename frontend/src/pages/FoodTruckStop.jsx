@@ -157,12 +157,21 @@ export default function FoodTruckStop() {
     });
   };
 
+  const breadcrumbs = generateBreadcrumb([
+    { name: 'Home', path: '/' },
+    { name: '818 Food Truck Stop', path: '/foodtruck' }
+  ]);
+
   return (
     <div className="min-h-screen bg-muted">
-      <SEOHead
-        title="818 Food Truck Stop - Book Your Spot | Mt Vernon, OH"
-        description="Prime food truck location opposite Kroger in Mt Vernon, OH. Electricity & water provided. Book your spot for $70/day at 818 Coshocton Ave."
-        keywords="food truck stop, Mt Vernon Ohio, Kroger parking, food truck rental, mobile food vendor, 818 Coshocton Ave"
+      <EnhancedSEO
+        title="818 Food Truck Stop - Prime Location Opposite Kroger | Mt Vernon, OH"
+        description="818 Food Truck Stop at 818 Coshocton Ave, Mt Vernon - Prime food truck rental location opposite Kroger. $70/day includes electricity hookup and water access. High-traffic spot in Knox County. Book your daily or weekly rental online. Perfect for mobile food vendors."
+        keywords="818 Food Truck Stop, food truck rental Mt Vernon, mobile vendor spot Knox County, Kroger food truck, 818 Coshocton Ave, electricity hookup, water access, food truck parking, Mt Vernon OH"
+        canonicalUrl="https://eastend.website/foodtruck"
+        structuredData={[foodTruckStopSchema]}
+        breadcrumbs={breadcrumbs}
+        ogImage="https://eastend.website/images/food-truck-location.jpg"
       />
 
       {/* Hero Section */}
