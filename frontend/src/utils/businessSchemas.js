@@ -112,7 +112,7 @@ export const eastendTanningSchema = {
   "sameAs": [
     "https://www.facebook.com/EastendTanningLaundry",
     "https://www.instagram.com/eastendtanning/",
-    "https://www.tiktok.com/@peopleofeastend"
+    "https://www.tiktok.com/@peopleofeastend?_r=1&_t=ZT-91WGHnazFkr"
   ]
 };
 
@@ -205,7 +205,7 @@ export const eastendLaundrySchema = {
   "sameAs": [
     "https://www.facebook.com/EastendTanningLaundry",
     "https://www.instagram.com/eastendtanning/",
-    "https://www.tiktok.com/@peopleofeastend"
+    "https://www.tiktok.com/@peopleofeastend?_r=1&_t=ZT-91WGHnazFkr"
   ]
 };
 
@@ -296,7 +296,7 @@ export const fizzeDrinksSchema = {
   "sameAs": [
     "https://www.facebook.com/EastendTanningLaundry",
     "https://www.instagram.com/eastendtanning/",
-    "https://www.tiktok.com/@peopleofeastend"
+    "https://www.tiktok.com/@peopleofeastend?_r=1&_t=ZT-91WGHnazFkr"
   ]
 };
 
@@ -388,7 +388,7 @@ export const fastNailsSchema = {
   "sameAs": [
     "https://www.facebook.com/EastendTanningLaundry",
     "https://www.instagram.com/eastendtanning/",
-    "https://www.tiktok.com/@peopleofeastend"
+    "https://www.tiktok.com/@peopleofeastend?_r=1&_t=ZT-91WGHnazFkr"
   ]
 };
 
@@ -446,7 +446,7 @@ export const peopleOfEastendSchema = {
   "sameAs": [
     "https://www.facebook.com/EastendTanningLaundry",
     "https://www.instagram.com/eastendtanning/",
-    "https://www.tiktok.com/@peopleofeastend"
+    "https://www.tiktok.com/@peopleofeastend?_r=1&_t=ZT-91WGHnazFkr"
   ]
 };
 
@@ -494,7 +494,7 @@ export const eastendOrganizationSchema = {
   "sameAs": [
     "https://www.facebook.com/EastendTanningLaundry",
     "https://www.instagram.com/eastendtanning/",
-    "https://www.tiktok.com/@peopleofeastend"
+    "https://www.tiktok.com/@peopleofeastend?_r=1&_t=ZT-91WGHnazFkr"
   ]
 };
 
@@ -579,7 +579,7 @@ export const westendLaundrySchema = {
   "sameAs": [
     "https://www.facebook.com/EastendTanningLaundry",
     "https://www.instagram.com/eastendtanning/",
-    "https://www.tiktok.com/@peopleofeastend"
+    "https://www.tiktok.com/@peopleofeastend?_r=1&_t=ZT-91WGHnazFkr"
   ],
   "parentOrganization": {
     "@id": "https://eastend.website/#organization"
@@ -676,7 +676,7 @@ export const foodTruckStopSchema = {
   "sameAs": [
     "https://www.facebook.com/EastendTanningLaundry",
     "https://www.instagram.com/eastendtanning/",
-    "https://www.tiktok.com/@peopleofeastend"
+    "https://www.tiktok.com/@peopleofeastend?_r=1&_t=ZT-91WGHnazFkr"
   ],
   "parentOrganization": {
     "@id": "https://eastend.website/#organization"
