@@ -33,10 +33,10 @@
   },
   {
     "content": "Verify frontend compiles without errors",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Restart services and test all pages",
-    "status": "pending"
+    "status": "completed"
   }
 ]
