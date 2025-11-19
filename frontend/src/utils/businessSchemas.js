@@ -238,7 +238,7 @@ export const fizzeDrinksSchema = {
       "@type": "OpeningHoursSpecification",
       "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
       "opens": "08:00",
-      "closes": "19:30"
+      "closes": "18:00"
     }
   ],
   "servesCuisine": ["Bubble Tea", "Milk Tea", "Fruit Tea", "Smoothies"],
