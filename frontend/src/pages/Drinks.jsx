@@ -253,7 +253,7 @@ export default function Drinks() {
       <div className="relative min-h-[500px] overflow-hidden">
         {/* Background Image */}
         <img
-          src="/fizze-hero-bg.jpg"
+          src="/fizze-hero-bg-new.jpg"
           alt="Fizze Bubble Tea Drinks"
           className="absolute inset-0 w-full h-full object-cover"
         />
