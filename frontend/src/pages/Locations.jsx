@@ -73,6 +73,40 @@ export default function Locations() {
               </div>
             </Card>
 
+            {/* Fizze Drinks */}
+            <Card className="p-6">
+              <h2 className="font-serif text-2xl font-bold mb-2">Fizze Drinks</h2>
+              <Badge variant="secondary" className="mb-4">Bubble Tea Shop</Badge>
+              <div className="space-y-4">
+                <div className="flex items-start gap-3">
+                  <MapPin className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />
+                  <div>
+                    <p className="font-medium">818 Coshocton Ave</p>
+                    <p className="text-muted-foreground">Mt Vernon, OH 43050</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Phone className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />
+                  <p className="text-muted-foreground">(740) 397-9632</p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Clock className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />
+                  <div>
+                    <p className="font-medium">Open Daily</p>
+                    <p className="text-muted-foreground text-sm">8:00 AM - 6:00 PM</p>
+                  </div>
+                </div>
+              </div>
+              <div className="mt-6 flex gap-3">
+                <a href="/drinks">
+                  <Button className="bg-[hsl(var(--secondary))] text-white" data-testid="locations-view-menu">View Menu</Button>
+                </a>
+                <a href="https://www.google.com/maps/dir/?api=1&destination=818+Coshocton+Ave,+Mt+Vernon,+OH+43050" target="_blank" rel="noopener noreferrer">
+                  <Button variant="outline">Directions</Button>
+                </a>
+              </div>
+            </Card>
+
             {/* Westend */}
             <Card className="p-6">
               <h2 className="font-serif text-2xl font-bold mb-2">Westend Laundry</h2>
