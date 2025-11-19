@@ -39,7 +39,7 @@ export const SocialMediaBar = () => {
       </a>
       
       <a 
-        href="https://www.tiktok.com/@eastendmtvernon" 
+        href="https://www.tiktok.com/@peopleofeastend?_r=1&_t=ZT-91WGHnazFkr" 
         target="_blank" 
         rel="noopener noreferrer"
         aria-label="Follow us on TikTok"
