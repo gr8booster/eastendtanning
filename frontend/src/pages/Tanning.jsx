@@ -10,7 +10,8 @@ import { SEOHead, createServiceSchema } from '../components/SEOHead';
 import { DealPopup } from '../components/DealPopup';
 import { EnhancedSEO } from '../components/EnhancedSEO';
 import { allFAQSchemas } from '../utils/faqSchemas';
-import { tanningSalonSchema, generateBreadcrumb } from '../utils/structuredData';
+import { generateBreadcrumb } from '../utils/structuredData';
+import { eastendTanningSchema } from '../utils/businessSchemas';
 
 const matrixPoster = "https://images.unsplash.com/photo-1540555700478-4be289fbecef?q=80&w=1200&auto=format&fit=crop";
 
@@ -66,7 +67,7 @@ export default function Tanning() {
         keywords="tanning beds Mt Vernon, Matrix tanning bed, monthly unlimited tanning, VIP tanning, red light therapy, stand up tanning bed, tanning salon Knox County, UV tanning, indoor tanning Mt Vernon OH, 818 Coshocton Ave"
         canonicalUrl="https://eastend.website/tanning"
         faqSchema={allFAQSchemas.tanning}
-        structuredData={[tanningSalonSchema, createServiceSchema('Monthly Unlimited Tanning', 'Unlimited UV tanning on all 6 levels including Matrix, stand-up, and red light therapy with professional equipment and expert guidance', 39.99)]}
+        structuredData={[eastendTanningSchema, createServiceSchema('Monthly Unlimited Tanning', 'Unlimited UV tanning on all 6 levels including Matrix, stand-up, and red light therapy with professional equipment and expert guidance', 39.99)]}
         breadcrumbs={breadcrumbs}
         ogImage="https://eastend.website/images/tanning-hero.jpg"
       />
