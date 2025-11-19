@@ -29,14 +29,14 @@
   },
   {
     "content": "Check frontend compiles without errors",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Restart services and verify all pages load",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Test structured data on key pages",
-    "status": "pending"
+    "status": "completed"
   }
 ]
