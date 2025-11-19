@@ -5,11 +5,11 @@
   },
   {
     "content": "Update blog listing page title to include 'Blog'",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Update blog post breadcrumbs to say 'Blog'",
-    "status": "pending"
+    "status": "in_progress"
   },
   {
     "content": "Verify all references are clear",
