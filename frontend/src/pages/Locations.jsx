@@ -3,15 +3,26 @@ import { Button } from '../components/ui/button';
 import { Badge } from '../components/ui/badge';
 import { MapPin, Phone, Clock } from 'lucide-react';
 import { SEOHead, createLocalBusinessSchema } from '../components/SEOHead';
+import { EnhancedSEO } from '../components/EnhancedSEO';
+import { generateBreadcrumb } from '../utils/structuredData';
+import { eastendLaundrySchema, westendLaundrySchema } from '../utils/businessSchemas';
 
 export default function Locations() {
+  const breadcrumbs = generateBreadcrumb([
+    { name: 'Home', path: '/' },
+    { name: 'Locations', path: '/locations' }
+  ]);
+
   return (
     <div className="min-h-screen">
-      <SEOHead
-        title="Locations - Eastend & Westend - Hours, Directions & Contact"
-        description="Visit Eastend Tanning & Laundry at two convenient Mount Vernon locations. Eastend: 8am-6pm, full service. Westend: 6am-10pm, self-service coin laundry. Call (740) 397-9632."
-        keywords="Eastend location, Westend location, Mount Vernon laundry, tanning salon near me, hours, directions"
-        schemaMarkup={createLocalBusinessSchema()}
+      <EnhancedSEO
+        title="Locations - Eastend & Westend Laundry | Mt Vernon, OH"
+        description="Visit us at two convenient Mt Vernon locations. Eastend Tanning & Laundry: 818 Coshocton Ave (tanning, laundry, Fizze drinks, nails). Westend Laundry: 116 South Norton Street (24/7 coin laundromat). Serving Knox County, Ohio."
+        keywords="Eastend location Mt Vernon, Westend Laundry Mt Vernon, 818 Coshocton Ave, 116 South Norton Street, laundromat Knox County, coin laundry Mt Vernon, 24/7 laundromat, tanning salon location"
+        canonicalUrl="https://eastend.website/locations"
+        structuredData={[eastendLaundrySchema, westendLaundrySchema]}
+        breadcrumbs={breadcrumbs}
+        ogImage="https://eastend.website/images/locations-map.jpg"
       />
       {/* Hero */}
       <section className="py-16 sm:py-20 bg-[linear-gradient(135deg,hsl(43_96%_96%),hsl(183_45%_96%))]">
