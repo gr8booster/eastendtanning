@@ -487,7 +487,9 @@ export const eastendOrganizationSchema = {
     { "@id": "https://eastend.website/tanning#business" },
     { "@id": "https://eastend.website/laundry#business" },
     { "@id": "https://eastend.website/drinks#business" },
-    { "@id": "https://eastend.website/nails#business" }
+    { "@id": "https://eastend.website/nails#business" },
+    { "@id": "https://eastend.website/locations#westend" },
+    { "@id": "https://eastend.website/foodtruck#business" }
   ],
   "sameAs": [
     "https://www.facebook.com/EastendTanningLaundry",
