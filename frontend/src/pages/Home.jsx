@@ -78,7 +78,7 @@ export default function Home() {
       <section id="locations" data-testid="locations-section" className="py-12 lg:py-20 bg-muted">
         <div className="container mx-auto px-4 sm:px-6 lg:px-10 max-w-[1200px]">
           <h2 className="font-serif text-3xl sm:text-4xl font-bold mb-8 text-center text-foreground">Visit Us</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {/* Eastend Location */}
             <Card data-testid="location-card-eastend" className="p-6 bg-white">
               <h3 className="font-semibold text-xl mb-3">Eastend Tanning & Laundry</h3>
@@ -89,6 +89,21 @@ export default function Home() {
               <div className="mt-5 flex gap-3">
                 <Button data-testid="location-talk-mary-eastend" onClick={() => window.openMaryChatAndListen && window.openMaryChatAndListen()} size="sm" className="bg-[hsl(var(--secondary))] text-white hover:bg-[hsl(183_55%_38%)]">Talk to Mary</Button>
                 <a data-testid="location-directions-button-eastend" href="https://www.google.com/maps/dir/?api=1&destination=818+Coshocton+Ave,+Mt+Vernon,+OH+43050" target="_blank" rel="noopener noreferrer"><Button variant="outline" size="sm">Directions</Button></a>
+              </div>
+            </Card>
+
+            {/* Fizze Drinks */}
+            <Card data-testid="location-card-fizze" className="p-6 bg-white">
+              <h3 className="font-semibold text-xl mb-3">Fizze Drinks</h3>
+              <Badge variant="secondary" className="mb-3">Bubble Tea Shop</Badge>
+              <div className="space-y-3 text-sm">
+                <div className="flex items-start gap-2 text-muted-foreground"><MapPin className="w-4 h-4 mt-0.5 flex-shrink-0 text-secondary" /><span>818 Coshocton Ave, Mt Vernon, OH 43050</span></div>
+                <div className="flex items-start gap-2 text-muted-foreground"><Phone className="w-4 h-4 mt-0.5 flex-shrink-0 text-secondary" /><a href="tel:+17403979632" className="hover:underline">(740) 397-9632</a></div>
+                <div className="flex items-start gap-2 text-muted-foreground"><Clock className="w-4 h-4 mt-0.5 flex-shrink-0 text-secondary" /><div><p data-testid="hours-fizze" className="font-medium">Open Daily: 8:00 AM - 6:00 PM</p></div></div>
+              </div>
+              <div className="mt-5 flex gap-3">
+                <a href="/drinks"><Button data-testid="location-view-menu-fizze" size="sm" className="bg-[hsl(var(--secondary))] text-white hover:bg-[hsl(183_55%_38%)]">View Menu</Button></a>
+                <a data-testid="location-directions-button-fizze" href="https://www.google.com/maps/dir/?api=1&destination=818+Coshocton+Ave,+Mt+Vernon,+OH+43050" target="_blank" rel="noopener noreferrer"><Button variant="outline" size="sm">Directions</Button></a>
               </div>
             </Card>
 
