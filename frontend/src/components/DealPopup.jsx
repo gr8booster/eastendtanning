@@ -211,8 +211,8 @@ export const DealPopup = () => {
                   <span className="text-sm font-bold uppercase tracking-wide text-red-600">In-Store Only</span>
                 </div>
                 
-                <h2 className="text-4xl md:text-5xl font-black mb-4 text-gray-800">{deal.title}</h2>
-                <p className="text-xl md:text-2xl mb-6 leading-relaxed text-gray-700">{deal.description}</p>
+                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black mb-4 text-gray-800">{deal.title}</h2>
+                <p className="text-base sm:text-lg md:text-xl lg:text-2xl mb-6 leading-relaxed text-gray-700">{deal.description}</p>
 
                 <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 mb-6">
                   {/* Pricing - Scratch-off style */}
