@@ -5,6 +5,8 @@ import { Badge } from '../components/ui/badge';
 import { Skeleton } from '../components/ui/skeleton';
 import { ArrowLeft, Calendar, Tag, Sparkles, Share2 } from 'lucide-react';
 import { toast } from 'sonner';
+import { EnhancedSEO } from '../components/EnhancedSEO';
+import { generateBreadcrumb } from '../utils/structuredData';
 
 export default function BlogPost() {
   const { id } = useParams();
