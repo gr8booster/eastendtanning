@@ -95,12 +95,12 @@ export default function Nails() {
       <section className="py-16 sm:py-20 bg-[linear-gradient(135deg,hsl(172_45%_94%),hsl(43_96%_96%))]">
         <div className="container mx-auto px-4 sm:px-6 lg:px-10 max-w-[1200px]">
           <div className="max-w-4xl mx-auto text-center">
-            <Badge className="mb-4 bg-secondary text-white" data-testid="nails-hero-badge">Professional Nail Care</Badge>
-            <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-              Fast Nails - Mount Vernon's Nail Salon
+            <h1 className="font-serif text-5xl sm:text-6xl lg:text-7xl font-black leading-tight mb-6">
+              FAST NAILS
             </h1>
-            <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto">
-              Manicures, pedicures, gel services, and stunning nail art. Pamper yourself with professional care at Fast Nails.
+            <Badge className="mb-4 bg-secondary text-white" data-testid="nails-hero-badge">Professional Nail Care</Badge>
+            <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mt-4">
+              Mount Vernon's premier nail salon. Manicures, pedicures, gel services, and stunning nail art. Pamper yourself with professional care.
             </p>
           </div>
         </div>
