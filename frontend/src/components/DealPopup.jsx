@@ -238,10 +238,10 @@ export const DealPopup = () => {
 
                   {/* Time Left - Countdown timer style */}
                   {daysLeft > 0 && (
-                    <div className="bg-white border-4 border-red-500 rounded-2xl px-8 py-4 text-center shadow-xl transform hover:scale-105 transition-transform">
-                      <Calendar className="w-8 h-8 mx-auto mb-2 text-red-600" />
-                      <div className="text-5xl font-black text-red-600">{daysLeft}</div>
-                      <div className="text-sm font-bold uppercase text-gray-700">Days Left</div>
+                    <div className="bg-white border-4 border-red-500 rounded-2xl px-4 sm:px-8 py-3 sm:py-4 text-center shadow-xl transform hover:scale-105 transition-transform">
+                      <Calendar className="w-6 h-6 sm:w-8 sm:h-8 mx-auto mb-2 text-red-600" />
+                      <div className="text-3xl sm:text-4xl md:text-5xl font-black text-red-600">{daysLeft}</div>
+                      <div className="text-xs sm:text-sm font-bold uppercase text-gray-700">Days Left</div>
                       <div className="text-xs text-gray-500 mt-1">⏰ Hurry!</div>
                     </div>
                   )}
