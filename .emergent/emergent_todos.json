@@ -13,10 +13,10 @@
   },
   {
     "content": "Add BlogPosting schema markup to blog post detail page",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Verify blog is crawlable and SEO-friendly",
-    "status": "pending"
+    "status": "in_progress"
   }
 ]
