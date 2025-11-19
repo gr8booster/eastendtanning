@@ -373,7 +373,7 @@ export default function OrderDrinks() {
                   </div>
                   <p className="text-xs text-muted-foreground pt-2">
                     *Your coupon will show exact pricing with 7.25% sales tax calculated. 
-                    Bring coupon to Eastend Tanning & Laundry to claim your order and pay with discount!
+                    Bring coupon to Eastend Tanning & Laundry to claim your order and pay at pickup!
                   </p>
                 </div>
 
