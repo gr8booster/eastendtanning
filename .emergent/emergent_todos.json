@@ -1,14 +1,34 @@
 [
   {
-    "content": "Install Google Analytics tracking code (G-RHK1106VTX) in index.html",
+    "content": "Create businessSchemas.js with individual schemas for each business",
     "status": "completed"
   },
   {
-    "content": "Install Google Analytics tracking code in fizze-menu.html static page",
+    "content": "Update Tanning page with eastendTanningSchema",
     "status": "completed"
   },
   {
-    "content": "Verify GA script loads on both pages",
+    "content": "Update Laundry page with eastendLaundrySchema",
     "status": "completed"
+  },
+  {
+    "content": "Update Drinks page with fizzeDrinksSchema",
+    "status": "in_progress"
+  },
+  {
+    "content": "Update Nails page with fastNailsSchema",
+    "status": "pending"
+  },
+  {
+    "content": "Update Blog page with peopleOfEastendSchema",
+    "status": "pending"
+  },
+  {
+    "content": "Update Home page with eastendOrganizationSchema",
+    "status": "pending"
+  },
+  {
+    "content": "Test and verify all schemas load correctly",
+    "status": "pending"
   }
 ]
