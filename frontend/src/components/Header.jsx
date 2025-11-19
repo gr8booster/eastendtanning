@@ -7,8 +7,8 @@ export const Header = () => {
     <header data-testid="site-header" className="sticky top-0 z-40 bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/70 border-b border-border">
       <div className="container mx-auto px-4 sm:px-6 lg:px-10 max-w-[1200px] h-16 flex items-center justify-between">
         {/* Logo */}
-        <a href="/" data-testid="header-logo-link" className="font-serif text-xl sm:text-2xl font-bold text-foreground hover:text-primary transition-colors duration-200">
-          Eastend
+        <a href="/" data-testid="header-logo-link" className="font-serif text-lg sm:text-xl font-bold text-foreground hover:text-primary transition-colors duration-200">
+          Eastend Tanning & Laundry
         </a>
 
         {/* Desktop Navigation */}
