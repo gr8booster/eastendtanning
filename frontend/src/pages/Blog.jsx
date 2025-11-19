@@ -6,6 +6,9 @@ import { Button } from '../components/ui/button';
 import { Skeleton } from '../components/ui/skeleton';
 import { Calendar, Tag, ArrowRight, Sparkles } from 'lucide-react';
 import { SEOHead } from '../components/SEOHead';
+import { EnhancedSEO } from '../components/EnhancedSEO';
+import { generateBreadcrumb } from '../utils/structuredData';
+import { peopleOfEastendSchema } from '../utils/businessSchemas';
 
 export default function Blog() {
   const [posts, setPosts] = useState([]);
