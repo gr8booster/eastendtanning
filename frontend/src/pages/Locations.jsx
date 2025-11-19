@@ -37,7 +37,7 @@ export default function Locations() {
       {/* Locations */}
       <section className="py-12 lg:py-20 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-10 max-w-[1200px]">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Eastend */}
             <Card className="p-6">
               <h2 className="font-serif text-2xl font-bold mb-4">Eastend Tanning & Laundry</h2>
