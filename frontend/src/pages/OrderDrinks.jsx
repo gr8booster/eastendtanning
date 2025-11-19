@@ -154,7 +154,7 @@ export default function OrderDrinks() {
           <div className="flex items-center justify-between">
             <div>
               <h1 className="font-serif text-4xl font-bold mb-2">Order Fizze Drinks</h1>
-              <p className="text-white/90">Reserve online, pay in-store & get discount for fast payment</p>
+              <p className="text-white/90">Reserve online, pay in-store when you pickup your order</p>
             </div>
             {orderStep === 'menu' && (
               <Button
