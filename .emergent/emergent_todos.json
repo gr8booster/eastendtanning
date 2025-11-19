@@ -1,42 +1,14 @@
 [
   {
-    "content": "Create businessSchemas.js with individual schemas for each business",
+    "content": "Update Home page meta tags to match Google search result format",
     "status": "completed"
   },
   {
-    "content": "Update Tanning page with eastendTanningSchema",
+    "content": "Update organization schema name to 'Eastend Tanning and Laundry'",
     "status": "completed"
   },
   {
-    "content": "Update Laundry page with eastendLaundrySchema",
-    "status": "completed"
-  },
-  {
-    "content": "Update Drinks page with fizzeDrinksSchema",
-    "status": "completed"
-  },
-  {
-    "content": "Update Nails page with fastNailsSchema",
-    "status": "completed"
-  },
-  {
-    "content": "Update Blog page with peopleOfEastendSchema",
-    "status": "completed"
-  },
-  {
-    "content": "Update Home page with eastendOrganizationSchema",
-    "status": "completed"
-  },
-  {
-    "content": "Check frontend compiles without errors",
-    "status": "completed"
-  },
-  {
-    "content": "Restart services and verify all pages load",
-    "status": "completed"
-  },
-  {
-    "content": "Test structured data on key pages",
+    "content": "Restart frontend and verify changes applied",
     "status": "completed"
   }
 ]
