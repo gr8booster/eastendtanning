@@ -78,7 +78,7 @@ export const Header = () => {
                       Instagram
                     </a>
                     <a 
-                      href="https://www.tiktok.com/@peopleofeastend" 
+                      href="https://www.tiktok.com/@peopleofeastend?_r=1&_t=ZT-91WGHnazFkr" 
                       target="_blank" 
                       rel="noopener noreferrer"
                       aria-label="TikTok"
