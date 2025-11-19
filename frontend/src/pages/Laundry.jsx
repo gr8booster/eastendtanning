@@ -7,7 +7,8 @@ import { Badge } from '../components/ui/badge';
 import { SEOHead, createServiceSchema } from '../components/SEOHead';
 import { EnhancedSEO } from '../components/EnhancedSEO';
 import { allFAQSchemas } from '../utils/faqSchemas';
-import { laundryServiceSchema, generateBreadcrumb } from '../utils/structuredData';
+import { generateBreadcrumb } from '../utils/structuredData';
+import { eastendLaundrySchema } from '../utils/businessSchemas';
 
 const laundryImage = 'https://customer-assets.emergentagent.com/job_cece3dc5-08ac-44b8-9e32-3608ea17c8d0/artifacts/ylcc1ll3_Screenshot_20251108_054848_Google.jpg';
 
@@ -26,7 +27,7 @@ export default function Laundry() {
         keywords="laundry services Mt Vernon, wash and fold Mt Vernon OH, laundromat Knox County, self-service laundry, drop-off laundry, coin laundry Mt Vernon, large capacity washers, comforter washing, 818 Coshocton Ave, wash dry fold service"
         canonicalUrl="https://eastend.website/laundry"
         faqSchema={allFAQSchemas.laundry}
-        structuredData={[laundryServiceSchema, createServiceSchema('Wash Dry Fold Service', 'Professional full-service laundry - drop off dirty, pick up clean and folded', 1.75)]}
+        structuredData={[eastendLaundrySchema, createServiceSchema('Wash Dry Fold Service', 'Professional full-service laundry - drop off dirty, pick up clean and folded', 1.75)]}
         breadcrumbs={breadcrumbs}
         ogImage={laundryImage}
       />
