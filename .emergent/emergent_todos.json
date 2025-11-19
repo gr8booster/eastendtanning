@@ -1,10 +1,18 @@
 [
   {
-    "content": "Update Mary's knowledge - Level 4 and Stand-up are RED LIGHT THERAPY beds",
+    "content": "Download Eastend logo image to /app/frontend/public/",
     "status": "completed"
   },
   {
-    "content": "Restart backend service to apply Mary's updated knowledge",
+    "content": "Add favicon links to index.html pointing to logo",
     "status": "completed"
+  },
+  {
+    "content": "Restart frontend service",
+    "status": "completed"
+  },
+  {
+    "content": "Verify favicon displays correctly",
+    "status": "in_progress"
   }
 ]
