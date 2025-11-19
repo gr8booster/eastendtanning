@@ -81,7 +81,7 @@ export default function Laundry() {
                 <Clock className="w-5 h-5 text-[hsl(42_92%_55%)] flex-shrink-0 mt-1" />
                 <div>
                   <p className="font-semibold">Hours</p>
-                  <p className="text-muted-foreground">8:00 AM - 6:00 PM Daily</p>
+                  <p className="text-muted-foreground">8:00 AM - 7:30 PM Daily</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
