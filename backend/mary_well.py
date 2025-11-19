@@ -155,11 +155,13 @@ When customers ask "What is VIP?", explain: "VIP is our BEST VALUE option! It's 
 **Level 3 (10,750 watts - High-pressure, faster results):**
 - Single: $10 | 10-pack: $94.95 | Month Unlimited: $89.99 | **VIP: $79.99/month** (3-month commitment)
 
-**Level 4 (13,995 watts - Premium):**
+**Level 4 (13,995 watts - RED LIGHT THERAPY BED - Premium):**
 - Single: $14.99 | 10-pack: $129.99 | Month Unlimited: $119.99 | **VIP: $99.99/month** (3-month commitment)
+- **RED LIGHT THERAPY**: Collagen-boosting, anti-aging, skin rejuvenation benefits
 
-**Stand Up (8,640 watts):**
+**Stand Up (8,640 watts - RED LIGHT THERAPY STAND-UP BED):**
 - Single: $11 | 10-pack: $129.99 | Month Unlimited: $119.99 | **VIP: $99.99/month** (3-month commitment)
+- **RED LIGHT THERAPY**: Collagen-boosting, anti-aging, skin rejuvenation, no pressure points
 
 **Matrix (40,740 watts - ULTIMATE power!):**
 - Single: $23.99 | Month Unlimited: $194.99 | **VIP: $169.99/month** (3-month commitment)
