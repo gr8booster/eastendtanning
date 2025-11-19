@@ -287,30 +287,12 @@ export default function OrderDrinks() {
                 ))}
 
                 <Card className="p-6 bg-gradient-to-br from-amber-50 to-teal-50 border-2 border-[hsl(42_92%_55%)]">
-                  <div className="mb-4">
-                    <h3 className="font-bold text-lg mb-2">💰 Tiered Discount Incentive</h3>
-                    <div className="space-y-2 text-sm">
-                      <div className="flex items-center justify-between p-2 bg-white rounded">
-                        <span>🏆 Pay within 24 hours:</span>
-                        <span className="font-bold text-green-600">15% OFF</span>
-                      </div>
-                      <div className="flex items-center justify-between p-2 bg-white rounded">
-                        <span>⭐ Pay within 48 hours:</span>
-                        <span className="font-bold text-blue-600">10% OFF</span>
-                      </div>
-                      <div className="flex items-center justify-between p-2 bg-white rounded">
-                        <span>✓ Pay within 7 days:</span>
-                        <span className="font-bold text-amber-600">5% OFF</span>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div className="space-y-2 pt-4 border-t border-amber-200">
+                  <div className="space-y-2">
                     <div className="flex justify-between text-lg">
-                      <span className="font-semibold">Subtotal (before tax & discount):</span>
+                      <span className="font-semibold">Subtotal (before tax):</span>
                       <span className="font-bold">${calculateSubtotal().toFixed(2)}</span>
                     </div>
-                    <p className="text-xs text-muted-foreground">*Tax will be calculated on your coupon. Discount applies to total after tax.</p>
+                    <p className="text-xs text-muted-foreground">*Tax will be calculated on your coupon at time of pickup</p>
                   </div>
                   
                   <Button
