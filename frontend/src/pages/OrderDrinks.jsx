@@ -183,10 +183,7 @@ export default function OrderDrinks() {
             <div className="mb-8 text-center">
               <h2 className="text-3xl font-bold mb-3">Browse Our Menu</h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                Add items to cart, generate a reservation coupon, and bring it to Eastend Tanning & Laundry. 
-                <span className="font-semibold text-[hsl(42_92%_55%)]">
-                  {' '}Pay within 24 hours for 15% off, 48 hours for 10% off, or 7 days for 5% off!
-                </span>
+                Add items to cart, generate a reservation coupon, and bring it to Eastend Tanning & Laundry to pickup and pay for your order!
               </p>
             </div>
 
