@@ -126,20 +126,21 @@ export const DealPopup = () => {
 
   return (
     <Dialog open={showPopup} onOpenChange={setShowPopup}>
-      <DialogContent className="max-w-4xl p-0 overflow-hidden bg-white shadow-2xl" style={{
+      <DialogContent className="max-w-[95vw] sm:max-w-2xl md:max-w-3xl lg:max-w-4xl max-h-[90vh] overflow-y-auto p-0 bg-white shadow-2xl" style={{
         background: 'repeating-linear-gradient(90deg, transparent, transparent 10px, rgba(0,0,0,0.05) 10px, rgba(0,0,0,0.05) 11px)',
         borderRadius: '20px',
         border: '6px dashed #fbbf24'
       }} data-testid="deal-popup">
-        {/* Close button */}
+        {/* Close button - Made larger and more accessible on mobile */}
         <Button
           variant="ghost"
           size="icon"
           onClick={handleDismiss}
-          className="absolute top-4 right-4 z-50 text-gray-700 hover:bg-gray-200 rounded-full w-10 h-10"
+          className="absolute top-2 right-2 sm:top-4 sm:right-4 z-50 text-gray-700 hover:bg-gray-200 bg-white/90 rounded-full w-12 h-12 sm:w-10 sm:h-10 shadow-lg border-2 border-gray-300"
           data-testid="close-deal-popup"
+          aria-label="Close deal popup"
         >
-          <X className="w-6 h-6" />
+          <X className="w-6 h-6 sm:w-5 sm:h-5" />
         </Button>
 
         <div className="relative bg-gradient-to-br from-yellow-50 via-orange-50 to-red-50">
