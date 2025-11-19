@@ -47,7 +47,7 @@ export const Footer = () => {
                   <Instagram className="w-5 h-5 text-white" />
                 </a>
                 <a 
-                  href="https://www.tiktok.com/@eastendmtvernon" 
+                  href="https://www.tiktok.com/@peopleofeastend?_r=1&_t=ZT-91WGHnazFkr" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   aria-label="Visit our TikTok"
