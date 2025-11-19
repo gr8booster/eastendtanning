@@ -9,14 +9,14 @@
   },
   {
     "content": "Restart frontend and compile",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Test mobile view with screenshots",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Verify changes work correctly",
-    "status": "pending"
+    "status": "completed"
   }
 ]
