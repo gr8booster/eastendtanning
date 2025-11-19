@@ -7,7 +7,8 @@ import { Badge } from '../components/ui/badge';
 import { SEOHead, createLocalBusinessSchema } from '../components/SEOHead';
 import { EnhancedSEO } from '../components/EnhancedSEO';
 import { allFAQSchemas } from '../utils/faqSchemas';
-import { organizationSchema, websiteSchema, generateBreadcrumb } from '../utils/structuredData';
+import { websiteSchema, generateBreadcrumb } from '../utils/structuredData';
+import { eastendOrganizationSchema } from '../utils/businessSchemas';
 
 export default function Home() {
   const fadeInUp = { initial: { opacity: 0, y: 20 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.5, ease: 'easeOut' } };
@@ -25,7 +26,7 @@ export default function Home() {
         keywords="tanning salon Mt Vernon, laundromat Knox County, red light therapy Mt Vernon, Fizze drinks Mt Vernon, bubble tea Mt Vernon, laundry Mt Vernon OH, tanning near me, 818 Coshocton Ave, unlimited tanning, wash and fold"
         canonicalUrl="https://eastend.website/"
         faqSchema={allFAQSchemas.home}
-        structuredData={[organizationSchema, websiteSchema, createLocalBusinessSchema()]}
+        structuredData={[eastendOrganizationSchema, websiteSchema, createLocalBusinessSchema()]}
         breadcrumbs={breadcrumbs}
         ogImage="https://eastend.website/images/eastend-hero.jpg"
       />
