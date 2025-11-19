@@ -75,13 +75,21 @@ export default function Nails() {
     }
   ];
 
+  const breadcrumbs = generateBreadcrumb([
+    { name: 'Home', path: '/' },
+    { name: 'Fast Nails', path: '/nails' }
+  ]);
+
   return (
     <div className="min-h-screen">
-      <SEOHead
-        title="Nail Salon Services - Manicures, Pedicures & Nail Art"
-        description="Professional nail services at Eastend including expert manicures, pedicures, gel nails, and custom nail art. Relax and pamper yourself with our skilled technicians."
-        keywords="nail salon Mount Vernon, manicure, pedicure, gel nails, nail art, acrylic nails, nail care"
-        schemaMarkup={createServiceSchema('Nail Salon Services', 'Professional manicures, pedicures, and nail art services', 25)}
+      <EnhancedSEO
+        title="Fast Nails - Manicures, Pedicures & Nail Art | Eastend Mt Vernon OH"
+        description="Professional nail salon at Eastend Mt Vernon featuring expert manicures, pedicures, gel nails, acrylic nails, and custom nail art. Skilled technicians, high-quality polishes, strict sanitation. Walk-ins welcome! 818 Coshocton Ave. Call (740) 397-9632."
+        keywords="Fast Nails Mt Vernon, nail salon Knox County, manicures Mt Vernon OH, pedicures Mt Vernon, gel nails Knox County, nail art Mt Vernon, acrylic nails Ohio, professional nail care, 818 Coshocton Ave"
+        canonicalUrl="https://eastend.website/nails"
+        structuredData={[fastNailsSchema, createServiceSchema('Professional Nail Services', 'Expert manicures, pedicures, gel nails, and custom nail art', 25)]}
+        breadcrumbs={breadcrumbs}
+        ogImage="https://eastend.website/images/nails-salon.jpg"
       />
       {/* Hero */}
       <section className="py-16 sm:py-20 bg-[linear-gradient(135deg,hsl(172_45%_94%),hsl(43_96%_96%))]">
