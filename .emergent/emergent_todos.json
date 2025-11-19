@@ -1,14 +1,30 @@
 [
   {
-    "content": "Update Home page meta tags to match Google search result format",
+    "content": "Create Westend Laundry schema (116 South Norton Street)",
     "status": "completed"
   },
   {
-    "content": "Update organization schema name to 'Eastend Tanning and Laundry'",
+    "content": "Create 818 Food Truck Stop schema",
     "status": "completed"
   },
   {
-    "content": "Restart frontend and verify changes applied",
+    "content": "Update Locations page with Westend Laundry schema",
     "status": "completed"
+  },
+  {
+    "content": "Update FoodTruckStop page with food truck schema",
+    "status": "completed"
+  },
+  {
+    "content": "Update organization schema to include new departments",
+    "status": "completed"
+  },
+  {
+    "content": "Check frontend compiles without errors",
+    "status": "in_progress"
+  },
+  {
+    "content": "Restart services and verify all schemas load",
+    "status": "pending"
   }
 ]
