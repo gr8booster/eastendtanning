@@ -1,15 +1,15 @@
 [
   {
     "content": "Check tanning order data structure for skin typing and bed details",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Add more detailed order information to admin panel display",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Verify all Sunlink-required fields are visible",
-    "status": "pending"
+    "status": "in_progress"
   },
   {
     "content": "Test updated display with screenshots",
