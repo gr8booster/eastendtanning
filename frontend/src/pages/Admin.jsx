@@ -109,7 +109,19 @@ export default function Admin() {
       setVoiceCalls(voiceCallsData?.calls || []);
       setFizzeDrinks(Array.isArray(fizzeDrinksData) ? fizzeDrinksData : []);
       setDeliveryEnabled(orderSettings?.delivery_enabled ?? true);
-      setOrders(Array.isArray(ordersData) ? ordersData : []);
+      
+      // Combine Fizze and Tanning orders
+      const fizzeOrders = (Array.isArray(fizzeOrdersData) ? fizzeOrdersData : []).map(o => ({...o, order_type: 'fizze'}));
+      const tanningOrders = (Array.isArray(tanningOrdersData) ? tanningOrdersData : []).map(o => ({
+        ...o,
+        order_type: 'tanning',
+        order_number: o.order_code,
+        status: o.paid ? 'completed' : 'pending',
+        total: o.total
+      }));
+      const allOrders = [...fizzeOrders, ...tanningOrders].sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+      setOrders(allOrders);
+      
       setUsers(Array.isArray(usersData) ? usersData : []);
       setLastUpdated(new Date());
     } catch (error) {
