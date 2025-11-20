@@ -438,6 +438,37 @@ export default function Admin() {
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-10 max-w-[1400px] py-8">
+        {/* New Orders Notification Banner */}
+        {orders.filter(o => o.status === 'pending').length > 0 && (
+          <Card className="p-4 mb-6 bg-gradient-to-r from-orange-50 to-amber-50 border-2 border-orange-400 shadow-lg">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center">
+                  <span className="text-2xl">🔔</span>
+                </div>
+                <div>
+                  <h3 className="font-bold text-lg text-orange-900">
+                    {orders.filter(o => o.status === 'pending').length} New Order{orders.filter(o => o.status === 'pending').length > 1 ? 's' : ''} Waiting!
+                  </h3>
+                  <p className="text-sm text-orange-700">
+                    {orders.filter(o => o.status === 'pending').map(o => o.order_number).join(', ')} - 
+                    Total: ${orders.filter(o => o.status === 'pending').reduce((sum, o) => sum + o.total, 0).toFixed(2)}
+                  </p>
+                </div>
+              </div>
+              <Button 
+                onClick={() => {
+                  document.querySelector('[value="orders"]')?.click();
+                  setOrdersFilter('pending');
+                }}
+                className="bg-orange-500 hover:bg-orange-600 text-white font-semibold"
+              >
+                View Orders →
+              </Button>
+            </div>
+          </Card>
+        )}
+
         {/* KPIs */}
         <Card className="p-6 mb-8 bg-gradient-to-br from-white to-[hsl(43_96%_98%)] border-2 border-[hsl(var(--primary))]">
           <div className="flex items-center justify-between mb-4">
