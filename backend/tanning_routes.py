@@ -208,10 +208,44 @@ async def send_tanning_order_notification_email(order_doc: dict):
                 </table>
             </div>
             
-            <div style='background: #fff3cd; padding: 15px; border-radius: 8px; border-left: 4px solid #f5a623;'>
-                <p style='margin: 0; font-weight: bold;'>⚠️ Action Required: Input this purchase into your tanning system</p>
-                <p style='margin: 5px 0 0 0; font-size: 14px;'>Customer: {order_doc['customer_name']} ({order_doc['customer_phone']})</p>
-                <p style='margin: 5px 0 0 0; font-size: 14px;'>Package: {order_doc['level_label']} - {order_doc['package_label']}</p>
+            <div style='background: #fff3cd; padding: 20px; border-radius: 8px; border-left: 4px solid #f5a623;'>
+                <h3 style='margin: 0 0 10px 0; color: #856404;'>⚠️ Action Required: Enter into Sunlink System</h3>
+                <div style='background: white; padding: 15px; border-radius: 4px; margin-top: 10px;'>
+                    <h4 style='margin: 0 0 10px 0; color: #333; font-size: 16px;'>Sunlink Entry Details:</h4>
+                    <table style='width: 100%; font-size: 14px;'>
+                        <tr>
+                            <td style='padding: 5px 0; font-weight: bold; width: 40%;'>Customer Name:</td>
+                            <td style='padding: 5px 0;'>{order_doc['customer_name']}</td>
+                        </tr>
+                        <tr>
+                            <td style='padding: 5px 0; font-weight: bold;'>Phone:</td>
+                            <td style='padding: 5px 0;'>{order_doc['customer_phone']}</td>
+                        </tr>
+                        <tr>
+                            <td style='padding: 5px 0; font-weight: bold;'>Email:</td>
+                            <td style='padding: 5px 0;'>{order_doc['customer_email']}</td>
+                        </tr>
+                        <tr style='border-top: 2px solid #f5a623;'>
+                            <td style='padding: 10px 0 5px 0; font-weight: bold; color: #f5a623;'>Bed Type:</td>
+                            <td style='padding: 10px 0 5px 0; font-weight: bold; color: #f5a623;'>{order_doc['level_label']}</td>
+                        </tr>
+                        <tr>
+                            <td style='padding: 5px 0; font-weight: bold; color: #f5a623;'>Package:</td>
+                            <td style='padding: 5px 0; font-weight: bold; color: #f5a623;'>{order_doc['package_label']}</td>
+                        </tr>
+                        <tr style='border-top: 1px solid #ddd;'>
+                            <td style='padding: 10px 0 5px 0; font-weight: bold;'>Amount Paid:</td>
+                            <td style='padding: 10px 0 5px 0; font-weight: bold; font-size: 16px; color: #28a745;'>${order_doc['total']:.2f}</td>
+                        </tr>
+                        <tr>
+                            <td style='padding: 5px 0; font-weight: bold;'>Skin Type:</td>
+                            <td style='padding: 5px 0; color: #856404;'>❌ Not collected online</td>
+                        </tr>
+                    </table>
+                    <p style='margin: 15px 0 0 0; padding: 10px; background: #fff3cd; border-radius: 4px; font-size: 13px; color: #856404;'>
+                        <strong>Note:</strong> Skin type was not collected during online purchase. Please assess in-person when customer visits.
+                    </p>
+                </div>
             </div>
             
             <p style='margin-top: 20px; font-size: 12px; color: #666; text-align: center;'>
