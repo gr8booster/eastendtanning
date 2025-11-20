@@ -794,7 +794,12 @@ export default function Admin() {
                   <tbody>
                     {orders.filter(order => ordersFilter === 'all' || order.status === ordersFilter).length > 0 ? 
                       orders.filter(order => ordersFilter === 'all' || order.status === ordersFilter).map((order, index) => (
-                      <tr key={order.id} className={index % 2 === 0 ? 'bg-white' : 'bg-muted/30'}>
+                      <tr key={order.id || order.order_id} className={index % 2 === 0 ? 'bg-white' : 'bg-muted/30'}>
+                        <td className="px-4 py-3 text-sm">
+                          <Badge variant={order.order_type === 'tanning' ? 'default' : 'secondary'} className={order.order_type === 'tanning' ? 'bg-orange-500' : 'bg-teal-500'}>
+                            {order.order_type === 'tanning' ? '☀️ Tanning' : '🥤 Fizze'}
+                          </Badge>
+                        </td>
                         <td className="px-4 py-3 text-sm font-medium">{order.order_number}</td>
                         <td className="px-4 py-3 text-sm">
                           <div>{order.customer_name}</div>
@@ -802,19 +807,21 @@ export default function Admin() {
                         </td>
                         <td className="px-4 py-3 text-sm">
                           <div className="max-w-xs">
-                            {order.items.map((item, i) => (
-                              <div key={i} className="text-xs">
-                                {item.quantity}x {item.drink_name}
-                              </div>
-                            ))}
+                            {order.order_type === 'fizze' ? (
+                              order.items?.map((item, i) => (
+                                <div key={i} className="text-xs">
+                                  {item.quantity}x {item.drink_name}
+                                </div>
+                              ))
+                            ) : (
+                              <>
+                                <div className="text-xs font-semibold">{order.level_label}</div>
+                                <div className="text-xs text-muted-foreground">{order.package_label}</div>
+                              </>
+                            )}
                           </div>
                         </td>
                         <td className="px-4 py-3 text-sm font-semibold">${order.total.toFixed(2)}</td>
-                        <td className="px-4 py-3 text-sm">
-                          <Badge variant={order.delivery_method === 'pickup' ? 'outline' : 'default'}>
-                            {order.delivery_method}
-                          </Badge>
-                        </td>
                         <td className="px-4 py-3 text-sm">
                           <Badge 
                             variant={
@@ -832,58 +839,64 @@ export default function Admin() {
                           {new Date(order.created_at).toLocaleDateString()}
                         </td>
                         <td className="px-4 py-3 text-sm">
-                          <div className="flex gap-1">
-                            {order.status === 'pending' && (
-                              <Button 
-                                variant="outline" 
-                                size="sm"
-                                onClick={() => handleOrderStatusUpdate(order.id, 'confirmed')}
-                                data-testid={`order-confirm-${order.id}`}
-                              >
-                                Confirm
-                              </Button>
-                            )}
-                            {order.status === 'confirmed' && (
-                              <Button 
-                                variant="outline" 
-                                size="sm"
-                                onClick={() => handleOrderStatusUpdate(order.id, 'preparing')}
-                                data-testid={`order-prepare-${order.id}`}
-                              >
-                                Prepare
-                              </Button>
-                            )}
-                            {order.status === 'preparing' && (
-                              <Button 
-                                variant="outline" 
-                                size="sm"
-                                onClick={() => handleOrderStatusUpdate(order.id, 'ready')}
-                                data-testid={`order-ready-${order.id}`}
-                              >
-                                Ready
-                              </Button>
-                            )}
-                            {order.status === 'ready' && (
-                              <Button 
-                                variant="outline" 
-                                size="sm"
-                                onClick={() => handleOrderStatusUpdate(order.id, 'completed')}
-                                data-testid={`order-complete-${order.id}`}
-                              >
-                                Complete
-                              </Button>
-                            )}
-                            {!['completed', 'cancelled'].includes(order.status) && (
-                              <Button 
-                                variant="ghost" 
-                                size="sm"
-                                onClick={() => handleOrderStatusUpdate(order.id, 'cancelled')}
-                                data-testid={`order-cancel-${order.id}`}
-                              >
-                                <Trash2 className="w-4 h-4 text-destructive" />
-                              </Button>
-                            )}
-                          </div>
+                          {order.order_type === 'fizze' ? (
+                            <div className="flex gap-1">
+                              {order.status === 'pending' && (
+                                <Button 
+                                  variant="outline" 
+                                  size="sm"
+                                  onClick={() => handleOrderStatusUpdate(order.id, 'confirmed')}
+                                  data-testid={`order-confirm-${order.id}`}
+                                >
+                                  Confirm
+                                </Button>
+                              )}
+                              {order.status === 'confirmed' && (
+                                <Button 
+                                  variant="outline" 
+                                  size="sm"
+                                  onClick={() => handleOrderStatusUpdate(order.id, 'preparing')}
+                                  data-testid={`order-prepare-${order.id}`}
+                                >
+                                  Prepare
+                                </Button>
+                              )}
+                              {order.status === 'preparing' && (
+                                <Button 
+                                  variant="outline" 
+                                  size="sm"
+                                  onClick={() => handleOrderStatusUpdate(order.id, 'ready')}
+                                  data-testid={`order-ready-${order.id}`}
+                                >
+                                  Ready
+                                </Button>
+                              )}
+                              {order.status === 'ready' && (
+                                <Button 
+                                  variant="outline" 
+                                  size="sm"
+                                  onClick={() => handleOrderStatusUpdate(order.id, 'completed')}
+                                  data-testid={`order-complete-${order.id}`}
+                                >
+                                  Complete
+                                </Button>
+                              )}
+                              {!['completed', 'cancelled'].includes(order.status) && (
+                                <Button 
+                                  variant="ghost" 
+                                  size="sm"
+                                  onClick={() => handleOrderStatusUpdate(order.id, 'cancelled')}
+                                  data-testid={`order-cancel-${order.id}`}
+                                >
+                                  <Trash2 className="w-4 h-4 text-destructive" />
+                                </Button>
+                              )}
+                            </div>
+                          ) : (
+                            <div className="text-xs text-muted-foreground">
+                              {order.status === 'pending' ? 'Awaiting payment' : 'Payment received'}
+                            </div>
+                          )}
                         </td>
                       </tr>
                     )) : (
