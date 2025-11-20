@@ -1,14 +1,14 @@
 [
   {
     "content": "Investigate View Orders button implementation",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Fix button click handler to properly switch tabs",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Test button functionality with screenshots",
-    "status": "pending"
+    "status": "in_progress"
   }
 ]
