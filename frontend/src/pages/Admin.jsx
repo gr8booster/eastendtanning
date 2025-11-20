@@ -845,7 +845,18 @@ export default function Admin() {
                           {new Date(order.created_at).toLocaleDateString()}
                         </td>
                         <td className="px-4 py-3 text-sm">
-                          {order.order_type === 'fizze' ? (
+                          {order.order_type === 'tanning' ? (
+                            <div className="bg-orange-50 border border-orange-200 rounded px-2 py-1">
+                              <div className="text-xs font-semibold text-orange-900">For Sunlink Entry:</div>
+                              <div className="text-xs text-orange-800 mt-1">
+                                <strong>Bed:</strong> {order.level_label}<br/>
+                                <strong>Package:</strong> {order.package_label}<br/>
+                                <strong>Paid:</strong> ${order.total?.toFixed(2)}<br/>
+                                <strong>Date:</strong> {new Date(order.created_at).toLocaleDateString()}<br/>
+                                <strong>Skin Type:</strong> Not collected
+                              </div>
+                            </div>
+                          ) : (
                             <div className="flex gap-1">
                               {order.status === 'pending' && (
                                 <Button 
