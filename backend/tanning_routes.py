@@ -102,6 +102,38 @@ async def create_tanning_order(request: CreateTanningOrderRequest):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to create order: {str(e)}")
 
+class MarkSunlinkEnteredRequest(BaseModel):
+    """Request to mark order as entered in Sunlink"""
+    order_id: str
+    staff_name: str
+
+@router.post("/api/tanning/mark-sunlink-entered")
+async def mark_sunlink_entered(
+    request: MarkSunlinkEnteredRequest,
+    current_user: dict = Depends(verify_token)
+):
+    """Mark a tanning order as entered in Sunlink system"""
+    try:
+        result = await tanning_orders_collection.update_one(
+            {"order_id": request.order_id},
+            {
+                "$set": {
+                    "sunlink_entered": True,
+                    "sunlink_entered_by": request.staff_name,
+                    "sunlink_entered_at": datetime.now(timezone.utc)
+                }
+            }
+        )
+        
+        if result.matched_count == 0:
+            raise HTTPException(status_code=404, detail="Order not found")
+        
+        return {"success": True, "message": f"Order marked as entered by {request.staff_name}"}
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to update order: {str(e)}")
+
 @router.get("/api/tanning/orders/list")
 async def list_tanning_orders(
     limit: int = 100,
