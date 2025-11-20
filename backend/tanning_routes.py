@@ -33,7 +33,8 @@ LEVEL_LABELS = {
     'level2': 'Level 2 - Standard Bed',
     'level3': 'Level 3 - Premium Bed',
     'level4': 'Level 4 - High-Power Bed',
-    'matrix': 'Matrix - Stand-Up Bed',
+    'matrix': 'Matrix Bed',
+    'standup': 'Stand-Up Bed',
     'wellness': 'Wellness - Red Light Therapy'
 }
 
