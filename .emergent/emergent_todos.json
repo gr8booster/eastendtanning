@@ -1,26 +1,18 @@
 [
   {
-    "content": "Run compilation checks for frontend and backend",
-    "status": "completed"
+    "content": "Check tanning order data structure for skin typing and bed details",
+    "status": "in_progress"
   },
   {
-    "content": "Scan for hardcoded URLs/secrets in source files",
-    "status": "completed"
+    "content": "Add more detailed order information to admin panel display",
+    "status": "pending"
   },
   {
-    "content": "Check CORS configuration",
-    "status": "completed"
+    "content": "Verify all Sunlink-required fields are visible",
+    "status": "pending"
   },
   {
-    "content": "Validate supervisor configuration",
-    "status": "completed"
-  },
-  {
-    "content": "Check for missing .env files",
-    "status": "completed"
-  },
-  {
-    "content": "Generate final deployment report",
-    "status": "completed"
+    "content": "Test updated display with screenshots",
+    "status": "pending"
   }
 ]
