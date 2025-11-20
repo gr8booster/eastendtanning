@@ -57,6 +57,7 @@ export default function Admin() {
   const [showSunlinkModal, setShowSunlinkModal] = useState(false);
   const [selectedTanningOrder, setSelectedTanningOrder] = useState(null);
   const [sunlinkStaffName, setSunlinkStaffName] = useState('');
+  const [sunlinkConfirmed, setSunlinkConfirmed] = useState(false);
   
   // Users state
   const [users, setUsers] = useState([]);
