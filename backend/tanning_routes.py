@@ -2,12 +2,22 @@
 Tanning package ordering routes
 """
 
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Depends
 from pydantic import BaseModel
 from motor.motor_asyncio import AsyncIOMotorClient
 from datetime import datetime, timezone
+from typing import List, Optional
 import uuid
 import os
+from auth import verify_token
+
+# Import email sending functionality
+try:
+    from sendgrid import SendGridAPIClient
+    from sendgrid.helpers.mail import Mail
+    SENDGRID_AVAILABLE = True
+except ImportError:
+    SENDGRID_AVAILABLE = False
 
 router = APIRouter()
 
