@@ -868,17 +868,33 @@ export default function Admin() {
                         </td>
                         <td className="px-4 py-3 text-sm font-semibold">${order.total.toFixed(2)}</td>
                         <td className="px-4 py-3 text-sm">
-                          <Badge 
-                            variant={
-                              order.status === 'completed' ? 'default' : 
-                              order.status === 'cancelled' ? 'destructive' : 
-                              order.status === 'ready' ? 'default' : 
-                              'secondary'
-                            }
-                            data-testid={`order-status-${order.id}`}
-                          >
-                            {order.status}
-                          </Badge>
+                          {order.order_type === 'tanning' ? (
+                            <div className="space-y-1">
+                              <Badge 
+                                variant={order.paid ? 'default' : 'destructive'}
+                                className={order.paid ? 'bg-green-600' : 'bg-red-600'}
+                              >
+                                {order.paid ? '✅ Paid' : '❌ Not Paid'}
+                              </Badge>
+                              {order.paid && order.payment_method && (
+                                <div className="text-xs text-muted-foreground">
+                                  via {order.payment_method}
+                                </div>
+                              )}
+                            </div>
+                          ) : (
+                            <Badge 
+                              variant={
+                                order.status === 'completed' ? 'default' : 
+                                order.status === 'cancelled' ? 'destructive' : 
+                                order.status === 'ready' ? 'default' : 
+                                'secondary'
+                              }
+                              data-testid={`order-status-${order.id}`}
+                            >
+                              {order.status}
+                            </Badge>
+                          )}
                         </td>
                         <td className="px-4 py-3 text-sm text-muted-foreground">
                           {new Date(order.created_at).toLocaleDateString()}
