@@ -25,6 +25,7 @@ import { DealsManager } from '../components/admin/DealsManager';
 import { MaryTraining } from '../components/admin/MaryTraining';
 
 export default function Admin() {
+  const [activeTab, setActiveTab] = useState('recommendations');
   const [metrics, setMetrics] = useState(null);
   const [campaigns, setCampaigns] = useState([]);
   const [recommendations, setRecommendations] = useState([]);
