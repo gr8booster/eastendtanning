@@ -1,18 +1,22 @@
 [
   {
-    "content": "Check tanning order data structure for skin typing and bed details",
-    "status": "completed"
+    "content": "Update tanning order data model to include Sunlink entry tracking fields",
+    "status": "in_progress"
   },
   {
-    "content": "Add more detailed order information to admin panel display",
-    "status": "completed"
+    "content": "Create backend API endpoint to mark order as entered in Sunlink",
+    "status": "pending"
   },
   {
-    "content": "Verify all Sunlink-required fields are visible",
-    "status": "completed"
+    "content": "Add UI in admin panel to mark orders and enter staff name",
+    "status": "pending"
   },
   {
-    "content": "Test updated display with screenshots",
-    "status": "completed"
+    "content": "Display Sunlink entry status in orders table",
+    "status": "pending"
+  },
+  {
+    "content": "Test the complete workflow with screenshots",
+    "status": "pending"
   }
 ]
