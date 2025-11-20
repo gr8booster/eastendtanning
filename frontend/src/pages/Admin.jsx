@@ -1359,6 +1359,66 @@ export default function Admin() {
           </DialogFooter>
         </DialogContent>
       </Dialog>
+
+      {/* Sunlink Entry Modal */}
+      <Dialog open={showSunlinkModal} onOpenChange={setShowSunlinkModal}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Mark Order as Entered in Sunlink</DialogTitle>
+          </DialogHeader>
+
+          <div className="space-y-4">
+            {selectedTanningOrder && (
+              <div className="bg-orange-50 border border-orange-200 rounded p-4">
+                <div className="text-sm font-semibold text-orange-900 mb-2">Order Details:</div>
+                <div className="text-sm text-orange-800 space-y-1">
+                  <div><strong>Order #:</strong> {selectedTanningOrder.order_number}</div>
+                  <div><strong>Customer:</strong> {selectedTanningOrder.customer_name}</div>
+                  <div><strong>Phone:</strong> {selectedTanningOrder.customer_phone}</div>
+                  <div><strong>Bed:</strong> {selectedTanningOrder.level_label}</div>
+                  <div><strong>Package:</strong> {selectedTanningOrder.package_label}</div>
+                  <div><strong>Amount Paid:</strong> ${selectedTanningOrder.total?.toFixed(2)}</div>
+                </div>
+              </div>
+            )}
+
+            <div>
+              <label htmlFor="staff-name" className="block text-sm font-medium mb-2">
+                Staff Name (who entered this into Sunlink):
+              </label>
+              <Input
+                id="staff-name"
+                type="text"
+                value={sunlinkStaffName}
+                onChange={(e) => setSunlinkStaffName(e.target.value)}
+                placeholder="Enter your name"
+                className="w-full"
+                data-testid="sunlink-staff-name-input"
+              />
+            </div>
+          </div>
+
+          <DialogFooter>
+            <Button 
+              variant="outline" 
+              onClick={() => {
+                setShowSunlinkModal(false);
+                setSunlinkStaffName('');
+                setSelectedTanningOrder(null);
+              }}
+            >
+              Cancel
+            </Button>
+            <Button 
+              onClick={handleMarkSunlinkEntered}
+              className="bg-orange-600 hover:bg-orange-700"
+              data-testid="sunlink-mark-entered-button"
+            >
+              Confirm Entry
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
