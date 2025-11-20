@@ -1,18 +1,18 @@
 [
   {
-    "content": "Update navigation to say 'People of Eastend Blog'",
-    "status": "completed"
+    "content": "Explore existing admin panel and notification systems",
+    "status": "in_progress"
   },
   {
-    "content": "Update blog listing page title to include 'Blog'",
-    "status": "completed"
+    "content": "Add real-time purchase notifications to admin panel",
+    "status": "pending"
   },
   {
-    "content": "Update blog post breadcrumbs to say 'Blog'",
-    "status": "completed"
+    "content": "Create email notification for purchases to eastendtanninglaundrynutrition@outlook.com",
+    "status": "pending"
   },
   {
-    "content": "Verify all references are clear",
-    "status": "completed"
+    "content": "Test notification system with sample purchase",
+    "status": "pending"
   }
 ]
