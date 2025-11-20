@@ -1,15 +1,15 @@
 [
   {
     "content": "Update tanning order data model to include Sunlink entry tracking fields",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Create backend API endpoint to mark order as entered in Sunlink",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Add UI in admin panel to mark orders and enter staff name",
-    "status": "pending"
+    "status": "in_progress"
   },
   {
     "content": "Display Sunlink entry status in orders table",
