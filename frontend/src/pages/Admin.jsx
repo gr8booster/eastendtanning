@@ -781,11 +781,11 @@ export default function Admin() {
                 <table className="w-full" data-testid="orders-table">
                   <thead className="bg-muted">
                     <tr>
+                      <th className="px-4 py-3 text-left text-sm font-semibold">Type</th>
                       <th className="px-4 py-3 text-left text-sm font-semibold">Order #</th>
                       <th className="px-4 py-3 text-left text-sm font-semibold">Customer</th>
-                      <th className="px-4 py-3 text-left text-sm font-semibold">Items</th>
+                      <th className="px-4 py-3 text-left text-sm font-semibold">Details</th>
                       <th className="px-4 py-3 text-left text-sm font-semibold">Total</th>
-                      <th className="px-4 py-3 text-left text-sm font-semibold">Delivery</th>
                       <th className="px-4 py-3 text-left text-sm font-semibold">Status</th>
                       <th className="px-4 py-3 text-left text-sm font-semibold">Date</th>
                       <th className="px-4 py-3 text-left text-sm font-semibold">Actions</th>
