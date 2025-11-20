@@ -1,15 +1,15 @@
 [
   {
     "content": "Explore existing admin panel and notification systems",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Add real-time purchase notifications to admin panel",
-    "status": "pending"
+    "status": "in_progress"
   },
   {
     "content": "Create email notification for purchases to eastendtanninglaundrynutrition@outlook.com",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Test notification system with sample purchase",
