@@ -1,18 +1,18 @@
 [
   {
     "content": "Improve Sunlink modal with checkbox confirmation and better validation",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Add staff name dropdown or autocomplete",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Add production-ready validation and error handling",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Test updated modal",
-    "status": "pending"
+    "status": "in_progress"
   }
 ]
