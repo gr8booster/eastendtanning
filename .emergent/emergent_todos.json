@@ -5,15 +5,15 @@
   },
   {
     "content": "Scan for hardcoded URLs/secrets in source files",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Check CORS configuration",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Validate supervisor configuration",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Check for missing .env files",
@@ -21,6 +21,6 @@
   },
   {
     "content": "Generate final deployment report",
-    "status": "pending"
+    "status": "in_progress"
   }
 ]
