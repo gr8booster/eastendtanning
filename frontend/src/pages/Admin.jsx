@@ -280,7 +280,12 @@ export default function Admin() {
 
   const handleMarkSunlinkEntered = async () => {
     if (!sunlinkStaffName.trim()) {
-      toast.error('Please enter staff name');
+      toast.error('Please enter your name');
+      return;
+    }
+
+    if (!sunlinkConfirmed) {
+      toast.error('Please confirm entry into Sunlink');
       return;
     }
 
@@ -296,14 +301,15 @@ export default function Admin() {
 
       if (!res.ok) throw new Error('Failed to mark as entered');
 
-      toast.success(`Order marked as entered by ${sunlinkStaffName}`);
+      toast.success(`✅ Order marked as entered by ${sunlinkStaffName}`);
       setShowSunlinkModal(false);
       setSunlinkStaffName('');
+      setSunlinkConfirmed(false);
       setSelectedTanningOrder(null);
       fetchDashboardData(true);
     } catch (e) {
       console.error(e);
-      toast.error('Failed to update order');
+      toast.error('Failed to update order. Please try again.');
     }
   };
 
