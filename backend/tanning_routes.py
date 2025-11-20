@@ -86,6 +86,13 @@ async def create_tanning_order(request: CreateTanningOrderRequest):
         
         await tanning_orders_collection.insert_one(order_doc)
         
+        # Send notification email to staff
+        try:
+            await send_tanning_order_notification_email(order_doc)
+        except Exception as e:
+            # Don't fail the order if email fails
+            print(f"Failed to send tanning order notification email: {e}")
+        
         return {
             "order_id": order_id,
             "order_code": order_code,
