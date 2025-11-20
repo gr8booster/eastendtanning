@@ -907,20 +907,39 @@ export default function Admin() {
                                 <div className="text-xs text-orange-800 mt-1">
                                   <strong>Bed:</strong> {order.level_label}<br/>
                                   <strong>Package:</strong> {order.package_label}<br/>
-                                  <strong>Paid:</strong> ${order.total?.toFixed(2)}<br/>
+                                  <strong>Total:</strong> ${order.total?.toFixed(2)}<br/>
                                   <strong>Date:</strong> {new Date(order.created_at).toLocaleDateString()}<br/>
                                   <strong>Skin Type:</strong> Not collected
                                 </div>
                               </div>
-                              {order.sunlink_entered ? (
-                                <div className="bg-green-50 border border-green-300 rounded px-2 py-1">
-                                  <div className="text-xs font-semibold text-green-900">✅ Entered in Sunlink</div>
-                                  <div className="text-xs text-green-800 mt-1">
-                                    By: {order.sunlink_entered_by}<br/>
-                                    {new Date(order.sunlink_entered_at).toLocaleString()}
-                                  </div>
-                                </div>
-                              ) : (
+                              
+                              {!order.paid && (
+                                <Button
+                                  size="sm"
+                                  onClick={async () => {
+                                    try {
+                                      const paymentMethod = prompt('Payment method? (e.g., PayPal, Stripe, Cash)');
+                                      if (!paymentMethod) return;
+                                      
+                                      const res = await fetch(`${backendUrl}/api/tanning/mark-paid`, {
+                                        method: 'POST',
+                                        headers: { 'Content-Type': 'application/json', ...adminHeaders() },
+                                        body: JSON.stringify({ order_id: order.order_id, payment_method: paymentMethod })
+                                      });
+                                      if (!res.ok) throw new Error('Failed to mark as paid');
+                                      toast.success('Order marked as paid');
+                                      fetchDashboardData(true);
+                                    } catch (e) {
+                                      toast.error('Failed to update payment status');
+                                    }
+                                  }}
+                                  className="w-full bg-green-600 hover:bg-green-700"
+                                >
+                                  ✓ Mark as Paid
+                                </Button>
+                              )}
+                              
+                              {order.paid && !order.sunlink_entered && (
                                 <Button
                                   size="sm"
                                   onClick={() => {
@@ -929,8 +948,18 @@ export default function Admin() {
                                   }}
                                   className="w-full bg-orange-600 hover:bg-orange-700"
                                 >
-                                  Mark as Entered
+                                  Mark as Entered in Sunlink
                                 </Button>
+                              )}
+                              
+                              {order.sunlink_entered && (
+                                <div className="bg-green-50 border border-green-300 rounded px-2 py-1">
+                                  <div className="text-xs font-semibold text-green-900">✅ Entered in Sunlink</div>
+                                  <div className="text-xs text-green-800 mt-1">
+                                    By: {order.sunlink_entered_by}<br/>
+                                    {new Date(order.sunlink_entered_at).toLocaleString()}
+                                  </div>
+                                </div>
                               )}
                             </div>
                           ) : (
