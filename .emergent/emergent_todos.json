@@ -1,18 +1,14 @@
 [
   {
-    "content": "Find tanning purchase routes and order storage",
-    "status": "completed"
+    "content": "Investigate View Orders button implementation",
+    "status": "in_progress"
   },
   {
-    "content": "Add tanning orders to admin panel display",
-    "status": "completed"
+    "content": "Fix button click handler to properly switch tabs",
+    "status": "pending"
   },
   {
-    "content": "Add email notifications for tanning purchases",
-    "status": "completed"
-  },
-  {
-    "content": "Verify both order types display correctly",
-    "status": "completed"
+    "content": "Test button functionality with screenshots",
+    "status": "pending"
   }
 ]
