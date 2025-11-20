@@ -472,7 +472,7 @@ export default function Admin() {
               </div>
               <Button 
                 onClick={() => {
-                  document.querySelector('[value="orders"]')?.click();
+                  setActiveTab('orders');
                   setOrdersFilter('pending');
                 }}
                 className="bg-orange-500 hover:bg-orange-600 text-white font-semibold"
