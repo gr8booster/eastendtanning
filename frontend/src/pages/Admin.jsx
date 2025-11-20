@@ -759,7 +759,7 @@ export default function Admin() {
               <div className="flex items-center justify-between mb-6">
                 <div>
                   <h3 className="font-serif text-2xl font-bold">📦 Online Orders</h3>
-                  <p className="text-sm text-muted-foreground mt-1">Manage Fizze drink orders and update status</p>
+                  <p className="text-sm text-muted-foreground mt-1">Manage Fizze drinks and tanning package orders</p>
                 </div>
                 <Select value={ordersFilter} onValueChange={setOrdersFilter}>
                   <SelectTrigger className="w-48" data-testid="orders-filter">
