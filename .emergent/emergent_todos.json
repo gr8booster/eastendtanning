@@ -1,18 +1,22 @@
 [
   {
-    "content": "Improve Sunlink modal with checkbox confirmation and better validation",
-    "status": "completed"
+    "content": "Check tanning order structure and payment tracking",
+    "status": "in_progress"
   },
   {
-    "content": "Add staff name dropdown or autocomplete",
-    "status": "completed"
+    "content": "Fix payment status display to show PayPal payments correctly",
+    "status": "pending"
   },
   {
-    "content": "Add production-ready validation and error handling",
-    "status": "completed"
+    "content": "Clarify Matrix vs Stand-Up Bed naming in system",
+    "status": "pending"
   },
   {
-    "content": "Test updated modal",
-    "status": "completed"
+    "content": "Update admin panel to clearly show purchase details",
+    "status": "pending"
+  },
+  {
+    "content": "Test payment status updates",
+    "status": "pending"
   }
 ]
