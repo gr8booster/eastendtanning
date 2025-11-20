@@ -1,22 +1,22 @@
 [
   {
     "content": "Check tanning order structure and payment tracking",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Fix payment status display to show PayPal payments correctly",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Clarify Matrix vs Stand-Up Bed naming in system",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Update admin panel to clearly show purchase details",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Test payment status updates",
-    "status": "pending"
+    "status": "in_progress"
   }
 ]
