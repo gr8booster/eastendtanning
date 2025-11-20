@@ -464,7 +464,7 @@ export default function Admin() {
                     {orders.filter(o => o.status === 'pending').length} New Order{orders.filter(o => o.status === 'pending').length > 1 ? 's' : ''} Waiting!
                   </h3>
                   <p className="text-sm text-orange-700">
-                    {orders.filter(o => o.status === 'pending').map(o => o.order_number).join(', ')} - 
+                    {orders.filter(o => o.status === 'pending').map(o => `${o.order_type === 'tanning' ? '☀️' : '🥤'} ${o.order_number}`).join(', ')} - 
                     Total: ${orders.filter(o => o.status === 'pending').reduce((sum, o) => sum + o.total, 0).toFixed(2)}
                   </p>
                 </div>
