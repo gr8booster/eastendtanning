@@ -11,6 +11,14 @@ import os
 import uuid
 from auth import verify_token
 
+# Import email sending functionality
+try:
+    from sendgrid import SendGridAPIClient
+    from sendgrid.helpers.mail import Mail
+    SENDGRID_AVAILABLE = True
+except ImportError:
+    SENDGRID_AVAILABLE = False
+
 router = APIRouter(prefix="/api/orders", tags=["online_orders"])
 
 # MongoDB
