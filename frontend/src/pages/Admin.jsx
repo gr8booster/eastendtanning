@@ -277,6 +277,35 @@ export default function Admin() {
     }
   };
 
+  const handleMarkSunlinkEntered = async () => {
+    if (!sunlinkStaffName.trim()) {
+      toast.error('Please enter staff name');
+      return;
+    }
+
+    try {
+      const res = await fetch(`${backendUrl}/api/tanning/mark-sunlink-entered`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', ...adminHeaders() },
+        body: JSON.stringify({
+          order_id: selectedTanningOrder.order_id,
+          staff_name: sunlinkStaffName.trim()
+        })
+      });
+
+      if (!res.ok) throw new Error('Failed to mark as entered');
+
+      toast.success(`Order marked as entered by ${sunlinkStaffName}`);
+      setShowSunlinkModal(false);
+      setSunlinkStaffName('');
+      setSelectedTanningOrder(null);
+      fetchDashboardData(true);
+    } catch (e) {
+      console.error(e);
+      toast.error('Failed to update order');
+    }
+  };
+
   const handleOrderStatusUpdate = async (orderId, newStatus) => {
     try {
       const res = await fetch(`${backendUrl}/api/orders/${orderId}/status?status=${newStatus}`, {
