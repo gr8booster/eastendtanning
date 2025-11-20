@@ -1,18 +1,18 @@
 [
   {
     "content": "Find tanning purchase routes and order storage",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Add tanning orders to admin panel display",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Add email notifications for tanning purchases",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Verify both order types display correctly",
-    "status": "pending"
+    "status": "in_progress"
   }
 ]
