@@ -9,10 +9,10 @@
   },
   {
     "content": "Verify all Sunlink-required fields are visible",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Test updated display with screenshots",
-    "status": "pending"
+    "status": "completed"
   }
 ]
