@@ -1,14 +1,26 @@
 [
   {
-    "content": "Investigate View Orders button implementation",
-    "status": "completed"
+    "content": "Run compilation checks for frontend and backend",
+    "status": "in_progress"
   },
   {
-    "content": "Fix button click handler to properly switch tabs",
-    "status": "completed"
+    "content": "Scan for hardcoded URLs/secrets in source files",
+    "status": "pending"
   },
   {
-    "content": "Test button functionality with screenshots",
-    "status": "completed"
+    "content": "Check CORS configuration",
+    "status": "pending"
+  },
+  {
+    "content": "Validate supervisor configuration",
+    "status": "pending"
+  },
+  {
+    "content": "Check for missing .env files",
+    "status": "pending"
+  },
+  {
+    "content": "Generate final deployment report",
+    "status": "pending"
   }
 ]
