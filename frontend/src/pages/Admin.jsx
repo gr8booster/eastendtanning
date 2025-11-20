@@ -54,6 +54,9 @@ export default function Admin() {
   // Orders state
   const [orders, setOrders] = useState([]);
   const [ordersFilter, setOrdersFilter] = useState('all');
+  const [showSunlinkModal, setShowSunlinkModal] = useState(false);
+  const [selectedTanningOrder, setSelectedTanningOrder] = useState(null);
+  const [sunlinkStaffName, setSunlinkStaffName] = useState('');
   
   // Users state
   const [users, setUsers] = useState([]);
