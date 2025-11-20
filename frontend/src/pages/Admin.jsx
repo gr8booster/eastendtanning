@@ -909,10 +909,6 @@ export default function Admin() {
                                 </Button>
                               )}
                             </div>
-                          ) : (
-                            <div className="text-xs text-muted-foreground">
-                              {order.status === 'pending' ? 'Awaiting payment' : 'Payment received'}
-                            </div>
                           )}
                         </td>
                       </tr>
