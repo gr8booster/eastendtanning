@@ -108,6 +108,38 @@ class MarkSunlinkEnteredRequest(BaseModel):
     order_id: str
     staff_name: str
 
+class MarkPaidRequest(BaseModel):
+    """Request to mark order as paid"""
+    order_id: str
+    payment_method: Optional[str] = "manual"
+
+@router.post("/api/tanning/mark-paid")
+async def mark_tanning_order_paid(
+    request: MarkPaidRequest,
+    current_user: dict = Depends(verify_token)
+):
+    """Mark a tanning order as paid (for manual payment confirmation)"""
+    try:
+        result = await tanning_orders_collection.update_one(
+            {"order_id": request.order_id},
+            {
+                "$set": {
+                    "paid": True,
+                    "paid_at": datetime.now(timezone.utc),
+                    "payment_method": request.payment_method
+                }
+            }
+        )
+        
+        if result.matched_count == 0:
+            raise HTTPException(status_code=404, detail="Order not found")
+        
+        return {"success": True, "message": "Order marked as paid"}
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to update order: {str(e)}")
+
 @router.post("/api/tanning/mark-sunlink-entered")
 async def mark_sunlink_entered(
     request: MarkSunlinkEnteredRequest,
