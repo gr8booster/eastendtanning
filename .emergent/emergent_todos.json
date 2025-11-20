@@ -9,14 +9,14 @@
   },
   {
     "content": "Add UI in admin panel to mark orders and enter staff name",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Display Sunlink entry status in orders table",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Test the complete workflow with screenshots",
-    "status": "pending"
+    "status": "in_progress"
   }
 ]
