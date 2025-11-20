@@ -816,8 +816,13 @@ export default function Admin() {
                               ))
                             ) : (
                               <>
-                                <div className="text-xs font-semibold">{order.level_label}</div>
-                                <div className="text-xs text-muted-foreground">{order.package_label}</div>
+                                <div className="text-xs font-bold text-orange-700">{order.level_label}</div>
+                                <div className="text-xs font-semibold">{order.package_label}</div>
+                                <div className="text-xs text-muted-foreground mt-1">
+                                  Subtotal: ${order.subtotal?.toFixed(2)}<br/>
+                                  Sales Tax: ${order.sales_tax?.toFixed(2)}<br/>
+                                  Tan Tax: ${order.tan_tax?.toFixed(2)}
+                                </div>
                               </>
                             )}
                           </div>
