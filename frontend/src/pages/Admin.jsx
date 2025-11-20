@@ -1368,60 +1368,116 @@ export default function Admin() {
       </Dialog>
 
       {/* Sunlink Entry Modal */}
-      <Dialog open={showSunlinkModal} onOpenChange={setShowSunlinkModal}>
-        <DialogContent>
+      <Dialog open={showSunlinkModal} onOpenChange={(open) => {
+        setShowSunlinkModal(open);
+        if (!open) {
+          setSunlinkStaffName('');
+          setSunlinkConfirmed(false);
+          setSelectedTanningOrder(null);
+        }
+      }}>
+        <DialogContent className="max-w-md">
           <DialogHeader>
-            <DialogTitle>Mark Order as Entered in Sunlink</DialogTitle>
+            <DialogTitle className="text-xl font-bold text-orange-900">
+              ☀️ Mark Order as Entered in Sunlink
+            </DialogTitle>
           </DialogHeader>
 
           <div className="space-y-4">
             {selectedTanningOrder && (
-              <div className="bg-orange-50 border border-orange-200 rounded p-4">
-                <div className="text-sm font-semibold text-orange-900 mb-2">Order Details:</div>
-                <div className="text-sm text-orange-800 space-y-1">
-                  <div><strong>Order #:</strong> {selectedTanningOrder.order_number}</div>
-                  <div><strong>Customer:</strong> {selectedTanningOrder.customer_name}</div>
-                  <div><strong>Phone:</strong> {selectedTanningOrder.customer_phone}</div>
-                  <div><strong>Bed:</strong> {selectedTanningOrder.level_label}</div>
-                  <div><strong>Package:</strong> {selectedTanningOrder.package_label}</div>
-                  <div><strong>Amount Paid:</strong> ${selectedTanningOrder.total?.toFixed(2)}</div>
+              <div className="bg-orange-50 border-2 border-orange-300 rounded-lg p-4">
+                <div className="text-sm font-bold text-orange-900 mb-3 flex items-center gap-2">
+                  <span className="text-lg">📋</span> Order Details
+                </div>
+                <div className="text-sm text-orange-900 space-y-2">
+                  <div className="flex justify-between">
+                    <span className="font-semibold">Order #:</span>
+                    <span className="font-mono">{selectedTanningOrder.order_number}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="font-semibold">Customer:</span>
+                    <span>{selectedTanningOrder.customer_name}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="font-semibold">Phone:</span>
+                    <span>{selectedTanningOrder.customer_phone}</span>
+                  </div>
+                  <div className="h-px bg-orange-300 my-2"></div>
+                  <div className="flex justify-between">
+                    <span className="font-semibold">Bed:</span>
+                    <span className="font-bold text-orange-700">{selectedTanningOrder.level_label}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="font-semibold">Package:</span>
+                    <span className="font-bold text-orange-700">{selectedTanningOrder.package_label}</span>
+                  </div>
+                  <div className="flex justify-between text-base">
+                    <span className="font-semibold">Amount Paid:</span>
+                    <span className="font-bold text-green-600">${selectedTanningOrder.total?.toFixed(2)}</span>
+                  </div>
                 </div>
               </div>
             )}
 
-            <div>
-              <label htmlFor="staff-name" className="block text-sm font-medium mb-2">
-                Staff Name (who entered this into Sunlink):
-              </label>
-              <Input
-                id="staff-name"
-                type="text"
-                value={sunlinkStaffName}
-                onChange={(e) => setSunlinkStaffName(e.target.value)}
-                placeholder="Enter your name"
-                className="w-full"
-                data-testid="sunlink-staff-name-input"
-              />
+            <div className="space-y-3 bg-gray-50 p-4 rounded-lg border">
+              <div>
+                <label htmlFor="staff-name" className="block text-sm font-bold mb-2 text-gray-900">
+                  Your Name: <span className="text-red-500">*</span>
+                </label>
+                <Input
+                  id="staff-name"
+                  type="text"
+                  value={sunlinkStaffName}
+                  onChange={(e) => setSunlinkStaffName(e.target.value)}
+                  placeholder="Enter your full name"
+                  className="w-full"
+                  data-testid="sunlink-staff-name-input"
+                  autoFocus
+                />
+                <p className="text-xs text-gray-500 mt-1">
+                  This will be recorded as who processed this order
+                </p>
+              </div>
+
+              <div className="flex items-start space-x-3 pt-2">
+                <Checkbox
+                  id="sunlink-confirm"
+                  checked={sunlinkConfirmed}
+                  onCheckedChange={setSunlinkConfirmed}
+                  className="mt-1"
+                  data-testid="sunlink-confirm-checkbox"
+                />
+                <label
+                  htmlFor="sunlink-confirm"
+                  className="text-sm font-medium leading-tight cursor-pointer"
+                >
+                  I confirm that I have entered this order into the Sunlink tanning system
+                </label>
+              </div>
+            </div>
+
+            <div className="bg-yellow-50 border border-yellow-300 rounded p-3">
+              <p className="text-xs text-yellow-900 font-semibold">
+                ⚠️ Warning: This action cannot be undone. Only confirm after successfully entering the order in Sunlink.
+              </p>
             </div>
           </div>
 
-          <DialogFooter>
+          <DialogFooter className="gap-2">
             <Button 
               variant="outline" 
-              onClick={() => {
-                setShowSunlinkModal(false);
-                setSunlinkStaffName('');
-                setSelectedTanningOrder(null);
-              }}
+              onClick={() => setShowSunlinkModal(false)}
+              className="flex-1"
             >
               Cancel
             </Button>
             <Button 
               onClick={handleMarkSunlinkEntered}
-              className="bg-orange-600 hover:bg-orange-700"
+              disabled={!sunlinkStaffName.trim() || !sunlinkConfirmed}
+              className="flex-1 bg-orange-600 hover:bg-orange-700 disabled:opacity-50 disabled:cursor-not-allowed"
               data-testid="sunlink-mark-entered-button"
             >
-              Confirm Entry
+              ✓ Confirm Entry
             </Button>
           </DialogFooter>
         </DialogContent>
