@@ -62,6 +62,114 @@ class OrderResponse(BaseModel):
     created_at: datetime
     payment_status: str
 
+async def send_order_notification_email(order_doc: dict):
+    """Send order notification email to staff"""
+    if not SENDGRID_AVAILABLE:
+        print("SendGrid not available, skipping email notification")
+        return
+    
+    sendgrid_api_key = os.environ.get('SENDGRID_API_KEY')
+    if not sendgrid_api_key:
+        print("SENDGRID_API_KEY not set, skipping email notification")
+        return
+    
+    staff_email = "eastendtanninglaundrynutrition@outlook.com"
+    from_email = os.environ.get('SENDGRID_FROM_EMAIL', 'noreply@eastendtanning.com')
+    
+    # Build order items HTML
+    items_html = ""
+    for item in order_doc['items']:
+        customizations = item.get('customizations', {})
+        custom_text = ""
+        if customizations:
+            custom_text = "<br><small style='color: #666;'>Customizations: " + ", ".join([f"{k}: {v}" for k, v in customizations.items()]) + "</small>"
+        
+        items_html += f"""
+        <tr>
+            <td style='padding: 8px; border-bottom: 1px solid #eee;'>{item['drink_name']} x{item['quantity']}{custom_text}</td>
+            <td style='padding: 8px; border-bottom: 1px solid #eee; text-align: right;'>${item['price'] * item['quantity']:.2f}</td>
+        </tr>
+        """
+    
+    # Format delivery method
+    delivery_method_display = order_doc['delivery_method'].replace('_', ' ').title()
+    
+    # Build email HTML
+    html_content = f"""
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body style='font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;'>
+        <div style='background: linear-gradient(135deg, #f5a623 0%, #f76b1c 100%); padding: 20px; border-radius: 8px 8px 0 0; text-align: center;'>
+            <h1 style='color: white; margin: 0;'>🥤 New Fizze Order!</h1>
+        </div>
+        
+        <div style='background: #f9f9f9; padding: 20px; border: 1px solid #ddd; border-radius: 0 0 8px 8px;'>
+            <h2 style='color: #f5a623; margin-top: 0;'>Order #{order_doc['order_number']}</h2>
+            <p style='font-size: 14px; color: #666;'>Received: {order_doc['created_at'].strftime('%B %d, %Y at %I:%M %p')}</p>
+            
+            <div style='background: white; padding: 15px; border-radius: 8px; margin: 20px 0;'>
+                <h3 style='margin-top: 0; color: #333;'>Customer Information</h3>
+                <p style='margin: 5px 0;'><strong>Name:</strong> {order_doc['customer_name']}</p>
+                <p style='margin: 5px 0;'><strong>Phone:</strong> {order_doc['customer_phone']}</p>
+                <p style='margin: 5px 0;'><strong>Email:</strong> {order_doc['customer_email']}</p>
+                <p style='margin: 5px 0;'><strong>Method:</strong> {delivery_method_display}</p>
+                {f"<p style='margin: 5px 0;'><strong>Address:</strong> {order_doc['delivery_address']}</p>" if order_doc.get('delivery_address') else ""}
+                {f"<p style='margin: 5px 0;'><strong>Special Instructions:</strong> {order_doc['special_instructions']}</p>" if order_doc.get('special_instructions') else ""}
+            </div>
+            
+            <div style='background: white; padding: 15px; border-radius: 8px; margin: 20px 0;'>
+                <h3 style='margin-top: 0; color: #333;'>Order Items</h3>
+                <table style='width: 100%; border-collapse: collapse;'>
+                    {items_html}
+                    <tr style='font-weight: bold;'>
+                        <td style='padding: 8px; padding-top: 15px;'>Subtotal</td>
+                        <td style='padding: 8px; padding-top: 15px; text-align: right;'>${order_doc['subtotal']:.2f}</td>
+                    </tr>
+                    <tr>
+                        <td style='padding: 8px;'>Tax</td>
+                        <td style='padding: 8px; text-align: right;'>${order_doc['tax']:.2f}</td>
+                    </tr>
+                    {f"<tr><td style='padding: 8px;'>Delivery Fee</td><td style='padding: 8px; text-align: right;'>${order_doc['delivery_fee']:.2f}</td></tr>" if order_doc['delivery_fee'] > 0 else ""}
+                    {f"<tr><td style='padding: 8px;'>Tip</td><td style='padding: 8px; text-align: right;'>${order_doc['tip_amount']:.2f}</td></tr>" if order_doc.get('tip_amount', 0) > 0 else ""}
+                    <tr style='font-weight: bold; font-size: 18px; border-top: 2px solid #333;'>
+                        <td style='padding: 8px; padding-top: 15px;'>Total</td>
+                        <td style='padding: 8px; padding-top: 15px; text-align: right; color: #f5a623;'>${order_doc['total']:.2f}</td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div style='background: #fff3cd; padding: 15px; border-radius: 8px; border-left: 4px solid #f5a623;'>
+                <p style='margin: 0; font-weight: bold;'>⏰ Estimated Ready: {order_doc['estimated_ready_time'].strftime('%I:%M %p')}</p>
+            </div>
+            
+            <p style='margin-top: 20px; font-size: 12px; color: #666; text-align: center;'>
+                This is an automated notification from Eastend Tanning & Laundry
+            </p>
+        </div>
+    </body>
+    </html>
+    """
+    
+    try:
+        message = Mail(
+            from_email=from_email,
+            to_emails=staff_email,
+            subject=f'New Fizze Order #{order_doc["order_number"]} - ${order_doc["total"]:.2f}',
+            html_content=html_content
+        )
+        
+        sg = SendGridAPIClient(sendgrid_api_key)
+        response = sg.send(message)
+        print(f"Order notification email sent successfully. Status: {response.status_code}")
+        return True
+    except Exception as e:
+        print(f"Failed to send order notification email: {e}")
+        return False
+
 def calculate_order_total(items: List[OrderItem], delivery_method: str, tip_amount: float = 0.0):
     """Calculate order total with tax and delivery fee"""
     subtotal = sum(item.price * item.quantity for item in items)
