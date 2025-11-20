@@ -1,22 +1,18 @@
 [
   {
-    "content": "Update tanning order data model to include Sunlink entry tracking fields",
-    "status": "completed"
+    "content": "Improve Sunlink modal with checkbox confirmation and better validation",
+    "status": "in_progress"
   },
   {
-    "content": "Create backend API endpoint to mark order as entered in Sunlink",
-    "status": "completed"
+    "content": "Add staff name dropdown or autocomplete",
+    "status": "pending"
   },
   {
-    "content": "Add UI in admin panel to mark orders and enter staff name",
-    "status": "completed"
+    "content": "Add production-ready validation and error handling",
+    "status": "pending"
   },
   {
-    "content": "Display Sunlink entry status in orders table",
-    "status": "completed"
-  },
-  {
-    "content": "Test the complete workflow with screenshots",
-    "status": "completed"
+    "content": "Test updated modal",
+    "status": "pending"
   }
 ]
