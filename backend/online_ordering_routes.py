@@ -140,6 +140,13 @@ async def create_order(order: OrderCreate):
     
     await db.fizze_orders.insert_one(order_doc)
     
+    # Send notification email to staff
+    try:
+        await send_order_notification_email(order_doc)
+    except Exception as e:
+        # Don't fail the order if email fails
+        print(f"Failed to send order notification email: {e}")
+    
     return OrderResponse(**order_doc)
 
 @router.get("/list", response_model=List[OrderResponse])
