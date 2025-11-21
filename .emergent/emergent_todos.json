@@ -1,18 +1,18 @@
 [
   {
     "content": "Check TanningCheckout.jsx for Matrix/Stand-Up bed options",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Separate Matrix and Stand-Up into distinct options",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Fix pricing for packages (especially Matrix/Stand-Up)",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Test checkout with screenshots showing separate beds",
-    "status": "pending"
+    "status": "in_progress"
   }
 ]
