@@ -41,8 +41,10 @@ LEVEL_LABELS = {
 PACKAGE_LABELS = {
     'single': 'Single Session',
     'five_pack': '5-Pack',
+    'six_pack': '6-Pack Special',
     'ten_pack': '10-Pack',
-    'month_unlimited': 'Monthly Unlimited'
+    'month_unlimited': 'Monthly Unlimited',
+    'vip_unlimited': 'VIP Unlimited'
 }
 
 class CreateTanningOrderRequest(BaseModel):
