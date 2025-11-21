@@ -1,19 +1,19 @@
 [
   {
     "content": "Update Matrix and Stand-Up pricing in backend",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Add Matrix Special package (6 tans for $100)",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Create downloadable receipt for orders",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Check email configuration and verify it's live",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Add Facebook/social media feed section to pages",
