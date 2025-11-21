@@ -17,7 +17,8 @@ const TANNING_PRICES = {
   'level2': { single: 12, five_pack: 55, ten_pack: 105, month_unlimited: 60 },
   'level3': { single: 14, five_pack: 65, ten_pack: 125, month_unlimited: 70 },
   'level4': { single: 16, five_pack: 75, ten_pack: 145, month_unlimited: 80 },
-  'matrix': { single: 18, five_pack: 85, ten_pack: 165, month_unlimited: 90 },
+  'matrix': { single: 18, six_pack: 100, ten_pack: 165, month_unlimited: 194.99, vip_unlimited: 174.99 },
+  'standup': { single: 15, six_pack: 90, ten_pack: 145, month_unlimited: 119.99, vip_unlimited: 85.99 },
   'wellness': { single: 20, five_pack: 95, ten_pack: 185, month_unlimited: 100 }
 };
 
