@@ -59,6 +59,75 @@ export default function Admin() {
   const [sunlinkStaffName, setSunlinkStaffName] = useState('');
   const [sunlinkConfirmed, setSunlinkConfirmed] = useState(false);
   
+  const generateReceipt = (order) => {
+    const receiptContent = `
+EASTEND TANNING & LAUNDRY
+818 Coshocton Ave, Mt Vernon, OH 43050
+Phone: (740) 397-9632
+Email: eastendtanninglaundrynutrition@outlook.com
+
+==========================================
+           ${order.order_type === 'tanning' ? 'TANNING' : 'FIZZE DRINKS'} ORDER RECEIPT
+==========================================
+
+Order #: ${order.order_number}
+Date: ${new Date(order.created_at).toLocaleString()}
+
+CUSTOMER INFORMATION:
+Name: ${order.customer_name}
+Phone: ${order.customer_phone}
+Email: ${order.customer_email}
+
+ORDER DETAILS:
+${order.order_type === 'tanning' ? `
+Bed Type: ${order.level_label}
+Package: ${order.package_label}
+
+PRICING:
+Subtotal:     $${order.subtotal?.toFixed(2)}
+Sales Tax:    $${order.sales_tax?.toFixed(2)}
+Tan Tax:      $${order.tan_tax?.toFixed(2)}
+-------------------------------------------
+TOTAL:        $${order.total?.toFixed(2)}
+
+PAYMENT STATUS: ${order.paid ? `PAID via ${order.payment_method || 'N/A'}` : 'NOT PAID'}
+${order.paid ? `Paid At: ${new Date(order.paid_at).toLocaleString()}` : ''}
+
+SUNLINK ENTRY: ${order.sunlink_entered ? `ENTERED by ${order.sunlink_entered_by} at ${new Date(order.sunlink_entered_at).toLocaleString()}` : 'NOT YET ENTERED'}
+` : `
+Items:
+${order.items?.map(item => `${item.quantity}x ${item.drink_name} @ $${item.price.toFixed(2)} = $${(item.quantity * item.price).toFixed(2)}`).join('\n')}
+
+PRICING:
+Subtotal:     $${order.subtotal?.toFixed(2)}
+Tax:          $${order.tax?.toFixed(2)}
+Delivery Fee: $${order.delivery_fee?.toFixed(2)}
+Tip:          $${order.tip_amount?.toFixed(2) || '0.00'}
+-------------------------------------------
+TOTAL:        $${order.total?.toFixed(2)}
+
+Delivery Method: ${order.delivery_method}
+Status: ${order.status}
+`}
+
+==========================================
+          Thank you for your business!
+==========================================
+`;
+    
+    // Create blob and download
+    const blob = new Blob([receiptContent], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `receipt_${order.order_number}_${new Date().toISOString().split('T')[0]}.txt`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+    toast.success('Receipt downloaded');
+  };
+  
   // Users state
   const [users, setUsers] = useState([]);
   const [showUserModal, setShowUserModal] = useState(false);
