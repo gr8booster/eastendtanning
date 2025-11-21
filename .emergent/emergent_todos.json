@@ -1,22 +1,18 @@
 [
   {
-    "content": "Update Matrix and Stand-Up pricing in backend",
-    "status": "completed"
+    "content": "Check TanningCheckout.jsx for Matrix/Stand-Up bed options",
+    "status": "in_progress"
   },
   {
-    "content": "Add Matrix Special package (6 tans for $100)",
-    "status": "completed"
+    "content": "Separate Matrix and Stand-Up into distinct options",
+    "status": "pending"
   },
   {
-    "content": "Create downloadable receipt for orders",
-    "status": "completed"
+    "content": "Fix pricing for packages (especially Matrix/Stand-Up)",
+    "status": "pending"
   },
   {
-    "content": "Check email configuration and verify it's live",
-    "status": "completed"
-  },
-  {
-    "content": "Add Facebook/social media feed section to pages",
+    "content": "Test checkout with screenshots showing separate beds",
     "status": "pending"
   }
 ]
