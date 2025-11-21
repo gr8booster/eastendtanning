@@ -27,15 +27,18 @@ const LEVELS = [
   { value: 'level2', label: 'Level 2 - Standard Bed' },
   { value: 'level3', label: 'Level 3 - Premium Bed' },
   { value: 'level4', label: 'Level 4 - High-Power Bed' },
-  { value: 'matrix', label: 'Matrix - Stand-Up Bed' },
+  { value: 'matrix', label: 'Matrix Bed' },
+  { value: 'standup', label: 'Stand-Up Bed' },
   { value: 'wellness', label: 'Wellness - Red Light Therapy' }
 ];
 
 const PACKAGES = [
   { value: 'single', label: 'Single Session' },
   { value: 'five_pack', label: '5-Pack' },
+  { value: 'six_pack', label: '6-Pack Special' },
   { value: 'ten_pack', label: '10-Pack' },
-  { value: 'month_unlimited', label: 'Monthly Unlimited' }
+  { value: 'month_unlimited', label: 'Monthly Unlimited' },
+  { value: 'vip_unlimited', label: 'VIP Unlimited' }
 ];
 
 export default function TanningCheckout() {
