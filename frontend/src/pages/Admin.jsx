@@ -915,7 +915,7 @@ Status: ${order.status}
                           <div className="text-xs text-muted-foreground">{order.customer_phone}</div>
                         </td>
                         <td className="px-4 py-3 text-sm">
-                          <div className="max-w-xs">
+                          <div className="max-w-xs space-y-2">
                             {order.order_type === 'fizze' ? (
                               order.items?.map((item, i) => (
                                 <div key={i} className="text-xs">
@@ -933,6 +933,14 @@ Status: ${order.status}
                                 </div>
                               </>
                             )}
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              onClick={() => generateReceipt(order)}
+                              className="text-xs"
+                            >
+                              📄 Download Receipt
+                            </Button>
                           </div>
                         </td>
                         <td className="px-4 py-3 text-sm font-semibold">${order.total.toFixed(2)}</td>
