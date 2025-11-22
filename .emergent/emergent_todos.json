@@ -1,11 +1,11 @@
 [
   {
     "content": "Route BlackFridayCheckout component in App.js",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Update BlackFridayPopup button to navigate to /black-friday-checkout",
-    "status": "pending"
+    "status": "in_progress"
   },
   {
     "content": "Create backend /api/tanning/black-friday-order endpoint with PayPal integration",
