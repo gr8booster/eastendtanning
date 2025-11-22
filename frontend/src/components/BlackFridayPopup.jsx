@@ -61,7 +61,7 @@ export function BlackFridayPopup() {
 
   const handleGetPass = () => {
     handleClose();
-    navigate('/tanning-checkout');
+    navigate('/black-friday-checkout');
   };
 
   if (!isOpen) return null;
