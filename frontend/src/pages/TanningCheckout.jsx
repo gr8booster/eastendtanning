@@ -252,6 +252,41 @@ export default function TanningCheckout() {
                   </SelectContent>
                 </Select>
               </div>
+              
+              {/* Black Friday BOGO Option */}
+              {isBlackFridayActive && (
+                <Card className="p-4 bg-gradient-to-r from-yellow-50 to-orange-50 border-2 border-yellow-400">
+                  <div className="flex items-start space-x-3">
+                    <Checkbox
+                      id="blackfriday"
+                      checked={blackFridayBOGO}
+                      onCheckedChange={setBlackFridayBOGO}
+                      className="mt-1"
+                    />
+                    <div className="flex-1">
+                      <Label
+                        htmlFor="blackfriday"
+                        className="text-base font-bold text-yellow-900 cursor-pointer flex items-center gap-2"
+                      >
+                        <Zap className="w-5 h-5 text-orange-600" />
+                        BLACK FRIDAY BOGO DEAL
+                        <Badge className="bg-gradient-to-r from-yellow-400 to-orange-500 text-black">
+                          Save ${TANNING_PRICES[selectedLevel]?.[selectedPackage] || 0}!
+                        </Badge>
+                      </Label>
+                      <p className="text-sm text-yellow-800 mt-1">
+                        Add $5 Black Friday Pass and get a SECOND package FREE! 
+                        {selectedPackage === 'month_unlimited' || selectedPackage === 'vip_unlimited' 
+                          ? ' (2 monthly packages for the price of 1 + $5)'
+                          : ' (2x packages for the price of 1 + $5)'}
+                      </p>
+                      <p className="text-xs text-yellow-700 mt-2">
+                        ✓ Valid through December 1st, 2025 • ✓ Same bed level, same package type
+                      </p>
+                    </div>
+                  </div>
+                </Card>
+              )}
             </div>
           </Card>
 
