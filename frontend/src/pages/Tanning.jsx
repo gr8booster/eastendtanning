@@ -7,7 +7,7 @@ import { Badge } from '../components/ui/badge';
 import { Check, Sparkles, Gift, Crown, Zap } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { SEOHead, createServiceSchema } from '../components/SEOHead';
-import { DealPopup } from '../components/DealPopup';
+// import { DealPopup } from '../components/DealPopup'; // Disabled for Black Friday
 import { EnhancedSEO } from '../components/EnhancedSEO';
 import { allFAQSchemas } from '../utils/faqSchemas';
 import { generateBreadcrumb } from '../utils/structuredData';
@@ -74,7 +74,7 @@ export default function Tanning() {
       />
 
       {/* Deal of the Month Popup */}
-      <DealPopup />
+      {/* <DealPopup /> Disabled for Black Friday */}
 
       {/* Hero - Why are they here? They want results! */}
       <div className="relative bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--secondary))] text-white py-20 overflow-hidden">
