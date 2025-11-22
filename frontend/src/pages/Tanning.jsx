@@ -12,6 +12,7 @@ import { EnhancedSEO } from '../components/EnhancedSEO';
 import { allFAQSchemas } from '../utils/faqSchemas';
 import { generateBreadcrumb } from '../utils/structuredData';
 import { eastendTanningSchema } from '../utils/businessSchemas';
+import { BlackFridayBadge } from '../components/BlackFridayBadge';
 
 const matrixPoster = "https://images.unsplash.com/photo-1540555700478-4be289fbecef?q=80&w=1200&auto=format&fit=crop";
 
