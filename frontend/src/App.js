@@ -30,7 +30,7 @@ import LotionsShop from './pages/LotionsShop';
 import FoodTruckStop from './pages/FoodTruckStop';
 import FoodTruckPayment from './pages/FoodTruckPayment';
 import { MaryWellChat } from './components/MaryWellChat';
-import { FirstTimeDiscountPopup } from './components/FirstTimeDiscountPopup';
+import { BlackFridayPopup } from './components/BlackFridayPopup';
 import { useEffect } from 'react';
 import { initGA, trackPageView } from './utils/analytics';
 import './App.css';
@@ -71,7 +71,7 @@ function App() {
           <SocialMediaBar />
           <LeadCaptureManager />
           <MaryWellChat />
-          <FirstTimeDiscountPopup />
+          <BlackFridayPopup />
           <main className="flex-1">
           <Routes>
             <Route path="/" element={<Home />} />
