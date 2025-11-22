@@ -333,16 +333,43 @@ export default function TanningCheckout() {
           </Card>
 
           {/* Order Summary */}
-          <Card className="p-6 bg-gradient-to-br from-amber-50 to-teal-50">
-            <h2 className="text-2xl font-bold mb-4">Order Summary</h2>
+          <Card className={`p-6 ${blackFridayBOGO ? 'bg-gradient-to-br from-yellow-50 to-orange-50 border-2 border-yellow-400' : 'bg-gradient-to-br from-amber-50 to-teal-50'}`}>
+            <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+              Order Summary
+              {blackFridayBOGO && (
+                <Badge className="bg-gradient-to-r from-yellow-400 to-orange-500 text-black">
+                  <Zap className="w-3 h-3 mr-1" />
+                  BLACK FRIDAY BOGO
+                </Badge>
+              )}
+            </h2>
             
             <div className="space-y-2 mb-4">
               <div className="flex justify-between">
                 <span>Package:</span>
                 <span className="font-semibold">
                   {LEVELS.find(l => l.value === selectedLevel)?.label} - {PACKAGES.find(p => p.value === selectedPackage)?.label}
+                  {blackFridayBOGO && ' x2 (BOGO!)'}
                 </span>
               </div>
+              
+              {blackFridayBOGO && (
+                <>
+                  <div className="flex justify-between">
+                    <span>First Package:</span>
+                    <span>${taxes.packagePrice}</span>
+                  </div>
+                  <div className="flex justify-between text-green-600 font-semibold">
+                    <span>Second Package (FREE!):</span>
+                    <span>-${taxes.savings}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span>Black Friday Pass:</span>
+                    <span>${taxes.blackFridayPass}</span>
+                  </div>
+                </>
+              )}
+              
               <div className="flex justify-between text-lg">
                 <span>Subtotal:</span>
                 <span>${taxes.subtotal}</span>
