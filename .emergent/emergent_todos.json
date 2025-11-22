@@ -5,11 +5,11 @@
   },
   {
     "content": "Add Black Friday pass purchase flow and tracking",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Add Black Friday badges to all pages",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Implement BOGO logic in checkout for monthly and minute packages",
@@ -21,7 +21,7 @@
   },
   {
     "content": "Update Mary AI with Black Friday promotion details",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Test Black Friday promotion end-to-end",
