@@ -9,7 +9,7 @@ import { toast } from 'sonner';
 export default function BlackFridaySuccess() {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-  const backendUrl = import.meta.env.REACT_APP_BACKEND_URL || process.env.REACT_APP_BACKEND_URL;
+  const backendUrl = process.env.REACT_APP_BACKEND_URL;
   
   const orderId = searchParams.get('order_id');
   const [order, setOrder] = useState(null);
