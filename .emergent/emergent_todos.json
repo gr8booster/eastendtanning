@@ -9,6 +9,10 @@
   },
   {
     "content": "Create backend /api/tanning/black-friday-order endpoint with PayPal integration",
+    "status": "completed"
+  },
+  {
+    "content": "Create Black Friday success page for payment return",
     "status": "in_progress"
   },
   {
