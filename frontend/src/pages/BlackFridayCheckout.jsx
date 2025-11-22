@@ -266,9 +266,10 @@ export default function BlackFridayCheckout() {
                 <Button
                   onClick={handleCheckout}
                   disabled={processing}
-                  className="w-full bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-black font-bold text-lg h-14 mt-6"
+                  className="w-full bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-black font-bold text-2xl h-20 mt-6 shadow-2xl transform hover:scale-105 transition-all duration-200 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                  type="button"
                 >
-                  {processing ? 'Processing...' : '🔒 Proceed to Payment'}
+                  {processing ? '⏳ Processing...' : '🔒 Complete Purchase with PayPal'}
                 </Button>
 
                 <p className="text-xs text-gray-400 text-center mt-2">
