@@ -25,6 +25,7 @@ import Coupon from './pages/Coupon';
 import TanningCheckout from './pages/TanningCheckout';
 import TanningReceipt from './pages/TanningReceipt';
 import BlackFridayCheckout from './pages/BlackFridayCheckout';
+import BlackFridaySuccess from './pages/BlackFridaySuccess';
 import UnifiedCheckout from './pages/UnifiedCheckout';
 import UnifiedReceipt from './pages/UnifiedReceipt';
 import LotionsShop from './pages/LotionsShop';
@@ -94,6 +95,7 @@ function App() {
             <Route path="/tanning-checkout" element={<TanningCheckout />} />
             <Route path="/tanning-receipt/:orderId" element={<TanningReceipt />} />
             <Route path="/black-friday-checkout" element={<BlackFridayCheckout />} />
+            <Route path="/black-friday-success" element={<BlackFridaySuccess />} />
             <Route path="/checkout" element={<UnifiedCheckout />} />
             <Route path="/receipt/:orderId" element={<UnifiedReceipt />} />
             <Route path="/lotions" element={<LotionsShop />} />
