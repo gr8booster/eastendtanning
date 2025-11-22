@@ -2,8 +2,8 @@ import { Badge } from './ui/badge';
 import { Zap } from 'lucide-react';
 
 export function BlackFridayBadge({ className = '' }) {
-  // Expiration date: December 1st, 2024
-  const EXPIRATION_DATE = new Date('2024-12-01T23:59:59');
+  // Expiration date: December 1st, 2025
+  const EXPIRATION_DATE = new Date('2025-12-01T23:59:59');
   const now = new Date();
   
   // Don't show if expired
