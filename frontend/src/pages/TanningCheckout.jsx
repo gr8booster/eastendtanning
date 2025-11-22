@@ -382,6 +382,15 @@ export default function TanningCheckout() {
                 <span>Tan Tax (10%):</span>
                 <span>${taxes.tanTax}</span>
               </div>
+              
+              {blackFridayBOGO && parseFloat(taxes.savings) > 0 && (
+                <div className="bg-green-900/20 border border-green-500 rounded-lg p-3 my-2">
+                  <div className="text-green-600 font-bold text-lg text-center">
+                    🎉 YOU SAVE ${taxes.savings}! 🎉
+                  </div>
+                </div>
+              )}
+              
               <div className="flex justify-between text-2xl font-bold border-t pt-2">
                 <span>Total:</span>
                 <span>${taxes.total}</span>
