@@ -22,8 +22,8 @@ export default function Home() {
     <div className="min-h-screen">
       {/* Enhanced SEO with FAQs and Structured Data */}
       <EnhancedSEO
-        title="Eastend Tanning and Laundry - Tanning Salon & Laundromat, Bubble Tea Shop, Knox County Ohio"
-        description="Eastend Tanning and Laundry - Your one-stop destination in Mt Vernon, OH. Professional tanning salon with 6 bed levels, full-service laundromat with wash-dry-fold, Fizze bubble tea with 52+ flavors, and Fast Nails salon. 818 Coshocton Ave, Knox County. Open daily 8am-7:30pm. Call (740) 397-9632."
+        title="BLACK FRIDAY BOGO Tanning | Eastend Tanning & Laundry | Mt Vernon, OH"
+        description="BLACK FRIDAY SPECIAL: Buy 1 Get 1 FREE tanning! $5 pass + any package = 2nd FREE (expires Dec 1, 2025). Professional tanning with 6 bed levels, laundromat, Fizze bubble tea, Fast Nails. 818 Coshocton Ave, Mt Vernon. Open 8am-7:30pm. (740) 397-9632."
         keywords="Eastend Tanning and Laundry, tanning salon Knox County, laundromat Mt Vernon, bubble tea shop Knox County, Fizze drinks Mt Vernon, nail salon Mt Vernon OH, 818 Coshocton Ave, Knox County Ohio, unlimited tanning, wash and fold laundry, Mt Vernon OH"
         canonicalUrl="https://eastend.website/"
         faqSchema={allFAQSchemas.home}
