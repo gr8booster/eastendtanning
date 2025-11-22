@@ -105,6 +105,285 @@ async def create_tanning_order(request: CreateTanningOrderRequest):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to create order: {str(e)}")
 
+
+class CreateBlackFridayOrderRequest(BaseModel):
+    """Request to create a Black Friday BOGO tanning order"""
+    level: str
+    package: str
+    customer_name: str
+    customer_email: str
+    customer_phone: str
+    packagePrice: float
+    blackFridayPass: float
+    subtotal: float
+    salesTax: float
+    tanTax: float
+    total: float
+    youSave: float
+    packageName: str
+    blackFridayDeal: bool = True
+
+@router.post("/api/tanning/black-friday-order")
+async def create_black_friday_order(request: CreateBlackFridayOrderRequest):
+    """
+    Create a Black Friday BOGO tanning order and return PayPal checkout URL
+    """
+    try:
+        order_id = str(uuid.uuid4())
+        order_code = f"BF-{uuid.uuid4().hex[:8].upper()}"
+        
+        # Create order document
+        order_doc = {
+            "order_id": order_id,
+            "order_code": order_code,
+            "level": request.level,
+            "level_label": LEVEL_LABELS.get(request.level, request.level),
+            "package": request.package,
+            "package_label": PACKAGE_LABELS.get(request.package, request.package),
+            "customer_name": request.customer_name,
+            "customer_email": request.customer_email,
+            "customer_phone": request.customer_phone,
+            "package_price": request.packagePrice,
+            "black_friday_pass": request.blackFridayPass,
+            "subtotal": request.subtotal,
+            "sales_tax": request.salesTax,
+            "tan_tax": request.tanTax,
+            "total": request.total,
+            "savings": request.youSave,
+            "package_name": request.packageName,
+            "black_friday_deal": True,
+            "created_at": datetime.now(timezone.utc),
+            "paid": False,
+            "paid_at": None,
+            "payment_method": None,
+            "redeemed": False,
+            "redeemed_at": None,
+            "sunlink_entered": False
+        }
+        
+        # Insert into database
+        await tanning_orders_collection.insert_one(order_doc)
+        
+        # Create PayPal order
+        import requests
+        import base64
+        
+        PAYPAL_CLIENT_ID = os.environ.get('PAYPAL_CLIENT_ID')
+        PAYPAL_CLIENT_SECRET = os.environ.get('PAYPAL_CLIENT_SECRET')
+        PAYPAL_API_BASE = "https://api-m.paypal.com"
+        
+        if not PAYPAL_CLIENT_ID or not PAYPAL_CLIENT_SECRET:
+            raise HTTPException(status_code=500, detail="PayPal credentials not configured")
+        
+        # Get PayPal access token
+        auth_string = f"{PAYPAL_CLIENT_ID}:{PAYPAL_CLIENT_SECRET}"
+        auth_bytes = auth_string.encode('ascii')
+        auth_base64 = base64.b64encode(auth_bytes).decode('ascii')
+        
+        token_headers = {
+            "Authorization": f"Basic {auth_base64}",
+            "Content-Type": "application/x-www-form-urlencoded"
+        }
+        
+        token_data = {"grant_type": "client_credentials"}
+        
+        token_response = requests.post(
+            f"{PAYPAL_API_BASE}/v1/oauth2/token",
+            headers=token_headers,
+            data=token_data
+        )
+        
+        if token_response.status_code != 200:
+            raise HTTPException(status_code=500, detail="Failed to authenticate with PayPal")
+        
+        access_token = token_response.json()["access_token"]
+        
+        # Get frontend URL for return/cancel URLs
+        backend_url = os.environ.get('REACT_APP_BACKEND_URL', 'http://localhost:8001')
+        frontend_url = backend_url.replace('/api', '') if '/api' in backend_url else backend_url
+        
+        # Create PayPal order
+        order_payload = {
+            "intent": "CAPTURE",
+            "purchase_units": [{
+                "reference_id": order_code,
+                "description": f"Black Friday BOGO - {request.packageName}",
+                "amount": {
+                    "currency_code": "USD",
+                    "value": f"{request.total:.2f}",
+                    "breakdown": {
+                        "item_total": {"currency_code": "USD", "value": f"{request.subtotal:.2f}"},
+                        "tax_total": {"currency_code": "USD", "value": f"{(request.salesTax + request.tanTax):.2f}"}
+                    }
+                },
+                "items": [{
+                    "name": f"{request.packageName} (BOGO)",
+                    "description": "Buy 1 Get 1 FREE",
+                    "unit_amount": {"currency_code": "USD", "value": f"{request.packagePrice:.2f}"},
+                    "quantity": "1"
+                }, {
+                    "name": "Black Friday Pass",
+                    "description": "$5 Special Pass",
+                    "unit_amount": {"currency_code": "USD", "value": f"{request.blackFridayPass:.2f}"},
+                    "quantity": "1"
+                }]
+            }],
+            "application_context": {
+                "brand_name": "Eastend Tanning & Laundry",
+                "landing_page": "BILLING",
+                "user_action": "PAY_NOW",
+                "return_url": f"{frontend_url}/black-friday-success?order_id={order_id}",
+                "cancel_url": f"{frontend_url}/black-friday-checkout?cancelled=true"
+            }
+        }
+        
+        order_headers = {
+            "Authorization": f"Bearer {access_token}",
+            "Content-Type": "application/json"
+        }
+        
+        order_response = requests.post(
+            f"{PAYPAL_API_BASE}/v2/checkout/orders",
+            headers=order_headers,
+            json=order_payload
+        )
+        
+        if order_response.status_code != 201:
+            raise HTTPException(
+                status_code=500, 
+                detail=f"Failed to create PayPal order: {order_response.text}"
+            )
+        
+        paypal_order = order_response.json()
+        paypal_order_id = paypal_order["id"]
+        
+        # Store PayPal order ID
+        await tanning_orders_collection.update_one(
+            {"order_id": order_id},
+            {"$set": {"paypal_order_id": paypal_order_id}}
+        )
+        
+        # Get approval URL
+        approve_link = None
+        for link in paypal_order.get("links", []):
+            if link["rel"] == "approve":
+                approve_link = link["href"]
+                break
+        
+        if not approve_link:
+            raise HTTPException(status_code=500, detail="PayPal approval link not found")
+        
+        # Send notification email (non-blocking)
+        try:
+            await send_tanning_order_notification_email(order_doc)
+        except Exception as e:
+            print(f"Failed to send Black Friday order notification: {e}")
+        
+        return {
+            "success": True,
+            "order_id": order_id,
+            "order_code": order_code,
+            "paypal_order_id": paypal_order_id,
+            "checkout_url": approve_link,
+            "total": request.total
+        }
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to create Black Friday order: {str(e)}")
+
+@router.post("/api/tanning/black-friday-capture/{order_id}")
+async def capture_black_friday_payment(order_id: str):
+    """
+    Capture PayPal payment after customer approval
+    Called from frontend after PayPal redirects back
+    """
+    try:
+        # Get order from database
+        order = await tanning_orders_collection.find_one({"order_id": order_id})
+        if not order:
+            raise HTTPException(status_code=404, detail="Order not found")
+        
+        paypal_order_id = order.get("paypal_order_id")
+        if not paypal_order_id:
+            raise HTTPException(status_code=400, detail="PayPal order ID not found")
+        
+        # Get PayPal credentials
+        import requests
+        import base64
+        
+        PAYPAL_CLIENT_ID = os.environ.get('PAYPAL_CLIENT_ID')
+        PAYPAL_CLIENT_SECRET = os.environ.get('PAYPAL_CLIENT_SECRET')
+        PAYPAL_API_BASE = "https://api-m.paypal.com"
+        
+        # Get access token
+        auth_string = f"{PAYPAL_CLIENT_ID}:{PAYPAL_CLIENT_SECRET}"
+        auth_bytes = auth_string.encode('ascii')
+        auth_base64 = base64.b64encode(auth_bytes).decode('ascii')
+        
+        token_headers = {
+            "Authorization": f"Basic {auth_base64}",
+            "Content-Type": "application/x-www-form-urlencoded"
+        }
+        
+        token_response = requests.post(
+            f"{PAYPAL_API_BASE}/v1/oauth2/token",
+            headers=token_headers,
+            data={"grant_type": "client_credentials"}
+        )
+        
+        if token_response.status_code != 200:
+            raise HTTPException(status_code=500, detail="PayPal authentication failed")
+        
+        access_token = token_response.json()["access_token"]
+        
+        # Capture the order
+        capture_headers = {
+            "Authorization": f"Bearer {access_token}",
+            "Content-Type": "application/json"
+        }
+        
+        capture_response = requests.post(
+            f"{PAYPAL_API_BASE}/v2/checkout/orders/{paypal_order_id}/capture",
+            headers=capture_headers
+        )
+        
+        if capture_response.status_code != 201:
+            raise HTTPException(
+                status_code=500,
+                detail=f"Failed to capture payment: {capture_response.text}"
+            )
+        
+        capture_data = capture_response.json()
+        
+        # Update order as paid
+        await tanning_orders_collection.update_one(
+            {"order_id": order_id},
+            {
+                "$set": {
+                    "paid": True,
+                    "paid_at": datetime.now(timezone.utc),
+                    "payment_method": "PayPal",
+                    "paypal_capture_id": capture_data["purchase_units"][0]["payments"]["captures"][0]["id"],
+                    "payer_email": capture_data.get("payer", {}).get("email_address")
+                }
+            }
+        )
+        
+        return {
+            "success": True,
+            "order_id": order_id,
+            "capture_id": capture_data["purchase_units"][0]["payments"]["captures"][0]["id"],
+            "status": "COMPLETED"
+        }
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to capture payment: {str(e)}")
+
+
 class MarkSunlinkEnteredRequest(BaseModel):
     """Request to mark order as entered in Sunlink"""
     order_id: str
