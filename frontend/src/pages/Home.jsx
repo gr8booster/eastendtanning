@@ -4,6 +4,7 @@ import { MapPin, Clock, Star, Mic, Phone } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
+import { BlackFridayBadge } from '../components/BlackFridayBadge';
 import { SEOHead, createLocalBusinessSchema } from '../components/SEOHead';
 import { EnhancedSEO } from '../components/EnhancedSEO';
 import { allFAQSchemas } from '../utils/faqSchemas';
