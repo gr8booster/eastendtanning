@@ -9,7 +9,7 @@ import { toast } from 'sonner';
 
 export default function BlackFridayCheckout() {
   const navigate = useNavigate();
-  const backendUrl = import.meta.env.REACT_APP_BACKEND_URL || process.env.REACT_APP_BACKEND_URL;
+  const backendUrl = process.env.REACT_APP_BACKEND_URL;
   
   const [selectedLevel, setSelectedLevel] = useState('');
   const [selectedPackage, setSelectedPackage] = useState('');
