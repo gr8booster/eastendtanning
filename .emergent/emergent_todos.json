@@ -13,11 +13,11 @@
   },
   {
     "content": "Create Black Friday success page for payment return",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Test complete Black Friday checkout flow (popup → checkout → payment)",
-    "status": "pending"
+    "status": "in_progress"
   },
   {
     "content": "Disable old DealPopup on all pages to prevent conflicts",
