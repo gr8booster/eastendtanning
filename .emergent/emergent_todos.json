@@ -4,23 +4,27 @@
     "status": "in_progress"
   },
   {
-    "content": "Add Black Friday pass purchase system ($5)",
+    "content": "Add Black Friday pass purchase flow and tracking",
     "status": "pending"
   },
   {
-    "content": "Add Black Friday badges to all tanning pages",
+    "content": "Add Black Friday badges to all pages",
     "status": "pending"
   },
   {
-    "content": "Implement BOGO logic for monthly tanning",
+    "content": "Implement BOGO logic in checkout for monthly and minute packages",
     "status": "pending"
   },
   {
-    "content": "Set expiration date (December 1st)",
+    "content": "Set expiration date (December 1st) and schedule removal",
     "status": "pending"
   },
   {
-    "content": "Test Black Friday promotion",
+    "content": "Update Mary AI with Black Friday promotion details",
+    "status": "pending"
+  },
+  {
+    "content": "Test Black Friday promotion end-to-end",
     "status": "pending"
   }
 ]
