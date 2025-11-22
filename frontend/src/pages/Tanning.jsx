@@ -63,8 +63,8 @@ export default function Tanning() {
     <div className="min-h-screen bg-muted">
       {/* Enhanced SEO with 8 FAQs and TanningSalon Schema */}
       <EnhancedSEO
-        title="Tanning Beds & Monthly Unlimited Packages – Eastend Tanning, Mt Vernon OH"
-        description="6 tanning bed levels including Matrix (40,740W), stand-up beds, and red light therapy at Eastend Tanning Mt Vernon. VIP Unlimited starts at $39.99/month. True unlimited tanning - no restrictions. Expert staff, premium lotions. 818 Coshocton Ave. Call (740) 397-9632."
+        title="Black Friday BOGO Tanning Deal - Buy 1 Get 1 FREE | Eastend Tanning"
+        description="BLACK FRIDAY SPECIAL: $5 pass + any tanning package = 2nd package FREE! Valid on all bed levels through Dec 1, 2025. Monthly unlimited from $60. Matrix Bed, Stand-Up, Red Light Therapy. Mt Vernon, OH."
         keywords="tanning beds Mt Vernon, Matrix tanning bed, monthly unlimited tanning, VIP tanning, red light therapy, stand up tanning bed, tanning salon Knox County, UV tanning, indoor tanning Mt Vernon OH, 818 Coshocton Ave"
         canonicalUrl="https://eastend.website/tanning"
         faqSchema={allFAQSchemas.tanning}
