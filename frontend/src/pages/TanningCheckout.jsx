@@ -64,16 +64,30 @@ export default function TanningCheckout() {
   };
 
   const calculateTaxes = () => {
-    const subtotal = getPrice();
+    const packagePrice = getPrice();
+    let subtotal = packagePrice;
+    let savings = 0;
+    let blackFridayPass = 0;
+    
+    // Add Black Friday BOGO logic
+    if (blackFridayBOGO && isBlackFridayActive) {
+      blackFridayPass = 5.00;
+      subtotal = packagePrice + blackFridayPass; // First package + $5 pass (second package FREE)
+      savings = packagePrice; // Customer saves the second package price
+    }
+    
     const salesTax = subtotal * 0.0725; // 7.25%
     const tanTax = subtotal * 0.10; // 10%
     const total = subtotal + salesTax + tanTax;
     
     return {
+      packagePrice: packagePrice.toFixed(2),
+      blackFridayPass: blackFridayPass.toFixed(2),
       subtotal: subtotal.toFixed(2),
       salesTax: salesTax.toFixed(2),
       tanTax: tanTax.toFixed(2),
-      total: total.toFixed(2)
+      total: total.toFixed(2),
+      savings: savings.toFixed(2)
     };
   };
 
