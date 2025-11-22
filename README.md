@@ -129,12 +129,12 @@ yarn start
 
 ## 🌐 Application URLs
 
-- **Frontend**: https://fizzedrinks.preview.emergentagent.com
-- **Backend API**: https://fizzedrinks.preview.emergentagent.com/api
-- **Admin Dashboard**: https://fizzedrinks.preview.emergentagent.com/admin
-- **API Documentation**: https://fizzedrinks.preview.emergentagent.com/docs
-- **Sitemap**: https://fizzedrinks.preview.emergentagent.com/sitemap.xml
-- **Robots.txt**: https://fizzedrinks.preview.emergentagent.com/robots.txt
+- **Frontend**: https://bogodeals.preview.emergentagent.com
+- **Backend API**: https://bogodeals.preview.emergentagent.com/api
+- **Admin Dashboard**: https://bogodeals.preview.emergentagent.com/admin
+- **API Documentation**: https://bogodeals.preview.emergentagent.com/docs
+- **Sitemap**: https://bogodeals.preview.emergentagent.com/sitemap.xml
+- **Robots.txt**: https://bogodeals.preview.emergentagent.com/robots.txt
 
 ## 🔐 Default Credentials
 
@@ -350,7 +350,7 @@ echo $MONGO_URL
 
 ```bash
 # Check service health
-curl https://fizzedrinks.preview.emergentagent.com/health
+curl https://bogodeals.preview.emergentagent.com/health
 
 # View real-time logs
 supervisorctl tail -f backend stderr

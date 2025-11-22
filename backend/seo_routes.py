@@ -9,7 +9,7 @@ import os
 
 router = APIRouter(tags=["seo"])
 
-BASE_URL = os.environ.get('APP_URL', 'https://fizzedrinks.preview.emergentagent.com')
+BASE_URL = os.environ.get('APP_URL', 'https://bogodeals.preview.emergentagent.com')
 
 # Define all public pages with priority and change frequency
 PUBLIC_PAGES = [
