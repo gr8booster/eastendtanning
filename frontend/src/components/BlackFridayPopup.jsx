@@ -149,10 +149,11 @@ export function BlackFridayPopup() {
             <div className="flex gap-2 w-full">
               <Button
                 onClick={handleGetPass}
-                className="flex-1 bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-black font-bold text-lg h-12"
+                className="flex-1 bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-black font-bold text-xl h-16 shadow-2xl transform hover:scale-105 transition-all duration-200 cursor-pointer"
                 data-testid="get-black-friday-pass-button"
+                type="button"
               >
-                🛒 Get $5 Pass Now
+                🛒 Get $5 Pass Now - Click Here!
               </Button>
             </div>
 
