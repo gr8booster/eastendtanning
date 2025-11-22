@@ -10,8 +10,8 @@ export function BlackFridayPopup() {
   const [timeRemaining, setTimeRemaining] = useState('');
   const navigate = useNavigate();
 
-  // Expiration date: December 1st, 2024, 11:59 PM
-  const EXPIRATION_DATE = new Date('2024-12-01T23:59:59');
+  // Expiration date: December 1st, 2025, 11:59 PM
+  const EXPIRATION_DATE = new Date('2025-12-01T23:59:59');
 
   useEffect(() => {
     // Check if popup was already shown
