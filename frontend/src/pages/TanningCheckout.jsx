@@ -103,6 +103,54 @@ export default function TanningCheckout() {
 
     try {
       const taxes = calculateTaxes();
+      
+      // Use Black Friday endpoint if BOGO is selected
+      if (blackFridayBOGO && isBlackFridayActive) {
+        const levelLabel = LEVELS.find(l => l.value === selectedLevel)?.label || '';
+        const packageLabel = PACKAGES.find(p => p.value === selectedPackage)?.label || '';
+        
+        const orderData = {
+          level: selectedLevel,
+          package: selectedPackage,
+          customer_name: customerInfo.name,
+          customer_email: customerInfo.email,
+          customer_phone: customerInfo.phone,
+          packagePrice: parseFloat(taxes.packagePrice),
+          blackFridayPass: parseFloat(taxes.blackFridayPass),
+          subtotal: parseFloat(taxes.subtotal),
+          salesTax: parseFloat(taxes.salesTax),
+          tanTax: parseFloat(taxes.tanTax),
+          total: parseFloat(taxes.total),
+          youSave: parseFloat(taxes.savings),
+          packageName: `${levelLabel} - ${packageLabel}`,
+          blackFridayDeal: true
+        };
+
+        const res = await fetch(`${backendUrl}/api/tanning/black-friday-order`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(orderData)
+        });
+
+        if (!res.ok) {
+          const errorData = await res.json();
+          throw new Error(errorData.detail || 'Failed to create Black Friday order');
+        }
+
+        const result = await res.json();
+        
+        // Redirect to PayPal
+        if (result.checkout_url) {
+          window.location.href = result.checkout_url;
+        } else {
+          toast.success('Order created!');
+          navigate('/black-friday-success?order_id=' + result.order_id);
+        }
+        
+        return;
+      }
+      
+      // Regular order (no Black Friday)
       const orderData = {
         level: selectedLevel,
         package: selectedPackage,
