@@ -5,7 +5,9 @@ import { Card } from '../components/ui/card';
 import { Label } from '../components/ui/label';
 import { Input } from '../components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../components/ui/select';
-import { ArrowLeft, ShoppingCart } from 'lucide-react';
+import { Checkbox } from '../components/ui/checkbox';
+import { Badge } from '../components/ui/badge';
+import { ArrowLeft, ShoppingCart, Zap } from 'lucide-react';
 import { toast } from 'sonner';
 import { SEOHead } from '../components/SEOHead';
 
