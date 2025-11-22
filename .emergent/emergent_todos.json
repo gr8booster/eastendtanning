@@ -1,18 +1,26 @@
 [
   {
-    "content": "Check TanningCheckout.jsx for Matrix/Stand-Up bed options",
-    "status": "completed"
+    "content": "Create Black Friday popup to replace 15% discount popup",
+    "status": "in_progress"
   },
   {
-    "content": "Separate Matrix and Stand-Up into distinct options",
-    "status": "completed"
+    "content": "Add Black Friday pass purchase system ($5)",
+    "status": "pending"
   },
   {
-    "content": "Fix pricing for packages (especially Matrix/Stand-Up)",
-    "status": "completed"
+    "content": "Add Black Friday badges to all tanning pages",
+    "status": "pending"
   },
   {
-    "content": "Test checkout with screenshots showing separate beds",
-    "status": "completed"
+    "content": "Implement BOGO logic for monthly tanning",
+    "status": "pending"
+  },
+  {
+    "content": "Set expiration date (December 1st)",
+    "status": "pending"
+  },
+  {
+    "content": "Test Black Friday promotion",
+    "status": "pending"
   }
 ]
