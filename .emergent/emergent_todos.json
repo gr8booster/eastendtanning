@@ -1,26 +1,22 @@
 [
   {
-    "content": "Remove conflicting first-time visitor popup (DealPopup)",
+    "content": "Route BlackFridayCheckout component in App.js",
     "status": "in_progress"
   },
   {
-    "content": "Create Black Friday checkout flow with auto $5 pass",
+    "content": "Update BlackFridayPopup button to navigate to /black-friday-checkout",
     "status": "pending"
   },
   {
-    "content": "Implement BOGO discount calculation in checkout",
+    "content": "Create backend /api/tanning/black-friday-order endpoint with PayPal integration",
     "status": "pending"
   },
   {
-    "content": "Add package selection UI for Black Friday deal",
+    "content": "Test complete Black Friday checkout flow (popup → checkout → payment)",
     "status": "pending"
   },
   {
-    "content": "Integrate payment processing for Black Friday orders",
-    "status": "pending"
-  },
-  {
-    "content": "Test complete Black Friday purchase flow",
+    "content": "Disable old DealPopup on all pages to prevent conflicts",
     "status": "pending"
   }
 ]
