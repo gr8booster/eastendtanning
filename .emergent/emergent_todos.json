@@ -5,11 +5,11 @@
   },
   {
     "content": "Update BlackFridayPopup button to navigate to /black-friday-checkout",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Create backend /api/tanning/black-friday-order endpoint with PayPal integration",
-    "status": "pending"
+    "status": "in_progress"
   },
   {
     "content": "Test complete Black Friday checkout flow (popup → checkout → payment)",
