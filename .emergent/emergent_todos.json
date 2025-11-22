@@ -1,26 +1,22 @@
 [
   {
-    "content": "Route BlackFridayCheckout component in App.js",
-    "status": "completed"
+    "content": "Make Black Friday badge on Tanning page clickable",
+    "status": "in_progress"
   },
   {
-    "content": "Update BlackFridayPopup button to navigate to /black-friday-checkout",
-    "status": "completed"
+    "content": "Add Black Friday banner to home page hero section",
+    "status": "pending"
   },
   {
-    "content": "Create backend /api/tanning/black-friday-order endpoint with PayPal integration",
-    "status": "completed"
+    "content": "Integrate Black Friday BOGO option into regular TanningCheckout",
+    "status": "pending"
   },
   {
-    "content": "Create Black Friday success page for payment return",
-    "status": "completed"
+    "content": "Add static SEO/AEO content about Black Friday deals",
+    "status": "pending"
   },
   {
-    "content": "Test complete Black Friday checkout flow (popup → checkout → payment)",
-    "status": "completed"
-  },
-  {
-    "content": "Disable old DealPopup on all pages to prevent conflicts",
-    "status": "completed"
+    "content": "Test complete Black Friday integration",
+    "status": "pending"
   }
 ]
