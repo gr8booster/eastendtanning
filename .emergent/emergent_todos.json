@@ -17,7 +17,7 @@
   },
   {
     "content": "Test complete Black Friday checkout flow (popup → checkout → payment)",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Disable old DealPopup on all pages to prevent conflicts",
