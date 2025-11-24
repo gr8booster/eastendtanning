@@ -113,8 +113,9 @@ Tip:          $${order.tip_amount?.toFixed(2) || '0.00'}
 -------------------------------------------
 TOTAL:        $${order.total?.toFixed(2)}
 
+PAYMENT STATUS: ${order.payment_method && order.payment_method !== 'cash_on_delivery' ? 'PAID ONLINE via ' + order.payment_method : 'CASH ON PICKUP/DELIVERY'}
 Delivery Method: ${order.delivery_method}
-Status: ${order.status}
+Order Status: ${order.status}
 `}
 
 ==========================================
