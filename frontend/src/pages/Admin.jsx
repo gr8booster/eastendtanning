@@ -53,11 +53,18 @@ export default function Admin() {
   
   // Orders state
   const [orders, setOrders] = useState([]);
-  const [ordersFilter, setOrdersFilter] = useState('all');
+  const [fizzeOrders, setFizzeOrders] = useState([]);
+  const [tanningOrders, setTanningOrders] = useState([]);
+  const [fizzeOrdersFilter, setFizzeOrdersFilter] = useState('all');
+  const [tanningOrdersFilter, setTanningOrdersFilter] = useState('all');
   const [showSunlinkModal, setShowSunlinkModal] = useState(false);
   const [selectedTanningOrder, setSelectedTanningOrder] = useState(null);
   const [sunlinkStaffName, setSunlinkStaffName] = useState('');
   const [sunlinkConfirmed, setSunlinkConfirmed] = useState(false);
+  
+  // Notifications state
+  const [newOrderNotification, setNewOrderNotification] = useState(null);
+  const [lastOrderCount, setLastOrderCount] = useState(0);
   
   const generateReceipt = (order) => {
     const receiptContent = `
