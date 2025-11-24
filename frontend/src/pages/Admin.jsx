@@ -898,6 +898,368 @@ Order Status: ${order.status}
             </Card>
           </TabsContent>
 
+          {/* Fizze Orders Tab */}
+          <TabsContent value="fizzeorders">
+            <Card className="p-6">
+              <div className="flex items-center justify-between mb-6">
+                <div>
+                  <h3 className="font-serif text-2xl font-bold flex items-center gap-2">
+                    🥤 Fizze Drinks Orders
+                  </h3>
+                  <p className="text-sm text-muted-foreground mt-1">Manage online drink orders - clearly see what to make</p>
+                </div>
+                <Select value={fizzeOrdersFilter} onValueChange={setFizzeOrdersFilter}>
+                  <SelectTrigger className="w-48" data-testid="fizze-orders-filter">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">All Orders</SelectItem>
+                    <SelectItem value="pending">Pending</SelectItem>
+                    <SelectItem value="confirmed">Confirmed</SelectItem>
+                    <SelectItem value="preparing">Preparing</SelectItem>
+                    <SelectItem value="ready">Ready</SelectItem>
+                    <SelectItem value="completed">Completed</SelectItem>
+                    <SelectItem value="cancelled">Cancelled</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div className="overflow-x-auto">
+                <table className="w-full" data-testid="fizze-orders-table">
+                  <thead className="bg-teal-50">
+                    <tr>
+                      <th className="px-4 py-3 text-left text-sm font-semibold">Order #</th>
+                      <th className="px-4 py-3 text-left text-sm font-semibold">Customer</th>
+                      <th className="px-4 py-3 text-left text-sm font-semibold">Items to Make</th>
+                      <th className="px-4 py-3 text-left text-sm font-semibold">Total</th>
+                      <th className="px-4 py-3 text-left text-sm font-semibold">Payment</th>
+                      <th className="px-4 py-3 text-left text-sm font-semibold">Status</th>
+                      <th className="px-4 py-3 text-left text-sm font-semibold">Date</th>
+                      <th className="px-4 py-3 text-left text-sm font-semibold">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {fizzeOrders.filter(order => fizzeOrdersFilter === 'all' || order.status === fizzeOrdersFilter).length > 0 ? 
+                      fizzeOrders.filter(order => fizzeOrdersFilter === 'all' || order.status === fizzeOrdersFilter).map((order, index) => (
+                      <tr key={order.id} className={index % 2 === 0 ? 'bg-white' : 'bg-teal-50/30'}>
+                        <td className="px-4 py-3 text-sm font-bold text-teal-700">{order.order_number}</td>
+                        <td className="px-4 py-3 text-sm">
+                          <div className="font-semibold">{order.customer_name}</div>
+                          <div className="text-xs text-muted-foreground">{order.customer_phone}</div>
+                          <div className="text-xs text-muted-foreground">{order.customer_email}</div>
+                        </td>
+                        <td className="px-4 py-3 text-sm">
+                          <div className="space-y-1 max-w-xs">
+                            {order.items?.map((item, i) => (
+                              <div key={i} className="bg-teal-100 border border-teal-300 rounded px-3 py-2">
+                                <div className="font-bold text-teal-900 text-base">
+                                  {item.quantity}x {item.drink_name}
+                                </div>
+                                {item.customizations && (
+                                  <div className="text-xs text-teal-700 mt-1">
+                                    {item.customizations}
+                                  </div>
+                                )}
+                                <div className="text-xs text-teal-600 mt-1">
+                                  ${item.price.toFixed(2)} each = ${(item.quantity * item.price).toFixed(2)}
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </td>
+                        <td className="px-4 py-3 text-sm">
+                          <div className="font-bold text-lg text-green-600">${order.total.toFixed(2)}</div>
+                          <div className="text-xs text-muted-foreground">
+                            {order.delivery_method === 'delivery' ? '🚗 Delivery' : '🏪 Pickup'}
+                          </div>
+                        </td>
+                        <td className="px-4 py-3 text-sm">
+                          {order.payment_method && order.payment_method !== 'cash_on_delivery' ? (
+                            <Badge className="bg-green-600 text-white">
+                              💳 Paid Online
+                            </Badge>
+                          ) : (
+                            <Badge className="bg-yellow-600 text-white">
+                              💵 Cash
+                            </Badge>
+                          )}
+                        </td>
+                        <td className="px-4 py-3 text-sm">
+                          <Badge 
+                            variant={
+                              order.status === 'completed' ? 'default' : 
+                              order.status === 'cancelled' ? 'destructive' : 
+                              order.status === 'ready' ? 'default' : 
+                              'secondary'
+                            }
+                            className={
+                              order.status === 'ready' ? 'bg-green-600' :
+                              order.status === 'preparing' ? 'bg-blue-600' :
+                              order.status === 'confirmed' ? 'bg-purple-600' : ''
+                            }
+                          >
+                            {order.status}
+                          </Badge>
+                        </td>
+                        <td className="px-4 py-3 text-sm text-muted-foreground">
+                          {new Date(order.created_at).toLocaleString()}
+                        </td>
+                        <td className="px-4 py-3 text-sm">
+                          <div className="space-y-2">
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              onClick={() => generateReceipt(order)}
+                              className="w-full text-xs"
+                            >
+                              📄 Receipt
+                            </Button>
+                            
+                            <div className="flex gap-1">
+                              {order.status === 'pending' && (
+                                <Button 
+                                  variant="outline" 
+                                  size="sm"
+                                  onClick={() => handleOrderStatusUpdate(order.id, 'confirmed')}
+                                  className="flex-1 bg-purple-50"
+                                >
+                                  ✓
+                                </Button>
+                              )}
+                              {order.status === 'confirmed' && (
+                                <Button 
+                                  variant="outline" 
+                                  size="sm"
+                                  onClick={() => handleOrderStatusUpdate(order.id, 'preparing')}
+                                  className="flex-1 bg-blue-50"
+                                >
+                                  🥤
+                                </Button>
+                              )}
+                              {order.status === 'preparing' && (
+                                <Button 
+                                  variant="outline" 
+                                  size="sm"
+                                  onClick={() => handleOrderStatusUpdate(order.id, 'ready')}
+                                  className="flex-1 bg-green-50"
+                                >
+                                  ✓
+                                </Button>
+                              )}
+                              {order.status === 'ready' && (
+                                <Button 
+                                  variant="outline" 
+                                  size="sm"
+                                  onClick={() => handleOrderStatusUpdate(order.id, 'completed')}
+                                  className="flex-1 bg-gray-50"
+                                >
+                                  Done
+                                </Button>
+                              )}
+                              {!['completed', 'cancelled'].includes(order.status) && (
+                                <Button 
+                                  variant="ghost" 
+                                  size="sm"
+                                  onClick={() => handleOrderStatusUpdate(order.id, 'cancelled')}
+                                >
+                                  <Trash2 className="w-4 h-4 text-destructive" />
+                                </Button>
+                              )}
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    )) : (
+                      <tr>
+                        <td colSpan="8" className="px-4 py-8 text-center text-muted-foreground">
+                          No Fizze orders yet. Orders will appear here when customers order online.
+                        </td>
+                      </tr>
+                    )}
+                  </tbody>
+                </table>
+              </div>
+            </Card>
+          </TabsContent>
+
+          {/* Tanning Orders Tab */}
+          <TabsContent value="tanningorders">
+            <Card className="p-6">
+              <div className="flex items-center justify-between mb-6">
+                <div>
+                  <h3 className="font-serif text-2xl font-bold flex items-center gap-2">
+                    ☀️ Tanning Package Orders
+                  </h3>
+                  <p className="text-sm text-muted-foreground mt-1">Manage tanning package orders and Sunlink entries</p>
+                </div>
+                <Select value={tanningOrdersFilter} onValueChange={setTanningOrdersFilter}>
+                  <SelectTrigger className="w-48" data-testid="tanning-orders-filter">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">All Orders</SelectItem>
+                    <SelectItem value="pending">Not Paid</SelectItem>
+                    <SelectItem value="paid">Paid</SelectItem>
+                    <SelectItem value="sunlink_pending">Sunlink Pending</SelectItem>
+                    <SelectItem value="completed">Completed</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div className="overflow-x-auto">
+                <table className="w-full" data-testid="tanning-orders-table">
+                  <thead className="bg-orange-50">
+                    <tr>
+                      <th className="px-4 py-3 text-left text-sm font-semibold">Order #</th>
+                      <th className="px-4 py-3 text-left text-sm font-semibold">Customer</th>
+                      <th className="px-4 py-3 text-left text-sm font-semibold">Package Details</th>
+                      <th className="px-4 py-3 text-left text-sm font-semibold">Total</th>
+                      <th className="px-4 py-3 text-left text-sm font-semibold">Payment</th>
+                      <th className="px-4 py-3 text-left text-sm font-semibold">Sunlink</th>
+                      <th className="px-4 py-3 text-left text-sm font-semibold">Date</th>
+                      <th className="px-4 py-3 text-left text-sm font-semibold">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {tanningOrders.filter(order => {
+                      if (tanningOrdersFilter === 'all') return true;
+                      if (tanningOrdersFilter === 'pending') return !order.paid;
+                      if (tanningOrdersFilter === 'paid') return order.paid;
+                      if (tanningOrdersFilter === 'sunlink_pending') return order.paid && !order.sunlink_entered;
+                      if (tanningOrdersFilter === 'completed') return order.paid && order.sunlink_entered;
+                      return true;
+                    }).length > 0 ? 
+                      tanningOrders.filter(order => {
+                        if (tanningOrdersFilter === 'all') return true;
+                        if (tanningOrdersFilter === 'pending') return !order.paid;
+                        if (tanningOrdersFilter === 'paid') return order.paid;
+                        if (tanningOrdersFilter === 'sunlink_pending') return order.paid && !order.sunlink_entered;
+                        if (tanningOrdersFilter === 'completed') return order.paid && order.sunlink_entered;
+                        return true;
+                      }).map((order, index) => (
+                      <tr key={order.order_id} className={index % 2 === 0 ? 'bg-white' : 'bg-orange-50/30'}>
+                        <td className="px-4 py-3 text-sm font-bold text-orange-700">{order.order_number}</td>
+                        <td className="px-4 py-3 text-sm">
+                          <div className="font-semibold">{order.customer_name}</div>
+                          <div className="text-xs text-muted-foreground">{order.customer_phone}</div>
+                          <div className="text-xs text-muted-foreground">{order.customer_email}</div>
+                        </td>
+                        <td className="px-4 py-3 text-sm">
+                          <div className="bg-orange-100 border border-orange-300 rounded px-3 py-2 space-y-1">
+                            <div className="font-bold text-orange-900">{order.level_label}</div>
+                            <div className="text-sm font-semibold text-orange-800">{order.package_label}</div>
+                            {order.black_friday_deal && (
+                              <Badge className="bg-yellow-500 text-black text-xs">
+                                ⚡ BLACK FRIDAY BOGO
+                              </Badge>
+                            )}
+                          </div>
+                        </td>
+                        <td className="px-4 py-3 text-sm">
+                          <div className="font-bold text-lg text-green-600">${order.total?.toFixed(2)}</div>
+                          {order.black_friday_deal && order.savings && (
+                            <div className="text-xs text-green-600">Saved: ${order.savings.toFixed(2)}</div>
+                          )}
+                        </td>
+                        <td className="px-4 py-3 text-sm">
+                          {order.paid ? (
+                            <div className="space-y-1">
+                              <Badge className="bg-green-600 text-white">
+                                ✅ Paid
+                              </Badge>
+                              {order.payment_method && (
+                                <div className="text-xs text-muted-foreground">
+                                  via {order.payment_method}
+                                </div>
+                              )}
+                            </div>
+                          ) : (
+                            <Badge className="bg-red-600 text-white">
+                              ❌ Not Paid
+                            </Badge>
+                          )}
+                        </td>
+                        <td className="px-4 py-3 text-sm">
+                          {order.sunlink_entered ? (
+                            <div className="bg-green-50 border border-green-300 rounded px-2 py-1">
+                              <div className="text-xs font-semibold text-green-900">✅ Entered</div>
+                              <div className="text-xs text-green-800">
+                                By: {order.sunlink_entered_by}
+                              </div>
+                            </div>
+                          ) : (
+                            <Badge variant="secondary">Pending</Badge>
+                          )}
+                        </td>
+                        <td className="px-4 py-3 text-sm text-muted-foreground">
+                          {new Date(order.created_at).toLocaleString()}
+                        </td>
+                        <td className="px-4 py-3 text-sm">
+                          <div className="space-y-2">
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              onClick={() => generateReceipt(order)}
+                              className="w-full text-xs"
+                            >
+                              📄 Receipt
+                            </Button>
+                            
+                            {!order.paid && (
+                              <Button
+                                size="sm"
+                                onClick={async () => {
+                                  try {
+                                    const paymentMethod = prompt('Payment method? (e.g., PayPal, Stripe, Cash)');
+                                    if (!paymentMethod) return;
+                                    
+                                    const res = await fetch(`${backendUrl}/api/tanning/mark-paid`, {
+                                      method: 'POST',
+                                      headers: { 'Content-Type': 'application/json', ...adminHeaders() },
+                                      body: JSON.stringify({ order_id: order.order_id, payment_method: paymentMethod })
+                                    });
+                                    if (!res.ok) throw new Error('Failed to mark as paid');
+                                    toast.success('Order marked as paid');
+                                    fetchDashboardData(true);
+                                  } catch (e) {
+                                    toast.error('Failed to update payment status');
+                                  }
+                                }}
+                                className="w-full bg-green-600 hover:bg-green-700 text-white"
+                              >
+                                ✓ Mark Paid
+                              </Button>
+                            )}
+                            
+                            {order.paid && !order.sunlink_entered && (
+                              <Button
+                                size="sm"
+                                onClick={() => {
+                                  setSelectedTanningOrder(order);
+                                  setShowSunlinkModal(true);
+                                }}
+                                className="w-full bg-orange-600 hover:bg-orange-700 text-white"
+                              >
+                                Enter in Sunlink
+                              </Button>
+                            )}
+                          </div>
+                        </td>
+                      </tr>
+                    )) : (
+                      <tr>
+                        <td colSpan="8" className="px-4 py-8 text-center text-muted-foreground">
+                          No tanning orders yet. Orders will appear here when customers purchase packages online.
+                        </td>
+                      </tr>
+                    )}
+                  </tbody>
+                </table>
+              </div>
+            </Card>
+          </TabsContent>
+
+
           {/* Orders Tab */}
           <TabsContent value="orders">
             <Card className="p-6">
