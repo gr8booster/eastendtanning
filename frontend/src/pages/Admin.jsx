@@ -1640,6 +1640,60 @@ Order Status: ${order.status}
           </DialogFooter>
         </DialogContent>
       </Dialog>
+
+      {/* New Order Notification Dialog */}
+      <Dialog open={!!newOrderNotification} onOpenChange={(open) => !open && setNewOrderNotification(null)}>
+        <DialogContent className="max-w-md border-4 border-yellow-400 shadow-2xl">
+          <DialogHeader>
+            <DialogTitle className="text-2xl font-bold text-center">
+              {newOrderNotification?.type === 'fizze' ? '🥤 NEW FIZZE ORDER!' : '☀️ NEW TANNING ORDER!'}
+            </DialogTitle>
+          </DialogHeader>
+
+          <div className="space-y-4">
+            <div className={`${newOrderNotification?.type === 'fizze' ? 'bg-teal-50 border-teal-400' : 'bg-orange-50 border-orange-400'} border-2 rounded-lg p-4 animate-pulse`}>
+              <div className="text-center mb-3">
+                <div className="text-4xl mb-2">{newOrderNotification?.type === 'fizze' ? '🥤' : '☀️'}</div>
+                <div className="text-xl font-bold">{newOrderNotification?.orderNumber}</div>
+              </div>
+              
+              <div className="space-y-2 text-sm">
+                <div className="flex justify-between">
+                  <span className="font-semibold">Customer:</span>
+                  <span className="font-bold">{newOrderNotification?.customerName}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="font-semibold">Total:</span>
+                  <span className="text-lg font-bold text-green-600">${newOrderNotification?.total?.toFixed(2)}</span>
+                </div>
+              </div>
+
+              {newOrderNotification?.type === 'fizze' && newOrderNotification?.items?.length > 0 && (
+                <div className="mt-3 pt-3 border-t border-teal-300">
+                  <div className="font-semibold text-xs mb-2">Items to Prepare:</div>
+                  {newOrderNotification.items.map((item, i) => (
+                    <div key={i} className="text-xs bg-white rounded px-2 py-1 mb-1">
+                      <strong>{item.quantity}x</strong> {item.drink_name}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <div className="text-center">
+              <Button 
+                onClick={() => {
+                  setNewOrderNotification(null);
+                  setActiveTab(newOrderNotification?.type === 'fizze' ? 'fizzeorders' : 'tanningorders');
+                }}
+                className="w-full bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-black font-bold text-lg h-12"
+              >
+                View Order Details →
+              </Button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
