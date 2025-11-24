@@ -1,34 +1,30 @@
 [
   {
-    "content": "Create separate Fizze Orders tab in Admin panel with clear item display",
+    "content": "Separate Fizze and Tanning orders into distinct tabs",
     "status": "in_progress"
   },
   {
-    "content": "Add downloadable receipt for Fizze orders with payment status",
+    "content": "Add Fizze order receipt generation with payment status",
     "status": "pending"
   },
   {
-    "content": "Create popup notifications in Admin for new Fizze orders",
+    "content": "Implement real-time order notifications with popups",
     "status": "pending"
   },
   {
-    "content": "Create popup notifications in Admin for new tanning orders",
+    "content": "Test Fizze orders tab displays correctly",
     "status": "pending"
   },
   {
-    "content": "Populate tanning order details to PayPal instructions field",
+    "content": "Test Tanning orders tab displays correctly",
     "status": "pending"
   },
   {
-    "content": "Update Eastend Laundry pricing (20lb=$4.5, 40lb=$6.5, 60lb=$7.5)",
-    "status": "completed"
+    "content": "Test receipt downloads work",
+    "status": "pending"
   },
   {
-    "content": "Add Westend marketing text about lowest pricing",
-    "status": "completed"
-  },
-  {
-    "content": "Test all new features",
+    "content": "Test notification popups appear",
     "status": "pending"
   }
 ]
