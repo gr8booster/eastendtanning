@@ -644,7 +644,7 @@ Status: ${order.status}
 
         {/* Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab} className="mb-8">
-          <TabsList className={`grid w-full mb-6`} style={{gridTemplateColumns: `repeat(${[canSeeTab('recommendations'), canSeeTab('campaigns'), canSeeTab('leads'), canSeeTab('discounts'), canSeeTab('lotions'), canSeeTab('voicecalls'), canSeeTab('fizze'), canSeeTab('orders'), canSeeTab('deals'), canSeeTab('marytraining'), canSeeTab('users'), canSeeTab('recipes')].filter(Boolean).length}, minmax(0, 1fr))`}}>
+          <TabsList className={`grid w-full mb-6`} style={{gridTemplateColumns: `repeat(${[canSeeTab('recommendations'), canSeeTab('campaigns'), canSeeTab('leads'), canSeeTab('discounts'), canSeeTab('lotions'), canSeeTab('voicecalls'), canSeeTab('fizze'), canSeeTab('orders'), canSeeTab('orders'), canSeeTab('deals'), canSeeTab('marytraining'), canSeeTab('users'), canSeeTab('recipes')].filter(Boolean).length}, minmax(0, 1fr))`}}>
             {canSeeTab('recommendations') && <TabsTrigger value="recommendations" className="text-sm">🤖 AI Recs ({recommendations.length})</TabsTrigger>}
             {canSeeTab('campaigns') && <TabsTrigger value="campaigns" className="text-sm">📢 Campaigns ({campaigns.length})</TabsTrigger>}
             {canSeeTab('leads') && <TabsTrigger value="leads" className="text-sm">📋 Leads ({leads.length})</TabsTrigger>}
