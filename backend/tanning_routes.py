@@ -202,12 +202,23 @@ async def create_black_friday_order(request: CreateBlackFridayOrderRequest):
         backend_url = os.environ.get('REACT_APP_BACKEND_URL', 'http://localhost:8001')
         frontend_url = backend_url.replace('/api', '') if '/api' in backend_url else backend_url
         
-        # Create PayPal order
+        # Create PayPal order with detailed instructions
+        order_instructions = (
+            f"ORDER DETAILS:\n"
+            f"Customer: {request.customer_name}\n"
+            f"Phone: {request.customer_phone}\n"
+            f"Email: {request.customer_email}\n"
+            f"Package: {request.packageName} (BOGO)\n"
+            f"Order Code: {order_code}\n"
+            f"Total: ${request.total:.2f}\n"
+            f"You Save: ${request.youSave:.2f}"
+        )
+        
         order_payload = {
             "intent": "CAPTURE",
             "purchase_units": [{
                 "reference_id": order_code,
-                "description": f"Black Friday BOGO - {request.packageName}",
+                "description": order_instructions[:127],  # PayPal has 127 char limit
                 "amount": {
                     "currency_code": "USD",
                     "value": f"{request.total:.2f}",
