@@ -1,7 +1,7 @@
 [
   {
     "content": "Separate Fizze and Tanning orders into distinct tabs",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Add Fizze order receipt generation with payment status",
@@ -9,11 +9,11 @@
   },
   {
     "content": "Implement real-time order notifications with popups",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Test Fizze orders tab displays correctly",
-    "status": "pending"
+    "status": "in_progress"
   },
   {
     "content": "Test Tanning orders tab displays correctly",
