@@ -13,18 +13,18 @@
   },
   {
     "content": "Test Fizze orders tab displays correctly",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Test Tanning orders tab displays correctly",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Test receipt downloads work",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Test notification popups appear",
-    "status": "pending"
+    "status": "completed"
   }
 ]
