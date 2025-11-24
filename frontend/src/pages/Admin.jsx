@@ -191,17 +191,44 @@ Status: ${order.status}
       setFizzeDrinks(Array.isArray(fizzeDrinksData) ? fizzeDrinksData : []);
       setDeliveryEnabled(orderSettings?.delivery_enabled ?? true);
       
-      // Combine Fizze and Tanning orders
-      const fizzeOrders = (Array.isArray(fizzeOrdersData) ? fizzeOrdersData : []).map(o => ({...o, order_type: 'fizze'}));
-      const tanningOrders = (Array.isArray(tanningOrdersData) ? tanningOrdersData : []).map(o => ({
+      // Separate Fizze and Tanning orders
+      const fizzeOrdersList = (Array.isArray(fizzeOrdersData) ? fizzeOrdersData : []).map(o => ({...o, order_type: 'fizze'}));
+      const tanningOrdersList = (Array.isArray(tanningOrdersData) ? tanningOrdersData : []).map(o => ({
         ...o,
         order_type: 'tanning',
         order_number: o.order_code,
         status: o.paid ? 'completed' : 'pending',
         total: o.total
       }));
-      const allOrders = [...fizzeOrders, ...tanningOrders].sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+      
+      setFizzeOrders(fizzeOrdersList.sort((a, b) => new Date(b.created_at) - new Date(a.created_at)));
+      setTanningOrders(tanningOrdersList.sort((a, b) => new Date(b.created_at) - new Date(a.created_at)));
+      
+      // Combined for legacy compatibility
+      const allOrders = [...fizzeOrdersList, ...tanningOrdersList].sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
       setOrders(allOrders);
+      
+      // Check for new orders and show notification
+      const totalCount = allOrders.length;
+      if (isBackgroundRefresh && totalCount > lastOrderCount) {
+        const newOrders = allOrders.slice(0, totalCount - lastOrderCount);
+        const newOrder = newOrders[0];
+        setNewOrderNotification({
+          type: newOrder.order_type,
+          orderNumber: newOrder.order_number || newOrder.order_code,
+          customerName: newOrder.customer_name,
+          total: newOrder.total,
+          items: newOrder.items || []
+        });
+        // Play notification sound
+        try {
+          const audio = new Audio('data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBSuBzvLZjTkIG2m98OScTgwOUKvo7rdfHQU7k9n0yH0vBSh+zPLaizsKG2W48OihUBELTKXh8bllHgU2jdXzxHswBSuBzvLZjDgIG2m88OSdTgwOUKvo7rdfHQU7k9n0yH0vBSh+zPLaizsKG2W48OihUBELTKXh8bllHgU2jdXzxHswBSuBzvLZjDgIG2m88OSdTg==');
+          audio.play();
+        } catch (e) {
+          console.log('Could not play notification sound');
+        }
+      }
+      setLastOrderCount(totalCount);
       
       setUsers(Array.isArray(usersData) ? usersData : []);
       setLastUpdated(new Date());
