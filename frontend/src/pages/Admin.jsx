@@ -652,7 +652,8 @@ Status: ${order.status}
             {canSeeTab('lotions') && <TabsTrigger value="lotions" className="text-sm" data-testid="lotions-tab">🧴 Lotions ({lotions.length})</TabsTrigger>}
             {canSeeTab('voicecalls') && <TabsTrigger value="voicecalls" className="text-sm" data-testid="voicecalls-tab"><Phone className="w-4 h-4 inline-block mr-1" />Calls ({voiceCalls.length})</TabsTrigger>}
             {canSeeTab('fizze') && <TabsTrigger value="fizze" className="text-sm" data-testid="fizze-tab"><Coffee className="w-4 h-4 inline-block mr-1" />Fizze ({fizzeDrinks.length})</TabsTrigger>}
-            {canSeeTab('orders') && <TabsTrigger value="orders" className="text-sm" data-testid="orders-tab">📦 Orders ({orders.length})</TabsTrigger>}
+            {canSeeTab('orders') && <TabsTrigger value="fizzeorders" className="text-sm" data-testid="fizze-orders-tab">🥤 Fizze Orders ({fizzeOrders.length})</TabsTrigger>}
+            {canSeeTab('orders') && <TabsTrigger value="tanningorders" className="text-sm" data-testid="tanning-orders-tab">☀️ Tanning Orders ({tanningOrders.length})</TabsTrigger>}
             {canSeeTab('deals') && <TabsTrigger value="deals" className="text-sm" data-testid="deals-tab">🎯 Deal of Month</TabsTrigger>}
             {canSeeTab('marytraining') && <TabsTrigger value="marytraining" className="text-sm" data-testid="marytraining-tab">🤖 Mary Training</TabsTrigger>}
             {canSeeTab('users') && <TabsTrigger value="users" className="text-sm" data-testid="users-tab"><Users className="w-4 h-4 inline-block mr-1" />Users ({users.length})</TabsTrigger>}
