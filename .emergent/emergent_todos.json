@@ -5,11 +5,11 @@
   },
   {
     "content": "Add Fizze order receipt generation with payment status",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Implement real-time order notifications with popups",
-    "status": "pending"
+    "status": "in_progress"
   },
   {
     "content": "Test Fizze orders tab displays correctly",
