@@ -122,11 +122,11 @@ export default function Laundry() {
                   <div className="space-y-1 text-sm">
                     <div className="flex items-center justify-between">
                       <span>20 lb washers</span>
-                      <span className="font-bold">$4.00</span>
+                      <span className="font-bold">$4.50</span>
                     </div>
                     <div className="flex items-center justify-between">
                       <span>40 lb washers</span>
-                      <span className="font-bold">$5.50</span>
+                      <span className="font-bold">$6.50</span>
                     </div>
                     <div className="flex items-center justify-between">
                       <span>60 lb washers</span>
@@ -158,9 +158,14 @@ export default function Laundry() {
           </Card>
 
           {/* Westend */}
-          <Card className="p-8 hover:shadow-xl transition-shadow">
+          <Card className="p-8 hover:shadow-xl transition-shadow border-2 border-green-500">
             <div className="flex items-center justify-between mb-6">
-              <h3 className="font-serif text-3xl font-bold">Westend Location</h3>
+              <div>
+                <h3 className="font-serif text-3xl font-bold">Westend Location</h3>
+                <Badge className="mt-2 bg-green-600 text-white text-sm">
+                  🏆 Lowest Laundry Pricing in Mt Vernon, Ohio
+                </Badge>
+              </div>
               <Badge variant="secondary">
                 <Coins className="w-4 h-4 mr-1" />
                 Self-Service
