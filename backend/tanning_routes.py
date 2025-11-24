@@ -218,7 +218,9 @@ async def create_black_friday_order(request: CreateBlackFridayOrderRequest):
             "intent": "CAPTURE",
             "purchase_units": [{
                 "reference_id": order_code,
+                "custom_id": f"{order_code}|{request.customer_name}|{request.customer_phone}",
                 "description": order_instructions[:127],  # PayPal has 127 char limit
+                "soft_descriptor": f"EASTEND-{order_code[:10]}",
                 "amount": {
                     "currency_code": "USD",
                     "value": f"{request.total:.2f}",
