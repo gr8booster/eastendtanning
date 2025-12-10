@@ -6,6 +6,9 @@ import { Card } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
 import { SEOHead } from '../components/SEOHead';
 import { StaticFallback } from '../components/StaticFallback';
+import { FacebookFeed } from '../components/FacebookFeed';
+import { ReviewSubmission } from '../components/ReviewSubmission';
+import { PublicReviews } from '../components/PublicReviews';
 import { EnhancedSEO } from '../components/EnhancedSEO';
 import { allFAQSchemas } from '../utils/faqSchemas';
 import { generateBreadcrumb } from '../utils/structuredData';
@@ -410,6 +413,43 @@ export default function Drinks() {
             </div>
           </motion.div>
         )}
+
+        {/* Facebook Feed Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="mt-16"
+        >
+          <h2 className="font-serif text-3xl sm:text-4xl font-bold mb-8 text-center">Latest from Fizze Drinks</h2>
+          <div className="flex justify-center">
+            <FacebookFeed 
+              pageUrl="https://www.facebook.com/share/1AsxupQfG8/" 
+              pageName="Fizze Drinks"
+            />
+          </div>
+        </motion.div>
+
+        {/* Customer Reviews Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="mt-16 bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl p-8"
+        >
+          <h2 className="font-serif text-3xl sm:text-4xl font-bold mb-8 text-center">Fizze Customer Reviews</h2>
+          
+          <div className="grid lg:grid-cols-2 gap-8">
+            {/* Public Reviews Display */}
+            <div>
+              <h3 className="font-bold text-xl mb-6">Recent 5-Star Reviews</h3>
+              <PublicReviews businessLocation="fizze" limit={5} />
+            </div>
+            
+            {/* Review Submission Form */}
+            <div>
+              <ReviewSubmission defaultLocation="fizze" />
+            </div>
+          </div>
+        </motion.div>
 
         {/* Local CTA Section */}
         <motion.div
