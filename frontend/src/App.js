@@ -8,6 +8,7 @@ import { LeadCaptureManager } from './components/LeadCaptureManager';
 import Home from './pages/Home';
 import Tanning from './pages/Tanning';
 import Laundry from './pages/Laundry';
+import WestendLaundry from './pages/WestendLaundry';
 import Drinks from './pages/Drinks';
 import Nails from './pages/Nails';
 import Locations from './pages/Locations';
