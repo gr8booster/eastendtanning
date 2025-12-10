@@ -1699,6 +1699,101 @@ Order Status: ${order.status}
               </div>
             </Card>
           </TabsContent>
+
+
+          {/* Reviews Management Tab */}
+          <TabsContent value="reviews">
+            <Card className="p-6">
+              <div className="flex items-center justify-between mb-6">
+                <div>
+                  <h3 className="font-serif text-2xl font-bold flex items-center gap-2">
+                    ⭐ Review Management
+                  </h3>
+                  <p className="text-sm text-muted-foreground mt-1">AI-powered customer review resolution system</p>
+                </div>
+                <Badge variant="secondary" className="text-lg px-4 py-2">
+                  {pendingReviews.length} Pending
+                </Badge>
+              </div>
+
+              {pendingReviews.length === 0 ? (
+                <div className="text-center py-12 bg-green-50 rounded-lg">
+                  <p className="text-xl font-semibold text-green-800">✓ All reviews resolved!</p>
+                  <p className="text-muted-foreground mt-2">No pending customer issues at this time.</p>
+                </div>
+              ) : (
+                <div className="space-y-6">
+                  {pendingReviews.map((review) => (
+                    <Card key={review.review_id} className="p-6 border-2 border-amber-400 bg-amber-50">
+                      <div className="flex items-start justify-between mb-4">
+                        <div>
+                          <h4 className="font-bold text-lg">{review.customer_name}</h4>
+                          <p className="text-sm text-muted-foreground">{review.customer_email}</p>
+                          <div className="flex gap-1 mt-2">
+                            {[...Array(5)].map((_, i) => (
+                              <span key={i} className={`text-2xl ${i < review.rating ? 'text-yellow-400' : 'text-gray-300'}`}>
+                                ★
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                        <div className="text-right">
+                          <Badge className="mb-2">{review.business_location}</Badge>
+                          <p className="text-xs text-muted-foreground">
+                            {new Date(review.created_at).toLocaleString()}
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="bg-white rounded-lg p-4 mb-4">
+                        <p className="font-semibold mb-2">Customer Review:</p>
+                        <p className="text-muted-foreground">{review.review_text}</p>
+                      </div>
+
+                      {review.ai_conversation && review.ai_conversation.length > 0 && (
+                        <div className="space-y-3">
+                          <p className="font-semibold">AI Conversation:</p>
+                          {review.ai_conversation.map((msg, i) => (
+                            <div key={i} className={`p-3 rounded-lg ${msg.role === 'ai' ? 'bg-blue-100' : 'bg-white'}`}>
+                              <p className="text-xs font-semibold mb-1">
+                                {msg.role === 'ai' ? '🤖 AI Assistant' : '👤 Customer'}
+                              </p>
+                              <p className="text-sm">{msg.message}</p>
+                              <p className="text-xs text-muted-foreground mt-1">
+                                {new Date(msg.timestamp).toLocaleString()}
+                              </p>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+
+                      <div className="mt-4 pt-4 border-t flex gap-2">
+                        <Button
+                          size="sm"
+                          onClick={() => window.open(`mailto:${review.customer_email}?subject=Re: Your Review at ${review.business_location}`, '_blank')}
+                          className="flex-1"
+                        >
+                          📧 Email Customer
+                        </Button>
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          onClick={() => {
+                            navigator.clipboard.writeText(review.customer_email);
+                            toast.success('Email copied to clipboard');
+                          }}
+                          className="flex-1"
+                        >
+                          📋 Copy Email
+                        </Button>
+                      </div>
+                    </Card>
+                  ))}
+                </div>
+              )}
+            </Card>
+          </TabsContent>
+
         </Tabs>
       </div>
 
