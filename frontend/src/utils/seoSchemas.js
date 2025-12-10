@@ -113,7 +113,7 @@ export const westendLaundrySchema = {
     "closes": "23:59"
   },
   "sameAs": [
-    "https://www.facebook.com/profile.php?id=100063538993608",
+    "https://www.facebook.com/share/1C5G9Z4gi8/",
     "https://www.google.com/maps/place/3024+Coshocton+Rd,+Mt+Vernon,+OH+43050"
   ],
   "servicesOffered": [
