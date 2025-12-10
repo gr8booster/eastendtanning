@@ -151,7 +151,7 @@ export const foodEstablishmentSchema = {
     "closes": "19:30"
   },
   "sameAs": [
-    "https://www.facebook.com/fizzedrinks"
+    "https://www.facebook.com/profile.php?id=100063538993608"
   ]
 };
 
