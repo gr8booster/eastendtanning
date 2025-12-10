@@ -63,10 +63,10 @@ export default function Tanning() {
 
   return (
     <div className="min-h-screen bg-muted">
-      {/* Enhanced SEO with 8 FAQs and TanningSalon Schema */}
-      <EnhancedSEO
-        title="Black Friday BOGO Tanning Deal - Buy 1 Get 1 FREE | Eastend Tanning"
-        description="BLACK FRIDAY SPECIAL: $5 pass + any tanning package = 2nd package FREE! Valid on all bed levels through Dec 1, 2025. Monthly unlimited from $60. Matrix Bed, Stand-Up, Red Light Therapy. Mt Vernon, OH."
+      <StaticFallback page="tanning" />
+      <SEOHead
+        title="Best Tanning Salon Mt Vernon Ohio - 6 Bed Levels | Eastend Tanning"
+        description="Eastend Tanning - Mt Vernon's best tanning salon with 6 bed levels including 40,740W Matrix Bed, Stand-Up, and red light therapy. Monthly unlimited from $60. Black Friday BOGO! 818 Coshocton Ave. (740) 397-9632."
         keywords="tanning beds Mt Vernon, Matrix tanning bed, monthly unlimited tanning, VIP tanning, red light therapy, stand up tanning bed, tanning salon Knox County, UV tanning, indoor tanning Mt Vernon OH, 818 Coshocton Ave"
         canonicalUrl="https://eastend.website/tanning"
         faqSchema={allFAQSchemas.tanning}
