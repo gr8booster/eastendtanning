@@ -66,6 +66,9 @@ export default function Admin() {
   const [newOrderNotification, setNewOrderNotification] = useState(null);
   const [lastOrderCount, setLastOrderCount] = useState(0);
   
+  // Reviews state
+  const [pendingReviews, setPendingReviews] = useState([]);
+  
   const generateReceipt = (order) => {
     const receiptContent = `
 EASTEND TANNING & LAUNDRY
