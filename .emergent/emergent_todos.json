@@ -1,22 +1,42 @@
 [
   {
-    "content": "Update all Facebook/Instagram links with correct URLs",
+    "content": "Integrate Facebook feed and reviews on Home page",
     "status": "completed"
   },
   {
-    "content": "Create Facebook feed hero sections for all business pages",
+    "content": "Integrate Facebook feed and reviews on Tanning page",
+    "status": "completed"
+  },
+  {
+    "content": "Integrate Facebook feed and reviews on Laundry page",
     "status": "in_progress"
   },
   {
-    "content": "Build customer review submission system",
-    "status": "completed"
+    "content": "Integrate Facebook feed and reviews on Westend Laundry page",
+    "status": "pending"
   },
   {
-    "content": "Create AI review management agent",
-    "status": "completed"
+    "content": "Integrate Facebook feed and reviews on Drinks page (Fizze)",
+    "status": "pending"
   },
   {
-    "content": "Add review management tab to admin dashboard",
-    "status": "completed"
+    "content": "Integrate Facebook feed and reviews on Nails page",
+    "status": "pending"
+  },
+  {
+    "content": "Verify frontend compiles without errors",
+    "status": "pending"
+  },
+  {
+    "content": "Restart services to load new code",
+    "status": "pending"
+  },
+  {
+    "content": "Test complete review flow end-to-end",
+    "status": "pending"
+  },
+  {
+    "content": "Take screenshots to verify Facebook feeds and reviews display",
+    "status": "pending"
   }
 ]
