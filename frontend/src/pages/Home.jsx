@@ -387,6 +387,81 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+
+      {/* Latest Stories from Blog */}
+      {blogPosts.length > 0 && (
+        <section className="py-16 bg-gradient-to-br from-amber-50 to-orange-50">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-10 max-w-[1200px]">
+            <div className="text-center mb-12">
+              <Badge className="mb-4 bg-orange-600 text-white text-lg px-6 py-2">
+                <BookOpen className="w-5 h-5 inline mr-2" />
+                Latest Stories
+              </Badge>
+              <h2 className="font-serif text-3xl md:text-4xl font-bold mb-4">People of Eastend Blog</h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                Stories from our Mt Vernon community, tanning tips, and local highlights
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8 mb-8">
+              {blogPosts.map((post) => (
+                <Card key={post.id || post._id} className="overflow-hidden hover:shadow-xl transition-shadow">
+                  {post.featured_image && (
+                    <div className="aspect-video overflow-hidden">
+                      <img 
+                        src={post.featured_image} 
+                        alt={post.title}
+                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                        loading="lazy"
+                      />
+                    </div>
+                  )}
+                  <div className="p-6">
+                    <h3 className="font-bold text-xl mb-3 line-clamp-2">{post.title}</h3>
+                    <p className="text-muted-foreground mb-4 line-clamp-3">
+                      {post.excerpt || post.content?.substring(0, 150) + '...'}
+                    </p>
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm text-muted-foreground">
+                        {new Date(post.created_at || post.date).toLocaleDateString()}
+                      </span>
+                      <Link to={`/blog/${post.slug}`}>
+                        <Button variant="ghost" size="sm" className="text-orange-600 hover:text-orange-700">
+                          Read More <ArrowRight className="w-4 h-4 ml-1" />
+                        </Button>
+                      </Link>
+                    </div>
+                  </div>
+                </Card>
+              ))}
+            </div>
+
+            <div className="text-center">
+              <Link to="/blog">
+                <Button size="lg" className="bg-orange-600 hover:bg-orange-700 text-white font-bold">
+                  View All Stories
+                </Button>
+              </Link>
+            </div>
+
+            {/* SEO Fallback for Blog Posts */}
+            <noscript>
+              <div className="mt-8 space-y-4">
+                <h3 className="font-bold text-xl">Recent Blog Posts:</h3>
+                {blogPosts.map((post) => (
+                  <div key={post.id || post._id}>
+                    <h4><a href={`/blog/${post.slug}`}>{post.title}</a></h4>
+                    <p>{post.excerpt || post.content?.substring(0, 150)}</p>
+                    <p className="text-sm">Published: {new Date(post.created_at || post.date).toLocaleDateString()}</p>
+                  </div>
+                ))}
+              </div>
+            </noscript>
+          </div>
+        </section>
+      )}
+
     </div>
   );
 }
