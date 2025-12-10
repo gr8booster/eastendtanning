@@ -4,6 +4,9 @@ import { Button } from '../components/ui/button';
 import { MapPin, Clock, DollarSign, Shield, Star } from 'lucide-react';
 import { EnhancedSEO } from '../components/EnhancedSEO';
 import { StaticFallback } from '../components/StaticFallback';
+import { FacebookFeed } from '../components/FacebookFeed';
+import { ReviewSubmission } from '../components/ReviewSubmission';
+import { PublicReviews } from '../components/PublicReviews';
 import { westendLaundrySchema, createFAQSchema } from '../utils/seoSchemas';
 import { Link } from 'react-router-dom';
 
@@ -179,6 +182,39 @@ export default function WestendLaundry() {
                 <p className="text-muted-foreground">{faq.answer}</p>
               </Card>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Facebook Feed Section */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4 max-w-[1200px]">
+          <h2 className="font-serif text-3xl sm:text-4xl font-bold mb-8 text-center">Latest from Westend Laundry</h2>
+          <div className="flex justify-center">
+            <FacebookFeed 
+              pageUrl="https://www.facebook.com/share/1C5G9Z4gi8/" 
+              pageName="Westend Laundry"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Customer Reviews Section */}
+      <section className="py-16 bg-gradient-to-br from-green-50 to-teal-50">
+        <div className="container mx-auto px-4 max-w-[1200px]">
+          <h2 className="font-serif text-3xl sm:text-4xl font-bold mb-8 text-center">Westend Customer Reviews</h2>
+          
+          <div className="grid lg:grid-cols-2 gap-8">
+            {/* Public Reviews Display */}
+            <div>
+              <h3 className="font-bold text-xl mb-6">Recent 5-Star Reviews</h3>
+              <PublicReviews businessLocation="westend" limit={5} />
+            </div>
+            
+            {/* Review Submission Form */}
+            <div>
+              <ReviewSubmission defaultLocation="westend" />
+            </div>
           </div>
         </div>
       </section>
