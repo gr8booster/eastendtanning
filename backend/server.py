@@ -115,6 +115,7 @@ app.include_router(user_router)  # Include user management routes
 app.include_router(ordering_router)  # Include Fizze online ordering routes
 app.include_router(coupon_router)  # Include coupon/reservation routes
 app.include_router(paypal_router)  # Include PayPal Orders API routes
+app.include_router(review_router)  # Include review routes
 app.include_router(tanning_router)  # Include tanning package ordering routes
 app.include_router(customer_router)  # Include customer profile routes
 app.include_router(cart_router)  # Include unified cart routes
