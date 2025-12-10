@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
 import { ServiceCard } from '../components/ServiceCard';
-import { MapPin, Clock, Star, Mic, Phone, Award, Users, Shield } from 'lucide-react';
+import { MapPin, Clock, Star, Mic, Phone, Award, Users, Shield, BookOpen, ArrowRight } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
@@ -12,9 +13,28 @@ import { allFAQSchemas } from '../utils/faqSchemas';
 import { websiteSchema, generateBreadcrumb } from '../utils/structuredData';
 import { eastendOrganizationSchema } from '../utils/businessSchemas';
 import { tanningSalonSchema, laundryBusinessSchema, foodEstablishmentSchema } from '../utils/seoSchemas';
+import { Link } from 'react-router-dom';
 
 export default function Home() {
   const fadeInUp = { initial: { opacity: 0, y: 20 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.5, ease: 'easeOut' } };
+  const [blogPosts, setBlogPosts] = useState([]);
+  const backendUrl = process.env.REACT_APP_BACKEND_URL;
+
+  useEffect(() => {
+    // Fetch latest 3 blog posts
+    const fetchBlogPosts = async () => {
+      try {
+        const res = await fetch(`${backendUrl}/api/blog/posts`);
+        if (res.ok) {
+          const data = await res.json();
+          setBlogPosts(data.slice(0, 3)); // Get latest 3
+        }
+      } catch (e) {
+        console.log('Could not fetch blog posts');
+      }
+    };
+    fetchBlogPosts();
+  }, [backendUrl]);
 
   const breadcrumbs = generateBreadcrumb([
     { name: 'Home', path: '/' }
