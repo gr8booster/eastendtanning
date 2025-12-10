@@ -1,30 +1,42 @@
 [
   {
-    "content": "Separate Fizze and Tanning orders into distinct tabs",
-    "status": "completed"
+    "content": "Add static fallback HTML blocks to all pages (Home, Tanning, Laundry, Drinks)",
+    "status": "in_progress"
   },
   {
-    "content": "Add Fizze order receipt generation with payment status",
-    "status": "completed"
+    "content": "Update meta titles and descriptions for all pages",
+    "status": "pending"
   },
   {
-    "content": "Implement real-time order notifications with popups",
-    "status": "completed"
+    "content": "Add JSON-LD schema markup (LocalBusiness, TanningSalon, LaundryBusiness, etc.)",
+    "status": "pending"
   },
   {
-    "content": "Test Fizze orders tab displays correctly",
-    "status": "completed"
+    "content": "Make blog discoverable (nav, footer, home cards)",
+    "status": "pending"
   },
   {
-    "content": "Test Tanning orders tab displays correctly",
-    "status": "completed"
+    "content": "Create /westend-laundry separate silo page",
+    "status": "pending"
   },
   {
-    "content": "Test receipt downloads work",
-    "status": "completed"
+    "content": "Add trust signals (social links, testimonials, photos)",
+    "status": "pending"
   },
   {
-    "content": "Test notification popups appear",
-    "status": "completed"
+    "content": "Add location optimization (maps, directions, parking)",
+    "status": "pending"
+  },
+  {
+    "content": "Generate sitemap.xml and robots.txt",
+    "status": "pending"
+  },
+  {
+    "content": "Add authority signals (H1s, badges, FAQs)",
+    "status": "pending"
+  },
+  {
+    "content": "Create HTML mirror system with noscript fallbacks",
+    "status": "pending"
   }
 ]
