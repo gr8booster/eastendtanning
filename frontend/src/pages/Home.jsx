@@ -285,9 +285,9 @@ export default function Home() {
 
                 <div className="mt-6 space-y-2">
                   <p className="font-semibold">Connect With Us:</p>
-                  <a href="https://www.facebook.com/eastendtanning" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline block">📘 Facebook</a>
-                  <a href="https://www.yelp.com/biz/eastend-tanning-mount-vernon" target="_blank" rel="noopener noreferrer" className="text-red-600 hover:underline block">⭐ Yelp</a>
-                  <a href="https://www.mapquest.com/us/ohio/eastend-tanning-laundry" target="_blank" rel="noopener noreferrer" className="text-green-600 hover:underline block">🗺️ MapQuest</a>
+                  <a href="https://www.facebook.com/profile.php?id=100063538993608" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline block">📘 Facebook - Eastend Tanning and Laundry</a>
+                  <a href="https://www.yelp.com/biz/eastend-laundry-tanning-and-nutrition-mount-vernon" target="_blank" rel="noopener noreferrer" className="text-red-600 hover:underline block">⭐ Yelp Reviews</a>
+                  <a href="https://www.google.com/maps/place/818+Coshocton+Ave,+Mt+Vernon,+OH+43050" target="_blank" rel="noopener noreferrer" className="text-green-600 hover:underline block">🗺️ Google Maps</a>
                 </div>
               </div>
 
