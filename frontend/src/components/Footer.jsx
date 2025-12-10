@@ -99,6 +99,7 @@ export const Footer = () => {
               <a href="/laundry" className="block text-sm text-muted-foreground hover:text-primary transition-colors">Laundry Services</a>
               <a href="/drinks" className="block text-sm text-muted-foreground hover:text-primary transition-colors">Fizze Drinks</a>
               <a href="/nails" className="block text-sm text-muted-foreground hover:text-primary transition-colors">Fast Nails</a>
+              <a href="/blog" className="block text-sm text-muted-foreground hover:text-primary transition-colors">Blog - People of Eastend</a>
               <a href="/locations" className="block text-sm text-muted-foreground hover:text-primary transition-colors">Find Us</a>
               <a href="/contact" className="block text-sm text-muted-foreground hover:text-primary transition-colors">Contact Us</a>
             </nav>
