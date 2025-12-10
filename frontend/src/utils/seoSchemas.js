@@ -71,8 +71,8 @@ export const laundryBusinessSchema = {
     "closes": "19:30"
   },
   "sameAs": [
-    "https://www.facebook.com/eastendtanning",
-    "https://www.mapquest.com/us/ohio/eastend-tanning-laundry"
+    "https://www.facebook.com/profile.php?id=100063538993608",
+    "https://www.google.com/maps/place/818+Coshocton+Ave,+Mt+Vernon,+OH+43050"
   ],
   "servicesOffered": [
     "Coin Laundry - 20lb Washers ($4.50)",
