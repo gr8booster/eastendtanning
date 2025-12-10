@@ -1,30 +1,24 @@
-# robots.txt for Eastend Tanning & Laundry
-# https://eastend.website
-
+# Eastend Tanning & Laundry - Mt Vernon, Ohio
 User-agent: *
 Allow: /
 
-# High Priority Pages
-Allow: /tanning
-Allow: /drinks
-Allow: /laundry
-Allow: /nails
-Allow: /foodtruck
-Allow: /lotions
-Allow: /contact
+# Sitemaps
+Sitemap: https://eastend.website/sitemap.xml
 
-# Admin Pages - Block from Crawling
+# Crawl-delay (be nice to the server)
+Crawl-delay: 1
+
+# Disallow admin and auth pages
 Disallow: /admin
-Disallow: /admin/*
-
-# Receipt/Payment Pages - Block from Indexing
-Disallow: /coupon/*
-Disallow: /tanning-receipt/*
-Disallow: /receipt/*
-Disallow: /foodtruck-payment/*
-
-# API Endpoints
+Disallow: /login
 Disallow: /api/
 
-# Sitemap
-Sitemap: https://eastend.website/sitemap.xml
+# Allow all major search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
