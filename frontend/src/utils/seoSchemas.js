@@ -28,9 +28,9 @@ export const tanningSalonSchema = {
     "closes": "19:30"
   },
   "sameAs": [
-    "https://www.facebook.com/eastendtanning",
-    "https://www.yelp.com/biz/eastend-tanning-mount-vernon",
-    "https://www.mapquest.com/us/ohio/eastend-tanning-laundry"
+    "https://www.facebook.com/profile.php?id=100063538993608",
+    "https://www.yelp.com/biz/eastend-laundry-tanning-and-nutrition-mount-vernon",
+    "https://www.google.com/maps/place/818+Coshocton+Ave,+Mt+Vernon,+OH+43050"
   ],
   "serv icesOffered": [
     "Level 1 Tanning Beds",
