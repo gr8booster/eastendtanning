@@ -6,6 +6,9 @@ import { Card } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
 import { SEOHead, createServiceSchema } from '../components/SEOHead';
 import { StaticFallback } from '../components/StaticFallback';
+import { FacebookFeed } from '../components/FacebookFeed';
+import { ReviewSubmission } from '../components/ReviewSubmission';
+import { PublicReviews } from '../components/PublicReviews';
 import { EnhancedSEO } from '../components/EnhancedSEO';
 import { allFAQSchemas } from '../utils/faqSchemas';
 import { generateBreadcrumb } from '../utils/structuredData';
@@ -246,7 +249,40 @@ export default function Laundry() {
         </div>
       </div>
 
-      {/* Contact */}
+      {/* Facebook Feed Section */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4 max-w-[1200px]">
+          <h2 className="font-serif text-3xl sm:text-4xl font-bold mb-8 text-center">Latest from Eastend Laundry</h2>
+          <div className="flex justify-center">
+            <FacebookFeed 
+              pageUrl="https://www.facebook.com/share/1CtZugxSec/" 
+              pageName="Eastend Tanning & Laundry"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Customer Reviews Section */}
+      <section className="py-16 bg-gradient-to-br from-teal-50 to-cyan-50">
+        <div className="container mx-auto px-4 max-w-[1200px]">
+          <h2 className="font-serif text-3xl sm:text-4xl font-bold mb-8 text-center">Laundry Customer Reviews</h2>
+          
+          <div className="grid lg:grid-cols-2 gap-8">
+            {/* Public Reviews Display */}
+            <div>
+              <h3 className="font-bold text-xl mb-6">Recent 5-Star Reviews</h3>
+              <PublicReviews businessLocation="eastend" limit={5} />
+            </div>
+            
+            {/* Review Submission Form */}
+            <div>
+              <ReviewSubmission defaultLocation="eastend" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA */}
       <div className="bg-gradient-to-r from-[hsl(42_92%_55%)] to-[hsl(183_55%_43%)] text-white py-16">
         <div className="container mx-auto px-4 text-center">
           <h2 className="font-serif text-4xl font-bold mb-6">Questions About Our Services?</h2>
