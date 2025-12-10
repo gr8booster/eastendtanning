@@ -9,23 +9,23 @@
   },
   {
     "content": "Integrate Facebook feed and reviews on Laundry page",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Integrate Facebook feed and reviews on Westend Laundry page",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Integrate Facebook feed and reviews on Drinks page (Fizze)",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Integrate Facebook feed and reviews on Nails page",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Verify frontend compiles without errors",
-    "status": "pending"
+    "status": "in_progress"
   },
   {
     "content": "Restart services to load new code",
