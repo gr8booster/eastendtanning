@@ -25,7 +25,7 @@ export default function Laundry() {
       <StaticFallback page="laundry" />
       <EnhancedSEO
         title="Coin Laundry Mt Vernon OH - Wash Dry Fold | Eastend Laundry"
-        description="Full-service wash, dry, and fold laundry at Eastend Mt Vernon. Self-service washers and dryers in multiple sizes. Clean facility with WiFi, seating. Drop-off service available. Large-capacity machines for comforters. 818 Coshocton Ave. Open daily 8am-7:30pm. Call (740) 397-9632."
+        description="Eastend Laundry - Clean coin laundry in Mt Vernon, OH with FREE DRYING EVERY DAY. Wash-dry-fold service available. 20lb $4.50, 40lb $6.50, 60lb $7.50. Large facility with ample parking. 818 Coshocton Ave. Mon-Sun 8am-7:30pm. (740) 397-9632."
         keywords="laundry services Mt Vernon, wash and fold Mt Vernon OH, laundromat Knox County, self-service laundry, drop-off laundry, coin laundry Mt Vernon, large capacity washers, comforter washing, 818 Coshocton Ave, wash dry fold service"
         canonicalUrl="https://eastend.website/laundry"
         faqSchema={allFAQSchemas.laundry}
