@@ -239,9 +239,10 @@ export default function Drinks() {
 
   return (
     <div className="min-h-screen bg-muted">
+      <StaticFallback page="drinks" />
       {/* Enhanced SEO with 7 FAQs and FoodEstablishment Schema */}
       <EnhancedSEO
-        title="Fizze Bubble Tea Menu - 52+ Flavors | Order Online Mt Vernon OH"
+        title="Fizze Bubble Tea & Drinks Mt Vernon OH - 52+ Flavors | Eastend"
         description="Order Fizze bubble tea online for pickup or delivery! 52+ flavors including milk teas, fruit teas, blended ice drinks, dirty sodas, and smoothies. Fresh daily at Eastend Tanning, 818 Coshocton Ave, Mt Vernon, OH. Customize sweetness & toppings. Call (740) 397-9632."
         keywords="Fizze drinks Mt Vernon, bubble tea online ordering, milk tea Knox County, boba tea Mt Vernon, fruit tea Ohio, dirty sodas Mt Vernon, smoothies Mt Vernon OH, blended ice drinks, 52 flavors, 818 Coshocton Ave, tapioca pearls, popping boba"
         canonicalUrl="https://eastend.website/drinks"
