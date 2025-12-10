@@ -5,10 +5,12 @@ import { Button } from '../components/ui/button';
 import { Card } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
 import { SEOHead, createServiceSchema } from '../components/SEOHead';
+import { StaticFallback } from '../components/StaticFallback';
 import { EnhancedSEO } from '../components/EnhancedSEO';
 import { allFAQSchemas } from '../utils/faqSchemas';
 import { generateBreadcrumb } from '../utils/structuredData';
 import { eastendLaundrySchema } from '../utils/businessSchemas';
+import { laundryBusinessSchema } from '../utils/seoSchemas';
 
 const laundryImage = 'https://customer-assets.emergentagent.com/job_cece3dc5-08ac-44b8-9e32-3608ea17c8d0/artifacts/ylcc1ll3_Screenshot_20251108_054848_Google.jpg';
 
