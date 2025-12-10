@@ -1,15 +1,17 @@
 import { motion } from 'framer-motion';
 import { ServiceCard } from '../components/ServiceCard';
-import { MapPin, Clock, Star, Mic, Phone } from 'lucide-react';
+import { MapPin, Clock, Star, Mic, Phone, Award, Users, Shield } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
 import { BlackFridayBadge } from '../components/BlackFridayBadge';
 import { SEOHead, createLocalBusinessSchema } from '../components/SEOHead';
 import { EnhancedSEO } from '../components/EnhancedSEO';
+import { StaticFallback } from '../components/StaticFallback';
 import { allFAQSchemas } from '../utils/faqSchemas';
 import { websiteSchema, generateBreadcrumb } from '../utils/structuredData';
 import { eastendOrganizationSchema } from '../utils/businessSchemas';
+import { tanningSalonSchema, laundryBusinessSchema, foodEstablishmentSchema } from '../utils/seoSchemas';
 
 export default function Home() {
   const fadeInUp = { initial: { opacity: 0, y: 20 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.5, ease: 'easeOut' } };
