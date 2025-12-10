@@ -1,7 +1,7 @@
 # Fizze Drinks Page - SEO & AI Search Optimization Report
 
 **Date**: November 13, 2024  
-**Page**: https://bogodeals.preview.emergentagent.com/drinks  
+**Page**: https://eastend-connect.preview.emergentagent.com/drinks  
 **Target Location**: Mt Vernon, Knox County, Ohio  
 **Business**: Fizze Drinks at Eastend Tanning & Laundry
 
@@ -315,7 +315,7 @@ Fizze Drinks Mt Vernon, bubble tea Mt Vernon Ohio, smoothies Knox County, Fizze 
 
 **Current URL**:
 ```
-https://bogodeals.preview.emergentagent.com/drinks
+https://eastend-connect.preview.emergentagent.com/drinks
 ```
 
 **SEO Score**: 9/10

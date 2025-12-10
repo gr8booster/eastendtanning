@@ -8,7 +8,7 @@
 
 **Production URLs**: 
 - **Custom Domain**: https://eastend.website ✅ **LIVE**
-- **Preview**: https://bogodeals.preview.emergentagent.com
+- **Preview**: https://eastend-connect.preview.emergentagent.com
 
 **Tech Stack**: FastAPI + React + MongoDB | **Dynamic PayPal Orders API** | Emergent LLM (GPT-5 + Claude Sonnet 4)  
 **Final Test Results**: Backend 100% functional, Frontend 100% functional, All routes working, PayPal operational, Customer memory active, ZERO bugs  
