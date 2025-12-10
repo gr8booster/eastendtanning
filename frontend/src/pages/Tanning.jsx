@@ -14,6 +14,9 @@ import { generateBreadcrumb } from '../utils/structuredData';
 import { eastendTanningSchema } from '../utils/businessSchemas';
 import { BlackFridayBadge } from '../components/BlackFridayBadge';
 import { StaticFallback } from '../components/StaticFallback';
+import { FacebookFeed } from '../components/FacebookFeed';
+import { ReviewSubmission } from '../components/ReviewSubmission';
+import { PublicReviews } from '../components/PublicReviews';
 import { tanningSalonSchema, createFAQSchema } from '../utils/seoSchemas';
 
 const matrixPoster = "https://images.unsplash.com/photo-1540555700478-4be289fbecef?q=80&w=1200&auto=format&fit=crop";
@@ -326,12 +329,45 @@ export default function Tanning() {
         </div>
       </div>
 
-      {/* Final CTA - Convert Them */}
-      <div className="bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--secondary))] text-white py-16">
+      {/* Facebook Feed Section */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4 max-w-[1200px]">
+          <h2 className="font-serif text-3xl sm:text-4xl font-bold mb-8 text-center">Latest from Eastend Tanning</h2>
+          <div className="flex justify-center">
+            <FacebookFeed 
+              pageUrl="https://www.facebook.com/share/1CtZugxSec/" 
+              pageName="Eastend Tanning & Laundry"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Customer Reviews Section */}
+      <section className="py-16 bg-gradient-to-br from-amber-50 to-orange-50">
+        <div className="container mx-auto px-4 max-w-[1200px]">
+          <h2 className="font-serif text-3xl sm:text-4xl font-bold mb-8 text-center">Tanning Customer Reviews</h2>
+          
+          <div className="grid lg:grid-cols-2 gap-8">
+            {/* Public Reviews Display */}
+            <div>
+              <h3 className="font-bold text-xl mb-6">Recent 5-Star Reviews</h3>
+              <PublicReviews businessLocation="eastend" limit={5} />
+            </div>
+            
+            {/* Review Submission Form */}
+            <div>
+              <ReviewSubmission defaultLocation="eastend" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <div className="py-16 bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--secondary))] text-white text-center">
         <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="font-serif text-4xl font-bold mb-6">Ready to Get Started?</h2>
-            <p className="text-xl mb-8 text-white/90">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="font-serif text-4xl font-bold mb-4">Ready to Start Your Tanning Journey?</h2>
+            <p className="text-xl mb-8">
               Stop by today or chat with Mary to find your perfect package. No pressure, just expert guidance.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
