@@ -1,26 +1,30 @@
 [
   {
-    "content": "Add static fallback HTML blocks to all pages (Home, Tanning, Laundry, Drinks)",
+    "content": "Deploy static fallback HTML on all pages",
     "status": "in_progress"
   },
   {
-    "content": "Update meta titles and descriptions for all pages",
+    "content": "Update all meta titles and descriptions",
     "status": "pending"
   },
   {
-    "content": "Add JSON-LD schema markup (LocalBusiness, TanningSalon, LaundryBusiness, etc.)",
+    "content": "Expand JSON-LD schema for all pages",
     "status": "pending"
   },
   {
-    "content": "Make blog discoverable (nav, footer, home cards)",
+    "content": "Create /westend-laundry silo page",
     "status": "pending"
   },
   {
-    "content": "Create /westend-laundry separate silo page",
+    "content": "Add blog to navbar and footer",
     "status": "pending"
   },
   {
-    "content": "Add trust signals (social links, testimonials, photos)",
+    "content": "Add Latest Stories to Home",
+    "status": "pending"
+  },
+  {
+    "content": "Add trust signals to all pages",
     "status": "pending"
   },
   {
@@ -28,15 +32,11 @@
     "status": "pending"
   },
   {
-    "content": "Generate sitemap.xml and robots.txt",
+    "content": "Add authority signals and FAQs",
     "status": "pending"
   },
   {
-    "content": "Add authority signals (H1s, badges, FAQs)",
-    "status": "pending"
-  },
-  {
-    "content": "Create HTML mirror system with noscript fallbacks",
+    "content": "Update sitemap with new pages",
     "status": "pending"
   }
 ]
