@@ -25,15 +25,15 @@
   },
   {
     "content": "Verify frontend compiles without errors",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Restart services to load new code",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Test complete review flow end-to-end",
-    "status": "pending"
+    "status": "in_progress"
   },
   {
     "content": "Take screenshots to verify Facebook feeds and reviews display",
