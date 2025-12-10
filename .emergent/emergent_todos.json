@@ -1,15 +1,15 @@
 [
   {
     "content": "Deploy static fallback HTML on all pages",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Update all meta titles and descriptions",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Expand JSON-LD schema for all pages",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Create /westend-laundry silo page",
@@ -17,11 +17,11 @@
   },
   {
     "content": "Add blog to navbar and footer",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Add Latest Stories to Home",
-    "status": "pending"
+    "status": "in_progress"
   },
   {
     "content": "Add trust signals to all pages",
@@ -37,6 +37,6 @@
   },
   {
     "content": "Update sitemap with new pages",
-    "status": "pending"
+    "status": "completed"
   }
 ]
