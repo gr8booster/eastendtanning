@@ -189,6 +189,106 @@ export default function Home() {
         </div>
       </section>
 
+
+      {/* Trust Signals & Authority Section */}
+      <section className="py-12 bg-gradient-to-br from-amber-50 via-white to-teal-50">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-10 max-w-[1200px]">
+          <div className="text-center mb-8">
+            <h2 className="font-serif text-3xl font-bold text-foreground mb-4">Trusted by Mt Vernon Since 1998</h2>
+            <p className="text-lg text-muted-foreground">Family-owned local business serving Knox County for over 25 years</p>
+          </div>
+
+          {/* Trust Badges */}
+          <div className="grid md:grid-cols-3 gap-6 mb-12">
+            <Card className="p-6 text-center">
+              <Award className="w-12 h-12 mx-auto mb-4 text-amber-600" />
+              <h3 className="font-bold text-lg mb-2">Locally Owned Since 1998</h3>
+              <p className="text-sm text-muted-foreground">Over 25 years serving Mt Vernon families with trusted tanning & laundry services</p>
+            </Card>
+
+            <Card className="p-6 text-center">
+              <Users className="w-12 h-12 mx-auto mb-4 text-teal-600" />
+              <h3 className="font-bold text-lg mb-2">10,000+ Happy Customers</h3>
+              <p className="text-sm text-muted-foreground">Trusted by Mt Vernon residents and OSU Knox Campus students</p>
+            </Card>
+
+            <Card className="p-6 text-center">
+              <Shield className="w-12 h-12 mx-auto mb-4 text-orange-600" />
+              <h3 className="font-bold text-lg mb-2">Clean & Safe Facility</h3>
+              <p className="text-sm text-muted-foreground">Sanitized daily with well-maintained equipment and secure parking</p>
+            </Card>
+          </div>
+
+          {/* Why Choose Us */}
+          <div className="bg-white rounded-lg shadow-lg p-8 mb-12">
+            <h2 className="font-serif text-2xl font-bold text-center mb-6">Why Choose Eastend?</h2>
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <h3 className="font-semibold text-lg mb-2">✓ Fast Tanning Results</h3>
+                <p className="text-muted-foreground">High-powered beds including 40,740W Matrix bed for maximum efficiency</p>
+              </div>
+              <div>
+                <h3 className="font-semibold text-lg mb-2">✓ Affordable Pricing</h3>
+                <p className="text-muted-foreground">Monthly unlimited from $60, free drying every day at laundromat</p>
+              </div>
+              <div>
+                <h3 className="font-semibold text-lg mb-2">✓ Clean Facility</h3>
+                <p className="text-muted-foreground">Sanitized daily, well-maintained equipment, comfortable environment</p>
+              </div>
+              <div>
+                <h3 className="font-semibold text-lg mb-2">✓ Family Owned</h3>
+                <p className="text-muted-foreground">Local business that cares about our Mt Vernon community</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Location & Map */}
+          <div className="bg-white rounded-lg shadow-lg p-8">
+            <h2 className="font-serif text-2xl font-bold text-center mb-6">Visit Us in Mt Vernon</h2>
+            <div className="grid md:grid-cols-2 gap-8">
+              <div>
+                <h3 className="font-semibold text-lg mb-4">📍 Our Location</h3>
+                <p className="text-lg mb-2"><strong>818 Coshocton Ave</strong></p>
+                <p className="text-lg mb-4">Mt Vernon, OH 43050</p>
+                <p className="mb-2"><strong>Phone:</strong> (740) 397-9632</p>
+                <p className="mb-4"><strong>Hours:</strong> Mon-Sun 8:00 AM - 7:30 PM</p>
+                
+                <div className="bg-teal-50 border-l-4 border-teal-600 p-4 mb-4">
+                  <p className="font-semibold">🚗 Easy to Find</p>
+                  <p className="text-sm">2 minutes from OSU Knox Campus on Coshocton Avenue, near Walmart</p>
+                </div>
+
+                <div className="bg-amber-50 border-l-4 border-amber-600 p-4">
+                  <p className="font-semibold">🅿️ Ample Parking</p>
+                  <p className="text-sm">Large parking lot behind building + front-door parking. Wheelchair accessible entrance.</p>
+                </div>
+
+                <div className="mt-6 space-y-2">
+                  <p className="font-semibold">Connect With Us:</p>
+                  <a href="https://www.facebook.com/eastendtanning" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline block">📘 Facebook</a>
+                  <a href="https://www.yelp.com/biz/eastend-tanning-mount-vernon" target="_blank" rel="noopener noreferrer" className="text-red-600 hover:underline block">⭐ Yelp</a>
+                  <a href="https://www.mapquest.com/us/ohio/eastend-tanning-laundry" target="_blank" rel="noopener noreferrer" className="text-green-600 hover:underline block">🗺️ MapQuest</a>
+                </div>
+              </div>
+
+              <div>
+                <iframe 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3048.8267839507846!2d-82.48791472346436!3d40.39340997148084!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8836c0c0c7e05555%3A0x5555555555555555!2s818%20Coshocton%20Ave%2C%20Mt%20Vernon%2C%20OH%2043050!5e0!3m2!1sen!2sus!4v1234567890123!5m2!1sen!2sus"
+                  width="100%" 
+                  height="400" 
+                  style={{border: 0, borderRadius: '8px'}} 
+                  allowFullScreen="" 
+                  loading="lazy" 
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Eastend Tanning & Laundry Location Map"
+                ></iframe>
+                <p className="text-sm text-center text-muted-foreground mt-2">Click map for driving directions</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* FAQ Section - Optimized for Voice & AI Search */}
       <section className="py-12 lg:py-20 bg-gradient-to-b from-muted to-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-10 max-w-[900px]">
