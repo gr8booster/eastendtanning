@@ -1,22 +1,22 @@
 [
   {
     "content": "Update all Facebook/Instagram links with correct URLs",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Create Facebook feed hero sections for all business pages",
-    "status": "pending"
+    "status": "in_progress"
   },
   {
     "content": "Build customer review submission system",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Create AI review management agent",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Add review management tab to admin dashboard",
-    "status": "pending"
+    "status": "completed"
   }
 ]
