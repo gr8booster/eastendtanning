@@ -1,42 +1,22 @@
 [
   {
-    "content": "Deploy static fallback HTML on all pages",
-    "status": "completed"
+    "content": "Update all Facebook/Instagram links with correct URLs",
+    "status": "in_progress"
   },
   {
-    "content": "Update all meta titles and descriptions",
-    "status": "completed"
+    "content": "Create Facebook feed hero sections for all business pages",
+    "status": "pending"
   },
   {
-    "content": "Expand JSON-LD schema for all pages",
-    "status": "completed"
+    "content": "Build customer review submission system",
+    "status": "pending"
   },
   {
-    "content": "Create /westend-laundry silo page",
-    "status": "completed"
+    "content": "Create AI review management agent",
+    "status": "pending"
   },
   {
-    "content": "Add blog to navbar and footer",
-    "status": "completed"
-  },
-  {
-    "content": "Add Latest Stories to Home",
-    "status": "completed"
-  },
-  {
-    "content": "Add trust signals to all pages",
-    "status": "completed"
-  },
-  {
-    "content": "Add location optimization (maps, directions, parking)",
-    "status": "completed"
-  },
-  {
-    "content": "Add authority signals and FAQs",
-    "status": "completed"
-  },
-  {
-    "content": "Update sitemap with new pages",
-    "status": "completed"
+    "content": "Add review management tab to admin dashboard",
+    "status": "pending"
   }
 ]
