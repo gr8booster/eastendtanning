@@ -28,7 +28,8 @@ export const tanningSalonSchema = {
     "closes": "19:30"
   },
   "sameAs": [
-    "https://www.facebook.com/profile.php?id=100063538993608",
+    "https://www.facebook.com/share/1CtZugxSec/",
+    "https://www.instagram.com/eastendtanning?igsh=aXBvbzJtaGIyM3dx",
     "https://www.yelp.com/biz/eastend-laundry-tanning-and-nutrition-mount-vernon",
     "https://www.google.com/maps/place/818+Coshocton+Ave,+Mt+Vernon,+OH+43050"
   ],
@@ -71,7 +72,8 @@ export const laundryBusinessSchema = {
     "closes": "19:30"
   },
   "sameAs": [
-    "https://www.facebook.com/profile.php?id=100063538993608",
+    "https://www.facebook.com/share/1CtZugxSec/",
+    "https://www.instagram.com/eastendtanning?igsh=aXBvbzJtaGIyM3dx",
     "https://www.google.com/maps/place/818+Coshocton+Ave,+Mt+Vernon,+OH+43050"
   ],
   "servicesOffered": [
