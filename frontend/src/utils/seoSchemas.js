@@ -111,8 +111,8 @@ export const westendLaundrySchema = {
     "closes": "23:59"
   },
   "sameAs": [
-    "https://www.facebook.com/westendlaundry",
-    "https://www.mapquest.com/us/ohio/westend-laundry"
+    "https://www.facebook.com/profile.php?id=100063538993608",
+    "https://www.google.com/maps/place/3024+Coshocton+Rd,+Mt+Vernon,+OH+43050"
   ],
   "servicesOffered": [
     "24/7 Self-Service Coin Laundry",
