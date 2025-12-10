@@ -7,6 +7,9 @@ import { Badge } from '../components/ui/badge';
 import { Clock, MapPin, Phone, Sparkles, Heart, Palette } from 'lucide-react';
 import { SEOHead, createServiceSchema } from '../components/SEOHead';
 import { EnhancedSEO } from '../components/EnhancedSEO';
+import { FacebookFeed } from '../components/FacebookFeed';
+import { ReviewSubmission } from '../components/ReviewSubmission';
+import { PublicReviews } from '../components/PublicReviews';
 import { generateBreadcrumb } from '../utils/structuredData';
 import { fastNailsSchema } from '../utils/businessSchemas';
 
@@ -233,6 +236,39 @@ export default function Nails() {
               </div>
             </div>
           </Card>
+        </div>
+      </section>
+
+      {/* Facebook Feed Section */}
+      <section className="py-12 lg:py-20 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-10 max-w-[1200px]">
+          <h2 className="font-serif text-3xl sm:text-4xl font-bold mb-8 text-center">Latest from Fast Nails</h2>
+          <div className="flex justify-center">
+            <FacebookFeed 
+              pageUrl="https://www.facebook.com/share/16VM7dzfqu/" 
+              pageName="Fast Nails"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Customer Reviews Section */}
+      <section className="py-12 lg:py-20 bg-gradient-to-br from-pink-50 to-purple-50">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-10 max-w-[1200px]">
+          <h2 className="font-serif text-3xl sm:text-4xl font-bold mb-8 text-center">Fast Nails Customer Reviews</h2>
+          
+          <div className="grid lg:grid-cols-2 gap-8">
+            {/* Public Reviews Display */}
+            <div>
+              <h3 className="font-bold text-xl mb-6">Recent 5-Star Reviews</h3>
+              <PublicReviews businessLocation="nails" limit={5} />
+            </div>
+            
+            {/* Review Submission Form */}
+            <div>
+              <ReviewSubmission defaultLocation="nails" />
+            </div>
+          </div>
         </div>
       </section>
 
