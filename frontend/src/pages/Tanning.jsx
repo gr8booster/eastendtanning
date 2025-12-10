@@ -74,6 +74,9 @@ export default function Tanning() {
         breadcrumbs={breadcrumbs}
         ogImage="https://eastend.website/images/tanning-hero.jpg"
       />
+      <script type="application/ld+json">
+        {JSON.stringify(tanningSalonSchema)}
+      </script>
 
       {/* Deal of the Month Popup */}
       {/* <DealPopup /> Disabled for Black Friday */}
