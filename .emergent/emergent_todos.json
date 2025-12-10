@@ -5,15 +5,15 @@
   },
   {
     "content": "Update all meta titles and descriptions",
-    "status": "pending"
+    "status": "in_progress"
   },
   {
     "content": "Expand JSON-LD schema for all pages",
-    "status": "pending"
+    "status": "in_progress"
   },
   {
     "content": "Create /westend-laundry silo page",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Add blog to navbar and footer",
@@ -25,15 +25,15 @@
   },
   {
     "content": "Add trust signals to all pages",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Add location optimization (maps, directions, parking)",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Add authority signals and FAQs",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Update sitemap with new pages",
