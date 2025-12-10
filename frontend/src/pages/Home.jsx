@@ -9,6 +9,9 @@ import { BlackFridayBadge } from '../components/BlackFridayBadge';
 import { SEOHead, createLocalBusinessSchema } from '../components/SEOHead';
 import { EnhancedSEO } from '../components/EnhancedSEO';
 import { StaticFallback } from '../components/StaticFallback';
+import { FacebookFeed } from '../components/FacebookFeed';
+import { ReviewSubmission } from '../components/ReviewSubmission';
+import { PublicReviews } from '../components/PublicReviews';
 import { allFAQSchemas } from '../utils/faqSchemas';
 import { websiteSchema, generateBreadcrumb } from '../utils/structuredData';
 import { eastendOrganizationSchema } from '../utils/businessSchemas';
@@ -155,14 +158,41 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Google Reviews Section */}
-      <section data-testid="reviews-section" className="py-12 lg:py-20 bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-10 max-w-[1200px] text-center">
-          <h2 className="font-serif text-3xl sm:text-4xl font-bold mb-6 text-foreground">What Our Customers Say</h2>
-          <p className="text-base sm:text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">We love serving the Mount Vernon community! See what our customers have to say and leave us a review on Google!</p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+      {/* Facebook Feed Section */}
+      <section className="py-12 lg:py-20 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-10 max-w-[1200px]">
+          <h2 className="font-serif text-3xl sm:text-4xl font-bold mb-8 text-center text-foreground">Latest from Eastend</h2>
+          <div className="flex justify-center">
+            <FacebookFeed 
+              pageUrl="https://www.facebook.com/share/1CtZugxSec/" 
+              pageName="Eastend Tanning & Laundry"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Customer Reviews Section */}
+      <section data-testid="reviews-section" className="py-12 lg:py-20 bg-gradient-to-br from-amber-50 to-teal-50">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-10 max-w-[1200px]">
+          <h2 className="font-serif text-3xl sm:text-4xl font-bold mb-8 text-center text-foreground">What Our Customers Say</h2>
+          
+          <div className="grid lg:grid-cols-2 gap-8 mb-12">
+            {/* Public Reviews Display */}
+            <div>
+              <h3 className="font-bold text-xl mb-6">Recent 5-Star Reviews</h3>
+              <PublicReviews businessLocation="eastend" limit={5} />
+            </div>
+            
+            {/* Review Submission Form */}
+            <div>
+              <ReviewSubmission defaultLocation="eastend" />
+            </div>
+          </div>
+
+          <div className="text-center pt-8 border-t">
+            <p className="text-base sm:text-lg text-muted-foreground mb-6">Love us? Leave a Google review too!</p>
             <a data-testid="google-reviews-link" href="https://www.google.com/maps/place/Eastend+Tanning+and+Laundry/@40.3930,-82.4850,17z" target="_blank" rel="noopener noreferrer">
-              <Button variant="outline" size="lg" className="inline-flex items-center gap-2 px-6 h-12 font-semibold hover:bg-muted transition-colors duration-200"><Star className="w-5 h-5 fill-yellow-400 text-yellow-400" />Read & Leave Google Reviews</Button>
+              <Button variant="outline" size="lg" className="inline-flex items-center gap-2 px-6 h-12 font-semibold hover:bg-muted transition-colors duration-200"><Star className="w-5 h-5 fill-yellow-400 text-yellow-400" />Leave Google Review</Button>
             </a>
           </div>
         </div>
