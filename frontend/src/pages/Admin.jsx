@@ -212,6 +212,13 @@ Order Status: ${order.status}
       const allOrders = [...fizzeOrdersList, ...tanningOrdersList].sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
       setOrders(allOrders);
       
+      // Fetch pending reviews
+      const reviewsRes = await fetch(`${backendUrl}/api/reviews/pending`, { headers: adminHeaders() });
+      if (reviewsRes.ok) {
+        const reviewsData = await reviewsRes.json();
+        setPendingReviews(reviewsData.pending_reviews || []);
+      }
+      
       // Check for new orders and show notification
       const totalCount = allOrders.length;
       if (isBackgroundRefresh && totalCount > lastOrderCount) {
