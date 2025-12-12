@@ -263,7 +263,7 @@ async def vendor_signup(vendor: VendorSignup):
 @router.get("/vendors")
 async def get_vendors():
     """Get all vendors (admin)"""
-    vendors = await db.eats_vendors.find({}).to_list(None)
+    vendors = await db.eats_vendors.find({}, {"_id": 0}).to_list(None)
     return {"vendors": vendors}
 
 @router.put("/vendors/{vendor_id}/status")
