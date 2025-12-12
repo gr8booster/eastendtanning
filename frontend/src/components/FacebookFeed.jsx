@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useState } from 'react';
 import { Card } from './ui/card';
 
 export const FacebookFeed = ({ pageUrl, pageName }) => {
