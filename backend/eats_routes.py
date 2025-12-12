@@ -97,7 +97,7 @@ async def get_menu():
     """Get all menu items"""
     # Initialize menu if empty
     await initialize_menu()
-    items = await db.eats_menu.find({}).to_list(None)
+    items = await db.eats_menu.find({}, {"_id": 0}).to_list(None)
     return {"menu": items}
 
 @router.post("/menu")
