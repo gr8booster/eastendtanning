@@ -1,14 +1,10 @@
 [
   {
-    "content": "Add recipe display to Fizze orders in admin dashboard",
-    "status": "completed"
-  },
-  {
-    "content": "Separate Fizze and Tanning orders in admin dashboard",
-    "status": "completed"
-  },
-  {
     "content": "Create Facebook popup modal for social content viewing",
+    "status": "completed"
+  },
+  {
+    "content": "Search for African dish images using AI",
     "status": "in_progress"
   },
   {
