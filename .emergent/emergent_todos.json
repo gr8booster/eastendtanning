@@ -1,34 +1,6 @@
 [
   {
-    "content": "Search for African dish images using AI",
-    "status": "completed"
-  },
-  {
-    "content": "Create 818 EATS menu system with 3 African dishes",
-    "status": "completed"
-  },
-  {
-    "content": "Implement editable menu management for 818 EATS",
-    "status": "completed"
-  },
-  {
-    "content": "Build 818 EATS ordering flow with ETA selection",
-    "status": "completed"
-  },
-  {
-    "content": "Add DoorDash-style delivery fee calculation",
-    "status": "completed"
-  },
-  {
-    "content": "Create food vendor signup system",
-    "status": "completed"
-  },
-  {
-    "content": "Update Food Truck page hero image with African dishes",
-    "status": "completed"
-  },
-  {
     "content": "Test 818 EATS system for bugs",
-    "status": "in_progress"
+    "status": "completed"
   }
 ]
