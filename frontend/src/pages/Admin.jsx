@@ -57,6 +57,9 @@ export default function Admin() {
   const [tanningOrders, setTanningOrders] = useState([]);
   const [fizzeOrdersFilter, setFizzeOrdersFilter] = useState('all');
   const [tanningOrdersFilter, setTanningOrdersFilter] = useState('all');
+  const [ordersFilter, setOrdersFilter] = useState('all');
+  const [orderTypeTab, setOrderTypeTab] = useState('all');
+  const [fizzeDrinksMenu, setFizzeDrinksMenu] = useState([]);
   const [showSunlinkModal, setShowSunlinkModal] = useState(false);
   const [selectedTanningOrder, setSelectedTanningOrder] = useState(null);
   const [sunlinkStaffName, setSunlinkStaffName] = useState('');
