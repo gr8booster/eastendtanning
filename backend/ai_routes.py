@@ -358,3 +358,72 @@ async def get_ai_engine_status():
             "status": "error",
             "error": str(e)
         }
+
+
+@ai_router.post("/recommendations/{recommendation_id}/implement")
+async def implement_recommendation(recommendation_id: str, request: Request):
+    """
+    Mark a recommendation as implemented
+    """
+    try:
+        # Find the recommendation
+        recommendation = await db.ai_recommendations.find_one({"id": recommendation_id})
+        
+        if not recommendation:
+            raise HTTPException(status_code=404, detail="Recommendation not found")
+        
+        # Update status to implemented
+        await db.ai_recommendations.update_one(
+            {"id": recommendation_id},
+            {
+                "$set": {
+                    "status": "implemented",
+                    "implemented_at": datetime.now(timezone.utc).isoformat()
+                }
+            }
+        )
+        
+        return {
+            "status": "success",
+            "message": f"Recommendation '{recommendation.get('title')}' has been implemented",
+            "recommendation_id": recommendation_id
+        }
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to implement recommendation: {str(e)}")
+
+
+@ai_router.post("/recommendations/{recommendation_id}/reject")
+async def reject_recommendation(recommendation_id: str, request: Request):
+    """
+    Mark a recommendation as rejected/dismissed
+    """
+    try:
+        # Find the recommendation
+        recommendation = await db.ai_recommendations.find_one({"id": recommendation_id})
+        
+        if not recommendation:
+            raise HTTPException(status_code=404, detail="Recommendation not found")
+        
+        # Update status to rejected
+        await db.ai_recommendations.update_one(
+            {"id": recommendation_id},
+            {
+                "$set": {
+                    "status": "rejected",
+                    "rejected_at": datetime.now(timezone.utc).isoformat()
+                }
+            }
+        )
+        
+        return {
+            "status": "success",
+            "message": "Recommendation dismissed",
+            "recommendation_id": recommendation_id
+        }
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to reject recommendation: {str(e)}")
+
