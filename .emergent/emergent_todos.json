@@ -1,42 +1,42 @@
 [
   {
-    "content": "Integrate Facebook feed and reviews on Home page",
-    "status": "completed"
+    "content": "Fix AI recommendations implementation in admin dashboard",
+    "status": "in_progress"
   },
   {
-    "content": "Integrate Facebook feed and reviews on Tanning page",
-    "status": "completed"
+    "content": "Create Facebook popup modal for social content viewing",
+    "status": "pending"
   },
   {
-    "content": "Integrate Facebook feed and reviews on Laundry page",
-    "status": "completed"
+    "content": "Create 818 EATS menu system with 3 African dishes",
+    "status": "pending"
   },
   {
-    "content": "Integrate Facebook feed and reviews on Westend Laundry page",
-    "status": "completed"
+    "content": "Implement editable menu management for 818 EATS",
+    "status": "pending"
   },
   {
-    "content": "Integrate Facebook feed and reviews on Drinks page (Fizze)",
-    "status": "completed"
+    "content": "Build 818 EATS ordering flow with ETA selection",
+    "status": "pending"
   },
   {
-    "content": "Integrate Facebook feed and reviews on Nails page",
-    "status": "completed"
+    "content": "Add DoorDash-style delivery fee calculation",
+    "status": "pending"
   },
   {
-    "content": "Verify frontend compiles without errors",
-    "status": "completed"
+    "content": "Create food vendor signup system",
+    "status": "pending"
   },
   {
-    "content": "Restart services to load new code",
-    "status": "completed"
+    "content": "Update Food Truck page hero image with African dishes",
+    "status": "pending"
   },
   {
-    "content": "Test complete review flow end-to-end",
-    "status": "completed"
+    "content": "Add recipe display to Fizze orders in admin dashboard",
+    "status": "pending"
   },
   {
-    "content": "Take screenshots to verify Facebook feeds and reviews display",
-    "status": "completed"
+    "content": "Separate Fizze and Tanning orders in admin dashboard",
+    "status": "pending"
   }
 ]
