@@ -221,7 +221,7 @@ async def add_tip(order_id: str, tip_amount: float):
 @router.get("/orders")
 async def get_orders():
     """Get all orders (admin)"""
-    orders = await db.eats_orders.find({}).sort("created_at", -1).to_list(None)
+    orders = await db.eats_orders.find({}, {"_id": 0}).sort("created_at", -1).to_list(None)
     return {"orders": orders}
 
 @router.get("/orders/{order_id}")
