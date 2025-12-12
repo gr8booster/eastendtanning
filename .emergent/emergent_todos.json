@@ -1,38 +1,34 @@
 [
   {
-    "content": "Create Facebook popup modal for social content viewing",
+    "content": "Search for African dish images using AI",
     "status": "completed"
   },
   {
-    "content": "Search for African dish images using AI",
-    "status": "in_progress"
-  },
-  {
     "content": "Create 818 EATS menu system with 3 African dishes",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Implement editable menu management for 818 EATS",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Build 818 EATS ordering flow with ETA selection",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Add DoorDash-style delivery fee calculation",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Create food vendor signup system",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Update Food Truck page hero image with African dishes",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Test 818 EATS system for bugs",
-    "status": "pending"
+    "status": "in_progress"
   }
 ]
