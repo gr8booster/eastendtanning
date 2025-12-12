@@ -184,9 +184,24 @@ export default function FoodTruckStop() {
             <h1 className="font-serif text-5xl md:text-6xl font-bold mb-2">
               818 Food Truck Stop
             </h1>
-            <p className="text-2xl mb-8 text-white/90">
+            <p className="text-2xl mb-4 text-white/90">
               Prime Location Opposite Kroger in Mt Vernon, OH
             </p>
+            
+            {/* 818 EATS Banner */}
+            <div className="mb-8 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-xl p-6 shadow-2xl">
+              <h2 className="font-serif text-3xl font-bold mb-3 text-gray-900">🍽️ NEW: 818 EATS</h2>
+              <p className="text-lg text-gray-900 mb-4">
+                Pre-Order Authentic African Cuisine - Ghana Jollof Rice, Egusi Stew & Fried Plantains!
+              </p>
+              <Button 
+                size="lg" 
+                className="bg-gray-900 text-white hover:bg-gray-800"
+                onClick={() => navigate('/eats')}
+              >
+                Order Food Now →
+              </Button>
+            </div>
             <div className="grid md:grid-cols-4 gap-4 mb-8">
               <Card className="p-4 bg-white/10 backdrop-blur border-white/20">
                 <Zap className="h-8 w-8 mb-2 mx-auto" />
