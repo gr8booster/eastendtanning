@@ -1373,11 +1373,21 @@ Order Status: ${order.status}
                         <td className="px-4 py-3 text-sm">
                           <div className="max-w-xs space-y-2">
                             {order.order_type === 'fizze' ? (
-                              order.items?.map((item, i) => (
-                                <div key={i} className="text-xs">
-                                  {item.quantity}x {item.drink_name}
-                                </div>
-                              ))
+                              order.items?.map((item, i) => {
+                                const drink = fizzeDrinksMenu.find(d => d.name === item.drink_name);
+                                return (
+                                  <div key={i} className="border-l-2 border-teal-500 pl-2 mb-2">
+                                    <div className="text-xs font-semibold text-teal-900">
+                                      {item.quantity}x {item.drink_name}
+                                    </div>
+                                    {drink && drink.recipe && (
+                                      <div className="text-xs text-muted-foreground mt-1 italic">
+                                        📝 {drink.recipe}
+                                      </div>
+                                    )}
+                                  </div>
+                                );
+                              })
                             ) : (
                               <>
                                 <div className="text-xs font-bold text-orange-700">{order.level_label}</div>
