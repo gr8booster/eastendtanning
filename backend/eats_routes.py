@@ -46,10 +46,9 @@ class VendorSignup(BaseModel):
     description: str
     address: str
 
-# Initialize default menu
-@router.on_event("startup")
+# Helper function to initialize default menu
 async def initialize_menu():
-    """Create default African cuisine menu"""
+    """Create default African cuisine menu if none exists"""
     existing = await db.eats_menu.find_one({})
     if not existing:
         default_items = [
