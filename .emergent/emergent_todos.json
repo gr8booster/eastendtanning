@@ -1,7 +1,11 @@
 [
   {
-    "content": "Fix AI recommendations implementation in admin dashboard",
-    "status": "completed"
+    "content": "Add recipe display to Fizze orders in admin dashboard",
+    "status": "in_progress"
+  },
+  {
+    "content": "Separate Fizze and Tanning orders in admin dashboard",
+    "status": "in_progress"
   },
   {
     "content": "Create Facebook popup modal for social content viewing",
@@ -32,11 +36,7 @@
     "status": "pending"
   },
   {
-    "content": "Add recipe display to Fizze orders in admin dashboard",
-    "status": "pending"
-  },
-  {
-    "content": "Separate Fizze and Tanning orders in admin dashboard",
+    "content": "Test 818 EATS system for bugs",
     "status": "pending"
   }
 ]
