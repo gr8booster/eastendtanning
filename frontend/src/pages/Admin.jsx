@@ -214,6 +214,12 @@ Order Status: ${order.status}
       // Combined for legacy compatibility
       const allOrders = [...fizzeOrdersList, ...tanningOrdersList].sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
       setOrders(allOrders);
+
+      // Fetch Fizze drinks menu for recipe display
+      const menuRes = await fetch(`${backendUrl}/api/fizze/menu`);
+      const menuData = await menuRes.json();
+      const allDrinks = Object.values(menuData).flat();
+      setFizzeDrinksMenu(allDrinks);
       
       // Fetch pending reviews
       const reviewsRes = await fetch(`${backendUrl}/api/reviews/pending`, { headers: adminHeaders() });
