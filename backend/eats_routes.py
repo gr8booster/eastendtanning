@@ -227,7 +227,7 @@ async def get_orders():
 @router.get("/orders/{order_id}")
 async def get_order(order_id: str):
     """Get specific order"""
-    order = await db.eats_orders.find_one({"id": order_id})
+    order = await db.eats_orders.find_one({"id": order_id}, {"_id": 0})
     if not order:
         raise HTTPException(status_code=404, detail="Order not found")
     return order
