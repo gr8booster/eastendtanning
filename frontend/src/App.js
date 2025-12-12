@@ -82,6 +82,7 @@ function App() {
             <Route path="/tanning" element={<Tanning />} />
             <Route path="/laundry" element={<Laundry />} />
             <Route path="/westend-laundry" element={<WestendLaundry />} />
+          <Route path="/eats" element={<EatsOrdering />} />
             <Route path="/drinks" element={<Drinks />} />
             <Route path="/nails" element={<Nails />} />
             <Route path="/locations" element={<Locations />} />
