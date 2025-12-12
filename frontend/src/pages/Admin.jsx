@@ -262,6 +262,37 @@ Order Status: ${order.status}
     finally { setAiGenerating(false); }
   };
 
+  const handleImplementRecommendation = async (recId) => {
+    try {
+      const response = await fetch(`${backendUrl}/api/ai/recommendations/${recId}/implement`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', ...adminHeaders() }
+      });
+      if (!response.ok) throw new Error('Failed to implement recommendation');
+      const data = await response.json();
+      toast.success('Recommendation implemented successfully!', { description: data.message || 'Changes have been applied' });
+      fetchDashboardData();
+    } catch (error) {
+      console.error('Error implementing recommendation:', error);
+      toast.error('Failed to implement recommendation', { description: error.message });
+    }
+  };
+
+  const handleRejectRecommendation = async (recId) => {
+    try {
+      const response = await fetch(`${backendUrl}/api/ai/recommendations/${recId}/reject`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', ...adminHeaders() }
+      });
+      if (!response.ok) throw new Error('Failed to reject recommendation');
+      toast.success('Recommendation dismissed');
+      fetchDashboardData();
+    } catch (error) {
+      console.error('Error rejecting recommendation:', error);
+      toast.error('Failed to dismiss recommendation');
+    }
+  };
+
   // Lotion management
   const [form, setForm] = useState({ name: '', brand: '', price: '', features: '', tattoo_guard: false, image_url: '', active: true });
   const submitLotion = async () => {
