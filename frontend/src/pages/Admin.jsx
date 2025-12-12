@@ -1321,32 +1321,39 @@ Order Status: ${order.status}
           {/* Orders Tab */}
           <TabsContent value="orders">
             <Card className="p-6">
-              <div className="flex items-center justify-between mb-6">
-                <div>
-                  <h3 className="font-serif text-2xl font-bold">📦 Online Orders</h3>
-                  <p className="text-sm text-muted-foreground mt-1">Manage Fizze drinks and tanning package orders</p>
-                </div>
-                <Select value={ordersFilter} onValueChange={setOrdersFilter}>
-                  <SelectTrigger className="w-48" data-testid="orders-filter">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="all">All Orders</SelectItem>
-                    <SelectItem value="pending">Pending</SelectItem>
-                    <SelectItem value="confirmed">Confirmed</SelectItem>
-                    <SelectItem value="preparing">Preparing</SelectItem>
-                    <SelectItem value="ready">Ready</SelectItem>
-                    <SelectItem value="completed">Completed</SelectItem>
-                    <SelectItem value="cancelled">Cancelled</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
+              <h3 className="font-serif text-2xl font-bold mb-4">📦 Online Orders</h3>
+              
+              <Tabs value={orderTypeTab} onValueChange={setOrderTypeTab}>
+                <TabsList className="mb-6">
+                  <TabsTrigger value="all">All Orders</TabsTrigger>
+                  <TabsTrigger value="fizze">🥤 Fizze Drinks</TabsTrigger>
+                  <TabsTrigger value="tanning">☀️ Tanning</TabsTrigger>
+                </TabsList>
 
-              <div className="overflow-x-auto">
-                <table className="w-full" data-testid="orders-table">
-                  <thead className="bg-muted">
-                    <tr>
-                      <th className="px-4 py-3 text-left text-sm font-semibold">Type</th>
+                <TabsContent value="all">
+                  <div className="flex justify-between items-center mb-4">
+                    <p className="text-sm text-muted-foreground">All Fizze drinks and tanning package orders</p>
+                    <Select value={ordersFilter} onValueChange={setOrdersFilter}>
+                      <SelectTrigger className="w-48" data-testid="orders-filter">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="all">All Status</SelectItem>
+                        <SelectItem value="pending">Pending</SelectItem>
+                        <SelectItem value="confirmed">Confirmed</SelectItem>
+                        <SelectItem value="preparing">Preparing</SelectItem>
+                        <SelectItem value="ready">Ready</SelectItem>
+                        <SelectItem value="completed">Completed</SelectItem>
+                        <SelectItem value="cancelled">Cancelled</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  <div className="overflow-x-auto">
+                    <table className="w-full" data-testid="orders-table">
+                      <thead className="bg-muted">
+                        <tr>
+                          <th className="px-4 py-3 text-left text-sm font-semibold">Type</th>
                       <th className="px-4 py-3 text-left text-sm font-semibold">Order #</th>
                       <th className="px-4 py-3 text-left text-sm font-semibold">Customer</th>
                       <th className="px-4 py-3 text-left text-sm font-semibold">Details</th>
