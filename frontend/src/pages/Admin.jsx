@@ -705,7 +705,14 @@ Order Status: ${order.status}
 
           <TabsContent value="recommendations">
             <div className="space-y-4">
-              {recommendations.length > 0 ? recommendations.map((rec) => (<AIRecommendationCard key={rec.id} recommendation={rec} />)) : (
+              {recommendations.length > 0 ? recommendations.map((rec) => (
+                <AIRecommendationCard 
+                  key={rec.id} 
+                  recommendation={rec} 
+                  onImplement={handleImplementRecommendation}
+                  onReject={handleRejectRecommendation}
+                />
+              )) : (
                 <Card className="p-8 text-center"><Zap className="w-12 h-12 text-muted-foreground mx-auto mb-4" /><p className="text-muted-foreground">No pending AI recommendations at the moment.</p></Card>
               )}
             </div>
