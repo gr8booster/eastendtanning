@@ -565,6 +565,18 @@ export default function EatsOrdering() {
             </div>
 
             <div>
+              <Label htmlFor="vendor_password">Password *</Label>
+              <Input 
+                id="vendor_password"
+                type="password"
+                value={vendorData.password}
+                onChange={(e) => setVendorData({...vendorData, password: e.target.value})}
+                placeholder="Create a password for your vendor portal"
+                required
+              />
+            </div>
+
+            <div>
               <Label htmlFor="cuisine_type">Cuisine Type *</Label>
               <Input 
                 id="cuisine_type"
