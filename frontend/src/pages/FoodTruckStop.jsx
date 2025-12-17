@@ -174,13 +174,16 @@ export default function FoodTruckStop() {
         ogImage="https://eastend.website/images/food-truck-location.jpg"
       />
 
-      {/* Hero Section with African Food */}
+      {/* Hero Section with Jollof Rice */}
       <div className="relative bg-gradient-to-r from-orange-600 to-red-700 text-white py-20 overflow-hidden">
-        {/* Background Food Images */}
-        <div className="absolute inset-0 grid grid-cols-3 opacity-20">
-          <img src="https://images.unsplash.com/photo-1665332195309-9d75071138f0?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2NDF8MHwxfHNlYXJjaHwxfHxqb2xsb2YlMjByaWNlfGVufDB8fHx8MTc2NTU2MzczOHww&ixlib=rb-4.1.0&q=85" alt="Jollof Rice" className="w-full h-full object-cover" />
-          <img src="https://images.unsplash.com/photo-1708782344137-21c48d98dfcc?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzV8MHwxfHNlYXJjaHwxfHxlZ3VzaSUyMHN0ZXd8ZW58MHx8fHwxNzY1NTYzNzQ1fDA&ixlib=rb-4.1.0&q=85" alt="Egusi Stew" className="w-full h-full object-cover" />
-          <img src="https://images.unsplash.com/photo-1762884601729-0eeeafbdfb8a?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NjZ8MHwxfHNlYXJjaHwxfHxmcmllZCUyMHBsYW50YWluc3xlbnwwfHx8fDE3NjU1NjM3NTF8MA&ixlib=rb-4.1.0&q=85" alt="Fried Plantains" className="w-full h-full object-cover" />
+        {/* Background Jollof Rice Image */}
+        <div className="absolute inset-0">
+          <img 
+            src="https://images.unsplash.com/photo-1665332195309-9d75071138f0?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2NDF8MHwxfHNlYXJjaHwxfHxqb2xsb2YlMjByaWNlfGVufDB8fHx8MTc2NTU2MzczOHww&ixlib=rb-4.1.0&q=85" 
+            alt="Ghana Jollof Rice" 
+            className="w-full h-full object-cover opacity-30" 
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-orange-600/80 to-red-700/80"></div>
         </div>
 
         <div className="container mx-auto px-4 relative z-10">
@@ -192,35 +195,38 @@ export default function FoodTruckStop() {
               818 Food Truck Stop
             </h1>
             <p className="text-3xl font-bold mb-2 text-yellow-300">
-              See What's on the Menu! 🍽️
+              Succulent Ghana Jollof Rice & More! 🍽️
             </p>
             <p className="text-xl mb-8 text-white/90">
-              Authentic African Cuisine Delivered to Your Door
+              Authentic African Cuisine + Food Truck Parking
             </p>
             
-            {/* 818 EATS CTA */}
-            <div className="mb-8 bg-white/10 backdrop-blur-md rounded-xl p-8 border-2 border-white/30">
-              <h2 className="font-serif text-4xl font-bold mb-4">🔥 818 EATS is LIVE!</h2>
-              <p className="text-xl mb-6">
-                Ghana Jollof Rice • Egusi Stew • Fried Plantains & More
+            {/* Dual CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+              <Button 
+                size="lg" 
+                className="bg-yellow-400 text-gray-900 hover:bg-yellow-300 font-bold text-lg px-8 py-6 shadow-2xl"
+                onClick={() => navigate('/eats')}
+              >
+                🍽️ View Menu & Order Now
+              </Button>
+              <Button 
+                size="lg" 
+                className="bg-white text-orange-600 hover:bg-gray-100 font-bold text-lg px-8 py-6 shadow-2xl"
+                onClick={() => document.getElementById('booking-section')?.scrollIntoView({behavior: 'smooth'})}
+              >
+                🚚 Food Truck: Book Your Spot
+              </Button>
+            </div>
+
+            {/* 818 EATS Info Banner */}
+            <div className="bg-white/10 backdrop-blur-md rounded-xl p-6 border-2 border-white/30">
+              <p className="text-lg mb-2">
+                <strong>818 EATS:</strong> Ghana Jollof Rice • Egusi Stew • Fried Plantains
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button 
-                  size="lg" 
-                  className="bg-yellow-400 text-gray-900 hover:bg-yellow-300 font-bold text-lg px-8 py-6"
-                  onClick={() => navigate('/eats')}
-                >
-                  🍽️ View Full Menu & Order Now
-                </Button>
-                <Button 
-                  size="lg" 
-                  variant="outline"
-                  className="border-white text-white hover:bg-white/10 font-bold text-lg px-8 py-6"
-                  onClick={() => navigate('/eats')}
-                >
-                  Become a Food Vendor
-                </Button>
-              </div>
+              <p className="text-sm text-white/80">
+                Pre-order online, pick up in 1-2 hours • Multiple vendors • Fresh made-to-order
+              </p>
             </div>
             <div className="grid md:grid-cols-4 gap-4 mb-8">
               <Card className="p-4 bg-white/10 backdrop-blur border-white/20">
