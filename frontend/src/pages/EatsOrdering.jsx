@@ -144,8 +144,27 @@ export default function EatsOrdering() {
     }
   };
 
+  const handleLicenseUpload = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    
+    // Convert to base64
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setVendorData({...vendorData, license_file_base64: reader.result});
+      setLicenseFile(file);
+    };
+    reader.readAsDataURL(file);
+  };
+
   const handleVendorSignup = async (e) => {
     e.preventDefault();
+    
+    if (!vendorData.license_file_base64) {
+      toast.error('Please upload your license');
+      return;
+    }
+    
     try {
       const response = await fetch(`${backendUrl}/api/eats/vendors/signup`, {
         method: 'POST',
@@ -155,19 +174,24 @@ export default function EatsOrdering() {
 
       const data = await response.json();
       if (data.status === 'success') {
-        toast.success(data.message);
+        toast.success(data.message, { duration: 8000 });
         setShowVendorSignup(false);
         setVendorData({
           business_name: '',
           owner_name: '',
           phone: '',
           email: '',
+          password: '',
           cuisine_type: '',
           description: '',
-          address: ''
+          address: '',
+          license_type: '',
+          license_number: '',
+          license_file_base64: ''
         });
+        setLicenseFile(null);
       } else {
-        toast.error('Failed to submit signup');
+        toast.error(data.detail || 'Failed to submit signup');
       }
     } catch (error) {
       console.error('Error with vendor signup:', error);
