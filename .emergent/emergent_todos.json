@@ -1,6 +1,34 @@
 [
   {
-    "content": "Test 818 EATS system for bugs",
-    "status": "completed"
+    "content": "Add license upload to vendor signup",
+    "status": "in_progress"
+  },
+  {
+    "content": "Create vendor menu upload and pricing management",
+    "status": "pending"
+  },
+  {
+    "content": "Build vendor admin panel",
+    "status": "pending"
+  },
+  {
+    "content": "Add voting system for unavailable menu items",
+    "status": "pending"
+  },
+  {
+    "content": "Create client mailing list signup",
+    "status": "pending"
+  },
+  {
+    "content": "Integrate food blogging with People of Eastend",
+    "status": "pending"
+  },
+  {
+    "content": "Update Food Truck Stop hero with African food images",
+    "status": "pending"
+  },
+  {
+    "content": "Revamp Food Truck Stop messaging for customers",
+    "status": "pending"
   }
 ]
