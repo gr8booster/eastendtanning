@@ -288,6 +288,132 @@ async def vendor_signup(vendor: VendorSignup):
         "owner_name": vendor.owner_name,
         "phone": vendor.phone,
         "email": vendor.email,
+
+
+# Vendor Login & Authentication
+@router.post("/vendors/login")
+async def vendor_login(email: str, password: str):
+    """Vendor login"""
+    import hashlib
+    hashed_password = hashlib.sha256(password.encode()).hexdigest()
+    
+    vendor = await db.eats_vendors.find_one({"email": email, "password": hashed_password}, {"_id": 0})
+    if not vendor:
+        raise HTTPException(status_code=401, detail="Invalid credentials")
+    
+    if vendor["status"] != "approved":
+        raise HTTPException(status_code=403, detail="Your account is pending approval")
+    
+    return {"status": "success", "vendor": vendor}
+
+# Vendor Menu Management
+@router.post("/vendors/{vendor_id}/menu")
+async def vendor_add_menu_item(vendor_id: str, item: VendorMenuItem):
+    """Vendor adds their own menu item"""
+    # Verify vendor exists and is approved
+    vendor = await db.eats_vendors.find_one({"id": vendor_id})
+    if not vendor:
+        raise HTTPException(status_code=404, detail="Vendor not found")
+    if vendor["status"] != "approved":
+        raise HTTPException(status_code=403, detail="Vendor not approved")
+    
+    new_item = {
+        "id": str(uuid.uuid4()),
+        "vendor_id": vendor_id,
+        "vendor_name": vendor["business_name"],
+        **item.dict(),
+        "votes": 0,
+        "created_at": datetime.now(timezone.utc).isoformat(),
+        "updated_at": datetime.now(timezone.utc).isoformat()
+    }
+    await db.eats_menu.insert_one(new_item)
+    return {"status": "success", "item": new_item}
+
+@router.get("/vendors/{vendor_id}/menu")
+async def vendor_get_menu(vendor_id: str):
+    """Get vendor's menu items"""
+    items = await db.eats_menu.find({"vendor_id": vendor_id}, {"_id": 0}).to_list(None)
+    return {"menu": items}
+
+@router.put("/vendors/{vendor_id}/menu/{item_id}")
+async def vendor_update_menu_item(vendor_id: str, item_id: str, item: VendorMenuItem):
+    """Vendor updates their menu item"""
+    result = await db.eats_menu.update_one(
+        {"id": item_id, "vendor_id": vendor_id},
+        {"$set": {**item.dict(), "updated_at": datetime.now(timezone.utc).isoformat()}}
+    )
+    if result.modified_count == 0:
+        raise HTTPException(status_code=404, detail="Item not found or unauthorized")
+    return {"status": "success"}
+
+@router.delete("/vendors/{vendor_id}/menu/{item_id}")
+async def vendor_delete_menu_item(vendor_id: str, item_id: str):
+    """Vendor deletes their menu item"""
+    result = await db.eats_menu.delete_one({"id": item_id, "vendor_id": vendor_id})
+    if result.deleted_count == 0:
+        raise HTTPException(status_code=404, detail="Item not found or unauthorized")
+    return {"status": "success"}
+
+# Menu Item Voting
+@router.post("/menu/{item_id}/vote")
+async def vote_menu_item(item_id: str, vote: MenuItemVote):
+    """Vote for unavailable menu item"""
+    item = await db.eats_menu.find_one({"id": item_id})
+    if not item:
+        raise HTTPException(status_code=404, detail="Menu item not found")
+    
+    # Check if customer already voted
+    existing_vote = await db.menu_votes.find_one({"menu_item_id": item_id, "customer_email": vote.customer_email})
+    if existing_vote:
+        raise HTTPException(status_code=400, detail="You've already voted for this item")
+    
+    # Record vote
+    await db.menu_votes.insert_one({
+        "id": str(uuid.uuid4()),
+        "menu_item_id": item_id,
+        "customer_email": vote.customer_email,
+        "created_at": datetime.now(timezone.utc).isoformat()
+    })
+    
+    # Increment vote count
+    await db.eats_menu.update_one(
+        {"id": item_id},
+        {"$inc": {"votes": 1}}
+    )
+    
+    return {"status": "success", "message": "Vote recorded! We'll notify the vendor."}
+
+@router.get("/menu/{item_id}/votes")
+async def get_menu_item_votes(item_id: str):
+    """Get vote count for menu item"""
+    item = await db.eats_menu.find_one({"id": item_id}, {"_id": 0})
+    if not item:
+        raise HTTPException(status_code=404, detail="Menu item not found")
+    return {"votes": item.get("votes", 0)}
+
+# Client Mailing List
+@router.post("/clients/signup")
+async def client_signup(client: ClientSignup):
+    """Client signs up for menu updates"""
+    existing = await db.eats_clients.find_one({"email": client.email})
+    if existing:
+        raise HTTPException(status_code=400, detail="Email already registered")
+    
+    new_client = {
+        "id": str(uuid.uuid4()),
+        **client.dict(),
+        "subscribed": True,
+        "created_at": datetime.now(timezone.utc).isoformat()
+    }
+    await db.eats_clients.insert_one(new_client)
+    return {"status": "success", "message": "You're on the list! We'll notify you of new menu items."}
+
+@router.get("/clients")
+async def get_clients():
+    """Get all subscribed clients (admin)"""
+    clients = await db.eats_clients.find({"subscribed": True}, {"_id": 0}).to_list(None)
+    return {"clients": clients}
+
         "password": hashed_password,
         "cuisine_type": vendor.cuisine_type,
         "description": vendor.description,
