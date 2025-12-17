@@ -272,15 +272,39 @@ async def update_order_status(order_id: str, status: str):
 # Vendor Management
 @router.post("/vendors/signup")
 async def vendor_signup(vendor: VendorSignup):
-    """Food vendor signup"""
+    """Food vendor signup with license verification"""
+    # Check if vendor already exists
+    existing = await db.eats_vendors.find_one({"email": vendor.email})
+    if existing:
+        raise HTTPException(status_code=400, detail="Vendor with this email already exists")
+    
+    # Hash password (simple for now - should use bcrypt in production)
+    import hashlib
+    hashed_password = hashlib.sha256(vendor.password.encode()).hexdigest()
+    
     new_vendor = {
         "id": str(uuid.uuid4()),
-        **vendor.dict(),
-        "status": "pending",
-        "created_at": datetime.now(timezone.utc).isoformat()
+        "business_name": vendor.business_name,
+        "owner_name": vendor.owner_name,
+        "phone": vendor.phone,
+        "email": vendor.email,
+        "password": hashed_password,
+        "cuisine_type": vendor.cuisine_type,
+        "description": vendor.description,
+        "address": vendor.address,
+        "license_type": vendor.license_type,
+        "license_number": vendor.license_number,
+        "license_file": vendor.license_file_base64,  # Store base64
+        "status": "pending",  # pending, approved, rejected
+        "created_at": datetime.now(timezone.utc).isoformat(),
+        "approved_at": None
     }
     await db.eats_vendors.insert_one(new_vendor)
-    return {"status": "success", "message": "Thank you for your interest! We'll contact you within 24 hours."}
+    return {
+        "status": "success", 
+        "message": "Application submitted! Please ensure your food is well-packaged to stay warm and leak-free during long-distance delivery. We'll review your license and contact you within 24-48 hours.",
+        "vendor_id": new_vendor["id"]
+    }
 
 @router.get("/vendors")
 async def get_vendors():
