@@ -291,6 +291,48 @@ export default function EatsOrdering() {
         </div>
       </section>
 
+      {/* Client Newsletter Signup */}
+      <section className="py-12 bg-gradient-to-r from-orange-600 to-red-600 text-white">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="font-serif text-3xl font-bold mb-4">Stay Updated on New Menu Items!</h2>
+          <p className="text-lg mb-6">Join our mailing list and be the first to know when new dishes are available</p>
+          <form 
+            className="max-w-md mx-auto flex gap-3"
+            onSubmit={async (e) => {
+              e.preventDefault();
+              const email = e.target.email.value;
+              try {
+                const response = await fetch(`${backendUrl}/api/eats/clients/signup`, {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({ email })
+                });
+                const data = await response.json();
+                if (data.status === 'success') {
+                  toast.success(data.message);
+                  e.target.reset();
+                } else {
+                  toast.error(data.detail || 'Signup failed');
+                }
+              } catch (error) {
+                toast.error('Failed to join mailing list');
+              }
+            }}
+          >
+            <Input 
+              type="email"
+              name="email"
+              placeholder="Enter your email"
+              required
+              className="flex-1"
+            />
+            <Button type="submit" className="bg-white text-orange-600 hover:bg-gray-100">
+              Join List
+            </Button>
+          </form>
+        </div>
+      </section>
+
       {/* Menu Section */}
       <section id="menu" className="py-12 bg-white">
         <div className="container mx-auto px-4">
