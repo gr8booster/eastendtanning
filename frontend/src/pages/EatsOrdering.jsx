@@ -225,6 +225,9 @@ export default function EatsOrdering() {
               <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10" onClick={() => setShowVendorSignup(true)}>
                 Become a Vendor
               </Button>
+              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10" onClick={() => navigate('/vendor-portal')}>
+                Vendor Login
+              </Button>
             </div>
           </div>
         </div>
