@@ -1,6 +1,6 @@
 import { ArrowRight } from 'lucide-react';
 
-export const ServiceCard = ({ title, description, ctaText, href, imageUrl, imageClassName, tone = 'tanning', altText }) => {
+export const ServiceCard = ({ title, description, ctaText, href, secondaryCta, secondaryHref, imageUrl, imageClassName, tone = 'tanning', altText }) => {
   const toneGradients = {
     tanning: 'from-[hsl(43_96%_96%)] to-transparent',
     laundry: 'from-[hsl(183_45%_96%)] to-transparent',
@@ -31,14 +31,26 @@ export const ServiceCard = ({ title, description, ctaText, href, imageUrl, image
       <div className="p-5 space-y-3">
         <h3 className="font-serif font-semibold text-xl sm:text-2xl text-foreground leading-tight">{title}</h3>
         <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">{description}</p>
-        <a 
-          data-testid="service-card-cta" 
-          href={href} 
-          className="inline-flex items-center gap-2 text-[hsl(var(--secondary))] font-semibold text-sm sm:text-base hover:underline transition-colors duration-200"
-        >
-          {ctaText}
-          <ArrowRight className="w-4 h-4" aria-hidden="true" />
-        </a>
+        <div className="flex flex-col sm:flex-row gap-3">
+          <a 
+            data-testid="service-card-cta" 
+            href={href} 
+            className="inline-flex items-center gap-2 text-[hsl(var(--secondary))] font-semibold text-sm sm:text-base hover:underline transition-colors duration-200"
+          >
+            {ctaText}
+            <ArrowRight className="w-4 h-4" aria-hidden="true" />
+          </a>
+          {secondaryCta && secondaryHref && (
+            <a 
+              data-testid="service-card-secondary-cta" 
+              href={secondaryHref} 
+              className="inline-flex items-center gap-2 text-muted-foreground font-semibold text-sm sm:text-base hover:underline transition-colors duration-200"
+            >
+              {secondaryCta}
+              <ArrowRight className="w-4 h-4" aria-hidden="true" />
+            </a>
+          )}
+        </div>
       </div>
     </div>
   );
