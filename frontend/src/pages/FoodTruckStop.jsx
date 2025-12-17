@@ -213,7 +213,7 @@ export default function FoodTruckStop() {
               <Button 
                 size="lg" 
                 className="bg-white text-orange-600 hover:bg-gray-100 font-bold text-lg px-8 py-6 shadow-2xl"
-                onClick={() => document.getElementById('booking-section')?.scrollIntoView({behavior: 'smooth'})}
+                onClick={() => document.getElementById('booking-form')?.scrollIntoView({behavior: 'smooth'})}
               >
                 🚚 Food Truck: Book Your Spot
               </Button>
