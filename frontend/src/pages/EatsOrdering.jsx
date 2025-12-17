@@ -608,6 +608,62 @@ export default function EatsOrdering() {
               />
             </div>
 
+            <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 space-y-3">
+              <h4 className="font-semibold text-amber-900">License Requirement *</h4>
+              
+              <div>
+                <Label htmlFor="license_type">License Type *</Label>
+                <Select 
+                  value={vendorData.license_type} 
+                  onValueChange={(value) => setVendorData({...vendorData, license_type: value})}
+                >
+                  <SelectTrigger id="license_type">
+                    <SelectValue placeholder="Select license type" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="cottage_food">Cottage Food License</SelectItem>
+                    <SelectItem value="food_truck">Food Truck License</SelectItem>
+                    <SelectItem value="health_department">Health Department Permit</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div>
+                <Label htmlFor="license_number">License Number *</Label>
+                <Input 
+                  id="license_number"
+                  value={vendorData.license_number}
+                  onChange={(e) => setVendorData({...vendorData, license_number: e.target.value})}
+                  placeholder="Enter license/permit number"
+                  required
+                />
+              </div>
+
+              <div>
+                <Label htmlFor="license_file">Upload License Copy * (PDF, JPG, PNG)</Label>
+                <Input 
+                  id="license_file"
+                  type="file"
+                  accept=".pdf,.jpg,.jpeg,.png"
+                  onChange={handleLicenseUpload}
+                  required
+                />
+                {licenseFile && (
+                  <p className="text-xs text-green-600 mt-1">✓ {licenseFile.name}</p>
+                )}
+              </div>
+            </div>
+
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+              <h4 className="font-semibold text-blue-900 mb-2">Important Delivery Guidelines</h4>
+              <ul className="text-sm text-blue-800 space-y-1 list-disc list-inside">
+                <li>Package food to stay warm for 30-60 minutes</li>
+                <li>Use leak-proof containers</li>
+                <li>We are a long-distance delivery service</li>
+                <li>Ensure packaging can handle transport</li>
+              </ul>
+            </div>
+
             <Button type="submit" className="w-full" size="lg">
               Submit Application
             </Button>
