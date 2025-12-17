@@ -288,7 +288,23 @@ async def vendor_signup(vendor: VendorSignup):
         "owner_name": vendor.owner_name,
         "phone": vendor.phone,
         "email": vendor.email,
-
+        "password": hashed_password,
+        "cuisine_type": vendor.cuisine_type,
+        "description": vendor.description,
+        "address": vendor.address,
+        "license_type": vendor.license_type,
+        "license_number": vendor.license_number,
+        "license_file": vendor.license_file_base64,
+        "status": "pending",
+        "created_at": datetime.now(timezone.utc).isoformat(),
+        "approved_at": None
+    }
+    await db.eats_vendors.insert_one(new_vendor)
+    return {
+        "status": "success", 
+        "message": "Application submitted! Please ensure your food is well-packaged to stay warm and leak-free during long-distance delivery. We'll review your license and contact you within 24-48 hours.",
+        "vendor_id": new_vendor["id"]
+    }
 
 # Vendor Login & Authentication
 @router.post("/vendors/login")
