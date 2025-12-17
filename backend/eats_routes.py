@@ -100,13 +100,13 @@ async def initialize_menu():
             },
             {
                 "id": str(uuid.uuid4()),
-                "name": "Fried Plantains",
-                "description": "Golden-crispy sweet plantains fried to perfection. A classic African side dish that pairs perfectly with any main course",
+                "name": "Suya & Fried Plantains",
+                "description": "Nigerian grilled meat skewers (suya) with perfectly fried sweet plantains. A classic West African combination that's both savory and sweet",
                 "price": 20.00,
                 "category": "African Cuisine",
-                "image_url": "https://images.unsplash.com/photo-1762884601729-0eeeafbdfb8a?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NjZ8MHwxfHNlYXJjaHwxfHxmcmllZCUyMHBsYW50YWluc3xlbnwwfHx8fDE3NjU1NjM3NTF8MA&ixlib=rb-4.1.0&q=85",
+                "image_url": "https://images.unsplash.com/photo-1636301175218-6994458a4b0a?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2NDF8MHwxfHNlYXJjaHw2fHxzdXlhJTIwZ3JpbGxlZCUyMG1lYXR8ZW58MHx8fHwxNzM0NDUyOTUzfDA&ixlib=rb-4.1.0&q=85",
                 "available": True,
-                "prep_time_minutes": 30,
+                "prep_time_minutes": 45,
                 "created_at": datetime.now(timezone.utc).isoformat(),
                 "updated_at": datetime.now(timezone.utc).isoformat()
             }
