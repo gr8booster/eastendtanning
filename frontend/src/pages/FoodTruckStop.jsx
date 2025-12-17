@@ -174,33 +174,53 @@ export default function FoodTruckStop() {
         ogImage="https://eastend.website/images/food-truck-location.jpg"
       />
 
-      {/* Hero Section */}
-      <div className="bg-gradient-to-r from-orange-500 to-red-500 text-white py-16">
-        <div className="container mx-auto px-4">
+      {/* Hero Section with African Food */}
+      <div className="relative bg-gradient-to-r from-orange-600 to-red-700 text-white py-20 overflow-hidden">
+        {/* Background Food Images */}
+        <div className="absolute inset-0 grid grid-cols-3 opacity-20">
+          <img src="https://images.unsplash.com/photo-1665332195309-9d75071138f0?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2NDF8MHwxfHNlYXJjaHwxfHxqb2xsb2YlMjByaWNlfGVufDB8fHx8MTc2NTU2MzczOHww&ixlib=rb-4.1.0&q=85" alt="Jollof Rice" className="w-full h-full object-cover" />
+          <img src="https://images.unsplash.com/photo-1708782344137-21c48d98dfcc?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzV8MHwxfHNlYXJjaHwxfHxlZ3VzaSUyMHN0ZXd8ZW58MHx8fHwxNzY1NTYzNzQ1fDA&ixlib=rb-4.1.0&q=85" alt="Egusi Stew" className="w-full h-full object-cover" />
+          <img src="https://images.unsplash.com/photo-1762884601729-0eeeafbdfb8a?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NjZ8MHwxfHNlYXJjaHwxfHxmcmllZCUyMHBsYW50YWluc3xlbnwwfHx8fDE3NjU1NjM3NTF8MA&ixlib=rb-4.1.0&q=85" alt="Fried Plantains" className="w-full h-full object-cover" />
+        </div>
+
+        <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="mb-8 flex justify-center">
-              <FoodTruckLogo className="w-40 h-40" showText={false} />
+            <div className="mb-6 flex justify-center">
+              <FoodTruckLogo className="w-32 h-32" showText={false} />
             </div>
-            <h1 className="font-serif text-5xl md:text-6xl font-bold mb-2">
+            <h1 className="font-serif text-5xl md:text-6xl font-bold mb-3">
               818 Food Truck Stop
             </h1>
-            <p className="text-2xl mb-4 text-white/90">
-              Prime Location Opposite Kroger in Mt Vernon, OH
+            <p className="text-3xl font-bold mb-2 text-yellow-300">
+              See What's on the Menu! 🍽️
+            </p>
+            <p className="text-xl mb-8 text-white/90">
+              Authentic African Cuisine Delivered to Your Door
             </p>
             
-            {/* 818 EATS Banner */}
-            <div className="mb-8 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-xl p-6 shadow-2xl">
-              <h2 className="font-serif text-3xl font-bold mb-3 text-gray-900">🍽️ NEW: 818 EATS</h2>
-              <p className="text-lg text-gray-900 mb-4">
-                Pre-Order Authentic African Cuisine - Ghana Jollof Rice, Egusi Stew & Fried Plantains!
+            {/* 818 EATS CTA */}
+            <div className="mb-8 bg-white/10 backdrop-blur-md rounded-xl p-8 border-2 border-white/30">
+              <h2 className="font-serif text-4xl font-bold mb-4">🔥 818 EATS is LIVE!</h2>
+              <p className="text-xl mb-6">
+                Ghana Jollof Rice • Egusi Stew • Fried Plantains & More
               </p>
-              <Button 
-                size="lg" 
-                className="bg-gray-900 text-white hover:bg-gray-800"
-                onClick={() => navigate('/eats')}
-              >
-                Order Food Now →
-              </Button>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button 
+                  size="lg" 
+                  className="bg-yellow-400 text-gray-900 hover:bg-yellow-300 font-bold text-lg px-8 py-6"
+                  onClick={() => navigate('/eats')}
+                >
+                  🍽️ View Full Menu & Order Now
+                </Button>
+                <Button 
+                  size="lg" 
+                  variant="outline"
+                  className="border-white text-white hover:bg-white/10 font-bold text-lg px-8 py-6"
+                  onClick={() => navigate('/eats')}
+                >
+                  Become a Food Vendor
+                </Button>
+              </div>
             </div>
             <div className="grid md:grid-cols-4 gap-4 mb-8">
               <Card className="p-4 bg-white/10 backdrop-blur border-white/20">
