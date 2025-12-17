@@ -42,9 +42,31 @@ class VendorSignup(BaseModel):
     owner_name: str
     phone: str
     email: str
+    password: str
     cuisine_type: str
     description: str
     address: str
+    license_type: str  # "cottage_food", "food_truck", "health_department"
+    license_number: str
+    license_file_base64: str  # Base64 encoded file
+
+class VendorMenuItem(BaseModel):
+    name: str
+    description: str
+    price: float
+    category: str
+    image_url: Optional[str] = None
+    available: bool = True
+    prep_time_minutes: int = 60
+    
+class MenuItemVote(BaseModel):
+    menu_item_id: str
+    customer_email: str
+    
+class ClientSignup(BaseModel):
+    email: str
+    name: Optional[str] = None
+    preferences: Optional[List[str]] = None  # cuisine types
 
 # Helper function to initialize default menu
 async def initialize_menu():
