@@ -32,10 +32,15 @@ export default function EatsOrdering() {
     owner_name: '',
     phone: '',
     email: '',
+    password: '',
     cuisine_type: '',
     description: '',
-    address: ''
+    address: '',
+    license_type: '',
+    license_number: '',
+    license_file_base64: ''
   });
+  const [licenseFile, setLicenseFile] = useState(null);
   
   const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
