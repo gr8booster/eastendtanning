@@ -406,6 +406,37 @@ async def client_signup(client: ClientSignup):
         "created_at": datetime.now(timezone.utc).isoformat()
     }
     await db.eats_clients.insert_one(new_client)
+
+
+# Food Blog Integration
+@router.post("/blog/create")
+async def create_food_blog_post(title: str, content: str, menu_item_id: Optional[str] = None):
+    """Create a blog post about food on 818 EATS"""
+    new_post = {
+        "id": str(uuid.uuid4()),
+        "title": title,
+        "content": content,
+        "category": "food",
+        "tags": ["818eats", "food", "african cuisine"],
+        "menu_item_id": menu_item_id,
+        "author": "818 EATS Team",
+        "created_at": datetime.now(timezone.utc).isoformat(),
+        "published": True
+    }
+    
+    # Insert into blog_posts collection
+    await db.blog_posts.insert_one(new_post)
+    return {"status": "success", "post": new_post}
+
+@router.get("/blog/posts")
+async def get_food_blog_posts(limit: int = 10):
+    """Get food blog posts"""
+    posts = await db.blog_posts.find(
+        {"category": "food", "published": True},
+        {"_id": 0}
+    ).sort("created_at", -1).limit(limit).to_list(None)
+    return {"posts": posts}
+
     return {"status": "success", "message": "You're on the list! We'll notify you of new menu items."}
 
 @router.get("/clients")
