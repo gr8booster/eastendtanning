@@ -1,38 +1,6 @@
 [
   {
-    "content": "Add license upload to vendor signup",
-    "status": "completed"
-  },
-  {
-    "content": "Create vendor menu upload and pricing management",
-    "status": "completed"
-  },
-  {
-    "content": "Build vendor admin panel",
-    "status": "completed"
-  },
-  {
-    "content": "Add voting system for unavailable menu items",
-    "status": "completed"
-  },
-  {
-    "content": "Create client mailing list signup",
-    "status": "completed"
-  },
-  {
-    "content": "Integrate food blogging with People of Eastend",
-    "status": "completed"
-  },
-  {
-    "content": "Update Food Truck Stop hero with African food images",
-    "status": "completed"
-  },
-  {
-    "content": "Revamp Food Truck Stop messaging for customers",
-    "status": "completed"
-  },
-  {
     "content": "Test all new features",
-    "status": "in_progress"
+    "status": "completed"
   }
 ]
