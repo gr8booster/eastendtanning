@@ -362,15 +362,48 @@ export default function EatsOrdering() {
                       </div>
                     </div>
                   </div>
-                  <Button 
-                    className="w-full" 
-                    onClick={() => addToCart(item)}
-                    disabled={!item.available}
-                    data-testid={`add-to-cart-${item.id}`}
-                  >
-                    <Plus className="w-4 h-4 mr-2" />
-                    Add to Cart
-                  </Button>
+                  {item.available ? (
+                    <Button 
+                      className="w-full" 
+                      onClick={() => addToCart(item)}
+                      data-testid={`add-to-cart-${item.id}`}
+                    >
+                      <Plus className="w-4 h-4 mr-2" />
+                      Add to Cart
+                    </Button>
+                  ) : (
+                    <div className="space-y-2">
+                      <Badge variant="secondary" className="w-full justify-center py-2">
+                        Currently Unavailable
+                      </Badge>
+                      <Button 
+                        variant="outline"
+                        className="w-full" 
+                        onClick={async () => {
+                          const email = prompt('Enter your email to vote for this item:');
+                          if (!email) return;
+                          try {
+                            const response = await fetch(`${backendUrl}/api/eats/menu/${item.id}/vote`, {
+                              method: 'POST',
+                              headers: { 'Content-Type': 'application/json' },
+                              body: JSON.stringify({ menu_item_id: item.id, customer_email: email })
+                            });
+                            const data = await response.json();
+                            if (data.status === 'success') {
+                              toast.success(data.message);
+                              fetchMenu();
+                            } else {
+                              toast.error(data.detail || 'Vote failed');
+                            }
+                          } catch (error) {
+                            toast.error('Failed to vote');
+                          }
+                        }}
+                      >
+                        👍 Vote for This Item ({item.votes || 0} votes)
+                      </Button>
+                    </div>
+                  )}
                 </div>
               </Card>
             ))}
