@@ -68,7 +68,7 @@ EMAIL_TEMPLATES = {
                     Our team is here to answer any questions you have about our services, packages, and lotions.
                 </p>
                 <div style="text-align: center; margin: 30px 0;">
-                    <a href="https://eastend-connect.preview.emergentagent.com" style="background: #F59E0B; color: white; padding: 15px 30px; text-decoration: none; border-radius: 10px; font-weight: bold;">
+                    <a href="https://eats-aggregator.preview.emergentagent.com" style="background: #F59E0B; color: white; padding: 15px 30px; text-decoration: none; border-radius: 10px; font-weight: bold;">
                         Explore Services
                     </a>
                 </div>
@@ -95,7 +95,7 @@ EMAIL_TEMPLATES = {
                     Chat with Mary Well, our AI assistant, to get personalized package recommendations based on your skin type and goals.
                 </p>
                 <div style="text-align: center; margin: 30px 0;">
-                    <a href="https://eastend-connect.preview.emergentagent.com" style="background: #14B8A6; color: white; padding: 15px 30px; text-decoration: none; border-radius: 10px; font-weight: bold;">
+                    <a href="https://eats-aggregator.preview.emergentagent.com" style="background: #14B8A6; color: white; padding: 15px 30px; text-decoration: none; border-radius: 10px; font-weight: bold;">
                         Chat with Mary
                     </a>
                 </div>
@@ -121,7 +121,7 @@ EMAIL_TEMPLATES = {
                     <li>Flexible packages and monthly memberships</li>
                 </ul>
                 <div style="text-align: center; margin: 30px 0;">
-                    <a href="https://eastend-connect.preview.emergentagent.com/tanning" style="background: #F59E0B; color: white; padding: 15px 30px; text-decoration: none; border-radius: 10px; font-weight: bold;">
+                    <a href="https://eats-aggregator.preview.emergentagent.com/tanning" style="background: #F59E0B; color: white; padding: 15px 30px; text-decoration: none; border-radius: 10px; font-weight: bold;">
                         View Packages
                     </a>
                 </div>
@@ -147,7 +147,7 @@ EMAIL_TEMPLATES = {
                     Chat with Mary Well to generate your exclusive discount code and start your tanning journey today.
                 </p>
                 <div style="text-align: center; margin: 30px 0;">
-                    <a href="https://eastend-connect.preview.emergentagent.com" style="background: #14B8A6; color: white; padding: 15px 30px; text-decoration: none; border-radius: 10px; font-weight: bold;">
+                    <a href="https://eats-aggregator.preview.emergentagent.com" style="background: #14B8A6; color: white; padding: 15px 30px; text-decoration: none; border-radius: 10px; font-weight: bold;">
                         Get Your Code
                     </a>
                 </div>
@@ -172,7 +172,7 @@ EMAIL_TEMPLATES = {
                     <p style="font-weight: bold;">From $79.99/month</p>
                 </div>
                 <div style="text-align: center; margin: 30px 0;">
-                    <a href="https://eastend-connect.preview.emergentagent.com" style="background: #F59E0B; color: white; padding: 15px 30px; text-decoration: none; border-radius: 10px; font-weight: bold;">
+                    <a href="https://eats-aggregator.preview.emergentagent.com" style="background: #F59E0B; color: white; padding: 15px 30px; text-decoration: none; border-radius: 10px; font-weight: bold;">
                         Book Now
                     </a>
                 </div>
@@ -198,7 +198,7 @@ EMAIL_TEMPLATES = {
                     Don't miss out on this exclusive offer. Book your tanning package today and save big.
                 </p>
                 <div style="text-align: center; margin: 30px 0;">
-                    <a href="https://eastend-connect.preview.emergentagent.com" style="background: #E11D48; color: white; padding: 15px 30px; text-decoration: none; border-radius: 10px; font-weight: bold;">
+                    <a href="https://eats-aggregator.preview.emergentagent.com" style="background: #E11D48; color: white; padding: 15px 30px; text-decoration: none; border-radius: 10px; font-weight: bold;">
                         Use My Code
                     </a>
                 </div>
@@ -253,7 +253,7 @@ EMAIL_TEMPLATES = {
                     <li>Wait 24-48 hours between sessions</li>
                 </ul>
                 <div style="text-align: center; margin: 30px 0;">
-                    <a href="https://eastend-connect.preview.emergentagent.com" style="background: #14B8A6; color: white; padding: 15px 30px; text-decoration: none; border-radius: 10px; font-weight: bold;">
+                    <a href="https://eats-aggregator.preview.emergentagent.com" style="background: #14B8A6; color: white; padding: 15px 30px; text-decoration: none; border-radius: 10px; font-weight: bold;">
                         Browse Lotions
                     </a>
                 </div>

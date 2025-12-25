@@ -8,7 +8,7 @@
 
 **Production URLs**: 
 - **Custom Domain**: https://eastend.website ✅ **LIVE**
-- **Preview**: https://eastend-connect.preview.emergentagent.com
+- **Preview**: https://eats-aggregator.preview.emergentagent.com
 
 **Tech Stack**: FastAPI + React + MongoDB | **Dynamic PayPal Orders API** | Emergent LLM (GPT-4o-mini for AI Reviews) | Facebook SDK | **818 EATS Multi-Vendor Food Platform**  
 **Final Test Results**: Backend 100% functional, Frontend 100% functional, All routes working, PayPal operational, Customer memory active, Review system operational, **818 EATS vendor platform operational**, ZERO bugs  
