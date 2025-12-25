@@ -15,17 +15,18 @@ import { EnhancedSEO } from '../components/EnhancedSEO';
 export default function EatsOrdering() {
   const navigate = useNavigate();
   const [menu, setMenu] = useState([]);
-  const [cart, setCart] = useState([]);
+  const [selectedItem, setSelectedItem] = useState(null);
   const [showCheckout, setShowCheckout] = useState(false);
   const [orderDetails, setOrderDetails] = useState({
     customer_name: '',
     customer_phone: '',
     customer_email: '',
-    eta_hours: 1,
-    delivery_address: '',
-    delivery_distance_miles: 0,
+    customer_address: '',
+    quantity: 1,
+    tip: 0,
     notes: ''
   });
+  const [batchStatus, setBatchStatus] = useState(null);
   const [showVendorSignup, setShowVendorSignup] = useState(false);
   const [vendorData, setVendorData] = useState({
     business_name: '',
