@@ -65,6 +65,12 @@ export default function Admin() {
   const [sunlinkStaffName, setSunlinkStaffName] = useState('');
   const [sunlinkConfirmed, setSunlinkConfirmed] = useState(false);
   
+  // 818 EATS state
+  const [eatsBatches, setEatsBatches] = useState([]);
+  const [currentEatsBatch, setCurrentEatsBatch] = useState(null);
+  const [eatsOrders, setEatsOrders] = useState([]);
+  const [eatsOrdersFilter, setEatsOrdersFilter] = useState('all');
+  
   // Notifications state
   const [newOrderNotification, setNewOrderNotification] = useState(null);
   const [lastOrderCount, setLastOrderCount] = useState(0);
