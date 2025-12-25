@@ -234,6 +234,29 @@ Order Status: ${order.status}
         setPendingReviews(reviewsData.pending_reviews || []);
       }
       
+      // Fetch 818 EATS data
+      try {
+        const [eatsCurrentBatchRes, eatsOrdersRes, eatsBatchesRes] = await Promise.all([
+          fetch(`${backendUrl}/api/eats/orders/current-batch`),
+          fetch(`${backendUrl}/api/eats/orders`),
+          fetch(`${backendUrl}/api/eats/orders/all-batches`)
+        ]);
+        if (eatsCurrentBatchRes.ok) {
+          const eatsCurrentBatchData = await eatsCurrentBatchRes.json();
+          setCurrentEatsBatch(eatsCurrentBatchData);
+        }
+        if (eatsOrdersRes.ok) {
+          const eatsOrdersData = await eatsOrdersRes.json();
+          setEatsOrders(eatsOrdersData.orders || []);
+        }
+        if (eatsBatchesRes.ok) {
+          const eatsBatchesData = await eatsBatchesRes.json();
+          setEatsBatches(eatsBatchesData.batches || []);
+        }
+      } catch (e) {
+        console.error('Error fetching EATS data:', e);
+      }
+      
       // Check for new orders and show notification
       const totalCount = allOrders.length;
       if (isBackgroundRefresh && totalCount > lastOrderCount) {
