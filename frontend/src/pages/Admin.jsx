@@ -1835,6 +1835,239 @@ Order Status: ${order.status}
             </Card>
           </TabsContent>
 
+          {/* 818 EATS Batches Tab */}
+          <TabsContent value="eats">
+            <div className="space-y-6">
+              {/* Current Batch Status */}
+              {currentEatsBatch && (
+                <Card className="p-6 border-2 border-[hsl(var(--secondary))]">
+                  <div className="flex items-center justify-between mb-4">
+                    <div>
+                      <h3 className="font-serif text-2xl font-bold flex items-center gap-2">
+                        🍛 {currentEatsBatch.week}
+                      </h3>
+                      <p className="text-sm text-muted-foreground">Current weekly batch progress</p>
+                    </div>
+                    {currentEatsBatch.status === 'ready_for_fulfillment' && (
+                      <Badge className="bg-green-600 text-white text-lg py-2 px-4">
+                        ✅ Ready for Vendor!
+                      </Badge>
+                    )}
+                  </div>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
+                    <Card className="p-4 bg-[hsl(var(--muted))]">
+                      <p className="text-sm text-muted-foreground">Total Orders</p>
+                      <p className="text-3xl font-bold text-[hsl(var(--secondary))]" data-testid="eats-total-orders">
+                        {currentEatsBatch.current_orders}
+                      </p>
+                    </Card>
+                    <Card className="p-4 bg-[hsl(var(--muted))]">
+                      <p className="text-sm text-muted-foreground">Paid Orders</p>
+                      <p className="text-3xl font-bold text-green-600" data-testid="eats-paid-orders">
+                        {currentEatsBatch.paid_orders}
+                      </p>
+                    </Card>
+                    <Card className="p-4 bg-[hsl(var(--muted))]">
+                      <p className="text-sm text-muted-foreground">Target</p>
+                      <p className="text-3xl font-bold">40</p>
+                    </Card>
+                    <Card className="p-4 bg-[hsl(var(--muted))]">
+                      <p className="text-sm text-muted-foreground">Progress</p>
+                      <p className="text-3xl font-bold text-[hsl(var(--primary))]">
+                        {currentEatsBatch.progress_percentage}%
+                      </p>
+                    </Card>
+                  </div>
+
+                  {/* Progress Bar */}
+                  <div className="mb-4">
+                    <div className="w-full bg-gray-200 rounded-full h-4 overflow-hidden">
+                      <div 
+                        className="bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--secondary))] h-4 rounded-full transition-all duration-500"
+                        style={{ width: `${Math.min(currentEatsBatch.progress_percentage, 100)}%` }}
+                      />
+                    </div>
+                    <p className="text-sm text-muted-foreground mt-2">
+                      {40 - currentEatsBatch.current_orders > 0 
+                        ? `${40 - currentEatsBatch.current_orders} more orders needed for delivery`
+                        : 'Target reached! Ready for vendor fulfillment.'
+                      }
+                    </p>
+                  </div>
+
+                  {/* Vote Summary */}
+                  {currentEatsBatch.vote_summary && Object.keys(currentEatsBatch.vote_summary).length > 0 && (
+                    <div>
+                      <h4 className="font-semibold mb-2">Vote Summary</h4>
+                      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                        {Object.entries(currentEatsBatch.vote_summary).map(([dish, count]) => (
+                          <Card key={dish} className={`p-3 ${dish === currentEatsBatch.leading_dish ? 'border-2 border-[hsl(var(--primary))]' : ''}`}>
+                            <p className="text-sm font-medium truncate">{dish}</p>
+                            <p className="text-2xl font-bold">{count} <span className="text-sm font-normal text-muted-foreground">votes</span></p>
+                            {dish === currentEatsBatch.leading_dish && (
+                              <Badge className="bg-[hsl(var(--primary))] text-xs mt-1">Leading</Badge>
+                            )}
+                          </Card>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </Card>
+              )}
+
+              {/* Orders Table */}
+              <Card className="p-6">
+                <div className="flex items-center justify-between mb-4">
+                  <div>
+                    <h3 className="font-serif text-xl font-bold">818 EATS Orders</h3>
+                    <p className="text-sm text-muted-foreground">Weekly African cuisine orders</p>
+                  </div>
+                  <Select value={eatsOrdersFilter} onValueChange={setEatsOrdersFilter}>
+                    <SelectTrigger className="w-48" data-testid="eats-orders-filter">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all">All Orders</SelectItem>
+                      <SelectItem value="pending_payment">Pending Payment</SelectItem>
+                      <SelectItem value="paid">Paid</SelectItem>
+                      <SelectItem value="preparing">Preparing</SelectItem>
+                      <SelectItem value="delivered">Delivered</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                <div className="overflow-x-auto">
+                  <table className="w-full" data-testid="eats-orders-table">
+                    <thead className="bg-orange-50">
+                      <tr>
+                        <th className="px-4 py-3 text-left text-sm font-semibold">Order #</th>
+                        <th className="px-4 py-3 text-left text-sm font-semibold">Customer</th>
+                        <th className="px-4 py-3 text-left text-sm font-semibold">Dish</th>
+                        <th className="px-4 py-3 text-left text-sm font-semibold">Total</th>
+                        <th className="px-4 py-3 text-left text-sm font-semibold">Payment</th>
+                        <th className="px-4 py-3 text-left text-sm font-semibold">Status</th>
+                        <th className="px-4 py-3 text-left text-sm font-semibold">Batch</th>
+                        <th className="px-4 py-3 text-left text-sm font-semibold">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {eatsOrders
+                        .filter(order => eatsOrdersFilter === 'all' || order.status === eatsOrdersFilter)
+                        .map((order, index) => (
+                        <tr key={order.id} className={index % 2 === 0 ? 'bg-white' : 'bg-orange-50/30'}>
+                          <td className="px-4 py-3 text-sm font-bold text-orange-700">{order.order_number}</td>
+                          <td className="px-4 py-3 text-sm">
+                            <div className="font-medium">{order.customer_name}</div>
+                            <div className="text-xs text-muted-foreground">{order.customer_phone}</div>
+                          </td>
+                          <td className="px-4 py-3 text-sm">
+                            <div className="font-medium">{order.menu_item_name}</div>
+                            <div className="text-xs text-muted-foreground">Qty: {order.quantity}</div>
+                          </td>
+                          <td className="px-4 py-3 text-sm font-bold text-green-600">${order.total?.toFixed(2)}</td>
+                          <td className="px-4 py-3 text-sm">
+                            {order.paid ? (
+                              <Badge className="bg-green-600 text-white">Paid</Badge>
+                            ) : (
+                              <Badge className="bg-yellow-500 text-white">Unpaid</Badge>
+                            )}
+                          </td>
+                          <td className="px-4 py-3 text-sm">
+                            <Badge variant={
+                              order.status === 'delivered' ? 'default' :
+                              order.status === 'paid' ? 'secondary' :
+                              'outline'
+                            }>
+                              {order.status?.replace(/_/g, ' ')}
+                            </Badge>
+                          </td>
+                          <td className="px-4 py-3 text-sm font-mono text-xs">{order.batch_id}</td>
+                          <td className="px-4 py-3 text-sm">
+                            <Select 
+                              value={order.status} 
+                              onValueChange={async (newStatus) => {
+                                try {
+                                  const res = await fetch(`${backendUrl}/api/eats/orders/${order.id}/status?status=${newStatus}`, {
+                                    method: 'PUT',
+                                    headers: adminHeaders()
+                                  });
+                                  if (res.ok) {
+                                    toast.success('Status updated');
+                                    fetchDashboardData(true);
+                                  }
+                                } catch (e) {
+                                  toast.error('Failed to update status');
+                                }
+                              }}
+                            >
+                              <SelectTrigger className="w-32 h-8 text-xs">
+                                <SelectValue />
+                              </SelectTrigger>
+                              <SelectContent>
+                                <SelectItem value="pending_payment">Pending Payment</SelectItem>
+                                <SelectItem value="paid">Paid</SelectItem>
+                                <SelectItem value="preparing">Preparing</SelectItem>
+                                <SelectItem value="ready_for_pickup">Ready for Pickup</SelectItem>
+                                <SelectItem value="out_for_delivery">Out for Delivery</SelectItem>
+                                <SelectItem value="delivered">Delivered</SelectItem>
+                                <SelectItem value="cancelled">Cancelled</SelectItem>
+                              </SelectContent>
+                            </Select>
+                          </td>
+                        </tr>
+                      ))}
+                      {eatsOrders.length === 0 && (
+                        <tr>
+                          <td colSpan="8" className="px-4 py-8 text-center text-muted-foreground">
+                            No 818 EATS orders yet. Orders will appear here when customers vote and pay.
+                          </td>
+                        </tr>
+                      )}
+                    </tbody>
+                  </table>
+                </div>
+              </Card>
+
+              {/* Past Batches */}
+              {eatsBatches.length > 0 && (
+                <Card className="p-6">
+                  <h3 className="font-serif text-xl font-bold mb-4">Past Batches</h3>
+                  <div className="overflow-x-auto">
+                    <table className="w-full" data-testid="eats-batches-table">
+                      <thead className="bg-muted">
+                        <tr>
+                          <th className="px-4 py-3 text-left text-sm font-semibold">Batch ID</th>
+                          <th className="px-4 py-3 text-left text-sm font-semibold">Total Orders</th>
+                          <th className="px-4 py-3 text-left text-sm font-semibold">Paid Orders</th>
+                          <th className="px-4 py-3 text-left text-sm font-semibold">Revenue</th>
+                          <th className="px-4 py-3 text-left text-sm font-semibold">Status</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {eatsBatches.map((batch, index) => (
+                          <tr key={batch.batch_id} className={index % 2 === 0 ? 'bg-white' : 'bg-muted/30'}>
+                            <td className="px-4 py-3 text-sm font-mono">{batch.batch_id}</td>
+                            <td className="px-4 py-3 text-sm">{batch.total_orders}</td>
+                            <td className="px-4 py-3 text-sm">{batch.paid_orders}</td>
+                            <td className="px-4 py-3 text-sm font-bold text-green-600">${batch.total_revenue?.toFixed(2)}</td>
+                            <td className="px-4 py-3 text-sm">
+                              {batch.target_reached ? (
+                                <Badge className="bg-green-600 text-white">Target Reached</Badge>
+                              ) : (
+                                <Badge variant="outline">{batch.total_orders}/40</Badge>
+                              )}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </Card>
+              )}
+            </div>
+          </TabsContent>
+
           {/* Deals Tab */}
           <TabsContent value="deals">
             <DealsManager />
