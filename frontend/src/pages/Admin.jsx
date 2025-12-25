@@ -735,6 +735,7 @@ Order Status: ${order.status}
             {canSeeTab('orders') && <TabsTrigger value="fizzeorders" className="text-sm" data-testid="fizze-orders-tab">🥤 Fizze Orders ({fizzeOrders.length})</TabsTrigger>}
             {canSeeTab('orders') && <TabsTrigger value="tanningorders" className="text-sm" data-testid="tanning-orders-tab">☀️ Tanning Orders ({tanningOrders.length})</TabsTrigger>}
             {canSeeTab('orders') && <TabsTrigger value="reviews" className="text-sm" data-testid="reviews-tab">⭐ Reviews</TabsTrigger>}
+            {canSeeTab('orders') && <TabsTrigger value="eats" className="text-sm" data-testid="eats-tab">🍛 818 EATS ({eatsOrders.length})</TabsTrigger>}
             {canSeeTab('deals') && <TabsTrigger value="deals" className="text-sm" data-testid="deals-tab">🎯 Deal of Month</TabsTrigger>}
             {canSeeTab('marytraining') && <TabsTrigger value="marytraining" className="text-sm" data-testid="marytraining-tab">🤖 Mary Training</TabsTrigger>}
             {canSeeTab('users') && <TabsTrigger value="users" className="text-sm" data-testid="users-tab"><Users className="w-4 h-4 inline-block mr-1" />Users ({users.length})</TabsTrigger>}
