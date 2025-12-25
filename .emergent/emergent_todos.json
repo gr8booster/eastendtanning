@@ -1,26 +1,26 @@
 [
   {
     "content": "Create new EatsOrdering.jsx with card-based voting UI, batch status display, and tip input",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Add PayPal integration for 818 EATS prepayment",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Add Waakye as 4th menu item and update menu images",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Create EatsOrderConfirmation.jsx for post-order flow",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Add 818 EATS Batch tab to Admin dashboard",
-    "status": "pending"
+    "status": "completed"
   },
   {
-    "content": "Test complete flow and fix any issues",
-    "status": "pending"
+    "content": "Run comprehensive testing",
+    "status": "in_progress"
   }
 ]
