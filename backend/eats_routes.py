@@ -167,41 +167,30 @@ def calculate_delivery_fee(distance_miles: float, eta_hours: int) -> float:
     total_fee = base_fee + (distance_miles * per_mile_fee) + rush_fee
     return round(total_fee, 2)
 
+# Order Management - Weekly Batch System
 @router.post("/orders")
 async def place_order(order: FoodOrder):
-    """Place food pre-order"""
-    # Get menu items to calculate subtotal
-    menu_items = await db.eats_menu.find({}).to_list(None)
-    menu_dict = {item["id"]: item for item in menu_items}
+    """Place weekly food pre-order with voting"""
+    # Get menu item
+    menu_item = await db.eats_menu.find_one({"id": order.menu_item_id})
+    if not menu_item:
+        raise HTTPException(status_code=404, detail="Menu item not found")
     
-    # Calculate order totals
-    subtotal = 0
-    order_items = []
-    for item in order.items:
-        menu_item = menu_dict.get(item["menu_item_id"])
-        if not menu_item:
-            raise HTTPException(status_code=404, detail=f"Menu item {item['menu_item_id']} not found")
-        
-        item_total = menu_item["price"] * item["quantity"]
-        subtotal += item_total
-        order_items.append({
-            "menu_item_id": item["menu_item_id"],
-            "name": menu_item["name"],
-            "price": menu_item["price"],
-            "quantity": item["quantity"],
-            "item_total": item_total
-        })
-    
-    # Calculate delivery fee
-    delivery_fee = 0
-    if order.delivery_address and order.delivery_distance_miles:
-        delivery_fee = calculate_delivery_fee(order.delivery_distance_miles, order.eta_hours)
-    
-    # Calculate tax (8% assumed)
+    # Calculate totals
+    item_price = 25.00  # Fixed price
+    subtotal = item_price * order.quantity
+    delivery_fee = 5.99  # Standard delivery fee
     tax = round(subtotal * 0.08, 2)
+    total = subtotal + delivery_fee + tax + order.tip
     
-    # Total
-    total = subtotal + delivery_fee + tax
+    # Get current week number for batch aggregation
+    from datetime import datetime
+    week_number = datetime.now(timezone.utc).isocalendar()[1]
+    year = datetime.now(timezone.utc).year
+    batch_id = f"{year}-W{week_number}"
+    
+    # Count current batch orders
+    batch_count = await db.eats_orders.count_documents({"batch_id": batch_id})
     
     # Create order
     new_order = {
@@ -210,24 +199,90 @@ async def place_order(order: FoodOrder):
         "customer_name": order.customer_name,
         "customer_phone": order.customer_phone,
         "customer_email": order.customer_email,
-        "items": order_items,
-        "eta_hours": order.eta_hours,
-        "pickup_time": (datetime.now(timezone.utc).timestamp() + (order.eta_hours * 3600)),
-        "delivery_address": order.delivery_address,
-        "delivery_distance_miles": order.delivery_distance_miles,
-        "delivery_fee": delivery_fee,
+        "customer_address": order.customer_address,
+        "menu_item_id": order.menu_item_id,
+        "menu_item_name": menu_item["name"],
+        "quantity": order.quantity,
+        "item_price": item_price,
         "subtotal": subtotal,
+        "delivery_fee": delivery_fee,
         "tax": tax,
+        "tip": order.tip,
         "total": total,
-        "tip": 0,  # Can be added later
         "notes": order.notes,
-        "status": "pending",
+        "batch_id": batch_id,
+        "batch_count": batch_count + 1,
+        "status": "pending_payment",  # pending_payment, paid, preparing, ready_for_pickup, out_for_delivery, delivered
+        "paid": False,
+        "delivery_week": batch_id,
         "created_at": datetime.now(timezone.utc).isoformat(),
         "updated_at": datetime.now(timezone.utc).isoformat()
     }
     
     await db.eats_orders.insert_one(new_order)
-    return {"status": "success", "order": new_order}
+    
+    # Check if batch reached target
+    batch_status = "collecting"
+    if batch_count + 1 >= 40:
+        batch_status = "ready_for_fulfillment"
+    
+    return {
+        "status": "success", 
+        "order": new_order,
+        "batch_info": {
+            "batch_id": batch_id,
+            "current_orders": batch_count + 1,
+            "target_orders": 40,
+            "batch_status": batch_status,
+            "delivery_week": f"Week {week_number}, {year}"
+        },
+        "message": "Order placed! You'll receive payment instructions via email. Delivery scheduled for this week once we reach 40 orders."
+    }
+
+@router.get("/orders/batch/{batch_id}")
+async def get_batch_orders(batch_id: str):
+    """Get all orders for a specific batch (admin)"""
+    orders = await db.eats_orders.find({"batch_id": batch_id}, {"_id": 0}).to_list(None)
+    
+    # Aggregate votes by menu item
+    vote_counts = {}
+    for order in orders:
+        item_name = order.get("menu_item_name")
+        vote_counts[item_name] = vote_counts.get(item_name, 0) + order.get("quantity", 1)
+    
+    return {
+        "batch_id": batch_id,
+        "total_orders": len(orders),
+        "orders": orders,
+        "vote_summary": vote_counts,
+        "target_reached": len(orders) >= 40
+    }
+
+@router.get("/orders/current-batch")
+async def get_current_batch_status():
+    """Get current week's batch status"""
+    week_number = datetime.now(timezone.utc).isocalendar()[1]
+    year = datetime.now(timezone.utc).year
+    batch_id = f"{year}-W{week_number}"
+    
+    batch_count = await db.eats_orders.count_documents({"batch_id": batch_id})
+    
+    # Get vote counts
+    orders = await db.eats_orders.find({"batch_id": batch_id}, {"_id": 0}).to_list(None)
+    vote_counts = {}
+    for order in orders:
+        item_name = order.get("menu_item_name")
+        vote_counts[item_name] = vote_counts.get(item_name, 0) + order.get("quantity", 1)
+    
+    return {
+        "batch_id": batch_id,
+        "week": f"Week {week_number}, {year}",
+        "current_orders": batch_count,
+        "target_orders": 40,
+        "progress_percentage": round((batch_count / 40) * 100, 1),
+        "status": "ready_for_fulfillment" if batch_count >= 40 else "collecting",
+        "vote_summary": vote_counts
+    }
 
 @router.post("/orders/{order_id}/tip")
 async def add_tip(order_id: str, tip_amount: float):
