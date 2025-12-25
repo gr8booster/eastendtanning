@@ -30,11 +30,12 @@ class MenuItem(BaseModel):
 class FoodOrder(BaseModel):
     customer_name: str
     customer_phone: str
-    customer_email: Optional[str] = None
-    items: List[dict]  # [{"menu_item_id": "...", "quantity": 1}]
-    eta_hours: int  # 1 or 2 hours
-    delivery_address: Optional[str] = None
-    delivery_distance_miles: Optional[float] = None
+    customer_email: str
+    customer_address: str
+    menu_item_id: str  # Vote for ONE item
+    quantity: int = 1
+    delivery_fee: float = 5.99  # Standard delivery fee
+    tip: float = 0.00
     notes: Optional[str] = None
 
 class VendorSignup(BaseModel):
