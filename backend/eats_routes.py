@@ -113,13 +113,16 @@ async def initialize_menu():
         ]
         await db.eats_menu.insert_many(default_items)
 
-# Menu Management
+# Update menu prices to $25
 @router.get("/menu")
 async def get_menu():
     """Get all menu items"""
     # Initialize menu if empty
     await initialize_menu()
     items = await db.eats_menu.find({}, {"_id": 0}).to_list(None)
+    # Update all prices to $25
+    for item in items:
+        item["price"] = 25.00
     return {"menu": items}
 
 @router.post("/menu")
