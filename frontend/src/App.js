@@ -10,6 +10,7 @@ import Tanning from './pages/Tanning';
 import Laundry from './pages/Laundry';
 import WestendLaundry from './pages/WestendLaundry';
 import EatsOrdering from './pages/EatsOrdering';
+import EatsOrderConfirmation from './pages/EatsOrderConfirmation';
 import VendorPortal from './pages/VendorPortal';
 import Drinks from './pages/Drinks';
 import Nails from './pages/Nails';
