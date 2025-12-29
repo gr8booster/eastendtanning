@@ -1896,20 +1896,35 @@ Order Status: ${order.status}
                     </p>
                   </div>
 
-                  {/* Vote Summary */}
-                  {currentEatsBatch.vote_summary && Object.keys(currentEatsBatch.vote_summary).length > 0 && (
+                  {/* Vote Summary - Now shows Rank 1 preferences */}
+                  {currentEatsBatch.rank_1_summary && Object.keys(currentEatsBatch.rank_1_summary).length > 0 && (
                     <div>
-                      <h4 className="font-semibold mb-2">Vote Summary</h4>
+                      <h4 className="font-semibold mb-2">#1 Choice Rankings</h4>
                       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                        {Object.entries(currentEatsBatch.vote_summary).map(([dish, count]) => (
+                        {Object.entries(currentEatsBatch.rank_1_summary).map(([dish, count]) => (
                           <Card key={dish} className={`p-3 ${dish === currentEatsBatch.leading_dish ? 'border-2 border-[hsl(var(--primary))]' : ''}`}>
                             <p className="text-sm font-medium truncate">{dish}</p>
-                            <p className="text-2xl font-bold">{count} <span className="text-sm font-normal text-muted-foreground">votes</span></p>
+                            <p className="text-2xl font-bold">{count} <span className="text-sm font-normal text-muted-foreground">#1 picks</span></p>
                             {dish === currentEatsBatch.leading_dish && (
-                              <Badge className="bg-[hsl(var(--primary))] text-xs mt-1">Leading</Badge>
+                              <Badge className="bg-[hsl(var(--primary))] text-xs mt-1">Most Popular</Badge>
                             )}
                           </Card>
                         ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Delivery Preferences */}
+                  {currentEatsBatch.delivery_preferences && (
+                    <div className="mt-4">
+                      <h4 className="font-semibold mb-2">Delivery Preferences</h4>
+                      <div className="flex gap-4">
+                        <Badge variant="outline" className="text-sm py-1 px-3">
+                          First Available: {currentEatsBatch.delivery_preferences.first_available || 0}
+                        </Badge>
+                        <Badge variant="outline" className="text-sm py-1 px-3">
+                          #1 Choice Only: {currentEatsBatch.delivery_preferences.top_choice_only || 0}
+                        </Badge>
                       </div>
                     </div>
                   )}
