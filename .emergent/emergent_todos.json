@@ -1,26 +1,26 @@
 [
   {
-    "content": "Create new EatsOrdering.jsx with card-based voting UI, batch status display, and tip input",
-    "status": "completed"
-  },
-  {
-    "content": "Add PayPal integration for 818 EATS prepayment",
-    "status": "completed"
-  },
-  {
-    "content": "Add Waakye as 4th menu item and update menu images",
-    "status": "completed"
-  },
-  {
-    "content": "Create EatsOrderConfirmation.jsx for post-order flow",
-    "status": "completed"
-  },
-  {
-    "content": "Add 818 EATS Batch tab to Admin dashboard",
-    "status": "completed"
-  },
-  {
-    "content": "Run comprehensive testing",
+    "content": "Update backend order model for ranking (rank_1, rank_2, rank_3) and delivery_preference",
     "status": "in_progress"
+  },
+  {
+    "content": "Update EatsOrdering.jsx with ranking UI and delivery preference toggle",
+    "status": "pending"
+  },
+  {
+    "content": "Remove 40-order target display from customer view",
+    "status": "pending"
+  },
+  {
+    "content": "Add Partner Restaurants section with signup/display",
+    "status": "pending"
+  },
+  {
+    "content": "Update admin to show ranking data and partner restaurants",
+    "status": "pending"
+  },
+  {
+    "content": "Test complete flow",
+    "status": "pending"
   }
 ]
