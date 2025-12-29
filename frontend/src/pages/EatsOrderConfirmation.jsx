@@ -4,21 +4,19 @@ import { Button } from '../components/ui/button';
 import { Card } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
 import { Skeleton } from '../components/ui/skeleton';
-import { CheckCircle2, Clock, MapPin, Phone, Mail, Utensils, Truck, Users, ArrowLeft, Copy, Share2 } from 'lucide-react';
+import { CheckCircle2, Clock, MapPin, Phone, Mail, Utensils, Truck, ArrowLeft, Copy, Share2 } from 'lucide-react';
 import { toast } from 'sonner';
 
 export default function EatsOrderConfirmation() {
   const { orderId } = useParams();
   const navigate = useNavigate();
   const [order, setOrder] = useState(null);
-  const [batchStatus, setBatchStatus] = useState(null);
   const [loading, setLoading] = useState(true);
   
   const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
   useEffect(() => {
     fetchOrder();
-    fetchBatchStatus();
   }, [orderId]);
 
   const fetchOrder = async () => {
@@ -36,16 +34,6 @@ export default function EatsOrderConfirmation() {
       toast.error('Failed to load order');
     } finally {
       setLoading(false);
-    }
-  };
-
-  const fetchBatchStatus = async () => {
-    try {
-      const response = await fetch(`${backendUrl}/api/eats/orders/current-batch`);
-      const data = await response.json();
-      setBatchStatus(data);
-    } catch (error) {
-      console.error('Error fetching batch status:', error);
     }
   };
 
@@ -127,73 +115,75 @@ export default function EatsOrderConfirmation() {
           </Badge>
         </Card>
 
-        {/* Batch Progress */}
-        {batchStatus && (
-          <Card className="p-6 mb-6 border-2 border-[hsl(var(--secondary))]">
-            <div className="flex items-center gap-3 mb-3">
-              <Users className="w-5 h-5 text-[hsl(var(--secondary))]" />
-              <span className="font-semibold">Weekly Batch Progress</span>
+        {/* Rankings */}
+        <Card className="p-6 mb-6">
+          <h2 className="font-semibold text-lg mb-4 flex items-center gap-2">
+            <Utensils className="w-5 h-5" /> Your Rankings
+          </h2>
+          
+          <div className="space-y-3">
+            <div className="flex items-center gap-3 p-3 bg-amber-50 rounded-lg border border-amber-200">
+              <span className="w-8 h-8 bg-amber-500 text-white rounded-full flex items-center justify-center font-bold">1</span>
+              <span className="font-medium" data-testid="rank-1-name">{order.rank_1_name}</span>
+              {order.assigned_dish_name === order.rank_1_name && (
+                <Badge className="ml-auto bg-green-600 text-white">Assigned</Badge>
+              )}
             </div>
-            <div className="flex items-center gap-4">
-              <div className="flex-1 bg-[hsl(var(--muted))] rounded-full h-3 overflow-hidden">
-                <div 
-                  className="bg-[hsl(var(--secondary))] h-full transition-all duration-500"
-                  style={{ width: `${Math.min(batchStatus.progress_percentage, 100)}%` }}
-                />
-              </div>
-              <span className="font-bold text-[hsl(var(--secondary))]" data-testid="batch-progress">
-                {batchStatus.current_orders}/40
-              </span>
+            <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg border border-gray-200">
+              <span className="w-8 h-8 bg-gray-500 text-white rounded-full flex items-center justify-center font-bold">2</span>
+              <span className="font-medium" data-testid="rank-2-name">{order.rank_2_name}</span>
+              {order.assigned_dish_name === order.rank_2_name && (
+                <Badge className="ml-auto bg-green-600 text-white">Assigned</Badge>
+              )}
             </div>
-            <p className="text-sm text-muted-foreground mt-2">
-              {batchStatus.status === 'ready_for_fulfillment' 
-                ? '🎉 We\'ve reached 40 orders! Delivery will be scheduled soon.'
-                : `${40 - batchStatus.current_orders} more orders needed for delivery this week.`
+            <div className="flex items-center gap-3 p-3 bg-orange-50 rounded-lg border border-orange-200">
+              <span className="w-8 h-8 bg-orange-500 text-white rounded-full flex items-center justify-center font-bold">3</span>
+              <span className="font-medium" data-testid="rank-3-name">{order.rank_3_name}</span>
+              {order.assigned_dish_name === order.rank_3_name && (
+                <Badge className="ml-auto bg-green-600 text-white">Assigned</Badge>
+              )}
+            </div>
+          </div>
+
+          <div className="mt-4 p-3 bg-muted rounded-lg">
+            <p className="text-sm">
+              <strong>Delivery Preference:</strong>{' '}
+              {order.delivery_preference === 'first_available' 
+                ? 'First Available - You\'ll receive whichever ranked dish is ready first'
+                : `#1 Choice Only - Waiting for ${order.rank_1_name}`
               }
             </p>
-          </Card>
-        )}
+          </div>
+        </Card>
 
         {/* Order Details */}
         <Card className="p-6 mb-6">
-          <h2 className="font-semibold text-lg mb-4 flex items-center gap-2">
-            <Utensils className="w-5 h-5" /> Order Details
-          </h2>
+          <h2 className="font-semibold text-lg mb-4">Order Details</h2>
           
-          <div className="space-y-4">
-            <div className="flex items-center gap-4 p-4 bg-[hsl(var(--muted))] rounded-lg">
-              <div className="flex-1">
-                <p className="font-semibold" data-testid="item-name">{order.menu_item_name}</p>
-                <p className="text-sm text-muted-foreground">Quantity: {order.quantity}</p>
-              </div>
-              <p className="font-bold text-lg">${order.item_price.toFixed(2)}</p>
+          <div className="space-y-2 text-sm">
+            <div className="flex justify-between">
+              <span>Subtotal</span>
+              <span>${order.subtotal?.toFixed(2)}</span>
             </div>
-
-            <div className="space-y-2 text-sm border-t pt-4">
-              <div className="flex justify-between">
-                <span>Subtotal</span>
-                <span>${order.subtotal.toFixed(2)}</span>
-              </div>
+            <div className="flex justify-between text-muted-foreground">
+              <span>Delivery Fee</span>
+              <span>${order.delivery_fee?.toFixed(2)}</span>
+            </div>
+            <div className="flex justify-between text-muted-foreground">
+              <span>Tax</span>
+              <span>${order.tax?.toFixed(2)}</span>
+            </div>
+            {order.tip > 0 && (
               <div className="flex justify-between text-muted-foreground">
-                <span>Delivery Fee</span>
-                <span>${order.delivery_fee.toFixed(2)}</span>
+                <span>Tip</span>
+                <span>${order.tip?.toFixed(2)}</span>
               </div>
-              <div className="flex justify-between text-muted-foreground">
-                <span>Tax</span>
-                <span>${order.tax.toFixed(2)}</span>
-              </div>
-              {order.tip > 0 && (
-                <div className="flex justify-between text-muted-foreground">
-                  <span>Tip</span>
-                  <span>${order.tip.toFixed(2)}</span>
-                </div>
-              )}
-              <div className="flex justify-between font-bold text-lg pt-2 border-t">
-                <span>Total</span>
-                <span className="text-[hsl(var(--secondary))]" data-testid="order-total">
-                  ${order.total.toFixed(2)}
-                </span>
-              </div>
+            )}
+            <div className="flex justify-between font-bold text-lg pt-2 border-t">
+              <span>Total</span>
+              <span className="text-[hsl(var(--secondary))]" data-testid="order-total">
+                ${order.total?.toFixed(2)}
+              </span>
             </div>
           </div>
         </Card>
@@ -261,7 +251,7 @@ export default function EatsOrderConfirmation() {
           <Button 
             className="flex-1 bg-[hsl(var(--secondary))] hover:bg-[hsl(183_55%_36%)]"
             onClick={() => {
-              const shareText = `I just voted for ${order.menu_item_name} on 818 EATS! Join me and get authentic African cuisine delivered.`;
+              const shareText = `I just ordered from 818 EATS! Get authentic African cuisine delivered - rank your favorites and enjoy delicious food.`;
               if (navigator.share) {
                 navigator.share({ title: '818 EATS', text: shareText, url: window.location.origin + '/eats' });
               } else {
