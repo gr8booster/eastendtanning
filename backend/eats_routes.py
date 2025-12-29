@@ -1,7 +1,8 @@
 """
 818 EATS - Food Pre-ordering System
-Weekly batch voting model - customers vote for ONE dish per week
-Orders aggregated to reach 40-order threshold before fulfillment
+Weekly batch voting model - customers RANK top 3 dishes
+Orders aggregated to reach threshold before fulfillment
+Customers choose: "First Available" or "#1 Choice Only"
 """
 from fastapi import APIRouter, HTTPException, Request
 from pydantic import BaseModel
@@ -25,6 +26,9 @@ PAYPAL_CLIENT_ID = os.environ.get('PAYPAL_CLIENT_ID')
 PAYPAL_CLIENT_SECRET = os.environ.get('PAYPAL_CLIENT_SECRET')
 PAYPAL_API_BASE = "https://api-m.paypal.com"  # Production
 
+# Constants
+ORDER_THRESHOLD = 40  # Internal threshold - not shown to customers
+
 # Pydantic Models
 class MenuItem(BaseModel):
     name: str
@@ -40,11 +44,27 @@ class FoodOrder(BaseModel):
     customer_phone: str
     customer_email: str
     customer_address: str
-    menu_item_id: str  # Vote for ONE item
+    rank_1: str  # Menu item ID - top choice
+    rank_2: str  # Menu item ID - second choice
+    rank_3: str  # Menu item ID - third choice
+    delivery_preference: str  # "first_available" or "top_choice_only"
     quantity: int = 1
-    delivery_fee: float = 5.99  # Standard delivery fee
+    delivery_fee: float = 5.99
     tip: float = 0.00
     notes: Optional[str] = None
+
+class PartnerRestaurant(BaseModel):
+    business_name: str
+    owner_name: str
+    phone: str
+    email: str
+    cuisine_type: str
+    description: str
+    address: str
+    city: str
+    state: str = "OH"
+    website: Optional[str] = None
+    logo_url: Optional[str] = None
 
 class VendorSignup(BaseModel):
     business_name: str
@@ -55,27 +75,14 @@ class VendorSignup(BaseModel):
     cuisine_type: str
     description: str
     address: str
-    license_type: str  # "cottage_food", "food_truck", "health_department"
+    license_type: str
     license_number: str
-    license_file_base64: str  # Base64 encoded file
+    license_file_base64: str
 
-class VendorMenuItem(BaseModel):
-    name: str
-    description: str
-    price: float
-    category: str
-    image_url: Optional[str] = None
-    available: bool = True
-    prep_time_minutes: int = 60
-    
-class MenuItemVote(BaseModel):
-    menu_item_id: str
-    customer_email: str
-    
 class ClientSignup(BaseModel):
     email: str
     name: Optional[str] = None
-    preferences: Optional[List[str]] = None  # cuisine types
+    preferences: Optional[List[str]] = None
 
 class PayPalOrderRequest(BaseModel):
     order_id: str
@@ -208,16 +215,19 @@ async def delete_menu_item(item_id: str):
         raise HTTPException(status_code=404, detail="Item not found")
     return {"status": "success"}
 
-# Order Management - Weekly Batch System
+# Order Management - Weekly Batch System with Rankings
 @router.post("/orders")
 async def place_order(order: FoodOrder):
-    """Place weekly food pre-order with voting"""
-    # Get menu item
-    menu_item = await db.eats_menu.find_one({"id": order.menu_item_id})
-    if not menu_item:
-        raise HTTPException(status_code=404, detail="Menu item not found")
+    """Place weekly food pre-order with rankings"""
+    # Validate all ranked menu items exist
+    rank_items = {}
+    for rank_num, item_id in [("rank_1", order.rank_1), ("rank_2", order.rank_2), ("rank_3", order.rank_3)]:
+        menu_item = await db.eats_menu.find_one({"id": item_id})
+        if not menu_item:
+            raise HTTPException(status_code=404, detail=f"Menu item for {rank_num} not found")
+        rank_items[rank_num] = menu_item
     
-    # Calculate totals server-side
+    # Calculate totals server-side (based on rank_1 item for now)
     item_price = 25.00  # Fixed price
     subtotal = item_price * order.quantity
     delivery_fee = 5.99  # Standard delivery fee
@@ -234,7 +244,7 @@ async def place_order(order: FoodOrder):
     # Count current batch orders
     batch_count = await db.eats_orders.count_documents({"batch_id": batch_id})
     
-    # Create order
+    # Create order with rankings
     new_order = {
         "id": str(uuid.uuid4()),
         "order_number": f"818-{str(uuid.uuid4())[:8].upper()}",
@@ -242,8 +252,18 @@ async def place_order(order: FoodOrder):
         "customer_phone": order.customer_phone,
         "customer_email": order.customer_email,
         "customer_address": order.customer_address,
-        "menu_item_id": order.menu_item_id,
-        "menu_item_name": menu_item["name"],
+        # Rankings
+        "rank_1": order.rank_1,
+        "rank_1_name": rank_items["rank_1"]["name"],
+        "rank_2": order.rank_2,
+        "rank_2_name": rank_items["rank_2"]["name"],
+        "rank_3": order.rank_3,
+        "rank_3_name": rank_items["rank_3"]["name"],
+        "delivery_preference": order.delivery_preference,  # "first_available" or "top_choice_only"
+        # Assigned dish (determined when batch is ready)
+        "assigned_dish_id": None,
+        "assigned_dish_name": None,
+        # Pricing
         "quantity": order.quantity,
         "item_price": item_price,
         "subtotal": subtotal,
@@ -252,6 +272,7 @@ async def place_order(order: FoodOrder):
         "tip": tip,
         "total": total,
         "notes": order.notes,
+        # Batch tracking
         "batch_id": batch_id,
         "batch_count": batch_count + 1,
         "status": "pending_payment",
@@ -267,22 +288,14 @@ async def place_order(order: FoodOrder):
     
     await db.eats_orders.insert_one(new_order)
     
-    # Check if batch reached target
-    batch_status = "collecting"
-    if batch_count + 1 >= 40:
-        batch_status = "ready_for_fulfillment"
-    
     return {
         "status": "success", 
         "order": {k: v for k, v in new_order.items() if k != '_id'},
         "batch_info": {
             "batch_id": batch_id,
-            "current_orders": batch_count + 1,
-            "target_orders": 40,
-            "batch_status": batch_status,
             "delivery_week": f"Week {week_number}, {year}"
         },
-        "message": "Order placed! Complete payment to confirm. Delivery scheduled once we reach 40 orders."
+        "message": "Order placed! Complete payment to confirm your spot."
     }
 
 @router.get("/orders/batch/{batch_id}")
@@ -290,13 +303,24 @@ async def get_batch_orders(batch_id: str):
     """Get all orders for a specific batch (admin)"""
     orders = await db.eats_orders.find({"batch_id": batch_id}, {"_id": 0}).to_list(None)
     
-    # Aggregate votes by menu item
+    # Aggregate votes by menu item (counting all rankings)
     vote_counts = {}
+    rank_1_counts = {}
     paid_count = 0
     total_revenue = 0
+    
     for order in orders:
-        item_name = order.get("menu_item_name")
-        vote_counts[item_name] = vote_counts.get(item_name, 0) + order.get("quantity", 1)
+        # Count rank 1 preferences
+        rank_1_name = order.get("rank_1_name")
+        if rank_1_name:
+            rank_1_counts[rank_1_name] = rank_1_counts.get(rank_1_name, 0) + order.get("quantity", 1)
+        
+        # Count all ranked items for potential fulfillment
+        for rank_field in ["rank_1_name", "rank_2_name", "rank_3_name"]:
+            item_name = order.get(rank_field)
+            if item_name:
+                vote_counts[item_name] = vote_counts.get(item_name, 0) + 1
+        
         if order.get("paid"):
             paid_count += 1
             total_revenue += order.get("total", 0)
@@ -307,13 +331,14 @@ async def get_batch_orders(batch_id: str):
         "paid_orders": paid_count,
         "total_revenue": round(total_revenue, 2),
         "orders": orders,
-        "vote_summary": vote_counts,
-        "target_reached": len(orders) >= 40
+        "rank_1_summary": rank_1_counts,
+        "all_rankings_summary": vote_counts,
+        "target_reached": len(orders) >= ORDER_THRESHOLD
     }
 
 @router.get("/orders/current-batch")
 async def get_current_batch_status():
-    """Get current week's batch status"""
+    """Get current week's batch status (internal tracking)"""
     now = datetime.now(timezone.utc)
     week_number = now.isocalendar()[1]
     year = now.year
@@ -322,35 +347,40 @@ async def get_current_batch_status():
     batch_count = await db.eats_orders.count_documents({"batch_id": batch_id})
     paid_count = await db.eats_orders.count_documents({"batch_id": batch_id, "paid": True})
     
-    # Get vote counts
+    # Get ranking counts
     orders = await db.eats_orders.find({"batch_id": batch_id}, {"_id": 0}).to_list(None)
-    vote_counts = {}
+    rank_1_counts = {}
+    delivery_pref_counts = {"first_available": 0, "top_choice_only": 0}
+    
     for order in orders:
-        item_name = order.get("menu_item_name")
-        if item_name:
-            vote_counts[item_name] = vote_counts.get(item_name, 0) + order.get("quantity", 1)
+        rank_1_name = order.get("rank_1_name")
+        if rank_1_name:
+            rank_1_counts[rank_1_name] = rank_1_counts.get(rank_1_name, 0) + order.get("quantity", 1)
+        
+        pref = order.get("delivery_preference", "first_available")
+        delivery_pref_counts[pref] = delivery_pref_counts.get(pref, 0) + 1
     
     # Find leading dish
     leading_dish = None
-    if vote_counts:
-        leading_dish = max(vote_counts, key=vote_counts.get)
+    if rank_1_counts:
+        leading_dish = max(rank_1_counts, key=rank_1_counts.get)
     
     return {
         "batch_id": batch_id,
         "week": f"Week {week_number}, {year}",
         "current_orders": batch_count,
         "paid_orders": paid_count,
-        "target_orders": 40,
-        "progress_percentage": round((batch_count / 40) * 100, 1),
-        "status": "ready_for_fulfillment" if batch_count >= 40 else "collecting",
-        "vote_summary": vote_counts,
+        "target_orders": ORDER_THRESHOLD,
+        "progress_percentage": round((batch_count / ORDER_THRESHOLD) * 100, 1),
+        "status": "ready_for_fulfillment" if batch_count >= ORDER_THRESHOLD else "collecting",
+        "rank_1_summary": rank_1_counts,
+        "delivery_preferences": delivery_pref_counts,
         "leading_dish": leading_dish
     }
 
 @router.get("/orders/all-batches")
 async def get_all_batches():
     """Get all batches with summary (admin)"""
-    # Get distinct batch_ids
     pipeline = [
         {"$group": {
             "_id": "$batch_id",
@@ -370,7 +400,7 @@ async def get_all_batches():
             "total_orders": b["total_orders"],
             "paid_orders": b["paid_orders"],
             "total_revenue": round(b["total_revenue"], 2),
-            "target_reached": b["total_orders"] >= 40,
+            "target_reached": b["total_orders"] >= ORDER_THRESHOLD,
             "latest_order": b["latest_order"]
         } for b in batches if b["_id"]]
     }
@@ -404,26 +434,25 @@ async def update_order_status(order_id: str, status: str):
         raise HTTPException(status_code=404, detail="Order not found")
     return {"status": "success"}
 
-@router.post("/orders/{order_id}/tip")
-async def add_tip(order_id: str, tip_amount: float):
-    """Add tip to order"""
-    order = await db.eats_orders.find_one({"id": order_id})
-    if not order:
-        raise HTTPException(status_code=404, detail="Order not found")
-    
-    new_total = order["total"] + tip_amount
-    
-    await db.eats_orders.update_one(
+@router.put("/orders/{order_id}/assign-dish")
+async def assign_dish_to_order(order_id: str, dish_id: str, dish_name: str):
+    """Assign final dish to order when batch is ready (admin)"""
+    result = await db.eats_orders.update_one(
         {"id": order_id},
-        {"$set": {"tip": tip_amount, "total": new_total, "updated_at": datetime.now(timezone.utc).isoformat()}}
+        {"$set": {
+            "assigned_dish_id": dish_id,
+            "assigned_dish_name": dish_name,
+            "updated_at": datetime.now(timezone.utc).isoformat()
+        }}
     )
-    return {"status": "success", "new_total": new_total}
+    if result.modified_count == 0:
+        raise HTTPException(status_code=404, detail="Order not found")
+    return {"status": "success"}
 
 # PayPal Integration for EATS
 @router.post("/paypal/create-order")
 async def create_eats_paypal_order(request: PayPalOrderRequest):
     """Create PayPal order for EATS order - amount from server"""
-    # Get the order
     order = await db.eats_orders.find_one({"id": request.order_id})
     if not order:
         raise HTTPException(status_code=404, detail="Order not found")
@@ -434,12 +463,11 @@ async def create_eats_paypal_order(request: PayPalOrderRequest):
     try:
         access_token = get_paypal_access_token()
         
-        # Create PayPal order with server-side amount
         order_payload = {
             "intent": "CAPTURE",
             "purchase_units": [{
                 "reference_id": order["order_number"],
-                "description": f"818 EATS - {order['menu_item_name']} x{order['quantity']}",
+                "description": f"818 EATS - Weekly African Cuisine (Rankings: {order['rank_1_name']}, {order['rank_2_name']}, {order['rank_3_name']})",
                 "amount": {
                     "currency_code": "USD",
                     "value": f"{order['total']:.2f}"
@@ -467,7 +495,6 @@ async def create_eats_paypal_order(request: PayPalOrderRequest):
         if response.status_code == 201:
             paypal_data = response.json()
             
-            # Store PayPal order ID on the order
             await db.eats_orders.update_one(
                 {"id": request.order_id},
                 {"$set": {"paypal_order_id": paypal_data["id"], "updated_at": datetime.now(timezone.utc).isoformat()}}
@@ -487,12 +514,10 @@ async def create_eats_paypal_order(request: PayPalOrderRequest):
 @router.post("/paypal/capture-order/{paypal_order_id}")
 async def capture_eats_paypal_order(paypal_order_id: str, request: PayPalOrderRequest):
     """Capture PayPal order and mark EATS order as paid"""
-    # Get the EATS order
     order = await db.eats_orders.find_one({"id": request.order_id})
     if not order:
         raise HTTPException(status_code=404, detail="Order not found")
     
-    # Idempotency check - if already paid, return success
     if order.get("paid"):
         return {
             "status": "success",
@@ -518,7 +543,6 @@ async def capture_eats_paypal_order(paypal_order_id: str, request: PayPalOrderRe
             capture_id = capture_data["purchase_units"][0]["payments"]["captures"][0]["id"]
             payer_email = capture_data.get("payer", {}).get("email_address")
             
-            # Update order as paid
             await db.eats_orders.update_one(
                 {"id": request.order_id},
                 {"$set": {
@@ -543,7 +567,79 @@ async def capture_eats_paypal_order(paypal_order_id: str, request: PayPalOrderRe
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to capture PayPal order: {str(e)}")
 
-# Vendor Management
+# Partner Restaurants
+@router.post("/partners")
+async def add_partner_restaurant(partner: PartnerRestaurant):
+    """Add a partner restaurant"""
+    existing = await db.eats_partners.find_one({"email": partner.email})
+    if existing:
+        raise HTTPException(status_code=400, detail="Partner with this email already exists")
+    
+    new_partner = {
+        "id": str(uuid.uuid4()),
+        **partner.dict(),
+        "status": "pending",  # pending, approved, active, inactive
+        "featured": False,
+        "created_at": datetime.now(timezone.utc).isoformat(),
+        "approved_at": None
+    }
+    await db.eats_partners.insert_one(new_partner)
+    return {
+        "status": "success",
+        "message": "Thank you for your interest! We'll review your application and contact you soon.",
+        "partner_id": new_partner["id"]
+    }
+
+@router.get("/partners")
+async def get_partner_restaurants(status: str = None):
+    """Get partner restaurants - public endpoint shows only approved/active"""
+    if status:
+        partners = await db.eats_partners.find({"status": status}, {"_id": 0}).to_list(None)
+    else:
+        # Public: show only approved or active partners
+        partners = await db.eats_partners.find(
+            {"status": {"$in": ["approved", "active"]}}, 
+            {"_id": 0}
+        ).to_list(None)
+    return {"partners": partners}
+
+@router.get("/partners/all")
+async def get_all_partner_restaurants():
+    """Get all partner restaurants including pending (admin)"""
+    partners = await db.eats_partners.find({}, {"_id": 0}).to_list(None)
+    return {"partners": partners}
+
+@router.put("/partners/{partner_id}/status")
+async def update_partner_status(partner_id: str, status: str):
+    """Update partner restaurant status (admin)"""
+    valid_statuses = ["pending", "approved", "active", "inactive", "rejected"]
+    if status not in valid_statuses:
+        raise HTTPException(status_code=400, detail=f"Invalid status. Must be one of: {valid_statuses}")
+    
+    update_data = {"status": status, "updated_at": datetime.now(timezone.utc).isoformat()}
+    if status == "approved":
+        update_data["approved_at"] = datetime.now(timezone.utc).isoformat()
+    
+    result = await db.eats_partners.update_one(
+        {"id": partner_id},
+        {"$set": update_data}
+    )
+    if result.modified_count == 0:
+        raise HTTPException(status_code=404, detail="Partner not found")
+    return {"status": "success"}
+
+@router.put("/partners/{partner_id}/featured")
+async def toggle_partner_featured(partner_id: str, featured: bool):
+    """Toggle partner featured status (admin)"""
+    result = await db.eats_partners.update_one(
+        {"id": partner_id},
+        {"$set": {"featured": featured, "updated_at": datetime.now(timezone.utc).isoformat()}}
+    )
+    if result.modified_count == 0:
+        raise HTTPException(status_code=404, detail="Partner not found")
+    return {"status": "success"}
+
+# Vendor Management (Legacy)
 @router.post("/vendors/signup")
 async def vendor_signup(vendor: VendorSignup):
     """Food vendor signup with license verification"""
@@ -577,21 +673,6 @@ async def vendor_signup(vendor: VendorSignup):
         "message": "Application submitted! We'll review your license and contact you within 24-48 hours.",
         "vendor_id": new_vendor["id"]
     }
-
-@router.post("/vendors/login")
-async def vendor_login(email: str, password: str):
-    """Vendor login"""
-    import hashlib
-    hashed_password = hashlib.sha256(password.encode()).hexdigest()
-    
-    vendor = await db.eats_vendors.find_one({"email": email, "password": hashed_password}, {"_id": 0})
-    if not vendor:
-        raise HTTPException(status_code=401, detail="Invalid credentials")
-    
-    if vendor["status"] != "approved":
-        raise HTTPException(status_code=403, detail="Your account is pending approval")
-    
-    return {"status": "success", "vendor": vendor}
 
 @router.get("/vendors")
 async def get_vendors():
