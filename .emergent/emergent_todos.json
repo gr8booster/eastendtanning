@@ -1,26 +1,26 @@
 [
   {
     "content": "Update backend order model for ranking (rank_1, rank_2, rank_3) and delivery_preference",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Update EatsOrdering.jsx with ranking UI and delivery preference toggle",
-    "status": "pending"
+    "status": "completed"
   },
   {
-    "content": "Remove 40-order target display from customer view",
-    "status": "pending"
+    "content": "Remove 40-order target display from customer view (admin only)",
+    "status": "completed"
   },
   {
     "content": "Add Partner Restaurants section with signup/display",
-    "status": "pending"
+    "status": "completed"
   },
   {
-    "content": "Update admin to show ranking data and partner restaurants",
-    "status": "pending"
+    "content": "Update admin to show ranking data and delivery preferences",
+    "status": "completed"
   },
   {
     "content": "Test complete flow",
-    "status": "pending"
+    "status": "completed"
   }
 ]
