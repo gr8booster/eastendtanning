@@ -1958,11 +1958,11 @@ Order Status: ${order.status}
                       <tr>
                         <th className="px-4 py-3 text-left text-sm font-semibold">Order #</th>
                         <th className="px-4 py-3 text-left text-sm font-semibold">Customer</th>
-                        <th className="px-4 py-3 text-left text-sm font-semibold">Dish</th>
+                        <th className="px-4 py-3 text-left text-sm font-semibold">Rankings</th>
+                        <th className="px-4 py-3 text-left text-sm font-semibold">Preference</th>
                         <th className="px-4 py-3 text-left text-sm font-semibold">Total</th>
                         <th className="px-4 py-3 text-left text-sm font-semibold">Payment</th>
                         <th className="px-4 py-3 text-left text-sm font-semibold">Status</th>
-                        <th className="px-4 py-3 text-left text-sm font-semibold">Batch</th>
                         <th className="px-4 py-3 text-left text-sm font-semibold">Actions</th>
                       </tr>
                     </thead>
@@ -1977,8 +1977,29 @@ Order Status: ${order.status}
                             <div className="text-xs text-muted-foreground">{order.customer_phone}</div>
                           </td>
                           <td className="px-4 py-3 text-sm">
-                            <div className="font-medium">{order.menu_item_name}</div>
-                            <div className="text-xs text-muted-foreground">Qty: {order.quantity}</div>
+                            <div className="space-y-1">
+                              <div className="flex items-center gap-1">
+                                <span className="w-5 h-5 bg-amber-500 text-white rounded-full flex items-center justify-center text-xs font-bold">1</span>
+                                <span className="text-xs truncate max-w-24">{order.rank_1_name || order.menu_item_name}</span>
+                              </div>
+                              {order.rank_2_name && (
+                                <div className="flex items-center gap-1">
+                                  <span className="w-5 h-5 bg-gray-400 text-white rounded-full flex items-center justify-center text-xs font-bold">2</span>
+                                  <span className="text-xs truncate max-w-24">{order.rank_2_name}</span>
+                                </div>
+                              )}
+                              {order.rank_3_name && (
+                                <div className="flex items-center gap-1">
+                                  <span className="w-5 h-5 bg-orange-400 text-white rounded-full flex items-center justify-center text-xs font-bold">3</span>
+                                  <span className="text-xs truncate max-w-24">{order.rank_3_name}</span>
+                                </div>
+                              )}
+                            </div>
+                          </td>
+                          <td className="px-4 py-3 text-sm">
+                            <Badge variant="outline" className="text-xs">
+                              {order.delivery_preference === 'first_available' ? 'Any' : '#1 Only'}
+                            </Badge>
                           </td>
                           <td className="px-4 py-3 text-sm font-bold text-green-600">${order.total?.toFixed(2)}</td>
                           <td className="px-4 py-3 text-sm">
@@ -1997,7 +2018,6 @@ Order Status: ${order.status}
                               {order.status?.replace(/_/g, ' ')}
                             </Badge>
                           </td>
-                          <td className="px-4 py-3 text-sm font-mono text-xs">{order.batch_id}</td>
                           <td className="px-4 py-3 text-sm">
                             <Select 
                               value={order.status} 
