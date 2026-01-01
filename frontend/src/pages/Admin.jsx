@@ -239,11 +239,18 @@ Order Status: ${order.status}
       
       // Fetch 818 EATS data
       try {
-        const [eatsCurrentBatchRes, eatsOrdersRes, eatsBatchesRes] = await Promise.all([
+        const [eatsSettingsRes, eatsCurrentBatchRes, eatsOrdersRes, eatsBatchesRes, eatsInterestsRes, eatsPartnersRes] = await Promise.all([
+          fetch(`${backendUrl}/api/eats/settings`),
           fetch(`${backendUrl}/api/eats/orders/current-batch`),
           fetch(`${backendUrl}/api/eats/orders`),
-          fetch(`${backendUrl}/api/eats/orders/all-batches`)
+          fetch(`${backendUrl}/api/eats/orders/all-batches`),
+          fetch(`${backendUrl}/api/eats/interest`),
+          fetch(`${backendUrl}/api/eats/partners/all`)
         ]);
+        if (eatsSettingsRes.ok) {
+          const eatsSettingsData = await eatsSettingsRes.json();
+          setEatsMode(eatsSettingsData.mode || 'interest_only');
+        }
         if (eatsCurrentBatchRes.ok) {
           const eatsCurrentBatchData = await eatsCurrentBatchRes.json();
           setCurrentEatsBatch(eatsCurrentBatchData);
@@ -255,6 +262,14 @@ Order Status: ${order.status}
         if (eatsBatchesRes.ok) {
           const eatsBatchesData = await eatsBatchesRes.json();
           setEatsBatches(eatsBatchesData.batches || []);
+        }
+        if (eatsInterestsRes.ok) {
+          const eatsInterestsData = await eatsInterestsRes.json();
+          setEatsInterests(eatsInterestsData.interests || []);
+        }
+        if (eatsPartnersRes.ok) {
+          const eatsPartnersData = await eatsPartnersRes.json();
+          setEatsPartners(eatsPartnersData.partners || []);
         }
       } catch (e) {
         console.error('Error fetching EATS data:', e);
