@@ -87,6 +87,7 @@ function App() {
             <Route path="/westend-laundry" element={<WestendLaundry />} />
           <Route path="/eats" element={<EatsOrdering />} />
           <Route path="/eats/order/:orderId" element={<EatsOrderConfirmation />} />
+          <Route path="/eats/partner-signup" element={<PartnerSignup />} />
           <Route path="/vendor-portal" element={<VendorPortal />} />
             <Route path="/drinks" element={<Drinks />} />
             <Route path="/nails" element={<Nails />} />
