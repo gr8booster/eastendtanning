@@ -2154,7 +2154,8 @@ Order Status: ${order.status}
                 </Card>
               )}
 
-              {/* Orders Table */}
+              {/* Orders Table (Vote Mode) */}
+              {eatsMode === 'vote_mode' && (
               <Card className="p-6">
                 <div className="flex items-center justify-between mb-4">
                   <div>
