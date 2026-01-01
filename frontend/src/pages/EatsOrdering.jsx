@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { Button } from '../components/ui/button';
 import { Card } from '../components/ui/card';
 import { Input } from '../components/ui/input';
@@ -9,19 +9,35 @@ import { Badge } from '../components/ui/badge';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '../components/ui/dialog';
 import { Skeleton } from '../components/ui/skeleton';
 import { RadioGroup, RadioGroupItem } from '../components/ui/radio-group';
-import { Clock, MapPin, Check, Users, Utensils, Truck, DollarSign, Loader2, Star, Building2, Phone, Mail, Globe } from 'lucide-react';
+import { Checkbox } from '../components/ui/checkbox';
+import { Clock, MapPin, Check, Users, Utensils, Truck, DollarSign, Loader2, Star, Building2, Phone, Mail, Globe, Heart, CheckCircle2 } from 'lucide-react';
 import { toast } from 'sonner';
 import { EnhancedSEO } from '../components/EnhancedSEO';
 
 export default function EatsOrdering() {
   const navigate = useNavigate();
   const [menu, setMenu] = useState([]);
+  const [mode, setMode] = useState('interest_only'); // 'interest_only' or 'vote_mode'
+  const [hasPartners, setHasPartners] = useState(false);
   const [rankings, setRankings] = useState({ rank_1: null, rank_2: null, rank_3: null });
   const [deliveryPreference, setDeliveryPreference] = useState('first_available');
   const [showCheckout, setShowCheckout] = useState(false);
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
   const [partners, setPartners] = useState([]);
+  
+  // Interest mode state
+  const [interestedDishes, setInterestedDishes] = useState([]);
+  const [willingToPrepay, setWillingToPrepay] = useState(false);
+  const [showInterestModal, setShowInterestModal] = useState(false);
+  const [interestSubmitted, setInterestSubmitted] = useState(false);
+  const [interestForm, setInterestForm] = useState({
+    name: '',
+    email: '',
+    phone: ''
+  });
+  
+  // Vote mode state
   const [orderDetails, setOrderDetails] = useState({
     customer_name: '',
     customer_phone: '',
@@ -38,9 +54,21 @@ export default function EatsOrdering() {
   const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
   useEffect(() => {
+    fetchSettings();
     fetchMenu();
     fetchPartners();
   }, []);
+
+  const fetchSettings = async () => {
+    try {
+      const response = await fetch(`${backendUrl}/api/eats/settings`);
+      const data = await response.json();
+      setMode(data.mode || 'interest_only');
+      setHasPartners(data.has_active_partners || false);
+    } catch (error) {
+      console.error('Error fetching settings:', error);
+    }
+  };
 
   const fetchMenu = async () => {
     try {
@@ -81,8 +109,60 @@ export default function EatsOrdering() {
     };
   };
 
+  // Interest mode functions
+  const toggleDishInterest = (itemId) => {
+    setInterestedDishes(prev => 
+      prev.includes(itemId) 
+        ? prev.filter(id => id !== itemId)
+        : [...prev, itemId]
+    );
+  };
+
+  const handleExpressInterest = () => {
+    if (interestedDishes.length === 0) {
+      toast.error('Please select at least one dish you\'re interested in');
+      return;
+    }
+    setShowInterestModal(true);
+  };
+
+  const handleSubmitInterest = async () => {
+    if (!interestForm.name || !interestForm.email || !interestForm.phone) {
+      toast.error('Please fill in all fields');
+      return;
+    }
+
+    setSubmitting(true);
+    try {
+      const response = await fetch(`${backendUrl}/api/eats/interest`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: interestForm.name,
+          email: interestForm.email,
+          phone: interestForm.phone,
+          interested_dishes: interestedDishes,
+          willing_to_prepay: willingToPrepay
+        })
+      });
+
+      const data = await response.json();
+      if (data.status === 'success') {
+        setInterestSubmitted(true);
+        toast.success('Thank you! We\'ll contact you when these dishes are available.');
+      } else {
+        toast.error(data.detail || 'Failed to submit');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      toast.error('Failed to submit');
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  // Vote mode functions
   const handleRankItem = (itemId, rank) => {
-    // Remove item from any existing rank
     const newRankings = { ...rankings };
     Object.keys(newRankings).forEach(key => {
       if (newRankings[key] === itemId) {
@@ -90,13 +170,11 @@ export default function EatsOrdering() {
       }
     });
     
-    // If clicking on same rank, just remove (toggle off)
     if (rankings[rank] === itemId) {
       setRankings(newRankings);
       return;
     }
     
-    // Assign to new rank
     newRankings[rank] = itemId;
     setRankings(newRankings);
   };
@@ -172,7 +250,7 @@ export default function EatsOrdering() {
     }
   };
 
-  // Load PayPal SDK
+  // PayPal
   useEffect(() => {
     if (showPayment && currentOrder && !paypalLoaded) {
       const script = document.createElement('script');
@@ -183,7 +261,6 @@ export default function EatsOrdering() {
     }
   }, [showPayment, currentOrder, paypalLoaded]);
 
-  // Render PayPal buttons
   useEffect(() => {
     if (paypalLoaded && currentOrder && window.paypal) {
       const container = document.getElementById('eats-paypal-container');
@@ -198,33 +275,22 @@ export default function EatsOrdering() {
               body: JSON.stringify({ order_id: currentOrder.id })
             });
             const data = await response.json();
-            if (data.status === 'success') {
-              return data.paypal_order_id;
-            }
+            if (data.status === 'success') return data.paypal_order_id;
             throw new Error('Failed to create PayPal order');
           },
           onApprove: async (data) => {
-            try {
-              const response = await fetch(`${backendUrl}/api/eats/paypal/capture-order/${data.orderID}`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ order_id: currentOrder.id })
-              });
-              const result = await response.json();
-              if (result.status === 'success') {
-                toast.success('Payment successful! Your order is confirmed.');
-                navigate(`/eats/order/${currentOrder.id}`);
-              } else {
-                toast.error('Payment capture failed');
-              }
-            } catch (err) {
-              toast.error('Payment error. Please try again.');
+            const response = await fetch(`${backendUrl}/api/eats/paypal/capture-order/${data.orderID}`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ order_id: currentOrder.id })
+            });
+            const result = await response.json();
+            if (result.status === 'success') {
+              toast.success('Payment successful!');
+              navigate(`/eats/order/${currentOrder.id}`);
             }
           },
-          onError: (err) => {
-            console.error('PayPal error:', err);
-            toast.error('Payment error. Please try again.');
-          }
+          onError: () => toast.error('Payment error')
         }).render('#eats-paypal-container');
       }
     }
@@ -235,30 +301,40 @@ export default function EatsOrdering() {
   return (
     <div className="min-h-screen bg-[hsl(var(--background))]">
       <EnhancedSEO
-        title="818 EATS - African Cuisine Weekly Delivery | Mt Vernon OH"
-        description="Rank your favorite African dishes and get fresh food delivered! Ghana Jollof Rice, Egusi Stew, Suya & Plantains, or Waakye. $25 per meal."
-        keywords="african food mt vernon, jollof rice, egusi stew, waakye, suya, 818 eats, weekly food delivery"
+        title="818 EATS - African Cuisine | Mt Vernon OH"
+        description="Authentic African cuisine delivered! Ghana Jollof Rice, Egusi Stew, Suya & Plantains, Waakye. Express your interest or order now."
+        keywords="african food mt vernon, jollof rice, egusi stew, waakye, suya, 818 eats"
         canonical="/eats"
       />
 
-      {/* Hero Section */}
+      {/* Hero */}
       <section className="relative bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--secondary))] text-white py-16 sm:py-20">
         <div className="absolute inset-0 bg-black/10"></div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto">
-            <p className="uppercase tracking-widest text-xs font-semibold text-white/80 mb-3">Weekly African Cuisine</p>
+            <p className="uppercase tracking-widest text-xs font-semibold text-white/80 mb-3">
+              {mode === 'interest_only' ? 'Coming Soon to Your Area' : 'Weekly African Cuisine'}
+            </p>
             <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold mb-4" data-testid="eats-title">818 EATS</h1>
-            <p className="text-xl sm:text-2xl mb-4 text-white/90">Rank Your Favorites & Get Fresh African Food Delivered!</p>
+            <p className="text-xl sm:text-2xl mb-4 text-white/90">
+              {mode === 'interest_only' 
+                ? 'Express Your Interest in Authentic African Cuisine!'
+                : 'Rank Your Favorites & Get Fresh African Food Delivered!'
+              }
+            </p>
             <p className="text-base text-white/80 mb-8 max-w-2xl">
-              Choose your top 3 dishes. Decide if you want only your #1 choice or the first dish that's ready. Fresh, authentic African cuisine delivered to your door.
+              {mode === 'interest_only'
+                ? 'Tell us which dishes you\'d love to try. We\'re building our network of partner kitchens and will contact you when your favorites are available!'
+                : 'Choose your top 3 dishes. Decide if you want only your #1 choice or the first dish that\'s ready.'
+              }
             </p>
             <Button 
               size="lg" 
               className="bg-white text-[hsl(var(--primary))] hover:bg-white/90 font-semibold px-8"
               onClick={() => document.getElementById('menu').scrollIntoView({behavior: 'smooth'})}
-              data-testid="rank-now-btn"
+              data-testid="cta-btn"
             >
-              Rank Your Dishes - $25/meal
+              {mode === 'interest_only' ? 'Show Me the Menu' : 'Rank Your Dishes - $25/meal'}
             </Button>
           </div>
         </div>
@@ -269,65 +345,109 @@ export default function EatsOrdering() {
         <div className="container mx-auto px-4">
           <h2 className="font-serif text-2xl sm:text-3xl font-bold text-center mb-8">How It Works</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
-            <Card className="p-4 text-center">
-              <div className="w-12 h-12 bg-[hsl(var(--primary))]/20 rounded-full flex items-center justify-center mx-auto mb-3">
-                <span className="text-2xl font-bold text-[hsl(var(--primary))]">1</span>
-              </div>
-              <h3 className="font-semibold text-sm mb-1">Rank Top 3</h3>
-              <p className="text-xs text-muted-foreground">Choose your favorites in order</p>
-            </Card>
-            <Card className="p-4 text-center">
-              <div className="w-12 h-12 bg-[hsl(var(--primary))]/20 rounded-full flex items-center justify-center mx-auto mb-3">
-                <DollarSign className="w-6 h-6 text-[hsl(var(--primary))]" />
-              </div>
-              <h3 className="font-semibold text-sm mb-1">Prepay</h3>
-              <p className="text-xs text-muted-foreground">Secure your spot</p>
-            </Card>
-            <Card className="p-4 text-center">
-              <div className="w-12 h-12 bg-[hsl(var(--primary))]/20 rounded-full flex items-center justify-center mx-auto mb-3">
-                <Utensils className="w-6 h-6 text-[hsl(var(--primary))]" />
-              </div>
-              <h3 className="font-semibold text-sm mb-1">We Prepare</h3>
-              <p className="text-xs text-muted-foreground">Fresh when ready</p>
-            </Card>
-            <Card className="p-4 text-center">
-              <div className="w-12 h-12 bg-[hsl(var(--primary))]/20 rounded-full flex items-center justify-center mx-auto mb-3">
-                <Truck className="w-6 h-6 text-[hsl(var(--primary))]" />
-              </div>
-              <h3 className="font-semibold text-sm mb-1">Delivery</h3>
-              <p className="text-xs text-muted-foreground">Fresh to your door</p>
-            </Card>
+            {mode === 'interest_only' ? (
+              <>
+                <Card className="p-4 text-center">
+                  <div className="w-12 h-12 bg-[hsl(var(--primary))]/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <Heart className="w-6 h-6 text-[hsl(var(--primary))]" />
+                  </div>
+                  <h3 className="font-semibold text-sm mb-1">1. Express Interest</h3>
+                  <p className="text-xs text-muted-foreground">Select dishes you'd love</p>
+                </Card>
+                <Card className="p-4 text-center">
+                  <div className="w-12 h-12 bg-[hsl(var(--primary))]/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <Users className="w-6 h-6 text-[hsl(var(--primary))]" />
+                  </div>
+                  <h3 className="font-semibold text-sm mb-1">2. We Gather Demand</h3>
+                  <p className="text-xs text-muted-foreground">Build our network</p>
+                </Card>
+                <Card className="p-4 text-center">
+                  <div className="w-12 h-12 bg-[hsl(var(--primary))]/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <Phone className="w-6 h-6 text-[hsl(var(--primary))]" />
+                  </div>
+                  <h3 className="font-semibold text-sm mb-1">3. We Contact You</h3>
+                  <p className="text-xs text-muted-foreground">When it's available</p>
+                </Card>
+                <Card className="p-4 text-center">
+                  <div className="w-12 h-12 bg-[hsl(var(--primary))]/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <Truck className="w-6 h-6 text-[hsl(var(--primary))]" />
+                  </div>
+                  <h3 className="font-semibold text-sm mb-1">4. Fresh Delivery</h3>
+                  <p className="text-xs text-muted-foreground">To your door</p>
+                </Card>
+              </>
+            ) : (
+              <>
+                <Card className="p-4 text-center">
+                  <div className="w-12 h-12 bg-[hsl(var(--primary))]/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <span className="text-2xl font-bold text-[hsl(var(--primary))]">1</span>
+                  </div>
+                  <h3 className="font-semibold text-sm mb-1">Rank Top 3</h3>
+                  <p className="text-xs text-muted-foreground">Choose your favorites</p>
+                </Card>
+                <Card className="p-4 text-center">
+                  <div className="w-12 h-12 bg-[hsl(var(--primary))]/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <DollarSign className="w-6 h-6 text-[hsl(var(--primary))]" />
+                  </div>
+                  <h3 className="font-semibold text-sm mb-1">Prepay</h3>
+                  <p className="text-xs text-muted-foreground">Secure your spot</p>
+                </Card>
+                <Card className="p-4 text-center">
+                  <div className="w-12 h-12 bg-[hsl(var(--primary))]/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <Utensils className="w-6 h-6 text-[hsl(var(--primary))]" />
+                  </div>
+                  <h3 className="font-semibold text-sm mb-1">We Prepare</h3>
+                  <p className="text-xs text-muted-foreground">Fresh when ready</p>
+                </Card>
+                <Card className="p-4 text-center">
+                  <div className="w-12 h-12 bg-[hsl(var(--primary))]/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <Truck className="w-6 h-6 text-[hsl(var(--primary))]" />
+                  </div>
+                  <h3 className="font-semibold text-sm mb-1">Delivery</h3>
+                  <p className="text-xs text-muted-foreground">Fresh to your door</p>
+                </Card>
+              </>
+            )}
           </div>
         </div>
       </section>
 
-      {/* Menu Section - Ranking Selection */}
+      {/* Menu Section */}
       <section id="menu" className="py-12 bg-[hsl(var(--muted))]">
         <div className="container mx-auto px-4">
           <div className="text-center mb-8">
-            <h2 className="font-serif text-3xl sm:text-4xl font-bold mb-2">Rank Your Top 3 Dishes</h2>
-            <p className="text-muted-foreground">All dishes $25 • Click to assign rank 1, 2, or 3</p>
+            <h2 className="font-serif text-3xl sm:text-4xl font-bold mb-2">
+              {mode === 'interest_only' ? 'What Would You Like to Try?' : 'Rank Your Top 3 Dishes'}
+            </h2>
+            <p className="text-muted-foreground">
+              {mode === 'interest_only' 
+                ? 'Select all the dishes you\'d be interested in ordering • $25 each'
+                : 'All dishes $25 • Click to assign rank 1, 2, or 3'
+              }
+            </p>
           </div>
 
-          {/* Ranking Summary */}
-          <div className="max-w-2xl mx-auto mb-8">
-            <Card className="p-4">
-              <div className="grid grid-cols-3 gap-4 text-center">
-                <div className={`p-3 rounded-lg ${rankings.rank_1 ? 'bg-amber-100 border-2 border-amber-400' : 'bg-gray-100'}`}>
-                  <div className="text-2xl font-bold text-amber-600">1st</div>
-                  <div className="text-sm truncate">{getRankedItemName('rank_1') || 'Not selected'}</div>
+          {/* Vote Mode: Ranking Summary */}
+          {mode === 'vote_mode' && (
+            <div className="max-w-2xl mx-auto mb-8">
+              <Card className="p-4">
+                <div className="grid grid-cols-3 gap-4 text-center">
+                  <div className={`p-3 rounded-lg ${rankings.rank_1 ? 'bg-amber-100 border-2 border-amber-400' : 'bg-gray-100'}`}>
+                    <div className="text-2xl font-bold text-amber-600">1st</div>
+                    <div className="text-sm truncate">{getRankedItemName('rank_1') || 'Not selected'}</div>
+                  </div>
+                  <div className={`p-3 rounded-lg ${rankings.rank_2 ? 'bg-gray-200 border-2 border-gray-400' : 'bg-gray-100'}`}>
+                    <div className="text-2xl font-bold text-gray-600">2nd</div>
+                    <div className="text-sm truncate">{getRankedItemName('rank_2') || 'Not selected'}</div>
+                  </div>
+                  <div className={`p-3 rounded-lg ${rankings.rank_3 ? 'bg-orange-100 border-2 border-orange-400' : 'bg-gray-100'}`}>
+                    <div className="text-2xl font-bold text-orange-600">3rd</div>
+                    <div className="text-sm truncate">{getRankedItemName('rank_3') || 'Not selected'}</div>
+                  </div>
                 </div>
-                <div className={`p-3 rounded-lg ${rankings.rank_2 ? 'bg-gray-200 border-2 border-gray-400' : 'bg-gray-100'}`}>
-                  <div className="text-2xl font-bold text-gray-600">2nd</div>
-                  <div className="text-sm truncate">{getRankedItemName('rank_2') || 'Not selected'}</div>
-                </div>
-                <div className={`p-3 rounded-lg ${rankings.rank_3 ? 'bg-orange-100 border-2 border-orange-400' : 'bg-gray-100'}`}>
-                  <div className="text-2xl font-bold text-orange-600">3rd</div>
-                  <div className="text-sm truncate">{getRankedItemName('rank_3') || 'Not selected'}</div>
-                </div>
-              </div>
-            </Card>
-          </div>
+              </Card>
+            </div>
+          )}
           
           {loading ? (
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
@@ -337,7 +457,6 @@ export default function EatsOrdering() {
                   <div className="p-4 space-y-3">
                     <Skeleton className="h-6 w-3/4" />
                     <Skeleton className="h-4 w-full" />
-                    <Skeleton className="h-4 w-1/2" />
                   </div>
                 </Card>
               ))}
@@ -346,15 +465,19 @@ export default function EatsOrdering() {
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
               {menu.map((item) => {
                 const rank = getItemRank(item.id);
+                const isInterested = interestedDishes.includes(item.id);
+                
                 return (
                   <Card 
                     key={item.id} 
                     className={`overflow-hidden transition-all duration-200 ${
-                      rank ? 'ring-4 shadow-xl scale-[1.02]' : 'hover:shadow-lg'
+                      mode === 'interest_only'
+                        ? isInterested ? 'ring-4 ring-[hsl(var(--secondary))] shadow-xl' : 'hover:shadow-lg'
+                        : rank ? 'ring-4 shadow-xl scale-[1.02]' : 'hover:shadow-lg'
                     } ${
-                      rank === 1 ? 'ring-amber-400' :
-                      rank === 2 ? 'ring-gray-400' :
-                      rank === 3 ? 'ring-orange-400' : ''
+                      mode === 'vote_mode' && rank === 1 ? 'ring-amber-400' :
+                      mode === 'vote_mode' && rank === 2 ? 'ring-gray-400' :
+                      mode === 'vote_mode' && rank === 3 ? 'ring-orange-400' : ''
                     }`}
                     data-testid={`menu-card-${item.id}`}
                   >
@@ -364,11 +487,14 @@ export default function EatsOrdering() {
                         alt={item.name}
                         className="w-full h-48 object-cover"
                       />
-                      {rank && (
+                      {mode === 'interest_only' && isInterested && (
+                        <div className="absolute top-3 right-3 w-10 h-10 bg-[hsl(var(--secondary))] rounded-full flex items-center justify-center shadow-lg">
+                          <Heart className="w-6 h-6 text-white fill-white" />
+                        </div>
+                      )}
+                      {mode === 'vote_mode' && rank && (
                         <div className={`absolute top-3 right-3 w-10 h-10 rounded-full flex items-center justify-center shadow-lg text-white font-bold text-xl ${
-                          rank === 1 ? 'bg-amber-500' :
-                          rank === 2 ? 'bg-gray-500' :
-                          'bg-orange-500'
+                          rank === 1 ? 'bg-amber-500' : rank === 2 ? 'bg-gray-500' : 'bg-orange-500'
                         }`}>
                           {rank}
                         </div>
@@ -386,36 +512,47 @@ export default function EatsOrdering() {
                           ~{item.prep_time_minutes} min prep
                         </div>
                       </div>
-                      {/* Rank Buttons */}
-                      <div className="flex gap-2">
+                      
+                      {mode === 'interest_only' ? (
                         <Button 
-                          size="sm" 
-                          variant={rank === 1 ? 'default' : 'outline'}
-                          className={rank === 1 ? 'bg-amber-500 hover:bg-amber-600' : ''}
-                          onClick={() => handleRankItem(item.id, 'rank_1')}
-                          data-testid={`rank-1-${item.id}`}
+                          className={`w-full ${isInterested ? 'bg-[hsl(var(--secondary))]' : ''}`}
+                          variant={isInterested ? 'default' : 'outline'}
+                          onClick={() => toggleDishInterest(item.id)}
+                          data-testid={`interest-${item.id}`}
                         >
-                          1st
+                          {isInterested ? <><Heart className="w-4 h-4 mr-2 fill-white" /> Interested</> : 'I\'d Try This!'}
                         </Button>
-                        <Button 
-                          size="sm" 
-                          variant={rank === 2 ? 'default' : 'outline'}
-                          className={rank === 2 ? 'bg-gray-500 hover:bg-gray-600' : ''}
-                          onClick={() => handleRankItem(item.id, 'rank_2')}
-                          data-testid={`rank-2-${item.id}`}
-                        >
-                          2nd
-                        </Button>
-                        <Button 
-                          size="sm" 
-                          variant={rank === 3 ? 'default' : 'outline'}
-                          className={rank === 3 ? 'bg-orange-500 hover:bg-orange-600' : ''}
-                          onClick={() => handleRankItem(item.id, 'rank_3')}
-                          data-testid={`rank-3-${item.id}`}
-                        >
-                          3rd
-                        </Button>
-                      </div>
+                      ) : (
+                        <div className="flex gap-2">
+                          <Button 
+                            size="sm" 
+                            variant={rank === 1 ? 'default' : 'outline'}
+                            className={rank === 1 ? 'bg-amber-500 hover:bg-amber-600' : ''}
+                            onClick={() => handleRankItem(item.id, 'rank_1')}
+                            data-testid={`rank-1-${item.id}`}
+                          >
+                            1st
+                          </Button>
+                          <Button 
+                            size="sm" 
+                            variant={rank === 2 ? 'default' : 'outline'}
+                            className={rank === 2 ? 'bg-gray-500 hover:bg-gray-600' : ''}
+                            onClick={() => handleRankItem(item.id, 'rank_2')}
+                            data-testid={`rank-2-${item.id}`}
+                          >
+                            2nd
+                          </Button>
+                          <Button 
+                            size="sm" 
+                            variant={rank === 3 ? 'default' : 'outline'}
+                            className={rank === 3 ? 'bg-orange-500 hover:bg-orange-600' : ''}
+                            onClick={() => handleRankItem(item.id, 'rank_3')}
+                            data-testid={`rank-3-${item.id}`}
+                          >
+                            3rd
+                          </Button>
+                        </div>
+                      )}
                     </div>
                   </Card>
                 );
@@ -423,8 +560,21 @@ export default function EatsOrdering() {
             </div>
           )}
 
-          {/* Proceed Button */}
-          {isRankingComplete() && (
+          {/* Action Button */}
+          {mode === 'interest_only' && interestedDishes.length > 0 && (
+            <div className="mt-8 text-center">
+              <Button 
+                size="lg" 
+                className="bg-[hsl(var(--secondary))] hover:bg-[hsl(183_55%_36%)] text-white font-semibold px-12 py-6 text-lg"
+                onClick={handleExpressInterest}
+                data-testid="express-interest-btn"
+              >
+                <Heart className="w-5 h-5 mr-2" /> Express Interest ({interestedDishes.length} dishes)
+              </Button>
+            </div>
+          )}
+
+          {mode === 'vote_mode' && isRankingComplete() && (
             <div className="mt-8 text-center">
               <Button 
                 size="lg" 
@@ -453,37 +603,19 @@ export default function EatsOrdering() {
                 <Card key={partner.id} className="overflow-hidden hover:shadow-lg transition-shadow">
                   <div className="p-6">
                     <div className="flex items-start gap-4">
-                      {partner.logo_url ? (
-                        <img src={partner.logo_url} alt={partner.business_name} className="w-16 h-16 rounded-lg object-cover" />
-                      ) : (
-                        <div className="w-16 h-16 bg-[hsl(var(--primary))]/20 rounded-lg flex items-center justify-center">
-                          <Building2 className="w-8 h-8 text-[hsl(var(--primary))]" />
-                        </div>
-                      )}
+                      <div className="w-16 h-16 bg-[hsl(var(--primary))]/20 rounded-lg flex items-center justify-center">
+                        <Building2 className="w-8 h-8 text-[hsl(var(--primary))]" />
+                      </div>
                       <div className="flex-1">
                         <h3 className="font-bold text-lg">{partner.business_name}</h3>
-                        <Badge variant="outline" className="mt-1">{partner.cuisine_type}</Badge>
+                        <Badge variant="outline" className="mt-1">{partner.cuisine_specialties}</Badge>
                       </div>
-                      {partner.featured && (
-                        <Badge className="bg-amber-500 text-white">
-                          <Star className="w-3 h-3 mr-1" /> Featured
-                        </Badge>
-                      )}
                     </div>
-                    <p className="text-sm text-muted-foreground mt-4 line-clamp-2">{partner.description}</p>
                     <div className="mt-4 space-y-2 text-sm">
                       <div className="flex items-center gap-2 text-muted-foreground">
                         <MapPin className="w-4 h-4" />
                         <span>{partner.city}, {partner.state}</span>
                       </div>
-                      {partner.website && (
-                        <div className="flex items-center gap-2 text-muted-foreground">
-                          <Globe className="w-4 h-4" />
-                          <a href={partner.website} target="_blank" rel="noopener noreferrer" className="text-[hsl(var(--secondary))] hover:underline">
-                            Visit Website
-                          </a>
-                        </div>
-                      )}
                     </div>
                   </div>
                 </Card>
@@ -493,14 +625,107 @@ export default function EatsOrdering() {
             <Card className="max-w-2xl mx-auto p-8 text-center">
               <Building2 className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
               <h3 className="font-semibold text-lg mb-2">Partner Restaurants Coming Soon</h3>
-              <p className="text-muted-foreground mb-4">We're building a network of authentic African restaurants. Check back soon!</p>
-              <p className="text-sm text-muted-foreground">Are you an African restaurant owner? <a href="#partner-signup" className="text-[hsl(var(--secondary))] hover:underline">Join our network</a></p>
+              <p className="text-muted-foreground mb-4">We're building a network of authentic African restaurants and kitchens.</p>
+              <Link to="/eats/partner-signup">
+                <Button variant="outline" data-testid="partner-signup-link">
+                  <Building2 className="w-4 h-4 mr-2" /> Become a Partner
+                </Button>
+              </Link>
             </Card>
           )}
         </div>
       </section>
 
-      {/* Checkout Modal */}
+      {/* Interest Modal */}
+      <Dialog open={showInterestModal} onOpenChange={setShowInterestModal}>
+        <DialogContent className="max-w-md">
+          <DialogHeader>
+            <DialogTitle className="font-serif text-2xl">
+              {interestSubmitted ? 'Thank You!' : 'Express Your Interest'}
+            </DialogTitle>
+          </DialogHeader>
+          
+          {interestSubmitted ? (
+            <div className="text-center py-6">
+              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <CheckCircle2 className="w-10 h-10 text-green-600" />
+              </div>
+              <p className="text-muted-foreground mb-4">
+                We've recorded your interest! We'll contact you when your favorite dishes are available.
+              </p>
+              <Button onClick={() => setShowInterestModal(false)}>Close</Button>
+            </div>
+          ) : (
+            <div className="space-y-4">
+              <p className="text-sm text-muted-foreground">
+                You're interested in {interestedDishes.length} dish(es). Leave your contact info and we'll notify you when they're available!
+              </p>
+              
+              <div>
+                <Label htmlFor="interest-name">Name *</Label>
+                <Input 
+                  id="interest-name"
+                  value={interestForm.name}
+                  onChange={(e) => setInterestForm({...interestForm, name: e.target.value})}
+                  placeholder="Your Name"
+                  data-testid="interest-name"
+                />
+              </div>
+              <div>
+                <Label htmlFor="interest-email">Email *</Label>
+                <Input 
+                  id="interest-email"
+                  type="email"
+                  value={interestForm.email}
+                  onChange={(e) => setInterestForm({...interestForm, email: e.target.value})}
+                  placeholder="your@email.com"
+                  data-testid="interest-email"
+                />
+              </div>
+              <div>
+                <Label htmlFor="interest-phone">Phone *</Label>
+                <Input 
+                  id="interest-phone"
+                  value={interestForm.phone}
+                  onChange={(e) => setInterestForm({...interestForm, phone: e.target.value})}
+                  placeholder="(740) 555-1234"
+                  data-testid="interest-phone"
+                />
+              </div>
+
+              <Card className="p-4 bg-[hsl(var(--muted))]">
+                <div className="flex items-start gap-3">
+                  <Checkbox 
+                    id="prepay" 
+                    checked={willingToPrepay}
+                    onCheckedChange={setWillingToPrepay}
+                    data-testid="interest-prepay"
+                  />
+                  <div>
+                    <Label htmlFor="prepay" className="font-medium cursor-pointer">
+                      Yes, I'd be willing to prepay!
+                    </Label>
+                    <p className="text-sm text-muted-foreground mt-1">
+                      Prepaying helps us coordinate with our partner kitchens
+                    </p>
+                  </div>
+                </div>
+              </Card>
+
+              <Button 
+                className="w-full bg-[hsl(var(--secondary))]"
+                onClick={handleSubmitInterest}
+                disabled={submitting}
+                data-testid="submit-interest-btn"
+              >
+                {submitting ? <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Submitting...</> : 'Submit Interest'}
+              </Button>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
+
+      {/* Vote Mode: Checkout Modal */}
       <Dialog open={showCheckout} onOpenChange={setShowCheckout}>
         <DialogContent className="max-w-lg max-h-[90vh] overflow-y-auto">
           <DialogHeader>
@@ -508,7 +733,6 @@ export default function EatsOrdering() {
           </DialogHeader>
           
           <div className="space-y-6">
-            {/* Rankings Summary */}
             <Card className="p-4 bg-[hsl(var(--muted))]">
               <h4 className="font-semibold mb-3">Your Rankings</h4>
               <div className="space-y-2">
@@ -527,7 +751,6 @@ export default function EatsOrdering() {
               </div>
             </Card>
 
-            {/* Delivery Preference */}
             <div className="space-y-3">
               <Label className="text-base font-semibold">Delivery Preference</Label>
               <RadioGroup value={deliveryPreference} onValueChange={setDeliveryPreference} className="space-y-3">
@@ -535,20 +758,19 @@ export default function EatsOrdering() {
                   <RadioGroupItem value="first_available" id="first_available" className="mt-1" />
                   <div>
                     <Label htmlFor="first_available" className="font-medium cursor-pointer">First Available (Recommended)</Label>
-                    <p className="text-sm text-muted-foreground">Get whichever of your ranked dishes is ready first. Faster delivery!</p>
+                    <p className="text-sm text-muted-foreground">Get whichever of your ranked dishes is ready first</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3 p-4 border rounded-lg hover:bg-muted/50 cursor-pointer" onClick={() => setDeliveryPreference('top_choice_only')}>
                   <RadioGroupItem value="top_choice_only" id="top_choice_only" className="mt-1" />
                   <div>
                     <Label htmlFor="top_choice_only" className="font-medium cursor-pointer">#1 Choice Only</Label>
-                    <p className="text-sm text-muted-foreground">Wait until your top choice ({getRankedItemName('rank_1')}) is available. May take longer.</p>
+                    <p className="text-sm text-muted-foreground">Wait for {getRankedItemName('rank_1')}</p>
                   </div>
                 </div>
               </RadioGroup>
             </div>
 
-            {/* Customer Details */}
             <div className="space-y-4">
               <h4 className="font-semibold">Your Information</h4>
               <div className="grid grid-cols-2 gap-3">
@@ -596,7 +818,6 @@ export default function EatsOrdering() {
               </div>
             </div>
 
-            {/* Tip Selection */}
             <div className="space-y-3">
               <Label>Add a Tip</Label>
               <div className="flex gap-2">
@@ -607,42 +828,30 @@ export default function EatsOrdering() {
                     variant={orderDetails.tip === tip ? 'default' : 'outline'}
                     className={orderDetails.tip === tip ? 'bg-[hsl(var(--secondary))]' : ''}
                     onClick={() => setOrderDetails({...orderDetails, tip})}
-                    data-testid={`tip-${tip}`}
                   >
                     {tip === 0 ? 'No Tip' : `$${tip}`}
                   </Button>
                 ))}
-                <Input 
-                  type="number"
-                  placeholder="Custom"
-                  className="w-20"
-                  min="0"
-                  step="0.5"
-                  onChange={(e) => setOrderDetails({...orderDetails, tip: parseFloat(e.target.value) || 0})}
-                  data-testid="tip-custom"
-                />
               </div>
             </div>
 
-            {/* Notes */}
             <div>
               <Label htmlFor="notes">Special Requests (optional)</Label>
               <Textarea 
                 id="notes"
                 value={orderDetails.notes}
                 onChange={(e) => setOrderDetails({...orderDetails, notes: e.target.value})}
-                placeholder="Any dietary restrictions or special requests?"
+                placeholder="Any dietary restrictions?"
                 rows={2}
                 data-testid="checkout-notes"
               />
             </div>
 
-            {/* Order Summary */}
             <Card className="p-4">
               <h4 className="font-semibold mb-3">Order Summary</h4>
               <div className="space-y-2 text-sm">
                 <div className="flex justify-between">
-                  <span>African Cuisine (Your Selection)</span>
+                  <span>African Cuisine</span>
                   <span>${totals.subtotal.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between text-muted-foreground">
@@ -667,24 +876,13 @@ export default function EatsOrdering() {
             </Card>
 
             <Button 
-              className="w-full bg-[hsl(var(--primary))] hover:bg-[hsl(42_92%_50%)] text-[hsl(var(--primary-foreground))] font-semibold py-6 text-lg"
+              className="w-full bg-[hsl(var(--primary))] hover:bg-[hsl(42_92%_50%)] py-6 text-lg"
               onClick={handlePlaceOrder}
               disabled={submitting}
               data-testid="place-order-btn"
             >
-              {submitting ? (
-                <><Loader2 className="w-5 h-5 mr-2 animate-spin" /> Processing...</>
-              ) : (
-                'Continue to Payment'
-              )}
+              {submitting ? <><Loader2 className="w-5 h-5 mr-2 animate-spin" /> Processing...</> : 'Continue to Payment'}
             </Button>
-
-            <p className="text-xs text-center text-muted-foreground">
-              {deliveryPreference === 'first_available' 
-                ? "You'll receive whichever of your ranked dishes is available first"
-                : `You'll wait for ${getRankedItemName('rank_1')} to be available`
-              }
-            </p>
           </div>
         </DialogContent>
       </Dialog>
@@ -701,9 +899,7 @@ export default function EatsOrdering() {
               <Card className="p-4 bg-[hsl(var(--muted))]">
                 <div className="text-center">
                   <p className="text-sm text-muted-foreground">Order Total</p>
-                  <p className="text-3xl font-bold text-[hsl(var(--secondary))]">
-                    ${currentOrder.total.toFixed(2)}
-                  </p>
+                  <p className="text-3xl font-bold text-[hsl(var(--secondary))]">${currentOrder.total.toFixed(2)}</p>
                   <p className="text-sm mt-2">Order #{currentOrder.order_number}</p>
                 </div>
               </Card>
@@ -716,10 +912,6 @@ export default function EatsOrdering() {
                   </div>
                 )}
               </div>
-
-              <p className="text-xs text-center text-muted-foreground">
-                Secure payment powered by PayPal. Your order will be confirmed after payment.
-              </p>
             </div>
           )}
         </DialogContent>
@@ -728,15 +920,21 @@ export default function EatsOrdering() {
       {/* Footer CTA */}
       <section className="py-12 bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--secondary))] text-white">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="font-serif text-2xl sm:text-3xl font-bold mb-4">Ready to Order?</h2>
-          <p className="mb-6 text-white/90">Rank your favorites and get authentic African cuisine delivered!</p>
+          <h2 className="font-serif text-2xl sm:text-3xl font-bold mb-4">
+            {mode === 'interest_only' ? 'Help Us Bring African Cuisine to You!' : 'Ready to Order?'}
+          </h2>
+          <p className="mb-6 text-white/90">
+            {mode === 'interest_only' 
+              ? 'Express your interest and be first to know when your favorites are available'
+              : 'Rank your favorites and get authentic African cuisine delivered!'
+            }
+          </p>
           <Button 
             size="lg" 
             className="bg-white text-[hsl(var(--secondary))] hover:bg-white/90 font-semibold"
             onClick={() => document.getElementById('menu').scrollIntoView({behavior: 'smooth'})}
-            data-testid="footer-rank-btn"
           >
-            Start Ranking Now
+            {mode === 'interest_only' ? 'Express Interest Now' : 'Start Ranking Now'}
           </Button>
         </div>
       </section>
