@@ -2287,9 +2287,10 @@ Order Status: ${order.status}
                   </table>
                 </div>
               </Card>
+              )}
 
               {/* Past Batches */}
-              {eatsBatches.length > 0 && (
+              {eatsMode === 'vote_mode' && eatsBatches.length > 0 && (
                 <Card className="p-6">
                   <h3 className="font-serif text-xl font-bold mb-4">Past Batches</h3>
                   <div className="overflow-x-auto">
