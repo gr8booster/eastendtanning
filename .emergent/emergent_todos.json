@@ -1,26 +1,26 @@
 [
   {
-    "content": "Update backend order model for ranking (rank_1, rank_2, rank_3) and delivery_preference",
-    "status": "completed"
+    "content": "Update Waakye and Suya menu images with provided pictures",
+    "status": "in_progress"
   },
   {
-    "content": "Update EatsOrdering.jsx with ranking UI and delivery preference toggle",
-    "status": "completed"
+    "content": "Create 'Express Interest' mode for when no partner restaurants exist",
+    "status": "pending"
   },
   {
-    "content": "Remove 40-order target display from customer view (admin only)",
-    "status": "completed"
+    "content": "Collect name, email, phone for interest list",
+    "status": "pending"
   },
   {
-    "content": "Add Partner Restaurants section with signup/display",
-    "status": "completed"
+    "content": "Create Partner Restaurant Signup page with guidelines",
+    "status": "pending"
   },
   {
-    "content": "Update admin to show ranking data and delivery preferences",
-    "status": "completed"
+    "content": "Update admin to toggle between Vote mode and Interest mode",
+    "status": "pending"
   },
   {
     "content": "Test complete flow",
-    "status": "completed"
+    "status": "pending"
   }
 ]
