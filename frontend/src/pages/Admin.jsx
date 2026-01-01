@@ -1856,8 +1856,213 @@ Order Status: ${order.status}
           {/* 818 EATS Batches Tab */}
           <TabsContent value="eats">
             <div className="space-y-6">
-              {/* Current Batch Status */}
-              {currentEatsBatch && (
+              {/* Mode Toggle & Settings */}
+              <Card className="p-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h3 className="font-serif text-xl font-bold">818 EATS Mode</h3>
+                    <p className="text-sm text-muted-foreground">
+                      {eatsMode === 'interest_only' 
+                        ? 'Interest Only - Collecting customer interest before launch'
+                        : 'Vote Mode - Active ordering with partner restaurants'
+                      }
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Badge className={eatsMode === 'interest_only' ? 'bg-amber-500' : 'bg-green-600'}>
+                      {eatsMode === 'interest_only' ? '📋 Interest Only' : '🛒 Vote Mode'}
+                    </Badge>
+                    <Select 
+                      value={eatsMode} 
+                      onValueChange={async (newMode) => {
+                        try {
+                          const res = await fetch(`${backendUrl}/api/eats/settings`, {
+                            method: 'PUT',
+                            headers: { 'Content-Type': 'application/json', ...adminHeaders() },
+                            body: JSON.stringify({ mode: newMode })
+                          });
+                          if (res.ok) {
+                            setEatsMode(newMode);
+                            toast.success(`Switched to ${newMode === 'interest_only' ? 'Interest Only' : 'Vote'} mode`);
+                          }
+                        } catch (e) {
+                          toast.error('Failed to update mode');
+                        }
+                      }}
+                    >
+                      <SelectTrigger className="w-48" data-testid="eats-mode-toggle">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="interest_only">Interest Only</SelectItem>
+                        <SelectItem value="vote_mode">Vote Mode</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+              </Card>
+
+              {/* Interest List (Interest Only Mode) */}
+              {eatsMode === 'interest_only' && (
+                <Card className="p-6">
+                  <div className="flex items-center justify-between mb-4">
+                    <div>
+                      <h3 className="font-serif text-xl font-bold">📋 Interest List</h3>
+                      <p className="text-sm text-muted-foreground">People interested in ordering when available</p>
+                    </div>
+                    <Badge className="bg-[hsl(var(--secondary))]">{eatsInterests.length} signups</Badge>
+                  </div>
+                  
+                  {eatsInterests.length > 0 ? (
+                    <div className="overflow-x-auto">
+                      <table className="w-full" data-testid="eats-interest-table">
+                        <thead className="bg-amber-50">
+                          <tr>
+                            <th className="px-4 py-3 text-left text-sm font-semibold">Name</th>
+                            <th className="px-4 py-3 text-left text-sm font-semibold">Email</th>
+                            <th className="px-4 py-3 text-left text-sm font-semibold">Phone</th>
+                            <th className="px-4 py-3 text-left text-sm font-semibold">Interested In</th>
+                            <th className="px-4 py-3 text-left text-sm font-semibold">Prepay?</th>
+                            <th className="px-4 py-3 text-left text-sm font-semibold">Contacted</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {eatsInterests.map((interest, index) => (
+                            <tr key={interest.id} className={index % 2 === 0 ? 'bg-white' : 'bg-amber-50/30'}>
+                              <td className="px-4 py-3 text-sm font-medium">{interest.name}</td>
+                              <td className="px-4 py-3 text-sm">{interest.email}</td>
+                              <td className="px-4 py-3 text-sm">{interest.phone}</td>
+                              <td className="px-4 py-3 text-sm">
+                                <div className="flex flex-wrap gap-1">
+                                  {interest.interested_dish_names?.map(dish => (
+                                    <Badge key={dish} variant="outline" className="text-xs">{dish}</Badge>
+                                  ))}
+                                </div>
+                              </td>
+                              <td className="px-4 py-3 text-sm">
+                                {interest.willing_to_prepay ? (
+                                  <Badge className="bg-green-600 text-white">Yes</Badge>
+                                ) : (
+                                  <Badge variant="outline">No</Badge>
+                                )}
+                              </td>
+                              <td className="px-4 py-3 text-sm">
+                                <input 
+                                  type="checkbox" 
+                                  checked={interest.contacted} 
+                                  onChange={async () => {
+                                    try {
+                                      await fetch(`${backendUrl}/api/eats/interest/${interest.id}/contacted?contacted=${!interest.contacted}`, {
+                                        method: 'PUT',
+                                        headers: adminHeaders()
+                                      });
+                                      fetchDashboardData(true);
+                                    } catch (e) {}
+                                  }}
+                                  className="w-4 h-4"
+                                />
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  ) : (
+                    <p className="text-center text-muted-foreground py-8">No interest signups yet</p>
+                  )}
+                </Card>
+              )}
+
+              {/* Partner Restaurants */}
+              <Card className="p-6">
+                <div className="flex items-center justify-between mb-4">
+                  <div>
+                    <h3 className="font-serif text-xl font-bold">🏪 Partner Restaurants</h3>
+                    <p className="text-sm text-muted-foreground">Restaurants, home kitchens, and ghost kitchens</p>
+                  </div>
+                  <Badge className="bg-[hsl(var(--primary))]">{eatsPartners.length} partners</Badge>
+                </div>
+                
+                {eatsPartners.length > 0 ? (
+                  <div className="overflow-x-auto">
+                    <table className="w-full" data-testid="eats-partners-table">
+                      <thead className="bg-muted">
+                        <tr>
+                          <th className="px-4 py-3 text-left text-sm font-semibold">Business</th>
+                          <th className="px-4 py-3 text-left text-sm font-semibold">Contact</th>
+                          <th className="px-4 py-3 text-left text-sm font-semibold">Type</th>
+                          <th className="px-4 py-3 text-left text-sm font-semibold">Cuisine</th>
+                          <th className="px-4 py-3 text-left text-sm font-semibold">Status</th>
+                          <th className="px-4 py-3 text-left text-sm font-semibold">Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {eatsPartners.map((partner, index) => (
+                          <tr key={partner.id} className={index % 2 === 0 ? 'bg-white' : 'bg-muted/30'}>
+                            <td className="px-4 py-3 text-sm">
+                              <div className="font-medium">{partner.business_name}</div>
+                              <div className="text-xs text-muted-foreground">{partner.city}, {partner.state}</div>
+                            </td>
+                            <td className="px-4 py-3 text-sm">
+                              <div>{partner.contact_name}</div>
+                              <div className="text-xs text-muted-foreground">{partner.email}</div>
+                            </td>
+                            <td className="px-4 py-3 text-sm">
+                              <Badge variant="outline">{partner.business_type}</Badge>
+                            </td>
+                            <td className="px-4 py-3 text-sm">{partner.cuisine_specialties}</td>
+                            <td className="px-4 py-3 text-sm">
+                              <Badge className={
+                                partner.status === 'active' ? 'bg-green-600 text-white' :
+                                partner.status === 'approved' ? 'bg-blue-500 text-white' :
+                                partner.status === 'pending' ? 'bg-amber-500 text-white' :
+                                'bg-gray-500 text-white'
+                              }>
+                                {partner.status}
+                              </Badge>
+                            </td>
+                            <td className="px-4 py-3 text-sm">
+                              <Select 
+                                value={partner.status} 
+                                onValueChange={async (newStatus) => {
+                                  try {
+                                    await fetch(`${backendUrl}/api/eats/partners/${partner.id}/status?status=${newStatus}`, {
+                                      method: 'PUT',
+                                      headers: adminHeaders()
+                                    });
+                                    toast.success('Partner status updated');
+                                    fetchDashboardData(true);
+                                  } catch (e) {
+                                    toast.error('Failed to update');
+                                  }
+                                }}
+                              >
+                                <SelectTrigger className="w-28 h-8 text-xs">
+                                  <SelectValue />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  <SelectItem value="pending">Pending</SelectItem>
+                                  <SelectItem value="approved">Approved</SelectItem>
+                                  <SelectItem value="active">Active</SelectItem>
+                                  <SelectItem value="inactive">Inactive</SelectItem>
+                                  <SelectItem value="rejected">Rejected</SelectItem>
+                                </SelectContent>
+                              </Select>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                ) : (
+                  <p className="text-center text-muted-foreground py-8">
+                    No partner applications yet. Share the signup link: <code className="bg-muted px-2 py-1 rounded">/eats/partner-signup</code>
+                  </p>
+                )}
+              </Card>
+
+              {/* Current Batch Status (Vote Mode) */}
+              {eatsMode === 'vote_mode' && currentEatsBatch && (
                 <Card className="p-6 border-2 border-[hsl(var(--secondary))]">
                   <div className="flex items-center justify-between mb-4">
                     <div>
