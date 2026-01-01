@@ -70,6 +70,9 @@ export default function Admin() {
   const [currentEatsBatch, setCurrentEatsBatch] = useState(null);
   const [eatsOrders, setEatsOrders] = useState([]);
   const [eatsOrdersFilter, setEatsOrdersFilter] = useState('all');
+  const [eatsMode, setEatsMode] = useState('interest_only');
+  const [eatsInterests, setEatsInterests] = useState([]);
+  const [eatsPartners, setEatsPartners] = useState([]);
   
   // Notifications state
   const [newOrderNotification, setNewOrderNotification] = useState(null);
