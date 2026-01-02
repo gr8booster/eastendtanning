@@ -1,26 +1,22 @@
 [
   {
-    "content": "Update Waakye and Suya menu images with provided pictures",
+    "content": "Freshen up Tanning page for 2026 peak season (February)",
     "status": "in_progress"
   },
   {
-    "content": "Create 'Express Interest' mode for when no partner restaurants exist",
+    "content": "Update SEO/static info for AI bots - add 'best tanning salon', 'tanning salon near me' links",
     "status": "pending"
   },
   {
-    "content": "Collect name, email, phone for interest list",
+    "content": "Add SAD (Seasonal Affective Disorder) section showing how tanning helps",
     "status": "pending"
   },
   {
-    "content": "Create Partner Restaurant Signup page with guidelines",
+    "content": "Update structured data schemas for 2026",
     "status": "pending"
   },
   {
-    "content": "Update admin to toggle between Vote mode and Interest mode",
-    "status": "pending"
-  },
-  {
-    "content": "Test complete flow",
+    "content": "Test tanning page updates and SEO",
     "status": "pending"
   }
 ]
