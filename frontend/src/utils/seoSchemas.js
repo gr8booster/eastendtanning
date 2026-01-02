@@ -1,10 +1,11 @@
-// Comprehensive Schema.org markup for SEO/AEO
+// Comprehensive Schema.org markup for SEO/AEO - Updated 2026
 
 export const tanningSalonSchema = {
   "@context": "https://schema.org",
   "@type": "TanningSalon",
   "name": "Eastend Tanning & Laundry",
-  "description": "Professional tanning salon in Mt Vernon, Ohio offering 6 bed levels including Matrix Bed, Stand-Up tanning, and red light therapy",
+  "alternateName": ["Best Tanning Salon Mt Vernon", "Tanning Salon Near Me Mt Vernon Ohio", "Best Tanning Salon Near Me"],
+  "description": "Eastend Tanning is Mt Vernon Ohio's #1 rated tanning salon in 2026. Professional indoor tanning with 6 bed levels including 40,740W Matrix Bed, Stand-Up tanning, red light therapy for SAD relief, and expert staff. Monthly unlimited from $39.99. Beat the winter blues!",
   "image": "https://eastend.website/images/eastend-tanning.jpg",
   "address": {
     "@type": "PostalAddress",
@@ -33,14 +34,71 @@ export const tanningSalonSchema = {
     "https://www.yelp.com/biz/eastend-laundry-tanning-and-nutrition-mount-vernon",
     "https://www.google.com/maps/place/818+Coshocton+Ave,+Mt+Vernon,+OH+43050"
   ],
-  "serv icesOffered": [
-    "Level 1 Tanning Beds",
-    "Level 2 Tanning Beds",
-    "Level 3 Tanning Beds",
-    "Level 4 High-Power Tanning Beds",
-    "Matrix Bed (40,740W)",
-    "Stand-Up Tanning Bed",
-    "Red Light Therapy"
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Tanning Services 2026",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "VIP Monthly Unlimited Tanning",
+          "description": "Unlimited tanning on all 6 bed levels with 3-month commitment"
+        },
+        "price": "39.99",
+        "priceCurrency": "USD"
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Matrix Bed Session",
+          "description": "Single session on 40,740W Matrix bed - fastest, deepest tan"
+        },
+        "price": "23.99",
+        "priceCurrency": "USD"
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Red Light Therapy",
+          "description": "Non-UV light therapy for skin health and SAD relief"
+        }
+      }
+    ]
+  },
+  "servicesOffered": [
+    "Level 1 Tanning Beds (3,840W)",
+    "Level 2 Tanning Beds (5,000W)",
+    "Level 3 High-Pressure Tanning Beds (10,750W)",
+    "Level 4 Premium Tanning Beds (13,995W)",
+    "Matrix Bed (40,740W) - Most Powerful in Knox County",
+    "Stand-Up Tanning Bed (8,640W)",
+    "Red Light Therapy for SAD & Skin Health",
+    "Professional Tanning Lotions",
+    "Free Skin Type Evaluations"
+  ],
+  "keywords": "best tanning salon near me, tanning salon near me, best tanning salon Mt Vernon Ohio, indoor tanning Knox County, SAD seasonal affective disorder, winter blues light therapy, vitamin D tanning",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "156",
+    "bestRating": "5"
+  },
+  "areaServed": [
+    {
+      "@type": "City",
+      "name": "Mt Vernon",
+      "containedInPlace": {
+        "@type": "State",
+        "name": "Ohio"
+      }
+    },
+    {
+      "@type": "AdministrativeArea",
+      "name": "Knox County"
+    }
   ]
 };
 
