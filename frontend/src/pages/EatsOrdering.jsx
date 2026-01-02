@@ -1264,6 +1264,213 @@ export default function EatsOrdering() {
         </DialogContent>
       </Dialog>
 
+      {/* Review Modal */}
+      <Dialog open={showReviewModal} onOpenChange={setShowReviewModal}>
+        <DialogContent className="max-w-md">
+          <DialogHeader>
+            <DialogTitle className="font-serif text-2xl">Write a Review</DialogTitle>
+          </DialogHeader>
+          
+          <div className="space-y-4">
+            <div>
+              <Label htmlFor="review-name">Your Name *</Label>
+              <Input 
+                id="review-name"
+                value={reviewForm.customer_name}
+                onChange={(e) => setReviewForm({...reviewForm, customer_name: e.target.value})}
+                placeholder="Your Name"
+                data-testid="review-name"
+              />
+            </div>
+            <div>
+              <Label htmlFor="review-email">Email *</Label>
+              <Input 
+                id="review-email"
+                type="email"
+                value={reviewForm.customer_email}
+                onChange={(e) => setReviewForm({...reviewForm, customer_email: e.target.value})}
+                placeholder="your@email.com"
+                data-testid="review-email"
+              />
+            </div>
+            <div>
+              <Label>Rating *</Label>
+              <div className="flex gap-2 mt-2">
+                {[1, 2, 3, 4, 5].map((star) => (
+                  <button 
+                    key={star}
+                    type="button"
+                    onClick={() => setReviewForm({...reviewForm, rating: star})}
+                    className="focus:outline-none"
+                    data-testid={`review-star-${star}`}
+                  >
+                    <Star className={`w-8 h-8 transition-colors ${star <= reviewForm.rating ? 'fill-amber-400 text-amber-400' : 'text-gray-300 hover:text-amber-200'}`} />
+                  </button>
+                ))}
+              </div>
+            </div>
+            <div>
+              <Label htmlFor="review-dish">Dish Ordered (Optional)</Label>
+              <Input 
+                id="review-dish"
+                value={reviewForm.dish_ordered}
+                onChange={(e) => setReviewForm({...reviewForm, dish_ordered: e.target.value})}
+                placeholder="e.g., Ghana Jollof Rice"
+                data-testid="review-dish"
+              />
+            </div>
+            <div>
+              <Label htmlFor="review-text">Your Review *</Label>
+              <Textarea 
+                id="review-text"
+                value={reviewForm.review_text}
+                onChange={(e) => setReviewForm({...reviewForm, review_text: e.target.value})}
+                placeholder="Share your experience with 818 EATS..."
+                rows={4}
+                data-testid="review-text"
+              />
+            </div>
+
+            <Button 
+              className="w-full bg-[hsl(var(--primary))] hover:bg-[hsl(42_92%_50%)]"
+              onClick={handleSubmitReview}
+              disabled={submitting}
+              data-testid="submit-review-btn"
+            >
+              {submitting ? <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Submitting...</> : 'Submit Review'}
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* Customer Signup Modal */}
+      <Dialog open={showCustomerSignupModal} onOpenChange={setShowCustomerSignupModal}>
+        <DialogContent className="max-w-md max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="font-serif text-2xl">Sign Up for 818 EATS</DialogTitle>
+          </DialogHeader>
+          
+          <div className="space-y-4">
+            <p className="text-sm text-muted-foreground">
+              Save your delivery information for faster ordering. We'll also keep you updated on new dishes and delivery schedules!
+            </p>
+            
+            <div className="grid grid-cols-2 gap-4">
+              <div className="col-span-2">
+                <Label htmlFor="signup-name">Full Name *</Label>
+                <Input 
+                  id="signup-name"
+                  value={customerSignupForm.name}
+                  onChange={(e) => setCustomerSignupForm({...customerSignupForm, name: e.target.value})}
+                  placeholder="Your Name"
+                  data-testid="signup-name"
+                />
+              </div>
+              <div>
+                <Label htmlFor="signup-email">Email *</Label>
+                <Input 
+                  id="signup-email"
+                  type="email"
+                  value={customerSignupForm.email}
+                  onChange={(e) => setCustomerSignupForm({...customerSignupForm, email: e.target.value})}
+                  placeholder="your@email.com"
+                  data-testid="signup-email"
+                />
+              </div>
+              <div>
+                <Label htmlFor="signup-phone">Phone *</Label>
+                <Input 
+                  id="signup-phone"
+                  value={customerSignupForm.phone}
+                  onChange={(e) => setCustomerSignupForm({...customerSignupForm, phone: e.target.value})}
+                  placeholder="(740) 555-1234"
+                  data-testid="signup-phone"
+                />
+              </div>
+            </div>
+
+            <div className="border-t pt-4">
+              <h3 className="font-semibold mb-3 flex items-center gap-2">
+                <MapPin className="w-4 h-4" /> Delivery Address
+              </h3>
+              <div className="space-y-3">
+                <div>
+                  <Label htmlFor="signup-address">Street Address *</Label>
+                  <Input 
+                    id="signup-address"
+                    value={customerSignupForm.delivery_address}
+                    onChange={(e) => setCustomerSignupForm({...customerSignupForm, delivery_address: e.target.value})}
+                    placeholder="123 Main St"
+                    data-testid="signup-address"
+                  />
+                </div>
+                <div className="grid grid-cols-3 gap-3">
+                  <div>
+                    <Label htmlFor="signup-city">City</Label>
+                    <Input 
+                      id="signup-city"
+                      value={customerSignupForm.delivery_city}
+                      onChange={(e) => setCustomerSignupForm({...customerSignupForm, delivery_city: e.target.value})}
+                      placeholder="Mt Vernon"
+                      data-testid="signup-city"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="signup-state">State</Label>
+                    <Input 
+                      id="signup-state"
+                      value={customerSignupForm.delivery_state}
+                      onChange={(e) => setCustomerSignupForm({...customerSignupForm, delivery_state: e.target.value})}
+                      placeholder="OH"
+                      data-testid="signup-state"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="signup-zip">ZIP *</Label>
+                    <Input 
+                      id="signup-zip"
+                      value={customerSignupForm.delivery_zip}
+                      onChange={(e) => setCustomerSignupForm({...customerSignupForm, delivery_zip: e.target.value})}
+                      placeholder="43050"
+                      data-testid="signup-zip"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <Label htmlFor="signup-instructions">Delivery Instructions (Optional)</Label>
+                  <Input 
+                    id="signup-instructions"
+                    value={customerSignupForm.delivery_instructions}
+                    onChange={(e) => setCustomerSignupForm({...customerSignupForm, delivery_instructions: e.target.value})}
+                    placeholder="Gate code, apartment number, etc."
+                    data-testid="signup-instructions"
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="signup-day">Preferred Delivery Day (Optional)</Label>
+                  <Input 
+                    id="signup-day"
+                    value={customerSignupForm.preferred_delivery_day}
+                    onChange={(e) => setCustomerSignupForm({...customerSignupForm, preferred_delivery_day: e.target.value})}
+                    placeholder="Saturday, Sunday, etc."
+                    data-testid="signup-day"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <Button 
+              className="w-full bg-[hsl(var(--secondary))] hover:bg-[hsl(183_55%_36%)]"
+              onClick={handleCustomerSignup}
+              disabled={submitting}
+              data-testid="complete-signup-btn"
+            >
+              {submitting ? <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Saving...</> : 'Save My Information'}
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
+
       {/* Footer CTA */}
       <section className="py-12 bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--secondary))] text-white">
         <div className="container mx-auto px-4 text-center">
