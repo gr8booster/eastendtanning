@@ -51,6 +51,15 @@ export default function EatsOrdering() {
   const [showPayment, setShowPayment] = useState(false);
   const [paypalLoaded, setPaypalLoaded] = useState(false);
   
+  // Vote mode: Contact info required BEFORE voting
+  const [showVoteContactModal, setShowVoteContactModal] = useState(false);
+  const [voteContactSubmitted, setVoteContactSubmitted] = useState(false);
+  const [voteContactForm, setVoteContactForm] = useState({
+    name: '',
+    email: '',
+    phone: ''
+  });
+  
   const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
   useEffect(() => {
