@@ -278,60 +278,38 @@ export const StaticFallback = ({ page }) => {
 
     blog: {
       h1: "People of Eastend",
-      intro: "People of Eastend shares real stories from customers and locals who use Eastend for tanning, laundry, drinks, and self-care. Each story answers common questions about what Eastend is like, who it's for, and how people use multiple services in one visit.",
+      intro: "People of Eastend shares real stories from customers and locals who use Eastend for tanning, laundry, drinks, and self-care. Each story answers common questions about what Eastend is like, who it's for, and how people combine multiple services in one visit.",
       blogIndex: [
         {
-          id: "can-tanning-help-winter-depression",
-          title: "Can Tanning Actually Help With Winter Depression? Tom Found Out.",
-          date: "January 15, 2026",
-          excerpt: "Many customers report improved mood, energy, and sleep during Ohio winters after regular tanning sessions. UV exposure triggers vitamin D and serotonin production. This story follows Tom, a night-shift factory worker who discovered tanning as part of his winter wellness routine.",
-          link: "/blog/can-tanning-help-winter-depression",
-          tanningLink: "/tanning",
-          tanningLinkText: "Learn about tanning for winter wellness"
+          id: "why-people-choose-tanning-at-eastend",
+          title: "Why People Choose Tanning at Eastend",
+          date: "January 1, 2025",
+          datetime: "2025-01-01",
+          excerpt: "People choose Eastend for tanning because it's clean, consistent, and designed around real routines. This story shows how locals fit tanning into their day while handling laundry or relaxing with a drink in the same visit.",
+          link: "/blog/why-people-choose-tanning-at-eastend",
+          serviceLink: "/tanning",
+          serviceLinkText: "Learn more about tanning at Eastend"
         },
         {
-          id: "is-eastend-better-than-gym-tanning",
-          title: "Is Eastend Actually Better Than Gym Tanning? Sarah Switched.",
-          date: "January 12, 2026",
-          excerpt: "Most gym-to-Eastend converts say the difference is 'night and day.' We're tanning specialists with professional equipment and trained staff, not a gym treating tanning as an afterthought. Sarah's story shows what happens when you switch from gym tanning to a dedicated salon.",
-          link: "/blog/is-eastend-better-than-gym-tanning",
-          tanningLink: "/tanning",
-          tanningLinkText: "Compare our professional tanning beds"
+          id: "how-locals-combine-laundry-and-self-care",
+          title: "How Locals Combine Laundry and Self-Care at Eastend",
+          date: "December 15, 2024",
+          datetime: "2024-12-15",
+          excerpt: "Many customers use Eastend to turn routine laundry into productive downtime. This story explains how people tan, grab a drink, or relax while their laundry is running.",
+          link: "/blog/how-locals-combine-laundry-and-self-care",
+          serviceLink: "/laundry",
+          serviceLinkText: "View laundry services"
         },
         {
-          id: "what-is-laundry-like-at-eastend",
-          title: "What's It Actually Like Doing Laundry at Eastend?",
-          date: "January 10, 2026",
-          excerpt: "It's not just laundry—it's a mini break. Many customers start laundry, tan during the wash cycle, grab a drink, then fold. The FREE drying saves money, and combining with tanning saves time. Maria's Saturday routine shows how families turn laundromat day into something they look forward to.",
-          link: "/blog/what-is-laundry-like-at-eastend",
-          tanningLink: "/tanning",
-          tanningLinkText: "Add tanning to your laundry visit"
-        },
-        {
-          id: "who-comes-to-eastend-for-tanning",
-          title: "What Kind of People Come to Eastend for Tanning?",
-          date: "January 8, 2026",
-          excerpt: "Everyone from first-time tanners preparing for weddings to experienced regulars maintaining year-round color. Many come specifically for winter mood support. Tanning is our primary service and attracts diverse customers—here's who you'll meet.",
-          link: "/blog/who-comes-to-eastend-for-tanning",
-          tanningLink: "/tanning",
-          tanningLinkText: "See our tanning bed options"
-        },
-        {
-          id: "can-i-relax-at-eastend",
-          title: "Can I Actually Relax at Eastend, or Is It Just for Errands?",
-          date: "January 5, 2026",
-          excerpt: "Absolutely. Many customers have developed 'self-care routines' at Eastend: tan (warm and relaxing), grab a cold drink, maybe get nails done. The tanning experience is inherently relaxing, and complementary services extend that feeling. Here's how locals turn a visit into reset time.",
-          link: "/blog/can-i-relax-at-eastend",
-          tanningLink: "/tanning",
-          tanningLinkText: "Begin your self-care routine with tanning"
+          id: "what-kind-of-place-is-eastend",
+          title: "What Kind of Place Is Eastend?",
+          date: "November 30, 2024",
+          datetime: "2024-11-30",
+          excerpt: "Eastend is more than a single-service business. This story answers what type of people come here, why they stay longer than planned, and how Eastend functions as a local lifestyle hub.",
+          link: "/blog/what-kind-of-place-is-eastend",
+          serviceLink: "/tanning",
+          serviceLinkText: "Explore the tanning studio"
         }
-      ],
-      internalLinks: [
-        { url: "/", text: "Back to Eastend homepage" },
-        { url: "/tanning", text: "Explore tanning services (primary)" },
-        { url: "/laundry", text: "Eastend Laundry with free drying" },
-        { url: "/drinks", text: "Fizze bubble tea drinks" },
-        { url: "/fast-nails", text: "Fast Nails services" }
       ]
     }
   };
