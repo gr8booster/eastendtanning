@@ -1,34 +1,14 @@
 [
   {
     "content": "Review current static content structure and identify gaps",
+    "status": "completed"
+  },
+  {
+    "content": "Create rich static content for all pages with question-answering format",
     "status": "in_progress"
   },
   {
-    "content": "Create rich static content for Homepage with business identity",
-    "status": "pending"
-  },
-  {
-    "content": "Create rich static content for Tanning page",
-    "status": "pending"
-  },
-  {
-    "content": "Create rich static content for Laundry page",
-    "status": "pending"
-  },
-  {
-    "content": "Create rich static content for Drinks/Bubble Tea page",
-    "status": "pending"
-  },
-  {
-    "content": "Create rich static content for Fast Nails page",
-    "status": "pending"
-  },
-  {
-    "content": "Create rich static content for 818 EATS page",
-    "status": "pending"
-  },
-  {
-    "content": "Reframe People of Eastend blog with question-based stories",
+    "content": "Reframe Blog as People of Eastend with question-based stories",
     "status": "pending"
   },
   {
