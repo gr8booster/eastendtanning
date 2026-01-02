@@ -215,12 +215,179 @@ export default function Tanning() {
         );
       })()}
 
+      {/* SAD - Seasonal Affective Disorder & Winter Blues Section */}
+      <div className="bg-gradient-to-br from-blue-50 via-amber-50 to-orange-50 py-16 border-y-2 border-amber-200" data-testid="sad-section">
+        <div className="container mx-auto px-4">
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-10">
+              <Badge className="bg-blue-600 text-white text-lg px-6 py-2 mb-4">
+                <Snowflake className="w-5 h-5 mr-2 inline" />
+                Winter Wellness 2026
+              </Badge>
+              <h2 className="font-serif text-4xl md:text-5xl font-bold mb-4 text-gray-900">
+                Beat the Winter Blues & SAD with Indoor Tanning
+              </h2>
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+                Seasonal Affective Disorder (SAD) affects millions during Ohio winters. Indoor tanning and light therapy can help boost your mood, energy, and vitamin D levels naturally.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-6 mb-10">
+              <Card className="p-6 bg-white/80 backdrop-blur border-amber-200 hover:shadow-xl transition-all">
+                <div className="w-14 h-14 bg-amber-100 rounded-full flex items-center justify-center mb-4">
+                  <Sun className="w-8 h-8 text-amber-600" />
+                </div>
+                <h3 className="font-bold text-xl mb-3">UV Light Therapy</h3>
+                <p className="text-muted-foreground">
+                  UV light exposure triggers vitamin D production and serotonin release, naturally combating winter depression and low energy levels.
+                </p>
+              </Card>
+
+              <Card className="p-6 bg-white/80 backdrop-blur border-amber-200 hover:shadow-xl transition-all">
+                <div className="w-14 h-14 bg-rose-100 rounded-full flex items-center justify-center mb-4">
+                  <Heart className="w-8 h-8 text-rose-600" />
+                </div>
+                <h3 className="font-bold text-xl mb-3">Mood Enhancement</h3>
+                <p className="text-muted-foreground">
+                  Regular tanning sessions can help regulate your body's circadian rhythm and boost endorphins - the "feel good" hormones that improve your mood.
+                </p>
+              </Card>
+
+              <Card className="p-6 bg-white/80 backdrop-blur border-amber-200 hover:shadow-xl transition-all">
+                <div className="w-14 h-14 bg-teal-100 rounded-full flex items-center justify-center mb-4">
+                  <Brain className="w-8 h-8 text-teal-600" />
+                </div>
+                <h3 className="font-bold text-xl mb-3">Red Light Therapy</h3>
+                <p className="text-muted-foreground">
+                  Our red light therapy beds provide non-UV light that reduces inflammation, improves sleep quality, and supports mental wellness during dark winter months.
+                </p>
+              </Card>
+            </div>
+
+            <Card className="p-8 bg-gradient-to-r from-amber-50 to-orange-50 border-2 border-amber-300">
+              <div className="flex flex-col md:flex-row gap-6 items-center">
+                <div className="flex-1">
+                  <h3 className="font-bold text-2xl mb-3 text-gray-900">February 2026: Peak Tanning Season</h3>
+                  <p className="text-lg text-gray-700 mb-4">
+                    As winter drags on in Ohio, now is the perfect time to start your tanning routine. Build your base tan before spring break and summer, while also fighting off the winter blues with regular light exposure.
+                  </p>
+                  <ul className="space-y-2 text-gray-700">
+                    <li className="flex items-center gap-2">
+                      <Check className="w-5 h-5 text-green-600" />
+                      <span>Boost vitamin D levels during low-sunlight months</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <Check className="w-5 h-5 text-green-600" />
+                      <span>Get beach-ready before spring break trips</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <Check className="w-5 h-5 text-green-600" />
+                      <span>Monthly unlimited for consistent results & mood benefits</span>
+                    </li>
+                  </ul>
+                </div>
+                <div className="flex-shrink-0">
+                  <Button 
+                    size="lg"
+                    onClick={() => navigate('/tanning-checkout')}
+                    className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-bold text-lg h-14 px-8 shadow-lg"
+                  >
+                    <Sun className="w-5 h-5 mr-2" />
+                    Start Your Winter Wellness Plan
+                  </Button>
+                </div>
+              </div>
+            </Card>
+
+            {/* External SAD Resources */}
+            <div className="mt-8 text-center">
+              <p className="text-sm text-muted-foreground mb-3">Learn more about Seasonal Affective Disorder:</p>
+              <div className="flex flex-wrap justify-center gap-4">
+                <a href="https://www.nimh.nih.gov/health/publications/seasonal-affective-disorder" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline text-sm inline-flex items-center gap-1">
+                  NIH: SAD Information <ExternalLink className="w-3 h-3" />
+                </a>
+                <a href="https://www.mayoclinic.org/diseases-conditions/seasonal-affective-disorder/symptoms-causes/syc-20364651" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline text-sm inline-flex items-center gap-1">
+                  Mayo Clinic: SAD Symptoms <ExternalLink className="w-3 h-3" />
+                </a>
+                <a href="https://my.clevelandclinic.org/health/diseases/9293-seasonal-depression" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline text-sm inline-flex items-center gap-1">
+                  Cleveland Clinic: Winter Depression <ExternalLink className="w-3 h-3" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* SEO Quick Links - Best Tanning Salon Near Me */}
+      <div className="bg-white py-12 border-b" data-testid="seo-links-section">
+        <div className="container mx-auto px-4">
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-8">
+              <h2 className="font-serif text-3xl font-bold mb-3">Find the Best Tanning Salon Near You</h2>
+              <p className="text-lg text-muted-foreground">Eastend Tanning is Mt Vernon, Ohio's top-rated tanning destination</p>
+            </div>
+            
+            <div className="grid md:grid-cols-3 gap-6 mb-8">
+              <a href="https://www.google.com/maps/search/best+tanning+salon+near+me+Mt+Vernon+Ohio" target="_blank" rel="noopener noreferrer" className="block">
+                <Card className="p-6 text-center hover:shadow-lg hover:border-amber-400 transition-all cursor-pointer h-full">
+                  <MapPin className="w-10 h-10 mx-auto mb-3 text-amber-600" />
+                  <h3 className="font-bold text-lg mb-2">Best Tanning Salon Near Me</h3>
+                  <p className="text-sm text-muted-foreground mb-3">Find Eastend on Google Maps - #1 rated in Mt Vernon area</p>
+                  <Badge variant="outline" className="text-amber-600 border-amber-600">View on Maps</Badge>
+                </Card>
+              </a>
+
+              <a href="https://www.google.com/maps/search/tanning+salon+near+me+Knox+County+Ohio" target="_blank" rel="noopener noreferrer" className="block">
+                <Card className="p-6 text-center hover:shadow-lg hover:border-teal-400 transition-all cursor-pointer h-full">
+                  <Sun className="w-10 h-10 mx-auto mb-3 text-teal-600" />
+                  <h3 className="font-bold text-lg mb-2">Tanning Salon Near Me</h3>
+                  <p className="text-sm text-muted-foreground mb-3">Serving Mt Vernon, Knox County & surrounding Ohio areas</p>
+                  <Badge variant="outline" className="text-teal-600 border-teal-600">Find Location</Badge>
+                </Card>
+              </a>
+
+              <a href="https://www.yelp.com/search?find_desc=tanning+salon&find_loc=Mt+Vernon%2C+OH" target="_blank" rel="noopener noreferrer" className="block">
+                <Card className="p-6 text-center hover:shadow-lg hover:border-red-400 transition-all cursor-pointer h-full">
+                  <Crown className="w-10 h-10 mx-auto mb-3 text-red-600" />
+                  <h3 className="font-bold text-lg mb-2">Best Tanning Salon</h3>
+                  <p className="text-sm text-muted-foreground mb-3">See our reviews on Yelp - consistently rated 5 stars</p>
+                  <Badge variant="outline" className="text-red-600 border-red-600">Read Reviews</Badge>
+                </Card>
+              </a>
+            </div>
+
+            <div className="text-center bg-gradient-to-r from-amber-50 to-orange-50 rounded-xl p-6">
+              <p className="text-lg font-semibold mb-2">📍 Visit Eastend Tanning Today</p>
+              <p className="text-muted-foreground">
+                <strong>818 Coshocton Ave, Mt Vernon, OH 43050</strong> • <a href="tel:+17403979632" className="text-amber-600 hover:underline">(740) 397-9632</a> • Open 7 Days: 8AM-7:30PM
+              </p>
+              <div className="mt-4 flex flex-wrap justify-center gap-3">
+                <a href="https://www.google.com/maps/place/818+Coshocton+Ave,+Mt+Vernon,+OH+43050" target="_blank" rel="noopener noreferrer">
+                  <Button variant="outline" size="sm" className="gap-2">
+                    <MapPin className="w-4 h-4" /> Google Maps
+                  </Button>
+                </a>
+                <a href="https://www.facebook.com/share/1CtZugxSec/" target="_blank" rel="noopener noreferrer">
+                  <Button variant="outline" size="sm">Facebook</Button>
+                </a>
+                <a href="https://www.instagram.com/eastendtanning" target="_blank" rel="noopener noreferrer">
+                  <Button variant="outline" size="sm">Instagram</Button>
+                </a>
+                <a href="https://www.yelp.com/biz/eastend-laundry-tanning-and-nutrition-mount-vernon" target="_blank" rel="noopener noreferrer">
+                  <Button variant="outline" size="sm">Yelp Reviews</Button>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Why Choose Us Over Gyms & Other Salons */}
       <div className="bg-white py-16">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="font-serif text-4xl font-bold mb-4">Why Eastend Over Your Gym or Other Salons?</h2>
-            <p className="text-xl text-muted-foreground">We're the tanning specialists - not a side offering</p>
+            <h2 className="font-serif text-4xl font-bold mb-4">Why Eastend is the Best Tanning Salon in Mt Vernon</h2>
+            <p className="text-xl text-muted-foreground">We're the tanning specialists - not a side offering like gyms</p>
           </div>
           <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
             {whyChooseUs.map((reason, idx) => (
