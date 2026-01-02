@@ -1,26 +1,6 @@
 [
   {
-    "content": "Add static blog introduction text at top of /blog",
-    "status": "completed"
-  },
-  {
-    "content": "Create static blog index with H2 titles, dates, excerpts, and links",
-    "status": "completed"
-  },
-  {
-    "content": "Ensure each excerpt answers a question first, then introduces story",
-    "status": "completed"
-  },
-  {
-    "content": "Add internal links to /tanning in each story",
-    "status": "completed"
-  },
-  {
-    "content": "Update StaticFallback for blog page with proper structure",
-    "status": "completed"
-  },
-  {
-    "content": "Build and test static blog index",
-    "status": "completed"
+    "content": "Apply exact blog HTML structure as specified",
+    "status": "in_progress"
   }
 ]
