@@ -3376,6 +3376,209 @@ Order Status: ${order.status}
           </div>
         </DialogContent>
       </Dialog>
+
+      {/* Message Modal */}
+      <Dialog open={showMessageModal} onOpenChange={setShowMessageModal}>
+        <DialogContent className="sm:max-w-lg" data-testid="message-modal">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <MessageSquare className="w-5 h-5" /> Send Message to Customers
+            </DialogTitle>
+          </DialogHeader>
+
+          <div className="space-y-4">
+            <div>
+              <Label>Recipient Type</Label>
+              <Select value={messageForm.type} onValueChange={(val) => setMessageForm({...messageForm, type: val})}>
+                <SelectTrigger data-testid="message-type-select">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All Customers</SelectItem>
+                  <SelectItem value="interested">Interested Customers</SelectItem>
+                  <SelectItem value="voted">Voted Customers</SelectItem>
+                  <SelectItem value="ordered">Ordered Customers</SelectItem>
+                  <SelectItem value="specific">Specific Emails</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            {messageForm.type === 'specific' && (
+              <div>
+                <Label>Email Addresses (comma separated)</Label>
+                <Textarea
+                  value={messageForm.specific_emails}
+                  onChange={(e) => setMessageForm({...messageForm, specific_emails: e.target.value})}
+                  placeholder="email1@example.com, email2@example.com"
+                  data-testid="message-specific-emails"
+                />
+              </div>
+            )}
+
+            <div>
+              <Label>Subject</Label>
+              <Input
+                value={messageForm.subject}
+                onChange={(e) => setMessageForm({...messageForm, subject: e.target.value})}
+                placeholder="818 EATS Update"
+                data-testid="message-subject"
+              />
+            </div>
+
+            <div>
+              <Label>Message</Label>
+              <Textarea
+                value={messageForm.message}
+                onChange={(e) => setMessageForm({...messageForm, message: e.target.value})}
+                placeholder="Your message to customers..."
+                rows={4}
+                data-testid="message-content"
+              />
+            </div>
+          </div>
+
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setShowMessageModal(false)}>Cancel</Button>
+            <Button 
+              onClick={async () => {
+                if (!messageForm.subject || !messageForm.message) {
+                  toast.error('Please fill in subject and message');
+                  return;
+                }
+                try {
+                  const res = await fetch(`${backendUrl}/api/eats/messages/send`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', ...adminHeaders() },
+                    body: JSON.stringify({
+                      recipient_type: messageForm.type,
+                      subject: messageForm.subject,
+                      message: messageForm.message,
+                      specific_emails: messageForm.type === 'specific' ? messageForm.specific_emails.split(',').map(e => e.trim()) : []
+                    })
+                  });
+                  if (res.ok) {
+                    const data = await res.json();
+                    toast.success(`Message sent to ${data.recipients_count} recipients`);
+                    setShowMessageModal(false);
+                    setMessageForm({ type: 'all', subject: '', message: '', specific_emails: '' });
+                    fetchDashboardData(true);
+                  } else {
+                    toast.error('Failed to send message');
+                  }
+                } catch (e) {
+                  toast.error('Failed to send message');
+                }
+              }}
+              className="bg-blue-600 hover:bg-blue-700"
+              data-testid="message-send-button"
+            >
+              <Send className="w-4 h-4 mr-2" />
+              Send Message
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* Delivery Notification Modal */}
+      <Dialog open={showDeliveryNotifyModal} onOpenChange={setShowDeliveryNotifyModal}>
+        <DialogContent className="sm:max-w-lg" data-testid="delivery-notify-modal">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <Truck className="w-5 h-5" /> Send Delivery Notification
+            </DialogTitle>
+          </DialogHeader>
+
+          <div className="space-y-4">
+            <div>
+              <Label>Order ID</Label>
+              <Select 
+                value={deliveryNotifyForm.order_id} 
+                onValueChange={(val) => setDeliveryNotifyForm({...deliveryNotifyForm, order_id: val})}
+              >
+                <SelectTrigger data-testid="delivery-order-select">
+                  <SelectValue placeholder="Select an order" />
+                </SelectTrigger>
+                <SelectContent>
+                  {eatsOrders.filter(o => o.paid && o.status !== 'delivered').map(order => (
+                    <SelectItem key={order.id} value={order.id}>
+                      {order.order_number} - {order.customer_name}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div>
+              <Label>Delivery Date</Label>
+              <Input
+                type="date"
+                value={deliveryNotifyForm.delivery_date}
+                onChange={(e) => setDeliveryNotifyForm({...deliveryNotifyForm, delivery_date: e.target.value})}
+                data-testid="delivery-date"
+              />
+            </div>
+
+            <div>
+              <Label>Delivery Time Window</Label>
+              <Input
+                value={deliveryNotifyForm.delivery_time}
+                onChange={(e) => setDeliveryNotifyForm({...deliveryNotifyForm, delivery_time: e.target.value})}
+                placeholder="e.g., 12:00 PM - 2:00 PM"
+                data-testid="delivery-time"
+              />
+            </div>
+
+            <div>
+              <Label>Custom Message (optional)</Label>
+              <Textarea
+                value={deliveryNotifyForm.message}
+                onChange={(e) => setDeliveryNotifyForm({...deliveryNotifyForm, message: e.target.value})}
+                placeholder="Any additional message for the customer..."
+                rows={3}
+                data-testid="delivery-message"
+              />
+            </div>
+          </div>
+
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setShowDeliveryNotifyModal(false)}>Cancel</Button>
+            <Button 
+              onClick={async () => {
+                if (!deliveryNotifyForm.order_id) {
+                  toast.error('Please select an order');
+                  return;
+                }
+                try {
+                  const res = await fetch(`${backendUrl}/api/eats/orders/${deliveryNotifyForm.order_id}/delivery-notification`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', ...adminHeaders() },
+                    body: JSON.stringify({
+                      delivery_date: deliveryNotifyForm.delivery_date || new Date().toISOString().split('T')[0],
+                      delivery_time: deliveryNotifyForm.delivery_time || 'TBD',
+                      message: deliveryNotifyForm.message
+                    })
+                  });
+                  if (res.ok) {
+                    toast.success('Delivery notification sent');
+                    setShowDeliveryNotifyModal(false);
+                    setDeliveryNotifyForm({ order_id: '', delivery_date: '', delivery_time: '', message: '' });
+                    fetchDashboardData(true);
+                  } else {
+                    toast.error('Failed to send notification');
+                  }
+                } catch (e) {
+                  toast.error('Failed to send notification');
+                }
+              }}
+              className="bg-orange-600 hover:bg-orange-700"
+              data-testid="delivery-notify-send"
+            >
+              <Bell className="w-4 h-4 mr-2" />
+              Send Notification
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
