@@ -5,22 +5,22 @@
   },
   {
     "content": "Create rich static content for all pages with question-answering format",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Reframe Blog as People of Eastend with question-based stories",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Create sitemap.xml with all static pages",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Add internal linking between all pages",
-    "status": "pending"
+    "status": "completed"
   },
   {
-    "content": "Test SEO/AEO content clarity",
-    "status": "pending"
+    "content": "Test SEO/AEO content clarity and build",
+    "status": "in_progress"
   }
 ]
