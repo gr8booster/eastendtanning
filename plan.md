@@ -1,11 +1,81 @@
 # Eastend Tanning & Laundry - Development Plan
 
 ## Current Session Summary
-This session focused on four main areas:
+This session focused on five main areas:
 1. Freshening up the tanning section for 2026 peak season with SAD information and SEO updates
 2. Fixing SEO links to go directly to Eastend Tanning (not competitor searches)
 3. Updating 818 EATS voting to require contact info BEFORE voting (builds customer database)
-4. **NEW**: Building comprehensive 818 EATS features: messaging system, customer signup, reviews, and shareable partner links
+4. Building comprehensive 818 EATS features: messaging system, customer signup, reviews, and shareable partner links
+5. **NEW**: Dynamic holiday/seasonal discount system that auto-detects dates and shows appropriate discounts
+
+---
+
+## Phase: Dynamic Holiday/Seasonal Discount System — Status: COMPLETED ✅
+
+### Objectives
+- Replace hardcoded "Black Friday" and "First Time Customer" discounts with intelligent date-based system
+- Automatically show appropriate holiday or seasonal discounts based on current date
+- Support 20+ holidays and 4 seasonal fallbacks
+- Display discount codes, percentages, and countdown timers
+
+### Completed Work
+
+1. **Holiday Discount Utility** (`/app/frontend/src/utils/holidayDiscounts.js`)
+   - Created comprehensive discount configuration for all major holidays
+   - Automatic date detection and discount selection
+   - Supports service-type filtering (tanning, laundry, eats)
+   - Easter date calculation (Western Easter algorithm)
+   - Seasonal fallback discounts when no holiday is active
+
+2. **Holiday Discount Banner Component** (`/app/frontend/src/components/HolidayDiscountBanner.jsx`)
+   - `HolidayDiscountBanner` - Main banner with full or compact variants
+   - `UpcomingDiscounts` - Shows next 30 days of deals
+   - `DiscountTag` - Mini tag for product cards
+   - `HeroDiscountOverlay` - Floating discount badge for hero sections
+   - Copy-to-clipboard functionality for discount codes
+   - Countdown timer showing days remaining
+
+3. **Integration with Pages**
+   - Home page: Compact banner at top showing current discount
+   - Tanning page: Full discount banner + DiscountTag in hero
+   - Replaced hardcoded BlackFridayBadge with dynamic DiscountTag
+
+### Supported Holidays & Discounts
+
+| Holiday | Date Range | Discount | Code |
+|---------|------------|----------|------|
+| New Year's Sale | Dec 26 - Jan 7 | 20% | NEWYEAR2026 |
+| Valentine's Day | Feb 7-14 | 15% | LOVE2026 |
+| Presidents Day | Feb 14-17 | 15% | PRES2026 |
+| Spring Break | Mar 1-21 | 20% | SPRING2026 |
+| St. Patrick's Day | Mar 14-17 | 17% | LUCKY17 |
+| Easter | Week before Easter | 15% | EASTER2026 |
+| Mother's Day | May 4-11 | 20% | MOM2026 |
+| Memorial Day | May 22-26 | 25% | MEMORIAL2026 |
+| Summer Solstice | Jun 19-23 | 20% | SOLSTICE26 |
+| Independence Day | Jun 30 - Jul 5 | 25% | USA2026 |
+| Founder's Day (8/18) | Aug 17-19 | 18% | FOUNDERS818 |
+| Back to School | Aug 1-20 | 15% | SCHOOL2026 |
+| Labor Day | Aug 29 - Sep 2 | 20% | LABOR2026 |
+| Fall Equinox | Sep 20-24 | 15% | FALL2026 |
+| Halloween | Oct 24-31 | 20% | SPOOKY2026 |
+| Veterans Day | Nov 9-11 | 25% | VETS2026 |
+| Thanksgiving | Nov 21-28 | 20% | THANKS2026 |
+| Black Friday BOGO | Nov 28 - Dec 2 | 50% | BOGO2026 |
+| Cyber Monday | Dec 1-2 | 25% | CYBER2026 |
+| Christmas | Dec 15-25 | 20% | XMAS2026 |
+
+### Seasonal Fallbacks (When No Holiday Active)
+- **Winter (Dec-Feb)**: 10% - WINTER10 - "Beat the Winter Blues!"
+- **Spring (Mar-May)**: 10% - SPRING10 - "Spring Renewal"
+- **Summer (Jun-Aug)**: 10% - SUMMER10 - "Summer Glow"
+- **Fall (Sep-Nov)**: 10% - FALL10 - "Fall Savings"
+
+### Files Created/Modified
+- `/app/frontend/src/utils/holidayDiscounts.js` - NEW: Discount logic
+- `/app/frontend/src/components/HolidayDiscountBanner.jsx` - NEW: Banner components
+- `/app/frontend/src/pages/Home.jsx` - Added HolidayDiscountBanner
+- `/app/frontend/src/pages/Tanning.jsx` - Replaced BlackFridayBadge with DiscountTag, added full banner
 
 ---
 
@@ -36,12 +106,10 @@ This session focused on four main areas:
    - Stores in `eats_customers` collection
    - Pre-fills order details after signup
 
-3. **Shareable Partner Signup Link** (EatsOrdering.jsx)
-   - New "Know a Restaurant or Kitchen?" section with gradient background
-   - Displays shareable URL: `/eats/partner-signup`
-   - "Copy Link for Messenger" button with clipboard API
-   - Button changes to green "✓ Copied!" on success
-   - Toast notification confirms copy action
+3. **Shareable Partner Signup Link** (Admin Only - removed from public page)
+   - Partner signup page available at `/eats/partner-signup`
+   - Link can be shared via messenger to restaurants/kitchens
+   - Copy functionality available in admin panel
 
 4. **Customer Reviews System** (EatsOrdering.jsx + eats_routes.py)
    - "What Our Customers Say" section displays featured 5-star reviews
@@ -73,7 +141,7 @@ This session focused on four main areas:
 - `eats_notifications` - Delivery notifications sent
 
 ### Files Modified
-- `/app/frontend/src/pages/EatsOrdering.jsx` - Added reviews section, customer signup, partner link sharing
+- `/app/frontend/src/pages/EatsOrdering.jsx` - Added reviews section, customer signup
 - `/app/backend/eats_routes.py` - Added messaging, customers, reviews, notifications endpoints
 
 ---
@@ -111,6 +179,10 @@ This session focused on four main areas:
    - Tracks vote count, conversion status, and timestamps
    - Added `GET /api/eats/vote-contacts` admin endpoint to view all contacts
 
+4. **Egusi Stew Menu Update**
+   - Changed from "Egusi Stew" to "Egusi Stew with fufu or rice"
+   - Updated via `PUT /api/eats/menu/{id}` endpoint
+
 ### Files Modified
 - `/app/frontend/src/pages/Tanning.jsx` - Fixed SEO links
 - `/app/frontend/src/pages/EatsOrdering.jsx` - Added vote contact modal
@@ -131,6 +203,7 @@ This session focused on four main areas:
    - Changed title to "Best Tanning Salon Near Me in Mt Vernon, Ohio"
    - Updated messaging for February 2026 peak season
    - Added winter blues messaging
+   - Dynamic discount tag shows current promotion
 
 2. **SAD Section Added** (`data-testid="sad-section"`)
    - "Winter Wellness 2026" badge
@@ -200,10 +273,10 @@ The 818 EATS system was significantly developed in the previous session with:
 - `eats_vote_contacts` - Contact info from vote mode users
 - `eats_partners` - Restaurant partner signups
 - `eats_menu` - Menu items
-- `eats_messages` - **NEW**: Sent customer messages
-- `eats_customers` - **NEW**: Registered customers with delivery info
-- `eats_reviews` - **NEW**: Customer reviews
-- `eats_notifications` - **NEW**: Delivery notifications
+- `eats_messages` - Sent customer messages
+- `eats_customers` - Registered customers with delivery info
+- `eats_reviews` - Customer reviews
+- `eats_notifications` - Delivery notifications
 
 ---
 
@@ -218,12 +291,16 @@ The 818 EATS system was significantly developed in the previous session with:
 │   └── server.py           # Main FastAPI app
 └── frontend/
     └── src/
+        ├── components/
+        │   └── HolidayDiscountBanner.jsx  # Dynamic discount banners
         ├── pages/
-        │   ├── Tanning.jsx             # 2026 refresh + fixed SEO links
-        │   ├── EatsOrdering.jsx        # Full ordering page with reviews, signup, partner link
+        │   ├── Tanning.jsx             # 2026 refresh + dynamic discounts
+        │   ├── Home.jsx                # Homepage with discount banner
+        │   ├── EatsOrdering.jsx        # Full ordering page with reviews, signup
         │   ├── PartnerSignup.jsx       # Restaurant partner signup
         │   └── Admin.jsx               # Admin dashboard with EATS tab
         └── utils/
+            ├── holidayDiscounts.js     # Holiday/seasonal discount logic
             ├── seoSchemas.js           # 2026 SEO schemas
             └── faqSchemas.js           # 2026 FAQs with SAD
 ```
@@ -284,6 +361,7 @@ The 818 EATS system was significantly developed in the previous session with:
 - ✅ Shareable partner restaurant signup link for messenger
 - ✅ Reviews section showing 5-star reviews from website customers
 - ✅ Pay now option for interested customers (convert interest to order)
+- ✅ **Dynamic holiday/seasonal discount system with 20+ holidays**
 - ✅ Frontend builds successfully
 - ✅ All backend endpoints tested and working
 
@@ -293,7 +371,8 @@ The 818 EATS system was significantly developed in the previous session with:
 https://weekly-picks-4.preview.emergentagent.com
 
 ### Key Pages
-- `/tanning` - Tanning page with 2026 refresh and SAD section
+- `/` - Home page with dynamic discount banner
+- `/tanning` - Tanning page with 2026 refresh, SAD section, and dynamic discounts
 - `/eats` - 818 EATS ordering page with all new features
 - `/eats/partner-signup` - Partner restaurant signup (shareable link)
 - `/admin` - Admin dashboard (password: eastend2025)
