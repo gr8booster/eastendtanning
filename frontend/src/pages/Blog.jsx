@@ -245,10 +245,10 @@ export default function Blog() {
       <StaticFallback page="blog" />
       
       <EnhancedSEO 
-        title="People of Eastend - Real Stories from Mt Vernon Ohio's Neighborhood Destination"
-        description="Meet the people who make Eastend Tanning & Laundry their home away from home. Real stories answering real questions about what it's like to tan, do laundry, and relax at Mt Vernon's favorite destination."
-        keywords="People of Eastend, Mt Vernon community stories, Eastend customer stories, what is Eastend like, laundry experience Mt Vernon, tanning stories Ohio"
-        canonicalUrl="https://eastend.website/blog"
+        title="People of Eastend - Stories from Mt Vernon's Tanning-Centered Hub"
+        description="Real stories answering real questions about Eastend. Can tanning help with winter blues? Is Eastend better than gym tanning? What's it like combining tanning with laundry? Hear from actual customers."
+        keywords="People of Eastend, Mt Vernon tanning stories, Eastend customer stories, indoor tanning experience, tanning for SAD, gym vs salon tanning"
+        canonicalUrl="https://eastend.website/people-of-eastend"
         structuredData={[peopleOfEastendSchema]}
         breadcrumbs={breadcrumbs}
         ogImage="https://eastend.website/images/blog-hero.jpg"
@@ -259,14 +259,21 @@ export default function Blog() {
         <div className="relative max-w-4xl mx-auto text-center space-y-6" data-testid="blog-hero">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-amber-100 rounded-full text-amber-700 font-medium">
             <Heart className="w-4 h-4" />
-            <span>Real Stories from Real Customers</span>
+            <span>Real Stories • Real Questions • Real Answers</span>
           </div>
           <h1 className="text-5xl md:text-6xl font-bold font-serif bg-gradient-to-r from-amber-600 to-teal-600 bg-clip-text text-transparent">
             People of Eastend
           </h1>
           <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-            Who comes to Eastend? What&apos;s it actually like? These stories answer your questions - straight from the customers who know best.
+            Eastend is a tanning-centered hub with complementary services. These stories from real customers answer common questions—especially about tanning, our primary service.
           </p>
+          <div className="flex justify-center gap-4 pt-4">
+            <Link to="/tanning" className="inline-flex items-center gap-2 text-amber-700 hover:text-amber-800 font-medium">
+              <Sun className="w-4 h-4" />
+              Explore Tanning (Primary Service)
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
         </div>
       </section>
 
