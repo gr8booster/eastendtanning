@@ -527,14 +527,27 @@ export const StaticFallback = ({ page }) => {
         <h1>{data.h1}</h1>
         <p>{data.intro}</p>
         
-        {data.sections && data.sections.map((section, i) => (
+        {/* Blog index for crawlers */}
+        {isBlogPage && data.blogIndex && data.blogIndex.map((story, i) => (
+          <article key={i}>
+            <h2>{story.title}</h2>
+            <p>Published: {story.date}</p>
+            <p>{story.excerpt}</p>
+            <a href={story.link}>Read the full story</a>
+            <a href={story.tanningLink}>{story.tanningLinkText}</a>
+          </article>
+        ))}
+        
+        {/* Regular sections for non-blog pages */}
+        {!isBlogPage && data.sections && data.sections.map((section, i) => (
           <section key={i}>
             <h2>{section.h2}</h2>
             <p>{section.content}</p>
           </section>
         ))}
         
-        {data.stories && data.stories.map((story, i) => (
+        {/* Stories for non-blog pages */}
+        {!isBlogPage && data.stories && data.stories.map((story, i) => (
           <article key={i}>
             <p>Question: {story.question}</p>
             <p>Answer: {story.answer}</p>
@@ -553,7 +566,7 @@ export const StaticFallback = ({ page }) => {
           <a href="/drinks">Fizze Drinks</a>
           <a href="/fast-nails">Fast Nails</a>
           <a href="/food-truck-stop">818 Food Truck Stop</a>
-          <a href="/people-of-eastend">People of Eastend Stories</a>
+          <a href="/blog">People of Eastend Stories</a>
         </nav>
         
         {/* Location microdata - clear separation */}
