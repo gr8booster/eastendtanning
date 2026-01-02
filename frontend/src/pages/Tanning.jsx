@@ -4,7 +4,7 @@ import { LotionsCatalog } from '../components/LotionsCatalog';
 import { Button } from '../components/ui/button';
 import { Card } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
-import { Check, Sparkles, Gift, Crown, Zap } from 'lucide-react';
+import { Check, Sparkles, Gift, Crown, Zap, Sun, Heart, Brain, MapPin, ExternalLink, Snowflake } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { SEOHead, createServiceSchema } from '../components/SEOHead';
 // import { DealPopup } from '../components/DealPopup'; // Disabled for Black Friday
@@ -68,9 +68,9 @@ export default function Tanning() {
     <div className="min-h-screen bg-muted">
       <StaticFallback page="tanning" />
       <SEOHead
-        title="Best Tanning Salon Mt Vernon Ohio - 6 Bed Levels | Eastend Tanning"
-        description="Eastend Tanning - Mt Vernon's best tanning salon with 6 bed levels including 40,740W Matrix Bed, Stand-Up, and red light therapy. Monthly unlimited from $60. Black Friday BOGO! 818 Coshocton Ave. (740) 397-9632."
-        keywords="tanning beds Mt Vernon, Matrix tanning bed, monthly unlimited tanning, VIP tanning, red light therapy, stand up tanning bed, tanning salon Knox County, UV tanning, indoor tanning Mt Vernon OH, 818 Coshocton Ave"
+        title="Best Tanning Salon Near Me Mt Vernon Ohio 2026 | #1 Tanning Salon | Eastend Tanning"
+        description="Looking for the best tanning salon near me? Eastend Tanning is Mt Vernon Ohio's #1 rated tanning salon in 2026. 6 bed levels, 40,740W Matrix Bed, red light therapy for SAD relief. Monthly unlimited from $39.99. Peak season deals! 818 Coshocton Ave. (740) 397-9632."
+        keywords="best tanning salon near me, best tanning salon Mt Vernon Ohio 2026, tanning salon near me, indoor tanning Knox County, SAD seasonal affective disorder tanning, winter blues light therapy, Matrix tanning bed, monthly unlimited tanning Ohio, red light therapy depression, vitamin D tanning benefits"
         canonicalUrl="https://eastend.website/tanning"
         faqSchema={allFAQSchemas.tanning}
         structuredData={[eastendTanningSchema, createServiceSchema('Monthly Unlimited Tanning', 'Unlimited UV tanning on all 6 levels including Matrix, stand-up, and red light therapy with professional equipment and expert guidance', 39.99)]}
@@ -106,9 +106,9 @@ export default function Tanning() {
             <div className="mb-4">
               <BlackFridayBadge className="text-lg px-4 py-2" />
             </div>
-            <h1 className="font-serif text-5xl md:text-6xl font-bold mb-6">Get Real Tanning Results That Last</h1>
+            <h1 className="font-serif text-5xl md:text-6xl font-bold mb-6">Best Tanning Salon Near Me in Mt Vernon, Ohio</h1>
             <p className="text-2xl mb-8 text-white/90">
-              Forget single sessions that fade in days. Monthly unlimited tanning delivers the consistent exposure you need for a real, lasting tan.
+              Beat the winter blues & get your glow on! February 2026 is peak tanning season. Monthly unlimited delivers real results that last all year.
             </p>
             <div className="flex gap-4">
               <Button 
