@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- Homepage - Primary business identity -->
+  <!-- Homepage - Tanning-centered hub explanation -->
   <url>
     <loc>https://eastend.website/</loc>
     <lastmod>2026-01-02</lastmod>
@@ -8,55 +8,25 @@
     <priority>1.0</priority>
   </url>
   
-  <!-- Tanning - Primary service -->
+  <!-- TANNING - Primary Anchor Service (Most Depth) -->
   <url>
     <loc>https://eastend.website/tanning</loc>
     <lastmod>2026-01-02</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.95</priority>
   </url>
   
-  <!-- Laundry - Primary service -->
+  <!-- COMPLEMENTARY SERVICES -->
+  
+  <!-- Eastend Laundry (at main location, has free drying) -->
   <url>
     <loc>https://eastend.website/laundry</loc>
     <lastmod>2026-01-02</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  
-  <!-- Drinks / Bubble Tea -->
-  <url>
-    <loc>https://eastend.website/drinks</loc>
-    <lastmod>2026-01-02</lastmod>
-    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   
-  <!-- Nails -->
-  <url>
-    <loc>https://eastend.website/nails</loc>
-    <lastmod>2026-01-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <!-- 818 EATS - African Food Delivery -->
-  <url>
-    <loc>https://eastend.website/eats</loc>
-    <lastmod>2026-01-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <!-- People of Eastend (Blog) - Stories and Q&A -->
-  <url>
-    <loc>https://eastend.website/blog</loc>
-    <lastmod>2026-01-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <!-- Westend 24/7 Laundry -->
+  <!-- Westend Laundry (separate location, laundry ONLY, 24/7) -->
   <url>
     <loc>https://eastend.website/westend-laundry</loc>
     <lastmod>2026-01-02</lastmod>
@@ -64,15 +34,49 @@
     <priority>0.7</priority>
   </url>
   
-  <!-- Food Truck Stop -->
+  <!-- Fizze Drinks -->
   <url>
-    <loc>https://eastend.website/foodtruck</loc>
+    <loc>https://eastend.website/drinks</loc>
+    <lastmod>2026-01-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Fast Nails -->
+  <url>
+    <loc>https://eastend.website/fast-nails</loc>
     <lastmod>2026-01-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
-  <!-- Locations -->
+  <!-- Food Truck Stop / 818 EATS -->
+  <url>
+    <loc>https://eastend.website/food-truck-stop</loc>
+    <lastmod>2026-01-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <!-- People of Eastend (Blog with Q&A stories) -->
+  <url>
+    <loc>https://eastend.website/people-of-eastend</loc>
+    <lastmod>2026-01-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- SECONDARY PAGES -->
+  
+  <!-- 818 EATS Ordering -->
+  <url>
+    <loc>https://eastend.website/eats</loc>
+    <lastmod>2026-01-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <!-- Locations Overview -->
   <url>
     <loc>https://eastend.website/locations</loc>
     <lastmod>2026-01-02</lastmod>
@@ -88,7 +92,7 @@
     <priority>0.6</priority>
   </url>
   
-  <!-- Skin Type Evaluation -->
+  <!-- Skin Type Evaluation (Tanning-related) -->
   <url>
     <loc>https://eastend.website/skin-type-evaluation</loc>
     <lastmod>2026-01-02</lastmod>
@@ -104,7 +108,7 @@
     <priority>0.4</priority>
   </url>
   
-  <!-- Order Drinks -->
+  <!-- Drinks Ordering -->
   <url>
     <loc>https://eastend.website/order-drinks</loc>
     <lastmod>2026-01-02</lastmod>
@@ -112,7 +116,7 @@
     <priority>0.5</priority>
   </url>
   
-  <!-- Lotions Shop -->
+  <!-- Tanning Lotions Shop -->
   <url>
     <loc>https://eastend.website/lotions</loc>
     <lastmod>2026-01-02</lastmod>
