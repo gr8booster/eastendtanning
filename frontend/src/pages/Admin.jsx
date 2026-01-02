@@ -247,13 +247,17 @@ Order Status: ${order.status}
       
       // Fetch 818 EATS data
       try {
-        const [eatsSettingsRes, eatsCurrentBatchRes, eatsOrdersRes, eatsBatchesRes, eatsInterestsRes, eatsPartnersRes] = await Promise.all([
+        const [eatsSettingsRes, eatsCurrentBatchRes, eatsOrdersRes, eatsBatchesRes, eatsInterestsRes, eatsPartnersRes, eatsVoteContactsRes, eatsCustomersRes, eatsReviewsRes, eatsMessagesRes] = await Promise.all([
           fetch(`${backendUrl}/api/eats/settings`),
           fetch(`${backendUrl}/api/eats/orders/current-batch`),
           fetch(`${backendUrl}/api/eats/orders`),
           fetch(`${backendUrl}/api/eats/orders/all-batches`),
           fetch(`${backendUrl}/api/eats/interest`),
-          fetch(`${backendUrl}/api/eats/partners/all`)
+          fetch(`${backendUrl}/api/eats/partners/all`),
+          fetch(`${backendUrl}/api/eats/vote-contacts`, { headers: adminHeaders() }),
+          fetch(`${backendUrl}/api/eats/customers`, { headers: adminHeaders() }),
+          fetch(`${backendUrl}/api/eats/reviews/all`, { headers: adminHeaders() }),
+          fetch(`${backendUrl}/api/eats/messages`, { headers: adminHeaders() })
         ]);
         if (eatsSettingsRes.ok) {
           const eatsSettingsData = await eatsSettingsRes.json();
@@ -278,6 +282,22 @@ Order Status: ${order.status}
         if (eatsPartnersRes.ok) {
           const eatsPartnersData = await eatsPartnersRes.json();
           setEatsPartners(eatsPartnersData.partners || []);
+        }
+        if (eatsVoteContactsRes.ok) {
+          const eatsVoteContactsData = await eatsVoteContactsRes.json();
+          setEatsVoteContacts(eatsVoteContactsData.contacts || []);
+        }
+        if (eatsCustomersRes.ok) {
+          const eatsCustomersData = await eatsCustomersRes.json();
+          setEatsCustomers(eatsCustomersData.customers || []);
+        }
+        if (eatsReviewsRes.ok) {
+          const eatsReviewsData = await eatsReviewsRes.json();
+          setEatsReviews(eatsReviewsData.reviews || []);
+        }
+        if (eatsMessagesRes.ok) {
+          const eatsMessagesData = await eatsMessagesRes.json();
+          setEatsMessages(eatsMessagesData.messages || []);
         }
       } catch (e) {
         console.error('Error fetching EATS data:', e);
