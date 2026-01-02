@@ -5,26 +5,26 @@
   },
   {
     "content": "Add Review Moderation UI to Admin (approve/feature reviews)",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Add Customer Database View to Admin",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Add Messaging System UI to Admin",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Add Delivery Notification UI to Admin",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Add Shareable Partner Link to Admin",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Test all new Admin features",
-    "status": "pending"
+    "status": "completed"
   }
 ]
