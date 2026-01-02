@@ -341,24 +341,19 @@ export const StaticFallback = ({ page }) => {
                   </h2>
                   
                   {/* Publish Date */}
-                  <p style={{fontSize: '0.9rem', color: '#666', marginBottom: '1rem'}}>
-                    Published: {story.date}
-                  </p>
+                  <time dateTime={story.datetime} style={{fontSize: '0.9rem', color: '#666', display: 'block', marginBottom: '1rem'}}>
+                    {story.date}
+                  </time>
                   
                   {/* Excerpt - Answer-first */}
                   <p style={{fontSize: '1.1rem', color: '#444', marginBottom: '1rem', lineHeight: '1.7'}}>
                     {story.excerpt}
                   </p>
                   
-                  {/* Links */}
-                  <div style={{display: 'flex', gap: '1.5rem', flexWrap: 'wrap'}}>
-                    <a href={story.link} style={{color: '#0d9488', fontWeight: '600', textDecoration: 'none'}}>
-                      Read the full story →
-                    </a>
-                    <a href={story.tanningLink} style={{color: '#d97706', fontWeight: '500', textDecoration: 'none'}}>
-                      {story.tanningLinkText}
-                    </a>
-                  </div>
+                  {/* Service Link */}
+                  <a href={story.serviceLink} style={{color: '#0d9488', fontWeight: '500', textDecoration: 'none'}}>
+                    {story.serviceLinkText}
+                  </a>
                 </article>
               ))}
             </section>
