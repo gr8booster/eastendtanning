@@ -1,18 +1,22 @@
 [
   {
     "content": "Find Mary chatbot implementation",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Update Mary to use dynamic holiday discount system",
-    "status": "pending"
+    "status": "completed"
+  },
+  {
+    "content": "Update all 2025 references to 2026",
+    "status": "completed"
   },
   {
     "content": "Ensure Mary has access to current website data",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Test Mary's responses with current deals",
-    "status": "pending"
+    "status": "in_progress"
   }
 ]
