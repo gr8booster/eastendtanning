@@ -348,9 +348,9 @@ export default function Blog() {
       <StaticFallback page="blog" />
       
       <EnhancedSEO 
-        title="Eastend Blog - Tanning Tips, SAD Relief & Mt Vernon Community 2026"
-        description="Expert tanning tips, SAD relief advice, and Mt Vernon community stories from Eastend Tanning & Laundry. Learn about indoor tanning benefits, red light therapy, and seasonal wellness at Ohio's best tanning salon."
-        keywords="tanning tips blog, SAD relief tanning, best tanning salon Mt Vernon, red light therapy benefits, winter depression UV therapy, Knox County wellness, Eastend blog 2026"
+        title="People of Eastend - Real Stories from Mt Vernon Ohio's Neighborhood Destination"
+        description="Meet the people who make Eastend Tanning & Laundry their home away from home. Real stories answering real questions about what it's like to tan, do laundry, and relax at Mt Vernon's favorite destination."
+        keywords="People of Eastend, Mt Vernon community stories, Eastend customer stories, what is Eastend like, laundry experience Mt Vernon, tanning stories Ohio"
         canonicalUrl="https://eastend.website/blog"
         structuredData={[peopleOfEastendSchema]}
         breadcrumbs={breadcrumbs}
@@ -361,14 +361,14 @@ export default function Blog() {
         <div className="absolute inset-0 bg-gradient-to-r from-amber-400/10 to-teal-400/10" />
         <div className="relative max-w-4xl mx-auto text-center space-y-6" data-testid="blog-hero">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-amber-100 rounded-full text-amber-700 font-medium">
-            <Sparkles className="w-4 h-4" />
-            <span>Expert Tanning & Wellness Advice</span>
+            <Heart className="w-4 h-4" />
+            <span>Real Stories from Real Customers</span>
           </div>
           <h1 className="text-5xl md:text-6xl font-bold font-serif bg-gradient-to-r from-amber-600 to-teal-600 bg-clip-text text-transparent">
-            Eastend Blog
+            People of Eastend
           </h1>
           <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-            Tanning tips, SAD relief advice, and local insights from Mt Vernon's best tanning salon since 1998
+            Who comes to Eastend? What's it actually like? These stories answer your questions - straight from the customers who know best.
           </p>
         </div>
       </section>
