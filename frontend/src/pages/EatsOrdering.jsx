@@ -171,6 +171,77 @@ export default function EatsOrdering() {
   };
 
   // Vote mode functions
+  
+  // Show contact modal when user tries to rank without providing info
+  const handleTryRank = (itemId, rank) => {
+    if (mode === 'vote_mode' && !voteContactSubmitted) {
+      setShowVoteContactModal(true);
+      return;
+    }
+    handleRankItem(itemId, rank);
+  };
+
+  // Submit contact info for vote mode (builds database)
+  const handleSubmitVoteContact = async () => {
+    if (!voteContactForm.name || !voteContactForm.email || !voteContactForm.phone) {
+      toast.error('Please fill in all fields to vote');
+      return;
+    }
+
+    setSubmitting(true);
+    try {
+      // Save contact info to database (builds the customer database)
+      const response = await fetch(`${backendUrl}/api/eats/vote-contact`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: voteContactForm.name,
+          email: voteContactForm.email,
+          phone: voteContactForm.phone
+        })
+      });
+
+      const data = await response.json();
+      if (data.status === 'success' || response.ok) {
+        setVoteContactSubmitted(true);
+        // Pre-fill order details with contact info
+        setOrderDetails(prev => ({
+          ...prev,
+          customer_name: voteContactForm.name,
+          customer_email: voteContactForm.email,
+          customer_phone: voteContactForm.phone
+        }));
+        setShowVoteContactModal(false);
+        toast.success('Thanks! Now rank your favorite dishes.');
+      } else {
+        // Even if backend fails, allow voting (contact info is captured)
+        setVoteContactSubmitted(true);
+        setOrderDetails(prev => ({
+          ...prev,
+          customer_name: voteContactForm.name,
+          customer_email: voteContactForm.email,
+          customer_phone: voteContactForm.phone
+        }));
+        setShowVoteContactModal(false);
+        toast.success('Thanks! Now rank your favorite dishes.');
+      }
+    } catch (error) {
+      console.error('Error saving vote contact:', error);
+      // Still allow voting even if save fails
+      setVoteContactSubmitted(true);
+      setOrderDetails(prev => ({
+        ...prev,
+        customer_name: voteContactForm.name,
+        customer_email: voteContactForm.email,
+        customer_phone: voteContactForm.phone
+      }));
+      setShowVoteContactModal(false);
+      toast.success('Thanks! Now rank your favorite dishes.');
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
   const handleRankItem = (itemId, rank) => {
     const newRankings = { ...rankings };
     Object.keys(newRankings).forEach(key => {
