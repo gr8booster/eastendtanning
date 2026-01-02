@@ -201,11 +201,8 @@ The bubble tea, nails, and laundry aren't random add-ons. They extend the relaxa
 ];
 
 export default function Blog() {
-    title: "What's It Actually Like Doing Laundry at Eastend?",
-    meta_description: 'A real description of the Eastend laundry experience - from free drying to bubble tea, why customers say it changed how they feel about laundromat day.',
-    content: `QUESTION: What's it like doing laundry at Eastend?
-
-SHORT ANSWER: It's not just laundry - it's a mini break. Clean facilities, free drying (really!), and enough other services that many customers actually look forward to laundromat day.
+  const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
 THE REAL EXPERIENCE:
 Here's what a typical Eastend laundry visit looks like for Maria, a single mom with two kids:
