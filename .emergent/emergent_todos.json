@@ -1,18 +1,18 @@
 [
   {
-    "content": "Check and update static content for SEO/AEO - site readable without JavaScript",
-    "status": "completed"
+    "content": "Find Mary chatbot implementation",
+    "status": "in_progress"
   },
   {
-    "content": "Verify StaticFallback components are properly implemented",
-    "status": "completed"
+    "content": "Update Mary to use dynamic holiday discount system",
+    "status": "pending"
   },
   {
-    "content": "Ensure blog has static content for findability & credibility",
-    "status": "completed"
+    "content": "Ensure Mary has access to current website data",
+    "status": "pending"
   },
   {
-    "content": "Test static content accessibility",
-    "status": "completed"
+    "content": "Test Mary's responses with current deals",
+    "status": "pending"
   }
 ]
