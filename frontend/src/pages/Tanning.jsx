@@ -12,7 +12,7 @@ import { EnhancedSEO } from '../components/EnhancedSEO';
 import { allFAQSchemas } from '../utils/faqSchemas';
 import { generateBreadcrumb } from '../utils/structuredData';
 import { eastendTanningSchema } from '../utils/businessSchemas';
-import { BlackFridayBadge } from '../components/BlackFridayBadge';
+import { HolidayDiscountBanner, UpcomingDiscounts, DiscountTag } from '../components/HolidayDiscountBanner';
 import { StaticFallback } from '../components/StaticFallback';
 import { FacebookFeed } from '../components/FacebookFeed';
 import { ReviewSubmission } from '../components/ReviewSubmission';
