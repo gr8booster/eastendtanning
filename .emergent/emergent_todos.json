@@ -1,26 +1,10 @@
 [
   {
-    "content": "Create customer messaging system for 818 EATS (vote updates, delivery notifications)",
-    "status": "completed"
+    "content": "Move shareable partner link section to admin panel only (remove from public page)",
+    "status": "in_progress"
   },
   {
-    "content": "Add customer signup with delivery information collection",
-    "status": "completed"
-  },
-  {
-    "content": "Create shareable partner restaurant signup link for messenger",
-    "status": "completed"
-  },
-  {
-    "content": "Build reviews section showing 5-star reviews from website customers",
-    "status": "completed"
-  },
-  {
-    "content": "Add 'Pay Now for Delivery' option for interested customers",
-    "status": "completed"
-  },
-  {
-    "content": "Test all new features",
-    "status": "completed"
+    "content": "Update Egusi Stew menu item to 'Egusi Stew with fufu or rice'",
+    "status": "pending"
   }
 ]
