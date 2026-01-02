@@ -104,7 +104,7 @@ export default function Tanning() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl">
             <div className="mb-4">
-              <BlackFridayBadge className="text-lg px-4 py-2" />
+              <DiscountTag serviceType="tanning" className="text-lg px-4 py-2" />
             </div>
             <h1 className="font-serif text-5xl md:text-6xl font-bold mb-6">Best Tanning Salon Near Me in Mt Vernon, Ohio</h1>
             <p className="text-2xl mb-8 text-white/90">
