@@ -1,10 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { Card } from '../components/ui/card';
-import { Badge } from '../components/ui/badge';
-import { Button } from '../components/ui/button';
-import { Skeleton } from '../components/ui/skeleton';
-import { Calendar, Tag, ArrowRight, Sparkles, Sun, Snowflake, Heart } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
 import { SEOHead } from '../components/SEOHead';
 import { EnhancedSEO } from '../components/EnhancedSEO';
 import { generateBreadcrumb } from '../utils/structuredData';
@@ -17,146 +11,183 @@ const staticArticles = [
     id: 'why-people-choose-tanning-at-eastend',
     title: 'Why People Choose Tanning at Eastend',
     datetime: '2025-01-01',
-    created_at: '2025-01-01',
-    shortAnswer: "People choose Eastend for tanning because it's clean, consistent, and designed around real routines. This story shows how locals fit tanning into their day while handling laundry or relaxing with a drink in the same visit.",
-    meta_description: "People choose Eastend for tanning because it's clean, consistent, and designed around real routines. This story shows how locals fit tanning into their day while handling laundry or relaxing with a drink in the same visit.",
-    content: `People choose Eastend for tanning because it's clean, consistent, and designed around real routines. This story shows how locals fit tanning into their day while handling laundry or relaxing with a drink in the same visit.`,
-    keywords: ['tanning at Eastend', 'Mt Vernon tanning', 'indoor tanning Ohio'],
-    category: 'People of Eastend',
-    primaryLink: '/tanning',
-    primaryLinkText: 'Learn more about tanning at Eastend'
+    dateText: 'January 1, 2025',
+    excerpt:
+      "People choose Eastend for tanning because it’s clean, consistent, and designed around real routines. This story shows how locals fit tanning into their day while handling laundry or relaxing with a drink in the same visit.",
+    serviceLink: '/tanning',
+    serviceLinkText: 'Learn more about tanning at Eastend'
   },
   {
     id: 'how-locals-combine-laundry-and-self-care',
     title: 'How Locals Combine Laundry and Self-Care at Eastend',
     datetime: '2024-12-15',
-    created_at: '2024-12-15',
-    shortAnswer: 'Many customers use Eastend to turn routine laundry into productive downtime. This story explains how people tan, grab a drink, or relax while their laundry is running.',
-    meta_description: 'Many customers use Eastend to turn routine laundry into productive downtime. This story explains how people tan, grab a drink, or relax while their laundry is running.',
-    content: `Many customers use Eastend to turn routine laundry into productive downtime. This story explains how people tan, grab a drink, or relax while their laundry is running.`,
-    keywords: ['laundry and self-care', 'Eastend laundry', 'Mt Vernon laundromat'],
-    category: 'People of Eastend',
-    primaryLink: '/laundry',
-    primaryLinkText: 'View laundry services'
+    dateText: 'December 15, 2024',
+    excerpt:
+      'Many customers use Eastend to turn routine laundry into productive downtime. This story explains how people tan, grab a drink, or relax while their laundry is running.',
+    serviceLink: '/laundry',
+    serviceLinkText: 'View laundry services'
   },
   {
     id: 'what-kind-of-place-is-eastend',
     title: 'What Kind of Place Is Eastend?',
     datetime: '2024-11-30',
-    created_at: '2024-11-30',
-    shortAnswer: 'Eastend is more than a single-service business. This story answers what type of people come here, why they stay longer than planned, and how Eastend functions as a local lifestyle hub.',
-    meta_description: 'Eastend is more than a single-service business. This story answers what type of people come here, why they stay longer than planned, and how Eastend functions as a local lifestyle hub.',
-    content: `Eastend is more than a single-service business. This story answers what type of people come here, why they stay longer than planned, and how Eastend functions as a local lifestyle hub.`,
-    keywords: ['what is Eastend', 'Eastend Mt Vernon', 'local lifestyle hub'],
-    category: 'People of Eastend',
-    primaryLink: '/tanning',
-    primaryLinkText: 'Explore the tanning studio'
+    dateText: 'November 30, 2024',
+    excerpt:
+      'Eastend is more than a single-service business. This story answers what type of people come here, why they stay longer than planned, and how Eastend functions as a local lifestyle hub.',
+    serviceLink: '/tanning',
+    serviceLinkText: 'Explore the tanning studio'
   }
 ];
 
 export default function Blog() {
-  const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
+
   useEffect(() => {
-    fetchBlogPosts();
+    // This page is intentionally static-first for SEO/AEO.
+    // We keep a loading flag so we can later expand to dynamic content without changing structure.
+    setLoading(false);
   }, []);
-
-  const fetchBlogPosts = async () => {
-    try {
-      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/ai/content/blog`);
-      const data = await response.json();
-      // Combine dynamic posts with static articles
-      const allPosts = [...(data || []), ...staticArticles];
-      setPosts(allPosts);
-    } catch (error) {
-      console.error('Error fetching blog posts:', error);
-      // Fall back to static articles if API fails
-      setPosts(staticArticles);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const formatDate = (dateString) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    });
-  };
 
   const breadcrumbs = generateBreadcrumb([
     { name: 'Home', path: '/' },
     { name: 'People of Eastend', path: '/blog' }
   ]);
 
-  // Use static articles if no posts loaded (ensures content for SEO)
-  const displayPosts = posts.length > 0 ? posts : staticArticles;
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-amber-50 via-white to-teal-50">
+    <div
+      className="min-h-screen bg-gradient-to-br from-amber-50 via-white to-teal-50"
+      data-testid="blog-page"
+    >
       {/* Static Fallback for SEO/AEO - visible without JavaScript */}
       <StaticFallback page="blog" />
-      
-      <EnhancedSEO 
+
+      <EnhancedSEO
         title="People of Eastend - Real Customer Stories from Mt Vernon's Tanning Hub"
-        description="People of Eastend shares real stories from customers who use Eastend for tanning, laundry, drinks, and self-care. Each story answers common questions about what Eastend is like and how people use multiple services in one visit."
+        description="People of Eastend shares real stories from customers and locals who use Eastend for tanning, laundry, drinks, and self-care. Each story answers common questions about what Eastend is like, who it’s for, and how people combine multiple services in one visit."
         keywords="People of Eastend, Mt Vernon tanning stories, Eastend customer stories, indoor tanning experience, tanning for SAD, gym vs salon tanning"
         canonicalUrl="https://eastend.website/blog"
         structuredData={[peopleOfEastendSchema]}
         breadcrumbs={breadcrumbs}
         ogImage="https://eastend.website/images/blog-hero.jpg"
       />
-      
-      {/* Blog Introduction - Static, visible without interaction */}
-      <section className="py-16 px-4 bg-white border-b">
-        <div className="max-w-4xl mx-auto" data-testid="blog-intro">
-          <h1 className="text-4xl md:text-5xl font-bold font-serif text-slate-900 mb-6">
+
+      {/*
+        FINAL ONE-AND-DONE UPDATE: STATIC BLOG INDEX FOR SEO / AEO
+        APPLY EXACTLY. NO FURTHER ITERATION REQUIRED.
+      */}
+      <section id="people-of-eastend-blog" className="py-16 px-4" data-testid="people-of-eastend-blog">
+        <div className="max-w-4xl mx-auto">
+          <h1 className="text-4xl md:text-5xl font-bold font-serif text-slate-900 mb-6" data-testid="people-of-eastend-title">
             People of Eastend
           </h1>
-          <p className="text-xl text-slate-700 leading-relaxed">
+
+          <p className="text-xl text-slate-700 leading-relaxed mb-12" data-testid="people-of-eastend-intro">
             People of Eastend shares real stories from customers and locals who use Eastend for tanning,
             laundry, drinks, and self-care. Each story answers common questions about what Eastend is like,
-            who it's for, and how people combine multiple services in one visit.
+            who it’s for, and how people combine multiple services in one visit.
           </p>
+
+          {/* BLOG ENTRY 1 */}
+          <article className="mb-12 pb-10 border-b border-slate-200" data-testid="people-of-eastend-article-1">
+            <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-3">
+              <a
+                href="/blog/why-people-choose-tanning-at-eastend"
+                className="hover:text-teal-700 transition-colors"
+                data-testid="people-of-eastend-article-1-title-link"
+              >
+                Why People Choose Tanning at Eastend
+              </a>
+            </h2>
+            <time
+              dateTime="2025-01-01"
+              className="text-sm text-slate-500 mb-4 block"
+              data-testid="people-of-eastend-article-1-date"
+            >
+              January 1, 2025
+            </time>
+            <p className="text-lg text-slate-700 leading-relaxed mb-4" data-testid="people-of-eastend-article-1-excerpt">
+              People choose Eastend for tanning because it’s clean, consistent, and designed around real
+              routines. This story shows how locals fit tanning into their day while handling laundry or
+              relaxing with a drink in the same visit.
+            </p>
+            <a
+              href="/tanning"
+              className="inline-flex items-center gap-2 text-teal-600 hover:text-teal-700 font-medium"
+              data-testid="people-of-eastend-article-1-service-link"
+            >
+              Learn more about tanning at Eastend
+            </a>
+          </article>
+
+          {/* BLOG ENTRY 2 */}
+          <article className="mb-12 pb-10 border-b border-slate-200" data-testid="people-of-eastend-article-2">
+            <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-3">
+              <a
+                href="/blog/how-locals-combine-laundry-and-self-care"
+                className="hover:text-teal-700 transition-colors"
+                data-testid="people-of-eastend-article-2-title-link"
+              >
+                How Locals Combine Laundry and Self-Care at Eastend
+              </a>
+            </h2>
+            <time
+              dateTime="2024-12-15"
+              className="text-sm text-slate-500 mb-4 block"
+              data-testid="people-of-eastend-article-2-date"
+            >
+              December 15, 2024
+            </time>
+            <p className="text-lg text-slate-700 leading-relaxed mb-4" data-testid="people-of-eastend-article-2-excerpt">
+              Many customers use Eastend to turn routine laundry into productive downtime. This story
+              explains how people tan, grab a drink, or relax while their laundry is running.
+            </p>
+            <a
+              href="/laundry"
+              className="inline-flex items-center gap-2 text-teal-600 hover:text-teal-700 font-medium"
+              data-testid="people-of-eastend-article-2-service-link"
+            >
+              View laundry services
+            </a>
+          </article>
+
+          {/* BLOG ENTRY 3 */}
+          <article className="last:border-b-0" data-testid="people-of-eastend-article-3">
+            <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-3">
+              <a
+                href="/blog/what-kind-of-place-is-eastend"
+                className="hover:text-teal-700 transition-colors"
+                data-testid="people-of-eastend-article-3-title-link"
+              >
+                What Kind of Place Is Eastend?
+              </a>
+            </h2>
+            <time
+              dateTime="2024-11-30"
+              className="text-sm text-slate-500 mb-4 block"
+              data-testid="people-of-eastend-article-3-date"
+            >
+              November 30, 2024
+            </time>
+            <p className="text-lg text-slate-700 leading-relaxed mb-4" data-testid="people-of-eastend-article-3-excerpt">
+              Eastend is more than a single-service business. This story answers what type of people come
+              here, why they stay longer than planned, and how Eastend functions as a local lifestyle hub.
+            </p>
+            <a
+              href="/tanning"
+              className="inline-flex items-center gap-2 text-teal-600 hover:text-teal-700 font-medium"
+              data-testid="people-of-eastend-article-3-service-link"
+            >
+              Explore the tanning studio
+            </a>
+          </article>
         </div>
       </section>
 
-      {/* Static Blog Index - All stories listed with title, date, excerpt, link */}
-      <section className="py-12 px-4" id="people-of-eastend-blog">
-        <div className="max-w-4xl mx-auto">
-          
-          {/* Static story entries - always rendered */}
-          <div className="space-y-12" data-testid="blog-index">
-            {staticArticles.map((story) => (
-              <article key={story.id} className="border-b border-slate-200 pb-10 last:border-b-0" data-testid={`story-entry-${story.id}`}>
-                {/* Story Title (H2) */}
-                <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-3 hover:text-teal-700 transition-colors">
-                  <Link to={`/blog/${story.id}`}>{story.title}</Link>
-                </h2>
-                
-                {/* Publish Date */}
-                <time dateTime={story.datetime} className="text-sm text-slate-500 mb-4 block">
-                  {formatDate(story.created_at)}
-                </time>
-                
-                {/* Excerpt */}
-                <p className="text-lg text-slate-700 leading-relaxed mb-4">
-                  {story.shortAnswer}
-                </p>
-                
-                {/* Service Link */}
-                <Link 
-                  to={story.primaryLink}
-                  className="inline-flex items-center gap-2 text-teal-600 hover:text-teal-700 font-medium"
-                >
-                  {story.primaryLinkText}
-                </Link>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Keep the static data array available for future extensions. */}
+      <SEOHead title="People of Eastend" description="People of Eastend - Real customer stories." />
+
+      {/* Placeholder state (no UI output) */}
+      {loading ? null : null}
     </div>
   );
 }
