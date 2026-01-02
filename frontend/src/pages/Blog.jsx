@@ -254,21 +254,9 @@ export default function Blog() {
                 </Card>
               ))}
             </div>
-          ) : posts.length === 0 ? (
-            <Card className="p-12 text-center" data-testid="no-posts">
-              <div className="space-y-4">
-                <div className="w-16 h-16 mx-auto bg-gradient-to-br from-amber-400 to-teal-500 rounded-full flex items-center justify-center">
-                  <Sparkles className="w-8 h-8 text-white" />
-                </div>
-                <h3 className="text-2xl font-bold text-slate-800">No blog posts yet</h3>
-                <p className="text-slate-600 max-w-md mx-auto">
-                  Our AI is working on creating amazing content for you. Check back soon!
-                </p>
-              </div>
-            </Card>
           ) : (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {posts.map(post => (
+              {displayPosts.map(post => (
                 <Card 
                   key={post.id} 
                   className="group hover:shadow-xl transition-all duration-300 overflow-hidden"
@@ -281,13 +269,19 @@ export default function Blog() {
                         <Calendar className="w-4 h-4" />
                         <span>{formatDate(post.created_at)}</span>
                       </div>
-                      <Badge variant="secondary" className="bg-purple-100 text-purple-700">
-                        AI Generated
-                      </Badge>
+                      {post.category ? (
+                        <Badge variant="secondary" className="bg-amber-100 text-amber-700">
+                          {post.category}
+                        </Badge>
+                      ) : (
+                        <Badge variant="secondary" className="bg-purple-100 text-purple-700">
+                          AI Generated
+                        </Badge>
+                      )}
                     </div>
 
                     {/* Title */}
-                    <h3 className="text-xl font-bold text-slate-800 group-hover:text-teal-600 transition-colors line-clamp-2">
+                    <h2 className="text-xl font-bold text-slate-800 group-hover:text-teal-600 transition-colors line-clamp-2">
                       {post.title}
                     </h3>
 
