@@ -1,26 +1,30 @@
 [
   {
-    "content": "Review current static content structure and identify gaps",
-    "status": "completed"
+    "content": "Update Homepage static content with tanning-centered hub identity",
+    "status": "in_progress"
   },
   {
-    "content": "Create rich static content for all pages with question-answering format",
-    "status": "completed"
+    "content": "Update Tanning page as primary anchor service with most depth",
+    "status": "pending"
   },
   {
-    "content": "Reframe Blog as People of Eastend with question-based stories",
-    "status": "completed"
+    "content": "Update complementary services pages (laundry, drinks, nails, food truck)",
+    "status": "pending"
   },
   {
-    "content": "Create sitemap.xml with all static pages",
-    "status": "completed"
+    "content": "Clearly separate Eastend vs Westend locations in static content",
+    "status": "pending"
   },
   {
-    "content": "Add internal linking between all pages",
-    "status": "completed"
+    "content": "Update sitemap.xml with correct URL structure",
+    "status": "pending"
   },
   {
-    "content": "Test SEO/AEO content clarity and build",
-    "status": "completed"
+    "content": "Update People of Eastend stories with explicit Q&A and /tanning links",
+    "status": "pending"
+  },
+  {
+    "content": "Build and test SEO/AEO content clarity",
+    "status": "pending"
   }
 ]
