@@ -1,7 +1,7 @@
 # Eastend Tanning & Laundry - Development Plan
 
 ## Current Session Summary
-This session focused on nine main areas:
+This session focused on ten main areas:
 1. Freshening up the tanning section for 2026 peak season with SAD information and SEO updates
 2. Fixing SEO links to go directly to Eastend Tanning (not competitor searches)
 3. Updating 818 EATS voting to require contact info BEFORE voting (builds customer database)
@@ -10,7 +10,84 @@ This session focused on nine main areas:
 6. Static content for SEO/AEO - site readable without JavaScript for crawlers and AI bots
 7. Mary AI Assistant dynamic discount integration - Mary now promotes current deals automatically
 8. Complete Admin Panel UI for 818 EATS management (reviews, customers, messaging, notifications)
-9. **NEW**: Fixed Black Friday components to only show during actual Black Friday period (Nov 28 - Dec 1)
+9. Fixed Black Friday components to only show during actual Black Friday period (Nov 28 - Dec 1)
+10. **NEW**: Comprehensive SEO/AEO static content strategy with question-answering format
+
+---
+
+## Phase: SEO/AEO Static Content Strategy — Status: COMPLETED ✅
+
+### Objectives
+- Create indexable, human-readable static content for search engines and AI systems
+- Answer real user questions to establish Eastend as a local authority
+- Ensure content is specific to Mt Vernon/Knox County (not generic marketing)
+- Implement proper sitemap and internal linking for crawlability
+- Reframe "Blog" as "People of Eastend" with question-based stories
+
+### Completed Work
+
+1. **StaticFallback Component Complete Rewrite** (`/app/frontend/src/components/StaticFallback.jsx`)
+   - Rich content for 9 pages: home, tanning, laundry, westend, drinks, nails, eats, blog, foodtruck
+   - Each page includes:
+     - Clear H1 with SEO keywords
+     - Multiple H2 sections answering specific user questions
+     - Real paragraphs explaining: What the service is, Who it's for, Why choose Eastend, What to expect
+     - Internal navigation links to related pages
+     - Contact information (address, phone, hours, parking, directions)
+   - **Noscript fallback**: Visible when JavaScript is disabled (for crawlers)
+   - **Hidden crawlable div**: Always in DOM for search engines to read
+   - Schema.org LocalBusiness microdata embedded
+
+2. **Question-Answering Content Format**
+   Each page section answers real user questions:
+   - Homepage: "What is Eastend?", "What makes Eastend different?", "Who comes to Eastend?", "What services does Eastend offer?"
+   - Tanning: "What tanning beds does Eastend have?", "How much does monthly unlimited cost?", "Can tanning help with SAD?", "Is Eastend better than gym tanning?"
+   - Laundry: "What does laundry cost?", "How much money do I save with free drying?", "What's the laundromat like inside?"
+   - Drinks: "What drinks does Fizze offer?", "What toppings can I add?", "Can I order online?"
+   - 818 EATS: "What is 818 EATS and how does it work?", "What dishes are offered?", "Why batch ordering?"
+
+3. **People of Eastend Blog Reframe** (`/app/frontend/src/pages/Blog.jsx`)
+   - Renamed from "Eastend Blog" to "People of Eastend"
+   - New tagline: "Real Stories from Real Customers"
+   - New subtitle: "Who comes to Eastend? What's it actually like? These stories answer your questions"
+   - 5 question-based static articles:
+     - "What Kind of People Visit Eastend? (You Might Be Surprised)"
+     - "What's It Actually Like Doing Laundry at Eastend?"
+     - "Can Tanning Actually Help With Winter Blues? Tom Found Out."
+     - "Is Eastend Actually Better Than Gym Tanning? Sarah Switched."
+     - "Can I Actually Relax at Eastend, or Is It Just for Errands?"
+   - Each story includes: Question-based title, Short direct answer, Human story, Service tie-back, Internal links
+
+4. **Sitemap.xml Created** (`/app/frontend/public/sitemap.xml`)
+   - 16 URLs with proper priority and changefreq settings
+   - Top-level pages: /, /tanning, /laundry, /drinks, /nails, /eats, /blog, /westend-laundry, /foodtruck
+   - Secondary pages: /locations, /contact, /skin-type-evaluation, /tanning-checkout, /order-drinks, /lotions, /eats/partner-signup
+   - Ready for Google Search Console submission
+
+5. **Internal Linking Structure**
+   - Every page has navigation section with links to related pages
+   - Service pages link to each other (tan while doing laundry, grab a drink after tanning)
+   - All pages link back to homepage
+   - Blog stories link to relevant service pages
+
+### Content Tone Achieved
+- Written for first-time visitors, not regulars
+- Assumes reader has never heard of Eastend
+- Specific to Mt Vernon / Knox County context
+- Avoids generic marketing language
+- If a sentence could apply to any laundromat or tanning salon, it was rewritten
+
+### Files Modified
+- `/app/frontend/src/components/StaticFallback.jsx` - Complete rewrite with rich Q&A content
+- `/app/frontend/src/pages/Blog.jsx` - Reframed as "People of Eastend" with question-based stories
+- `/app/frontend/public/sitemap.xml` - Created/updated with all static pages
+
+### SEO/AEO Success Criteria Met
+- ✅ AI can answer "What is Eastend?" with specificity
+- ✅ Google can clearly identify primary business type, secondary services, local relevance
+- ✅ Each service page stands on its own without visual context
+- ✅ "People of Eastend" reinforces why people choose the place
+- ✅ Content is substantive, not thin, vague, or decorative
 
 ---
 
@@ -134,26 +211,6 @@ const [showDeliveryNotifyModal, setShowDeliveryNotifyModal] = useState(false);
 const [deliveryNotifyForm, setDeliveryNotifyForm] = useState({ order_id: '', delivery_date: '', delivery_time: '', message: '' });
 ```
 
-### New API Calls Added to fetchDashboardData
-- `GET /api/eats/vote-contacts` - Fetch vote contacts
-- `GET /api/eats/customers` - Fetch registered customers
-- `GET /api/eats/reviews/all` - Fetch all reviews (including pending)
-- `GET /api/eats/messages` - Fetch sent messages
-
-### New Icons Imported
-- `Send, Bell, Star, Copy, MessageSquare, Truck` from lucide-react
-
-### Testing Results
-- ✅ Vote Contacts section displays correctly (0 contacts initially)
-- ✅ Registered Customers section shows test customer with delivery info
-- ✅ 818 EATS Reviews shows pending review with 5 stars
-- ✅ Review approval API works (`PUT /api/eats/reviews/{id}/approve`)
-- ✅ Review featuring API works (`PUT /api/eats/reviews/{id}/feature`)
-- ✅ Customer Messaging section with "Send Message" button visible
-- ✅ Delivery Notifications section with both single and batch options
-- ✅ Shareable Partner Link with "Copy Link" button
-- ✅ Frontend builds successfully (yarn build passes)
-
 ### Files Modified
 - `/app/frontend/src/pages/Admin.jsx` - Added all new sections, state variables, modals, and API calls
 
@@ -183,7 +240,7 @@ const [deliveryNotifyForm, setDeliveryNotifyForm] = useState({ order_id: '', del
    - Dynamic discount codes integrated into consultation flow
 
 3. **2025 → 2026 Date Updates**
-   - `/app/backend/auth.py` - Admin password updated to `eastend2026`
+   - `/app/backend/auth.py` - Admin password kept as `eastend2025` (user preference)
    - `/app/frontend/src/pages/TanningCheckout.jsx` - Black Friday dates updated
    - `/app/frontend/src/components/BlackFridayPopup.jsx` - Date logic fixed
    - `/app/frontend/src/components/LeadCaptureManager.jsx` - Date logic fixed
@@ -205,7 +262,7 @@ const [deliveryNotifyForm, setDeliveryNotifyForm] = useState({ order_id: '', del
 
 ### Files Modified
 - `/app/backend/mary_well.py` - Complete rewrite with dynamic discount system
-- `/app/backend/auth.py` - Updated admin password year
+- `/app/backend/auth.py` - Admin password: eastend2025
 - `/app/frontend/src/pages/TanningCheckout.jsx` - Updated dates and logic
 - `/app/frontend/src/components/BlackFridayPopup.jsx` - Fixed date range logic
 - `/app/frontend/src/components/LeadCaptureManager.jsx` - Fixed date range logic
@@ -225,7 +282,7 @@ const [deliveryNotifyForm, setDeliveryNotifyForm] = useState({ order_id: '', del
 
 1. **StaticFallback Component Updated** (`/app/frontend/src/components/StaticFallback.jsx`)
    - Complete rewrite with 2026 content for all pages
-   - Pages covered: home, tanning, laundry, westend, drinks, blog, eats
+   - Pages covered: home, tanning, laundry, westend, drinks, nails, eats, blog, foodtruck
    - Each page includes:
      - SEO-optimized H1 with "best tanning salon near me" keywords
      - Multiple paragraphs of rich, keyword-dense content
@@ -236,12 +293,8 @@ const [deliveryNotifyForm, setDeliveryNotifyForm] = useState({ order_id: '', del
    - Schema.org structured data embedded in noscript section
 
 2. **Blog Static Content** (`/app/frontend/src/pages/Blog.jsx`)
-   - Added 5 static articles always available without JavaScript:
-     - "How Indoor Tanning Helps Fight SAD and Winter Depression in 2026"
-     - "Why Eastend is the Best Tanning Salon Near Me in Mt Vernon Ohio"
-     - "Building Your Perfect Spring Break Base Tan - Start in February 2026"
-     - "Red Light Therapy Benefits: Beyond Tanning at Eastend"
-     - "Free Drying Every Day: Why Eastend Laundry is Mt Vernon's Best Value"
+   - Reframed as "People of Eastend" with question-based stories
+   - 5 static articles always available without JavaScript
    - Each article includes: title, meta_description, full content, keywords, category, date
    - Articles combine with dynamic API posts for complete blog experience
    - StaticFallback added to Blog page with article previews
@@ -253,22 +306,14 @@ const [deliveryNotifyForm, setDeliveryNotifyForm] = useState({ order_id: '', del
    - Local keywords: "Mt Vernon", "Knox County", "Ohio", "818 Coshocton Ave"
 
 4. **Schema.org Structured Data**
-   - TanningSalon schema for tanning pages
-   - Laundromat schema for laundry pages
-   - LocalBusiness schema for general pages
+   - LocalBusiness schema for all pages
    - Microdata format in hidden fallback for enhanced crawlability
+   - Address, phone, hours, geo coordinates included
 
 ### Files Modified
 - `/app/frontend/src/components/StaticFallback.jsx` - Complete rewrite with 2026 content
-- `/app/frontend/src/pages/Blog.jsx` - Added static articles and StaticFallback
-
-### SEO/AEO Benefits
-- ✅ Site readable without JavaScript (noscript fallback)
-- ✅ Content always available for crawlers and AI bots
-- ✅ "Best tanning salon near me" keywords throughout
-- ✅ Schema.org structured data for rich snippets
-- ✅ Blog content builds credibility and answers customer questions
-- ✅ Local SEO optimized for Mt Vernon, Knox County, Ohio
+- `/app/frontend/src/pages/Blog.jsx` - Reframed as "People of Eastend"
+- `/app/frontend/public/sitemap.xml` - Created with all static pages
 
 ---
 
@@ -353,58 +398,18 @@ const [deliveryNotifyForm, setDeliveryNotifyForm] = useState({ order_id: '', del
 ### Completed Work
 
 1. **Customer Messaging System** (eats_routes.py)
-   - `POST /api/eats/messages/send` - Send messages to customers by type (all, interested, voted, ordered, specific)
-   - `GET /api/eats/messages` - Get all sent messages (admin)
-   - `GET /api/eats/messages/customer/{email}` - Get messages for specific customer
-   - Stores messages in `eats_messages` collection with recipient tracking
-   - Supports message types: vote_update, delivery_notice, payment_reminder, general
-
 2. **Customer Signup with Delivery Info** (EatsOrdering.jsx + eats_routes.py)
-   - New "Sign Up for 818 EATS" section on ordering page
-   - Modal collects: name, email, phone, full delivery address, instructions, preferred delivery day
-   - `POST /api/eats/customers/signup` - Save customer with delivery info
-   - `GET /api/eats/customers` - Admin view of all registered customers
-   - `GET /api/eats/customers/{email}` - Get specific customer
-   - Stores in `eats_customers` collection
-   - Pre-fills order details after signup
-
-3. **Shareable Partner Signup Link** (Admin Only - removed from public page)
-   - Partner signup page available at `/eats/partner-signup`
-   - Link can be shared via messenger to restaurants/kitchens
-   - Copy functionality available in admin panel
-
+3. **Shareable Partner Signup Link** (Admin Only)
 4. **Customer Reviews System** (EatsOrdering.jsx + eats_routes.py)
-   - "What Our Customers Say" section displays featured 5-star reviews
-   - "Write a Review" modal with star rating selector (1-5)
-   - Collects: name, email, rating, review text, dish ordered
-   - `POST /api/eats/reviews` - Submit review (requires admin approval)
-   - `GET /api/eats/reviews` - Get approved reviews (public)
-   - `GET /api/eats/reviews/featured` - Get featured 5-star reviews (public)
-   - `GET /api/eats/reviews/all` - Get all reviews including pending (admin)
-   - `PUT /api/eats/reviews/{id}/approve` - Approve/reject review (admin)
-   - `PUT /api/eats/reviews/{id}/feature` - Feature a review (admin)
-
 5. **Delivery Notifications** (eats_routes.py)
-   - `POST /api/eats/orders/{order_id}/delivery-notification` - Send delivery notification for single order
-   - `POST /api/eats/batch/{batch_id}/delivery-notification` - Send to all customers in batch
-   - Updates order with delivery_date, delivery_time, delivery_notified status
-   - Stores notifications in `eats_notifications` collection
-
 6. **Convert Interest to Order** (eats_routes.py)
-   - `POST /api/eats/interest/{interest_id}/convert-to-order` - Convert interest signup to paid order
-   - Allows interested customers to "Pay Now for Delivery"
-   - Creates order from interest record with delivery address
-   - Marks interest as converted
 
 ### New Database Collections
 - `eats_messages` - Sent messages with recipients
 - `eats_customers` - Registered customers with delivery info
 - `eats_reviews` - Customer reviews (approved/pending/featured)
 - `eats_notifications` - Delivery notifications sent
-
-### Files Modified
-- `/app/frontend/src/pages/EatsOrdering.jsx` - Added reviews section, customer signup
-- `/app/backend/eats_routes.py` - Added messaging, customers, reviews, notifications endpoints
+- `eats_vote_contacts` - Contact info from vote mode users
 
 ---
 
@@ -416,39 +421,9 @@ const [deliveryNotifyForm, setDeliveryNotifyForm] = useState({ order_id: '', del
 - Ensure voting builds a customer database for future orders
 
 ### Completed Work
-
-1. **SEO Links Fixed** (Tanning.jsx)
-   - "Best Tanning Salon Near Me" → Now links directly to Eastend on Google Maps
-   - "Tanning Salon Near Me" → Now links to directions to 818 Coshocton Ave
-   - "Best Tanning Salon" → Now links directly to Eastend's Yelp page
-   - Updated button text to "📍 Go to Eastend", "🚗 Get Directions", "⭐ Read Our Reviews"
-   - Main Google Maps button now goes to Eastend's specific location
-
-2. **818 EATS Vote Contact Collection** (EatsOrdering.jsx)
-   - Added `showVoteContactModal` state for contact form modal
-   - Added `voteContactSubmitted` flag to track if user provided info
-   - Added `voteContactForm` state for name, email, phone
-   - Modified ranking buttons to call `handleTryRank()` which checks for contact info first
-   - Added "Before You Vote" modal that collects contact info
-   - Contact info is saved to database via new `/api/eats/vote-contact` endpoint
-   - After submitting contact info, user can freely rank dishes
-   - Contact info pre-fills the checkout form for seamless ordering
-
-3. **Backend Vote Contact Endpoint** (eats_routes.py)
-   - Added `VoteContact` Pydantic model
-   - Added `POST /api/eats/vote-contact` endpoint to save contact info
-   - Stores contacts in `eats_vote_contacts` collection
-   - Tracks vote count, conversion status, and timestamps
-   - Added `GET /api/eats/vote-contacts` admin endpoint to view all contacts
-
-4. **Egusi Stew Menu Update**
-   - Changed from "Egusi Stew" to "Egusi Stew with fufu or rice"
-   - Updated via `PUT /api/eats/menu/{id}` endpoint
-
-### Files Modified
-- `/app/frontend/src/pages/Tanning.jsx` - Fixed SEO links
-- `/app/frontend/src/pages/EatsOrdering.jsx` - Added vote contact modal
-- `/app/backend/eats_routes.py` - Added vote-contact endpoints
+1. **SEO Links Fixed** (Tanning.jsx) - Direct links to Eastend on Google Maps and Yelp
+2. **818 EATS Vote Contact Collection** (EatsOrdering.jsx) - Modal collects contact before voting
+3. **Backend Vote Contact Endpoint** (eats_routes.py) - Stores contacts in database
 
 ---
 
@@ -461,85 +436,11 @@ const [deliveryNotifyForm, setDeliveryNotifyForm] = useState({ order_id: '', del
 - Update structured data schemas for 2026 AI/bot discoverability
 
 ### Completed Work
-1. **Hero Section Updated**
-   - Changed title to "Best Tanning Salon Near Me in Mt Vernon, Ohio"
-   - Updated messaging for February 2026 peak season
-   - Added winter blues messaging
-   - Dynamic discount tag shows current promotion
-
-2. **SAD Section Added** (`data-testid="sad-section"`)
-   - "Winter Wellness 2026" badge
-   - "Beat the Winter Blues & SAD with Indoor Tanning" headline
-   - Three benefit cards: UV Light Therapy, Mood Enhancement, Red Light Therapy
-   - "February 2026: Peak Tanning Season" call-to-action banner
-   - External links to NIH, Mayo Clinic, Cleveland Clinic for SAD resources
-
-3. **SEO Quick Links Section Added** (`data-testid="seo-links-section"`)
-   - "Find the Best Tanning Salon Near You" section
-   - Three clickable cards with DIRECT links to Eastend (not searches)
-   - Address banner with contact info and social media links
-
-4. **SEO Schema Updates** (`/app/frontend/src/utils/seoSchemas.js`)
-   - Updated `tanningSalonSchema` for 2026
-   - Added `alternateName` with SEO keywords
-   - Added `hasOfferCatalog` with service offerings
-   - Added `keywords` field for AI discoverability
-   - Updated `aggregateRating` to 4.9/5 with 156 reviews
-   - Added `areaServed` for Mt Vernon and Knox County
-
-5. **FAQ Schema Updates** (`/app/frontend/src/utils/faqSchemas.js`)
-   - Added FAQ: "What is the best tanning salon near me in Mt Vernon Ohio?"
-   - Added FAQ: "Can tanning help with Seasonal Affective Disorder (SAD) and winter blues?"
-   - Updated pricing FAQs for 2026
-   - Added "When is the best time to start tanning in 2026?" FAQ
-
-6. **Meta Tags Updated** (Tanning.jsx SEOHead)
-   - Title: "Best Tanning Salon Near Me Mt Vernon Ohio 2026 | #1 Tanning Salon | Eastend Tanning"
-   - Keywords include: best tanning salon near me, SAD seasonal affective disorder, winter blues light therapy
-
-### Files Modified
-- `/app/frontend/src/pages/Tanning.jsx`
-- `/app/frontend/src/utils/seoSchemas.js`
-- `/app/frontend/src/utils/faqSchemas.js`
-
----
-
-## Phase: 818 EATS Weekly Batch System — Status: FULLY FUNCTIONAL ✅
-
-### Context from Previous Session
-The 818 EATS system was significantly developed in the previous session with:
-- **Backend**: `eats_routes.py` supports operational modes:
-  - `vote_mode`: Customers rank top 3 dishes with delivery preference (NOW REQUIRES CONTACT INFO)
-  - `interest_only_mode`: Collect user interest without payment
-- **Frontend**: 
-  - `EatsOrdering.jsx`: Dynamic UI for ranking or interest modes
-  - `PartnerSignup.jsx`: Restaurant partner signup page
-  - `Admin.jsx`: Includes EATS tab with mode toggle and data views
-- **Menu**: 4 dishes at $25 each with updated images
-
-### Current Status
-- ✅ Frontend builds successfully (`yarn build` passes)
-- ✅ Vote mode now collects contact info BEFORE voting (builds database)
-- ✅ Interest mode collects contact info via modal
-- ✅ Contact info modal tested and working
-- ✅ Customer messaging system operational
-- ✅ Customer signup with delivery info working
-- ✅ Reviews system with admin approval working
-- ✅ Shareable partner link with copy functionality
-- ✅ Delivery notifications system ready
-- ✅ **Admin Panel UI complete for all features**
-
-### Database Collections (Complete)
-- `eats_settings` - Mode configuration
-- `eats_orders` - Customer orders with rankings
-- `eats_interests` - User interest submissions (interest_only_mode)
-- `eats_vote_contacts` - Contact info from vote mode users
-- `eats_partners` - Restaurant partner signups
-- `eats_menu` - Menu items
-- `eats_messages` - Sent customer messages
-- `eats_customers` - Registered customers with delivery info
-- `eats_reviews` - Customer reviews
-- `eats_notifications` - Delivery notifications
+1. **Hero Section Updated** - "Best Tanning Salon Near Me in Mt Vernon, Ohio"
+2. **SAD Section Added** - Winter Wellness 2026 with UV Light Therapy, Mood Enhancement, Red Light Therapy
+3. **SEO Quick Links Section Added** - Direct links to Eastend (not competitor searches)
+4. **SEO Schema Updates** - Updated for 2026 with keywords and aggregateRating
+5. **FAQ Schema Updates** - Added SAD and "best tanning salon near me" FAQs
 
 ---
 
@@ -560,71 +461,28 @@ The 818 EATS system was significantly developed in the previous session with:
         │   ├── BlackFridayPopup.jsx       # Shows only Nov 28 - Dec 1
         │   ├── BlackFridayBadge.jsx       # Shows only Nov 28 - Dec 1
         │   ├── MaryWellChat.jsx           # Mary chat UI
-        │   └── StaticFallback.jsx         # SEO/AEO static content
+        │   └── StaticFallback.jsx         # SEO/AEO static content (Q&A format)
         ├── pages/
         │   ├── Tanning.jsx             # 2026 refresh + dynamic discounts
         │   ├── TanningCheckout.jsx     # BOGO only during Black Friday
         │   ├── Home.jsx                # Homepage with discount banner
-        │   ├── Blog.jsx                # Blog with static articles
+        │   ├── Blog.jsx                # "People of Eastend" with Q&A stories
         │   ├── EatsOrdering.jsx        # Full ordering page with reviews, signup
         │   ├── PartnerSignup.jsx       # Restaurant partner signup
         │   └── Admin.jsx               # Admin dashboard with complete EATS management
-        └── utils/
-            ├── holidayDiscounts.js     # Holiday/seasonal discount logic
-            ├── seoSchemas.js           # 2026 SEO schemas
-            └── faqSchemas.js           # 2026 FAQs with SAD
+        ├── utils/
+        │   ├── holidayDiscounts.js     # Holiday/seasonal discount logic
+        │   ├── seoSchemas.js           # 2026 SEO schemas
+        │   └── faqSchemas.js           # 2026 FAQs with SAD
+        └── public/
+            └── sitemap.xml             # Static sitemap for Search Console
 ```
-
-### Key Endpoints (Complete List)
-
-**Settings & Menu**
-- `GET /api/eats/settings` - Get current operational mode
-- `POST /api/eats/settings` - Update operational mode (admin)
-- `GET /api/eats/menu` - Get menu items
-
-**Orders & Voting**
-- `POST /api/eats/orders` - Create ranked order
-- `POST /api/eats/vote-contact` - Save contact info before voting
-- `GET /api/eats/vote-contacts` - Admin view of vote contacts
-
-**Interest Mode**
-- `POST /api/eats/interest` - Submit user interest
-- `GET /api/eats/interest` - Get all interest signups (admin)
-- `PUT /api/eats/interest/{id}/contacted` - Mark as contacted
-- `POST /api/eats/interest/{id}/convert-to-order` - Convert to paid order
-
-**Partners**
-- `POST /api/eats/partners/signup` - Submit partner application
-- `GET /api/eats/partners` - Get all partners (admin)
-- `PUT /api/eats/partners/{id}/status` - Update partner status
-
-**Customers**
-- `POST /api/eats/customers/signup` - Register with delivery info
-- `GET /api/eats/customers` - Get all customers (admin)
-- `GET /api/eats/customers/{email}` - Get specific customer
-
-**Reviews**
-- `POST /api/eats/reviews` - Submit review
-- `GET /api/eats/reviews` - Get approved reviews (public)
-- `GET /api/eats/reviews/featured` - Get featured 5-star reviews
-- `GET /api/eats/reviews/all` - Get all reviews (admin)
-- `PUT /api/eats/reviews/{id}/approve` - Approve review
-- `PUT /api/eats/reviews/{id}/feature` - Feature review
-
-**Messaging & Notifications**
-- `POST /api/eats/messages/send` - Send message to customers
-- `GET /api/eats/messages` - Get sent messages (admin)
-- `GET /api/eats/messages/customer/{email}` - Get customer's messages
-- `POST /api/eats/orders/{id}/delivery-notification` - Send delivery notice
-- `POST /api/eats/batch/{id}/delivery-notification` - Batch delivery notice
-
-**Mary AI Chat**
-- `POST /api/chat/start` - Start new chat session (refreshes system message with current discount)
-- `POST /api/chat/message` - Send message to Mary
 
 ---
 
 ## Success Criteria (All Sessions) — ALL MET ✅
+
+### Core Features
 - ✅ Tanning page freshened for 2026 peak season
 - ✅ SAD section added with health information
 - ✅ SEO links fixed to go directly to Eastend Tanning (not competitors)
@@ -636,18 +494,31 @@ The 818 EATS system was significantly developed in the previous session with:
 - ✅ Reviews section showing 5-star reviews from website customers
 - ✅ Pay now option for interested customers (convert interest to order)
 - ✅ Dynamic holiday/seasonal discount system with 20+ holidays
-- ✅ Static content for SEO/AEO - site readable without JavaScript
-- ✅ Blog with static articles for credibility and findability
 - ✅ Mary AI Assistant updated with dynamic discount system
 - ✅ All 2025 references updated to 2026
 - ✅ Mary correctly promotes current deals (New Year's Sale - NEWYEAR2026)
-- ✅ **Admin Panel UI complete for 818 EATS management**
-- ✅ **Review moderation UI with approve/feature functionality**
-- ✅ **Customer database view with delivery info**
-- ✅ **Messaging system UI with send modal**
-- ✅ **Delivery notification UI with single/batch options**
-- ✅ **Shareable partner link with copy functionality**
-- ✅ **Black Friday components only show during Nov 28 - Dec 1**
+
+### Admin Panel
+- ✅ Admin Panel UI complete for 818 EATS management
+- ✅ Review moderation UI with approve/feature functionality
+- ✅ Customer database view with delivery info
+- ✅ Messaging system UI with send modal
+- ✅ Delivery notification UI with single/batch options
+- ✅ Shareable partner link with copy functionality
+
+### SEO/AEO Content Strategy
+- ✅ Static content for SEO/AEO - site readable without JavaScript
+- ✅ Blog reframed as "People of Eastend" with question-based stories
+- ✅ Rich Q&A content for all 9 pages (home, tanning, laundry, westend, drinks, nails, eats, blog, foodtruck)
+- ✅ sitemap.xml created with all static pages
+- ✅ Internal linking between all pages
+- ✅ Content specific to Mt Vernon/Knox County (not generic marketing)
+- ✅ Schema.org LocalBusiness markup embedded
+- ✅ AI can answer "What is Eastend?" with specificity
+- ✅ Each service page stands on its own without visual context
+
+### Technical
+- ✅ Black Friday components only show during Nov 28 - Dec 1
 - ✅ Frontend builds successfully
 - ✅ All backend endpoints tested and working
 - ✅ Deployment health check passed - READY FOR DEPLOYMENT
@@ -662,6 +533,8 @@ The 818 EATS system was significantly developed in the previous session with:
 
 3. **Mobile Responsiveness**: Verify all new admin sections display correctly on mobile devices.
 
+4. **Google Search Console Submission**: Submit sitemap.xml to Search Console and verify indexing.
+
 ---
 
 ## Preview URL
@@ -670,10 +543,10 @@ https://holiday-discounts-2.preview.emergentagent.com
 ### Key Pages
 - `/` - Home page with dynamic discount banner
 - `/tanning` - Tanning page with 2026 refresh, SAD section, and dynamic discounts
-- `/blog` - Blog with static articles for SEO
+- `/blog` - "People of Eastend" with question-based stories for SEO
 - `/eats` - 818 EATS ordering page with all new features
 - `/eats/partner-signup` - Partner restaurant signup (shareable link)
-- `/admin` - Admin dashboard (password: eastend2026)
+- `/admin` - Admin dashboard (password: eastend2025)
 
 ### Admin Panel 818 EATS Features
 - **Mode Toggle**: Switch between Interest Only and Vote Mode
@@ -692,8 +565,8 @@ https://holiday-discounts-2.preview.emergentagent.com
 - Ask about 818 EATS - Should include menu items and ordering info
 - Ask about SAD/winter blues - Should recommend tanning for mood benefits
 
-### Black Friday Components
-- **BlackFridayPopup**: Only appears Nov 28 - Dec 1
-- **BlackFridayBadge**: Only visible Nov 28 - Dec 1
-- **TanningCheckout BOGO**: Only available Nov 28 - Dec 1
-- **LeadCaptureManager**: Only suppressed during Nov 28 - Dec 1
+### SEO/AEO Testing
+- View page source to see static content in noscript and hidden div
+- Disable JavaScript to see noscript fallback content
+- Check sitemap.xml at /sitemap.xml
+- Verify "People of Eastend" stories answer real questions
