@@ -1,14 +1,26 @@
 [
   {
-    "content": "Fix SEO links to go directly to Eastend Tanning (not competitor searches)",
-    "status": "completed"
+    "content": "Create customer messaging system for 818 EATS (vote updates, delivery notifications)",
+    "status": "in_progress"
   },
   {
-    "content": "Update 818 EATS voting to require contact info (name, email, phone)",
-    "status": "completed"
+    "content": "Add customer signup with delivery information collection",
+    "status": "pending"
   },
   {
-    "content": "Test both fixes",
-    "status": "completed"
+    "content": "Create shareable partner restaurant signup link for messenger",
+    "status": "pending"
+  },
+  {
+    "content": "Build reviews section showing 5-star reviews from website customers",
+    "status": "pending"
+  },
+  {
+    "content": "Add 'Pay Now for Delivery' option for interested customers",
+    "status": "pending"
+  },
+  {
+    "content": "Test all new features",
+    "status": "pending"
   }
 ]
