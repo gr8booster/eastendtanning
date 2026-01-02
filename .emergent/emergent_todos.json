@@ -1,30 +1,26 @@
 [
   {
-    "content": "Update Homepage static content with tanning-centered hub identity",
-    "status": "completed"
+    "content": "Add static blog introduction text at top of /blog",
+    "status": "in_progress"
   },
   {
-    "content": "Update Tanning page as primary anchor service with most depth",
-    "status": "completed"
+    "content": "Create static blog index with H2 titles, dates, excerpts, and links",
+    "status": "pending"
   },
   {
-    "content": "Update complementary services pages (laundry, drinks, nails, food truck)",
-    "status": "completed"
+    "content": "Ensure each excerpt answers a question first, then introduces story",
+    "status": "pending"
   },
   {
-    "content": "Clearly separate Eastend vs Westend locations in static content",
-    "status": "completed"
+    "content": "Add internal links to /tanning in each story",
+    "status": "pending"
   },
   {
-    "content": "Update sitemap.xml with correct URL structure",
-    "status": "completed"
+    "content": "Update StaticFallback for blog page with proper structure",
+    "status": "pending"
   },
   {
-    "content": "Update People of Eastend stories with explicit Q&A and /tanning links",
-    "status": "completed"
-  },
-  {
-    "content": "Build and test SEO/AEO content clarity",
-    "status": "completed"
+    "content": "Build and test static blog index",
+    "status": "pending"
   }
 ]
