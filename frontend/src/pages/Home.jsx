@@ -60,6 +60,10 @@ export default function Home() {
         breadcrumbs={breadcrumbs}
         ogImage="https://eastend.website/images/eastend-hero.jpg"
       />
+      
+      {/* Dynamic Holiday/Seasonal Discount Banner */}
+      <HolidayDiscountBanner variant="compact" />
+      
       {/* Hero Section */}
       <section data-testid="home-hero" className="relative py-12 sm:py-16 lg:py-20 bg-[linear-gradient(135deg,hsl(43_96%_96%),hsl(183_45%_96%))] overflow-hidden">
         <div className="noise"></div>
