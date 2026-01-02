@@ -829,6 +829,98 @@ export default function EatsOrdering() {
         </div>
       </section>
 
+      {/* Shareable Partner Signup Link Section */}
+      <section className="py-12 bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--secondary))] text-white" data-testid="partner-link-section">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="font-serif text-3xl font-bold mb-4">Know a Restaurant or Kitchen?</h2>
+          <p className="text-lg text-white/90 mb-6 max-w-2xl mx-auto">
+            Share this link with restaurants, home kitchens, or caterers who specialize in African cuisine. They can sign up to become our partner!
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <Card className="p-4 bg-white/10 backdrop-blur border-white/20 flex items-center gap-3">
+              <Globe className="w-5 h-5 text-white/80" />
+              <code className="text-sm text-white">{typeof window !== 'undefined' ? `${window.location.origin}/eats/partner-signup` : '/eats/partner-signup'}</code>
+            </Card>
+            <Button 
+              onClick={copyPartnerLink}
+              className={linkCopied ? "bg-green-500 hover:bg-green-600" : "bg-white text-[hsl(var(--secondary))] hover:bg-white/90"}
+              data-testid="copy-partner-link-btn"
+            >
+              {linkCopied ? <><CheckCircle2 className="w-4 h-4 mr-2" /> Copied!</> : 'Copy Link for Messenger'}
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Customer Reviews Section */}
+      <section className="py-16 bg-white" data-testid="reviews-section">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-10">
+            <Badge className="bg-[hsl(var(--primary))] text-white mb-4">Customer Reviews</Badge>
+            <h2 className="font-serif text-3xl sm:text-4xl font-bold mb-2">What Our Customers Say</h2>
+            <p className="text-muted-foreground">Real reviews from 818 EATS customers</p>
+          </div>
+          
+          {reviews.length > 0 ? (
+            <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto mb-8">
+              {reviews.map((review, idx) => (
+                <Card key={idx} className="p-6 hover:shadow-lg transition-shadow">
+                  <div className="flex items-center gap-1 mb-3">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className={`w-5 h-5 ${i < review.rating ? 'fill-amber-400 text-amber-400' : 'text-gray-200'}`} />
+                    ))}
+                  </div>
+                  <p className="text-muted-foreground mb-4 italic">"{review.review_text}"</p>
+                  <div className="flex items-center justify-between">
+                    <p className="font-semibold">{review.customer_name}</p>
+                    {review.dish_ordered && (
+                      <Badge variant="outline" className="text-xs">{review.dish_ordered}</Badge>
+                    )}
+                  </div>
+                </Card>
+              ))}
+            </div>
+          ) : (
+            <div className="text-center mb-8">
+              <Card className="max-w-md mx-auto p-8">
+                <Star className="w-12 h-12 text-amber-400 mx-auto mb-4" />
+                <p className="text-muted-foreground mb-4">Be the first to leave a review!</p>
+              </Card>
+            </div>
+          )}
+          
+          <div className="text-center">
+            <Button 
+              onClick={() => setShowReviewModal(true)}
+              variant="outline"
+              className="border-[hsl(var(--primary))] text-[hsl(var(--primary))] hover:bg-[hsl(var(--primary))] hover:text-white"
+              data-testid="write-review-btn"
+            >
+              <Star className="w-4 h-4 mr-2" /> Write a Review
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Customer Signup Section */}
+      <section className="py-12 bg-[hsl(var(--muted))]" data-testid="customer-signup-section">
+        <div className="container mx-auto px-4">
+          <Card className="max-w-2xl mx-auto p-8 text-center">
+            <h2 className="font-serif text-2xl font-bold mb-4">Save Your Delivery Information</h2>
+            <p className="text-muted-foreground mb-6">
+              Sign up once and we'll remember your delivery address for faster ordering. We'll also notify you about new dishes and delivery updates!
+            </p>
+            <Button 
+              onClick={() => setShowCustomerSignupModal(true)}
+              className="bg-[hsl(var(--secondary))] hover:bg-[hsl(183_55%_36%)]"
+              data-testid="customer-signup-btn"
+            >
+              <Users className="w-4 h-4 mr-2" /> Sign Up for 818 EATS
+            </Button>
+          </Card>
+        </div>
+      </section>
+
       {/* Interest Modal */}
       <Dialog open={showInterestModal} onOpenChange={setShowInterestModal}>
         <DialogContent className="max-w-md">
