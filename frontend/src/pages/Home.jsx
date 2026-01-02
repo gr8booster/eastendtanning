@@ -12,6 +12,7 @@ import { StaticFallback } from '../components/StaticFallback';
 import { FacebookFeed } from '../components/FacebookFeed';
 import { ReviewSubmission } from '../components/ReviewSubmission';
 import { PublicReviews } from '../components/PublicReviews';
+import { HolidayDiscountBanner } from '../components/HolidayDiscountBanner';
 import { allFAQSchemas } from '../utils/faqSchemas';
 import { websiteSchema, generateBreadcrumb } from '../utils/structuredData';
 import { eastendOrganizationSchema } from '../utils/businessSchemas';
