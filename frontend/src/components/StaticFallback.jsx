@@ -338,26 +338,64 @@ export const StaticFallback = ({ page }) => {
 
   const data = content[page] || content.home;
 
+  // Check if this is the blog page - render as blog index
+  const isBlogPage = page === 'blog';
+
   return (
     <>
       {/* Noscript fallback - visible to crawlers and non-JS users */}
       <noscript>
-        <div className="seo-fallback" style={{padding: '20px', maxWidth: '1200px', margin: '0 auto', fontFamily: 'Georgia, serif', lineHeight: '1.8'}}>
-          <h1 style={{fontSize: '2rem', marginBottom: '1.5rem', color: '#1a1a1a', fontWeight: 'bold'}}>{data.h1}</h1>
+        <div className="seo-fallback" style={{padding: '20px', maxWidth: '800px', margin: '0 auto', fontFamily: 'Georgia, serif', lineHeight: '1.8'}}>
+          <h1 style={{fontSize: '2.5rem', marginBottom: '1rem', color: '#1a1a1a', fontWeight: 'bold'}}>{data.h1}</h1>
           
-          <p style={{fontSize: '1.1rem', marginBottom: '2rem', color: '#333', backgroundColor: '#f9f9f9', padding: '1.5rem', borderRadius: '8px', borderLeft: '4px solid #d97706'}}>
+          <p style={{fontSize: '1.1rem', marginBottom: '2rem', color: '#333', lineHeight: '1.8'}}>
             {data.intro}
           </p>
           
-          {data.sections && data.sections.map((section, i) => (
+          {/* Blog Index - only for blog page */}
+          {isBlogPage && data.blogIndex && (
+            <section style={{marginTop: '2rem'}}>
+              {data.blogIndex.map((story, i) => (
+                <article key={i} style={{marginBottom: '3rem', paddingBottom: '2rem', borderBottom: '1px solid #e0e0e0'}}>
+                  {/* Story Title (H2) */}
+                  <h2 style={{fontSize: '1.75rem', marginBottom: '0.5rem', color: '#1a1a1a', fontWeight: 'bold'}}>
+                    <a href={story.link} style={{color: '#1a1a1a', textDecoration: 'none'}}>{story.title}</a>
+                  </h2>
+                  
+                  {/* Publish Date */}
+                  <p style={{fontSize: '0.9rem', color: '#666', marginBottom: '1rem'}}>
+                    Published: {story.date}
+                  </p>
+                  
+                  {/* Excerpt - Answer-first */}
+                  <p style={{fontSize: '1.1rem', color: '#444', marginBottom: '1rem', lineHeight: '1.7'}}>
+                    {story.excerpt}
+                  </p>
+                  
+                  {/* Links */}
+                  <div style={{display: 'flex', gap: '1.5rem', flexWrap: 'wrap'}}>
+                    <a href={story.link} style={{color: '#0d9488', fontWeight: '600', textDecoration: 'none'}}>
+                      Read the full story →
+                    </a>
+                    <a href={story.tanningLink} style={{color: '#d97706', fontWeight: '500', textDecoration: 'none'}}>
+                      {story.tanningLinkText}
+                    </a>
+                  </div>
+                </article>
+              ))}
+            </section>
+          )}
+          
+          {/* Regular sections - for non-blog pages */}
+          {!isBlogPage && data.sections && data.sections.map((section, i) => (
             <section key={i} style={{marginBottom: '2rem'}}>
               <h2 style={{fontSize: '1.5rem', marginBottom: '1rem', color: '#1a1a1a'}}>{section.h2}</h2>
               <p style={{color: '#444', marginBottom: '1rem', whiteSpace: 'pre-line'}}>{section.content}</p>
             </section>
           ))}
           
-          {/* People of Eastend stories with explicit Q&A */}
-          {data.stories && (
+          {/* People of Eastend stories with explicit Q&A - for non-blog pages that have stories */}
+          {!isBlogPage && data.stories && (
             <section style={{marginTop: '3rem'}}>
               <h2 style={{fontSize: '1.75rem', marginBottom: '1.5rem', color: '#1a1a1a'}}>Customer Stories & Questions Answered</h2>
               {data.stories.map((story, i) => (
