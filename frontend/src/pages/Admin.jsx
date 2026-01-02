@@ -17,7 +17,7 @@ import {
   Users, Eye, TrendingUp, DollarSign, 
   Target, Zap, Calendar, Award,
   RefreshCw, Download, Sparkles, TicketPercent, FlaskConical, Phone,
-  Coffee, Edit, Trash2, Plus, Search, LogOut
+  Coffee, Edit, Trash2, Plus, Search, LogOut, Send, Bell, Star, Copy, MessageSquare, Truck
 } from 'lucide-react';
 import { toast } from 'sonner';
 import { ROLES, hasPermission, PERMISSIONS } from '../utils/permissions';
