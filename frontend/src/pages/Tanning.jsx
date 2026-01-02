@@ -318,7 +318,7 @@ export default function Tanning() {
         </div>
       </div>
 
-      {/* SEO Quick Links - Best Tanning Salon Near Me */}
+      {/* SEO Quick Links - Best Tanning Salon Near Me - Direct Links to Eastend */}
       <div className="bg-white py-12 border-b" data-testid="seo-links-section">
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
@@ -328,43 +328,46 @@ export default function Tanning() {
             </div>
             
             <div className="grid md:grid-cols-3 gap-6 mb-8">
-              <a href="https://www.google.com/maps/search/best+tanning+salon+near+me+Mt+Vernon+Ohio" target="_blank" rel="noopener noreferrer" className="block">
-                <Card className="p-6 text-center hover:shadow-lg hover:border-amber-400 transition-all cursor-pointer h-full">
+              {/* Direct link to Eastend on Google Maps */}
+              <a href="https://www.google.com/maps/place/Eastend+Tanning+and+Laundry/@40.3930247,-82.4871659,17z/data=!3m1!4b1!4m6!3m5!1s0x8836c0c0c7e05555:0x5555555555555555!8m2!3d40.3930247!4d-82.484591!16s%2Fg%2F1td6dn7k" target="_blank" rel="noopener noreferrer" className="block">
+                <Card className="p-6 text-center hover:shadow-lg hover:border-amber-400 transition-all cursor-pointer h-full bg-gradient-to-br from-amber-50 to-white">
                   <MapPin className="w-10 h-10 mx-auto mb-3 text-amber-600" />
                   <h3 className="font-bold text-lg mb-2">Best Tanning Salon Near Me</h3>
-                  <p className="text-sm text-muted-foreground mb-3">Find Eastend on Google Maps - #1 rated in Mt Vernon area</p>
-                  <Badge variant="outline" className="text-amber-600 border-amber-600">View on Maps</Badge>
+                  <p className="text-sm text-muted-foreground mb-3">View Eastend Tanning directly on Google Maps - #1 in Mt Vernon!</p>
+                  <Badge className="bg-amber-500 text-white">📍 Go to Eastend</Badge>
                 </Card>
               </a>
 
-              <a href="https://www.google.com/maps/search/tanning+salon+near+me+Knox+County+Ohio" target="_blank" rel="noopener noreferrer" className="block">
-                <Card className="p-6 text-center hover:shadow-lg hover:border-teal-400 transition-all cursor-pointer h-full">
+              {/* Direct link to Eastend location */}
+              <a href="https://www.google.com/maps/dir//Eastend+Tanning+and+Laundry,+818+Coshocton+Ave,+Mt+Vernon,+OH+43050" target="_blank" rel="noopener noreferrer" className="block">
+                <Card className="p-6 text-center hover:shadow-lg hover:border-teal-400 transition-all cursor-pointer h-full bg-gradient-to-br from-teal-50 to-white">
                   <Sun className="w-10 h-10 mx-auto mb-3 text-teal-600" />
                   <h3 className="font-bold text-lg mb-2">Tanning Salon Near Me</h3>
-                  <p className="text-sm text-muted-foreground mb-3">Serving Mt Vernon, Knox County & surrounding Ohio areas</p>
-                  <Badge variant="outline" className="text-teal-600 border-teal-600">Find Location</Badge>
+                  <p className="text-sm text-muted-foreground mb-3">Get directions to Eastend - 818 Coshocton Ave, Mt Vernon</p>
+                  <Badge className="bg-teal-500 text-white">🚗 Get Directions</Badge>
                 </Card>
               </a>
 
-              <a href="https://www.yelp.com/search?find_desc=tanning+salon&find_loc=Mt+Vernon%2C+OH" target="_blank" rel="noopener noreferrer" className="block">
-                <Card className="p-6 text-center hover:shadow-lg hover:border-red-400 transition-all cursor-pointer h-full">
+              {/* Direct link to Eastend's Yelp page */}
+              <a href="https://www.yelp.com/biz/eastend-laundry-tanning-and-nutrition-mount-vernon" target="_blank" rel="noopener noreferrer" className="block">
+                <Card className="p-6 text-center hover:shadow-lg hover:border-red-400 transition-all cursor-pointer h-full bg-gradient-to-br from-red-50 to-white">
                   <Crown className="w-10 h-10 mx-auto mb-3 text-red-600" />
                   <h3 className="font-bold text-lg mb-2">Best Tanning Salon</h3>
-                  <p className="text-sm text-muted-foreground mb-3">See our reviews on Yelp - consistently rated 5 stars</p>
-                  <Badge variant="outline" className="text-red-600 border-red-600">Read Reviews</Badge>
+                  <p className="text-sm text-muted-foreground mb-3">Read Eastend's 5-star reviews on Yelp</p>
+                  <Badge className="bg-red-500 text-white">⭐ Read Our Reviews</Badge>
                 </Card>
               </a>
             </div>
 
-            <div className="text-center bg-gradient-to-r from-amber-50 to-orange-50 rounded-xl p-6">
-              <p className="text-lg font-semibold mb-2">📍 Visit Eastend Tanning Today</p>
+            <div className="text-center bg-gradient-to-r from-amber-50 to-orange-50 rounded-xl p-6 border-2 border-amber-200">
+              <p className="text-lg font-semibold mb-2">📍 Visit Eastend Tanning Today - The Best Tanning Salon in Mt Vernon!</p>
               <p className="text-muted-foreground">
-                <strong>818 Coshocton Ave, Mt Vernon, OH 43050</strong> • <a href="tel:+17403979632" className="text-amber-600 hover:underline">(740) 397-9632</a> • Open 7 Days: 8AM-7:30PM
+                <strong>818 Coshocton Ave, Mt Vernon, OH 43050</strong> • <a href="tel:+17403979632" className="text-amber-600 hover:underline font-semibold">(740) 397-9632</a> • Open 7 Days: 8AM-7:30PM
               </p>
               <div className="mt-4 flex flex-wrap justify-center gap-3">
-                <a href="https://www.google.com/maps/place/818+Coshocton+Ave,+Mt+Vernon,+OH+43050" target="_blank" rel="noopener noreferrer">
-                  <Button variant="outline" size="sm" className="gap-2">
-                    <MapPin className="w-4 h-4" /> Google Maps
+                <a href="https://www.google.com/maps/place/Eastend+Tanning+and+Laundry/@40.3930247,-82.4871659,17z" target="_blank" rel="noopener noreferrer">
+                  <Button className="gap-2 bg-amber-500 hover:bg-amber-600 text-white">
+                    <MapPin className="w-4 h-4" /> Eastend on Google Maps
                   </Button>
                 </a>
                 <a href="https://www.facebook.com/share/1CtZugxSec/" target="_blank" rel="noopener noreferrer">
