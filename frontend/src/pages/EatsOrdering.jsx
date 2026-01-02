@@ -805,6 +805,68 @@ export default function EatsOrdering() {
         </DialogContent>
       </Dialog>
 
+      {/* Vote Mode: Contact Info Modal (required BEFORE voting) */}
+      <Dialog open={showVoteContactModal} onOpenChange={setShowVoteContactModal}>
+        <DialogContent className="max-w-md">
+          <DialogHeader>
+            <DialogTitle className="font-serif text-2xl">Before You Vote</DialogTitle>
+          </DialogHeader>
+          
+          <div className="space-y-4">
+            <p className="text-sm text-muted-foreground">
+              Please provide your contact info to vote for your favorite dishes. We'll notify you when your selections are available!
+            </p>
+            
+            <div>
+              <Label htmlFor="vote-name">Name *</Label>
+              <Input 
+                id="vote-name"
+                value={voteContactForm.name}
+                onChange={(e) => setVoteContactForm({...voteContactForm, name: e.target.value})}
+                placeholder="Your Name"
+                data-testid="vote-name"
+              />
+            </div>
+            <div>
+              <Label htmlFor="vote-email">Email *</Label>
+              <Input 
+                id="vote-email"
+                type="email"
+                value={voteContactForm.email}
+                onChange={(e) => setVoteContactForm({...voteContactForm, email: e.target.value})}
+                placeholder="your@email.com"
+                data-testid="vote-email"
+              />
+            </div>
+            <div>
+              <Label htmlFor="vote-phone">Phone *</Label>
+              <Input 
+                id="vote-phone"
+                value={voteContactForm.phone}
+                onChange={(e) => setVoteContactForm({...voteContactForm, phone: e.target.value})}
+                placeholder="(740) 555-1234"
+                data-testid="vote-phone"
+              />
+            </div>
+
+            <Card className="p-4 bg-amber-50 border-amber-200">
+              <p className="text-sm text-amber-800">
+                <strong>Why we need this:</strong> Your vote helps us know what dishes to prepare. We'll contact you when your favorites are ready for ordering!
+              </p>
+            </Card>
+
+            <Button 
+              className="w-full bg-[hsl(var(--primary))] hover:bg-[hsl(42_92%_50%)]"
+              onClick={handleSubmitVoteContact}
+              disabled={submitting}
+              data-testid="submit-vote-contact-btn"
+            >
+              {submitting ? <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Saving...</> : 'Continue to Vote'}
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
+
       {/* Vote Mode: Checkout Modal */}
       <Dialog open={showCheckout} onOpenChange={setShowCheckout}>
         <DialogContent className="max-w-lg max-h-[90vh] overflow-y-auto">
