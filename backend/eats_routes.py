@@ -91,6 +91,32 @@ class ClientSignup(BaseModel):
 class PayPalOrderRequest(BaseModel):
     order_id: str
 
+# Customer Messaging Models
+class CustomerMessage(BaseModel):
+    recipient_type: str  # "all", "interested", "voted", "ordered", "specific"
+    recipient_ids: Optional[List[str]] = None  # For specific recipients
+    subject: str
+    message: str
+    message_type: str  # "vote_update", "delivery_notice", "payment_reminder", "general"
+
+class CustomerSignupWithDelivery(BaseModel):
+    name: str
+    email: str
+    phone: str
+    delivery_address: str
+    delivery_city: str = "Mt Vernon"
+    delivery_state: str = "OH"
+    delivery_zip: str
+    delivery_instructions: Optional[str] = None
+    preferred_delivery_day: Optional[str] = None  # "Saturday", "Sunday", etc.
+    
+class EatsReview(BaseModel):
+    customer_name: str
+    customer_email: str
+    rating: int  # 1-5 stars
+    review_text: str
+    dish_ordered: Optional[str] = None
+
 # Settings Management
 async def get_eats_settings():
     """Get current EATS settings"""
