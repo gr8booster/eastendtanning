@@ -1,18 +1,18 @@
 [
   {
     "content": "Check and update static content for SEO/AEO - site readable without JavaScript",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Verify StaticFallback components are properly implemented",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Ensure blog has static content for findability & credibility",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Test static content accessibility",
-    "status": "pending"
+    "status": "in_progress"
   }
 ]
