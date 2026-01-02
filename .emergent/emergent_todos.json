@@ -1,22 +1,14 @@
 [
   {
-    "content": "Freshen up Tanning page for 2026 peak season (February)",
-    "status": "completed"
+    "content": "Fix SEO links to go directly to Eastend Tanning (not competitor searches)",
+    "status": "in_progress"
   },
   {
-    "content": "Update SEO/static info for AI bots - add 'best tanning salon', 'tanning salon near me' links",
-    "status": "completed"
+    "content": "Update 818 EATS voting to require contact info (name, email, phone)",
+    "status": "pending"
   },
   {
-    "content": "Add SAD (Seasonal Affective Disorder) section showing how tanning helps",
-    "status": "completed"
-  },
-  {
-    "content": "Update structured data schemas for 2026",
-    "status": "completed"
-  },
-  {
-    "content": "Test tanning page updates and verify frontend",
-    "status": "completed"
+    "content": "Test both fixes",
+    "status": "pending"
   }
 ]
