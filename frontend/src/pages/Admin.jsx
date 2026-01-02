@@ -73,6 +73,14 @@ export default function Admin() {
   const [eatsMode, setEatsMode] = useState('interest_only');
   const [eatsInterests, setEatsInterests] = useState([]);
   const [eatsPartners, setEatsPartners] = useState([]);
+  const [eatsVoteContacts, setEatsVoteContacts] = useState([]);
+  const [eatsCustomers, setEatsCustomers] = useState([]);
+  const [eatsReviews, setEatsReviews] = useState([]);
+  const [eatsMessages, setEatsMessages] = useState([]);
+  const [showMessageModal, setShowMessageModal] = useState(false);
+  const [messageForm, setMessageForm] = useState({ type: 'all', subject: '', message: '', specific_emails: '' });
+  const [showDeliveryNotifyModal, setShowDeliveryNotifyModal] = useState(false);
+  const [deliveryNotifyForm, setDeliveryNotifyForm] = useState({ order_id: '', delivery_date: '', delivery_time: '', message: '' });
   
   // Notifications state
   const [newOrderNotification, setNewOrderNotification] = useState(null);
