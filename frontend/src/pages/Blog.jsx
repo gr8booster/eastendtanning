@@ -199,10 +199,8 @@ The bubble tea, nails, and laundry aren't random add-ons. They extend the relaxa
     created_at: '2026-01-05'
   }
 ];
-    created_at: '2026-01-15'
-  },
-  {
-    id: 'whats-it-like-doing-laundry-at-eastend',
+
+export default function Blog() {
     title: "What's It Actually Like Doing Laundry at Eastend?",
     meta_description: 'A real description of the Eastend laundry experience - from free drying to bubble tea, why customers say it changed how they feel about laundromat day.',
     content: `QUESTION: What's it like doing laundry at Eastend?
