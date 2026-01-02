@@ -1,34 +1,46 @@
 [
   {
-    "content": "View current Admin.jsx to understand existing structure",
-    "status": "completed"
+    "content": "Review current static content structure and identify gaps",
+    "status": "in_progress"
   },
   {
-    "content": "Add Review Moderation UI to Admin (approve/feature reviews)",
-    "status": "completed"
+    "content": "Create rich static content for Homepage with business identity",
+    "status": "pending"
   },
   {
-    "content": "Add Customer Database View to Admin",
-    "status": "completed"
+    "content": "Create rich static content for Tanning page",
+    "status": "pending"
   },
   {
-    "content": "Add Messaging System UI to Admin",
-    "status": "completed"
+    "content": "Create rich static content for Laundry page",
+    "status": "pending"
   },
   {
-    "content": "Add Delivery Notification UI to Admin",
-    "status": "completed"
+    "content": "Create rich static content for Drinks/Bubble Tea page",
+    "status": "pending"
   },
   {
-    "content": "Add Shareable Partner Link to Admin",
-    "status": "completed"
+    "content": "Create rich static content for Fast Nails page",
+    "status": "pending"
   },
   {
-    "content": "Test all new Admin features",
-    "status": "completed"
+    "content": "Create rich static content for 818 EATS page",
+    "status": "pending"
   },
   {
-    "content": "Fix Black Friday popup showing outside of Black Friday period",
-    "status": "completed"
+    "content": "Reframe People of Eastend blog with question-based stories",
+    "status": "pending"
+  },
+  {
+    "content": "Create sitemap.xml with all static pages",
+    "status": "pending"
+  },
+  {
+    "content": "Add internal linking between all pages",
+    "status": "pending"
+  },
+  {
+    "content": "Test SEO/AEO content clarity",
+    "status": "pending"
   }
 ]
