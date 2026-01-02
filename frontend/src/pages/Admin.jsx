@@ -2353,6 +2353,381 @@ Order Status: ${order.status}
                   </div>
                 </Card>
               )}
+
+              {/* Shareable Partner Link */}
+              <Card className="p-6 bg-gradient-to-r from-purple-50 to-indigo-50 border-2 border-purple-300">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h3 className="font-serif text-xl font-bold flex items-center gap-2">
+                      <Copy className="w-5 h-5" /> Partner Signup Link
+                    </h3>
+                    <p className="text-sm text-muted-foreground mt-1">Share this link with restaurants and home kitchens</p>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <code className="bg-white px-4 py-2 rounded-lg text-sm font-mono border">
+                      {window.location.origin}/eats/partner-signup
+                    </code>
+                    <Button
+                      onClick={() => {
+                        navigator.clipboard.writeText(`${window.location.origin}/eats/partner-signup`);
+                        toast.success('Partner link copied to clipboard!');
+                      }}
+                      className="bg-purple-600 hover:bg-purple-700"
+                      data-testid="copy-partner-link"
+                    >
+                      <Copy className="w-4 h-4 mr-2" />
+                      Copy Link
+                    </Button>
+                  </div>
+                </div>
+              </Card>
+
+              {/* Vote Contacts (Customer Database from Voting) */}
+              <Card className="p-6">
+                <div className="flex items-center justify-between mb-4">
+                  <div>
+                    <h3 className="font-serif text-xl font-bold flex items-center gap-2">
+                      <Users className="w-5 h-5" /> Vote Contacts
+                    </h3>
+                    <p className="text-sm text-muted-foreground">Customers who provided contact info before voting</p>
+                  </div>
+                  <Badge className="bg-blue-600 text-white">{eatsVoteContacts.length} contacts</Badge>
+                </div>
+                
+                {eatsVoteContacts.length > 0 ? (
+                  <div className="overflow-x-auto">
+                    <table className="w-full" data-testid="eats-vote-contacts-table">
+                      <thead className="bg-blue-50">
+                        <tr>
+                          <th className="px-4 py-3 text-left text-sm font-semibold">Name</th>
+                          <th className="px-4 py-3 text-left text-sm font-semibold">Email</th>
+                          <th className="px-4 py-3 text-left text-sm font-semibold">Phone</th>
+                          <th className="px-4 py-3 text-left text-sm font-semibold">Votes</th>
+                          <th className="px-4 py-3 text-left text-sm font-semibold">Converted</th>
+                          <th className="px-4 py-3 text-left text-sm font-semibold">Date</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {eatsVoteContacts.map((contact, index) => (
+                          <tr key={contact.id} className={index % 2 === 0 ? 'bg-white' : 'bg-blue-50/30'}>
+                            <td className="px-4 py-3 text-sm font-medium">{contact.name}</td>
+                            <td className="px-4 py-3 text-sm">{contact.email}</td>
+                            <td className="px-4 py-3 text-sm">{contact.phone}</td>
+                            <td className="px-4 py-3 text-sm">
+                              <Badge variant="outline">{contact.vote_count || 0}</Badge>
+                            </td>
+                            <td className="px-4 py-3 text-sm">
+                              {contact.converted_to_order ? (
+                                <Badge className="bg-green-600 text-white">Yes</Badge>
+                              ) : (
+                                <Badge variant="outline">No</Badge>
+                              )}
+                            </td>
+                            <td className="px-4 py-3 text-sm text-muted-foreground">
+                              {new Date(contact.created_at).toLocaleDateString()}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                ) : (
+                  <p className="text-center text-muted-foreground py-8">No vote contacts yet. Contacts appear when users submit their info before voting.</p>
+                )}
+              </Card>
+
+              {/* Customer Database (Registered with Delivery Info) */}
+              <Card className="p-6">
+                <div className="flex items-center justify-between mb-4">
+                  <div>
+                    <h3 className="font-serif text-xl font-bold flex items-center gap-2">
+                      <Truck className="w-5 h-5" /> Registered Customers
+                    </h3>
+                    <p className="text-sm text-muted-foreground">Customers signed up with delivery information</p>
+                  </div>
+                  <Badge className="bg-green-600 text-white">{eatsCustomers.length} customers</Badge>
+                </div>
+                
+                {eatsCustomers.length > 0 ? (
+                  <div className="overflow-x-auto">
+                    <table className="w-full" data-testid="eats-customers-table">
+                      <thead className="bg-green-50">
+                        <tr>
+                          <th className="px-4 py-3 text-left text-sm font-semibold">Name</th>
+                          <th className="px-4 py-3 text-left text-sm font-semibold">Contact</th>
+                          <th className="px-4 py-3 text-left text-sm font-semibold">Delivery Address</th>
+                          <th className="px-4 py-3 text-left text-sm font-semibold">Preferred Day</th>
+                          <th className="px-4 py-3 text-left text-sm font-semibold">Instructions</th>
+                          <th className="px-4 py-3 text-left text-sm font-semibold">Signed Up</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {eatsCustomers.map((customer, index) => (
+                          <tr key={customer.id} className={index % 2 === 0 ? 'bg-white' : 'bg-green-50/30'}>
+                            <td className="px-4 py-3 text-sm font-medium">{customer.name}</td>
+                            <td className="px-4 py-3 text-sm">
+                              <div>{customer.email}</div>
+                              <div className="text-xs text-muted-foreground">{customer.phone}</div>
+                            </td>
+                            <td className="px-4 py-3 text-sm">
+                              <div>{customer.delivery_address}</div>
+                              <div className="text-xs text-muted-foreground">{customer.city}, {customer.state} {customer.zip_code}</div>
+                            </td>
+                            <td className="px-4 py-3 text-sm">
+                              <Badge variant="outline">{customer.preferred_delivery_day || 'Any'}</Badge>
+                            </td>
+                            <td className="px-4 py-3 text-sm text-muted-foreground max-w-xs truncate" title={customer.delivery_instructions}>
+                              {customer.delivery_instructions || '-'}
+                            </td>
+                            <td className="px-4 py-3 text-sm text-muted-foreground">
+                              {new Date(customer.created_at).toLocaleDateString()}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                ) : (
+                  <p className="text-center text-muted-foreground py-8">No registered customers yet.</p>
+                )}
+              </Card>
+
+              {/* 818 EATS Reviews Management */}
+              <Card className="p-6">
+                <div className="flex items-center justify-between mb-4">
+                  <div>
+                    <h3 className="font-serif text-xl font-bold flex items-center gap-2">
+                      <Star className="w-5 h-5" /> 818 EATS Reviews
+                    </h3>
+                    <p className="text-sm text-muted-foreground">Manage and moderate customer reviews</p>
+                  </div>
+                  <div className="flex gap-2">
+                    <Badge className="bg-yellow-500 text-white">{eatsReviews.filter(r => r.status === 'pending').length} pending</Badge>
+                    <Badge className="bg-green-600 text-white">{eatsReviews.filter(r => r.status === 'approved').length} approved</Badge>
+                  </div>
+                </div>
+                
+                {eatsReviews.length > 0 ? (
+                  <div className="space-y-4">
+                    {eatsReviews.map((review) => (
+                      <Card key={review.id} className={`p-4 ${review.status === 'pending' ? 'border-2 border-yellow-400 bg-yellow-50' : review.featured ? 'border-2 border-purple-400 bg-purple-50' : ''}`}>
+                        <div className="flex items-start justify-between">
+                          <div>
+                            <div className="flex items-center gap-2">
+                              <span className="font-semibold">{review.customer_name}</span>
+                              <div className="flex">
+                                {[...Array(5)].map((_, i) => (
+                                  <Star key={i} className={`w-4 h-4 ${i < review.rating ? 'text-yellow-400 fill-yellow-400' : 'text-gray-300'}`} />
+                                ))}
+                              </div>
+                              {review.featured && <Badge className="bg-purple-600 text-white text-xs">Featured</Badge>}
+                            </div>
+                            <p className="text-xs text-muted-foreground">{review.customer_email} • {review.dish_ordered || 'No dish specified'}</p>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <Badge variant={review.status === 'approved' ? 'default' : review.status === 'pending' ? 'secondary' : 'destructive'}>
+                              {review.status}
+                            </Badge>
+                            <span className="text-xs text-muted-foreground">{new Date(review.created_at).toLocaleDateString()}</span>
+                          </div>
+                        </div>
+                        <p className="mt-2 text-sm text-muted-foreground">{review.review_text}</p>
+                        <div className="mt-3 flex gap-2">
+                          {review.status === 'pending' && (
+                            <>
+                              <Button
+                                size="sm"
+                                onClick={async () => {
+                                  try {
+                                    await fetch(`${backendUrl}/api/eats/reviews/${review.id}/approve?approved=true`, {
+                                      method: 'PUT',
+                                      headers: adminHeaders()
+                                    });
+                                    toast.success('Review approved');
+                                    fetchDashboardData(true);
+                                  } catch (e) {
+                                    toast.error('Failed to approve');
+                                  }
+                                }}
+                                className="bg-green-600 hover:bg-green-700"
+                                data-testid={`approve-review-${review.id}`}
+                              >
+                                ✓ Approve
+                              </Button>
+                              <Button
+                                size="sm"
+                                variant="destructive"
+                                onClick={async () => {
+                                  try {
+                                    await fetch(`${backendUrl}/api/eats/reviews/${review.id}/approve?approved=false`, {
+                                      method: 'PUT',
+                                      headers: adminHeaders()
+                                    });
+                                    toast.success('Review rejected');
+                                    fetchDashboardData(true);
+                                  } catch (e) {
+                                    toast.error('Failed to reject');
+                                  }
+                                }}
+                                data-testid={`reject-review-${review.id}`}
+                              >
+                                ✗ Reject
+                              </Button>
+                            </>
+                          )}
+                          {review.status === 'approved' && review.rating === 5 && (
+                            <Button
+                              size="sm"
+                              variant={review.featured ? 'secondary' : 'outline'}
+                              onClick={async () => {
+                                try {
+                                  await fetch(`${backendUrl}/api/eats/reviews/${review.id}/feature?featured=${!review.featured}`, {
+                                    method: 'PUT',
+                                    headers: adminHeaders()
+                                  });
+                                  toast.success(review.featured ? 'Removed from featured' : 'Added to featured');
+                                  fetchDashboardData(true);
+                                } catch (e) {
+                                  toast.error('Failed to update');
+                                }
+                              }}
+                              data-testid={`feature-review-${review.id}`}
+                            >
+                              {review.featured ? '★ Unfeature' : '☆ Feature'}
+                            </Button>
+                          )}
+                        </div>
+                      </Card>
+                    ))}
+                  </div>
+                ) : (
+                  <p className="text-center text-muted-foreground py-8">No reviews yet.</p>
+                )}
+              </Card>
+
+              {/* Customer Messaging */}
+              <Card className="p-6">
+                <div className="flex items-center justify-between mb-4">
+                  <div>
+                    <h3 className="font-serif text-xl font-bold flex items-center gap-2">
+                      <MessageSquare className="w-5 h-5" /> Customer Messaging
+                    </h3>
+                    <p className="text-sm text-muted-foreground">Send messages to customers about orders and updates</p>
+                  </div>
+                  <Button
+                    onClick={() => setShowMessageModal(true)}
+                    className="bg-blue-600 hover:bg-blue-700"
+                    data-testid="open-message-modal"
+                  >
+                    <Send className="w-4 h-4 mr-2" />
+                    Send Message
+                  </Button>
+                </div>
+                
+                {eatsMessages.length > 0 ? (
+                  <div className="overflow-x-auto">
+                    <table className="w-full" data-testid="eats-messages-table">
+                      <thead className="bg-blue-50">
+                        <tr>
+                          <th className="px-4 py-3 text-left text-sm font-semibold">Type</th>
+                          <th className="px-4 py-3 text-left text-sm font-semibold">Subject</th>
+                          <th className="px-4 py-3 text-left text-sm font-semibold">Message</th>
+                          <th className="px-4 py-3 text-left text-sm font-semibold">Recipients</th>
+                          <th className="px-4 py-3 text-left text-sm font-semibold">Sent</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {eatsMessages.map((msg, index) => (
+                          <tr key={msg.id} className={index % 2 === 0 ? 'bg-white' : 'bg-blue-50/30'}>
+                            <td className="px-4 py-3 text-sm">
+                              <Badge variant="outline">{msg.message_type}</Badge>
+                            </td>
+                            <td className="px-4 py-3 text-sm font-medium">{msg.subject}</td>
+                            <td className="px-4 py-3 text-sm text-muted-foreground max-w-xs truncate" title={msg.message}>
+                              {msg.message}
+                            </td>
+                            <td className="px-4 py-3 text-sm">
+                              <Badge>{msg.recipient_count || msg.recipients?.length || 0}</Badge>
+                            </td>
+                            <td className="px-4 py-3 text-sm text-muted-foreground">
+                              {new Date(msg.created_at).toLocaleString()}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                ) : (
+                  <p className="text-center text-muted-foreground py-8">No messages sent yet.</p>
+                )}
+              </Card>
+
+              {/* Delivery Notifications */}
+              <Card className="p-6">
+                <div className="flex items-center justify-between mb-4">
+                  <div>
+                    <h3 className="font-serif text-xl font-bold flex items-center gap-2">
+                      <Bell className="w-5 h-5" /> Delivery Notifications
+                    </h3>
+                    <p className="text-sm text-muted-foreground">Send delivery notifications to customers</p>
+                  </div>
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <Card className="p-4 bg-orange-50 border-orange-200">
+                    <h4 className="font-semibold mb-2">Single Order Notification</h4>
+                    <p className="text-sm text-muted-foreground mb-3">Notify a specific customer their order is on the way</p>
+                    <Button
+                      onClick={() => setShowDeliveryNotifyModal(true)}
+                      variant="outline"
+                      className="w-full"
+                      data-testid="open-delivery-notify-modal"
+                    >
+                      <Truck className="w-4 h-4 mr-2" />
+                      Send Delivery Notification
+                    </Button>
+                  </Card>
+                  
+                  <Card className="p-4 bg-green-50 border-green-200">
+                    <h4 className="font-semibold mb-2">Batch Notification</h4>
+                    <p className="text-sm text-muted-foreground mb-3">Notify all customers in current batch</p>
+                    <Button
+                      onClick={async () => {
+                        if (!currentEatsBatch?.batch_id) {
+                          toast.error('No active batch found');
+                          return;
+                        }
+                        try {
+                          const res = await fetch(`${backendUrl}/api/eats/batch/${currentEatsBatch.batch_id}/delivery-notification`, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json', ...adminHeaders() },
+                            body: JSON.stringify({
+                              delivery_date: new Date().toISOString().split('T')[0],
+                              delivery_time: '12:00 PM - 6:00 PM',
+                              message: 'Your 818 EATS order is ready for delivery!'
+                            })
+                          });
+                          if (res.ok) {
+                            const data = await res.json();
+                            toast.success(`Sent notifications to ${data.notifications_sent} customers`);
+                          } else {
+                            toast.error('Failed to send notifications');
+                          }
+                        } catch (e) {
+                          toast.error('Failed to send notifications');
+                        }
+                      }}
+                      variant="outline"
+                      className="w-full"
+                      disabled={!currentEatsBatch?.batch_id}
+                      data-testid="batch-delivery-notify"
+                    >
+                      <Send className="w-4 h-4 mr-2" />
+                      Notify All ({currentEatsBatch?.paid_orders || 0} orders)
+                    </Button>
+                  </Card>
+                </div>
+              </Card>
             </div>
           </TabsContent>
 
