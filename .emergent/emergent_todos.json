@@ -26,5 +26,9 @@
   {
     "content": "Test all new Admin features",
     "status": "completed"
+  },
+  {
+    "content": "Fix Black Friday popup showing outside of Black Friday period",
+    "status": "completed"
   }
 ]

@@ -1,7 +1,7 @@
 # Eastend Tanning & Laundry - Development Plan
 
 ## Current Session Summary
-This session focused on eight main areas:
+This session focused on nine main areas:
 1. Freshening up the tanning section for 2026 peak season with SAD information and SEO updates
 2. Fixing SEO links to go directly to Eastend Tanning (not competitor searches)
 3. Updating 818 EATS voting to require contact info BEFORE voting (builds customer database)
@@ -9,7 +9,61 @@ This session focused on eight main areas:
 5. Dynamic holiday/seasonal discount system that auto-detects dates and shows appropriate discounts
 6. Static content for SEO/AEO - site readable without JavaScript for crawlers and AI bots
 7. Mary AI Assistant dynamic discount integration - Mary now promotes current deals automatically
-8. **NEW**: Complete Admin Panel UI for 818 EATS management (reviews, customers, messaging, notifications)
+8. Complete Admin Panel UI for 818 EATS management (reviews, customers, messaging, notifications)
+9. **NEW**: Fixed Black Friday components to only show during actual Black Friday period (Nov 28 - Dec 1)
+
+---
+
+## Phase: Black Friday Date Range Fix — Status: COMPLETED ✅
+
+### Objectives
+- Fix Black Friday popup, badge, and checkout logic to only appear during actual Black Friday period
+- Previously, Black Friday components were showing all year until December 1st
+- Components should only display during November 28 - December 1
+
+### Completed Work
+
+1. **BlackFridayPopup.jsx** - Fixed date range logic
+   - Changed from: `currentDate < EXPIRATION_DATE` (showed all year)
+   - Changed to: `currentDate >= BLACK_FRIDAY_START && currentDate <= BLACK_FRIDAY_END`
+   - Now only shows during Nov 28 - Dec 1 of current year
+   - Uses dynamic year calculation: `new Date().getFullYear()`
+
+2. **BlackFridayBadge.jsx** - Fixed date range logic
+   - Added `BLACK_FRIDAY_START` and `BLACK_FRIDAY_END` date constants
+   - Now checks `isBlackFridayPeriod` before rendering
+   - Returns `null` when not in Black Friday period
+
+3. **LeadCaptureManager.jsx** - Fixed Black Friday suppression logic
+   - Lead capture popup was disabled all year "during Black Friday"
+   - Now correctly only suppresses during actual Nov 28 - Dec 1 period
+   - Lead capture popup now works normally outside Black Friday
+
+4. **TanningCheckout.jsx** - Fixed BOGO option visibility
+   - Black Friday BOGO option now only appears during Nov 28 - Dec 1
+   - Uses same date range logic as other components
+
+### Code Pattern Used
+```javascript
+// Black Friday period: November 28 - December 1
+const currentYear = new Date().getFullYear();
+const BLACK_FRIDAY_START = new Date(`${currentYear}-11-28T00:00:00`);
+const BLACK_FRIDAY_END = new Date(`${currentYear}-12-01T23:59:59`);
+const now = new Date();
+const isBlackFridayPeriod = now >= BLACK_FRIDAY_START && now <= BLACK_FRIDAY_END;
+```
+
+### Testing Results
+- ✅ Black Friday popup no longer appears in January 2026
+- ✅ Admin panel loads without Black Friday popup
+- ✅ Lead capture popup can now function normally
+- ✅ Frontend builds successfully
+
+### Files Modified
+- `/app/frontend/src/components/BlackFridayPopup.jsx`
+- `/app/frontend/src/components/BlackFridayBadge.jsx`
+- `/app/frontend/src/components/LeadCaptureManager.jsx`
+- `/app/frontend/src/pages/TanningCheckout.jsx`
 
 ---
 
@@ -130,10 +184,10 @@ const [deliveryNotifyForm, setDeliveryNotifyForm] = useState({ order_id: '', del
 
 3. **2025 → 2026 Date Updates**
    - `/app/backend/auth.py` - Admin password updated to `eastend2026`
-   - `/app/frontend/src/pages/TanningCheckout.jsx` - Black Friday end date to 2026
-   - `/app/frontend/src/components/BlackFridayPopup.jsx` - Expiration date to 2026
-   - `/app/frontend/src/components/LeadCaptureManager.jsx` - Black Friday end date to 2026
-   - `/app/frontend/src/components/BlackFridayBadge.jsx` - Expiration date to 2026
+   - `/app/frontend/src/pages/TanningCheckout.jsx` - Black Friday dates updated
+   - `/app/frontend/src/components/BlackFridayPopup.jsx` - Date logic fixed
+   - `/app/frontend/src/components/LeadCaptureManager.jsx` - Date logic fixed
+   - `/app/frontend/src/components/BlackFridayBadge.jsx` - Date logic fixed
 
 4. **Current Discount Detection Verified**
    - System date: January 2, 2026
@@ -152,10 +206,10 @@ const [deliveryNotifyForm, setDeliveryNotifyForm] = useState({ order_id: '', del
 ### Files Modified
 - `/app/backend/mary_well.py` - Complete rewrite with dynamic discount system
 - `/app/backend/auth.py` - Updated admin password year
-- `/app/frontend/src/pages/TanningCheckout.jsx` - Updated dates
-- `/app/frontend/src/components/BlackFridayPopup.jsx` - Updated dates
-- `/app/frontend/src/components/LeadCaptureManager.jsx` - Updated dates
-- `/app/frontend/src/components/BlackFridayBadge.jsx` - Updated dates
+- `/app/frontend/src/pages/TanningCheckout.jsx` - Updated dates and logic
+- `/app/frontend/src/components/BlackFridayPopup.jsx` - Fixed date range logic
+- `/app/frontend/src/components/LeadCaptureManager.jsx` - Fixed date range logic
+- `/app/frontend/src/components/BlackFridayBadge.jsx` - Fixed date range logic
 
 ---
 
@@ -269,7 +323,7 @@ const [deliveryNotifyForm, setDeliveryNotifyForm] = useState({ order_id: '', del
 | Halloween | Oct 24-31 | 20% | SPOOKY2026 |
 | Veterans Day | Nov 9-11 | 25% | VETS2026 |
 | Thanksgiving | Nov 21-28 | 20% | THANKS2026 |
-| Black Friday BOGO | Nov 28 - Dec 2 | 50% | BOGO2026 |
+| Black Friday BOGO | Nov 28 - Dec 1 | 50% | BOGO2026 |
 | Cyber Monday | Dec 1-2 | 25% | CYBER2026 |
 | Christmas | Dec 15-25 | 20% | XMAS2026 |
 
@@ -503,10 +557,13 @@ The 818 EATS system was significantly developed in the previous session with:
     └── src/
         ├── components/
         │   ├── HolidayDiscountBanner.jsx  # Dynamic discount banners
+        │   ├── BlackFridayPopup.jsx       # Shows only Nov 28 - Dec 1
+        │   ├── BlackFridayBadge.jsx       # Shows only Nov 28 - Dec 1
         │   ├── MaryWellChat.jsx           # Mary chat UI
         │   └── StaticFallback.jsx         # SEO/AEO static content
         ├── pages/
         │   ├── Tanning.jsx             # 2026 refresh + dynamic discounts
+        │   ├── TanningCheckout.jsx     # BOGO only during Black Friday
         │   ├── Home.jsx                # Homepage with discount banner
         │   ├── Blog.jsx                # Blog with static articles
         │   ├── EatsOrdering.jsx        # Full ordering page with reviews, signup
@@ -590,6 +647,7 @@ The 818 EATS system was significantly developed in the previous session with:
 - ✅ **Messaging system UI with send modal**
 - ✅ **Delivery notification UI with single/batch options**
 - ✅ **Shareable partner link with copy functionality**
+- ✅ **Black Friday components only show during Nov 28 - Dec 1**
 - ✅ Frontend builds successfully
 - ✅ All backend endpoints tested and working
 - ✅ Deployment health check passed - READY FOR DEPLOYMENT
@@ -633,3 +691,9 @@ https://holiday-discounts-2.preview.emergentagent.com
 - Ask "What deals do you have right now?" - Should respond with New Year's Sale (20% off, code NEWYEAR2026)
 - Ask about 818 EATS - Should include menu items and ordering info
 - Ask about SAD/winter blues - Should recommend tanning for mood benefits
+
+### Black Friday Components
+- **BlackFridayPopup**: Only appears Nov 28 - Dec 1
+- **BlackFridayBadge**: Only visible Nov 28 - Dec 1
+- **TanningCheckout BOGO**: Only available Nov 28 - Dec 1
+- **LeadCaptureManager**: Only suppressed during Nov 28 - Dec 1
