@@ -1,26 +1,26 @@
 [
   {
     "content": "Create customer messaging system for 818 EATS (vote updates, delivery notifications)",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Add customer signup with delivery information collection",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Create shareable partner restaurant signup link for messenger",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Build reviews section showing 5-star reviews from website customers",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Add 'Pay Now for Delivery' option for interested customers",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Test all new features",
-    "status": "pending"
+    "status": "in_progress"
   }
 ]
