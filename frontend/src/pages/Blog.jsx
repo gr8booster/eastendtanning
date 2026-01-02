@@ -233,7 +233,7 @@ export default function Blog() {
 
   const breadcrumbs = generateBreadcrumb([
     { name: 'Home', path: '/' },
-    { name: 'People of Eastend', path: '/blog' }
+    { name: 'People of Eastend', path: '/people-of-eastend' }
   ]);
 
   // Use static articles if no posts loaded (ensures content for SEO)
