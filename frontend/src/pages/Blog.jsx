@@ -283,7 +283,7 @@ export default function Blog() {
                     {/* Title */}
                     <h2 className="text-xl font-bold text-slate-800 group-hover:text-teal-600 transition-colors line-clamp-2">
                       {post.title}
-                    </h3>
+                    </h2>
 
                     {/* Meta Description */}
                     <p className="text-slate-600 line-clamp-3">
