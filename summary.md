@@ -1,331 +1,271 @@
 <analysis>
-The user requested a complete transformation of the 818 EATS system from an immediate pre-order model to a weekly batch voting system with aggregated orders. The work involved updating both backend order processing logic and frontend user interface to support single-item voting, weekly batch aggregation targeting 40 orders, prepayment requirements, and delivery fee/tip collection. Additionally, menu items were updated with better images and pricing was standardized to $25 per item. The backend was successfully modified with new order models, batch tracking endpoints, and vote aggregation logic. Frontend modifications were partially completed - the state management was updated but the UI components for the new voting flow were not yet rebuilt.
+The user requested multiple enhancements to the Eastend Tanning & Laundry website across several sessions:
+
+1. **Tanning Section 2026 Refresh**: Updated the tanning page for February 2026 peak season, added SAD (Seasonal Affective Disorder) information section, and fixed SEO links to go directly to Eastend Tanning instead of generic Google searches showing competitors.
+
+2. **818 EATS Enhancements**: Updated voting system to require contact info (name, email, phone) before users can vote to build customer database. Added customer messaging system, customer signup with delivery info, reviews section, and shareable partner signup link.
+
+3. **Dynamic Holiday/Seasonal Discount System**: Replaced hardcoded "Black Friday" promotions with intelligent date-based system that automatically shows appropriate discounts (20+ holidays plus seasonal fallbacks).
+
+4. **Static Content for SEO/AEO**: Updated StaticFallback component with 2026 content for all pages, added static blog articles, ensured site is readable without JavaScript for search engines and AI bots.
+
+5. **Mary AI Assistant Update**: Updated Mary's system prompt to dynamically use current holiday/seasonal discounts instead of hardcoded Black Friday information, and added 818 EATS and SAD information.
+
+Files modified: `/app/frontend/src/pages/Tanning.jsx`, `/app/frontend/src/pages/EatsOrdering.jsx`, `/app/frontend/src/pages/Blog.jsx`, `/app/frontend/src/components/StaticFallback.jsx`, `/app/frontend/src/components/HolidayDiscountBanner.jsx`, `/app/frontend/src/utils/holidayDiscounts.js`, `/app/frontend/src/utils/seoSchemas.js`, `/app/frontend/src/utils/faqSchemas.js`, `/app/backend/eats_routes.py`, `/app/backend/mary_well.py`.
 </analysis>
 
 <product_requirements>
-Primary problem to solve:
-- Transform 818 EATS from immediate pre-order system to weekly batch aggregation model
-- Enable customers to vote for preferred menu items rather than immediate ordering
-- Aggregate orders to reach 40-order threshold before fulfillment
-- Require prepayment before order confirmation
-- Implement weekly delivery schedule coordinated with food vendors
+**Primary Problem**: Transform Eastend Tanning & Laundry website into a more dynamic, SEO-optimized platform with intelligent discount systems and improved customer data collection.
 
-Specific features requested:
-1. Customer provides: name, phone, email, address
-2. Customer votes for ONE menu item from 4 options
-3. Customer prepays for order
-4. System aggregates orders weekly
-5. Target: 40 orders per batch before vendor fulfillment
-6. Once threshold reached, order sent to food vendor partner
-7. 818 EATS picks up prepared food for delivery
-8. Delivery fee charged at checkout
-9. Tip option at checkout
-10. All menu items priced at $25 each
+**Specific Features Requested**:
 
-Menu updates requested:
-- Update Egusi Stew image to show green leafy soup with rice/fufu
-- Update Jollof Rice image to avoid spicy appearance (no large peppers)
-- Replace Fried Plantains with Suya & Fried Plantains combo
-- Add 4th dish: Waakye (Ghanaian rice and beans)
+1. **Tanning Section Updates**:
+   - Freshen up for February 2026 peak season
+   - Add SAD (Seasonal Affective Disorder) section explaining how tanning helps
+   - Fix SEO links to go directly to Eastend (not competitor searches)
+   - Update structured data schemas for 2026
 
-Acceptance criteria:
-- Weekly batch system operational
-- Vote counting and aggregation functional
-- 40-order threshold tracking
-- Prepayment flow integrated
-- Delivery fee and tip collection at checkout
-- Menu displays 4 African dishes at $25 each
-- Improved food photography for all dishes
+2. **818 EATS System**:
+   - Require contact info (name, email, phone) BEFORE voting to build customer database
+   - Customer messaging system for vote updates and delivery notifications
+   - Customer signup with delivery information collection
+   - Shareable partner restaurant signup link for messenger (admin only)
+   - Reviews section showing 5-star reviews from website customers
+   - "Pay Now for Delivery" option for interested customers
+   - Update "Egusi Stew" to "Egusi Stew with fufu or rice"
 
-Technical requirements:
-- FastAPI backend with MongoDB
-- React frontend
-- Weekly batch identification by ISO week number
-- Order status tracking through payment and delivery stages
-- Admin endpoints for batch monitoring
-- Vote summary aggregation by menu item
+3. **Dynamic Discount System**:
+   - Replace hardcoded "Black Friday" and "First Time Customer" discounts
+   - Auto-detect current date and show appropriate holiday/seasonal discount
+   - Support 20+ holidays: New Year's, Valentine's, Easter, Halloween, Christmas, Founder's Day (8/18), etc.
+   - Include seasonal fallbacks when no holiday is active
+
+4. **Static Content for SEO/AEO**:
+   - Site must be readable, searchable, findable without JavaScript
+   - Blog must have static content to boost findability and credibility
+   - Target keywords: "best tanning salon near me", "best tanning salon"
+   - Content visible to AI bots and search engine crawlers
+
+5. **Mary AI Assistant**:
+   - Show current deal only (not hardcoded Black Friday)
+   - Automatically update with website changes
+   - Include 818 EATS information
+   - Include SAD/winter wellness information
+
+**Constraints**:
+- FastAPI backend + React frontend + MongoDB
+- Use existing Shadcn UI components
+- Maintain existing functionality
+- All API routes prefixed with `/api`
 </product_requirements>
 
 <key_technical_concepts>
-Languages and runtimes:
-- Python 3.x (backend)
-- JavaScript/React 18 (frontend)
-- MongoDB (database)
+**Languages and Runtimes**:
+- Python 3.x (FastAPI backend)
+- JavaScript/JSX (React frontend)
+- Node.js runtime for frontend
 
-Frameworks and libraries:
+**Frameworks and Libraries**:
 - FastAPI (Python web framework)
-- Motor (async MongoDB driver)
-- Pydantic (data validation)
-- React Router (client-side routing)
-- Shadcn/UI components
-- Sonner (toast notifications)
+- React 18 (Frontend framework)
+- Shadcn UI (Component library)
+- Tailwind CSS (Styling)
+- Motor (Async MongoDB driver)
+- Pydantic (Data validation)
+- emergentintegrations (LLM integration for Mary)
 
-Design patterns:
-- RESTful API architecture
-- Weekly batch aggregation pattern
-- Vote counting and threshold detection
-- Single-item selection model (vs cart-based)
-- Prepayment workflow
-- ISO week-based batch identification
+**Design Patterns**:
+- Dynamic content generation based on date
+- Static fallback for SEO (noscript + hidden crawlable content)
+- Schema.org structured data for AEO
+- Component-based UI architecture
+- RESTful API design
 
-Architectural components:
-- Backend API routes (/api/eats/*)
-- Order batch management system
-- Vote aggregation engine
-- Payment status tracking
-- Weekly delivery scheduling
-- MongoDB collections: eats_orders, eats_menu, eats_vendors, eats_clients
+**Architectural Components**:
+- HolidayDiscountBanner (compact/full variants)
+- StaticFallback (per-page static content)
+- MaryWellAssistant (AI chat with dynamic system prompt)
+- Customer messaging system
+- Review approval workflow
 
-External services:
+**External Services**:
 - MongoDB (database)
-- Unsplash (food imagery via vision expert)
+- Emergent LLM (OpenAI/Anthropic via universal key)
+- PayPal (payments)
 </key_technical_concepts>
 
 <code_architecture>
-Architecture overview:
-- Weekly batch system groups orders by ISO week number (format: YYYY-WXX)
-- Orders tracked from pending_payment → paid → preparing → ready_for_pickup → out_for_delivery → delivered
-- Vote aggregation counts menu item selections within each batch
-- Batch reaches "ready_for_fulfillment" status at 40 orders
-- Single menu item selection per order (voting model)
-- Fixed pricing ($25/item) with standard delivery fee ($5.99)
+**Architecture Overview**:
+- Frontend fetches current discount from `holidayDiscounts.js` utility on page load
+- Backend `mary_well.py` generates system prompt dynamically at each chat session start
+- StaticFallback renders noscript content for crawlers and hidden content for JS-enabled browsers
+- 818 EATS collects contact info before allowing voting via modal dialog
 
-Directory structure:
-No new directories created. Work within existing structure:
-- /app/backend/ (API routes)
-- /app/frontend/src/pages/ (page components)
-- /app/frontend/src/components/ (UI components)
+**Directory Structure**:
+```
+/app
+├── backend/
+│   ├── eats_routes.py      # 818 EATS API (messaging, customers, reviews, notifications)
+│   ├── mary_well.py        # Mary AI with dynamic discount system
+│   └── server.py           # Main FastAPI app
+└── frontend/
+    └── src/
+        ├── components/
+        │   ├── HolidayDiscountBanner.jsx  # Dynamic discount banners
+        │   ├── MaryWellChat.jsx           # Mary chat UI
+        │   └── StaticFallback.jsx         # SEO/AEO static content
+        ├── pages/
+        │   ├── Tanning.jsx         # 2026 refresh + SAD section
+        │   ├── EatsOrdering.jsx    # Full ordering + reviews + signup
+        │   ├── Blog.jsx            # Static articles + dynamic posts
+        │   └── Home.jsx            # Homepage with discount banner
+        └── utils/
+            ├── holidayDiscounts.js # Holiday/seasonal discount logic
+            ├── seoSchemas.js       # 2026 SEO schemas
+            └── faqSchemas.js       # 2026 FAQs with SAD
+```
 
-Files modified or created:
+**Files Modified/Created**:
 
-**BACKEND:**
+1. `/app/frontend/src/utils/holidayDiscounts.js` (CREATED)
+   - Purpose: Date-based discount detection and configuration
+   - Key functions: `getCurrentDiscount()`, `getUpcomingDiscounts()`, `formatDiscountBanner()`, `getHolidayDiscounts()`
+   - Contains 20+ holiday configurations with dates, percentages, codes, colors
 
-1. `/app/backend/eats_routes.py` (MODIFIED)
-   - Purpose: 818 EATS API endpoints
-   - Changes made:
-     * Updated FoodOrder model: removed items array, eta_hours, delivery_distance_miles; added single menu_item_id, customer_address (required), tip field, fixed delivery_fee
-     * Modified place_order(): implements weekly batch system, calculates batch_id from ISO week, counts orders per batch, tracks toward 40-order target, returns batch status
-     * Updated get_menu(): forces all menu item prices to $25.00
-     * Added get_batch_orders(): retrieves all orders for specific batch with vote aggregation
-     * Added get_current_batch_status(): returns current week's batch progress, vote summary, and percentage toward target
-     * Removed calculate_delivery_fee() function (now fixed at $5.99)
-   - Key functions:
-     * place_order() - creates order with batch tracking
-     * get_batch_orders() - admin batch monitoring
-     * get_current_batch_status() - public batch progress
-   - Dependencies: datetime.isocalendar() for week number calculation
+2. `/app/frontend/src/components/HolidayDiscountBanner.jsx` (CREATED)
+   - Purpose: Reusable discount banner components
+   - Components: `HolidayDiscountBanner` (full/compact), `UpcomingDiscounts`, `DiscountTag`, `HeroDiscountOverlay`
+   - Features: Copy-to-clipboard, countdown timer, service filtering
 
-2. `/app/backend/eats_routes.py` - Menu initialization (MODIFIED)
-   - Updated default menu items:
-     * Ghana Jollof Rice: $25, new image (no visible peppers), 60min prep
-     * Egusi Stew: $25, new image (green leafy soup), 90min prep  
-     * Suya & Fried Plantains: $25, grilled meat skewers image, 45min prep
-     * Waakye: $25, rice and beans image, 75min prep (NEW)
-   - Image URLs updated via vision expert agent
+3. `/app/frontend/src/components/StaticFallback.jsx` (MODIFIED - complete rewrite)
+   - Purpose: SEO/AEO static content for all pages
+   - Contains static content for: home, tanning, laundry, westend, drinks, blog, eats
+   - Includes noscript fallback + hidden crawlable content + Schema.org data
 
-**FRONTEND:**
+4. `/app/frontend/src/pages/Tanning.jsx` (MODIFIED)
+   - Added: HolidayDiscountBanner, DiscountTag imports
+   - Removed: BlackFridayBadge, hardcoded Black Friday section
+   - Updated: Hero title to "Best Tanning Salon Near Me"
+   - Added: SAD section with UV therapy, mood enhancement, red light therapy cards
+   - Fixed: SEO links to go directly to Eastend (Google Maps, Yelp)
 
-3. `/app/frontend/src/pages/EatsOrdering.jsx` (PARTIALLY MODIFIED)
-   - Purpose: Customer ordering interface
-   - Changes made:
-     * Removed cart state management
-     * Added selectedItem state (single item selection)
-     * Added batchStatus state for displaying weekly progress
-     * Updated orderDetails state: removed eta_hours, delivery_address, delivery_distance_miles; added customer_address (required), tip field
-   - Changes NOT YET MADE:
-     * UI still shows cart-based interface
-     * Checkout modal not updated for single-item voting
-     * Batch status display not implemented
-     * Tip input field not added
-     * Order submission logic not updated to new API contract
-   - Dependencies: React useState, useEffect
+5. `/app/frontend/src/pages/EatsOrdering.jsx` (MODIFIED)
+   - Added: Vote contact modal (requires name, email, phone before voting)
+   - Added: Reviews section with star display and "Write a Review" modal
+   - Added: Customer signup section with delivery info modal
+   - Removed: Shareable partner link section (moved to admin only)
+   - Added: State for reviews, customer signup, vote contact forms
 
-**DATABASE SCHEMA CHANGES:**
+6. `/app/frontend/src/pages/Blog.jsx` (MODIFIED)
+   - Added: 5 static articles (SAD, best tanning salon, spring break, red light, free drying)
+   - Added: StaticFallback component
+   - Updated: SEO meta tags for 2026
+   - Modified: Posts display to use static articles as fallback
 
-MongoDB collection: `eats_orders`
-- Added fields: batch_id, batch_count, menu_item_id, menu_item_name, item_price, customer_address (required), delivery_week, paid (boolean)
-- Removed fields: items (array), eta_hours, pickup_time, delivery_distance_miles
-- Modified fields: status values changed, tip now required field, delivery_fee now fixed at 5.99
+7. `/app/frontend/src/pages/Home.jsx` (MODIFIED)
+   - Added: HolidayDiscountBanner import and compact banner after SEO head
 
-MongoDB collection: `eats_menu`
-- Updated all item prices to 25.00
-- Updated 3 item images (Jollof, Egusi, Suya)
-- Added 1 new item (Waakye)
+8. `/app/frontend/src/utils/seoSchemas.js` (MODIFIED)
+   - Updated: tanningSalonSchema for 2026
+   - Added: alternateName, hasOfferCatalog, keywords, aggregateRating, areaServed
+
+9. `/app/frontend/src/utils/faqSchemas.js` (MODIFIED)
+   - Added: "What is the best tanning salon near me in Mt Vernon Ohio?"
+   - Added: "Can tanning help with Seasonal Affective Disorder (SAD)?"
+   - Updated: Pricing FAQs for 2026
+
+10. `/app/backend/eats_routes.py` (MODIFIED)
+    - Added models: `CustomerMessage`, `CustomerSignupWithDelivery`, `EatsReview`, `VoteContact`
+    - Added endpoints:
+      - `POST /api/eats/vote-contact` - Save contact before voting
+      - `GET /api/eats/vote-contacts` - Admin view contacts
+      - `POST /api/eats/messages/send` - Send customer messages
+      - `GET /api/eats/messages` - Get sent messages
+      - `POST /api/eats/customers/signup` - Customer signup with delivery
+      - `GET /api/eats/customers` - Admin view customers
+      - `POST /api/eats/reviews` - Submit review
+      - `GET /api/eats/reviews` - Get approved reviews
+      - `GET /api/eats/reviews/featured` - Get featured 5-star reviews
+      - `PUT /api/eats/reviews/{id}/approve` - Approve review
+      - `PUT /api/eats/reviews/{id}/feature` - Feature review
+      - `POST /api/eats/orders/{id}/delivery-notification` - Send delivery notice
+      - `POST /api/eats/interest/{id}/convert-to-order` - Convert interest to order
+    - New collections: eats_messages, eats_customers, eats_reviews, eats_notifications, eats_vote_contacts
+
+11. `/app/backend/mary_well.py` (MODIFIED - complete rewrite)
+    - Added: `get_current_discount()` function with 20+ holiday configurations
+    - Added: `generate_system_message()` function for dynamic prompt generation
+    - Added: `refresh_system_message()` method called at session start
+    - Added: 818 EATS information in system prompt
+    - Added: SAD/winter wellness information in system prompt
+    - Removed: Hardcoded Black Friday promotion
 </code_architecture>
 
 <pending_tasks>
-Tasks explicitly requested but not completed:
+1. **Admin Panel Integration**: The messaging system, reviews management, and customer database are backend-ready but the Admin.jsx UI for managing these features needs completion.
 
-1. **Frontend UI Rebuild** - CRITICAL
-   - Remove cart interface completely
-   - Replace with single-item voting interface
-   - Show 4 menu items as vote options (radio buttons or cards)
-   - Display current batch status (X/40 orders, progress bar)
-   - Update checkout modal for single-item flow
-   - Add tip input field at checkout
-   - Remove ETA selection (no longer relevant)
-   - Update order submission to new API contract
-   - Show "Delivery this week once we reach 40 orders" messaging
+2. **Email/SMS Integration**: The messaging system stores messages but doesn't actually send emails or SMS - would need integration with SendGrid, Twilio, or similar.
 
-2. **Payment Integration**
-   - Implement prepayment flow
-   - Add payment gateway integration (PayPal/Stripe)
-   - Update order status after successful payment
-   - Send payment confirmation emails
+3. **Partner Link in Admin**: The shareable partner signup link was removed from public page but needs to be added to Admin panel for easy copying.
 
-3. **Batch Status Display**
-   - Show real-time batch progress on ordering page
-   - Display vote counts for each menu item
-   - Show estimated delivery timing based on batch status
+4. **Review Moderation UI**: Backend supports review approval/featuring but Admin UI needs these controls.
 
-4. **Admin Dashboard Integration**
-   - Add batch monitoring tab
-   - Display weekly batches with vote summaries
-   - Show orders ready for vendor fulfillment
-   - Track delivery status per batch
+5. **Delivery Notification UI**: Backend supports delivery notifications but Admin needs UI to trigger them.
 
-5. **Vendor Notification System**
-   - Send order details to food vendor when batch reaches 40
-   - Include vote summary and preparation requirements
-   - Coordinate pickup timing
-
-6. **Customer Communication**
-   - Email confirmation after order placement
-   - Payment reminder if unpaid
-   - Batch status updates (when 40 reached)
-   - Delivery scheduling notification
-   - Delivery tracking updates
-
-Issues found but not resolved:
-- Frontend still uses old cart-based logic
-- No validation for required customer_address field
-- No batch progress visualization
-- No prepayment enforcement
-- Tip field exists in backend but no UI input
-
-Improvements identified for future work:
-- Automatic batch closure at 40 orders
-- Refund handling if batch doesn't reach threshold
-- Multiple batch management (if demand exceeds 40/week)
-- Vendor portal integration for batch notifications
-- Customer notification preferences
-- Order modification/cancellation before batch fulfillment
+6. **Testing**: Comprehensive end-to-end testing of all new features not yet performed.
 </pending_tasks>
 
 <current_work>
-Features now working:
+**Features Now Working**:
 
-**Backend - Fully Operational:**
-- ✅ Weekly batch order system with ISO week identification
-- ✅ Single menu item voting per order
-- ✅ Fixed $25 pricing across all menu items
-- ✅ Standard $5.99 delivery fee
-- ✅ Tip field in order model
-- ✅ Batch aggregation and vote counting
-- ✅ 40-order threshold tracking
-- ✅ Order status: pending_payment, paid, preparing, ready_for_pickup, out_for_delivery, delivered
-- ✅ GET /api/eats/menu - returns 4 items at $25 each
-- ✅ POST /api/eats/orders - creates order with batch tracking
-- ✅ GET /api/eats/orders/batch/{batch_id} - admin batch view with vote summary
-- ✅ GET /api/eats/orders/current-batch - public batch status and progress
-- ✅ All menu items updated with improved images
-- ✅ Waakye added as 4th menu option
+1. **Dynamic Discount System**:
+   - Currently showing: "🎆 New Year's Sale: 20% OFF | Code: NEWYEAR2026 | 5 days left!"
+   - Automatically switches based on current date
+   - Displays on Home (compact) and Tanning (full + tag) pages
 
-**Menu - Complete:**
-- ✅ Ghana Jollof Rice: $25, appetizing image without spicy peppers
-- ✅ Egusi Stew: $25, green leafy soup visible
-- ✅ Suya & Fried Plantains: $25, grilled meat with plantains
-- ✅ Waakye: $25, rice and beans dish
+2. **818 EATS Vote Contact Collection**:
+   - Modal appears when user tries to rank dishes without providing contact info
+   - Collects name, email, phone and saves to `eats_vote_contacts` collection
+   - Pre-fills checkout form after submission
 
-**Frontend - Partially Updated:**
-- ⚠️ State management updated (selectedItem, batchStatus)
-- ⚠️ OrderDetails model updated
-- ❌ UI still shows old cart interface
-- ❌ Checkout flow not updated
-- ❌ Batch status not displayed
-- ❌ Tip input not implemented
-- ❌ Order submission broken (API contract mismatch)
+3. **Customer Reviews System**:
+   - "Write a Review" modal with 5-star rating selector
+   - Reviews stored in `eats_reviews` collection
+   - Requires admin approval before public display
+   - Featured reviews endpoint for 5-star highlights
 
-Configuration changes made:
-- Order model restructured for voting system
-- Batch identification by ISO week
-- Fixed pricing and delivery fee
-- Payment status tracking added
+4. **Customer Signup with Delivery**:
+   - Full delivery info collection (address, city, state, zip, instructions, preferred day)
+   - Stored in `eats_customers` collection
 
-Test coverage status:
-- ❌ No automated tests created
-- ❌ Backend batch system not manually tested
-- ❌ Frontend order submission untested
-- ❌ End-to-end voting flow not verified
+5. **Static Content for SEO**:
+   - All pages have noscript fallback visible to crawlers
+   - Hidden crawlable content always in DOM
+   - Blog has 5 static articles always available
+   - "Best tanning salon near me" keywords throughout
 
-Build and deployment status:
-- ✅ Backend compiles and runs
-- ✅ Backend service operational
-- ⚠️ Frontend compiles but UI broken (old logic)
-- ❌ Order submission will fail (API mismatch)
+6. **Mary AI Assistant**:
+   - System prompt now dynamically generated with current discount
+   - Includes 818 EATS menu and ordering info
+   - Includes SAD/winter wellness information
+   - Refreshes at each chat session start
 
-Known limitations and issues:
-- **CRITICAL**: Frontend UI does not match new backend API
-- Order placement will fail due to API contract mismatch
-- No prepayment enforcement
-- No batch status visualization
-- No tip input field
-- Cart-based UI incompatible with voting model
-- Customer cannot currently place orders successfully
-- No email notifications
-- No payment integration
-- Admin cannot monitor batches from dashboard
+**Build Status**: Frontend builds successfully (`yarn build` passes)
 
-What definitely works:
-- Backend batch aggregation logic
-- Vote counting per menu item
-- Weekly batch identification
-- 40-order threshold detection
-- Menu display with updated images and pricing
-- Batch status API endpoints
+**Deployment Status**: Health check passed - READY FOR DEPLOYMENT
 
-What definitely doesn't work:
-- Order placement from frontend (broken)
-- Checkout flow (incompatible)
-- Batch status display
-- Tip collection
-- Prepayment requirement
-- Customer notifications
+**Known Limitations**:
+- Messaging system doesn't send actual emails/SMS (stores only)
+- Admin UI for new features needs completion
+- Mary's discount detection uses simple date ranges (doesn't calculate Easter dynamically in backend)
 </current_work>
 
 <optional_next_step>
-Most logical immediate next actions:
+1. **Complete Admin Panel UI**: Add sections for managing reviews (approve/feature), viewing customer database, sending messages, and triggering delivery notifications.
 
-**PRIORITY 1 - Fix Broken Order Flow (CRITICAL):**
-1. Rebuild EatsOrdering.jsx UI:
-   - Replace cart display with single-item voting interface (4 cards with radio selection)
-   - Add batch status banner showing "X/40 orders this week"
-   - Update checkout modal to remove cart items display
-   - Add tip input slider/field (suggested amounts: $0, $2, $3, $5, custom)
-   - Change address field label to "Delivery Address *" (required)
-   - Remove ETA selection completely
-   - Update handlePlaceOrder() to send: {customer_name, customer_phone, customer_email, customer_address, menu_item_id, quantity, tip, notes}
+2. **Integrate Email Service**: Connect messaging system to SendGrid or similar for actual email delivery.
 
-2. Test complete order flow:
-   - Select menu item → fill customer details → add tip → submit order
-   - Verify order appears in database with correct batch_id
-   - Check batch count increments
-   - Confirm vote summary updates
+3. **Deploy**: The application passed health check and is ready for deployment to production.
 
-**PRIORITY 2 - Batch Status Display:**
-3. Fetch and display current batch status on page load
-4. Show progress bar: "23/40 orders this week - 57% to delivery!"
-5. Display vote leader board: "Most popular: Jollof Rice (12 votes)"
-
-**PRIORITY 3 - Payment Integration:**
-6. Add PayPal/Stripe checkout integration
-7. Mark orders as paid after successful payment
-8. Send confirmation email with batch delivery timing
-
-**PRIORITY 4 - Admin Integration:**
-9. Add "Weekly Batches" tab to admin dashboard
-10. Display current and past batches with vote summaries
-11. Show orders ready for vendor fulfillment (40+ reached)
-
-Recommended sequence: Fix Priority 1 first (order flow is completely broken), then add batch visualization (Priority 2), then integrate payment (Priority 3), then admin tools (Priority 4).
+4. **Test Mary Chat**: Verify Mary correctly shows current "New Year's Sale" promotion and answers questions about 818 EATS and SAD relief.
 </optional_next_step>

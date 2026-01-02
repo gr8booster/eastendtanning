@@ -433,7 +433,7 @@ The 818 EATS system was significantly developed in the previous session with:
 ---
 
 ## Preview URL
-https://weekly-picks-4.preview.emergentagent.com
+https://holiday-discounts-2.preview.emergentagent.com
 
 ### Key Pages
 - `/` - Home page with dynamic discount banner
