@@ -608,7 +608,7 @@ export default function EatsOrdering() {
                             size="sm" 
                             variant={rank === 1 ? 'default' : 'outline'}
                             className={rank === 1 ? 'bg-amber-500 hover:bg-amber-600' : ''}
-                            onClick={() => handleRankItem(item.id, 'rank_1')}
+                            onClick={() => handleTryRank(item.id, 'rank_1')}
                             data-testid={`rank-1-${item.id}`}
                           >
                             1st
@@ -617,7 +617,7 @@ export default function EatsOrdering() {
                             size="sm" 
                             variant={rank === 2 ? 'default' : 'outline'}
                             className={rank === 2 ? 'bg-gray-500 hover:bg-gray-600' : ''}
-                            onClick={() => handleRankItem(item.id, 'rank_2')}
+                            onClick={() => handleTryRank(item.id, 'rank_2')}
                             data-testid={`rank-2-${item.id}`}
                           >
                             2nd
@@ -626,7 +626,7 @@ export default function EatsOrdering() {
                             size="sm" 
                             variant={rank === 3 ? 'default' : 'outline'}
                             className={rank === 3 ? 'bg-orange-500 hover:bg-orange-600' : ''}
-                            onClick={() => handleRankItem(item.id, 'rank_3')}
+                            onClick={() => handleTryRank(item.id, 'rank_3')}
                             data-testid={`rank-3-${item.id}`}
                           >
                             3rd
