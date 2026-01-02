@@ -1,129 +1,314 @@
 // Static HTML fallback for SEO/AEO - visible even without JavaScript
-// Updated for 2026 with "best tanning salon near me" and AEO optimization
+// Comprehensive content strategy for search engines and AI systems
+// Each page answers real user questions with specific, local content
 
 export const StaticFallback = ({ page }) => {
   const content = {
     home: {
-      h1: "Best Tanning Salon Near Me Mt Vernon Ohio 2026 | Eastend Tanning & Laundry",
-      paragraphs: [
-        "Looking for the best tanning salon near me in Mt Vernon, Ohio? Eastend Tanning & Laundry at 818 Coshocton Ave is Knox County's #1 rated tanning salon in 2026. We've been serving the Mt Vernon community since 1998 with premium tanning services, affordable coin laundry, and exceptional customer care.",
-        "TANNING SERVICES: 6 professional bed levels including Level 1-4 UV beds, the powerful 40,740W Matrix Bed (most powerful in Knox County), Stand-Up tanning, and red light therapy for SAD (Seasonal Affective Disorder) relief. Monthly unlimited packages start at just $39.99 VIP. Beat the winter blues with our light therapy options.",
-        "LAUNDRY SERVICES: Clean, affordable coin-operated washers (20lb $4.50, 40lb $6.50, 60lb $7.50) with FREE DRYING EVERY DAY - the only laundromat in Mt Vernon offering free drying daily. Professional wash-dry-fold service available for busy families.",
-        "Why customers choose us as the best tanning salon: Expert staff, immaculately maintained equipment, 6 different bed power levels, red light therapy, competitive pricing, and 26+ years serving Mt Vernon. We're not just a gym add-on - tanning is our specialty.",
-        "SEASONAL DISCOUNTS: New Year's Sale (20% off), Valentine's Day (15% off), Spring Break (20% off), July 4th (25% off), Halloween (20% off), Black Friday BOGO (50% off), Christmas (20% off), and more. Use code NEWYEAR2026 for current savings."
+      h1: "Eastend Tanning & Laundry - Mt Vernon, Ohio's Neighborhood Destination Since 1998",
+      intro: "What is Eastend? Eastend is a family-owned business at 818 Coshocton Ave in Mt Vernon, Ohio that combines professional indoor tanning, affordable coin laundry, fresh bubble tea drinks, nail services, and African cuisine delivery under one roof. Since 1998, we've served Knox County residents who want quality services without driving to Columbus.",
+      sections: [
+        {
+          h2: "What makes Eastend different from other businesses?",
+          content: "Unlike big-box gyms that offer tanning as an afterthought, or chain laundromats with minimal service, Eastend is a locally-owned destination where the owners know your name. We've invested in professional-grade tanning equipment (including the 40,740-watt Matrix bed - the most powerful in Knox County), maintain immaculately clean laundry facilities with FREE drying every day, and added services like Fizze bubble tea and Fast Nails because our customers asked for them. When you visit Eastend, you're supporting a small business that's been part of Mt Vernon for over 26 years."
+        },
+        {
+          h2: "Who comes to Eastend?",
+          content: "Our customers include OSU Knox students looking for affordable laundry and a place to study while they wait, working professionals who tan during lunch breaks, moms who do laundry while their kids enjoy bubble tea, retirees who've been coming since we opened, and newcomers to Mt Vernon discovering their neighborhood spot. We see first-time tanners nervous about their skin type and experienced tanners who know exactly which bed they want. Everyone is welcome."
+        },
+        {
+          h2: "What services does Eastend offer?",
+          content: "TANNING: 6 bed levels from beginner to professional, including the Matrix bed for the fastest, deepest tan possible. Monthly unlimited packages from $39.99. Red light therapy for anti-aging and mood support. LAUNDRY: Coin-operated washers (20lb $4.50, 40lb $6.50, 60lb $7.50) with FREE drying every day - no other Mt Vernon laundromat offers this. Wash-dry-fold drop-off service available. FIZZE DRINKS: 52+ flavors of bubble tea, milk tea, smoothies, and refreshers made fresh to order. FAST NAILS: Quick, affordable nail services. 818 EATS: Weekly African cuisine delivery featuring Jollof rice, Egusi stew, and more."
+        },
+        {
+          h2: "Where is Eastend located and when is it open?",
+          content: "Eastend is located at 818 Coshocton Ave, Mt Vernon, OH 43050 - about 2 minutes from OSU Knox Campus, near Walmart, with easy access from downtown Mt Vernon. Look for the large free parking lot behind the building with front-door access. We're open Monday through Sunday, 8:00 AM to 7:30 PM. Call us at (740) 397-9632 with questions."
+        }
       ],
-      services: "Best Tanning Salon Near Me, 6 Tanning Bed Levels, Matrix Bed 40,740W, Stand-Up Tanning, Red Light Therapy, SAD Light Therapy, Coin Laundry, Free Drying Daily, Wash-Dry-Fold, Monthly Unlimited Tanning",
-      hours: "Monday-Sunday: 8:00 AM - 7:30 PM",
-      phone: "(740) 397-9632",
-      address: "818 Coshocton Ave, Mt Vernon, OH 43050",
-      parking: "Large free parking lot behind building with front-door access",
-      directions: "Located 2 minutes from OSU Knox Campus on Coshocton Avenue. Near Walmart and downtown Mt Vernon."
+      internalLinks: [
+        { url: "/tanning", text: "Explore our tanning services and pricing" },
+        { url: "/laundry", text: "Learn about our laundry facilities and free drying" },
+        { url: "/drinks", text: "See our Fizze bubble tea menu" },
+        { url: "/nails", text: "Book nail services at Fast Nails" },
+        { url: "/eats", text: "Order African cuisine from 818 EATS" },
+        { url: "/blog", text: "Meet the People of Eastend" }
+      ]
     },
+
     tanning: {
-      h1: "Best Tanning Salon Near Me Mt Vernon Ohio 2026 | #1 Rated | Eastend Tanning",
-      paragraphs: [
-        "Searching for the best tanning salon near me? Eastend Tanning is Mt Vernon, Ohio's top-rated indoor tanning destination in 2026. With 6 professional bed levels, expert staff, and 26 years of experience, we deliver results that gyms and chain salons simply can't match.",
-        "OUR TANNING BEDS: Level 1 (3,840W beginner, $5), Level 2 (5,000W popular, $8), Level 3 (10,750W high-pressure, $10), Level 4 (13,995W premium, $14.99), Stand-Up (8,640W even coverage, $11), and Matrix (40,740W ultimate power, $23.99). The Matrix is the most powerful tanning bed in Knox County for the fastest, deepest tan possible.",
-        "MONTHLY UNLIMITED PACKAGES: VIP rates with 3-month commitment save you money. Level 1 from $39.99/month, Level 2 from $60/month, up to Matrix at $169.99/month. No restrictions, no blackout dates - tan as often as you want.",
-        "SAD & WINTER BLUES RELIEF: Indoor tanning and red light therapy can help combat Seasonal Affective Disorder (SAD) by providing UV light exposure that triggers vitamin D production and serotonin release. Our red light therapy beds provide non-UV treatment for mood support during Ohio's dark winter months.",
-        "WHY WE'RE THE BEST: Unlike gyms that treat tanning as an afterthought, we're tanning specialists. Our beds are professionally maintained daily, our staff is trained in skin type analysis, and we carry premium tanning lotions. 26 years of trusted service to Knox County.",
-        "FEBRUARY 2026 PEAK SEASON: Now is the perfect time to build your base tan before spring break and summer. Monthly unlimited is the best value for consistent results while also fighting the winter blues."
+      h1: "Indoor Tanning at Eastend - Mt Vernon Ohio's Premier Tanning Salon Since 1998",
+      intro: "Looking for indoor tanning in Mt Vernon, Ohio? Eastend Tanning offers 6 professional bed levels, expert staff, and 26 years of experience helping Knox County residents achieve their tanning goals safely and effectively. We're tanning specialists - not a gym with tanning as an afterthought.",
+      sections: [
+        {
+          h2: "What tanning beds does Eastend have?",
+          content: "We offer 6 distinct tanning experiences: Level 1 (3,840W, $5) is perfect for beginners or those maintaining a light tan. Level 2 (5,000W, $8) is our most popular choice for regular tanners. Level 3 (10,750W, $10) provides high-pressure tanning for faster results. Level 4 (13,995W, $14.99) includes red light therapy panels for anti-aging benefits. Stand-Up (8,640W, $11) delivers even, streak-free coverage without lying down. Matrix (40,740W, $23.99) is the most powerful tanning bed in Knox County - ideal for experienced tanners seeking deep, fast results."
+        },
+        {
+          h2: "How much does monthly unlimited tanning cost?",
+          content: "Monthly unlimited packages let you tan as often as you want for one flat fee. VIP rates (with 3-month commitment): Level 1 $39.99/month, Level 2 $60/month, Level 3 $95/month, Level 4 $109.99/month, Stand-Up $79.99/month, Matrix $169.99/month. Regular monthly rates are slightly higher. There are no blackout dates, no restrictions - just unlimited access to your chosen bed level."
+        },
+        {
+          h2: "Can tanning help with winter blues or SAD?",
+          content: "Many of our customers find indoor tanning helpful during Ohio's gray winters. UV light exposure triggers vitamin D production and serotonin release, which can improve mood and energy levels. Our red light therapy beds (Level 4 and Stand-Up) provide additional non-UV light that may support mental wellness. While we're not doctors and recommend consulting your healthcare provider about Seasonal Affective Disorder (SAD), we've heard countless customers tell us tanning helps them feel better during winter months."
+        },
+        {
+          h2: "Is Eastend better than gym tanning?",
+          content: "Yes, and here's why: Gyms treat tanning as an add-on service with minimal investment. Their beds are often outdated, staff untrained, and hours restricted. At Eastend, tanning IS our business. Our beds are professionally maintained daily with bulbs replaced on schedule. Our staff is trained in skin type analysis and can recommend the right bed and lotion for your goals. We've been perfecting indoor tanning for 26 years. Many customers who switched from gym tanning tell us the difference is night and day."
+        },
+        {
+          h2: "What should first-time tanners expect?",
+          content: "If you've never tanned before, our staff will evaluate your skin type (Type I-VI on the Fitzpatrick scale) and recommend an appropriate starting bed and session length. We'll explain how to use the bed, eye protection requirements, and aftercare tips. First sessions are typically 5-8 minutes on Level 1 or 2. We'll schedule your next session at least 48 hours later to let your skin recover. Most people see color after 3-5 sessions and build a solid base tan in 4-6 weeks."
+        }
       ],
-      services: "Best Tanning Salon Near Me, Best Tanning Salon Mt Vernon Ohio, Indoor Tanning Knox County, Matrix Tanning Bed 40,740W, Stand-Up Tanning, Red Light Therapy, SAD Treatment, Monthly Unlimited Tanning, VIP Tanning Packages, Seasonal Affective Disorder Light Therapy",
-      hours: "Monday-Sunday: 8:00 AM - 7:30 PM",
-      phone: "(740) 397-9632",
-      address: "818 Coshocton Ave, Mt Vernon, OH 43050",
-      parking: "Free parking lot behind building, wheelchair accessible",
-      directions: "On Coshocton Avenue, 2 minutes from OSU Knox Campus, near Walmart"
+      internalLinks: [
+        { url: "/", text: "Back to Eastend homepage" },
+        { url: "/skin-type-evaluation", text: "Take our skin type quiz" },
+        { url: "/blog", text: "Read tanning tips from People of Eastend" },
+        { url: "/drinks", text: "Grab a Fizze drink after your session" },
+        { url: "/laundry", text: "Do laundry while you tan" }
+      ]
     },
+
     laundry: {
-      h1: "Best Coin Laundry Mt Vernon OH - FREE Drying Daily | Eastend Laundry",
-      paragraphs: [
-        "Eastend Laundry provides the best coin laundry experience in Mt Vernon, Ohio. Located at 818 Coshocton Ave, we offer clean, affordable self-service laundry with FREE DRYING EVERY DAY - no other laundromat in Mt Vernon offers this value.",
-        "WASHER PRICING: 20lb washers $4.50, 40lb washers $6.50, 60lb washers $7.50. DRYERS ARE FREE - every single day, all day. This saves our customers significant money compared to other laundromats that charge $0.25-$0.50 per dryer cycle.",
-        "WASH-DRY-FOLD SERVICE: Too busy to do laundry yourself? Drop off your clothes and we'll wash, dry, and fold them for you. Professional service with quick turnaround. Perfect for busy families, professionals, and anyone who values their time.",
-        "CLEAN & SAFE: Our facility is well-lit, clean, and maintained daily. Attendant on duty during business hours. Credit card and coin-operated machines available. Ample parking lot behind the building for easy loading and unloading.",
-        "LOCATED AT EASTEND: Share your laundry time with tanning services, grab a Fizze bubble tea while you wait, or check out our nail services. One convenient location for multiple services."
+      h1: "Eastend Laundry - Mt Vernon Ohio's Only Laundromat with Free Drying Every Day",
+      intro: "Need to do laundry in Mt Vernon? Eastend Laundry at 818 Coshocton Ave offers clean, affordable coin-operated washers with FREE drying every day - a deal no other Knox County laundromat matches. We've served Mt Vernon families since 1998.",
+      sections: [
+        {
+          h2: "What does laundry cost at Eastend?",
+          content: "Washers: 20lb capacity $4.50 (perfect for small loads or single person), 40lb capacity $6.50 (our most popular, great for families), 60lb capacity $7.50 (ideal for bedding, comforters, and large loads). Dryers: FREE. Every day, all day. This is not a promotion - it's our everyday policy. No other laundromat in Mt Vernon offers free drying. We also accept credit cards in addition to coins."
+        },
+        {
+          h2: "How much money do I save with free drying?",
+          content: "Most laundromats charge $0.25-$0.50 per 6-8 minute dryer cycle. A typical load needs 30-45 minutes, costing $1.50-$3.75 per load elsewhere. If you do 2 loads per week at a regular laundromat, you'd spend about $312/year just on drying. At Eastend, that's $0. Families doing 4+ loads weekly save over $600 annually. The savings are real and significant."
+        },
+        {
+          h2: "What's the laundromat like inside?",
+          content: "Our facility is clean, well-lit, and attended during all business hours (8 AM - 7:30 PM daily). We have multiple machine sizes to match your needs, folding tables, seating areas, and restrooms. The building is climate-controlled year-round. Large parking lot behind the building makes loading and unloading easy. While you wait, you can enjoy a Fizze bubble tea, browse our tanning packages, or get your nails done at Fast Nails."
+        },
+        {
+          h2: "Do you offer wash-dry-fold service?",
+          content: "Yes! If you're too busy to do laundry yourself, drop off your clothes and we'll wash, dry, and fold them for you. Our staff uses quality detergent and handles your items with care. Turnaround is typically same-day or next-day depending on load size. This service is popular with busy professionals, large families, and anyone who values their time over the task of laundry."
+        },
+        {
+          h2: "Is Eastend Laundry safe?",
+          content: "Absolutely. Our facility is well-lit with security cameras, attended during all business hours, and located in a visible commercial area on Coshocton Ave. Many parents bring their children, students come to study while waiting, and elderly customers feel comfortable. We take pride in maintaining a welcoming environment for everyone in Mt Vernon."
+        }
       ],
-      services: "Coin Laundry Mt Vernon, Free Drying Daily, 20lb 40lb 60lb Washers, Wash-Dry-Fold Service, Self-Service Laundromat, Credit Card Laundry, Clean Laundromat Knox County",
-      hours: "Monday-Sunday: 8:00 AM - 7:30 PM",
-      phone: "(740) 397-9632",
-      address: "818 Coshocton Ave, Mt Vernon, OH 43050",
-      parking: "Large lot behind building, easy load/unload access",
-      directions: "Coshocton Avenue near downtown Mt Vernon, across from Ariel Foundation Park"
+      internalLinks: [
+        { url: "/", text: "Back to Eastend homepage" },
+        { url: "/westend-laundry", text: "Visit our 24/7 Westend location" },
+        { url: "/tanning", text: "Tan while you do laundry" },
+        { url: "/drinks", text: "Grab a drink while you wait" },
+        { url: "/blog", text: "Read laundry tips and customer stories" }
+      ]
     },
+
     westend: {
-      h1: "24/7 Coin Laundry Mt Vernon Ohio - Lowest Prices | Westend Laundry",
-      paragraphs: [
-        "Westend Laundry offers 24/7 self-service coin laundry at the LOWEST prices in Mt Vernon, Ohio. Located at 3024 Coshocton Rd, we're always open - day or night, weekends and holidays.",
-        "ALWAYS OPEN: Need to do laundry at 2 AM? No problem. Our Westend location is fully self-service and available 24 hours a day, 7 days a week, 365 days a year. Perfect for shift workers, busy parents, or anyone with a non-traditional schedule.",
-        "LOWEST PRICES: We offer the most competitive laundry pricing in Knox County. Multiple washer sizes available to match your load. Clean machines, well-maintained facility.",
-        "SAFE & SECURE: Well-lit facility with security cameras for your safety. Located in a residential area with plenty of free parking. Self-service means you can do laundry on your own schedule.",
-        "SAME GREAT OWNERSHIP: Westend Laundry is owned and operated by the same team behind Eastend Tanning & Laundry. 26 years of trusted service to the Mt Vernon community."
+      h1: "Westend Laundry - 24/7 Self-Service Coin Laundry in Mt Vernon Ohio",
+      intro: "Need to do laundry at 2 AM? Westend Laundry at 3024 Coshocton Rd in Mt Vernon is open 24 hours a day, 7 days a week, 365 days a year. Same trusted ownership as Eastend, with the lowest prices in Knox County.",
+      sections: [
+        {
+          h2: "When is Westend Laundry open?",
+          content: "Always. Westend is a fully self-service laundromat open 24/7/365. Whether you work night shifts, have a newborn who keeps you up, or just prefer doing laundry at odd hours, we're always available. No need to plan around business hours - do laundry whenever it fits your schedule."
+        },
+        {
+          h2: "How is Westend different from Eastend?",
+          content: "Westend is our 24-hour, self-service only location with the lowest prices in the area. Eastend (818 Coshocton Ave) offers attended service during regular business hours, free drying, and additional services like tanning and drinks. Both locations are owned and operated by the same family that's served Mt Vernon since 1998. Choose Westend for late-night availability and lowest prices; choose Eastend for free drying and additional services."
+        },
+        {
+          h2: "Is Westend safe at night?",
+          content: "Yes. Our Westend facility is well-lit inside and out, equipped with security cameras, and located in a residential area with regular traffic. Many shift workers, parents, and students use Westend during late hours without issue. The self-service format means you can arrive, do your laundry, and leave on your own schedule."
+        },
+        {
+          h2: "Where exactly is Westend Laundry?",
+          content: "Westend Laundry is located at 3024 Coshocton Rd, Mt Vernon, OH 43050 - on the west side of town. Free parking is available on-site. For questions about either location, call (740) 397-9632."
+        }
       ],
-      services: "24/7 Coin Laundry, Self-Service Laundromat, Lowest Prices Mt Vernon, Always Open Laundry, Late Night Laundry Knox County",
-      hours: "Open 24/7 - Always Available",
-      phone: "(740) 397-9632",
-      address: "3024 Coshocton Rd, Mt Vernon, OH 43050",
-      parking: "Free parking lot, well-lit for safety",
-      directions: "Coshocton Road, west side of Mt Vernon, near residential area"
+      internalLinks: [
+        { url: "/", text: "Back to Eastend homepage" },
+        { url: "/laundry", text: "Visit Eastend Laundry (with free drying)" },
+        { url: "/blog", text: "Read customer stories from People of Eastend" }
+      ]
     },
+
     drinks: {
-      h1: "Fizze Bubble Tea & Drinks Mt Vernon OH - 52+ Flavors | Eastend",
-      paragraphs: [
-        "Fizze Drinks at Eastend offers the best bubble tea, smoothies, and refreshing beverages in Mt Vernon, Ohio. With 52+ flavors and endless customization options, Fizze is your go-to drink spot at 818 Coshocton Ave.",
-        "POPULAR DRINKS: Mango Passion Fruit, Strawberry Burst, Classic Milk Tea, Thai Tea, Taro Milk Tea, Brown Sugar Boba, and dozens more. All drinks made fresh to order with premium ingredients.",
-        "CUSTOMIZE YOUR DRINK: Choose your sweetness level (0%, 25%, 50%, 75%, 100%), ice amount, and add toppings like tapioca boba pearls, popping boba, coconut jelly, or aloe vera. Make it exactly how you like it.",
-        "ONLINE ORDERING: Order ahead for pickup or delivery through our website. Skip the wait and have your drink ready when you arrive. Perfect for a post-tanning refreshment or while waiting for laundry.",
-        "FAMILY FRIENDLY: Non-caffeinated options available for kids. Fruit smoothies, slushies, and more. Something for everyone in the family."
+      h1: "Fizze Drinks - Fresh Bubble Tea, Milk Tea & Smoothies in Mt Vernon Ohio",
+      intro: "Craving bubble tea in Mt Vernon? Fizze Drinks at Eastend (818 Coshocton Ave) offers 52+ flavors of fresh-made bubble tea, milk tea, fruit tea, and smoothies. Customize your sweetness, ice level, and toppings for the perfect drink every time.",
+      sections: [
+        {
+          h2: "What drinks does Fizze offer?",
+          content: "We make everything fresh to order: Classic Milk Teas (original, Thai, taro, brown sugar, honeydew, matcha), Fruit Teas (mango, passion fruit, strawberry, peach, lychee), Smoothies (mixed fruit, tropical, berry), Refreshers (citrus, watermelon, cucumber mint), and seasonal specials. All drinks can be customized with your preferred sweetness level, ice amount, and toppings."
+        },
+        {
+          h2: "What toppings can I add to my drink?",
+          content: "Choose from: Tapioca Boba Pearls (the classic chewy addition), Popping Boba (fruit-flavored pearls that burst in your mouth), Coconut Jelly (refreshing and light), Aloe Vera (soothing and healthy), Grass Jelly (traditional Asian topping), and seasonal options. Most toppings can be combined for a custom experience."
+        },
+        {
+          h2: "Can I order Fizze drinks online?",
+          content: "Yes! Order ahead through our website for pickup. Skip the wait and have your drink ready when you arrive. Online ordering is perfect for grabbing a post-tanning refreshment or picking up drinks for the family. We also offer delivery within Mt Vernon for larger orders."
+        },
+        {
+          h2: "Is Fizze good for kids?",
+          content: "Absolutely. We offer non-caffeinated options including fruit smoothies, refreshers, and fruit teas that kids love. Parents often grab bubble tea for themselves while the kids enjoy a strawberry smoothie or mango refresher. It's become a family treat for many Eastend customers."
+        },
+        {
+          h2: "Why bubble tea at a tanning salon?",
+          content: "Great question! When we asked our customers what would make their visit even better, drinks came up constantly. After a tanning session, people wanted something refreshing. While waiting for laundry, they wanted something to enjoy. So we added Fizze. Now many customers make it a routine: tan, grab a bubble tea, relax. It's become part of the Eastend experience."
+        }
       ],
-      services: "Bubble Tea Mt Vernon, Milk Tea, Fruit Tea, Smoothies, Boba Drinks, Custom Drinks, Online Ordering, Pickup Delivery",
-      hours: "Monday-Sunday: 8:00 AM - 7:30 PM",
-      phone: "(740) 397-9632",
-      address: "818 Coshocton Ave (inside Eastend), Mt Vernon, OH 43050",
-      parking: "Shared parking with Eastend Tanning & Laundry",
-      directions: "Inside Eastend facility on Coshocton Avenue"
+      internalLinks: [
+        { url: "/", text: "Back to Eastend homepage" },
+        { url: "/order-drinks", text: "Order Fizze drinks online" },
+        { url: "/tanning", text: "Grab a drink after tanning" },
+        { url: "/laundry", text: "Enjoy a drink while doing laundry" },
+        { url: "/blog", text: "Read about customer favorites" }
+      ]
     },
-    blog: {
-      h1: "Eastend Blog - Tanning Tips, SAD Relief & Mt Vernon Community | 2026",
-      paragraphs: [
-        "Welcome to the Eastend Blog - your source for tanning tips, SAD (Seasonal Affective Disorder) relief advice, laundry guides, and Mt Vernon community stories. Expert insights from Knox County's most trusted tanning and laundry destination.",
-        "TANNING EDUCATION: Learn about proper tanning techniques for your skin type, how to maintain your tan year-round, the benefits of red light therapy, and how indoor tanning can help with vitamin D deficiency and winter blues. Our expert staff shares 26 years of tanning knowledge.",
-        "SAD & WINTER WELLNESS: Seasonal Affective Disorder affects millions during Ohio winters. Our articles explain how UV light exposure and red light therapy can help boost mood, energy, and overall wellness during the dark months. Science-backed tips for beating the winter blues.",
-        "PEOPLE OF EASTEND: Meet the wonderful people who make up our Mt Vernon community. Local stories, customer spotlights, and the faces behind Knox County's favorite small businesses. We celebrate the community that has supported us for 26 years.",
-        "LAUNDRY HACKS: Tips for getting the best results from your laundry, stain removal guides, fabric care advice, and money-saving strategies. Make the most of your laundromat visits.",
-        "NEW ARTICLES WEEKLY: Our team publishes fresh content every week covering tanning, wellness, community events, and local Mt Vernon news. Subscribe for updates and expert advice."
+
+    nails: {
+      h1: "Fast Nails at Eastend - Quick, Affordable Nail Services in Mt Vernon Ohio",
+      intro: "Need a quick manicure in Mt Vernon? Fast Nails at Eastend (818 Coshocton Ave) offers affordable nail services without appointments or long waits. Get your nails done while your laundry dries or after a tanning session.",
+      sections: [
+        {
+          h2: "What nail services does Fast Nails offer?",
+          content: "We provide manicures, pedicures, gel polish, nail repairs, and basic nail art. Our focus is on quality service at affordable prices with minimal wait times. Whether you need a quick polish change or a full manicure, we can help."
+        },
+        {
+          h2: "Do I need an appointment?",
+          content: "No appointment necessary. Fast Nails operates on a walk-in basis. This makes it easy to add nail services to your Eastend visit spontaneously. If there's a wait, enjoy a Fizze drink or browse tanning packages."
+        },
+        {
+          h2: "How long do nail services take?",
+          content: "A basic manicure takes 20-30 minutes. Pedicures take 30-45 minutes. Gel polish adds about 10 minutes. Our goal is to provide quality results efficiently - we respect your time."
+        },
+        {
+          h2: "Why get nails done at Eastend?",
+          content: "Convenience. Many customers combine errands: start laundry, get nails done while it washes, grab a drink, then dry (free!) and fold. Others add a quick manicure after their tanning session. It's about making Eastend a one-stop destination where you can handle multiple tasks in one trip."
+        }
       ],
-      articles: [
-        { title: "How Indoor Tanning Helps Fight SAD and Winter Depression", summary: "Learn how UV light therapy triggers vitamin D production and serotonin release to combat Seasonal Affective Disorder naturally.", keywords: "SAD relief, winter depression, UV therapy, vitamin D" },
-        { title: "Best Tanning Tips for Ohio Winters 2026", summary: "Expert advice on maintaining your tan and mood during the darkest months. Monthly unlimited vs single sessions explained.", keywords: "winter tanning, Ohio tanning tips, monthly unlimited" },
-        { title: "Red Light Therapy Benefits: Beyond Tanning", summary: "Discover how red light therapy reduces inflammation, improves skin, and supports mental wellness without UV exposure.", keywords: "red light therapy, anti-aging, skin health" },
-        { title: "Building Your Spring Break Base Tan", summary: "Start in February for the perfect vacation glow. How to safely build a base tan before your trip.", keywords: "base tan, spring break, vacation tan" },
-        { title: "Why Eastend is the Best Tanning Salon in Mt Vernon", summary: "26 years of expertise, 6 bed levels, dedicated staff, and a focus on results - here's what sets us apart from gym tanning.", keywords: "best tanning salon, Mt Vernon, Knox County" }
-      ],
-      services: "Tanning Tips Blog, SAD Relief Articles, Winter Wellness Guides, Mt Vernon Community Stories, Laundry Tips, Red Light Therapy Information",
-      hours: "Blog available 24/7 online",
-      phone: "(740) 397-9632",
-      address: "818 Coshocton Ave, Mt Vernon, OH 43050",
-      parking: "Visit us in person or read online",
-      directions: "Visit eastend.website/blog for all articles"
+      internalLinks: [
+        { url: "/", text: "Back to Eastend homepage" },
+        { url: "/laundry", text: "Do laundry while getting nails done" },
+        { url: "/tanning", text: "Add tanning to your visit" },
+        { url: "/drinks", text: "Enjoy a Fizze drink during your service" }
+      ]
     },
+
     eats: {
-      h1: "818 EATS - African Cuisine Food Delivery Mt Vernon OH 2026",
-      paragraphs: [
-        "818 EATS brings authentic African cuisine to Mt Vernon, Ohio through our weekly batch ordering system. Vote for your favorite dishes, and when we reach 40 orders, we prepare fresh food for delivery to your door.",
-        "OUR MENU: Ghana Jollof Rice ($25), Egusi Stew with fufu or rice ($25), Waakye ($25), and Suya & Fried Plantains ($25). All dishes prepared fresh by experienced cooks using authentic recipes and quality ingredients.",
-        "HOW IT WORKS: 1) Vote for your top 3 dish choices, 2) Choose 'First Available' or '#1 Choice Only' delivery preference, 3) Pre-pay to secure your order, 4) We notify you when your batch is ready for delivery.",
-        "CUSTOMER DATABASE: Sign up with your delivery information for faster ordering and updates about new dishes. We'll notify you when your favorites are available.",
-        "PARTNER RESTAURANTS: We partner with local African restaurants and home kitchens to bring you authentic flavors. Interested in becoming a partner? Contact us.",
-        "REVIEWS: Read reviews from our satisfied customers. We're building a community around great African food in Knox County."
+      h1: "818 EATS - Authentic African Cuisine Delivery in Mt Vernon Ohio",
+      intro: "Craving authentic African food in Knox County? 818 EATS brings Ghana Jollof Rice, Egusi Stew, Waakye, and more to your door through our unique weekly batch ordering system. Vote for your favorite dishes, pre-order, and enjoy restaurant-quality African cuisine at home.",
+      sections: [
+        {
+          h2: "What is 818 EATS and how does it work?",
+          content: "818 EATS is a food delivery service from Eastend that brings authentic African cuisine to Mt Vernon and Knox County. Unlike regular delivery apps, we use a batch ordering system: you vote for your top 3 dishes, choose your delivery preference, and pre-pay. When we reach 40 orders, we prepare fresh food and deliver to your door. This system ensures every dish is made fresh (never sitting under heat lamps) and keeps prices affordable at $25 per dish."
+        },
+        {
+          h2: "What dishes does 818 EATS offer?",
+          content: "Our current menu features: Ghana Jollof Rice ($25) - the famous West African rice dish with tomatoes, peppers, and spices; Egusi Stew with fufu or rice ($25) - hearty melon seed soup with your choice of sides; Waakye ($25) - Ghanaian rice and beans with special waakye leaves; Suya & Fried Plantains ($25) - spiced grilled meat skewers with sweet plantains. All dishes are prepared by experienced cooks using authentic recipes and quality ingredients."
+        },
+        {
+          h2: "How do I order from 818 EATS?",
+          content: "Visit our ordering page, provide your contact info (name, email, phone), vote for your top 3 dish choices, select 'First Available' or '#1 Choice Only' delivery preference, and complete payment. You'll receive updates as the batch fills, and notification when your food is ready for delivery. The whole process is designed to be simple and transparent."
+        },
+        {
+          h2: "Why batch ordering instead of regular delivery?",
+          content: "Batch ordering lets us serve authentic African cuisine without the overhead of a full restaurant. Each batch is prepared fresh specifically for that group of orders - no heat lamps, no sitting around, no compromise on quality. It keeps prices at $25 per generous portion (restaurant prices would be $35-45). And it builds community: you're ordering alongside your neighbors who also love African food."
+        },
+        {
+          h2: "Can restaurants or home cooks partner with 818 EATS?",
+          content: "Yes! We partner with local African restaurants and home kitchen operators to expand our menu offerings. If you're an experienced cook of African cuisine interested in reaching Knox County customers, contact us about partnership opportunities. We handle ordering, payment, and customer communication - you focus on cooking great food."
+        }
       ],
-      services: "African Food Delivery Mt Vernon, Ghana Jollof Rice, Egusi Stew, Waakye, Suya, Weekly Food Orders, Bulk Food Ordering",
-      hours: "Ordering: 24/7 online | Delivery: Weekly batches",
-      phone: "(740) 397-9632",
-      address: "Delivery throughout Mt Vernon & Knox County, OH",
-      parking: "Delivery to your door",
-      directions: "Order online at eastend.website/eats"
+      internalLinks: [
+        { url: "/", text: "Back to Eastend homepage" },
+        { url: "/eats/partner-signup", text: "Become an 818 EATS partner" },
+        { url: "/blog", text: "Read 818 EATS customer stories" },
+        { url: "/drinks", text: "Order Fizze drinks" }
+      ]
+    },
+
+    blog: {
+      h1: "People of Eastend - Stories from Mt Vernon Ohio's Neighborhood Destination",
+      intro: "Who comes to Eastend? Meet the real people who make our business special. These stories answer common questions about what it's actually like to use our services - straight from the customers who know best.",
+      sections: [
+        {
+          h2: "What kind of people go to Eastend?",
+          content: "Everyone. College students from OSU Knox doing laundry between classes. Working moms who tan during lunch breaks. Retirees who've been customers since 1998. Young professionals grabbing bubble tea. Families making laundry day less boring. Night shift workers using our 24/7 Westend location. First-time tanners nervous about their skin. Experienced tanners who know exactly what bed they want. We've served Knox County for 26 years because we welcome everyone."
+        },
+        {
+          h2: "What's it like doing laundry at Eastend?",
+          content: "It's not just laundry - it's a mini break. Many customers start their wash, grab a Fizze bubble tea, and catch up on their phone or chat with staff. Some tan during the wash cycle (sessions are 10-20 minutes, perfect timing). Others get their nails done at Fast Nails. When dryers are free (and ours are FREE), you fold and go. Regular customers tell us it's the most pleasant laundry experience they've had - clean, convenient, and actually enjoyable."
+        },
+        {
+          h2: "Can I tan and relax at the same place?",
+          content: "That's exactly what many customers do. A typical 'self-care hour' at Eastend: arrive, start a tanning session (10-20 minutes depending on bed), emerge refreshed, grab a cold bubble tea, relax in our seating area, maybe get a quick manicure. It becomes a mini spa experience without spa prices. Several customers have told us it's their weekly ritual for mental health during Ohio winters."
+        },
+        {
+          h2: "Is Eastend a good place to spend time, not just run errands?",
+          content: "Absolutely. We designed Eastend to be a destination, not just a transaction. Students study here while waiting for laundry. Friends meet for bubble tea. Families make it a weekend outing. The atmosphere is welcoming, the staff knows regulars by name, and there's always something to do. We're proud that many customers consider Eastend their 'third place' - somewhere between home and work where they actually want to be."
+        }
+      ],
+      stories: [
+        {
+          question: "What kind of person does laundry at Eastend?",
+          title: "Maria's Saturday Routine",
+          snippet: "Maria is a single mom with two kids. Every Saturday, she loads up the car and heads to Eastend. While the laundry runs, the kids pick out bubble tea flavors and Maria catches her breath.",
+          fullStory: "Maria discovered Eastend three years ago when her apartment washer broke. 'I dreaded laundromat day until I found this place,' she says. 'The free drying saves me at least $10 a week. The kids actually ask to come because of the drinks. And I get 90 minutes of not being pulled in ten directions.' Now it's their Saturday tradition: laundry, bubble tea, sometimes a manicure for Maria. 'It went from a chore to something we look forward to.'",
+          serviceLink: "/laundry"
+        },
+        {
+          question: "Can tanning really help with winter depression?",
+          title: "How Tom Survived Ohio Winter",
+          snippet: "Tom is a night-shift factory worker who struggled with winter depression for years. His doctor suggested light therapy. A coworker mentioned Eastend's tanning beds.",
+          fullStory: "Tom was skeptical at first. 'I thought tanning was for beach people, not guys like me.' But after his first few sessions, something shifted. 'I'd come in during my week's darkest days, spend 15 minutes in the bed, and leave feeling like I'd seen sunshine. My mood improved, I slept better, I had more energy.' Tom now has a monthly unlimited package and calls his twice-weekly sessions 'maintenance for my brain.' His wife says she can tell the difference too.",
+          serviceLink: "/tanning"
+        },
+        {
+          question: "What's the bubble tea like at Eastend?",
+          title: "Jade's Favorite Study Spot",
+          snippet: "Jade is an OSU Knox student who discovered Fizze while waiting for her laundry. Now she comes just for the drinks - and to study in a quieter environment than the campus library.",
+          fullStory: "'I never had bubble tea before Mt Vernon,' Jade admits. 'I tried the mango passion fruit on a whim and got hooked.' Now she has a standing order: taro milk tea with extra boba, 50% sweetness. 'The staff knows my drink before I say it.' Jade often brings her laptop and studies at Eastend. 'It's quieter than campus, the drinks are amazing, and I can do laundry at the same time. I tell all my friends about this place.'",
+          serviceLink: "/drinks"
+        },
+        {
+          question: "Is Eastend actually good for tanning, or just convenient?",
+          title: "Why Sarah Switched from Her Gym",
+          snippet: "Sarah had been using her gym's tanning beds for two years before trying Eastend. The difference shocked her.",
+          fullStory: "'My gym charged $15/month extra for tanning, but the beds were old and the staff didn't know anything,' Sarah explains. 'I'd tan for months and barely see results.' A friend recommended Eastend. 'First session, I noticed the difference. The beds are so much more powerful. The staff asked about my skin type, recommended a specific bed and lotion. Within three weeks, I had a better tan than two years at the gym.' Sarah canceled her gym tanning add-on and switched to Eastend exclusively. 'It's not even close.'",
+          serviceLink: "/tanning"
+        }
+      ],
+      internalLinks: [
+        { url: "/", text: "Back to Eastend homepage" },
+        { url: "/tanning", text: "Learn about our tanning services" },
+        { url: "/laundry", text: "See our laundry facilities" },
+        { url: "/drinks", text: "Explore the Fizze menu" },
+        { url: "/eats", text: "Try 818 EATS African cuisine" }
+      ]
+    },
+
+    foodtruck: {
+      h1: "Food Truck Stop at Eastend - Book Food Trucks in Mt Vernon Ohio",
+      intro: "Planning an event in Knox County? Eastend's Food Truck Stop connects you with local food trucks for catering, private events, and scheduled stops. Bring delicious mobile food to your next gathering.",
+      sections: [
+        {
+          h2: "What is the Food Truck Stop?",
+          content: "The Food Truck Stop is Eastend's food truck coordination service. We help connect Knox County event organizers with local food trucks, facilitate bookings for private events, and host scheduled food truck stops at our 818 Coshocton Ave location."
+        },
+        {
+          h2: "Can I book a food truck for my event?",
+          content: "Yes! Whether you're planning a birthday party, corporate event, wedding reception, or community gathering, we can help you find the right food truck. Contact us with your event details (date, location, expected guests, cuisine preferences) and we'll match you with available trucks."
+        },
+        {
+          h2: "When do food trucks come to Eastend?",
+          content: "We host food truck events periodically at our 818 Coshocton Ave location. Check our website and social media for upcoming food truck schedules. It's a great way to try new foods while enjoying our other services."
+        }
+      ],
+      internalLinks: [
+        { url: "/", text: "Back to Eastend homepage" },
+        { url: "/eats", text: "Try 818 EATS for African cuisine" },
+        { url: "/drinks", text: "Explore Fizze drinks" }
+      ]
     }
   };
 
@@ -131,78 +316,127 @@ export const StaticFallback = ({ page }) => {
 
   return (
     <>
-      {/* Noscript fallback - ALWAYS visible to crawlers and non-JS users */}
+      {/* Noscript fallback - visible to crawlers and non-JS users */}
       <noscript>
-        <div className="seo-fallback" style={{padding: '20px', maxWidth: '1200px', margin: '0 auto', fontFamily: 'system-ui, sans-serif'}}>
-          <h1 style={{fontSize: '2rem', marginBottom: '1rem', color: '#1a1a1a'}}>{data.h1}</h1>
-          {data.paragraphs.map((p, i) => (
-            <p key={i} style={{marginBottom: '16px', lineHeight: '1.8', color: '#333'}}>{p}</p>
+        <div className="seo-fallback" style={{padding: '20px', maxWidth: '1200px', margin: '0 auto', fontFamily: 'Georgia, serif', lineHeight: '1.8'}}>
+          <h1 style={{fontSize: '2rem', marginBottom: '1.5rem', color: '#1a1a1a', fontWeight: 'bold'}}>{data.h1}</h1>
+          
+          <p style={{fontSize: '1.1rem', marginBottom: '2rem', color: '#333', backgroundColor: '#f9f9f9', padding: '1.5rem', borderRadius: '8px', borderLeft: '4px solid #0066cc'}}>
+            {data.intro}
+          </p>
+          
+          {data.sections && data.sections.map((section, i) => (
+            <section key={i} style={{marginBottom: '2rem'}}>
+              <h2 style={{fontSize: '1.5rem', marginBottom: '1rem', color: '#1a1a1a'}}>{section.h2}</h2>
+              <p style={{color: '#444', marginBottom: '1rem'}}>{section.content}</p>
+            </section>
           ))}
           
-          {/* Blog articles if available */}
-          {data.articles && (
-            <div style={{marginTop: '32px'}}>
-              <h2 style={{fontSize: '1.5rem', marginBottom: '16px'}}>Recent Articles</h2>
-              {data.articles.map((article, i) => (
-                <div key={i} style={{marginBottom: '24px', padding: '16px', backgroundColor: '#f9f9f9', borderRadius: '8px'}}>
-                  <h3 style={{fontSize: '1.2rem', marginBottom: '8px', color: '#1a1a1a'}}>{article.title}</h3>
-                  <p style={{marginBottom: '8px', color: '#555'}}>{article.summary}</p>
-                  <p style={{fontSize: '0.85rem', color: '#777'}}>Keywords: {article.keywords}</p>
-                </div>
+          {/* People of Eastend stories */}
+          {data.stories && (
+            <section style={{marginTop: '3rem'}}>
+              <h2 style={{fontSize: '1.75rem', marginBottom: '1.5rem', color: '#1a1a1a'}}>Real Stories from Our Customers</h2>
+              {data.stories.map((story, i) => (
+                <article key={i} style={{marginBottom: '2rem', padding: '1.5rem', backgroundColor: '#fff', border: '1px solid #e0e0e0', borderRadius: '8px'}}>
+                  <p style={{fontSize: '0.9rem', color: '#666', fontStyle: 'italic', marginBottom: '0.5rem'}}>Question: {story.question}</p>
+                  <h3 style={{fontSize: '1.25rem', marginBottom: '0.75rem', color: '#1a1a1a'}}>{story.title}</h3>
+                  <p style={{color: '#555', marginBottom: '1rem'}}>{story.snippet}</p>
+                  <p style={{color: '#333'}}>{story.fullStory}</p>
+                  <a href={story.serviceLink} style={{color: '#0066cc', textDecoration: 'underline'}}>Learn more about this service →</a>
+                </article>
               ))}
-            </div>
+            </section>
           )}
           
-          <div style={{marginTop: '32px', padding: '20px', backgroundColor: '#f5f5f5', borderRadius: '8px', border: '1px solid #e0e0e0'}}>
-            <h2 style={{fontSize: '1.25rem', marginBottom: '12px'}}>Contact Information</h2>
-            <p style={{marginBottom: '8px'}}><strong>Services:</strong> {data.services}</p>
-            <p style={{marginBottom: '8px'}}><strong>Hours:</strong> {data.hours}</p>
-            <p style={{marginBottom: '8px'}}><strong>Phone:</strong> <a href={`tel:${data.phone.replace(/[^0-9]/g, '')}`} style={{color: '#0066cc'}}>{data.phone}</a></p>
-            <p style={{marginBottom: '8px'}}><strong>Address:</strong> {data.address}</p>
-            <p style={{marginBottom: '8px'}}><strong>Parking:</strong> {data.parking}</p>
-            <p><strong>Directions:</strong> {data.directions}</p>
-          </div>
+          {/* Internal Navigation */}
+          {data.internalLinks && (
+            <nav style={{marginTop: '3rem', padding: '1.5rem', backgroundColor: '#f5f5f5', borderRadius: '8px'}}>
+              <h2 style={{fontSize: '1.25rem', marginBottom: '1rem'}}>Explore More at Eastend</h2>
+              <ul style={{listStyle: 'none', padding: 0, margin: 0}}>
+                {data.internalLinks.map((link, i) => (
+                  <li key={i} style={{marginBottom: '0.75rem'}}>
+                    <a href={link.url} style={{color: '#0066cc', textDecoration: 'none', fontSize: '1rem'}}>
+                      → {link.text}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          )}
           
-          {/* Schema.org structured data for AEO */}
+          {/* Contact Info */}
+          <footer style={{marginTop: '3rem', padding: '2rem', backgroundColor: '#1a1a1a', color: '#fff', borderRadius: '8px'}}>
+            <h2 style={{fontSize: '1.5rem', marginBottom: '1rem', color: '#fff'}}>Visit Eastend Today</h2>
+            <p style={{marginBottom: '0.5rem'}}><strong>Address:</strong> 818 Coshocton Ave, Mt Vernon, OH 43050</p>
+            <p style={{marginBottom: '0.5rem'}}><strong>Phone:</strong> <a href="tel:7403979632" style={{color: '#66b3ff'}}>(740) 397-9632</a></p>
+            <p style={{marginBottom: '0.5rem'}}><strong>Hours:</strong> Monday - Sunday, 8:00 AM - 7:30 PM</p>
+            <p style={{marginBottom: '0.5rem'}}><strong>Parking:</strong> Free lot behind building with front-door access</p>
+            <p><strong>Directions:</strong> 2 minutes from OSU Knox Campus on Coshocton Avenue, near Walmart</p>
+          </footer>
+          
+          {/* Schema.org structured data */}
           <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({
             "@context": "https://schema.org",
-            "@type": page === 'tanning' ? "TanningSalon" : page === 'laundry' ? "Laundromat" : "LocalBusiness",
+            "@type": "LocalBusiness",
             "name": "Eastend Tanning & Laundry",
-            "description": data.paragraphs[0],
+            "description": data.intro,
+            "url": "https://eastend.website",
+            "telephone": "(740) 397-9632",
             "address": {
               "@type": "PostalAddress",
               "streetAddress": "818 Coshocton Ave",
               "addressLocality": "Mt Vernon",
               "addressRegion": "OH",
-              "postalCode": "43050"
+              "postalCode": "43050",
+              "addressCountry": "US"
             },
-            "telephone": "(740) 397-9632",
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": 40.3834,
+              "longitude": -82.4657
+            },
             "openingHours": "Mo-Su 08:00-19:30",
-            "priceRange": "$$"
+            "priceRange": "$$",
+            "areaServed": {
+              "@type": "City",
+              "name": "Mt Vernon, Knox County, Ohio"
+            },
+            "sameAs": [
+              "https://www.facebook.com/eastendtanning",
+              "https://www.instagram.com/eastendtanning"
+            ]
           })}} />
         </div>
       </noscript>
 
-      {/* Hidden but crawlable fallback for JS-enabled browsers - search engines can still read this */}
+      {/* Hidden crawlable content - always in DOM for search engines */}
       <div 
-        className="seo-fallback-hidden" 
+        className="seo-hidden-content" 
         style={{position: 'absolute', left: '-9999px', top: '0', width: '1px', height: '1px', overflow: 'hidden'}}
         aria-hidden="true"
       >
         <h1>{data.h1}</h1>
-        {data.paragraphs.map((p, i) => (
-          <p key={i}>{p}</p>
+        <p>{data.intro}</p>
+        
+        {data.sections && data.sections.map((section, i) => (
+          <section key={i}>
+            <h2>{section.h2}</h2>
+            <p>{section.content}</p>
+          </section>
         ))}
-        {data.articles && data.articles.map((article, i) => (
+        
+        {data.stories && data.stories.map((story, i) => (
           <article key={i}>
-            <h2>{article.title}</h2>
-            <p>{article.summary}</p>
-            <p>Keywords: {article.keywords}</p>
+            <h3>{story.title}</h3>
+            <p>Question answered: {story.question}</p>
+            <p>{story.fullStory}</p>
           </article>
         ))}
+        
+        {/* Microdata for enhanced crawlability */}
         <div itemScope itemType="https://schema.org/LocalBusiness">
           <span itemProp="name">Eastend Tanning & Laundry</span>
-          <span itemProp="description">{data.paragraphs[0]}</span>
+          <span itemProp="description">{data.intro}</span>
           <div itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
             <span itemProp="streetAddress">818 Coshocton Ave</span>
             <span itemProp="addressLocality">Mt Vernon</span>
@@ -210,14 +444,20 @@ export const StaticFallback = ({ page }) => {
             <span itemProp="postalCode">43050</span>
           </div>
           <span itemProp="telephone">(740) 397-9632</span>
-          <span itemProp="openingHours">Mo-Su 08:00-19:30</span>
-          <span>Services: {data.services}</span>
-          <span>Hours: {data.hours}</span>
-          <span>Phone: {data.phone}</span>
-          <span>Address: {data.address}</span>
-          <span>Parking: {data.parking}</span>
-          <span>Directions: {data.directions}</span>
         </div>
+        
+        {/* Navigation for link discovery */}
+        <nav>
+          <a href="/">Home</a>
+          <a href="/tanning">Tanning</a>
+          <a href="/laundry">Laundry</a>
+          <a href="/drinks">Drinks</a>
+          <a href="/nails">Nails</a>
+          <a href="/eats">818 EATS</a>
+          <a href="/blog">People of Eastend</a>
+          <a href="/westend-laundry">Westend 24/7</a>
+          <a href="/foodtruck">Food Truck Stop</a>
+        </nav>
       </div>
     </>
   );
