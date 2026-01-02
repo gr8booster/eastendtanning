@@ -111,7 +111,7 @@ Would you like to proceed to checkout? I can take you there right now, and you c
 
 💰 **Pricing**: Bubble Tea $5.99-$6.99 | Dirty Sodas $5.49-$5.99 | Shakes $7.99
 
-📱 **Order Online**: https://eats-aggregator.preview.emergentagent.com/order-drinks
+📱 **Order Online**: https://weekly-picks-4.preview.emergentagent.com/order-drinks
 - Pickup (15-20 min) - FREE
 - DoorDash Delivery - $4.99
 - GrubHub Delivery - $5.99

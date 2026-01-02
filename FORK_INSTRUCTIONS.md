@@ -79,7 +79,7 @@ Password: eastend2025
 
 Once the new agent sets up the project, verify:
 
-1. **Preview URL:** `https://eats-aggregator.preview.emergentagent.com`
+1. **Preview URL:** `https://weekly-picks-4.preview.emergentagent.com`
 2. **Homepage:** 5 service cards (last one is Food Truck Stop)
 3. **Fizze Drinks:** Menu shows 52 drinks in 8 categories
 4. **Tanning:** 6 bed levels with packages
@@ -111,13 +111,13 @@ Once the new agent sets up the project, verify:
 ## Quick Reference
 
 **Current Project:**
-- URL: https://eats-aggregator.preview.emergentagent.com
+- URL: https://weekly-picks-4.preview.emergentagent.com
 - Database: eastend_db (fully populated)
 - Status: 100% working
 
 **New Project:**
 - Name: Eastend Tanning Laundry
-- URL: https://eats-aggregator.preview.emergentagent.com
+- URL: https://weekly-picks-4.preview.emergentagent.com
 - Database: eastend_db (needs seeding)
 - Setup Time: ~10-15 minutes
 
