@@ -94,6 +94,7 @@ export default function EatsOrdering() {
     fetchSettings();
     fetchMenu();
     fetchPartners();
+    fetchReviews();
   }, []);
 
   const fetchSettings = async () => {
