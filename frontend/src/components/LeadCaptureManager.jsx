@@ -6,9 +6,14 @@ export const LeadCaptureManager = () => {
   const [hasShown, setHasShown] = useState(false);
 
   useEffect(() => {
-    // BLACK FRIDAY: Disable this popup during Black Friday promotion (until Dec 1, 2026)
-    const BLACK_FRIDAY_END = new Date('2026-12-01T23:59:59');
-    if (new Date() < BLACK_FRIDAY_END) {
+    // BLACK FRIDAY: Disable lead capture popup during Black Friday promotion (Nov 28 - Dec 1)
+    const currentYear = new Date().getFullYear();
+    const BLACK_FRIDAY_START = new Date(`${currentYear}-11-28T00:00:00`);
+    const BLACK_FRIDAY_END = new Date(`${currentYear}-12-01T23:59:59`);
+    const now = new Date();
+    const isBlackFridayPeriod = now >= BLACK_FRIDAY_START && now <= BLACK_FRIDAY_END;
+    
+    if (isBlackFridayPeriod) {
       return; // Don't show lead capture popup during Black Friday
     }
 
