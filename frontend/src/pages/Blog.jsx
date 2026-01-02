@@ -114,29 +114,21 @@ export default function Blog() {
           <h1 className="text-4xl md:text-5xl font-bold font-serif text-slate-900 mb-6">
             People of Eastend
           </h1>
-          <p className="text-xl text-slate-700 leading-relaxed mb-4">
-            People of Eastend shares real stories from customers and locals who use Eastend for tanning, laundry, drinks, and self-care. Each story answers common questions about what Eastend is like, who it's for, and how people use multiple services in one visit.
+          <p className="text-xl text-slate-700 leading-relaxed">
+            People of Eastend shares real stories from customers and locals who use Eastend for tanning,
+            laundry, drinks, and self-care. Each story answers common questions about what Eastend is like,
+            who it's for, and how people combine multiple services in one visit.
           </p>
-          <p className="text-lg text-slate-600">
-            Tanning is our primary service—the anchor that brings people in. The stories below show how real customers experience Eastend and why they keep coming back.
-          </p>
-          <div className="mt-6">
-            <Link to="/tanning" className="inline-flex items-center gap-2 text-amber-700 hover:text-amber-800 font-semibold text-lg">
-              <Sun className="w-5 h-5" />
-              Learn about our tanning services →
-            </Link>
-          </div>
         </div>
       </section>
 
       {/* Static Blog Index - All stories listed with title, date, excerpt, link */}
-      <section className="py-12 px-4">
+      <section className="py-12 px-4" id="people-of-eastend-blog">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl font-bold text-slate-800 mb-8 sr-only">All Stories</h2>
           
           {/* Static story entries - always rendered */}
-          <div className="space-y-10" data-testid="blog-index">
-            {staticArticles.map((story, index) => (
+          <div className="space-y-12" data-testid="blog-index">
+            {staticArticles.map((story) => (
               <article key={story.id} className="border-b border-slate-200 pb-10 last:border-b-0" data-testid={`story-entry-${story.id}`}>
                 {/* Story Title (H2) */}
                 <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-3 hover:text-teal-700 transition-colors">
@@ -144,35 +136,22 @@ export default function Blog() {
                 </h2>
                 
                 {/* Publish Date */}
-                <p className="text-sm text-slate-500 mb-4 flex items-center gap-2">
-                  <Calendar className="w-4 h-4" />
-                  Published: {formatDate(story.created_at)}
-                </p>
+                <time dateTime={story.datetime} className="text-sm text-slate-500 mb-4 block">
+                  {formatDate(story.created_at)}
+                </time>
                 
-                {/* Excerpt - Answer-first format */}
+                {/* Excerpt */}
                 <p className="text-lg text-slate-700 leading-relaxed mb-4">
                   {story.shortAnswer}
                 </p>
                 
-                {/* Links */}
-                <div className="flex flex-wrap items-center gap-4">
-                  <Link 
-                    to={`/blog/${story.id}`}
-                    className="inline-flex items-center gap-2 text-teal-600 hover:text-teal-700 font-semibold"
-                  >
-                    Read the full story
-                    <ArrowRight className="w-4 h-4" />
-                  </Link>
-                  
-                  {/* Internal link to tanning (primary) or relevant service */}
-                  <Link 
-                    to={story.primaryLink || '/tanning'}
-                    className="inline-flex items-center gap-2 text-amber-600 hover:text-amber-700 font-medium text-sm"
-                  >
-                    <Sun className="w-4 h-4" />
-                    {story.primaryLinkText || 'Related: Tanning Services'}
-                  </Link>
-                </div>
+                {/* Service Link */}
+                <Link 
+                  to={story.primaryLink}
+                  className="inline-flex items-center gap-2 text-teal-600 hover:text-teal-700 font-medium"
+                >
+                  {story.primaryLinkText}
+                </Link>
               </article>
             ))}
           </div>
