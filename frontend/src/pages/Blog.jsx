@@ -233,7 +233,7 @@ export default function Blog() {
 
   const breadcrumbs = generateBreadcrumb([
     { name: 'Home', path: '/' },
-    { name: 'People of Eastend', path: '/people-of-eastend' }
+    { name: 'People of Eastend', path: '/blog' }
   ]);
 
   // Use static articles if no posts loaded (ensures content for SEO)
@@ -245,116 +245,127 @@ export default function Blog() {
       <StaticFallback page="blog" />
       
       <EnhancedSEO 
-        title="People of Eastend - Stories from Mt Vernon's Tanning-Centered Hub"
-        description="Real stories answering real questions about Eastend. Can tanning help with winter blues? Is Eastend better than gym tanning? What's it like combining tanning with laundry? Hear from actual customers."
+        title="People of Eastend - Real Customer Stories from Mt Vernon's Tanning Hub"
+        description="People of Eastend shares real stories from customers who use Eastend for tanning, laundry, drinks, and self-care. Each story answers common questions about what Eastend is like and how people use multiple services in one visit."
         keywords="People of Eastend, Mt Vernon tanning stories, Eastend customer stories, indoor tanning experience, tanning for SAD, gym vs salon tanning"
-        canonicalUrl="https://eastend.website/people-of-eastend"
+        canonicalUrl="https://eastend.website/blog"
         structuredData={[peopleOfEastendSchema]}
         breadcrumbs={breadcrumbs}
         ogImage="https://eastend.website/images/blog-hero.jpg"
       />
-      {/* Hero Section */}
-      <section className="relative py-20 px-4 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-amber-400/10 to-teal-400/10" />
-        <div className="relative max-w-4xl mx-auto text-center space-y-6" data-testid="blog-hero">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-amber-100 rounded-full text-amber-700 font-medium">
-            <Heart className="w-4 h-4" />
-            <span>Real Stories • Real Questions • Real Answers</span>
-          </div>
-          <h1 className="text-5xl md:text-6xl font-bold font-serif bg-gradient-to-r from-amber-600 to-teal-600 bg-clip-text text-transparent">
+      
+      {/* Blog Introduction - Static, visible without interaction */}
+      <section className="py-16 px-4 bg-white border-b">
+        <div className="max-w-4xl mx-auto" data-testid="blog-intro">
+          <h1 className="text-4xl md:text-5xl font-bold font-serif text-slate-900 mb-6">
             People of Eastend
           </h1>
-          <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-            Eastend is a tanning-centered hub with complementary services. These stories from real customers answer common questions—especially about tanning, our primary service.
+          <p className="text-xl text-slate-700 leading-relaxed mb-4">
+            People of Eastend shares real stories from customers and locals who use Eastend for tanning, laundry, drinks, and self-care. Each story answers common questions about what Eastend is like, who it's for, and how people use multiple services in one visit.
           </p>
-          <div className="flex justify-center gap-4 pt-4">
-            <Link to="/tanning" className="inline-flex items-center gap-2 text-amber-700 hover:text-amber-800 font-medium">
-              <Sun className="w-4 h-4" />
-              Explore Tanning (Primary Service)
-              <ArrowRight className="w-4 h-4" />
+          <p className="text-lg text-slate-600">
+            Tanning is our primary service—the anchor that brings people in. The stories below show how real customers experience Eastend and why they keep coming back.
+          </p>
+          <div className="mt-6">
+            <Link to="/tanning" className="inline-flex items-center gap-2 text-amber-700 hover:text-amber-800 font-semibold text-lg">
+              <Sun className="w-5 h-5" />
+              Learn about our tanning services →
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Blog Posts Grid */}
-      <section className="py-16 px-4">
-        <div className="max-w-6xl mx-auto">
-          {loading ? (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {[1, 2, 3].map(i => (
-                <Card key={i} className="p-6 space-y-4">
-                  <Skeleton className="h-48 w-full" />
-                  <Skeleton className="h-6 w-3/4" />
-                  <Skeleton className="h-4 w-full" />
-                  <Skeleton className="h-4 w-2/3" />
-                </Card>
-              ))}
-            </div>
-          ) : (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {displayPosts.map(post => (
-                <Card 
-                  key={post.id} 
-                  className="group hover:shadow-xl transition-all duration-300 overflow-hidden"
-                  data-testid={`blog-post-${post.id}`}
-                >
-                  <div className="p-6 space-y-4">
-                    {/* Metadata */}
-                    <div className="flex items-center justify-between text-sm text-slate-500">
-                      <div className="flex items-center gap-2">
-                        <Calendar className="w-4 h-4" />
-                        <span>{formatDate(post.created_at)}</span>
-                      </div>
-                      {post.category ? (
-                        <Badge variant="secondary" className="bg-amber-100 text-amber-700">
-                          {post.category}
-                        </Badge>
-                      ) : (
-                        <Badge variant="secondary" className="bg-purple-100 text-purple-700">
-                          AI Generated
-                        </Badge>
-                      )}
-                    </div>
-
-                    {/* Title */}
-                    <h2 className="text-xl font-bold text-slate-800 group-hover:text-teal-600 transition-colors line-clamp-2">
-                      {post.title}
-                    </h2>
-
-                    {/* Meta Description */}
-                    <p className="text-slate-600 line-clamp-3">
+      {/* Static Blog Index - All stories listed with title, date, excerpt, link */}
+      <section className="py-12 px-4">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-2xl font-bold text-slate-800 mb-8 sr-only">All Stories</h2>
+          
+          {/* Static story entries - always rendered */}
+          <div className="space-y-10" data-testid="blog-index">
+            {staticArticles.map((story, index) => (
+              <article key={story.id} className="border-b border-slate-200 pb-10 last:border-b-0" data-testid={`story-entry-${story.id}`}>
+                {/* Story Title (H2) */}
+                <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-3 hover:text-teal-700 transition-colors">
+                  <Link to={`/blog/${story.id}`}>{story.title}</Link>
+                </h2>
+                
+                {/* Publish Date */}
+                <p className="text-sm text-slate-500 mb-4 flex items-center gap-2">
+                  <Calendar className="w-4 h-4" />
+                  Published: {formatDate(story.created_at)}
+                </p>
+                
+                {/* Excerpt - Answer-first format */}
+                <p className="text-lg text-slate-700 leading-relaxed mb-4">
+                  {story.shortAnswer}
+                </p>
+                
+                {/* Links */}
+                <div className="flex flex-wrap items-center gap-4">
+                  <Link 
+                    to={`/blog/${story.id}`}
+                    className="inline-flex items-center gap-2 text-teal-600 hover:text-teal-700 font-semibold"
+                  >
+                    Read the full story
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                  
+                  {/* Internal link to tanning (primary) or relevant service */}
+                  <Link 
+                    to={story.primaryLink || '/tanning'}
+                    className="inline-flex items-center gap-2 text-amber-600 hover:text-amber-700 font-medium text-sm"
+                  >
+                    <Sun className="w-4 h-4" />
+                    {story.primaryLinkText || 'Related: Tanning Services'}
+                  </Link>
+                </div>
+              </article>
+            ))}
+          </div>
+          
+          {/* Dynamic posts from API (if any) */}
+          {!loading && posts.filter(p => !staticArticles.find(s => s.id === p.id)).length > 0 && (
+            <div className="mt-12 pt-8 border-t border-slate-300">
+              <h2 className="text-xl font-bold text-slate-700 mb-6">More Stories</h2>
+              <div className="grid md:grid-cols-2 gap-6">
+                {posts.filter(p => !staticArticles.find(s => s.id === p.id)).map(post => (
+                  <Card key={post.id} className="p-5 hover:shadow-lg transition-shadow">
+                    <p className="text-sm text-slate-500 mb-2 flex items-center gap-2">
+                      <Calendar className="w-3 h-3" />
+                      {formatDate(post.created_at)}
+                    </p>
+                    <h3 className="text-lg font-bold text-slate-800 mb-2">
+                      <Link to={`/blog/${post.id}`} className="hover:text-teal-600">
+                        {post.title}
+                      </Link>
+                    </h3>
+                    <p className="text-slate-600 text-sm line-clamp-2 mb-3">
                       {post.meta_description}
                     </p>
-
-                    {/* Keywords */}
-                    {post.keywords && post.keywords.length > 0 && (
-                      <div className="flex flex-wrap gap-2">
-                        {post.keywords.slice(0, 3).map((keyword, idx) => (
-                          <div key={idx} className="inline-flex items-center gap-1 px-2 py-1 bg-slate-100 rounded text-xs text-slate-600">
-                            <Tag className="w-3 h-3" />
-                            <span>{keyword}</span>
-                          </div>
-                        ))}
-                      </div>
-                    )}
-
-                    {/* Read More Link */}
-                    <Link to={`/blog/${post.id}`}>
-                      <Button 
-                        variant="ghost" 
-                        className="w-full group-hover:bg-teal-50 group-hover:text-teal-600 transition-colors"
-                        data-testid={`read-more-${post.id}`}
-                      >
-                        Read Full Article
-                        <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                      </Button>
+                    <Link to={`/blog/${post.id}`} className="text-teal-600 hover:text-teal-700 text-sm font-medium">
+                      Read more →
                     </Link>
-                  </div>
-                </Card>
-              ))}
+                  </Card>
+                ))}
+              </div>
             </div>
           )}
+        </div>
+      </section>
+      
+      {/* Call to Action - Link back to tanning */}
+      <section className="py-12 px-4 bg-amber-50">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-2xl font-bold text-slate-800 mb-4">Ready to Experience Eastend?</h2>
+          <p className="text-slate-600 mb-6">
+            Start with our primary service—indoor tanning. Then discover how our complementary services make your visit even better.
+          </p>
+          <Link to="/tanning">
+            <Button className="bg-amber-600 hover:bg-amber-700 text-white px-8 py-3 text-lg">
+              <Sun className="w-5 h-5 mr-2" />
+              Explore Tanning Services
+            </Button>
+          </Link>
         </div>
       </section>
     </div>
