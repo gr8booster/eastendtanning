@@ -131,6 +131,90 @@ export default function EatsOrdering() {
     }
   };
 
+  const fetchReviews = async () => {
+    try {
+      const response = await fetch(`${backendUrl}/api/eats/reviews/featured`);
+      const data = await response.json();
+      setReviews(data.reviews || []);
+    } catch (error) {
+      console.error('Error fetching reviews:', error);
+    }
+  };
+
+  // Submit a review
+  const handleSubmitReview = async () => {
+    if (!reviewForm.customer_name || !reviewForm.customer_email || !reviewForm.review_text) {
+      toast.error('Please fill in all required fields');
+      return;
+    }
+    setSubmitting(true);
+    try {
+      const response = await fetch(`${backendUrl}/api/eats/reviews`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(reviewForm)
+      });
+      const data = await response.json();
+      if (data.status === 'success') {
+        toast.success('Thank you for your review! It will be visible after approval.');
+        setShowReviewModal(false);
+        setReviewForm({ customer_name: '', customer_email: '', rating: 5, review_text: '', dish_ordered: '' });
+      } else {
+        toast.error(data.detail || 'Failed to submit review');
+      }
+    } catch (error) {
+      console.error('Error submitting review:', error);
+      toast.error('Failed to submit review');
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  // Customer signup with delivery info
+  const handleCustomerSignup = async () => {
+    if (!customerSignupForm.name || !customerSignupForm.email || !customerSignupForm.phone || !customerSignupForm.delivery_address || !customerSignupForm.delivery_zip) {
+      toast.error('Please fill in all required fields');
+      return;
+    }
+    setSubmitting(true);
+    try {
+      const response = await fetch(`${backendUrl}/api/eats/customers/signup`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(customerSignupForm)
+      });
+      const data = await response.json();
+      if (data.status === 'success') {
+        toast.success(data.message || 'Successfully signed up!');
+        setShowCustomerSignupModal(false);
+        // Pre-fill order details
+        setOrderDetails(prev => ({
+          ...prev,
+          customer_name: customerSignupForm.name,
+          customer_email: customerSignupForm.email,
+          customer_phone: customerSignupForm.phone,
+          customer_address: `${customerSignupForm.delivery_address}, ${customerSignupForm.delivery_city}, ${customerSignupForm.delivery_state} ${customerSignupForm.delivery_zip}`
+        }));
+      } else {
+        toast.error(data.detail || 'Failed to sign up');
+      }
+    } catch (error) {
+      console.error('Error signing up:', error);
+      toast.error('Failed to sign up');
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  // Copy partner signup link
+  const copyPartnerLink = () => {
+    const link = `${window.location.origin}/eats/partner-signup`;
+    navigator.clipboard.writeText(link);
+    setLinkCopied(true);
+    toast.success('Partner signup link copied to clipboard!');
+    setTimeout(() => setLinkCopied(false), 3000);
+  };
+
   const tipOptions = [0, 2, 3, 5];
 
   const calculateTotal = () => {
