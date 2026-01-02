@@ -1,18 +1,18 @@
 [
   {
-    "content": "Create dynamic holiday/seasonal discount system",
-    "status": "completed"
+    "content": "Check and update static content for SEO/AEO - site readable without JavaScript",
+    "status": "in_progress"
   },
   {
-    "content": "Add discount logic for: New Year, Valentine's, Easter, Halloween, Christmas, Founder's Day, Seasons",
-    "status": "completed"
+    "content": "Verify StaticFallback components are properly implemented",
+    "status": "pending"
   },
   {
-    "content": "Update frontend to display current holiday/seasonal discounts",
-    "status": "completed"
+    "content": "Ensure blog has static content for findability & credibility",
+    "status": "pending"
   },
   {
-    "content": "Test discount system",
-    "status": "completed"
+    "content": "Test static content accessibility",
+    "status": "pending"
   }
 ]
