@@ -12,92 +12,225 @@ import { peopleOfEastendSchema } from '../utils/businessSchemas';
 import { StaticFallback } from '../components/StaticFallback';
 
 // Static blog articles for SEO - always available without JavaScript
+// Reframed as "People of Eastend" with question-based content
 const staticArticles = [
   {
-    id: 'sad-winter-tanning',
-    title: 'How Indoor Tanning Helps Fight SAD and Winter Depression in 2026',
-    meta_description: 'Learn how UV light therapy at Eastend Tanning triggers vitamin D production and serotonin release to naturally combat Seasonal Affective Disorder (SAD) during Ohio winters.',
-    content: `Seasonal Affective Disorder (SAD) affects millions of Americans during the dark winter months, and Ohio residents are particularly susceptible due to our cloudy, gray winters. At Eastend Tanning in Mt Vernon, we've seen firsthand how indoor tanning and red light therapy can help our customers beat the winter blues.
+    id: 'what-kind-of-people-visit-eastend',
+    title: 'What Kind of People Visit Eastend? (You Might Be Surprised)',
+    meta_description: 'Meet the diverse community that makes Eastend Tanning & Laundry their neighborhood destination. From OSU Knox students to working families - everyone is welcome.',
+    content: `QUESTION: What kind of people go to Eastend?
 
-HOW UV LIGHT HELPS SAD:
-When your skin is exposed to UV light, it triggers vitamin D production - the "sunshine vitamin" that many Ohioans are deficient in during winter. UV exposure also stimulates serotonin release, the "feel-good" hormone that regulates mood, sleep, and appetite. This is why many people feel happier and more energized after a tanning session.
+SHORT ANSWER: Everyone. College students, working parents, retirees, first-time tanners, experienced regulars - our customer base reflects Mt Vernon itself. We've served Knox County for 26 years precisely because we welcome everyone.
 
-RED LIGHT THERAPY BENEFITS:
-Our Level 4 and Stand-Up beds include red light therapy, which provides non-UV light that reduces inflammation, improves sleep quality, and supports mental wellness. Red light therapy is gaining popularity as a complementary treatment for depression and anxiety.
+THE FULL PICTURE:
+Walk into Eastend on any given day and you'll see:
 
-MONTHLY UNLIMITED FOR CONSISTENT RESULTS:
-For the best SAD relief, consistency is key. Our monthly unlimited packages allow you to tan as often as needed to maintain your mood and vitamin D levels throughout winter. Starting at just $39.99/month VIP, it's an affordable investment in your mental health.
+OSU Knox students doing laundry between classes, textbooks open on the folding tables. Many discover our Fizze bubble tea and become regulars.
 
-CONSULT YOUR DOCTOR:
-While many customers report mood improvements from regular tanning, SAD is a medical condition. We always recommend consulting with your healthcare provider for a comprehensive treatment plan.`,
-    keywords: ['SAD relief', 'Seasonal Affective Disorder', 'winter depression', 'UV therapy', 'vitamin D', 'red light therapy', 'Mt Vernon tanning'],
-    category: 'Wellness',
+Working moms who've learned to combine errands: start laundry, tan during the wash cycle, pick up ready-to-fold clothes. "It went from a chore to 'me time,'" one told us.
+
+Night shift workers using our 24/7 Westend location at 3 AM because that's when their schedule allows.
+
+Retirees who've been coming since we opened in 1998. Some have watched their children grow up here, now watching their grandchildren.
+
+Young professionals grabbing a post-work tan and bubble tea as their evening unwind ritual.
+
+First-time tanners nervous about their skin type, getting patient guidance from staff who've helped thousands of beginners.
+
+Experienced tanners who know exactly which bed, which lotion, which settings - and trust us to maintain equipment properly.
+
+WHAT BRINGS THEM ALL TOGETHER:
+It's not just the services. It's the atmosphere. The owners know regulars by name. The staff actually cares about your results. The facility is clean and well-maintained. There's no pretense, no judgment - just a neighborhood place where you can take care of yourself.
+
+SERVICE LINKS:
+- Learn about our tanning services: /tanning
+- See our laundry facilities: /laundry
+- Explore Fizze drinks: /drinks`,
+    keywords: ['who goes to Eastend', 'Mt Vernon tanning customers', 'neighborhood laundromat', 'Knox County community'],
+    category: 'People of Eastend',
     created_at: '2026-01-15'
   },
   {
-    id: 'best-tanning-salon-mt-vernon',
-    title: 'Why Eastend is the Best Tanning Salon Near Me in Mt Vernon Ohio',
-    meta_description: 'Discover why Eastend Tanning has been voted the best tanning salon in Mt Vernon, Ohio for 26 years. 6 bed levels, Matrix Bed, expert staff, and competitive pricing.',
-    content: `If you're searching for "best tanning salon near me" in Mt Vernon, Ohio, Eastend Tanning consistently comes out on top. Here's why our customers choose us over gyms and other salons:
+    id: 'whats-it-like-doing-laundry-at-eastend',
+    title: "What's It Actually Like Doing Laundry at Eastend?",
+    meta_description: 'A real description of the Eastend laundry experience - from free drying to bubble tea, why customers say it changed how they feel about laundromat day.',
+    content: `QUESTION: What's it like doing laundry at Eastend?
 
-6 PROFESSIONAL BED LEVELS:
-We offer more tanning options than any facility in Knox County:
-- Level 1 (3,840W) - Perfect for beginners, $5/session
-- Level 2 (5,000W) - Our most popular, $8/session  
-- Level 3 (10,750W) - High-pressure for faster results, $10/session
-- Level 4 (13,995W) - Premium with red light therapy, $14.99/session
-- Stand-Up (8,640W) - Even, streak-free coverage, $11/session
-- Matrix (40,740W) - The most powerful bed in Knox County, $23.99/session
+SHORT ANSWER: It's not just laundry - it's a mini break. Clean facilities, free drying (really!), and enough other services that many customers actually look forward to laundromat day.
 
-WE'RE TANNING SPECIALISTS:
-Unlike gyms that treat tanning as an afterthought with outdated equipment and untrained staff, tanning is our specialty. Our beds are professionally maintained daily, our bulbs are replaced on schedule, and our staff is trained to help you achieve your tanning goals safely.
+THE REAL EXPERIENCE:
+Here's what a typical Eastend laundry visit looks like for Maria, a single mom with two kids:
 
-26 YEARS OF TRUSTED SERVICE:
-We've been serving Mt Vernon since 1998. That's 26 years of building relationships with Knox County families and perfecting our craft.
+10:00 AM - She pulls into the large parking lot behind the building. Easy access to the back door means no hauling baskets across a parking lot.
 
-COMPETITIVE PRICING:
-Monthly unlimited packages start at just $39.99 VIP - often less than gym tanning add-ons that come with restrictions and inferior equipment.
+10:05 AM - Loads into three 40lb washers ($6.50 each). The machines are clean, well-maintained, and actually work - no out-of-order signs everywhere.
 
-Visit us at 818 Coshocton Ave and see why we're the best tanning salon in Mt Vernon!`,
-    keywords: ['best tanning salon near me', 'best tanning salon Mt Vernon', 'Knox County tanning', 'Matrix tanning bed', 'monthly unlimited tanning'],
-    category: 'About Us',
+10:10 AM - Kids head to the Fizze counter. They know their orders: strawberry smoothie for the 8-year-old, mango boba for the 12-year-old. Maria gets a Thai tea.
+
+10:15 AM - While washers run (about 35 minutes), Maria catches up on her phone in comfortable seating. The kids do homework. The facility is quiet, clean, air-conditioned.
+
+10:50 AM - Transfers to dryers. Here's where Eastend is different: THE DRYERS ARE FREE. Every day. No coins, no cards, just... free. Maria saves about $4-6 per visit compared to other laundromats.
+
+11:30 AM - Folds at the clean folding tables. Sometimes Maria gets her nails done at Fast Nails during this time - 20-minute manicure while kids watch.
+
+NOON - Done. Three loads washed, dried, folded. Kids entertained. Mom had some downtime. Total cost: $19.50 for washing (dryers free) plus drinks.
+
+WHY IT MATTERS:
+"Laundry used to be this dreaded chore," Maria says. "Now the kids ask when we're going to Eastend. That's not normal, right? But it's real."
+
+SERVICE LINKS:
+- See our laundry pricing: /laundry
+- Check out Fizze drinks: /drinks
+- Book Fast Nails: /nails`,
+    keywords: ['Eastend laundry experience', 'free drying laundromat', 'Mt Vernon laundry', 'laundromat with drinks'],
+    category: 'People of Eastend',
+    created_at: '2026-01-12'
+  },
+  {
+    id: 'can-tanning-help-with-winter-blues',
+    title: 'Can Tanning Actually Help With Winter Blues? Tom Found Out.',
+    meta_description: 'A real story about how indoor tanning helped a night-shift worker manage winter depression. What to expect, what to ask your doctor, and why it works for some people.',
+    content: `QUESTION: Can tanning help with SAD or winter depression?
+
+SHORT ANSWER: Many customers report improved mood, energy, and sleep during winter months after regular tanning sessions. While we're not doctors and recommend consulting healthcare providers, the science makes sense: UV exposure triggers vitamin D and serotonin production.
+
+TOM'S STORY:
+Tom works night shift at a Knox County factory. For years, he struggled during Ohio winters.
+
+"By December, I was a zombie. No energy, bad mood, sleeping all the time but never rested. My doctor said it was probably seasonal depression. Suggested light therapy."
+
+A coworker mentioned Eastend. Tom was skeptical.
+
+"I thought tanning was for beach people, college girls, not guys like me. But I was desperate."
+
+First few sessions, he didn't notice much. Staff recommended twice weekly, Level 2 bed, 12 minutes. By week three, something shifted.
+
+"I'd come in after my worst shift, spend 15 minutes in the bed, and leave feeling like I'd actually seen sunshine. My wife noticed before I did. She said I was 'less grumpy.'"
+
+Tom now has a monthly unlimited package ($60/month for Level 2). He calls his sessions "maintenance for my brain."
+
+THE SCIENCE (SIMPLIFIED):
+- UV light triggers vitamin D production in your skin
+- Vitamin D deficiency is linked to depression
+- UV exposure also triggers serotonin release (the "feel-good" hormone)
+- Ohio winters provide minimal natural UV exposure
+- Indoor tanning can supplement what you're missing
+
+IMPORTANT DISCLAIMER:
+We're not doctors. SAD is a real medical condition. If you're struggling, please consult a healthcare provider. Tanning can be ONE part of a wellness approach, but it's not a substitute for medical treatment.
+
+OUR RECOMMENDATION:
+Talk to your doctor about light therapy. If they support it, our Level 4 beds include red light therapy panels that provide additional non-UV benefits for mood and skin.
+
+SERVICE LINKS:
+- Learn about our tanning beds: /tanning
+- Read about red light therapy: /blog/red-light-therapy-benefits`,
+    keywords: ['tanning for SAD', 'winter depression light therapy', 'vitamin D tanning', 'seasonal affective disorder Ohio'],
+    category: 'People of Eastend',
     created_at: '2026-01-10'
   },
   {
-    id: 'spring-break-base-tan',
-    title: 'Building Your Perfect Spring Break Base Tan - Start in February 2026',
-    meta_description: 'Expert tips on safely building a base tan before spring break. Why February is the ideal time to start, recommended bed progression, and monthly unlimited benefits.',
-    content: `Planning a spring break trip? February 2026 is the perfect time to start building your base tan at Eastend Tanning. Here's how to get beach-ready safely and effectively:
+    id: 'is-eastend-better-than-gym-tanning',
+    title: 'Is Eastend Actually Better Than Gym Tanning? Sarah Switched and Here\'s What Happened.',
+    meta_description: 'A comparison of gym tanning vs. dedicated tanning salons from someone who tried both. Why equipment, staff knowledge, and focus matter for tanning results.',
+    content: `QUESTION: Is Eastend better than gym tanning, or just more expensive?
 
-WHY START IN FEBRUARY:
-Building a quality base tan takes 4-6 weeks of consistent sessions. Starting in early February gives you plenty of time before March spring break trips. Rush tanning in the week before your vacation won't give you results and increases burn risk.
+SHORT ANSWER: Most gym-to-Eastend converts say the difference is "night and day." Better equipment, knowledgeable staff, and faster results typically make dedicated tanning salons worth the switch.
 
-RECOMMENDED PROGRESSION:
-Week 1-2: Start with Level 1 or 2 beds, 8-10 minute sessions, every 48 hours
-Week 3-4: Move up to Level 2 or 3, 10-12 minute sessions
-Week 5-6: Consider Level 3 or Stand-Up for finishing touches
+SARAH'S EXPERIENCE:
+Sarah had been using her gym's tanning beds for two years. The gym charged $15/month extra for "unlimited tanning."
 
-MONTHLY UNLIMITED ADVANTAGE:
-Our monthly unlimited packages are perfect for base tan building. For one flat fee, you can tan as often as your skin allows without worrying about per-session costs. Level 2 Unlimited starts at just $60/month.
+"I figured tanning was tanning. A bed's a bed, right?"
 
-LOTION MATTERS:
-Using quality tanning lotion accelerates your tan and keeps skin moisturized. Our staff can recommend the right lotion for your skin type. We carry accelerators for beginners and bronzers for those seeking deeper color.
+Wrong.
 
-PROTECT YOUR RESULTS:
-After building your base tan, maintain it with 2-3 sessions per week. Your base tan provides natural SPF 2-4 protection, but always use sunscreen on your vacation for extended sun exposure.
+"After two years, I could barely hold a tan. The gym beds were old, the bulbs were dim, and no one on staff knew anything about tanning. I'd ask questions and get shrugs."
 
-Visit Eastend Tanning today and let our expert staff create a personalized base tan plan for your spring break!`,
-    keywords: ['base tan', 'spring break tanning', 'vacation tan', 'February tanning', 'tanning progression', 'Mt Vernon tanning'],
-    category: 'Tanning Tips',
-    created_at: '2026-02-01'
+A coworker recommended Eastend. Sarah was hesitant about paying "extra" for dedicated tanning.
+
+"First session, I noticed the difference immediately. The beds are so much more powerful. The staff actually asked about my skin type, my tanning history, what I wanted to achieve. They recommended a specific bed and lotion."
+
+Three weeks later, Sarah had a better tan than two years at her gym had produced.
+
+"I canceled my gym tanning add-on that day. It's not even close. I was wasting $180/year on something that barely worked."
+
+WHY GYM TANNING OFTEN DISAPPOINTS:
+1. EQUIPMENT: Gyms buy cheap beds, replace bulbs infrequently, skip maintenance
+2. STAFF: No tanning expertise, can't advise on skin types or products
+3. RESTRICTIONS: Often limited hours, blackout periods, bed availability issues
+4. PRIORITY: Tanning is an afterthought, not the business focus
+
+WHY DEDICATED SALONS WORK BETTER:
+1. EQUIPMENT: We invest in professional-grade beds because it's our core business
+2. EXPERTISE: Staff trained in skin type analysis, bed selection, lotion recommendations
+3. MAINTENANCE: Daily cleaning, scheduled bulb replacement, professional servicing
+4. RESULTS: Faster, more consistent tanning with proper guidance
+
+COST COMPARISON:
+- Gym tanning add-on: $10-20/month (but with inferior equipment and results)
+- Eastend Level 2 Unlimited: $60/month VIP (professional equipment, expert staff)
+
+Many customers find they tan less often at Eastend because the beds are more effective - so monthly cost isn't necessarily higher.
+
+SERVICE LINKS:
+- Compare our bed levels: /tanning
+- Take the skin type quiz: /skin-type-evaluation`,
+    keywords: ['gym tanning vs salon', 'best tanning salon comparison', 'why tanning salons are better', 'Eastend vs gym tanning'],
+    category: 'People of Eastend',
+    created_at: '2026-01-08'
   },
   {
-    id: 'red-light-therapy-benefits',
-    title: 'Red Light Therapy Benefits: Beyond Tanning at Eastend',
-    meta_description: 'Explore the science-backed benefits of red light therapy available at Eastend Tanning. From anti-aging and skin health to mood support and muscle recovery.',
-    content: `Red light therapy is one of the most exciting wellness trends, and it's available right here at Eastend Tanning in Mt Vernon. Here's what you need to know:
+    id: 'can-i-relax-at-eastend-or-just-run-errands',
+    title: 'Can I Actually Relax at Eastend, or Is It Just for Errands?',
+    meta_description: 'How Eastend became a "third place" for Mt Vernon residents - somewhere between home and work where people actually want to spend time.',
+    content: `QUESTION: Is Eastend a good place to spend time, not just run errands?
 
-WHAT IS RED LIGHT THERAPY:
+SHORT ANSWER: Absolutely. Many customers consider Eastend their "third place" - somewhere between home and work where they can actually relax. The combination of services, atmosphere, and community makes it more than just transactions.
+
+JADE'S STUDY SPOT:
+Jade is an OSU Knox student who discovered Eastend while doing laundry. Now she comes specifically to study.
+
+"The campus library is loud and crowded. Coffee shops kick you out if you don't keep buying. Eastend? I order a taro milk tea, find a quiet corner, and study for hours. No one bothers me. The WiFi works. It's weirdly perfect."
+
+THE SELF-CARE HOUR:
+Several customers have developed what they call their "self-care hour" at Eastend. A typical routine:
+
+- Arrive, start a tanning session (10-20 minutes depending on bed)
+- Emerge relaxed, grab a cold bubble tea
+- Sit in the comfortable seating area, decompress
+- Maybe get a quick manicure at Fast Nails
+- Leave feeling human again
+
+"During Ohio winters, this is my reset," says one regular. "It's like a mini spa day without spa prices."
+
+THE FAMILY OUTING:
+For families with young kids, Eastend has become a weekend destination:
+
+- Parents do laundry (free drying saves money)
+- Kids get bubble tea as a treat
+- Mom might tan while Dad watches the clothes
+- Everyone leaves in good spirits
+
+"We used to dread laundry day," one mom told us. "Now the kids literally ask when we're going to Eastend. That's wild."
+
+WHY IT WORKS AS A "THIRD PLACE":
+- Multiple reasons to be there (not just one transaction)
+- Comfortable environment (clean, climate-controlled, good seating)
+- Friendly staff (they know regulars, remember preferences)
+- No pressure (stay as long as you want, no purchase minimums)
+- Community feel (you see the same people, connections form)
+
+We didn't design Eastend to be a hangout spot. But our customers made it one, and we're proud of that.
+
+SERVICE LINKS:
+- See all our services: /
+- Explore Fizze drinks: /drinks
+- Learn about tanning: /tanning`,
+    keywords: ['Eastend as third place', 'Mt Vernon hangout spot', 'relaxation at Eastend', 'more than laundromat'],
+    category: 'People of Eastend',
+    created_at: '2026-01-05'
+  }
+];
 Red light therapy uses specific wavelengths of red and near-infrared light (630-850nm) that penetrate the skin and stimulate cellular energy production. Unlike UV tanning, red light is non-damaging and works at the cellular level.
 
 SKIN HEALTH BENEFITS:
