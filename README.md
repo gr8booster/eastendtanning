@@ -129,12 +129,12 @@ yarn start
 
 ## 🌐 Application URLs
 
-- **Frontend**: https://holiday-discounts-2.preview.emergentagent.com
-- **Backend API**: https://holiday-discounts-2.preview.emergentagent.com/api
-- **Admin Dashboard**: https://holiday-discounts-2.preview.emergentagent.com/admin
-- **API Documentation**: https://holiday-discounts-2.preview.emergentagent.com/docs
-- **Sitemap**: https://holiday-discounts-2.preview.emergentagent.com/sitemap.xml
-- **Robots.txt**: https://holiday-discounts-2.preview.emergentagent.com/robots.txt
+- **Frontend**: https://eastend-tanning.preview.emergentagent.com
+- **Backend API**: https://eastend-tanning.preview.emergentagent.com/api
+- **Admin Dashboard**: https://eastend-tanning.preview.emergentagent.com/admin
+- **API Documentation**: https://eastend-tanning.preview.emergentagent.com/docs
+- **Sitemap**: https://eastend-tanning.preview.emergentagent.com/sitemap.xml
+- **Robots.txt**: https://eastend-tanning.preview.emergentagent.com/robots.txt
 
 ## 🔐 Default Credentials
 
@@ -350,7 +350,7 @@ echo $MONGO_URL
 
 ```bash
 # Check service health
-curl https://holiday-discounts-2.preview.emergentagent.com/health
+curl https://eastend-tanning.preview.emergentagent.com/health
 
 # View real-time logs
 supervisorctl tail -f backend stderr

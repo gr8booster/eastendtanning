@@ -483,7 +483,7 @@ const isBlackFridayPeriod = now >= BLACK_FRIDAY_START && now <= BLACK_FRIDAY_END
 ---
 
 ## Preview URL
-https://holiday-discounts-2.preview.emergentagent.com
+https://eastend-tanning.preview.emergentagent.com
 
 ### Key Pages
 - `/` - Home page with dynamic discount banner
