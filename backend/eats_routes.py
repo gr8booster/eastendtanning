@@ -820,3 +820,394 @@ async def get_clients():
     """Get all subscribed clients (admin)"""
     clients = await db.eats_clients.find({"subscribed": True}, {"_id": 0}).to_list(None)
     return {"clients": clients}
+
+
+# ============================================
+# CUSTOMER MESSAGING SYSTEM
+# ============================================
+
+@router.post("/messages/send")
+async def send_customer_message(message: CustomerMessage):
+    """Send message to customers (admin) - stores for display and could trigger email/SMS"""
+    recipients = []
+    
+    if message.recipient_type == "all":
+        # Get all customers from interests, votes, and orders
+        interests = await db.eats_interest.find({}, {"email": 1, "name": 1, "phone": 1}).to_list(None)
+        vote_contacts = await db.eats_vote_contacts.find({}, {"email": 1, "name": 1, "phone": 1}).to_list(None)
+        orders = await db.eats_orders.find({}, {"customer_email": 1, "customer_name": 1, "customer_phone": 1}).to_list(None)
+        
+        seen_emails = set()
+        for item in interests + vote_contacts:
+            if item.get("email") and item["email"] not in seen_emails:
+                recipients.append({"email": item["email"], "name": item.get("name", ""), "phone": item.get("phone", "")})
+                seen_emails.add(item["email"])
+        for item in orders:
+            if item.get("customer_email") and item["customer_email"] not in seen_emails:
+                recipients.append({"email": item["customer_email"], "name": item.get("customer_name", ""), "phone": item.get("customer_phone", "")})
+                seen_emails.add(item["customer_email"])
+                
+    elif message.recipient_type == "interested":
+        interests = await db.eats_interest.find({}, {"email": 1, "name": 1, "phone": 1}).to_list(None)
+        recipients = [{"email": i["email"], "name": i.get("name", ""), "phone": i.get("phone", "")} for i in interests]
+        
+    elif message.recipient_type == "voted":
+        vote_contacts = await db.eats_vote_contacts.find({}, {"email": 1, "name": 1, "phone": 1}).to_list(None)
+        recipients = [{"email": v["email"], "name": v.get("name", ""), "phone": v.get("phone", "")} for v in vote_contacts]
+        
+    elif message.recipient_type == "ordered":
+        orders = await db.eats_orders.find({}, {"customer_email": 1, "customer_name": 1, "customer_phone": 1}).to_list(None)
+        seen = set()
+        for o in orders:
+            if o.get("customer_email") and o["customer_email"] not in seen:
+                recipients.append({"email": o["customer_email"], "name": o.get("customer_name", ""), "phone": o.get("customer_phone", "")})
+                seen.add(o["customer_email"])
+                
+    elif message.recipient_type == "specific" and message.recipient_ids:
+        # Find specific recipients by ID from all collections
+        for rid in message.recipient_ids:
+            interest = await db.eats_interest.find_one({"id": rid})
+            if interest:
+                recipients.append({"email": interest["email"], "name": interest.get("name", ""), "phone": interest.get("phone", "")})
+                continue
+            vote = await db.eats_vote_contacts.find_one({"id": rid})
+            if vote:
+                recipients.append({"email": vote["email"], "name": vote.get("name", ""), "phone": vote.get("phone", "")})
+                continue
+            order = await db.eats_orders.find_one({"id": rid})
+            if order:
+                recipients.append({"email": order["customer_email"], "name": order.get("customer_name", ""), "phone": order.get("customer_phone", "")})
+    
+    # Store the message
+    new_message = {
+        "id": str(uuid.uuid4()),
+        "subject": message.subject,
+        "message": message.message,
+        "message_type": message.message_type,
+        "recipient_type": message.recipient_type,
+        "recipient_count": len(recipients),
+        "recipients": recipients,
+        "sent_at": datetime.now(timezone.utc).isoformat(),
+        "status": "sent"
+    }
+    await db.eats_messages.insert_one(new_message)
+    
+    return {
+        "status": "success",
+        "message_id": new_message["id"],
+        "recipients_count": len(recipients),
+        "recipients": recipients
+    }
+
+@router.get("/messages")
+async def get_messages():
+    """Get all sent messages (admin)"""
+    messages = await db.eats_messages.find({}, {"_id": 0}).sort("sent_at", -1).to_list(100)
+    return {"messages": messages}
+
+@router.get("/messages/customer/{email}")
+async def get_customer_messages(email: str):
+    """Get messages for a specific customer"""
+    messages = await db.eats_messages.find(
+        {"recipients.email": email},
+        {"_id": 0, "id": 1, "subject": 1, "message": 1, "message_type": 1, "sent_at": 1}
+    ).sort("sent_at", -1).to_list(50)
+    return {"messages": messages}
+
+# ============================================
+# CUSTOMER SIGNUP WITH DELIVERY INFO
+# ============================================
+
+@router.post("/customers/signup")
+async def customer_signup_with_delivery(customer: CustomerSignupWithDelivery):
+    """Customer signs up with delivery information"""
+    existing = await db.eats_customers.find_one({"email": customer.email})
+    if existing:
+        # Update existing customer's delivery info
+        await db.eats_customers.update_one(
+            {"email": customer.email},
+            {"$set": {
+                "name": customer.name,
+                "phone": customer.phone,
+                "delivery_address": customer.delivery_address,
+                "delivery_city": customer.delivery_city,
+                "delivery_state": customer.delivery_state,
+                "delivery_zip": customer.delivery_zip,
+                "delivery_instructions": customer.delivery_instructions,
+                "preferred_delivery_day": customer.preferred_delivery_day,
+                "updated_at": datetime.now(timezone.utc).isoformat()
+            }}
+        )
+        return {"status": "success", "message": "Your delivery information has been updated!"}
+    
+    new_customer = {
+        "id": str(uuid.uuid4()),
+        "name": customer.name,
+        "email": customer.email,
+        "phone": customer.phone,
+        "delivery_address": customer.delivery_address,
+        "delivery_city": customer.delivery_city,
+        "delivery_state": customer.delivery_state,
+        "delivery_zip": customer.delivery_zip,
+        "delivery_instructions": customer.delivery_instructions,
+        "preferred_delivery_day": customer.preferred_delivery_day,
+        "total_orders": 0,
+        "created_at": datetime.now(timezone.utc).isoformat(),
+        "updated_at": datetime.now(timezone.utc).isoformat()
+    }
+    await db.eats_customers.insert_one(new_customer)
+    
+    return {
+        "status": "success",
+        "message": "Welcome to 818 EATS! Your delivery information has been saved.",
+        "customer_id": new_customer["id"]
+    }
+
+@router.get("/customers")
+async def get_all_customers():
+    """Get all registered customers (admin)"""
+    customers = await db.eats_customers.find({}, {"_id": 0}).sort("created_at", -1).to_list(None)
+    return {"customers": customers, "total": len(customers)}
+
+@router.get("/customers/{email}")
+async def get_customer_by_email(email: str):
+    """Get customer by email"""
+    customer = await db.eats_customers.find_one({"email": email}, {"_id": 0})
+    if not customer:
+        raise HTTPException(status_code=404, detail="Customer not found")
+    return customer
+
+# ============================================
+# CUSTOMER REVIEWS SYSTEM
+# ============================================
+
+@router.post("/reviews")
+async def submit_review(review: EatsReview):
+    """Submit a customer review"""
+    if review.rating < 1 or review.rating > 5:
+        raise HTTPException(status_code=400, detail="Rating must be between 1 and 5")
+    
+    new_review = {
+        "id": str(uuid.uuid4()),
+        "customer_name": review.customer_name,
+        "customer_email": review.customer_email,
+        "rating": review.rating,
+        "review_text": review.review_text,
+        "dish_ordered": review.dish_ordered,
+        "approved": False,  # Admin must approve
+        "featured": False,
+        "created_at": datetime.now(timezone.utc).isoformat()
+    }
+    await db.eats_reviews.insert_one(new_review)
+    
+    return {
+        "status": "success",
+        "message": "Thank you for your review! It will be visible after approval.",
+        "review_id": new_review["id"]
+    }
+
+@router.get("/reviews")
+async def get_approved_reviews():
+    """Get all approved reviews (public)"""
+    reviews = await db.eats_reviews.find(
+        {"approved": True},
+        {"_id": 0, "customer_email": 0}
+    ).sort("created_at", -1).to_list(50)
+    return {"reviews": reviews}
+
+@router.get("/reviews/featured")
+async def get_featured_reviews():
+    """Get featured 5-star reviews (public)"""
+    reviews = await db.eats_reviews.find(
+        {"approved": True, "rating": 5, "featured": True},
+        {"_id": 0, "customer_email": 0}
+    ).sort("created_at", -1).to_list(10)
+    return {"reviews": reviews}
+
+@router.get("/reviews/all")
+async def get_all_reviews():
+    """Get all reviews including pending (admin)"""
+    reviews = await db.eats_reviews.find({}, {"_id": 0}).sort("created_at", -1).to_list(None)
+    pending = [r for r in reviews if not r.get("approved")]
+    approved = [r for r in reviews if r.get("approved")]
+    return {
+        "reviews": reviews,
+        "pending_count": len(pending),
+        "approved_count": len(approved),
+        "average_rating": sum(r["rating"] for r in approved) / len(approved) if approved else 0
+    }
+
+@router.put("/reviews/{review_id}/approve")
+async def approve_review(review_id: str, approved: bool = True):
+    """Approve or reject a review (admin)"""
+    result = await db.eats_reviews.update_one(
+        {"id": review_id},
+        {"$set": {"approved": approved, "updated_at": datetime.now(timezone.utc).isoformat()}}
+    )
+    if result.modified_count == 0:
+        raise HTTPException(status_code=404, detail="Review not found")
+    return {"status": "success"}
+
+@router.put("/reviews/{review_id}/feature")
+async def feature_review(review_id: str, featured: bool = True):
+    """Feature a review (admin)"""
+    result = await db.eats_reviews.update_one(
+        {"id": review_id},
+        {"$set": {"featured": featured, "updated_at": datetime.now(timezone.utc).isoformat()}}
+    )
+    if result.modified_count == 0:
+        raise HTTPException(status_code=404, detail="Review not found")
+    return {"status": "success"}
+
+# ============================================
+# DELIVERY NOTIFICATIONS
+# ============================================
+
+@router.post("/orders/{order_id}/delivery-notification")
+async def send_delivery_notification(order_id: str, delivery_date: str, delivery_time: str = "12:00 PM - 2:00 PM"):
+    """Send delivery notification for an order (admin)"""
+    order = await db.eats_orders.find_one({"id": order_id})
+    if not order:
+        raise HTTPException(status_code=404, detail="Order not found")
+    
+    # Update order with delivery info
+    await db.eats_orders.update_one(
+        {"id": order_id},
+        {"$set": {
+            "delivery_date": delivery_date,
+            "delivery_time": delivery_time,
+            "delivery_notified": True,
+            "delivery_notified_at": datetime.now(timezone.utc).isoformat(),
+            "updated_at": datetime.now(timezone.utc).isoformat()
+        }}
+    )
+    
+    # Create notification message
+    notification = {
+        "id": str(uuid.uuid4()),
+        "order_id": order_id,
+        "customer_email": order["customer_email"],
+        "customer_name": order["customer_name"],
+        "customer_phone": order["customer_phone"],
+        "subject": f"🍽️ Your 818 EATS Order is Coming on {delivery_date}!",
+        "message": f"Great news! Your order (#{order['order_number']}) will be delivered on {delivery_date} between {delivery_time}. Please ensure someone is available to receive the delivery at {order['customer_address']}.",
+        "notification_type": "delivery",
+        "sent_at": datetime.now(timezone.utc).isoformat()
+    }
+    await db.eats_notifications.insert_one(notification)
+    
+    return {
+        "status": "success",
+        "message": f"Delivery notification sent to {order['customer_name']}",
+        "notification_id": notification["id"]
+    }
+
+@router.post("/batch/{batch_id}/delivery-notification")
+async def send_batch_delivery_notification(batch_id: str, delivery_date: str, delivery_time: str = "12:00 PM - 2:00 PM"):
+    """Send delivery notification to all customers in a batch (admin)"""
+    orders = await db.eats_orders.find({"batch_id": batch_id}).to_list(None)
+    if not orders:
+        raise HTTPException(status_code=404, detail="No orders found for this batch")
+    
+    notifications_sent = 0
+    for order in orders:
+        # Update order
+        await db.eats_orders.update_one(
+            {"id": order["id"]},
+            {"$set": {
+                "delivery_date": delivery_date,
+                "delivery_time": delivery_time,
+                "delivery_notified": True,
+                "delivery_notified_at": datetime.now(timezone.utc).isoformat()
+            }}
+        )
+        
+        # Create notification
+        notification = {
+            "id": str(uuid.uuid4()),
+            "order_id": order["id"],
+            "batch_id": batch_id,
+            "customer_email": order["customer_email"],
+            "customer_name": order["customer_name"],
+            "customer_phone": order["customer_phone"],
+            "subject": f"🍽️ Your 818 EATS Order is Coming on {delivery_date}!",
+            "message": f"Great news! Your order (#{order['order_number']}) will be delivered on {delivery_date} between {delivery_time}.",
+            "notification_type": "delivery",
+            "sent_at": datetime.now(timezone.utc).isoformat()
+        }
+        await db.eats_notifications.insert_one(notification)
+        notifications_sent += 1
+    
+    return {
+        "status": "success",
+        "message": f"Delivery notifications sent to {notifications_sent} customers",
+        "batch_id": batch_id,
+        "delivery_date": delivery_date
+    }
+
+# ============================================
+# PAY NOW FOR INTERESTED CUSTOMERS
+# ============================================
+
+@router.post("/interest/{interest_id}/convert-to-order")
+async def convert_interest_to_order(interest_id: str, delivery_address: str, tip: float = 0):
+    """Convert an interest signup to a paid order"""
+    interest = await db.eats_interest.find_one({"id": interest_id})
+    if not interest:
+        raise HTTPException(status_code=404, detail="Interest record not found")
+    
+    # Get dish names
+    dish_names = interest.get("interested_dish_names", [])
+    dish_ids = interest.get("interested_dishes", [])
+    
+    # Create order from interest
+    item_price = 25.00
+    delivery_fee = 5.99
+    tax = round(item_price * 0.08, 2)
+    total = round(item_price + delivery_fee + tax + tip, 2)
+    
+    now = datetime.now(timezone.utc)
+    week_number = now.isocalendar()[1]
+    year = now.year
+    batch_id = f"{year}-W{week_number:02d}"
+    
+    new_order = {
+        "id": str(uuid.uuid4()),
+        "order_number": f"818-{str(uuid.uuid4())[:8].upper()}",
+        "customer_name": interest["name"],
+        "customer_phone": interest["phone"],
+        "customer_email": interest["email"],
+        "customer_address": delivery_address,
+        "rank_1": dish_ids[0] if len(dish_ids) > 0 else None,
+        "rank_1_name": dish_names[0] if len(dish_names) > 0 else None,
+        "rank_2": dish_ids[1] if len(dish_ids) > 1 else None,
+        "rank_2_name": dish_names[1] if len(dish_names) > 1 else None,
+        "rank_3": dish_ids[2] if len(dish_ids) > 2 else None,
+        "rank_3_name": dish_names[2] if len(dish_names) > 2 else None,
+        "delivery_preference": "first_available",
+        "quantity": 1,
+        "item_price": item_price,
+        "subtotal": item_price,
+        "delivery_fee": delivery_fee,
+        "tax": tax,
+        "tip": tip,
+        "total": total,
+        "batch_id": batch_id,
+        "status": "pending_payment",
+        "converted_from_interest": interest_id,
+        "created_at": now.isoformat(),
+        "updated_at": now.isoformat()
+    }
+    await db.eats_orders.insert_one(new_order)
+    
+    # Mark interest as converted
+    await db.eats_interest.update_one(
+        {"id": interest_id},
+        {"$set": {"converted_to_order": True, "converted_order_id": new_order["id"], "updated_at": now.isoformat()}}
+    )
+    
+    return {
+        "status": "success",
+        "message": "Interest converted to order. Please complete payment.",
+        "order": new_order
+    }
