@@ -13,7 +13,7 @@ from typing import Optional
 router = APIRouter(prefix="/api/auth")
 
 # Get admin password from environment
-ADMIN_PASSWORD = os.environ.get('ADMIN_PASSWORD', 'eastend2025')
+ADMIN_PASSWORD = os.environ.get('ADMIN_PASSWORD', 'eastend2026')
 SECRET_KEY = os.environ.get('JWT_SECRET_KEY', 'your-secret-key-change-in-production')
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 480  # 8 hours

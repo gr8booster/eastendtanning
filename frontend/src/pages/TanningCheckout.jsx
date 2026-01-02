@@ -56,7 +56,7 @@ export default function TanningCheckout() {
   const [processing, setProcessing] = useState(false);
   
   // Check if Black Friday is active
-  const BLACK_FRIDAY_END = new Date('2025-12-01T23:59:59');
+  const BLACK_FRIDAY_END = new Date('2026-12-01T23:59:59');
   const isBlackFridayActive = new Date() < BLACK_FRIDAY_END;
 
   const getPrice = () => {
@@ -281,7 +281,7 @@ export default function TanningCheckout() {
                           : ' (2x packages for the price of 1 + $5)'}
                       </p>
                       <p className="text-xs text-yellow-700 mt-2">
-                        ✓ Valid through December 1st, 2025 • ✓ Same bed level, same package type
+                        ✓ Valid through December 1st, 2026 • ✓ Same bed level, same package type
                       </p>
                     </div>
                   </div>

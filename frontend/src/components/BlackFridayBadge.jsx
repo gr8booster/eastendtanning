@@ -5,8 +5,8 @@ import { useNavigate } from 'react-router-dom';
 export function BlackFridayBadge({ className = '', onClick }) {
   const navigate = useNavigate();
   
-  // Expiration date: December 1st, 2025
-  const EXPIRATION_DATE = new Date('2025-12-01T23:59:59');
+  // Expiration date: December 1st, 2026
+  const EXPIRATION_DATE = new Date('2026-12-01T23:59:59');
   const now = new Date();
   
   // Don't show if expired
