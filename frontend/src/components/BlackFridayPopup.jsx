@@ -10,16 +10,20 @@ export function BlackFridayPopup() {
   const [timeRemaining, setTimeRemaining] = useState('');
   const navigate = useNavigate();
 
-  // Expiration date: December 1st, 2026, 11:59 PM
-  const EXPIRATION_DATE = new Date('2026-12-01T23:59:59');
+  // Black Friday period: November 28 - December 1
+  const currentYear = new Date().getFullYear();
+  const BLACK_FRIDAY_START = new Date(`${currentYear}-11-28T00:00:00`);
+  const BLACK_FRIDAY_END = new Date(`${currentYear}-12-01T23:59:59`);
 
   useEffect(() => {
     // Check if popup was already shown
     const popupShown = sessionStorage.getItem('blackFridayPopupShown');
     const currentDate = new Date();
     
-    // Only show if before expiration and not shown this session
-    if (!popupShown && currentDate < EXPIRATION_DATE) {
+    // Only show during Black Friday period (Nov 28 - Dec 1) and not shown this session
+    const isBlackFridayPeriod = currentDate >= BLACK_FRIDAY_START && currentDate <= BLACK_FRIDAY_END;
+    
+    if (!popupShown && isBlackFridayPeriod) {
       // Show popup after 3 seconds
       const timer = setTimeout(() => {
         setIsOpen(true);
