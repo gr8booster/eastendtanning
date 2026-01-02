@@ -277,62 +277,53 @@ export const StaticFallback = ({ page }) => {
     },
 
     blog: {
-      h1: "People of Eastend - Real Stories from Mt Vernon's Tanning-Centered Hub",
-      intro: "Who comes to Eastend? These stories answer real questions about what it's like to use our services—from tanning (our primary service) to laundry, drinks, and more. Each story features a real customer pattern and links back to relevant services, especially tanning.",
-      sections: [
+      h1: "People of Eastend",
+      intro: "People of Eastend shares real stories from customers and locals who use Eastend for tanning, laundry, drinks, and self-care. Each story answers common questions about what Eastend is like, who it's for, and how people use multiple services in one visit.",
+      blogIndex: [
         {
-          h2: "What kind of people come to Eastend for tanning?",
-          content: "Everyone. College students preparing for spring break. Working professionals maintaining year-round color. People struggling with winter blues who find tanning helps their mood. First-timers nervous about their skin type getting patient guidance. Experienced tanners who trust our professional equipment. Tanning is our primary service and the main reason people discover us—but once they're here, they often discover our complementary services too."
+          id: "can-tanning-help-winter-depression",
+          title: "Can Tanning Actually Help With Winter Depression? Tom Found Out.",
+          date: "January 15, 2026",
+          excerpt: "Many customers report improved mood, energy, and sleep during Ohio winters after regular tanning sessions. UV exposure triggers vitamin D and serotonin production. This story follows Tom, a night-shift factory worker who discovered tanning as part of his winter wellness routine.",
+          link: "/blog/can-tanning-help-winter-depression",
+          tanningLink: "/tanning",
+          tanningLinkText: "Learn about tanning for winter wellness"
         },
         {
-          h2: "How do people combine services at Eastend?",
-          content: "The most common pattern: Start laundry, tan during the wash cycle (10-20 minutes), grab a bubble tea, fold clothes (dryers are free). Others come purely for tanning and discover the convenience of doing errands in the same trip. Some discover tanning after coming for laundry. The complementary services work together, but tanning is the anchor that defines who we are."
+          id: "is-eastend-better-than-gym-tanning",
+          title: "Is Eastend Actually Better Than Gym Tanning? Sarah Switched.",
+          date: "January 12, 2026",
+          excerpt: "Most gym-to-Eastend converts say the difference is 'night and day.' We're tanning specialists with professional equipment and trained staff, not a gym treating tanning as an afterthought. Sarah's story shows what happens when you switch from gym tanning to a dedicated salon.",
+          link: "/blog/is-eastend-better-than-gym-tanning",
+          tanningLink: "/tanning",
+          tanningLinkText: "Compare our professional tanning beds"
         },
         {
-          h2: "Is Eastend just for errands, or can I actually relax there?",
-          content: "Many customers consider Eastend their 'third place'—somewhere between home and work where they actually want to spend time. A typical self-care visit: tan (warm and relaxing), grab a cold bubble tea (refreshing contrast), maybe get a quick manicure, leave feeling reset. It's not spa prices, but it's more than just transactions. The tanning experience is inherently relaxing, and the complementary services extend that feeling."
-        }
-      ],
-      stories: [
-        {
-          question: "Can tanning actually help with winter depression?",
-          answer: "Many customers report improved mood, energy, and sleep during Ohio winters after regular tanning sessions. UV exposure triggers vitamin D and serotonin production. While we recommend consulting doctors for SAD, countless customers tell us tanning helps them feel better.",
-          title: "How Tom Survived Ohio Winter",
-          fullStory: "Tom works night shift at a Knox County factory. For years, he struggled during winters—no energy, bad mood, poor sleep. His doctor suggested light therapy. A coworker mentioned Eastend's tanning beds. 'I thought tanning was for beach people, not guys like me.' But after a few sessions, something shifted. 'I'd come in, spend 15 minutes in the bed, and leave feeling like I'd seen sunshine.' Tom now has a monthly unlimited package and calls his sessions 'maintenance for my brain.'",
-          serviceLink: "/tanning",
-          serviceName: "Learn about tanning for winter wellness"
+          id: "what-is-laundry-like-at-eastend",
+          title: "What's It Actually Like Doing Laundry at Eastend?",
+          date: "January 10, 2026",
+          excerpt: "It's not just laundry—it's a mini break. Many customers start laundry, tan during the wash cycle, grab a drink, then fold. The FREE drying saves money, and combining with tanning saves time. Maria's Saturday routine shows how families turn laundromat day into something they look forward to.",
+          link: "/blog/what-is-laundry-like-at-eastend",
+          tanningLink: "/tanning",
+          tanningLinkText: "Add tanning to your laundry visit"
         },
         {
-          question: "Is Eastend better than gym tanning?",
-          answer: "Most gym-to-Eastend converts say the difference is 'night and day.' We're tanning specialists with professional equipment and trained staff, not a gym treating tanning as an afterthought with outdated beds.",
-          title: "Why Sarah Switched from Her Gym",
-          fullStory: "Sarah used her gym's tanning for two years. 'I figured tanning was tanning.' Then she tried Eastend. 'First session, I noticed the difference. The beds are more powerful. Staff actually asked about my skin type.' Within three weeks, she had a better tan than two years at her gym. 'I canceled my gym tanning add-on that day. It's not even close.'",
-          serviceLink: "/tanning",
-          serviceName: "Compare our tanning beds"
+          id: "who-comes-to-eastend-for-tanning",
+          title: "What Kind of People Come to Eastend for Tanning?",
+          date: "January 8, 2026",
+          excerpt: "Everyone from first-time tanners preparing for weddings to experienced regulars maintaining year-round color. Many come specifically for winter mood support. Tanning is our primary service and attracts diverse customers—here's who you'll meet.",
+          link: "/blog/who-comes-to-eastend-for-tanning",
+          tanningLink: "/tanning",
+          tanningLinkText: "See our tanning bed options"
         },
         {
-          question: "What's it like doing laundry at Eastend?",
-          answer: "It's not just laundry—it's a mini break. Many customers start laundry, tan during the wash cycle, grab a drink, then fold. The free drying saves money, and combining errands saves time.",
-          title: "Maria's Saturday Routine",
-          fullStory: "Maria is a single mom with two kids. Every Saturday, they head to Eastend. 'I load the washers, tan while they run, the kids get bubble tea. Dryers are free, so I save about $10 per visit. What used to be a dreaded chore became something we look forward to.' The combination of services turned laundry day into family time.",
-          serviceLink: "/tanning",
-          serviceName: "Add tanning to your laundry visit"
-        },
-        {
-          question: "Who goes to Eastend for bubble tea?",
-          answer: "Originally, Fizze was added for tanning customers who wanted something refreshing after their sessions. Now students come to study with a drink, families make it a treat, and it's become part of the Eastend experience.",
-          title: "Jade's Favorite Study Spot",
-          fullStory: "Jade is an OSU Knox student who discovered Fizze while doing laundry. 'I tried taro milk tea on a whim and got hooked.' Now she often brings her laptop to study. 'It's quieter than campus, the drinks are amazing, and I can do laundry at the same time.' She's since tried tanning too—'the winter sessions really help my mood.'",
-          serviceLink: "/tanning",
-          serviceName: "Try tanning while you're here"
-        },
-        {
-          question: "Can I actually relax at Eastend?",
-          answer: "Absolutely. Many customers have developed 'self-care routines' at Eastend: tan (warm and relaxing), grab a cold drink (refreshing), maybe get nails done, leave feeling reset. It's become a third place for Mt Vernon residents.",
-          title: "The Self-Care Hour",
-          fullStory: "Several customers describe their 'self-care hour' at Eastend. One regular explains: 'During Ohio winters, this is my reset. I tan for 15 minutes, grab a bubble tea, sometimes get a quick manicure. It's like a mini spa day without spa prices. The tanning especially—that warmth and light during gray Ohio winters—it's maintenance for my mental health.'",
-          serviceLink: "/tanning",
-          serviceName: "Start with a tanning session"
+          id: "can-i-relax-at-eastend",
+          title: "Can I Actually Relax at Eastend, or Is It Just for Errands?",
+          date: "January 5, 2026",
+          excerpt: "Absolutely. Many customers have developed 'self-care routines' at Eastend: tan (warm and relaxing), grab a cold drink, maybe get nails done. The tanning experience is inherently relaxing, and complementary services extend that feeling. Here's how locals turn a visit into reset time.",
+          link: "/blog/can-i-relax-at-eastend",
+          tanningLink: "/tanning",
+          tanningLinkText: "Begin your self-care routine with tanning"
         }
       ],
       internalLinks: [
