@@ -155,50 +155,6 @@ export default function Blog() {
               </article>
             ))}
           </div>
-          
-          {/* Dynamic posts from API (if any) */}
-          {!loading && posts.filter(p => !staticArticles.find(s => s.id === p.id)).length > 0 && (
-            <div className="mt-12 pt-8 border-t border-slate-300">
-              <h2 className="text-xl font-bold text-slate-700 mb-6">More Stories</h2>
-              <div className="grid md:grid-cols-2 gap-6">
-                {posts.filter(p => !staticArticles.find(s => s.id === p.id)).map(post => (
-                  <Card key={post.id} className="p-5 hover:shadow-lg transition-shadow">
-                    <p className="text-sm text-slate-500 mb-2 flex items-center gap-2">
-                      <Calendar className="w-3 h-3" />
-                      {formatDate(post.created_at)}
-                    </p>
-                    <h3 className="text-lg font-bold text-slate-800 mb-2">
-                      <Link to={`/blog/${post.id}`} className="hover:text-teal-600">
-                        {post.title}
-                      </Link>
-                    </h3>
-                    <p className="text-slate-600 text-sm line-clamp-2 mb-3">
-                      {post.meta_description}
-                    </p>
-                    <Link to={`/blog/${post.id}`} className="text-teal-600 hover:text-teal-700 text-sm font-medium">
-                      Read more →
-                    </Link>
-                  </Card>
-                ))}
-              </div>
-            </div>
-          )}
-        </div>
-      </section>
-      
-      {/* Call to Action - Link back to tanning */}
-      <section className="py-12 px-4 bg-amber-50">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-2xl font-bold text-slate-800 mb-4">Ready to Experience Eastend?</h2>
-          <p className="text-slate-600 mb-6">
-            Start with our primary service—indoor tanning. Then discover how our complementary services make your visit even better.
-          </p>
-          <Link to="/tanning">
-            <Button className="bg-amber-600 hover:bg-amber-700 text-white px-8 py-3 text-lg">
-              <Sun className="w-5 h-5 mr-2" />
-              Explore Tanning Services
-            </Button>
-          </Link>
         </div>
       </section>
     </div>
