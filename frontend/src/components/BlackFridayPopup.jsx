@@ -37,7 +37,7 @@ export function BlackFridayPopup() {
   useEffect(() => {
     const updateCountdown = () => {
       const now = new Date();
-      const diff = EXPIRATION_DATE - now;
+      const diff = BLACK_FRIDAY_END - now;
       
       if (diff <= 0) {
         setTimeRemaining('EXPIRED');
