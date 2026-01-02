@@ -829,29 +829,6 @@ export default function EatsOrdering() {
         </div>
       </section>
 
-      {/* Shareable Partner Signup Link Section */}
-      <section className="py-12 bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--secondary))] text-white" data-testid="partner-link-section">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="font-serif text-3xl font-bold mb-4">Know a Restaurant or Kitchen?</h2>
-          <p className="text-lg text-white/90 mb-6 max-w-2xl mx-auto">
-            Share this link with restaurants, home kitchens, or caterers who specialize in African cuisine. They can sign up to become our partner!
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Card className="p-4 bg-white/10 backdrop-blur border-white/20 flex items-center gap-3">
-              <Globe className="w-5 h-5 text-white/80" />
-              <code className="text-sm text-white">{typeof window !== 'undefined' ? `${window.location.origin}/eats/partner-signup` : '/eats/partner-signup'}</code>
-            </Card>
-            <Button 
-              onClick={copyPartnerLink}
-              className={linkCopied ? "bg-green-500 hover:bg-green-600" : "bg-white text-[hsl(var(--secondary))] hover:bg-white/90"}
-              data-testid="copy-partner-link-btn"
-            >
-              {linkCopied ? <><CheckCircle2 className="w-4 h-4 mr-2" /> Copied!</> : 'Copy Link for Messenger'}
-            </Button>
-          </div>
-        </div>
-      </section>
-
       {/* Customer Reviews Section */}
       <section className="py-16 bg-white" data-testid="reviews-section">
         <div className="container mx-auto px-4">
