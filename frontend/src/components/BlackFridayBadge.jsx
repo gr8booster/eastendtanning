@@ -5,12 +5,15 @@ import { useNavigate } from 'react-router-dom';
 export function BlackFridayBadge({ className = '', onClick }) {
   const navigate = useNavigate();
   
-  // Expiration date: December 1st, 2026
-  const EXPIRATION_DATE = new Date('2026-12-01T23:59:59');
+  // Black Friday period: November 28 - December 1
+  const currentYear = new Date().getFullYear();
+  const BLACK_FRIDAY_START = new Date(`${currentYear}-11-28T00:00:00`);
+  const BLACK_FRIDAY_END = new Date(`${currentYear}-12-01T23:59:59`);
   const now = new Date();
   
-  // Don't show if expired
-  if (now >= EXPIRATION_DATE) return null;
+  // Only show during Black Friday period (Nov 28 - Dec 1)
+  const isBlackFridayPeriod = now >= BLACK_FRIDAY_START && now <= BLACK_FRIDAY_END;
+  if (!isBlackFridayPeriod) return null;
   
   const handleClick = () => {
     if (onClick) {
