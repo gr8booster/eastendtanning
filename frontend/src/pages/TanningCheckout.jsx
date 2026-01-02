@@ -55,9 +55,12 @@ export default function TanningCheckout() {
   });
   const [processing, setProcessing] = useState(false);
   
-  // Check if Black Friday is active
-  const BLACK_FRIDAY_END = new Date('2026-12-01T23:59:59');
-  const isBlackFridayActive = new Date() < BLACK_FRIDAY_END;
+  // Check if Black Friday is active (Nov 28 - Dec 1)
+  const currentYear = new Date().getFullYear();
+  const BLACK_FRIDAY_START = new Date(`${currentYear}-11-28T00:00:00`);
+  const BLACK_FRIDAY_END = new Date(`${currentYear}-12-01T23:59:59`);
+  const now = new Date();
+  const isBlackFridayActive = now >= BLACK_FRIDAY_START && now <= BLACK_FRIDAY_END;
 
   const getPrice = () => {
     return TANNING_PRICES[selectedLevel]?.[selectedPackage] || 0;
