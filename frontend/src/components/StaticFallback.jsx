@@ -503,11 +503,10 @@ export const StaticFallback = ({ page }) => {
         {/* Blog index for crawlers */}
         {isBlogPage && data.blogIndex && data.blogIndex.map((story, i) => (
           <article key={i}>
-            <h2>{story.title}</h2>
-            <p>Published: {story.date}</p>
+            <h2><a href={story.link}>{story.title}</a></h2>
+            <time dateTime={story.datetime}>{story.date}</time>
             <p>{story.excerpt}</p>
-            <a href={story.link}>Read the full story</a>
-            <a href={story.tanningLink}>{story.tanningLinkText}</a>
+            <a href={story.serviceLink}>{story.serviceLinkText}</a>
           </article>
         ))}
         
