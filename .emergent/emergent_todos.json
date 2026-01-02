@@ -1,22 +1,30 @@
 [
   {
-    "content": "Find Mary chatbot implementation",
-    "status": "completed"
+    "content": "View current Admin.jsx to understand existing structure",
+    "status": "in_progress"
   },
   {
-    "content": "Update Mary to use dynamic holiday discount system",
-    "status": "completed"
+    "content": "Add Review Moderation UI to Admin (approve/feature reviews)",
+    "status": "pending"
   },
   {
-    "content": "Update all 2025 references to 2026",
-    "status": "completed"
+    "content": "Add Customer Database View to Admin",
+    "status": "pending"
   },
   {
-    "content": "Ensure Mary has access to current website data",
-    "status": "completed"
+    "content": "Add Messaging System UI to Admin",
+    "status": "pending"
   },
   {
-    "content": "Test Mary's responses with current deals",
-    "status": "completed"
+    "content": "Add Delivery Notification UI to Admin",
+    "status": "pending"
+  },
+  {
+    "content": "Add Shareable Partner Link to Admin",
+    "status": "pending"
+  },
+  {
+    "content": "Test all new Admin features",
+    "status": "pending"
   }
 ]
