@@ -60,6 +60,34 @@ export default function EatsOrdering() {
     phone: ''
   });
   
+  // Reviews state
+  const [reviews, setReviews] = useState([]);
+  const [showReviewModal, setShowReviewModal] = useState(false);
+  const [reviewForm, setReviewForm] = useState({
+    customer_name: '',
+    customer_email: '',
+    rating: 5,
+    review_text: '',
+    dish_ordered: ''
+  });
+  
+  // Customer signup with delivery state
+  const [showCustomerSignupModal, setShowCustomerSignupModal] = useState(false);
+  const [customerSignupForm, setCustomerSignupForm] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    delivery_address: '',
+    delivery_city: 'Mt Vernon',
+    delivery_state: 'OH',
+    delivery_zip: '',
+    delivery_instructions: '',
+    preferred_delivery_day: ''
+  });
+  
+  // Shareable link state
+  const [linkCopied, setLinkCopied] = useState(false);
+  
   const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
   useEffect(() => {
