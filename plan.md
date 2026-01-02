@@ -1,7 +1,7 @@
 # Eastend Tanning & Laundry - Development Plan
 
 ## Current Session Summary
-This session focused on eleven main areas:
+This session focused on twelve main areas:
 1. Freshening up the tanning section for 2026 peak season with SAD information and SEO updates
 2. Fixing SEO links to go directly to Eastend Tanning (not competitor searches)
 3. Updating 818 EATS voting to require contact info BEFORE voting (builds customer database)
@@ -11,8 +11,72 @@ This session focused on eleven main areas:
 7. Mary AI Assistant dynamic discount integration - Mary now promotes current deals automatically
 8. Complete Admin Panel UI for 818 EATS management (reviews, customers, messaging, notifications)
 9. Fixed Black Friday components to only show during actual Black Friday period (Nov 28 - Dec 1)
-10. **REFINED**: SEO/AEO static content strategy with tanning-centered business identity
-11. **NEW**: Clear location separation between Eastend (full services) and Westend (laundry only)
+10. SEO/AEO static content strategy with tanning-centered business identity
+11. Clear location separation between Eastend (full services) and Westend (laundry only)
+12. Static blog correction - /blog is now a TRUE BLOG INDEX with proper structure
+
+---
+
+## Phase: Static Blog Index Correction — Status: COMPLETED ✅
+
+### Objectives
+- Convert /blog into a true static blog index that supports SEO and AEO
+- Ensure blog is readable, indexable, and summarizable by search engines and AI systems
+- Make /blog unmistakably a blog index, not a service page or business overview
+
+### Completed Work
+
+1. **Static Blog Introduction** (Blog.jsx)
+   - Clear H1: "People of Eastend"
+   - Static introduction text: "People of Eastend shares real stories from customers and locals who use Eastend for tanning, laundry, drinks, and self-care. Each story answers common questions about what Eastend is like, who it's for, and how people use multiple services in one visit."
+   - Secondary paragraph: "Tanning is our primary service—the anchor that brings people in."
+   - Prominent link: "Learn about our tanning services →"
+
+2. **Static Blog Index Structure** (Blog.jsx)
+   - Each story entry includes:
+     - **H2 Title**: Clickable link to full story
+     - **Published Date**: "Published: January 15, 2026" format
+     - **Answer-First Excerpt**: 2-3 sentences answering a real question first, then introducing the story
+     - **"Read the full story →"**: Link to individual story page
+     - **Internal Link to /tanning**: Every story has a tanning-related link
+
+3. **5 Static Stories with Proper Excerpts**:
+
+   | Story Title | Question Answered | Tanning Link |
+   |-------------|-------------------|--------------|
+   | Can Tanning Actually Help With Winter Depression? Tom Found Out. | Can tanning help with SAD? | "Explore tanning for winter wellness" |
+   | Is Eastend Actually Better Than Gym Tanning? Sarah Switched. | Is a dedicated salon better than gym tanning? | "Compare our professional tanning beds" |
+   | What's It Actually Like Doing Laundry at Eastend? | What makes Eastend Laundry different? | "Add tanning to your laundry visit" |
+   | What Kind of People Come to Eastend for Tanning? | Who uses indoor tanning? | "See our tanning bed options" |
+   | Can I Actually Relax at Eastend, or Is It Just for Errands? | Is Eastend a place to relax? | "Begin your self-care routine with tanning" |
+
+4. **StaticFallback Blog Index** (StaticFallback.jsx)
+   - Added `blogIndex` array with all 5 stories
+   - Each entry includes: id, title, date, excerpt, link, tanningLink, tanningLinkText
+   - Noscript rendering shows proper blog index structure with H2 titles, dates, excerpts, and links
+   - Hidden crawlable content includes full blog index for search engines
+   - Conditional rendering: `isBlogPage` check ensures blog gets blog-specific layout
+
+5. **Updated sitemap.xml**
+   - Path: `/blog` (not `/people-of-eastend`)
+   - Priority: 0.8
+
+### Validation Criteria Met
+
+| Criterion | Status |
+|-----------|--------|
+| Search engines can see list of individual blog stories without JavaScript | ✅ |
+| Each story clearly answers a real-world question | ✅ |
+| AI systems can summarize "People of Eastend" as community stories tied to tanning | ✅ |
+| /blog is unmistakably a blog index, not a service page | ✅ |
+| Every story links to /tanning | ✅ |
+| Answer-first excerpts (2-3 sentences) | ✅ |
+| Static introduction at top (visible without interaction) | ✅ |
+
+### Files Modified
+- `/app/frontend/src/pages/Blog.jsx` - Complete rewrite as true blog index with static story list
+- `/app/frontend/src/components/StaticFallback.jsx` - Added blogIndex array and conditional blog rendering
+- `/app/frontend/public/sitemap.xml` - Changed to /blog path
 
 ---
 
@@ -79,29 +143,20 @@ Each page now clearly states which services are available at which location. Wes
    - Location separation with distinct Schema.org markup for each location
    - Each page explains how services work together with tanning as anchor
    - Separate LocalBusiness schema for Eastend and Laundromat schema for Westend
+   - blogIndex array for proper blog index rendering
 
 2. **Updated sitemap.xml** (`/app/frontend/public/sitemap.xml`)
    - `/tanning` at **0.95 priority** (highest after homepage)
    - Complementary services at 0.6-0.8 priority
-   - `/people-of-eastend` path (was `/blog`)
+   - `/blog` path for People of Eastend
    - `/westend-laundry` clearly separate
    - `/fast-nails` and `/food-truck-stop` as distinct URLs
 
-3. **People of Eastend Stories Reframed** (`/app/frontend/src/pages/Blog.jsx`)
-   - New tagline: "Real Stories • Real Questions • Real Answers"
-   - New subtitle: "Eastend is a tanning-centered hub with complementary services. These stories from real customers answer common questions—especially about tanning, our primary service."
-   - Prominent CTA: "Explore Tanning (Primary Service)" with arrow
-   - Each story now has explicit Q&A format:
-     - **Question**: Clear question being answered
-     - **Short Answer**: 2-3 sentence direct answer
-     - **Story**: Human narrative with specific details
-     - **Primary Link**: Always links to `/tanning` first
-   - 5 tanning-focused stories:
-     - "Can Tanning Actually Help With Winter Depression? Tom Found Out."
-     - "Is Eastend Actually Better Than Gym Tanning? Sarah Switched."
-     - "What's It Actually Like Doing Laundry at Eastend?" (links to tanning)
-     - "What Kind of People Come to Eastend for Tanning?"
-     - "Can I Actually Relax at Eastend, or Is It Just for Errands?" (tanning as relaxation anchor)
+3. **People of Eastend as True Blog Index** (`/app/frontend/src/pages/Blog.jsx`)
+   - Static introduction explaining what the blog is
+   - Static list of 5 stories with H2 titles, dates, answer-first excerpts
+   - Every story links to /tanning
+   - CTA at bottom: "Explore Tanning Services"
 
 ### Validation Criteria Met
 
@@ -114,10 +169,11 @@ Each page now clearly states which services are available at which location. Wes
 | Tanning has most prominent placement and most detailed content | ✅ |
 | Complementary services explained as supporting the hub model | ✅ |
 | Internal links prioritize `/tanning` | ✅ |
+| /blog is a true blog index, not a service page | ✅ |
 
 ### Files Modified
-- `/app/frontend/src/components/StaticFallback.jsx` - Complete rewrite with tanning-centered identity
-- `/app/frontend/src/pages/Blog.jsx` - Reframed with explicit Q&A and tanning links
+- `/app/frontend/src/components/StaticFallback.jsx` - Complete rewrite with tanning-centered identity + blogIndex
+- `/app/frontend/src/pages/Blog.jsx` - Reframed as true blog index with static content
 - `/app/frontend/public/sitemap.xml` - Updated URL structure and priorities
 
 ---
@@ -347,12 +403,12 @@ const isBlackFridayPeriod = now >= BLACK_FRIDAY_START && now <= BLACK_FRIDAY_END
         │   ├── BlackFridayPopup.jsx       # Shows only Nov 28 - Dec 1
         │   ├── BlackFridayBadge.jsx       # Shows only Nov 28 - Dec 1
         │   ├── MaryWellChat.jsx           # Mary chat UI
-        │   └── StaticFallback.jsx         # SEO/AEO static content (tanning-centered)
+        │   └── StaticFallback.jsx         # SEO/AEO static content (tanning-centered + blogIndex)
         ├── pages/
         │   ├── Tanning.jsx             # Primary service page (most depth)
         │   ├── TanningCheckout.jsx     # BOGO only during Black Friday
         │   ├── Home.jsx                # Homepage with discount banner
-        │   ├── Blog.jsx                # "People of Eastend" with Q&A stories
+        │   ├── Blog.jsx                # "People of Eastend" TRUE BLOG INDEX
         │   ├── EatsOrdering.jsx        # Full ordering page with reviews, signup
         │   ├── PartnerSignup.jsx       # Restaurant partner signup
         │   └── Admin.jsx               # Admin dashboard with complete EATS management
@@ -361,7 +417,7 @@ const isBlackFridayPeriod = now >= BLACK_FRIDAY_START && now <= BLACK_FRIDAY_END
         │   ├── seoSchemas.js           # 2026 SEO schemas
         │   └── faqSchemas.js           # 2026 FAQs with SAD
         └── public/
-            └── sitemap.xml             # Static sitemap (/tanning at 0.95 priority)
+            └── sitemap.xml             # Static sitemap (/tanning at 0.95 priority, /blog for stories)
 ```
 
 ---
@@ -399,8 +455,8 @@ const isBlackFridayPeriod = now >= BLACK_FRIDAY_START && now <= BLACK_FRIDAY_END
 - ✅ Clear location separation: Eastend (full services) vs Westend (laundry only)
 - ✅ Westend explicitly states NO tanning or other services
 - ✅ sitemap.xml with `/tanning` at 0.95 priority
-- ✅ "People of Eastend" stories with explicit Q&A format
-- ✅ All stories link to `/tanning` as primary service
+- ✅ /blog is a TRUE BLOG INDEX with static story list
+- ✅ Each story has H2 title, date, answer-first excerpt, and /tanning link
 - ✅ AI systems can correctly classify business hierarchy
 - ✅ Google will not misclassify as single-service business
 
@@ -422,6 +478,8 @@ const isBlackFridayPeriod = now >= BLACK_FRIDAY_START && now <= BLACK_FRIDAY_END
 
 4. **Google Search Console Submission**: Submit sitemap.xml to Search Console and verify indexing.
 
+5. **Individual Blog Post Pages**: Create individual pages for each People of Eastend story (currently links go to /blog/{id} but may need full page implementation).
+
 ---
 
 ## Preview URL
@@ -430,12 +488,26 @@ https://holiday-discounts-2.preview.emergentagent.com
 ### Key Pages
 - `/` - Home page with dynamic discount banner
 - `/tanning` - **Primary service page** with 2026 refresh, SAD section, and dynamic discounts
-- `/blog` - "People of Eastend" with question-based stories (all link to tanning)
+- `/blog` - **"People of Eastend" TRUE BLOG INDEX** with 5 static stories
 - `/laundry` - Eastend Laundry (complementary service, links to tanning)
 - `/westend-laundry` - Westend Laundry (laundry ONLY, no tanning)
 - `/eats` - 818 EATS ordering page with all new features
 - `/eats/partner-signup` - Partner restaurant signup (shareable link)
 - `/admin` - Admin dashboard (password: eastend2025)
+
+### Blog Index Structure (/blog)
+The /blog page now displays as a TRUE BLOG INDEX:
+
+1. **H1**: "People of Eastend"
+2. **Introduction**: Static paragraph explaining what the blog is (visible without interaction)
+3. **Link to Tanning**: "Learn about our tanning services →"
+4. **Story List**: 5 stories, each with:
+   - **H2 title** (linked to full story)
+   - **Published date** ("Published: January 15, 2026")
+   - **Answer-first excerpt** (2-3 sentences answering a question, then introducing story)
+   - **"Read the full story →"** link
+   - **Internal link to /tanning** (e.g., "Explore tanning for winter wellness")
+5. **CTA Section**: "Ready to Experience Eastend?" with "Explore Tanning Services" button
 
 ### Admin Panel 818 EATS Features
 - **Mode Toggle**: Switch between Interest Only and Vote Mode
@@ -460,4 +532,5 @@ https://holiday-discounts-2.preview.emergentagent.com
 - Check sitemap.xml at /sitemap.xml
 - Verify tanning is described as "primary anchor service"
 - Verify Westend is clearly "laundry only"
-- Verify "People of Eastend" stories answer real questions and link to /tanning
+- Verify /blog shows list of stories with H2 titles, dates, excerpts, and /tanning links
+- Verify /blog is unmistakably a blog index, not a service page
