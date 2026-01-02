@@ -1,14 +1,14 @@
 [
   {
     "content": "Fix SEO links to go directly to Eastend Tanning (not competitor searches)",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Update 818 EATS voting to require contact info (name, email, phone)",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Test both fixes",
-    "status": "pending"
+    "status": "in_progress"
   }
 ]
