@@ -328,6 +328,60 @@ async def get_interest_list():
         }
     }
 
+# Vote Contact Collection (builds database when users vote)
+class VoteContact(BaseModel):
+    name: str
+    email: str
+    phone: str
+
+@router.post("/vote-contact")
+async def save_vote_contact(contact: VoteContact):
+    """Save contact info when user wants to vote - builds customer database"""
+    # Check for existing contact
+    existing = await db.eats_vote_contacts.find_one({"email": contact.email})
+    if existing:
+        # Update existing record
+        await db.eats_vote_contacts.update_one(
+            {"email": contact.email},
+            {"$set": {
+                "name": contact.name,
+                "phone": contact.phone,
+                "vote_count": existing.get("vote_count", 0) + 1,
+                "updated_at": datetime.now(timezone.utc).isoformat()
+            }}
+        )
+        return {"status": "success", "message": "Welcome back! You can now vote."}
+    
+    new_contact = {
+        "id": str(uuid.uuid4()),
+        "name": contact.name,
+        "email": contact.email,
+        "phone": contact.phone,
+        "vote_count": 1,
+        "converted_to_order": False,
+        "contacted": False,
+        "source": "vote_mode",
+        "created_at": datetime.now(timezone.utc).isoformat(),
+        "updated_at": datetime.now(timezone.utc).isoformat()
+    }
+    await db.eats_vote_contacts.insert_one(new_contact)
+    
+    return {
+        "status": "success",
+        "message": "Contact saved! You can now vote for your favorites.",
+        "contact_id": new_contact["id"]
+    }
+
+@router.get("/vote-contacts")
+async def get_vote_contacts():
+    """Get all vote contacts (admin) - the customer database"""
+    contacts = await db.eats_vote_contacts.find({}, {"_id": 0}).sort("created_at", -1).to_list(None)
+    return {
+        "contacts": contacts,
+        "total": len(contacts)
+    }
+
+
 @router.put("/interest/{interest_id}/contacted")
 async def mark_interest_contacted(interest_id: str, contacted: bool = True):
     """Mark interest as contacted (admin)"""
