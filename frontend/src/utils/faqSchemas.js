@@ -50,27 +50,35 @@ export const homeFAQs = [
   }
 ];
 
-// Tanning Page FAQs
+// Tanning Page FAQs - Updated for 2026
 export const tanningFAQs = [
+  {
+    question: "What is the best tanning salon near me in Mt Vernon Ohio?",
+    answer: "Eastend Tanning at 818 Coshocton Ave is Mt Vernon's #1 rated tanning salon in 2026. We offer 6 tanning bed levels including the exclusive 40,740W Matrix bed, stand-up tanning, and red light therapy. Monthly unlimited packages start at just $39.99/month VIP. Open 7 days a week from 8AM-7:30PM. Call (740) 397-9632."
+  },
+  {
+    question: "Can tanning help with Seasonal Affective Disorder (SAD) and winter blues?",
+    answer: "Yes! Indoor tanning and light therapy can help combat SAD symptoms by providing UV light exposure that triggers vitamin D production and serotonin release. Many customers visit during Ohio's dark winter months (especially January-March) to boost their mood and energy levels. Our red light therapy beds also provide non-UV light that supports mental wellness. Always consult your doctor for medical advice about SAD."
+  },
   {
     question: "How many tanning bed levels do you have?",
     answer: "We have 6 tanning bed levels: Level 1 (3,840W) for beginners at $5/session, Level 2 (5,000W) most popular at $8/session, Level 3 (10,750W) high-pressure at $10/session, Level 4 (13,995W) premium at $14.99/session, Stand Up (8,640W) at $11/session, and Matrix (40,740W) ultimate power at $23.99/session. All levels are included in monthly unlimited packages."
   },
   {
     question: "What is the Matrix tanning bed?",
-    answer: "The Matrix is our exclusive ultra-premium tanning bed with 40,740 watts of power - the most powerful tanning bed in the area. It delivers the fastest, deepest tan possible with professional-grade results. Single sessions are $23.99 or included in the VIP unlimited package at $169.99/month."
+    answer: "The Matrix is our exclusive ultra-premium tanning bed with 40,740 watts of power - the most powerful tanning bed in Knox County, Ohio. It delivers the fastest, deepest tan possible with professional-grade results. Single sessions are $23.99 or included in the VIP unlimited package at $169.99/month."
   },
   {
-    question: "How much does monthly unlimited tanning cost?",
-    answer: "Monthly Unlimited tanning ranges from $45.99-$194.99/month with no commitment. VIP Monthly Unlimited (3-month commitment) ranges from $39.99-$169.99/month for the best value. Prices vary by bed level, with Level 1 starting at $39.99 VIP and Matrix at $169.99 VIP."
+    question: "How much does monthly unlimited tanning cost in 2026?",
+    answer: "Monthly Unlimited tanning ranges from $45.99-$194.99/month with no commitment. VIP Monthly Unlimited (3-month commitment) ranges from $39.99-$169.99/month for the best value. Prices vary by bed level, with Level 1 starting at $39.99 VIP and Matrix at $169.99 VIP. February is peak season - start now for spring break!"
   },
   {
     question: "Can I tan as often as I want with monthly unlimited?",
     answer: "Yes! Unlike gyms that limit your tanning, our monthly unlimited packages truly mean unlimited - tan as often as needed for real, lasting results. There are no restrictions or blackout dates."
   },
   {
-    question: "Do you offer red light therapy?",
-    answer: "Yes! We offer red light therapy which promotes skin health, reduces inflammation, and enhances your tanning results. Ask our staff about adding red light therapy to your tanning routine."
+    question: "Do you offer red light therapy for mood and skin?",
+    answer: "Yes! We offer red light therapy which promotes skin health, reduces inflammation, enhances tanning results, and can help with mood during winter months. Red light therapy is a non-UV treatment that many customers use for overall wellness, especially during SAD season."
   },
   {
     question: "What tanning lotions do you sell?",
@@ -81,8 +89,8 @@ export const tanningFAQs = [
     answer: "Yes! We have stand-up tanning beds (8,640W) at $11 per single session or $99.99/month VIP unlimited. Stand-up beds provide full-body coverage with no pressure points, perfect for even tanning."
   },
   {
-    question: "How do I know which tanning bed level is right for me?",
-    answer: "Our expert staff offers free skin evaluations to recommend the best tanning bed level for your skin type. Beginners typically start with Level 1 or 2, while experienced tanners often choose Levels 3-4 or the Matrix for faster, deeper results."
+    question: "When is the best time to start tanning in 2026?",
+    answer: "February 2026 is peak tanning season! Start now to build your base tan before spring break and summer. Regular sessions during winter also help combat the winter blues and low vitamin D levels common in Ohio. Monthly unlimited is the best value for consistent results."
   }
 ];
 
