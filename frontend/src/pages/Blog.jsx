@@ -265,7 +265,7 @@ export default function Blog() {
             People of Eastend
           </h1>
           <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-            Who comes to Eastend? What's it actually like? These stories answer your questions - straight from the customers who know best.
+            Who comes to Eastend? What&apos;s it actually like? These stories answer your questions - straight from the customers who know best.
           </p>
         </div>
       </section>
