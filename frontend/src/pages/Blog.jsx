@@ -181,9 +181,13 @@ export default function Blog() {
     try {
       const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/ai/content/blog`);
       const data = await response.json();
-      setPosts(data);
+      // Combine dynamic posts with static articles
+      const allPosts = [...(data || []), ...staticArticles];
+      setPosts(allPosts);
     } catch (error) {
       console.error('Error fetching blog posts:', error);
+      // Fall back to static articles if API fails
+      setPosts(staticArticles);
     } finally {
       setLoading(false);
     }
@@ -202,12 +206,18 @@ export default function Blog() {
     { name: 'Blog', path: '/blog' }
   ]);
 
+  // Use static articles if no posts loaded (ensures content for SEO)
+  const displayPosts = posts.length > 0 ? posts : staticArticles;
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-amber-50 via-white to-teal-50">
+      {/* Static Fallback for SEO/AEO - visible without JavaScript */}
+      <StaticFallback page="blog" />
+      
       <EnhancedSEO 
-        title="People of Eastend Blog - Beauty, Wellness & Community Stories | Mt Vernon OH"
-        description="Discover beauty tips, tanning advice, wellness guides, and local community stories from Eastend Tanning & Laundry in Mt Vernon, OH. Expert insights on tanning, nail care, bubble tea recipes, and Knox County lifestyle."
-        keywords="People of Eastend blog, beauty tips Mt Vernon, tanning tips Knox County, wellness blog Ohio, nail care advice, bubble tea recipes, Mt Vernon community, Knox County lifestyle, Eastend blog"
+        title="Eastend Blog - Tanning Tips, SAD Relief & Mt Vernon Community 2026"
+        description="Expert tanning tips, SAD relief advice, and Mt Vernon community stories from Eastend Tanning & Laundry. Learn about indoor tanning benefits, red light therapy, and seasonal wellness at Ohio's best tanning salon."
+        keywords="tanning tips blog, SAD relief tanning, best tanning salon Mt Vernon, red light therapy benefits, winter depression UV therapy, Knox County wellness, Eastend blog 2026"
         canonicalUrl="https://eastend.website/blog"
         structuredData={[peopleOfEastendSchema]}
         breadcrumbs={breadcrumbs}
@@ -219,13 +229,13 @@ export default function Blog() {
         <div className="relative max-w-4xl mx-auto text-center space-y-6" data-testid="blog-hero">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-amber-100 rounded-full text-amber-700 font-medium">
             <Sparkles className="w-4 h-4" />
-            <span>AI-Powered Insights</span>
+            <span>Expert Tanning & Wellness Advice</span>
           </div>
           <h1 className="text-5xl md:text-6xl font-bold font-serif bg-gradient-to-r from-amber-600 to-teal-600 bg-clip-text text-transparent">
-            People of Eastend Blog
+            Eastend Blog
           </h1>
           <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-            Beauty tips, wellness advice, and local insights from Mount Vernon's premier multi-service destination
+            Tanning tips, SAD relief advice, and local insights from Mt Vernon's best tanning salon since 1998
           </p>
         </div>
       </section>
