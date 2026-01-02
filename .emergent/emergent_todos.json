@@ -1,6 +1,18 @@
 [
   {
-    "content": "Apply exact blog HTML structure as specified",
+    "content": "Update /blog React page (Blog.jsx) to render the exact static HTML structure inside <section id=\"people-of-eastend-blog\"> (h1, intro p, 3 articles, links, time datetime)",
     "status": "in_progress"
+  },
+  {
+    "content": "Update StaticFallback.jsx blog rendering (noscript + hidden crawlable content) to match the exact snippet structure",
+    "status": "pending"
+  },
+  {
+    "content": "Rebuild frontend (yarn build) and restart frontend service",
+    "status": "pending"
+  },
+  {
+    "content": "Screenshot /blog on preview URL and confirm it matches the provided snippet",
+    "status": "pending"
   }
 ]
