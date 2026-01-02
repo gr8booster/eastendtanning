@@ -1,13 +1,68 @@
 # Eastend Tanning & Laundry - Development Plan
 
 ## Current Session Summary
-This session focused on six main areas:
+This session focused on seven main areas:
 1. Freshening up the tanning section for 2026 peak season with SAD information and SEO updates
 2. Fixing SEO links to go directly to Eastend Tanning (not competitor searches)
 3. Updating 818 EATS voting to require contact info BEFORE voting (builds customer database)
 4. Building comprehensive 818 EATS features: messaging system, customer signup, reviews, and shareable partner links
 5. Dynamic holiday/seasonal discount system that auto-detects dates and shows appropriate discounts
-6. **NEW**: Static content for SEO/AEO - site readable without JavaScript for crawlers and AI bots
+6. Static content for SEO/AEO - site readable without JavaScript for crawlers and AI bots
+7. **NEW**: Mary AI Assistant dynamic discount integration - Mary now promotes current deals automatically
+
+---
+
+## Phase: Mary AI Dynamic Discount System — Status: COMPLETED ✅
+
+### Objectives
+- Update Mary AI Assistant to use dynamic holiday/seasonal discounts instead of hardcoded Black Friday
+- Ensure Mary has access to current website data including 818 EATS and SAD information
+- Update all 2025 date references to 2026 across the codebase
+
+### Completed Work
+
+1. **Mary Dynamic Discount System** (`/app/backend/mary_well.py`)
+   - Added `get_current_discount()` function with 20+ holiday configurations
+   - Added `generate_system_message()` function for dynamic prompt generation
+   - System message includes current discount name, emoji, percentage, code, and applicable services
+   - `refresh_system_message()` method called at each chat session start
+   - Removed all hardcoded Black Friday promotion references
+
+2. **Mary's Knowledge Base Updated**
+   - Includes 818 EATS menu and ordering information
+   - Includes SAD/winter wellness information and recommendations
+   - Includes complete tanning pricing and package details
+   - Includes Fizze drinks, laundry services, and nail salon info
+   - Dynamic discount codes integrated into consultation flow
+
+3. **2025 → 2026 Date Updates**
+   - `/app/backend/auth.py` - Admin password updated to `eastend2026`
+   - `/app/frontend/src/pages/TanningCheckout.jsx` - Black Friday end date to 2026
+   - `/app/frontend/src/components/BlackFridayPopup.jsx` - Expiration date to 2026
+   - `/app/frontend/src/components/LeadCaptureManager.jsx` - Black Friday end date to 2026
+   - `/app/frontend/src/components/BlackFridayBadge.jsx` - Expiration date to 2026
+
+4. **Current Discount Detection Verified**
+   - System date: January 2, 2026
+   - Active discount: "New Year's Sale" 🎆
+   - Discount: 20% OFF
+   - Code: NEWYEAR2026
+   - Applies to: all tanning packages, monthly unlimited, and single sessions
+
+### Testing Results
+- ✅ Mary correctly identifies current discount (New Year's Sale)
+- ✅ Mary promotes NEWYEAR2026 code with 20% off
+- ✅ Mary includes 818 EATS information in responses
+- ✅ Mary mentions SAD/winter wellness benefits
+- ✅ Backend and frontend build successfully
+
+### Files Modified
+- `/app/backend/mary_well.py` - Complete rewrite with dynamic discount system
+- `/app/backend/auth.py` - Updated admin password year
+- `/app/frontend/src/pages/TanningCheckout.jsx` - Updated dates
+- `/app/frontend/src/components/BlackFridayPopup.jsx` - Updated dates
+- `/app/frontend/src/components/LeadCaptureManager.jsx` - Updated dates
+- `/app/frontend/src/components/BlackFridayBadge.jsx` - Updated dates
 
 ---
 
@@ -347,12 +402,14 @@ The 818 EATS system was significantly developed in the previous session with:
 /app
 ├── backend/
 │   ├── eats_routes.py      # Core API for 818 EATS (all features)
+│   ├── mary_well.py        # Mary AI with dynamic discount system
 │   ├── paypal_routes.py    # PayPal integration
 │   └── server.py           # Main FastAPI app
 └── frontend/
     └── src/
         ├── components/
         │   ├── HolidayDiscountBanner.jsx  # Dynamic discount banners
+        │   ├── MaryWellChat.jsx           # Mary chat UI
         │   └── StaticFallback.jsx         # SEO/AEO static content
         ├── pages/
         │   ├── Tanning.jsx             # 2026 refresh + dynamic discounts
@@ -410,9 +467,13 @@ The 818 EATS system was significantly developed in the previous session with:
 - `POST /api/eats/orders/{id}/delivery-notification` - Send delivery notice
 - `POST /api/eats/batch/{id}/delivery-notification` - Batch delivery notice
 
+**Mary AI Chat**
+- `POST /api/chat/start` - Start new chat session (refreshes system message with current discount)
+- `POST /api/chat/message` - Send message to Mary
+
 ---
 
-## Success Criteria (This Session) — ALL MET ✅
+## Success Criteria (All Sessions) — ALL MET ✅
 - ✅ Tanning page freshened for 2026 peak season
 - ✅ SAD section added with health information
 - ✅ SEO links fixed to go directly to Eastend Tanning (not competitors)
@@ -424,11 +485,28 @@ The 818 EATS system was significantly developed in the previous session with:
 - ✅ Reviews section showing 5-star reviews from website customers
 - ✅ Pay now option for interested customers (convert interest to order)
 - ✅ Dynamic holiday/seasonal discount system with 20+ holidays
-- ✅ **Static content for SEO/AEO - site readable without JavaScript**
-- ✅ **Blog with static articles for credibility and findability**
+- ✅ Static content for SEO/AEO - site readable without JavaScript
+- ✅ Blog with static articles for credibility and findability
+- ✅ **Mary AI Assistant updated with dynamic discount system**
+- ✅ **All 2025 references updated to 2026**
+- ✅ **Mary correctly promotes current deals (New Year's Sale - NEWYEAR2026)**
 - ✅ Frontend builds successfully
 - ✅ All backend endpoints tested and working
 - ✅ Deployment health check passed - READY FOR DEPLOYMENT
+
+---
+
+## Pending Tasks (Future Sessions)
+
+1. **Admin Panel Integration**: The messaging system, reviews management, and customer database are backend-ready but the Admin.jsx UI for managing these features needs completion.
+
+2. **Email/SMS Integration**: The messaging system stores messages but doesn't actually send emails or SMS - would need integration with SendGrid, Twilio, or similar.
+
+3. **Partner Link in Admin**: The shareable partner signup link was removed from public page but needs to be added to Admin panel for easy copying.
+
+4. **Review Moderation UI**: Backend supports review approval/featuring but Admin UI needs these controls.
+
+5. **Delivery Notification UI**: Backend supports delivery notifications but Admin needs UI to trigger them.
 
 ---
 
@@ -441,4 +519,10 @@ https://holiday-discounts-2.preview.emergentagent.com
 - `/blog` - Blog with static articles for SEO
 - `/eats` - 818 EATS ordering page with all new features
 - `/eats/partner-signup` - Partner restaurant signup (shareable link)
-- `/admin` - Admin dashboard (password: eastend2025)
+- `/admin` - Admin dashboard (password: eastend2026)
+
+### Mary AI Testing
+- Click the chat icon on any page to interact with Mary
+- Ask "What deals do you have right now?" - Should respond with New Year's Sale (20% off, code NEWYEAR2026)
+- Ask about 818 EATS - Should include menu items and ordering info
+- Ask about SAD/winter blues - Should recommend tanning for mood benefits
