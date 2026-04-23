@@ -14,6 +14,7 @@ import { allFAQSchemas } from '../utils/faqSchemas';
 import { generateBreadcrumb } from '../utils/structuredData';
 import { eastendLaundrySchema } from '../utils/businessSchemas';
 import { laundryBusinessSchema } from '../utils/seoSchemas';
+import { ServiceSchema } from '../components/seo/ServiceSchema';
 
 const laundryImage = 'https://customer-assets.emergentagent.com/job_cece3dc5-08ac-44b8-9e32-3608ea17c8d0/artifacts/ylcc1ll3_Screenshot_20251108_054848_Google.jpg';
 
@@ -24,6 +25,8 @@ export default function Laundry() {
   ]);
 
   return (
+    <>
+      <ServiceSchema name="Laundromat" description="24/7 self-service laundry and professional drop-off service with free drying." category="Laundry" />
     <div className="min-h-screen bg-muted">
       <StaticFallback page="laundry" />
       <EnhancedSEO
@@ -309,5 +312,6 @@ export default function Laundry() {
         </div>
       </div>
     </div>
+    </>
   );
 }

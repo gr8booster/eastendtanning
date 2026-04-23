@@ -462,6 +462,14 @@ export const eastendOrganizationSchema = {
   "logo": "https://eastend.website/logo.png",
   "telephone": "+17403979632",
   "email": "info@eastend.website",
+  "potentialAction": {
+    "@type": "CommunicateAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "https://google-reviews-2.preview.emergentagent.com/#chat",
+      "description": "Chat with Mary Well, our AI Wingman, for personalized tanning consultations and business help."
+    }
+  },
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "818 Coshocton Ave",
@@ -661,7 +669,7 @@ export const foodTruckStopSchema = {
           "@type": "QuantitativeValue",
           "value": "1",
           "unitText": "DAY"
-        }
+"}
       }
     }
   ],

@@ -12,6 +12,7 @@ import { ReviewSubmission } from '../components/ReviewSubmission';
 import { PublicReviews } from '../components/PublicReviews';
 import { generateBreadcrumb } from '../utils/structuredData';
 import { fastNailsSchema } from '../utils/businessSchemas';
+import { ServiceSchema } from '../components/seo/ServiceSchema';
 
 export default function Nails() {
   const services = [
@@ -84,15 +85,17 @@ export default function Nails() {
   ]);
 
   return (
+    <>
+      <ServiceSchema name="Nail Salon" description="Professional manicures, pedicures, and nail art in Mount Vernon." category="Beauty" />
     <div className="min-h-screen">
       <EnhancedSEO
-        title="Fast Nails - Manicures, Pedicures & Nail Art | Eastend Mt Vernon OH"
-        description="Professional nail salon at Eastend Mt Vernon featuring expert manicures, pedicures, gel nails, acrylic nails, and custom nail art. Skilled technicians, high-quality polishes, strict sanitation. Walk-ins welcome! 818 Coshocton Ave. Call (740) 397-9632."
-        keywords="Fast Nails Mt Vernon, nail salon Knox County, manicures Mt Vernon OH, pedicures Mt Vernon, gel nails Knox County, nail art Mt Vernon, acrylic nails Ohio, professional nail care, 818 Coshocton Ave"
+        title="Fast Nails Mt Vernon | Professional Manicures & Pedicures"
+        description="Fast Nails at Eastend Tanning - Mt Vernon's favorite spot for professional manicures, pedicures, gel nails, and custom nail art. Expert technicians, sanitized environment, and walk-ins welcome! 818 Coshocton Ave. Call (740) 397-9632."
+        keywords="nail salon Mt Vernon Ohio, manicures Mount Vernon, pedicures Knox County, gel nails, acrylic nails, nail art Mt Vernon, Fast Nails, pampering service"
         canonicalUrl="https://eastend.website/nails"
         structuredData={[fastNailsSchema, createServiceSchema('Professional Nail Services', 'Expert manicures, pedicures, gel nails, and custom nail art', 25)]}
         breadcrumbs={breadcrumbs}
-        ogImage="https://eastend.website/images/nails-salon.jpg"
+        ogImage="https://images.unsplash.com/photo-1571290274554-6a2eaa771e5f?q=80&w=1200&auto=format&fit=crop"
       />
       {/* Hero */}
       <section className="py-16 sm:py-20 bg-[linear-gradient(135deg,hsl(172_45%_94%),hsl(43_96%_96%))]">
@@ -287,5 +290,6 @@ export default function Nails() {
         </div>
       </section>
     </div>
+    </>
   );
 }

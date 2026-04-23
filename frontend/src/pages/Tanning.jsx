@@ -18,6 +18,7 @@ import { FacebookFeed } from '../components/FacebookFeed';
 import { ReviewSubmission } from '../components/ReviewSubmission';
 import { PublicReviews } from '../components/PublicReviews';
 import { tanningSalonSchema, createFAQSchema } from '../utils/seoSchemas';
+import { ServiceSchema } from '../components/seo/ServiceSchema';
 
 const matrixPoster = "https://images.unsplash.com/photo-1540555700478-4be289fbecef?q=80&w=1200&auto=format&fit=crop";
 
@@ -65,6 +66,8 @@ export default function Tanning() {
   ]);
 
   return (
+    <>
+      <ServiceSchema name="Tanning Studio" description="Premium tanning beds including high-pressure Matrix and red light therapy." category="Tanning" />
     <div className="min-h-screen bg-muted">
       <StaticFallback page="tanning" />
       <SEOHead
@@ -149,271 +152,172 @@ export default function Tanning() {
             </div>
 
             <div className="grid md:grid-cols-3 gap-6 mb-10">
-              <Card className="p-6 bg-white/80 backdrop-blur border-amber-200 hover:shadow-xl transition-all">
-                <div className="w-14 h-14 bg-amber-100 rounded-full flex items-center justify-center mb-4">
-                  <Sun className="w-8 h-8 text-amber-600" />
-                </div>
-                <h3 className="font-bold text-xl mb-3">UV Light Therapy</h3>
-                <p className="text-muted-foreground">
-                  UV light exposure triggers vitamin D production and serotonin release, naturally combating winter depression and low energy levels.
-                </p>
+              <Card className="p-6 bg-white/80 backdrop-blur border-blue-100 hover:shadow-lg transition-shadow">
+                <Sun className="w-10 h-10 text-orange-500 mb-4" />
+                <h3 className="font-bold text-xl mb-2">Natural Vitamin D</h3>
+                <p className="text-muted-foreground">Our beds trigger natural Vitamin D production, which is essential for immune health and mood regulation when the Ohio sun is hidden.</p>
               </Card>
-
-              <Card className="p-6 bg-white/80 backdrop-blur border-amber-200 hover:shadow-xl transition-all">
-                <div className="w-14 h-14 bg-rose-100 rounded-full flex items-center justify-center mb-4">
-                  <Heart className="w-8 h-8 text-rose-600" />
-                </div>
-                <h3 className="font-bold text-xl mb-3">Mood Enhancement</h3>
-                <p className="text-muted-foreground">
-                  Regular tanning sessions can help regulate your body's circadian rhythm and boost endorphins - the "feel good" hormones that improve your mood.
-                </p>
+              <Card className="p-6 bg-white/80 backdrop-blur border-blue-100 hover:shadow-lg transition-shadow">
+                <Heart className="w-10 h-10 text-rose-500 mb-4" />
+                <h3 className="font-bold text-xl mb-2">Serotonin Boost</h3>
+                <p className="text-muted-foreground">UV exposure stimulates the release of serotonin, the 'feel-good' hormone that helps combat anxiety and winter depression.</p>
               </Card>
-
-              <Card className="p-6 bg-white/80 backdrop-blur border-amber-200 hover:shadow-xl transition-all">
-                <div className="w-14 h-14 bg-teal-100 rounded-full flex items-center justify-center mb-4">
-                  <Brain className="w-8 h-8 text-teal-600" />
-                </div>
-                <h3 className="font-bold text-xl mb-3">Red Light Therapy</h3>
-                <p className="text-muted-foreground">
-                  Our red light therapy beds provide non-UV light that reduces inflammation, improves sleep quality, and supports mental wellness during dark winter months.
-                </p>
+              <Card className="p-6 bg-white/80 backdrop-blur border-blue-100 hover:shadow-lg transition-shadow">
+                <Brain className="w-10 h-10 text-blue-500 mb-4" />
+                <h3 className="font-bold text-xl mb-2">Circadian Rhythm</h3>
+                <p className="text-muted-foreground">Regular bright light exposure helps regulate your sleep-wake cycle, improving sleep quality and daytime energy levels.</p>
               </Card>
             </div>
 
-            <Card className="p-8 bg-gradient-to-r from-amber-50 to-orange-50 border-2 border-amber-300">
-              <div className="flex flex-col md:flex-row gap-6 items-center">
-                <div className="flex-1">
-                  <h3 className="font-bold text-2xl mb-3 text-gray-900">February 2026: Peak Tanning Season</h3>
-                  <p className="text-lg text-gray-700 mb-4">
-                    As winter drags on in Ohio, now is the perfect time to start your tanning routine. Build your base tan before spring break and summer, while also fighting off the winter blues with regular light exposure.
+            <div className="text-center bg-white/50 rounded-2xl p-8 border border-blue-100">
+              <p className="text-sm text-muted-foreground italic mb-0">
+                *Note: While many find relief through light therapy, please consult your doctor for medical advice regarding SAD or depression.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Content */}
+      <div className="container mx-auto px-4 py-16">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Why Choose Us - Authority & Comparison */}
+          <div className="lg:col-span-1">
+            <div className="sticky top-24">
+              <h2 className="font-serif text-3xl font-bold mb-8">Why We're #1 in Mt Vernon</h2>
+              <div className="space-y-6">
+                {whyChooseUs.map((item, idx) => (
+                  <div key={idx} className="flex gap-4">
+                    <div className="mt-1">
+                      <div className="bg-amber-100 p-2 rounded-full">
+                        <Check className="w-4 h-4 text-amber-600" />
+                      </div>
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-lg mb-1">{item.title}</h3>
+                      <p className="text-muted-foreground text-sm">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <Card className="mt-12 p-6 bg-gradient-to-br from-amber-500 to-orange-600 text-white">
+                <h3 className="font-bold text-xl mb-4 flex items-center gap-2">
+                  <Crown className="w-6 h-6" />
+                  VIP Membership
+                </h3>
+                <p className="mb-6 text-amber-50">
+                  Join our VIP program with a 3-month commitment for the lowest possible rates and exclusive member benefits.
+                </p>
+                <Button 
+                  className="w-full bg-white text-orange-600 hover:bg-amber-50 font-bold"
+                  onClick={openChat}
+                >
+                  Ask Mary About VIP
+                </Button>
+              </Card>
+            </div>
+          </div>
+
+          {/* Bed Levels & Pricing */}
+          <div className="lg:col-span-2">
+            <h2 className="font-serif text-3xl font-bold mb-8" id="levels">State-of-the-Art Bed Levels</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {bedLevels.map((tier, idx) => (
+                <Card key={idx} className="p-6 hover:shadow-md transition-shadow border-2 hover:border-amber-500 group">
+                  <div className="flex justify-between items-start mb-4">
+                    <div>
+                      <Badge variant="secondary" className="mb-2">{tier.level}</Badge>
+                      <h3 className="text-xl font-bold">{tier.watts} Power</h3>
+                    </div>
+                    <Sun className="w-6 h-6 text-amber-500" />
+                  </div>
+                  <p className="font-semibold text-amber-700 mb-2">{tier.price}</p>
+                  <p className="text-sm text-muted-foreground mb-4">{tier.bestFor}</p>
+                  <Button 
+                    variant="outline" 
+                    className="w-full group-hover:bg-amber-500 group-hover:text-white transition-colors"
+                    onClick={openChat}
+                  >
+                    Book {tier.level}
+                  </Button>
+                </Card>
+              ))}
+            </div>
+
+            {/* Matrix Section */}
+            <Card className="mt-8 overflow-hidden border-4 border-amber-500">
+              <div className="grid md:grid-cols-2">
+                <div className="p-8">
+                  <Badge className="bg-amber-500 text-white mb-4">The Ultimate Tan</Badge>
+                  <h3 className="font-serif text-3xl font-bold mb-4">The 40,740-Watt Matrix</h3>
+                  <p className="text-muted-foreground mb-6">
+                    Mount Vernon's most powerful bed. High-pressure lamps deliver the fastest, deepest, and longest-lasting tan possible. Results in just 3-4 sessions.
                   </p>
-                  <ul className="space-y-2 text-gray-700">
+                  <ul className="space-y-3 mb-8">
                     <li className="flex items-center gap-2">
-                      <Check className="w-5 h-5 text-green-600" />
-                      <span>Boost vitamin D levels during low-sunlight months</span>
+                      <Zap className="w-4 h-4 text-amber-500" />
+                      <span className="font-medium">360-degree high-pressure coverage</span>
                     </li>
                     <li className="flex items-center gap-2">
-                      <Check className="w-5 h-5 text-green-600" />
-                      <span>Get beach-ready before spring break trips</span>
+                      <Zap className="w-4 h-4 text-amber-500" />
+                      <span className="font-medium">Maximum melanin stimulation</span>
                     </li>
                     <li className="flex items-center gap-2">
-                      <Check className="w-5 h-5 text-green-600" />
-                      <span>Monthly unlimited for consistent results & mood benefits</span>
+                      <Zap className="w-4 h-4 text-amber-500" />
+                      <span className="font-medium">Best for hard-to-tan skin</span>
                     </li>
                   </ul>
-                </div>
-                <div className="flex-shrink-0">
                   <Button 
-                    size="lg"
-                    onClick={() => navigate('/tanning-checkout')}
-                    className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-bold text-lg h-14 px-8 shadow-lg"
+                    className="bg-amber-600 hover:bg-amber-700 text-white font-bold h-12 px-8"
+                    onClick={openChat}
                   >
-                    <Sun className="w-5 h-5 mr-2" />
-                    Start Your Winter Wellness Plan
+                    Experience the Matrix
                   </Button>
+                </div>
+                <div className="relative h-64 md:h-auto">
+                  <img 
+                    src={matrixPoster} 
+                    alt="Matrix Tanning Bed"
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
                 </div>
               </div>
             </Card>
-
-            {/* External SAD Resources */}
-            <div className="mt-8 text-center">
-              <p className="text-sm text-muted-foreground mb-3">Learn more about Seasonal Affective Disorder:</p>
-              <div className="flex flex-wrap justify-center gap-4">
-                <a href="https://www.nimh.nih.gov/health/publications/seasonal-affective-disorder" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline text-sm inline-flex items-center gap-1">
-                  NIH: SAD Information <ExternalLink className="w-3 h-3" />
-                </a>
-                <a href="https://www.mayoclinic.org/diseases-conditions/seasonal-affective-disorder/symptoms-causes/syc-20364651" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline text-sm inline-flex items-center gap-1">
-                  Mayo Clinic: SAD Symptoms <ExternalLink className="w-3 h-3" />
-                </a>
-                <a href="https://my.clevelandclinic.org/health/diseases/9293-seasonal-depression" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline text-sm inline-flex items-center gap-1">
-                  Cleveland Clinic: Winter Depression <ExternalLink className="w-3 h-3" />
-                </a>
-              </div>
-            </div>
           </div>
         </div>
       </div>
 
-      {/* SEO Quick Links - Best Tanning Salon Near Me - Direct Links to Eastend */}
-      <div className="bg-white py-12 border-b" data-testid="seo-links-section">
+      {/* Upcoming Seasonal Deals Section */}
+      <div className="container mx-auto px-4 py-16 border-t">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="font-serif text-3xl font-bold mb-8 text-center">Upcoming 2026 Tanning Specials</h2>
+          <UpcomingDiscounts />
+        </div>
+      </div>
+
+      {/* Lotions Section */}
+      <section className="py-20 bg-white border-y">
         <div className="container mx-auto px-4">
-          <div className="max-w-5xl mx-auto">
-            <div className="text-center mb-8">
-              <h2 className="font-serif text-3xl font-bold mb-3">Find the Best Tanning Salon Near You</h2>
-              <p className="text-lg text-muted-foreground">Eastend Tanning is Mt Vernon, Ohio's top-rated tanning destination</p>
-            </div>
-            
-            <div className="grid md:grid-cols-3 gap-6 mb-8">
-              {/* Direct link to Eastend on Google Maps */}
-              <a href="https://www.google.com/maps/place/Eastend+Tanning+and+Laundry/@40.3930247,-82.4871659,17z/data=!3m1!4b1!4m6!3m5!1s0x8836c0c0c7e05555:0x5555555555555555!8m2!3d40.3930247!4d-82.484591!16s%2Fg%2F1td6dn7k" target="_blank" rel="noopener noreferrer" className="block">
-                <Card className="p-6 text-center hover:shadow-lg hover:border-amber-400 transition-all cursor-pointer h-full bg-gradient-to-br from-amber-50 to-white">
-                  <MapPin className="w-10 h-10 mx-auto mb-3 text-amber-600" />
-                  <h3 className="font-bold text-lg mb-2">Best Tanning Salon Near Me</h3>
-                  <p className="text-sm text-muted-foreground mb-3">View Eastend Tanning directly on Google Maps - #1 in Mt Vernon!</p>
-                  <Badge className="bg-amber-500 text-white">📍 Go to Eastend</Badge>
-                </Card>
-              </a>
-
-              {/* Direct link to Eastend location */}
-              <a href="https://www.google.com/maps/dir//Eastend+Tanning+and+Laundry,+818+Coshocton+Ave,+Mt+Vernon,+OH+43050" target="_blank" rel="noopener noreferrer" className="block">
-                <Card className="p-6 text-center hover:shadow-lg hover:border-teal-400 transition-all cursor-pointer h-full bg-gradient-to-br from-teal-50 to-white">
-                  <Sun className="w-10 h-10 mx-auto mb-3 text-teal-600" />
-                  <h3 className="font-bold text-lg mb-2">Tanning Salon Near Me</h3>
-                  <p className="text-sm text-muted-foreground mb-3">Get directions to Eastend - 818 Coshocton Ave, Mt Vernon</p>
-                  <Badge className="bg-teal-500 text-white">🚗 Get Directions</Badge>
-                </Card>
-              </a>
-
-              {/* Direct link to Eastend's Yelp page */}
-              <a href="https://www.yelp.com/biz/eastend-laundry-tanning-and-nutrition-mount-vernon" target="_blank" rel="noopener noreferrer" className="block">
-                <Card className="p-6 text-center hover:shadow-lg hover:border-red-400 transition-all cursor-pointer h-full bg-gradient-to-br from-red-50 to-white">
-                  <Crown className="w-10 h-10 mx-auto mb-3 text-red-600" />
-                  <h3 className="font-bold text-lg mb-2">Best Tanning Salon</h3>
-                  <p className="text-sm text-muted-foreground mb-3">Read Eastend's 5-star reviews on Yelp</p>
-                  <Badge className="bg-red-500 text-white">⭐ Read Our Reviews</Badge>
-                </Card>
-              </a>
-            </div>
-
-            <div className="text-center bg-gradient-to-r from-amber-50 to-orange-50 rounded-xl p-6 border-2 border-amber-200">
-              <p className="text-lg font-semibold mb-2">📍 Visit Eastend Tanning Today - The Best Tanning Salon in Mt Vernon!</p>
-              <p className="text-muted-foreground">
-                <strong>818 Coshocton Ave, Mt Vernon, OH 43050</strong> • <a href="tel:+17403979632" className="text-amber-600 hover:underline font-semibold">(740) 397-9632</a> • Open 7 Days: 8AM-7:30PM
-              </p>
-              <div className="mt-4 flex flex-wrap justify-center gap-3">
-                <a href="https://www.google.com/maps/place/Eastend+Tanning+and+Laundry/@40.3930247,-82.4871659,17z" target="_blank" rel="noopener noreferrer">
-                  <Button className="gap-2 bg-amber-500 hover:bg-amber-600 text-white">
-                    <MapPin className="w-4 h-4" /> Eastend on Google Maps
-                  </Button>
-                </a>
-                <a href="https://www.facebook.com/share/1CtZugxSec/" target="_blank" rel="noopener noreferrer">
-                  <Button variant="outline" size="sm">Facebook</Button>
-                </a>
-                <a href="https://www.instagram.com/eastendtanning" target="_blank" rel="noopener noreferrer">
-                  <Button variant="outline" size="sm">Instagram</Button>
-                </a>
-                <a href="https://www.yelp.com/biz/eastend-laundry-tanning-and-nutrition-mount-vernon" target="_blank" rel="noopener noreferrer">
-                  <Button variant="outline" size="sm">Yelp Reviews</Button>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Why Choose Us Over Gyms & Other Salons */}
-      <div className="bg-white py-16">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="font-serif text-4xl font-bold mb-4">Why Eastend is the Best Tanning Salon in Mt Vernon</h2>
-            <p className="text-xl text-muted-foreground">We're the tanning specialists - not a side offering like gyms</p>
-          </div>
-          <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-            {whyChooseUs.map((reason, idx) => (
-              <Card key={idx} className="p-6 hover:shadow-lg transition-shadow">
-                <h3 className="font-bold text-xl mb-3 flex items-center gap-2">
-                  <Check className="w-5 h-5 text-[hsl(var(--primary))]" />
-                  {reason.title}
-                </h3>
-                <p className="text-muted-foreground">{reason.desc}</p>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Lead Capture - Which Bed Should I Choose? */}
-      <div className="bg-gradient-to-br from-[hsl(var(--primary))]/10 to-[hsl(var(--secondary))]/10 py-16 cursor-pointer hover:shadow-lg transition-shadow" onClick={openConsultation} data-testid="consultation-section">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="font-serif text-4xl font-bold mb-4">Not Sure Which Bed is Right for You?</h2>
-            <p className="text-xl text-muted-foreground mb-8">
-              Get a free skin type evaluation and personalized recommendation from Mary, our AI tanning expert. She'll match you to the perfect bed based on your skin type, goals, and budget.
-            </p>
-            <Button size="lg" onClick={(e) => { e.stopPropagation(); openConsultation(); }} className="bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--secondary))] text-lg px-8 hover:scale-105 transition-transform">
-              <Sparkles className="mr-2 h-5 w-5" />
-              Get Free Consultation - Ask Mary Anything
-            </Button>
-          </div>
-        </div>
-      </div>
-
-      {/* Our Tanning Beds - Detailed Breakdown */}
-      <div className="container mx-auto px-4 py-16">
-        <div className="text-center mb-12">
-          <h2 className="font-serif text-4xl font-bold mb-4">Our 5 Tanning Levels (+ Matrix)</h2>
-          <p className="text-xl text-muted-foreground">From beginner-friendly to ultimate power - we have the right bed for every skin type</p>
-        </div>
-        
-        <div className="space-y-4 max-w-5xl mx-auto mb-12">
-          {bedLevels.map((bed, idx) => (
-            <Card key={idx} className="p-6 hover:shadow-lg transition-shadow">
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                <div className="flex-1">
-                  <div className="flex items-center gap-3 mb-2">
-                    <Badge className="bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--secondary))] text-white">
-                      {bed.level}
-                    </Badge>
-                    <span className="font-bold text-lg">{bed.watts}</span>
-                  </div>
-                  <p className="text-muted-foreground mb-2">Best for: {bed.bestFor}</p>
-                  <p className="font-semibold text-[hsl(var(--primary))]">{bed.price}</p>
-                </div>
-                <Button variant="outline" onClick={openChat}>Ask Mary About This Bed</Button>
-              </div>
-            </Card>
-          ))}
-        </div>
-
-        {/* Video Showcase */}
-        <div className="max-w-4xl mx-auto mt-16">
-          <div className="text-center mb-8">
-            <h3 className="font-serif text-3xl font-bold mb-4">See Our Beds in Action</h3>
-          </div>
-          <Card className="overflow-hidden">
-            <video
-              controls
-              poster={matrixPoster}
-              className="w-full aspect-video bg-black"
-            >
-              <source src="/tanning-hero-video.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-          </Card>
-        </div>
-      </div>
-
-      {/* Pricing - Show Them the Deal */}
-      <div className="bg-white py-16">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="font-serif text-4xl font-bold mb-4">Tanning Packages & Pricing</h2>
+          <div className="text-center mb-16">
+            <h2 className="font-serif text-4xl font-bold mb-4">Never Tan Dry</h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Monthly unlimited gives you the consistency needed for real results. Choose VIP for the lowest price or regular monthly with no commitment.
-            </p>
-          </div>
-          <PricingTable items={packages} highlightMonthly={true} note="💡 Questions about VIP or which package is right for you? Ask Mary for personalized advice." />
-          
-          <div className="text-center mt-8">
-            <Button variant="outline" size="lg" onClick={openChat}>
-              Ask Mary: "What's the difference between VIP and Monthly?"
-            </Button>
-          </div>
-        </div>
-      </div>
-
-      {/* Lotions - They Want Lotions! */}
-      <div className="bg-gradient-to-b from-muted to-white py-16">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="font-serif text-4xl font-bold mb-4">Get Better Results with Premium Lotions</h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Professional-grade lotions accelerate tanning, moisturize, and help your tan last longer. Buy online, pick up in-store, or ask Mary for recommendations.
+              Quality lotions protect your skin and accelerate results by up to 50%. Browse our professional catalog.
             </p>
           </div>
           <LotionsCatalog />
+          <div className="text-center mt-12">
+            <Button 
+              size="lg" 
+              variant="outline" 
+              className="h-14 px-10 text-lg border-2 border-amber-500 text-amber-700 hover:bg-amber-50"
+              onClick={() => navigate('/lotions')}
+            >
+              View Full Collection
+            </Button>
+          </div>
         </div>
-      </div>
+      </section>
 
       {/* Facebook Feed Section */}
       <section className="py-16 bg-white">
@@ -448,33 +352,24 @@ export default function Tanning() {
         </div>
       </section>
 
-      {/* Final CTA */}
-      <div className="py-16 bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--secondary))] text-white text-center">
+      {/* Final Authority CTA */}
+      <section className="py-20 bg-muted">
         <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="font-serif text-4xl font-bold mb-4">Ready to Start Your Tanning Journey?</h2>
-            <p className="text-xl mb-8">
-              Stop by today or chat with Mary to find your perfect package. No pressure, just expert guidance.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button 
-                size="lg" 
-                className="bg-white text-[hsl(var(--primary))] hover:bg-white/90"
-                onClick={() => navigate('/tanning-checkout')}
-              >
-                Buy Package Online
-              </Button>
-              <Button size="lg" variant="outline" className="bg-transparent border-white text-white hover:bg-white/10" onClick={openChat}>
-                Chat with Mary
-              </Button>
-              <BookingCTA />
-            </div>
-            <p className="text-sm text-white/70 mt-6">
-              📍 Eastend Tanning: 818 Coshocton Ave, Mt Vernon | 📞 (740) 397-9632 | ⏰ 8am-7:30pm daily
-            </p>
-          </div>
+          <BookingCTA 
+            title="Ready to Get Your Glow On?"
+            subtitle="Visit us at 818 Coshocton Ave today. No appointment needed for tanning sessions!"
+            primaryAction={{ 
+              text: "Talk to Mary Well", 
+              onClick: openChat 
+            }}
+            secondaryAction={{ 
+              text: "Get Directions", 
+              onClick: () => window.open('https://www.google.com/maps/dir/?api=1&destination=818+Coshocton+Ave,+Mt+Vernon,+OH+43050') 
+            }}
+          />
         </div>
-      </div>
+      </section>
     </div>
+    </>
   );
 }
