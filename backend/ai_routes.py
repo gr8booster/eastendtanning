@@ -9,6 +9,7 @@ from datetime import datetime, timezone
 import uuid
 
 from ai_engine import ai_engine
+from autonomous_implementation import autonomous_engine
 from routes import db
 from rate_limiter import rate_limit
 
@@ -363,7 +364,7 @@ async def get_ai_engine_status():
 @ai_router.post("/recommendations/{recommendation_id}/implement")
 async def implement_recommendation(recommendation_id: str, request: Request):
     """
-    Mark a recommendation as implemented
+    Actually implement a recommendation autonomously
     """
     try:
         # Find the recommendation
@@ -372,21 +373,13 @@ async def implement_recommendation(recommendation_id: str, request: Request):
         if not recommendation:
             raise HTTPException(status_code=404, detail="Recommendation not found")
         
-        # Update status to implemented
-        await db.ai_recommendations.update_one(
-            {"id": recommendation_id},
-            {
-                "$set": {
-                    "status": "implemented",
-                    "implemented_at": datetime.now(timezone.utc).isoformat()
-                }
-            }
-        )
+        # Implement autonomously
+        result = await autonomous_engine.implement(recommendation)
         
         return {
             "status": "success",
-            "message": f"Recommendation '{recommendation.get('title')}' has been implemented",
-            "recommendation_id": recommendation_id
+            "message": f"Recommendation '{recommendation.get('title')}' implemented autonomously",
+            "result": result
         }
     except HTTPException:
         raise
@@ -426,4 +419,3 @@ async def reject_recommendation(recommendation_id: str, request: Request):
         raise
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to reject recommendation: {str(e)}")
-

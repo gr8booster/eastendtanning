@@ -27,11 +27,11 @@ export const Header = () => {
         <div className="hidden md:flex gap-3">
           <Button data-testid="nav-chat-button" onClick={() => window.openMaryChat && window.openMaryChat()} variant="default" size="default" className="inline-flex items-center gap-2 bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))] hover:bg-[hsl(42_92%_50%)] font-semibold">
             <MessageCircle className="w-4 h-4" />
-            Chat with Mary
+            Chat with Mary Well
           </Button>
           <Button data-testid="nav-talk-button" onClick={() => window.openMaryChatAndListen && window.openMaryChatAndListen()} variant="outline" size="default" className="inline-flex items-center gap-2 font-semibold">
             <Mic className="w-4 h-4" />
-            Talk to Mary
+            Talk to Mary Well
           </Button>
           <a data-testid="nav-directions-button" href="https://www.google.com/maps/dir/?api=1&destination=818+Coshocton+Ave,+Mt+Vernon,+OH+43050" target="_blank" rel="noopener noreferrer">
             <Button variant="outline" size="default" className="inline-flex items-center gap-2 font-semibold">
@@ -102,11 +102,11 @@ export const Header = () => {
                 <div className="mt-4 space-y-3">
                   <button data-testid="sheet-chat-button" className="inline-flex items-center justify-center gap-2 rounded-md bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))] h-11 w-full font-semibold" onClick={() => window.openMaryChat && window.openMaryChat()}>
                     <MessageCircle className="w-4 h-4" />
-                    Chat with Mary
+                    Chat with Mary Well
                   </button>
                   <button data-testid="sheet-talk-button" className="inline-flex items-center justify-center gap-2 rounded-md border h-11 w-full font-semibold" onClick={() => window.openMaryChatAndListen && window.openMaryChatAndListen()}>
                     <Mic className="w-4 h-4" />
-                    Talk to Mary
+                    Talk to Mary Well
                   </button>
                   <a data-testid="sheet-directions-button" className="inline-flex items-center justify-center gap-2 rounded-md border h-11 w-full font-semibold" href="https://www.google.com/maps/dir/?api=1&destination=818+Coshocton+Ave,+Mt+Vernon,+OH+43050" target="_blank" rel="noopener noreferrer">
                     <MapPin className="w-4 h-4" />

@@ -1,6 +1,8 @@
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { Header } from './components/Header';
+import { BusinessSchema } from './components/seo/BusinessSchema';
+import { JourneyTracker } from './components/JourneyTracker';
 import { Footer } from './components/Footer';
 import { SocialMediaBar } from './components/SocialMediaBar';
 import { Toaster } from './components/ui/sonner';
@@ -73,6 +75,8 @@ function App() {
     <HelmetProvider>
       <BrowserRouter>
         <AnalyticsTracker />
+        <BusinessSchema />
+        <JourneyTracker />
         <div className="App min-h-screen flex flex-col">
           <Header />
           <SocialMediaBar />

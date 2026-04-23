@@ -137,7 +137,7 @@ class MarketingJourneyManager:
                 {
                     "$set": {
                         "last_contact": datetime.now(timezone.utc),
-                        "chat_session_id": customer_data.get("chat_session_id"),
+                        "chat_session_id": customer_data.get("chat_session_id stream_id"),
                         "source": "mary_well_chat",
                         "updated_at": datetime.now(timezone.utc)
                     },
@@ -379,5 +379,57 @@ class MarketingJourneyManager:
             "metadata": journey.get("metadata", {})
         }
 
+    async def track_anonymous_visit(self, session_id: str, page_url: str, referrer: str = None):
+        """
+        Track an anonymous visit and start/update journey
+        """
+        # Create or update visitor record
+        visitor = await db.visitor_tracking.find_one({"session_id": session_id})
+        
+        if not visitor:
+            visitor = {
+                "session_id": session_id,
+                "first_visit": datetime.now(timezone.utc),
+                "last_visit": datetime.now(timezone.utc),
+                "pages_viewed": [page_url],
+                "referrer": referrer,
+                "visit_count": 1
+            }
+            await db.visitor_tracking.insert_one(visitor)
+            
+            # Start an anonymous journey if it's the first visit
+            # Note: We use the session_id as a temporary lead_id
+            await self.start_journey(session_id, "awareness", {
+                "source": "website_visit",
+                "page": page_url,
+                "anonymous": True
+            })
+        else:
+            await db.visitor_tracking.update_one(
+                {"session_id": session_id},
+                {
+                    "$set": {"last_visit": datetime.now(timezone.utc)},
+                    "$push": {"pages_viewed": page_url},
+                    "$inc": {"visit_count": 1}
+                }
+            )
+            
+            # Trigger event for existing journey
+            await self.trigger_event(session_id, "page_viewed", {"page": page_url})
+
+    async def link_session_to_lead(self, session_id: str, lead_id: str):
+        """
+        Link an anonymous session to a confirmed lead
+        """
+        # Move journey data from session_id to lead_id
+        await db.marketing_journeys.update_many(
+            {"lead_id": session_id},
+            {"$set": {"lead_id": lead_id, "metadata.anonymous": False}}
+        )
+        await db.scheduled_marketing_actions.update_many(
+            {"lead_id": session_id},
+            {"$set": {"lead_id": lead_id}}
+        )
+
 # Create global instance
-journey_manager = MarketingJourneyManager()
+journey_manager = MarketingJourneyManager()"

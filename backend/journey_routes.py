@@ -129,3 +129,21 @@ async def get_journey_analytics():
         "pending_actions": pending_actions,
         "completed_actions": completed_actions
     }
+
+class VisitRequest(BaseModel):
+    session_id: str
+    page_url: str
+    referrer: Optional[str] = None
+
+@router.post("/visit")
+async def track_visit(request: VisitRequest):
+    """
+    Track a website visit and start anonymous journey
+    """
+    await journey_manager.track_anonymous_visit(
+        request.session_id,
+        request.page_url,
+        request.referrer
+    )
+    
+    return {"status": "success"}
