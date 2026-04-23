@@ -30,7 +30,8 @@ JOURNEY_STAGES = {
         "next_stage": "consideration",
         "actions": [
             {"type": "email", "delay_hours": 2, "template": "service_details"},
-            {"type": "sms", "delay_hours": 48, "template": "special_offer"}
+            {"type": "sms", "delay_hours": 48, "template": "special_offer"},
+            {"type": "call", "delay_hours": 72, "template": "follow_up"}
         ]
     },
     "consideration": {
@@ -101,7 +102,8 @@ JOURNEY_STAGES = {
         "next_stage": "churned",
         "actions": [
             {"type": "email", "delay_hours": 0, "template": "final_offer"},
-            {"type": "sms", "delay_hours": 72, "template": "last_chance"}
+            {"type": "sms", "delay_hours": 72, "template": "last_chance"},
+            {"type": "call", "delay_hours": 24, "template": "re_engagement"}
         ]
     },
     "churned": {
@@ -137,7 +139,7 @@ class MarketingJourneyManager:
                 {
                     "$set": {
                         "last_contact": datetime.now(timezone.utc),
-                        "chat_session_id": customer_data.get("chat_session_id stream_id"),
+                        "chat_session_id": customer_data.get("chat_session_id"),
                         "source": "mary_well_chat",
                         "updated_at": datetime.now(timezone.utc)
                     },
