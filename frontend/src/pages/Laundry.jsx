@@ -296,7 +296,7 @@ export default function Laundry() {
             <Button
               size="lg"
               className="bg-white text-[hsl(42_92%_55%)] hover:bg-white/90"
-              onClick={() => window.open('tel:7403979633')}
+              onClick={() => window.open('tel:7403979632')}
             >
               Call (740) 397-9632
             </Button>
