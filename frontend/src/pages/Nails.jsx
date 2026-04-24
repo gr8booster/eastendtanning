@@ -290,6 +290,6 @@ export default function Nails() {
         </div>
       </section>
     </div>
-    </>
+      </>
   );
 }
