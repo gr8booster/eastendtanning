@@ -370,6 +370,6 @@ export default function Tanning() {
         </div>
       </section>
     </div>
-    </>
+      </>
   );
 }
